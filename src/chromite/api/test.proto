@@ -62,7 +62,9 @@ message VmTestRequest {
   // The chroot in which to run commands. Required.
   chromiumos.Chroot chroot = 2;
 
-  // The VM image to test. Required.
+  // The VM image to test.
+  // Deprecated.
+  // vm_image or test_vm_image required.
   chromite.api.VmImage vm_image = 3;
 
   // Options for SSHing into the VM.
@@ -101,6 +103,10 @@ message VmTestRequest {
 
   // All VM tests that should be run. At least one must be specified.
   repeated VmTest vm_tests = 6;
+
+  // The VM image to test. Required.
+  // vm_image or test_vm_image required.
+  chromite.api.Image test_vm_image = 7;
 }
 
 message VmTestResponse {

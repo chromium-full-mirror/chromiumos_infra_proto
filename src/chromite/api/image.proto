@@ -23,6 +23,10 @@ message CreateImageRequest {
   // The build target whose image is being built.
   chromiumos.BuildTarget build_target = 1;
   // The types of images to build, defaults to building base image.
+  // Note: Building either of the VM image types will also force the
+  // corresponding regular image to be built. Only one VM image type may be
+  // built at a time, and will overwrite any previously built VM image if the
+  // same output directory (version) is used.
   repeated chromiumos.ImageType image_types = 2;
   // Whether rootfs verification should be disabled (enabled by default).
   bool disable_rootfs_verification = 3;

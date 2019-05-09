@@ -63,4 +63,6 @@ enum ImageType {
   BASE = 1;
   DEV = 2;
   TEST = 3;
+  BASE_VM = 4;
+  TEST_VM = 5;
 }

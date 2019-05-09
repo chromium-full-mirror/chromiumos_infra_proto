@@ -86,6 +86,10 @@ type CreateImageRequest struct {
 	// The build target whose image is being built.
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,1,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
 	// The types of images to build, defaults to building base image.
+	// Note: Building either of the VM image types will also force the
+	// corresponding regular image to be built. Only one VM image type may be
+	// built at a time, and will overwrite any previously built VM image if the
+	// same output directory (version) is used.
 	ImageTypes []chromiumos.ImageType `protobuf:"varint,2,rep,packed,name=image_types,json=imageTypes,proto3,enum=chromiumos.ImageType" json:"image_types,omitempty"`
 	// Whether rootfs verification should be disabled (enabled by default).
 	DisableRootfsVerification bool `protobuf:"varint,3,opt,name=disable_rootfs_verification,json=disableRootfsVerification,proto3" json:"disable_rootfs_verification,omitempty"`
