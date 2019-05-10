@@ -11,12 +11,19 @@ import "chromiumos/common.proto";
 // Proto for executing test-related functionality.
 
 message BuildTargetUnitTestRequest {
+  message Flags {
+    // Assume the sysroot is empty.
+    bool empty_sysroot = 1;
+  }
+
   // The build target being tested.
   chromiumos.BuildTarget build_target = 1;
   // The path where the result tarball should be saved.
   string result_path = 2;
   // The chroot containing the sysroot.
   chromiumos.Chroot chroot = 3;
+  // The flags.
+  Flags flags = 4;
 }
 
 message BuildTargetUnitTestResponse {
