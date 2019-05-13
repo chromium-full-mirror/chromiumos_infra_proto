@@ -56,3 +56,11 @@ message UseFlag {
   // The use flag.
   string flag = 1;
 }
+
+  // The types of images that can be built.
+enum ImageType {
+  IMAGE_TYPE_UNDEFINED = 0;
+  BASE = 1;
+  DEV = 2;
+  TEST = 3;
+}
