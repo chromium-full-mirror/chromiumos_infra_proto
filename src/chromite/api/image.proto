@@ -9,18 +9,10 @@ import "chromiumos/common.proto";
 
 // Image argument - encapsulate data about an image.
 message Image {
-  // The types of images that can be built.
-  enum Type {
-    IMAGE_TYPE_UNDEFINED = 0;
-    BASE = 1;
-    DEV = 2;
-    TEST = 3;
-  }
-
   // Path to the image file.
   string path = 1;
   // The image type.
-  Type type = 2;
+  chromiumos.ImageType type = 2;
   // The build target used to create the image.
   chromiumos.BuildTarget build_target = 3;
 }
@@ -31,7 +23,7 @@ message CreateImageRequest {
   // The build target whose image is being built.
   chromiumos.BuildTarget build_target = 1;
   // The types of images to build, defaults to building base image.
-  repeated Image.Type image_types = 2;
+  repeated chromiumos.ImageType image_types = 2;
   // Whether rootfs verification should be disabled (enabled by default).
   bool disable_rootfs_verification = 3;
   // The image version.
