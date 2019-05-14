@@ -84,14 +84,14 @@ func (m *GenerateTestPlanRequest) GetRepoToolPath() string {
 type GenerateTestPlanResponse struct {
 	TestUnit []*TestUnit `protobuf:"bytes,1,rep,name=test_unit,json=testUnit,proto3" json:"test_unit,omitempty"`
 	// TODO(seanabraham): Populate these new fields
-	GceTestSuites        []*GceTestSuite      `protobuf:"bytes,2,rep,name=gce_test_suites,json=gceTestSuites,proto3" json:"gce_test_suites,omitempty"`
-	HwTestSuites         []*HwTestSuite       `protobuf:"bytes,3,rep,name=hw_test_suites,json=hwTestSuites,proto3" json:"hw_test_suites,omitempty"`
-	MoblabVmTestSuites   []*MoblabVmTestSuite `protobuf:"bytes,4,rep,name=moblab_vm_test_suites,json=moblabVmTestSuites,proto3" json:"moblab_vm_test_suites,omitempty"`
-	TastVmTestSuites     []*TastVmTestSuite   `protobuf:"bytes,5,rep,name=tast_vm_test_suites,json=tastVmTestSuites,proto3" json:"tast_vm_test_suites,omitempty"`
-	VmTestSuites         []*VmTestSuite       `protobuf:"bytes,6,rep,name=vm_test_suites,json=vmTestSuites,proto3" json:"vm_test_suites,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	GceTestUnits         []*GceTestUnit      `protobuf:"bytes,2,rep,name=gce_test_units,json=gceTestUnits,proto3" json:"gce_test_units,omitempty"`
+	HwTestUnits          []*HwTestUnit       `protobuf:"bytes,3,rep,name=hw_test_units,json=hwTestUnits,proto3" json:"hw_test_units,omitempty"`
+	MoblabVmTestUnits    []*MoblabVmTestUnit `protobuf:"bytes,4,rep,name=moblab_vm_test_units,json=moblabVmTestUnits,proto3" json:"moblab_vm_test_units,omitempty"`
+	TastVmTestUnits      []*TastVmTestUnit   `protobuf:"bytes,5,rep,name=tast_vm_test_units,json=tastVmTestUnits,proto3" json:"tast_vm_test_units,omitempty"`
+	VmTestUnits          []*VmTestUnit       `protobuf:"bytes,6,rep,name=vm_test_units,json=vmTestUnits,proto3" json:"vm_test_units,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
 func (m *GenerateTestPlanResponse) Reset()         { *m = GenerateTestPlanResponse{} }
@@ -126,37 +126,37 @@ func (m *GenerateTestPlanResponse) GetTestUnit() []*TestUnit {
 	return nil
 }
 
-func (m *GenerateTestPlanResponse) GetGceTestSuites() []*GceTestSuite {
+func (m *GenerateTestPlanResponse) GetGceTestUnits() []*GceTestUnit {
 	if m != nil {
-		return m.GceTestSuites
+		return m.GceTestUnits
 	}
 	return nil
 }
 
-func (m *GenerateTestPlanResponse) GetHwTestSuites() []*HwTestSuite {
+func (m *GenerateTestPlanResponse) GetHwTestUnits() []*HwTestUnit {
 	if m != nil {
-		return m.HwTestSuites
+		return m.HwTestUnits
 	}
 	return nil
 }
 
-func (m *GenerateTestPlanResponse) GetMoblabVmTestSuites() []*MoblabVmTestSuite {
+func (m *GenerateTestPlanResponse) GetMoblabVmTestUnits() []*MoblabVmTestUnit {
 	if m != nil {
-		return m.MoblabVmTestSuites
+		return m.MoblabVmTestUnits
 	}
 	return nil
 }
 
-func (m *GenerateTestPlanResponse) GetTastVmTestSuites() []*TastVmTestSuite {
+func (m *GenerateTestPlanResponse) GetTastVmTestUnits() []*TastVmTestUnit {
 	if m != nil {
-		return m.TastVmTestSuites
+		return m.TastVmTestUnits
 	}
 	return nil
 }
 
-func (m *GenerateTestPlanResponse) GetVmTestSuites() []*VmTestSuite {
+func (m *GenerateTestPlanResponse) GetVmTestUnits() []*VmTestUnit {
 	if m != nil {
-		return m.VmTestSuites
+		return m.VmTestUnits
 	}
 	return nil
 }
@@ -213,7 +213,7 @@ func (m *BuildPayload) GetArtifactsGsPath() string {
 	return ""
 }
 
-// Metadata for executing one test configuration for one target type.
+// Metadata for executing one test configuration for one test type.
 type TestUnit struct {
 	// Types that are valid to be assigned to TestCfg:
 	//	*TestUnit_GceTestCfg
@@ -357,11 +357,8 @@ func (*TestUnit) XXX_OneofWrappers() []interface{} {
 	}
 }
 
-// The parts of a TestSuite that are common among all test suite types.
-type TestSuiteCommon struct {
-	// A human-readable identifier for this test suite that will be consistent
-	// between runs of the test plan generator.
-	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+// The parts of a TestUnit that are common among all test types.
+type TestUnitCommon struct {
 	// The build target for this test unit.
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,2,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
 	// The build files provided to run this test unit.
@@ -371,283 +368,276 @@ type TestSuiteCommon struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *TestSuiteCommon) Reset()         { *m = TestSuiteCommon{} }
-func (m *TestSuiteCommon) String() string { return proto.CompactTextString(m) }
-func (*TestSuiteCommon) ProtoMessage()    {}
-func (*TestSuiteCommon) Descriptor() ([]byte, []int) {
+func (m *TestUnitCommon) Reset()         { *m = TestUnitCommon{} }
+func (m *TestUnitCommon) String() string { return proto.CompactTextString(m) }
+func (*TestUnitCommon) ProtoMessage()    {}
+func (*TestUnitCommon) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e8083f85c67203f6, []int{4}
 }
 
-func (m *TestSuiteCommon) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TestSuiteCommon.Unmarshal(m, b)
+func (m *TestUnitCommon) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TestUnitCommon.Unmarshal(m, b)
 }
-func (m *TestSuiteCommon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TestSuiteCommon.Marshal(b, m, deterministic)
+func (m *TestUnitCommon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TestUnitCommon.Marshal(b, m, deterministic)
 }
-func (m *TestSuiteCommon) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TestSuiteCommon.Merge(m, src)
+func (m *TestUnitCommon) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TestUnitCommon.Merge(m, src)
 }
-func (m *TestSuiteCommon) XXX_Size() int {
-	return xxx_messageInfo_TestSuiteCommon.Size(m)
+func (m *TestUnitCommon) XXX_Size() int {
+	return xxx_messageInfo_TestUnitCommon.Size(m)
 }
-func (m *TestSuiteCommon) XXX_DiscardUnknown() {
-	xxx_messageInfo_TestSuiteCommon.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TestSuiteCommon proto.InternalMessageInfo
-
-func (m *TestSuiteCommon) GetDisplayName() string {
-	if m != nil {
-		return m.DisplayName
-	}
-	return ""
+func (m *TestUnitCommon) XXX_DiscardUnknown() {
+	xxx_messageInfo_TestUnitCommon.DiscardUnknown(m)
 }
 
-func (m *TestSuiteCommon) GetBuildTarget() *chromiumos.BuildTarget {
+var xxx_messageInfo_TestUnitCommon proto.InternalMessageInfo
+
+func (m *TestUnitCommon) GetBuildTarget() *chromiumos.BuildTarget {
 	if m != nil {
 		return m.BuildTarget
 	}
 	return nil
 }
 
-func (m *TestSuiteCommon) GetBuildPayload() *BuildPayload {
+func (m *TestUnitCommon) GetBuildPayload() *BuildPayload {
 	if m != nil {
 		return m.BuildPayload
 	}
 	return nil
 }
 
-type GceTestSuite struct {
-	Common               *TestSuiteCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
-	Gce                  *GceTestCfg      `protobuf:"bytes,2,opt,name=gce,proto3" json:"gce,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+type GceTestUnit struct {
+	Common               *TestUnitCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
+	GceTestCfg           *GceTestCfg     `protobuf:"bytes,2,opt,name=gce_test_cfg,json=gceTestCfg,proto3" json:"gce_test_cfg,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *GceTestSuite) Reset()         { *m = GceTestSuite{} }
-func (m *GceTestSuite) String() string { return proto.CompactTextString(m) }
-func (*GceTestSuite) ProtoMessage()    {}
-func (*GceTestSuite) Descriptor() ([]byte, []int) {
+func (m *GceTestUnit) Reset()         { *m = GceTestUnit{} }
+func (m *GceTestUnit) String() string { return proto.CompactTextString(m) }
+func (*GceTestUnit) ProtoMessage()    {}
+func (*GceTestUnit) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e8083f85c67203f6, []int{5}
 }
 
-func (m *GceTestSuite) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GceTestSuite.Unmarshal(m, b)
+func (m *GceTestUnit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GceTestUnit.Unmarshal(m, b)
 }
-func (m *GceTestSuite) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GceTestSuite.Marshal(b, m, deterministic)
+func (m *GceTestUnit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GceTestUnit.Marshal(b, m, deterministic)
 }
-func (m *GceTestSuite) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GceTestSuite.Merge(m, src)
+func (m *GceTestUnit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GceTestUnit.Merge(m, src)
 }
-func (m *GceTestSuite) XXX_Size() int {
-	return xxx_messageInfo_GceTestSuite.Size(m)
+func (m *GceTestUnit) XXX_Size() int {
+	return xxx_messageInfo_GceTestUnit.Size(m)
 }
-func (m *GceTestSuite) XXX_DiscardUnknown() {
-	xxx_messageInfo_GceTestSuite.DiscardUnknown(m)
+func (m *GceTestUnit) XXX_DiscardUnknown() {
+	xxx_messageInfo_GceTestUnit.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GceTestSuite proto.InternalMessageInfo
+var xxx_messageInfo_GceTestUnit proto.InternalMessageInfo
 
-func (m *GceTestSuite) GetCommon() *TestSuiteCommon {
+func (m *GceTestUnit) GetCommon() *TestUnitCommon {
 	if m != nil {
 		return m.Common
 	}
 	return nil
 }
 
-func (m *GceTestSuite) GetGce() *GceTestCfg {
+func (m *GceTestUnit) GetGceTestCfg() *GceTestCfg {
 	if m != nil {
-		return m.Gce
+		return m.GceTestCfg
 	}
 	return nil
 }
 
-type HwTestSuite struct {
-	Common               *TestSuiteCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
-	HwTest               *HwTestCfg       `protobuf:"bytes,2,opt,name=hw_test,json=hwTest,proto3" json:"hw_test,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+type HwTestUnit struct {
+	Common               *TestUnitCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
+	HwTestCfg            *HwTestCfg      `protobuf:"bytes,2,opt,name=hw_test_cfg,json=hwTestCfg,proto3" json:"hw_test_cfg,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *HwTestSuite) Reset()         { *m = HwTestSuite{} }
-func (m *HwTestSuite) String() string { return proto.CompactTextString(m) }
-func (*HwTestSuite) ProtoMessage()    {}
-func (*HwTestSuite) Descriptor() ([]byte, []int) {
+func (m *HwTestUnit) Reset()         { *m = HwTestUnit{} }
+func (m *HwTestUnit) String() string { return proto.CompactTextString(m) }
+func (*HwTestUnit) ProtoMessage()    {}
+func (*HwTestUnit) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e8083f85c67203f6, []int{6}
 }
 
-func (m *HwTestSuite) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HwTestSuite.Unmarshal(m, b)
+func (m *HwTestUnit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HwTestUnit.Unmarshal(m, b)
 }
-func (m *HwTestSuite) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HwTestSuite.Marshal(b, m, deterministic)
+func (m *HwTestUnit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HwTestUnit.Marshal(b, m, deterministic)
 }
-func (m *HwTestSuite) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HwTestSuite.Merge(m, src)
+func (m *HwTestUnit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HwTestUnit.Merge(m, src)
 }
-func (m *HwTestSuite) XXX_Size() int {
-	return xxx_messageInfo_HwTestSuite.Size(m)
+func (m *HwTestUnit) XXX_Size() int {
+	return xxx_messageInfo_HwTestUnit.Size(m)
 }
-func (m *HwTestSuite) XXX_DiscardUnknown() {
-	xxx_messageInfo_HwTestSuite.DiscardUnknown(m)
+func (m *HwTestUnit) XXX_DiscardUnknown() {
+	xxx_messageInfo_HwTestUnit.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_HwTestSuite proto.InternalMessageInfo
+var xxx_messageInfo_HwTestUnit proto.InternalMessageInfo
 
-func (m *HwTestSuite) GetCommon() *TestSuiteCommon {
+func (m *HwTestUnit) GetCommon() *TestUnitCommon {
 	if m != nil {
 		return m.Common
 	}
 	return nil
 }
 
-func (m *HwTestSuite) GetHwTest() *HwTestCfg {
+func (m *HwTestUnit) GetHwTestCfg() *HwTestCfg {
 	if m != nil {
-		return m.HwTest
+		return m.HwTestCfg
 	}
 	return nil
 }
 
-type MoblabVmTestSuite struct {
-	Common               *TestSuiteCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
-	MoblabVm             *MoblabVmTestCfg `protobuf:"bytes,2,opt,name=moblab_vm,json=moblabVm,proto3" json:"moblab_vm,omitempty"`
+type MoblabVmTestUnit struct {
+	Common               *TestUnitCommon  `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
+	MoblabVmTestCfg      *MoblabVmTestCfg `protobuf:"bytes,2,opt,name=moblab_vm_test_cfg,json=moblabVmTestCfg,proto3" json:"moblab_vm_test_cfg,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
 	XXX_sizecache        int32            `json:"-"`
 }
 
-func (m *MoblabVmTestSuite) Reset()         { *m = MoblabVmTestSuite{} }
-func (m *MoblabVmTestSuite) String() string { return proto.CompactTextString(m) }
-func (*MoblabVmTestSuite) ProtoMessage()    {}
-func (*MoblabVmTestSuite) Descriptor() ([]byte, []int) {
+func (m *MoblabVmTestUnit) Reset()         { *m = MoblabVmTestUnit{} }
+func (m *MoblabVmTestUnit) String() string { return proto.CompactTextString(m) }
+func (*MoblabVmTestUnit) ProtoMessage()    {}
+func (*MoblabVmTestUnit) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e8083f85c67203f6, []int{7}
 }
 
-func (m *MoblabVmTestSuite) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_MoblabVmTestSuite.Unmarshal(m, b)
+func (m *MoblabVmTestUnit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MoblabVmTestUnit.Unmarshal(m, b)
 }
-func (m *MoblabVmTestSuite) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_MoblabVmTestSuite.Marshal(b, m, deterministic)
+func (m *MoblabVmTestUnit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MoblabVmTestUnit.Marshal(b, m, deterministic)
 }
-func (m *MoblabVmTestSuite) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MoblabVmTestSuite.Merge(m, src)
+func (m *MoblabVmTestUnit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MoblabVmTestUnit.Merge(m, src)
 }
-func (m *MoblabVmTestSuite) XXX_Size() int {
-	return xxx_messageInfo_MoblabVmTestSuite.Size(m)
+func (m *MoblabVmTestUnit) XXX_Size() int {
+	return xxx_messageInfo_MoblabVmTestUnit.Size(m)
 }
-func (m *MoblabVmTestSuite) XXX_DiscardUnknown() {
-	xxx_messageInfo_MoblabVmTestSuite.DiscardUnknown(m)
+func (m *MoblabVmTestUnit) XXX_DiscardUnknown() {
+	xxx_messageInfo_MoblabVmTestUnit.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MoblabVmTestSuite proto.InternalMessageInfo
+var xxx_messageInfo_MoblabVmTestUnit proto.InternalMessageInfo
 
-func (m *MoblabVmTestSuite) GetCommon() *TestSuiteCommon {
+func (m *MoblabVmTestUnit) GetCommon() *TestUnitCommon {
 	if m != nil {
 		return m.Common
 	}
 	return nil
 }
 
-func (m *MoblabVmTestSuite) GetMoblabVm() *MoblabVmTestCfg {
+func (m *MoblabVmTestUnit) GetMoblabVmTestCfg() *MoblabVmTestCfg {
 	if m != nil {
-		return m.MoblabVm
+		return m.MoblabVmTestCfg
 	}
 	return nil
 }
 
-type TastVmTestSuite struct {
-	Common               *TestSuiteCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
-	TastVm               *TastVmTestCfg   `protobuf:"bytes,2,opt,name=tast_vm,json=tastVm,proto3" json:"tast_vm,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+type TastVmTestUnit struct {
+	Common               *TestUnitCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
+	TastVmTestCfg        *TastVmTestCfg  `protobuf:"bytes,2,opt,name=tast_vm_test_cfg,json=tastVmTestCfg,proto3" json:"tast_vm_test_cfg,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *TastVmTestSuite) Reset()         { *m = TastVmTestSuite{} }
-func (m *TastVmTestSuite) String() string { return proto.CompactTextString(m) }
-func (*TastVmTestSuite) ProtoMessage()    {}
-func (*TastVmTestSuite) Descriptor() ([]byte, []int) {
+func (m *TastVmTestUnit) Reset()         { *m = TastVmTestUnit{} }
+func (m *TastVmTestUnit) String() string { return proto.CompactTextString(m) }
+func (*TastVmTestUnit) ProtoMessage()    {}
+func (*TastVmTestUnit) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e8083f85c67203f6, []int{8}
 }
 
-func (m *TastVmTestSuite) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TastVmTestSuite.Unmarshal(m, b)
+func (m *TastVmTestUnit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TastVmTestUnit.Unmarshal(m, b)
 }
-func (m *TastVmTestSuite) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TastVmTestSuite.Marshal(b, m, deterministic)
+func (m *TastVmTestUnit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TastVmTestUnit.Marshal(b, m, deterministic)
 }
-func (m *TastVmTestSuite) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TastVmTestSuite.Merge(m, src)
+func (m *TastVmTestUnit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TastVmTestUnit.Merge(m, src)
 }
-func (m *TastVmTestSuite) XXX_Size() int {
-	return xxx_messageInfo_TastVmTestSuite.Size(m)
+func (m *TastVmTestUnit) XXX_Size() int {
+	return xxx_messageInfo_TastVmTestUnit.Size(m)
 }
-func (m *TastVmTestSuite) XXX_DiscardUnknown() {
-	xxx_messageInfo_TastVmTestSuite.DiscardUnknown(m)
+func (m *TastVmTestUnit) XXX_DiscardUnknown() {
+	xxx_messageInfo_TastVmTestUnit.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_TastVmTestSuite proto.InternalMessageInfo
+var xxx_messageInfo_TastVmTestUnit proto.InternalMessageInfo
 
-func (m *TastVmTestSuite) GetCommon() *TestSuiteCommon {
+func (m *TastVmTestUnit) GetCommon() *TestUnitCommon {
 	if m != nil {
 		return m.Common
 	}
 	return nil
 }
 
-func (m *TastVmTestSuite) GetTastVm() *TastVmTestCfg {
+func (m *TastVmTestUnit) GetTastVmTestCfg() *TastVmTestCfg {
 	if m != nil {
-		return m.TastVm
+		return m.TastVmTestCfg
 	}
 	return nil
 }
 
-type VmTestSuite struct {
-	Common               *TestSuiteCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
-	Vm                   *VmTestCfg       `protobuf:"bytes,2,opt,name=vm,proto3" json:"vm,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+type VmTestUnit struct {
+	Common               *TestUnitCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
+	VmTestCfg            *VmTestCfg      `protobuf:"bytes,2,opt,name=vm_test_cfg,json=vmTestCfg,proto3" json:"vm_test_cfg,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *VmTestSuite) Reset()         { *m = VmTestSuite{} }
-func (m *VmTestSuite) String() string { return proto.CompactTextString(m) }
-func (*VmTestSuite) ProtoMessage()    {}
-func (*VmTestSuite) Descriptor() ([]byte, []int) {
+func (m *VmTestUnit) Reset()         { *m = VmTestUnit{} }
+func (m *VmTestUnit) String() string { return proto.CompactTextString(m) }
+func (*VmTestUnit) ProtoMessage()    {}
+func (*VmTestUnit) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e8083f85c67203f6, []int{9}
 }
 
-func (m *VmTestSuite) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_VmTestSuite.Unmarshal(m, b)
+func (m *VmTestUnit) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_VmTestUnit.Unmarshal(m, b)
 }
-func (m *VmTestSuite) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_VmTestSuite.Marshal(b, m, deterministic)
+func (m *VmTestUnit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_VmTestUnit.Marshal(b, m, deterministic)
 }
-func (m *VmTestSuite) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_VmTestSuite.Merge(m, src)
+func (m *VmTestUnit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_VmTestUnit.Merge(m, src)
 }
-func (m *VmTestSuite) XXX_Size() int {
-	return xxx_messageInfo_VmTestSuite.Size(m)
+func (m *VmTestUnit) XXX_Size() int {
+	return xxx_messageInfo_VmTestUnit.Size(m)
 }
-func (m *VmTestSuite) XXX_DiscardUnknown() {
-	xxx_messageInfo_VmTestSuite.DiscardUnknown(m)
+func (m *VmTestUnit) XXX_DiscardUnknown() {
+	xxx_messageInfo_VmTestUnit.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_VmTestSuite proto.InternalMessageInfo
+var xxx_messageInfo_VmTestUnit proto.InternalMessageInfo
 
-func (m *VmTestSuite) GetCommon() *TestSuiteCommon {
+func (m *VmTestUnit) GetCommon() *TestUnitCommon {
 	if m != nil {
 		return m.Common
 	}
 	return nil
 }
 
-func (m *VmTestSuite) GetVm() *VmTestCfg {
+func (m *VmTestUnit) GetVmTestCfg() *VmTestCfg {
 	if m != nil {
-		return m.Vm
+		return m.VmTestCfg
 	}
 	return nil
 }
@@ -657,66 +647,63 @@ func init() {
 	proto.RegisterType((*GenerateTestPlanResponse)(nil), "testplans.GenerateTestPlanResponse")
 	proto.RegisterType((*BuildPayload)(nil), "testplans.BuildPayload")
 	proto.RegisterType((*TestUnit)(nil), "testplans.TestUnit")
-	proto.RegisterType((*TestSuiteCommon)(nil), "testplans.TestSuiteCommon")
-	proto.RegisterType((*GceTestSuite)(nil), "testplans.GceTestSuite")
-	proto.RegisterType((*HwTestSuite)(nil), "testplans.HwTestSuite")
-	proto.RegisterType((*MoblabVmTestSuite)(nil), "testplans.MoblabVmTestSuite")
-	proto.RegisterType((*TastVmTestSuite)(nil), "testplans.TastVmTestSuite")
-	proto.RegisterType((*VmTestSuite)(nil), "testplans.VmTestSuite")
+	proto.RegisterType((*TestUnitCommon)(nil), "testplans.TestUnitCommon")
+	proto.RegisterType((*GceTestUnit)(nil), "testplans.GceTestUnit")
+	proto.RegisterType((*HwTestUnit)(nil), "testplans.HwTestUnit")
+	proto.RegisterType((*MoblabVmTestUnit)(nil), "testplans.MoblabVmTestUnit")
+	proto.RegisterType((*TastVmTestUnit)(nil), "testplans.TastVmTestUnit")
+	proto.RegisterType((*VmTestUnit)(nil), "testplans.VmTestUnit")
 }
 
 func init() { proto.RegisterFile("testplans/generate_test_plan.proto", fileDescriptor_e8083f85c67203f6) }
 
 var fileDescriptor_e8083f85c67203f6 = []byte{
-	// 790 bytes of a gzipped FileDescriptorProto
+	// 749 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0x4f, 0x4f, 0xdb, 0x4e,
-	0x10, 0xfd, 0x25, 0x81, 0xfc, 0x99, 0x18, 0x42, 0x96, 0x1f, 0xc4, 0x8a, 0x7a, 0xa0, 0x16, 0x52,
-	0x51, 0xa5, 0x26, 0x2d, 0xa8, 0x7f, 0x85, 0x54, 0x29, 0xa9, 0x04, 0x1c, 0xda, 0x46, 0x2e, 0xed,
-	0xa1, 0x17, 0x6b, 0x63, 0x36, 0x8e, 0x8b, 0xed, 0x35, 0xde, 0x75, 0x28, 0xb7, 0x7e, 0x99, 0x5e,
-	0xfb, 0x15, 0x7a, 0xef, 0xa7, 0xaa, 0xbc, 0xde, 0xd8, 0xeb, 0x04, 0x90, 0x0a, 0x37, 0x76, 0x76,
-	0xde, 0x9b, 0xd9, 0xbc, 0x37, 0x63, 0xc0, 0xe0, 0x84, 0xf1, 0xd0, 0xc3, 0x01, 0xeb, 0x3b, 0x24,
-	0x20, 0x11, 0xe6, 0xc4, 0x4a, 0x42, 0x56, 0x12, 0xeb, 0x85, 0x11, 0xe5, 0x14, 0x35, 0xb2, 0x9c,
-	0x6e, 0xc7, 0x9e, 0x46, 0xd4, 0x77, 0x63, 0x9f, 0xb2, 0xbe, 0x4d, 0x7d, 0x9f, 0xca, 0x9c, 0xee,
-	0x76, 0xce, 0x53, 0x88, 0xf7, 0xf3, 0x38, 0xc7, 0x91, 0x43, 0x78, 0xca, 0x1e, 0x91, 0x8b, 0xd8,
-	0x8d, 0x88, 0x4f, 0x02, 0xce, 0x2c, 0x9b, 0x06, 0x13, 0xd7, 0x49, 0x01, 0xc6, 0xef, 0x12, 0x74,
-	0x8e, 0x64, 0x27, 0xa7, 0x84, 0xf1, 0x91, 0x87, 0x03, 0x93, 0x5c, 0xc4, 0x84, 0x71, 0xf4, 0x0e,
-	0xd0, 0x38, 0x76, 0xbd, 0xb3, 0x71, 0x6c, 0x9f, 0x13, 0x6e, 0x09, 0x00, 0xd3, 0x57, 0x77, 0x2a,
-	0x7b, 0xcd, 0xfd, 0xad, 0x5e, 0x56, 0xa9, 0x37, 0x4a, 0x2e, 0x06, 0x57, 0x9c, 0x30, 0xb3, 0xad,
-	0x00, 0x44, 0x98, 0xa1, 0x57, 0xa0, 0xe7, 0xaf, 0xb0, 0xec, 0x29, 0xb1, 0xcf, 0x69, 0xcc, 0xad,
-	0x88, 0x52, 0xae, 0xaf, 0xec, 0x94, 0xf6, 0x1a, 0xe6, 0x76, 0x7e, 0x3f, 0x94, 0xd7, 0x26, 0xa5,
-	0x1c, 0xed, 0xc2, 0x7a, 0x44, 0x42, 0x6a, 0x71, 0x4a, 0x3d, 0x2b, 0xc4, 0x7c, 0xaa, 0x57, 0x45,
-	0xbe, 0x96, 0x44, 0x4f, 0x29, 0xf5, 0x46, 0x98, 0x4f, 0x8d, 0x9f, 0x15, 0xd0, 0x97, 0x5f, 0xc0,
-	0x42, 0x1a, 0x30, 0x82, 0x9e, 0x82, 0xf8, 0x35, 0xad, 0x38, 0x70, 0xb9, 0x5e, 0x12, 0x9d, 0x6f,
-	0x2a, 0x9d, 0x27, 0xf9, 0x9f, 0x03, 0x97, 0x9b, 0x75, 0x2e, 0xff, 0x42, 0x6f, 0xa1, 0xe5, 0xd8,
-	0x52, 0x14, 0x16, 0xbb, 0x9c, 0x30, 0xbd, 0x2c, 0x70, 0x1d, 0x05, 0x77, 0x64, 0x8b, 0x52, 0x9f,
-	0x92, 0x7b, 0x73, 0xcd, 0x51, 0x4e, 0x0c, 0x1d, 0xc2, 0xfa, 0xf4, 0xb2, 0x80, 0xaf, 0x08, 0xfc,
-	0xb6, 0x82, 0x3f, 0xbe, 0xcc, 0xe1, 0xda, 0xf4, 0x52, 0x41, 0x7f, 0x84, 0x2d, 0x9f, 0x8e, 0x3d,
-	0x3c, 0xb6, 0x66, 0x7e, 0x81, 0x64, 0x45, 0x90, 0x3c, 0x50, 0x48, 0xde, 0x8b, 0xbc, 0x2f, 0x7e,
-	0x4e, 0x85, 0xfc, 0xc5, 0x10, 0x43, 0x27, 0xb0, 0xc9, 0x31, 0xe3, 0x8b, 0x74, 0xa9, 0x8a, 0x5d,
-	0xf5, 0xb7, 0xc0, 0x8c, 0xab, 0x64, 0x1b, 0xbc, 0x18, 0x10, 0x2f, 0x5b, 0x60, 0xa9, 0x2e, 0xbd,
-	0x4c, 0x65, 0xd0, 0x66, 0x0a, 0xda, 0xf8, 0x06, 0xda, 0x20, 0x31, 0xc7, 0x08, 0x5f, 0x79, 0x14,
-	0x9f, 0xa1, 0x1e, 0x6c, 0xe2, 0x88, 0xbb, 0x13, 0x6c, 0x73, 0x66, 0x39, 0xcc, 0x4a, 0x4d, 0xa3,
-	0x97, 0x84, 0xc4, 0xed, 0xec, 0xea, 0x88, 0x0d, 0xc4, 0x05, 0x7a, 0x0c, 0xed, 0x42, 0xbe, 0x30,
-	0x44, 0x59, 0x64, 0xb7, 0x94, 0x6c, 0xe1, 0x89, 0x3f, 0x15, 0xa8, 0xcf, 0xb5, 0x45, 0xaf, 0x41,
-	0xcb, 0x14, 0xb5, 0x27, 0x8e, 0xa8, 0x50, 0x34, 0xb0, 0x94, 0x73, 0x38, 0x71, 0x8e, 0xff, 0x33,
-	0xc1, 0xc9, 0x4e, 0xe8, 0x05, 0x34, 0xe7, 0x5a, 0x26, 0xc8, 0xb2, 0x40, 0xfe, 0xbf, 0x24, 0x64,
-	0x0a, 0x6c, 0x4c, 0xe7, 0x07, 0x74, 0x02, 0x68, 0x41, 0xc5, 0x04, 0x5e, 0x11, 0xf0, 0xee, 0x0d,
-	0x12, 0xa6, 0x24, 0x2d, 0xbf, 0x18, 0x42, 0x43, 0xd8, 0x28, 0xe8, 0x97, 0x10, 0xad, 0x08, 0x22,
-	0xfd, 0x5a, 0xf1, 0x52, 0x9a, 0x35, 0xae, 0x06, 0x92, 0x77, 0xa8, 0xf8, 0xd5, 0xa5, 0x77, 0xa8,
-	0xd8, 0xc6, 0x2c, 0xc3, 0xbd, 0x01, 0x4d, 0x0c, 0xb4, 0x95, 0x2e, 0x13, 0xbd, 0x2e, 0x80, 0x9d,
-	0x5e, 0x3e, 0xb0, 0x3d, 0xa1, 0xe9, 0xa9, 0xb8, 0x36, 0x9b, 0xe3, 0xfc, 0x80, 0x0e, 0x61, 0x2d,
-	0xc5, 0x86, 0xa9, 0xe0, 0x7a, 0x4d, 0x82, 0xf3, 0xaa, 0xaa, 0x1f, 0xcc, 0xb4, 0x92, 0x3c, 0x0d,
-	0x1a, 0x50, 0x93, 0x4d, 0x18, 0xbf, 0x4a, 0xd0, 0xca, 0x7c, 0x34, 0x14, 0xdb, 0x0e, 0x3d, 0x04,
-	0xed, 0xcc, 0x65, 0xa1, 0x87, 0xaf, 0xac, 0x00, 0xfb, 0x44, 0xba, 0xa6, 0x29, 0x63, 0x1f, 0xb0,
-	0x4f, 0x96, 0x7a, 0x2f, 0xdf, 0xa7, 0xf7, 0xca, 0x3f, 0xf4, 0x6e, 0x9c, 0x83, 0xa6, 0x2e, 0x08,
-	0xb4, 0x0f, 0xd5, 0x74, 0x49, 0x4b, 0xeb, 0x75, 0x17, 0x36, 0x90, 0xf2, 0x30, 0x53, 0x66, 0xa2,
-	0x47, 0x50, 0x71, 0x6c, 0x22, 0x9b, 0xbe, 0xde, 0xab, 0x66, 0x92, 0x61, 0x84, 0xd0, 0x54, 0xb6,
-	0xc9, 0x9d, 0x6a, 0x3d, 0x81, 0x9a, 0x74, 0xf9, 0x6d, 0x0e, 0x37, 0xab, 0xa9, 0xbf, 0x8d, 0x1f,
-	0x25, 0x68, 0x2f, 0xed, 0x9e, 0x3b, 0x15, 0x7e, 0x09, 0x8d, 0x6c, 0x4c, 0x64, 0xe9, 0x5b, 0xa6,
-	0xc3, 0xac, 0xcf, 0x67, 0xc3, 0xf8, 0x0e, 0xad, 0x85, 0x75, 0x75, 0xa7, 0xfa, 0xcf, 0xa0, 0x26,
-	0x67, 0x4b, 0x56, 0xbf, 0x71, 0xa4, 0xcc, 0x6a, 0x3a, 0x50, 0x86, 0x03, 0xcd, 0xfb, 0x56, 0xdd,
-	0x85, 0x72, 0x56, 0xf0, 0xda, 0x19, 0x34, 0xcb, 0x33, 0x7f, 0xf0, 0xfc, 0xeb, 0x81, 0x43, 0x33,
-	0xb3, 0xf6, 0x68, 0xe4, 0xf4, 0x95, 0x7f, 0x06, 0xdc, 0x60, 0x12, 0xe1, 0xbe, 0xf8, 0x22, 0xf7,
-	0x1d, 0x9a, 0x7f, 0xf5, 0xc7, 0x55, 0x11, 0x3b, 0xf8, 0x1b, 0x00, 0x00, 0xff, 0xff, 0xbe, 0xdc,
-	0x71, 0x32, 0x69, 0x08, 0x00, 0x00,
+	0x10, 0xfd, 0xc5, 0x81, 0x40, 0x26, 0xe1, 0x4f, 0x16, 0x7e, 0x60, 0xe8, 0x05, 0x59, 0x3d, 0xa0,
+	0x1e, 0x92, 0xb6, 0xd0, 0x3f, 0x54, 0x5c, 0x9a, 0x54, 0x0d, 0x95, 0x5a, 0x29, 0xb2, 0x68, 0x0f,
+	0xbd, 0x58, 0x1b, 0xb3, 0x71, 0x5c, 0x6c, 0x6f, 0xf0, 0x8e, 0x41, 0x7c, 0x81, 0x1e, 0x7a, 0xe8,
+	0xb1, 0x5f, 0xa7, 0xf7, 0x7e, 0xaa, 0xca, 0x6b, 0xc7, 0x5e, 0xc7, 0x81, 0xb6, 0x70, 0x63, 0x67,
+	0xe7, 0xbd, 0x99, 0xf5, 0x7b, 0x33, 0x04, 0x0c, 0x64, 0x02, 0x27, 0x1e, 0x0d, 0x44, 0xc7, 0x61,
+	0x01, 0x0b, 0x29, 0x32, 0x2b, 0x0e, 0x59, 0x71, 0xac, 0x3d, 0x09, 0x39, 0x72, 0x52, 0xcf, 0x72,
+	0x76, 0xb7, 0xed, 0x71, 0xc8, 0x7d, 0x37, 0xf2, 0xb9, 0xe8, 0xd8, 0xdc, 0xf7, 0x79, 0x9a, 0xb3,
+	0xbb, 0x95, 0xf3, 0x14, 0xe2, 0x9d, 0x3c, 0x8e, 0x34, 0x74, 0x18, 0x26, 0xec, 0x21, 0xbb, 0x88,
+	0xdc, 0x90, 0xf9, 0x2c, 0x40, 0x61, 0xd9, 0x3c, 0x18, 0xb9, 0x4e, 0x02, 0x30, 0x7e, 0x56, 0x60,
+	0xbb, 0x9f, 0x76, 0x72, 0xca, 0x04, 0x0e, 0x3c, 0x1a, 0x98, 0xec, 0x22, 0x62, 0x02, 0xc9, 0x1b,
+	0x20, 0xc3, 0xc8, 0xf5, 0xce, 0x86, 0x91, 0x7d, 0xce, 0xd0, 0x92, 0x00, 0xa1, 0x2f, 0xee, 0x55,
+	0xf7, 0x1b, 0x4f, 0xff, 0x6f, 0x67, 0x95, 0xda, 0x83, 0xf8, 0xa2, 0x7b, 0x8d, 0x4c, 0x98, 0x2d,
+	0x05, 0x20, 0xc3, 0x82, 0xbc, 0x04, 0x3d, 0x7f, 0x85, 0x65, 0x8f, 0x99, 0x7d, 0xce, 0x23, 0xb4,
+	0x42, 0xce, 0x51, 0x5f, 0xd8, 0xab, 0xec, 0xd7, 0xcd, 0xad, 0xfc, 0xbe, 0x97, 0x5e, 0x9b, 0x9c,
+	0x23, 0x79, 0x08, 0xab, 0x21, 0x9b, 0x70, 0x0b, 0x39, 0xf7, 0xac, 0x09, 0xc5, 0xb1, 0x5e, 0x93,
+	0xf9, 0xcd, 0x38, 0x7a, 0xca, 0xb9, 0x37, 0xa0, 0x38, 0x36, 0x7e, 0x54, 0x41, 0x2f, 0xbf, 0x40,
+	0x4c, 0x78, 0x20, 0x18, 0x79, 0x0c, 0xf2, 0x6b, 0x5a, 0x51, 0xe0, 0xa2, 0x5e, 0x91, 0x9d, 0x6f,
+	0x28, 0x9d, 0xc7, 0xf9, 0x1f, 0x03, 0x17, 0xcd, 0x65, 0x4c, 0xff, 0x22, 0xc7, 0xb0, 0xea, 0xd8,
+	0xa9, 0x28, 0x31, 0x4a, 0xe8, 0x9a, 0x84, 0x6d, 0x29, 0xb0, 0xbe, 0xcd, 0x32, 0x64, 0xd3, 0xc9,
+	0x0f, 0x82, 0x1c, 0xc1, 0xca, 0xf8, 0x4a, 0x05, 0x57, 0x4b, 0x5f, 0xeb, 0xe4, 0x2a, 0xc3, 0x36,
+	0xc6, 0x57, 0x39, 0xf4, 0x3d, 0x6c, 0xfa, 0x7c, 0xe8, 0xd1, 0xa1, 0x75, 0xe9, 0xab, 0x0c, 0x0b,
+	0x92, 0xe1, 0x81, 0xc2, 0xf0, 0x41, 0xa6, 0x7d, 0xf2, 0x33, 0x9e, 0x96, 0x3f, 0x13, 0x11, 0xe4,
+	0x2d, 0x10, 0xa4, 0x02, 0x67, 0xb8, 0x12, 0xed, 0x76, 0xd4, 0x2f, 0x40, 0x05, 0x2a, 0x4c, 0x6b,
+	0x58, 0x38, 0xcb, 0x07, 0x15, 0x29, 0x6a, 0xa5, 0x07, 0x29, 0xf0, 0xc6, 0x65, 0x0e, 0x35, 0xbe,
+	0x40, 0xb3, 0x1b, 0xbb, 0x61, 0x40, 0xaf, 0x3d, 0x4e, 0xcf, 0x48, 0x1b, 0x36, 0x68, 0x88, 0xee,
+	0x88, 0xda, 0x28, 0x2c, 0x47, 0x58, 0x89, 0x4b, 0xf4, 0x8a, 0xd4, 0xb4, 0x95, 0x5d, 0xf5, 0x45,
+	0x57, 0x5e, 0x90, 0x47, 0xd0, 0x2a, 0xe4, 0x4b, 0x07, 0x68, 0x32, 0x7b, 0x4d, 0xc9, 0x96, 0x26,
+	0xf8, 0x55, 0x85, 0xe5, 0x69, 0x65, 0x72, 0x04, 0xcd, 0x4c, 0x42, 0x7b, 0xe4, 0xc8, 0x0a, 0xc5,
+	0x96, 0x53, 0x01, 0x7b, 0x23, 0xe7, 0xe4, 0x3f, 0x13, 0x9c, 0xec, 0x44, 0x9e, 0x43, 0x63, 0xaa,
+	0x5f, 0x8c, 0xd4, 0x24, 0x72, 0xb3, 0xa4, 0x5e, 0x02, 0xac, 0x8f, 0xa7, 0x07, 0xf2, 0x0e, 0xc8,
+	0x8c, 0x78, 0x31, 0xbc, 0x2a, 0xe1, 0xbb, 0x37, 0x48, 0x97, 0x90, 0xac, 0xf9, 0xc5, 0x10, 0xe9,
+	0xc1, 0x7a, 0x41, 0xb9, 0x98, 0x68, 0x41, 0x12, 0xe9, 0x73, 0x75, 0x4b, 0x68, 0x56, 0x50, 0x0d,
+	0xc4, 0xef, 0x50, 0xf1, 0x8b, 0xa5, 0x77, 0xa8, 0xd8, 0xfa, 0x65, 0x86, 0x7b, 0x05, 0x4d, 0x39,
+	0xc1, 0x56, 0xb2, 0x3d, 0xf4, 0x65, 0x09, 0xdc, 0x6e, 0xe7, 0x13, 0xda, 0x96, 0x9a, 0x9e, 0xca,
+	0x6b, 0xb3, 0x31, 0xcc, 0x0f, 0xe4, 0x18, 0x56, 0x12, 0xec, 0x24, 0x11, 0x5c, 0x5f, 0x4a, 0xc1,
+	0x79, 0x55, 0xd5, 0x0f, 0x66, 0x52, 0x29, 0x3d, 0x75, 0xeb, 0xb0, 0x94, 0x36, 0x61, 0x7c, 0xab,
+	0xc0, 0xea, 0x54, 0xcc, 0x9e, 0xdc, 0x6e, 0xa5, 0xbe, 0xb4, 0xfb, 0xf4, 0x55, 0xfd, 0x87, 0xbe,
+	0x8c, 0x6b, 0x68, 0x28, 0xe3, 0x4e, 0x9e, 0x40, 0x2d, 0x59, 0xb8, 0xa9, 0xab, 0x76, 0xe6, 0x6c,
+	0x93, 0xa4, 0x67, 0x33, 0x4d, 0x24, 0x2f, 0x66, 0xec, 0xa8, 0xdd, 0x62, 0x47, 0xd5, 0x8c, 0x46,
+	0x04, 0x90, 0x2f, 0x8b, 0xbb, 0x54, 0x3e, 0xfc, 0x6b, 0x37, 0x2b, 0x5e, 0x36, 0xbe, 0x57, 0x60,
+	0x7d, 0x76, 0xc5, 0xdc, 0xa5, 0x7a, 0x7f, 0xee, 0x4c, 0x68, 0x7f, 0x9a, 0x89, 0xd2, 0x44, 0x18,
+	0x5f, 0x63, 0x3f, 0x14, 0xf6, 0xd2, 0x5d, 0xda, 0x79, 0x3d, 0x67, 0xae, 0xb4, 0xdb, 0xe7, 0x6a,
+	0x66, 0xaa, 0x62, 0x41, 0xee, 0xd7, 0xc3, 0x61, 0x71, 0x2c, 0xb5, 0x9b, 0xc7, 0x52, 0x19, 0xca,
+	0xee, 0xb3, 0xcf, 0x07, 0x0e, 0xcf, 0xac, 0xde, 0xe6, 0xa1, 0xd3, 0x51, 0x7e, 0x17, 0xb8, 0xc1,
+	0x28, 0xa4, 0x1d, 0xf9, 0xcf, 0xb9, 0xe3, 0xf0, 0xfc, 0x07, 0xc0, 0xb0, 0x26, 0x63, 0x07, 0xbf,
+	0x03, 0x00, 0x00, 0xff, 0xff, 0xc0, 0x56, 0x72, 0x8b, 0x74, 0x08, 0x00, 0x00,
 }

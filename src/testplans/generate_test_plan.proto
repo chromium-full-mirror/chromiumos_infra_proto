@@ -29,11 +29,11 @@ message GenerateTestPlanResponse {
   repeated TestUnit test_unit = 1;
 
   // TODO(seanabraham): Populate these new fields
-  repeated GceTestSuite gce_test_suites = 2;
-  repeated HwTestSuite hw_test_suites = 3;
-  repeated MoblabVmTestSuite moblab_vm_test_suites = 4;
-  repeated TastVmTestSuite tast_vm_test_suites = 5;
-  repeated VmTestSuite vm_test_suites = 6;
+  repeated GceTestUnit gce_test_units = 2;
+  repeated HwTestUnit hw_test_units = 3;
+  repeated MoblabVmTestUnit moblab_vm_test_units = 4;
+  repeated TastVmTestUnit tast_vm_test_units = 5;
+  repeated VmTestUnit vm_test_units = 6;
 }
 
 // The files that should be tested in a test plan.
@@ -47,7 +47,7 @@ message BuildPayload {
   string artifacts_gs_path = 2;
 }
 
-// Metadata for executing one test configuration for one target type.
+// Metadata for executing one test configuration for one test type.
 message TestUnit {
   oneof TestCfg {
     GceTestCfg gce_test_cfg = 1;
@@ -64,12 +64,8 @@ message TestUnit {
   BuildPayload build_payload = 7;
 }
 
-// The parts of a TestSuite that are common among all test suite types.
-message TestSuiteCommon {
-  // A human-readable identifier for this test suite that will be consistent
-  // between runs of the test plan generator.
-  string display_name = 1;
-
+// The parts of a TestUnit that are common among all test types.
+message TestUnitCommon {
   // The build target for this test unit.
   chromiumos.BuildTarget build_target = 2;
 
@@ -77,28 +73,28 @@ message TestSuiteCommon {
   BuildPayload build_payload = 3;
 }
 
-message GceTestSuite {
-  TestSuiteCommon common = 1;
-  GceTestCfg gce = 2;
+message GceTestUnit {
+  TestUnitCommon common = 1;
+  GceTestCfg gce_test_cfg = 2;
 }
 
-message HwTestSuite {
-  TestSuiteCommon common = 1;
-  HwTestCfg hw_test = 2;
+message HwTestUnit {
+  TestUnitCommon common = 1;
+  HwTestCfg hw_test_cfg = 2;
 }
 
-message MoblabVmTestSuite {
-  TestSuiteCommon common = 1;
-  MoblabVmTestCfg moblab_vm = 2;
+message MoblabVmTestUnit {
+  TestUnitCommon common = 1;
+  MoblabVmTestCfg moblab_vm_test_cfg = 2;
 }
 
-message TastVmTestSuite {
-  TestSuiteCommon common = 1;
-  TastVmTestCfg tast_vm = 2;
+message TastVmTestUnit {
+  TestUnitCommon common = 1;
+  TastVmTestCfg tast_vm_test_cfg = 2;
 }
 
-message VmTestSuite {
-  TestSuiteCommon common = 1;
-  VmTestCfg vm = 2;
+message VmTestUnit {
+  TestUnitCommon common = 1;
+  VmTestCfg vm_test_cfg = 2;
 }
 
