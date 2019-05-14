@@ -103,6 +103,9 @@ message BuilderConfig {
       string profile = 1;
     }
     PortageProfile portage_profile = 2;
+
+    // Image types to build.
+    repeated ImageType image_types = 3;
   }
   Build build = 6;
 }
