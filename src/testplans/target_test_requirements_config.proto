@@ -8,9 +8,14 @@ package testplans;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
+import "google/protobuf/wrappers.proto";
+
 message TestSuiteCommon {
   // Human-readable consistent name for a build target, test type pair.
   string display_name = 1;
+
+  // Whether or not the test suite is considered critical.
+  google.protobuf.BoolValue critical = 2;
 }
 
 message GceTestCfg {
