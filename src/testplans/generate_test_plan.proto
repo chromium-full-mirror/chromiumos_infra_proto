@@ -26,9 +26,6 @@ message GenerateTestPlanRequest {
 
 // The final test plan.
 message GenerateTestPlanResponse {
-  repeated TestUnit test_unit = 1;
-
-  // TODO(seanabraham): Populate these new fields
   repeated GceTestUnit gce_test_units = 2;
   repeated HwTestUnit hw_test_units = 3;
   repeated MoblabVmTestUnit moblab_vm_test_units = 4;
@@ -45,23 +42,6 @@ message BuildPayload {
   // The path in the bucket in which artifacts for the build are stored, e.g.
   // eve-paladin/R73-11588.0.0-rc4
   string artifacts_gs_path = 2;
-}
-
-// Metadata for executing one test configuration for one test type.
-message TestUnit {
-  oneof TestCfg {
-    GceTestCfg gce_test_cfg = 1;
-    HwTestCfg hw_test_cfg = 2;
-    MoblabVmTestCfg moblab_vm_test_cfg = 3;
-    TastVmTestCfg tast_vm_test_cfg = 4;
-    VmTestCfg vm_test_cfg = 5;
-  }
-
-  // The build target for this test unit.
-  chromiumos.BuildTarget build_target = 8;
-
-  // The build files provided to run this test unit.
-  BuildPayload build_payload = 7;
 }
 
 // The parts of a TestUnit that are common among all test types.
