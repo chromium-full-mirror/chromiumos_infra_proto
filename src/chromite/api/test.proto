@@ -24,6 +24,8 @@ message BuildTargetUnitTestRequest {
   chromiumos.Chroot chroot = 3;
   // The flags.
   Flags flags = 4;
+  // Skipped packages.
+  repeated chromiumos.PackageInfo package_blacklist = 5;
 }
 
 message BuildTargetUnitTestResponse {
