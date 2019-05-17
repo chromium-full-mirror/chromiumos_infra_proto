@@ -82,6 +82,12 @@ message BuilderConfig {
       EBUILD_LOGS = 7;
     }
     repeated ArtifactTypes artifact_types = 2;
+
+    // Google storage bucket to upload prebuilts to.
+    string prebuilts_gs_bucket = 3;
+
+    // Google storage bucket to upload artifacts to.
+    string artifacts_gs_bucket = 4;
   }
   Artifacts artifacts = 4;
 
