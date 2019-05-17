@@ -4,7 +4,6 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
-import "chromite/api/image.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
@@ -62,10 +61,8 @@ message VmTestRequest {
   // The chroot in which to run commands. Required.
   chromiumos.Chroot chroot = 2;
 
-  // The VM image to test.
-  // Deprecated.
-  // vm_image or test_vm_image required.
-  chromite.api.VmImage vm_image = 3;
+  // Required. The VM image path.
+  chromiumos.Path vm_path = 3;
 
   // Options for SSHing into the VM.
   message SshOptions {
@@ -103,13 +100,6 @@ message VmTestRequest {
 
   // All VM tests that should be run. At least one must be specified.
   repeated VmTest vm_tests = 6;
-
-  // The VM image to test. Required.
-  // vm_image or test_vm_image required.
-  chromite.api.Image test_vm_image = 7;
-
-  // The VM image path when it is outside the chroot.
-  chromiumos.Path vm_path = 8;
 }
 
 message VmTestResponse {

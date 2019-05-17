@@ -51,24 +51,6 @@ message CreateImageResult {
   repeated chromiumos.PackageInfo failed_packages = 3;
 }
 
-message CreateVmRequest {
-  // The image to convert to a VM.
-  Image image = 1;
-  // The chroot to use to execute the endpoint.
-  chromiumos.Chroot chroot = 2;
-}
-
-// A VM image.
-message VmImage {
-  // Path to the image.
-  string path = 1;
-}
-
-message CreateVmResponse {
-  // The created VM path.
-  VmImage vm_image = 1;
-}
-
 // The image test arguments.
 message TestImageRequest {
   // The image to be tested.
@@ -108,13 +90,6 @@ service ImageService {
   //  "build_target": {"name": "reef"},
   // }
   rpc Create(CreateImageRequest) returns (CreateImageResult);
-
-  // Use an Image to create a VM.
-  rpc CreateVm(CreateVmRequest) returns (CreateVmResponse) {
-    option (method_options) = {
-      method_chroot_assert: OUTSIDE,
-    };
-  }
 
   // Test an image.
   // Example json:
