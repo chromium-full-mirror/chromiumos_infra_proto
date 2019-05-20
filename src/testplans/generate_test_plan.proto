@@ -17,13 +17,7 @@ message GenerateTestPlanRequest {
   // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/build.proto
   repeated ProtoBytes buildbucket_protos = 5;
 
-  // Path on disk to the chromiumos repo checkout.
-  string chromiumos_checkout_root = 4;
-
-  // Path on disk to the "repo" CLI tool.
-  string repo_tool_path = 6;
-
-  // The manifest-internal commit hash that's being used for the current build.
+  // The manifest-internal snapshot commit hash that's being used for the current build.
   string manifest_commit = 7;
 }
 
