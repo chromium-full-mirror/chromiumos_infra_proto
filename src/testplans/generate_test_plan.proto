@@ -22,6 +22,9 @@ message GenerateTestPlanRequest {
 
   // Path on disk to the "repo" CLI tool.
   string repo_tool_path = 6;
+
+  // The manifest-internal commit hash that's being used for the current build.
+  string manifest_commit = 7;
 }
 
 // The final test plan.
