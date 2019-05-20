@@ -1,0 +1,22 @@
+syntax = "proto3";
+package analysis_service;
+
+import "chromite/api/sysroot.proto";
+
+// Requests and responses are sent to the Artifacts Analysis Service on a single
+// Pub/Sub topic; thus, the type of the request and response need to be encoded
+// in the Pub/Sub message. This is done with this wrapper proto.
+//
+// This proto should only be used by a recipes module to do the wrapping and a
+// layer on the Analysis Server to do the unwrapping.
+message AnalysisServiceEvent {
+  // The request to upload.
+  oneof request {
+    chromite.api.InstallPackagesRequest install_packages_request = 1;
+  }
+
+  // The response to upload.
+  oneof response {
+    chromite.api.InstallPackagesResponse install_packages_response = 2;
+  }
+}
