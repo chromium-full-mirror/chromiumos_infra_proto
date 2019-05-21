@@ -114,6 +114,12 @@ message BuilderConfig {
     repeated ImageType image_types = 3;
   }
   Build build = 6;
+
+  message UnitTests {
+    // Skipped packages.
+    repeated PackageInfo package_blacklist = 4;
+  }
+  UnitTests unit_tests = 7;
 }
 
 // List of builder configs. Intended to be serialized to / from disk.
