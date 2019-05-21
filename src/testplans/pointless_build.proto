@@ -26,6 +26,9 @@ message PointlessBuildCheckRequest {
 
   // Path on disk to the "repo" CLI tool.
   string repo_tool_path = 4;
+
+  // The manifest-internal snapshot commit hash that's being used for the current build.
+  string manifest_commit = 6;
 }
 
 // The output proto for invocations of the Pointless Build Checker program.
