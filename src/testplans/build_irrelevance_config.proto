@@ -15,6 +15,19 @@ message FileBaseName {
   string name = 1;
 }
 
+message FilePattern {
+  // Bash pattern for matching a file in the chromiumos checkout.
+  // This may make use of globstar (i.e. **) notation to match against many
+  // subdirectories at once. The pattern will be matched against a full
+  // relative path in the chromiumos checkout.
+  // e.g.
+  // chromite/config/** to match anything under chromite/config/
+  // **/OWNERS to match any OWNERS file
+  // **/*.md to match any .md file
+  // src/somefile.java to match a specific file
+  string pattern = 1;
+}
+
 // Configures the skipping of builds for CQ runs when the triggering CLs can't
 // actually affect builds.
 message BuildIrrelevanceCfg {
@@ -27,4 +40,8 @@ message BuildIrrelevanceCfg {
   // File base names that never affect Chrome OS builds.
   // e.g. "COMMIT-QUEUE.ini"
   repeated FileBaseName irrelevant_file_base_names = 2;
+
+  // File patterns that never affect Chrome OS builds.
+  // See documentation in the FilePattern message.
+  repeated FilePattern irrelevant_file_patterns = 3;
 }
