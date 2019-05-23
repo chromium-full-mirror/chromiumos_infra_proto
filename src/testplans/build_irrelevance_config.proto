@@ -8,13 +8,6 @@ package testplans;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
-import "testplans/common.proto";
-
-message FileBaseName {
-  // e.g. "README.md"
-  string name = 1;
-}
-
 message FilePattern {
   // Bash pattern for matching a file in the chromiumos checkout.
   // This may make use of globstar (i.e. **) notation to match against many
@@ -31,16 +24,6 @@ message FilePattern {
 // Configures the skipping of builds for CQ runs when the triggering CLs can't
 // actually affect builds.
 message BuildIrrelevanceCfg {
-  // Sections of the code that never affect Chrome OS builds.
-  // These must be full paths relative to chromiumos, and can be files or
-  // folders.
-  // e.g. chromite/config/ or src/platform2/camera/my-docs.md
-  repeated SourceTree irrelevant_source_paths = 1;
-
-  // File base names that never affect Chrome OS builds.
-  // e.g. "COMMIT-QUEUE.ini"
-  repeated FileBaseName irrelevant_file_base_names = 2;
-
   // File patterns that never affect Chrome OS builds.
   // See documentation in the FilePattern message.
   repeated FilePattern irrelevant_file_patterns = 3;
