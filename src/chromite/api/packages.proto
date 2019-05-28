@@ -1,0 +1,46 @@
+syntax = "proto3";
+package chromite.api;
+
+import "chromite/api/binhost.proto";
+import "chromite/api/build_api.proto";
+import "chromiumos/common.proto";
+
+
+message UprevPackagesRequest {
+  // The chroot path.
+  // Required if not in the default location.
+  chromiumos.Chroot chroot = 1;
+
+  // The build target(s) whose packages should be uprevved.
+  // Defaults to all build targets when none are given.
+  repeated chromiumos.BuildTarget build_targets = 2;
+
+  // Required.
+  // The overlay type to search against.
+  chromite.api.OverlayType overlay_type = 3;
+
+  // Optional.
+  // A directory where results should be dumped.
+  string output_dir = 4;
+}
+
+
+message UprevPackagesResponse {
+  message Ebuild {
+    string path = 1;
+  }
+
+  // The list of ebuilds that were modified. Contains added and deleted files.
+  repeated Ebuild modified_ebuilds = 1;
+}
+
+
+// Service for package-centric functionality.
+service PackageService {
+  option (service_options) = {
+    module: "packages",
+    service_chroot_assert: OUTSIDE,
+  };
+
+  rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse);
+}
