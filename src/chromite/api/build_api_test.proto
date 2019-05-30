@@ -13,6 +13,8 @@ import "chromiumos/common.proto";
 message TestRequestMessage {
   string id = 1;
   chromiumos.Chroot chroot = 2;
+  chromiumos.Path path = 3;
+  chromiumos.Path another_path = 4;
 }
 
 // Simple output message.

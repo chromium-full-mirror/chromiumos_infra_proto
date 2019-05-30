@@ -107,6 +107,9 @@ message VmTestRequest {
   // The VM image to test. Required.
   // vm_image or test_vm_image required.
   chromite.api.Image test_vm_image = 7;
+
+  // The VM image path when it is outside the chroot.
+  chromiumos.Path vm_path = 8;
 }
 
 message VmTestResponse {

@@ -51,6 +51,21 @@ message PackageInfo {
   string version = 3;
 }
 
+// A message to clarify inside/outside chroot paths.
+message Path {
+  // Location enum; whether the resource is inside or outside of the chroot.
+  enum Location {
+    NO_LOCATION = 0;
+    INSIDE = 1;
+    OUTSIDE = 2;
+  }
+
+  // The path to the resource.
+  string path = 1;
+  // The path location.
+  Location location = 2;
+}
+
 // Message for USE flags.
 message UseFlag {
   // The use flag.
