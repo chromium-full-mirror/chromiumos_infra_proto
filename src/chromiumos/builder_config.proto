@@ -14,6 +14,17 @@ import "google/protobuf/wrappers.proto";
 // Configuration used by a builder during execution.
 message BuilderConfig {
 
+  // Used to control running of special steps.
+  enum RunSpec {
+    RUN_SPEC_UNSPECIFIED = 0;
+    // Do not run.
+    NO_RUN = 1;
+    // Run.
+    RUN = 2;
+    // Run and then exit.
+    RUN_EXIT = 3;
+  }
+
   // Unique identifier of the builder configuration.
   message Id {
     // The name of the configuration such as "arm-generic-postsubmit".
@@ -118,6 +129,9 @@ message BuilderConfig {
   message UnitTests {
     // Skipped packages.
     repeated PackageInfo package_blacklist = 4;
+
+    // Controls the running of ebuild tests with possible early exit.
+    RunSpec ebuilds_run_spec = 5;
   }
   UnitTests unit_tests = 7;
 }
