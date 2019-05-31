@@ -1,0 +1,140 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
+
+// Request represents a request to the ChromeOS Test Platform to run a test,
+// set of tests, suite of tests, or test plan on a set of devices (eventually
+// also: virtual devices) in the ChromeOS Test Lab.
+message Request {
+  // Params defines parameters that apply to an entire Request.
+  message Params {
+    // HardwareAttributes defines the hardware-bound characteristics
+    // of the devices to run tests on.
+    message HardwareAttributes {
+      // Model is the model to run tests against.
+      //
+      // TODO(akeshet): Re-use device protos instead of defining this
+      // independently.
+      string model = 1;
+
+      // TODO(akeshet): Add other schedulable characteristics, based on shared
+      // hardware config protos.
+    }
+
+    HardwareAttributes hardware_attributes = 1;
+
+    // SoftwareAttributes defines software characteristics that are strongly
+    // associated with a device, though not immutable or hardware-bound.
+    message SoftwareAttributes {
+      // TODO(akeshet): re-use build-target proto.
+      string board = 1;
+
+      // TODO(akeshet): add other attributes such as CTS version,
+      // kernel version(?), etc.
+    }
+
+    SoftwareAttributes software_attributes = 2;
+
+    // SoftwareDependency defines mutable software characteristics of the
+    // devices to run tests on (for instance, the desired version of ChromeOS).
+    message SoftwareDependency {
+      // Type defines the type of software dependency.
+      enum Type {
+        TYPE_UNSPECIFIED = 0;
+        TYPE_CHROMEOS_IMAGE = 1;
+        TYPE_CHROMEOS_FIRMWARE = 2;
+      }
+
+      Type type = 1;
+
+      // Url is the authoritative URL to fetch the requested version of the
+      // software dependency from. The means of installing from this Url
+      // depends on the Type of SoftwareDependency.
+      string url = 2;
+    }
+
+    repeated SoftwareDependency software_dependencies = 3;
+
+    // Scheduling defines parameters that affect how the tests in this
+    // request are prioritized relative to other requests, and how capacity for
+    // them is allocated.
+    message Scheduling {
+      // ManagedPool enumerates the different managed pools, which are device
+      // pools that are automatically balanced and refilled with working
+      // devices.
+      // TODO(akeshet): Paste pool enum from skylab inventory protos, or import
+      // the proto.
+      enum ManagedPool {
+        MANAGED_POOL_UNSPECIFIED = 0;
+      }
+
+      oneof pool {
+        // Managed pool of devices to run tests in.
+        ManagedPool managed_pool = 1;
+
+        // Unmanaged pool of devices to run tests in.
+        // Must not be a managed pool.
+        string unmanaged_pool = 2;
+
+        // Quota account to use. If specified, request will run in the
+        // quota-shared pool, and scheduled via quotascheduler.
+        string quota_account = 3;
+      }
+    }
+
+    Scheduling scheduling = 4;
+
+    // Retry defines parameters that affect how failed tests within
+    // a request are retried.
+    message Retry {
+      // TODO(akeshet): Add parameters.
+    }
+
+    Retry retry = 5;
+
+    // Metadata defines parameters that determine where test definitions
+    // and metadata are stored and discovered from.
+    message Metadata {
+      string test_metadata_url = 1;
+    }
+
+    Metadata metadata = 6;
+  }
+
+  Params params = 1;
+
+  // SuiteRequest defines an individual named suite.
+  message Suite {
+    string name = 1;
+  }
+
+  repeated Suite suites = 2;
+
+  message Test {
+    enum Harness {
+      HARNESS_UNSPECIFIED = 0;
+      HARNESS_AUTOTEST = 1;
+      // TODO(akeshet): add TAST, CTS, ...
+    }
+
+    Harness harness = 1;
+
+    string name = 2;
+
+    repeated string test_args = 3;
+  }
+
+  repeated Test tests = 3;
+
+  message TestPlan {
+    // Placeholder, not yet implemented.
+  }
+
+  repeated TestPlan test_plans = 4;
+}
