@@ -22,6 +22,24 @@ enum BinhostKey {
   PREFLIGHT_BINHOST = 3;
 }
 
+// Get the private prebuilts' ACL args for a build target.
+message AclArgsRequest {
+  // Required. The build target whose Prebuilt ACL args are being fetched.
+  chromiumos.BuildTarget build_target = 1;
+}
+
+message AclArgsResponse {
+  // An ACL command argument.
+  message AclArg {
+    // The argument (usually -g or -u).
+    string arg = 1;
+    // The argument value ([group_id|user]:PERMISSION)
+    string value = 2;
+  }
+
+  repeated AclArg args = 1;
+}
+
 // Describes where prebuilts will be uploaded so package index and other
 // Portage metadata can be updated appropriately.
 message PrepareBinhostUploadsRequest {
@@ -105,6 +123,9 @@ service BinhostService {
     module: "binhost",
     service_chroot_assert: OUTSIDE,
   };
+
+  // Get the arguments from the private overlay's ACL file.
+  rpc GetPrivatePrebuiltAclArgs(AclArgsRequest) returns (AclArgsResponse);
 
   // Return a list of files to upload to the binhost. Importantly, this method
   // assumes that all files, once uploaded, will share the same relative path
