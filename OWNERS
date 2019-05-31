@@ -1,9 +1,11 @@
+# Build team
 cjmcdonald@chromium.org
 lamontjones@chromium.org
 nednguyen@google.com
 saklein@chromium.org
 vapier@chromium.org
 
+# CI team
 andrewlamb@chromium.org
 dburger@chromium.org
 dhanyaganesh@chromium.org
@@ -11,3 +13,7 @@ evanhernandez@chromium.org
 jclinton@chromium.org
 mikenichols@chromium.org
 seanabraham@chromium.org
+
+# Test team
+akeshet@chromium.org
+pprabhu@chromium.org
