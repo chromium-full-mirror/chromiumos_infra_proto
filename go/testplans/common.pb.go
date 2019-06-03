@@ -21,7 +21,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // A unit of the CrOS codebase. As of 2019-01, this concept maps 1-to-1 with
-// "paths" in the the internal and external full.xml files.
+// "paths" in the internal and external full.xml files.
 type SourceTree struct {
 	// The path of a source tree,
 	// e.g. "src/platform2" or "src/third_party/kernel/v4.19".

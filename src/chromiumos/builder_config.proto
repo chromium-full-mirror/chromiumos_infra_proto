@@ -123,6 +123,9 @@ message BuilderConfig {
 
     // Image types to build.
     repeated ImageType image_types = 3;
+
+    // Controls the running of the install packages step.
+    RunSpec install_packages = 4;
   }
   Build build = 6;
 
