@@ -43,6 +43,7 @@ message AclArgsResponse {
 // Describes where prebuilts will be uploaded so package index and other
 // Portage metadata can be updated appropriately.
 message PrepareBinhostUploadsRequest {
+  // Deprecated.
   // Build target to prepare prebuilts for.
   chromiumos.BuildTarget build_target = 1;
 
@@ -50,6 +51,14 @@ message PrepareBinhostUploadsRequest {
   // call does NOT upload them, it only updates metadata.
   // Example: gs://chromeos-prebuilt/board/amd64-generic/packages/
   string uri = 2;
+
+  // Required when chroot not at default location.
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 3;
+
+  // Required.
+  // The sysroot whose prebuilts are being uploaded.
+  Sysroot sysroot = 4;
 }
 
 // Return all files to upload.
@@ -110,8 +119,6 @@ enum OverlayType {
 message RegenBuildCacheRequest {
   // The type of overlays to push:  "public", "private", or "both".
   OverlayType overlay_type = 1;
-  // The build target used to create the sysroot.
-  Sysroot sysroot = 2;
 }
 
 message RegenBuildCacheResponse {
