@@ -135,6 +135,9 @@ message BuilderConfig {
 
     // Controls the running of ebuild tests with possible early exit.
     RunSpec ebuilds_run_spec = 5;
+
+    // Whether to assume the sysroot is empty.
+    bool empty_sysroot = 6;
   }
   UnitTests unit_tests = 7;
 }
