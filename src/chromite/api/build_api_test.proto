@@ -11,10 +11,15 @@ import "chromiumos/common.proto";
 
 // Simple input message.
 message TestRequestMessage {
+  message NestedPath {
+    chromiumos.Path path = 1;
+  }
+
   string id = 1;
   chromiumos.Chroot chroot = 2;
   chromiumos.Path path = 3;
   chromiumos.Path another_path = 4;
+  NestedPath nested_path = 5;
 }
 
 // Simple output message.

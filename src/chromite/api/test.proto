@@ -67,7 +67,7 @@ message VmTestRequest {
   // Options for SSHing into the VM.
   message SshOptions {
     // Path to the private key to the VM.
-    string private_key_path = 1;
+    chromiumos.Path private_key_path = 1;
 
     // SSH port to communicate with VM.
     int32 port = 2;
