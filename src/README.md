@@ -21,8 +21,10 @@ These options are all implementation details that should not affect consumers of
 
 This folder contains more widely shared proto files.
 
+## test_platform
+
+This folder contains definitions of the cros_test_platform API, as well as internal protos used for communication between cros_test_platform components.
 
 ## device
-
 
 ## testplans
