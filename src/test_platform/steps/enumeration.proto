@@ -1,0 +1,33 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.steps;
+
+import "test_platform/request.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
+
+// EnumerationRequest defines the input of the test enumeration step.
+message EnumerationRequest {
+    // Request is the full cros_test_platform request.
+    //
+    // TODO: Don't expose the full request to the enumeration step, pull out
+    // only the fields that it needs.
+    test_platform.Request request = 1;
+}
+
+// EnumerationResponse defines the output of the test enumeration step.
+message EnumerationResponse {
+    message Test {
+        string name = 1;
+
+        bool client = 2;
+
+        repeated string autotest_labels = 3;
+    }
+
+    repeated Test tests = 1;
+}
