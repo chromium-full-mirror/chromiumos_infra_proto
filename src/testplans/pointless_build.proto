@@ -18,14 +18,15 @@ message PointlessBuildCheckRequest {
   // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/build.proto
   ProtoBytes buildbucket_proto = 1;
 
-  // The DepGraph for this child builder.
+  // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
+  // or similar. Explicit proto import is avoided here to prevent a dependency
+  // on the luci-go repo.
+  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+  repeated ProtoBytes gerrit_changes = 7;
+
+  // The DepGraph for a child builder. This can be left empty, implying that no
+  // DepGraph-based pointless build checking should be skipped.
   chromite.api.DepGraph dep_graph = 5;
-
-  // Path on disk to the chromiumos workspace repo checkout.
-  string chromiumos_workspace_checkout_root = 3;
-
-  // Path on disk to the "repo" CLI tool.
-  string repo_tool_path = 4;
 
   // The manifest-internal snapshot commit hash that's being used for the current build.
   string manifest_commit = 6;
