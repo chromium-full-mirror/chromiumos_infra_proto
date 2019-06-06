@@ -12,8 +12,8 @@ import "test_platform/config/config.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
-// BackendRequest defines the input of the Backend step.
-message BackendRequest {
+// ExecuteRequest defines the input of the Execute step.
+message ExecuteRequest {
     // Request is the full cros_test_platform request.
     //
     // TODO(akeshet): Don't expose the full request to the enumeration step,
@@ -25,7 +25,22 @@ message BackendRequest {
     test_platform.config.Config config = 3;
 }
 
-// BackendResponse defines the output of the test enumeration step.
-message BackendResponse {
-    // TODO(akeshet): Define me.
+// ExecuteResponse defines the output of the Execute step.
+message ExecuteResponse {
+    message TaskResult {
+        string task_id = 1;
+
+        string task_url = 2;
+
+        enum TaskStatus {
+            TASK_STATUS_UNSPECIFIED = 0;
+            // TODO(akeshet): Add statuses.
+        }
+
+        TaskStatus status = 3;
+
+        string name = 4;
+    }
+
+    repeated TaskResult task_results = 1;
 }
