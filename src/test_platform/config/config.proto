@@ -1,0 +1,21 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.config;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/config";
+
+// Config defined configuration parameters of cros_test_platform.
+message Config {
+    // Swarming defines configuration parameters related to a swarming instance.
+    message Swarming {
+        string server = 1;
+
+        string auth_json_path = 2;
+    }
+
+    Swarming skylab_swarming = 1;
+}

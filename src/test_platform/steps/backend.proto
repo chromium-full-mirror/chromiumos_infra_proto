@@ -8,6 +8,7 @@ package test_platform.steps;
 
 import "test_platform/request.proto";
 import "test_platform/steps/enumeration.proto";
+import "test_platform/config/config.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
@@ -20,6 +21,8 @@ message BackendRequest {
     test_platform.Request request = 1;
 
     EnumerationResponse enumeration = 2;
+
+    test_platform.config.Config config = 3;
 }
 
 // BackendResponse defines the output of the test enumeration step.
