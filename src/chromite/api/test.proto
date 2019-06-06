@@ -105,6 +105,23 @@ message VmTestRequest {
 message VmTestResponse {
 }
 
+message MoblabVmTestRequest {
+  // Data used in the test.
+  message Payload {
+    // Directory containing the payload.
+    chromiumos.Path path = 1;
+  }
+
+  // Effectively the full output produced by the image builder.
+  Payload image_payload = 1;
+
+  // Payloads to be loaded into the Moblab VM's cache.
+  repeated Payload cache_payloads = 2;
+}
+
+message MoblabVmTestResponse {
+}
+
 // The test service.
 service TestService {
   option (service_options) = {
@@ -128,4 +145,7 @@ service TestService {
 
   // Run VM tests and report failures.
   rpc VmTest(VmTestRequest) returns (VmTestResponse);
+
+  // Run Moblab VM tests and report failures.
+  rpc MoblabVmTest(MoblabVmTestRequest) returns (MoblabVmTestResponse);
 }
