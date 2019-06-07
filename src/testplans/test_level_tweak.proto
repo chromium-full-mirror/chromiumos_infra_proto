@@ -45,3 +45,7 @@ message TestLevelTweak {
   repeated Test disable_tests = 6;
 }
 
+// Top-level config message for test level tweaks.
+message TestLevelTweakCfg {
+  repeated TestLevelTweak test_level_tweaks = 1;
+}
