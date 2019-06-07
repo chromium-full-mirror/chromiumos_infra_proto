@@ -106,6 +106,9 @@ message VmTestResponse {
 }
 
 message MoblabVmTestRequest {
+  // Chroot in which to run the VM tests.
+  chromiumos.Chroot chroot = 1;
+
   // Data used in the test.
   message Payload {
     // Directory containing the payload.
@@ -113,10 +116,10 @@ message MoblabVmTestRequest {
   }
 
   // Effectively the full output produced by the image builder.
-  Payload image_payload = 1;
+  Payload image_payload = 2;
 
   // Payloads to be loaded into the Moblab VM's cache.
-  repeated Payload cache_payloads = 2;
+  repeated Payload cache_payloads = 3;
 }
 
 message MoblabVmTestResponse {
