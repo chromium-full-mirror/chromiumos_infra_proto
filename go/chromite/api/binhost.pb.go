@@ -100,7 +100,7 @@ func (OverlayType) EnumDescriptor() ([]byte, []int) {
 type Binhost struct {
 	// The binhost URI.
 	Uri string `protobuf:"bytes,1,opt,name=uri,proto3" json:"uri,omitempty"`
-	// The package index URI.
+	// The package index file name relative to the base binhost uri.
 	PackageIndex         string   `protobuf:"bytes,2,opt,name=package_index,json=packageIndex,proto3" json:"package_index,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
