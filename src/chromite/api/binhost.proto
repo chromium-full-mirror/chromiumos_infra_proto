@@ -22,6 +22,18 @@ enum BinhostKey {
   PREFLIGHT_BINHOST = 3;
 }
 
+message Binhost {
+  // The binhost URI.
+  string uri = 1;
+  // The package index URI.
+  string package_index = 2;
+}
+
+// Local package index file message.
+message PackageIndex {
+  chromiumos.Path path = 1;
+}
+
 // Get the private prebuilts' ACL args for a build target.
 message AclArgsRequest {
   // Required. The build target whose Prebuilt ACL args are being fetched.
@@ -38,6 +50,21 @@ message AclArgsResponse {
   }
 
   repeated AclArg args = 1;
+}
+
+// Get the binhosts for the build target.
+message BinhostGetRequest {
+  // Required.
+  // The build target whose binhosts are being fetched.
+  chromiumos.BuildTarget build_target = 1;
+  // Required.
+  // Whether to include private binhosts.
+  bool private = 2;
+}
+
+message BinhostGetResponse {
+  // The binhosts.
+  repeated Binhost binhosts = 1;
 }
 
 // Describes where prebuilts will be uploaded so package index and other
@@ -59,6 +86,9 @@ message PrepareBinhostUploadsRequest {
   // Required.
   // The sysroot whose prebuilts are being uploaded.
   Sysroot sysroot = 4;
+
+  // The package index files to deduplicate the prebuilt list.
+  repeated PackageIndex package_index_files = 5;
 }
 
 // Return all files to upload.
@@ -130,6 +160,13 @@ service BinhostService {
     module: "binhost",
     service_chroot_assert: OUTSIDE,
   };
+
+  // Get the binhosts for a build target.
+  rpc Get(BinhostGetRequest) returns (BinhostGetResponse) {
+    option (method_options) = {
+      implementation_name: "GetBinhosts",
+    };
+  }
 
   // Get the arguments from the private overlay's ACL file.
   rpc GetPrivatePrebuiltAclArgs(AclArgsRequest) returns (AclArgsResponse);
