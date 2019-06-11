@@ -9,6 +9,7 @@ package test_platform.steps;
 import "test_platform/request.proto";
 import "test_platform/steps/enumeration.proto";
 import "test_platform/config/config.proto";
+import "test_platform/taskstate.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
@@ -32,12 +33,7 @@ message ExecuteResponse {
 
         string task_url = 2;
 
-        enum TaskStatus {
-            TASK_STATUS_UNSPECIFIED = 0;
-            // TODO(akeshet): Add statuses.
-        }
-
-        TaskStatus status = 3;
+        TaskState state = 3;
 
         string name = 4;
     }

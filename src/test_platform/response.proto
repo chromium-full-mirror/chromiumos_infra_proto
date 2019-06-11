@@ -1,0 +1,15 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform;
+
+import "test_platform/taskstate.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
+
+message Response {
+    TaskState state = 1;
+}
