@@ -1,7 +1,13 @@
 syntax = "proto3";
 package analysis_service;
 
+import "chromite/api/artifacts.proto";
+import "chromite/api/binhost.proto";
+import "chromite/api/depgraph.proto";
+import "chromite/api/image.proto";
+import "chromite/api/sdk.proto";
 import "chromite/api/sysroot.proto";
+import "chromite/api/test.proto";
 import "google/protobuf/timestamp.proto";
 
 // Requests and responses are sent to the Artifacts Analysis Service on a single
@@ -20,10 +26,47 @@ message AnalysisServiceEvent {
   // The request to upload.
   oneof request {
     chromite.api.InstallPackagesRequest install_packages_request = 1;
+    chromite.api.BundleRequest bundle_request = 5;
+    chromite.api.BundleVmFilesRequest bundle_vm_files_request = 7;
+    chromite.api.BinhostGetRequest binhost_get_request = 8;
+    chromite.api.AclArgsRequest acl_args_request = 10;
+    chromite.api.PrepareBinhostUploadsRequest prepare_binhost_uploads_request = 12;
+    chromite.api.SetBinhostRequest set_binhost_request = 14;
+    chromite.api.RegenBuildCacheRequest regen_build_cache_request = 16;
+    chromite.api.GetBuildDependencyGraphRequest get_build_dependency_graph_request = 18;
+    chromite.api.CreateImageRequest create_image_request = 20;
+    chromite.api.TestImageRequest test_image_request = 22;
+    chromite.api.CreateRequest create_request = 24;
+    chromite.api.UpdateRequest update_request = 26;
+    chromite.api.SysrootCreateRequest sysroot_create_request = 28;
+    chromite.api.InstallToolchainRequest install_toolchain_request = 30;
+    chromite.api.BuildTargetUnitTestRequest build_target_unit_test_request = 32;
+    chromite.api.ChromiteUnitTestRequest chromite_unit_test_request = 34;
+    chromite.api.DebugInfoTestRequest debug_info_test_request = 36;
+    chromite.api.VmTestRequest vm_test_request = 38;
+    chromite.api.MoblabVmTestRequest moblab_vm_test_request = 40;
   }
 
   // The response to upload.
   oneof response {
     chromite.api.InstallPackagesResponse install_packages_response = 2;
+    chromite.api.BundleResponse bundle_response = 6;
+    chromite.api.BinhostGetResponse binhost_get_response = 9;
+    chromite.api.AclArgsResponse acl_args_response = 11;
+    chromite.api.PrepareBinhostUploadsResponse prepare_binhost_uploads_response = 13;
+    chromite.api.SetBinhostResponse set_binhost_response = 15;
+    chromite.api.RegenBuildCacheResponse regen_build_cache_response = 17;
+    chromite.api.GetBuildDependencyGraphResponse get_build_dependency_graph_response = 19;
+    chromite.api.CreateImageResult create_image_result = 21;
+    chromite.api.TestImageResult test_image_result = 23;
+    chromite.api.CreateResponse create_response = 25;
+    chromite.api.UpdateResponse update_response = 27;
+    chromite.api.SysrootCreateResponse sysroot_create_response = 29;
+    chromite.api.InstallToolchainResponse install_toolchain_response = 31;
+    chromite.api.BuildTargetUnitTestResponse build_target_unit_test_response = 33;
+    chromite.api.ChromiteUnitTestResponse chromite_unit_test_response = 35;
+    chromite.api.DebugInfoTestResponse debug_info_test_response = 37;
+    chromite.api.VmTestResponse vm_test_response = 39;
+    chromite.api.MoblabVmTestResponse moblab_vm_test_response = 41;
   }
 }

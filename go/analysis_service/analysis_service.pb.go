@@ -36,11 +36,48 @@ type AnalysisServiceEvent struct {
 	//
 	// Types that are valid to be assigned to Request:
 	//	*AnalysisServiceEvent_InstallPackagesRequest
+	//	*AnalysisServiceEvent_BundleRequest
+	//	*AnalysisServiceEvent_BundleVmFilesRequest
+	//	*AnalysisServiceEvent_BinhostGetRequest
+	//	*AnalysisServiceEvent_AclArgsRequest
+	//	*AnalysisServiceEvent_PrepareBinhostUploadsRequest
+	//	*AnalysisServiceEvent_SetBinhostRequest
+	//	*AnalysisServiceEvent_RegenBuildCacheRequest
+	//	*AnalysisServiceEvent_GetBuildDependencyGraphRequest
+	//	*AnalysisServiceEvent_CreateImageRequest
+	//	*AnalysisServiceEvent_TestImageRequest
+	//	*AnalysisServiceEvent_CreateRequest
+	//	*AnalysisServiceEvent_UpdateRequest
+	//	*AnalysisServiceEvent_SysrootCreateRequest
+	//	*AnalysisServiceEvent_InstallToolchainRequest
+	//	*AnalysisServiceEvent_BuildTargetUnitTestRequest
+	//	*AnalysisServiceEvent_ChromiteUnitTestRequest
+	//	*AnalysisServiceEvent_DebugInfoTestRequest
+	//	*AnalysisServiceEvent_VmTestRequest
+	//	*AnalysisServiceEvent_MoblabVmTestRequest
 	Request isAnalysisServiceEvent_Request `protobuf_oneof:"request"`
 	// The response to upload.
 	//
 	// Types that are valid to be assigned to Response:
 	//	*AnalysisServiceEvent_InstallPackagesResponse
+	//	*AnalysisServiceEvent_BundleResponse
+	//	*AnalysisServiceEvent_BinhostGetResponse
+	//	*AnalysisServiceEvent_AclArgsResponse
+	//	*AnalysisServiceEvent_PrepareBinhostUploadsResponse
+	//	*AnalysisServiceEvent_SetBinhostResponse
+	//	*AnalysisServiceEvent_RegenBuildCacheResponse
+	//	*AnalysisServiceEvent_GetBuildDependencyGraphResponse
+	//	*AnalysisServiceEvent_CreateImageResult
+	//	*AnalysisServiceEvent_TestImageResult
+	//	*AnalysisServiceEvent_CreateResponse
+	//	*AnalysisServiceEvent_UpdateResponse
+	//	*AnalysisServiceEvent_SysrootCreateResponse
+	//	*AnalysisServiceEvent_InstallToolchainResponse
+	//	*AnalysisServiceEvent_BuildTargetUnitTestResponse
+	//	*AnalysisServiceEvent_ChromiteUnitTestResponse
+	//	*AnalysisServiceEvent_DebugInfoTestResponse
+	//	*AnalysisServiceEvent_VmTestResponse
+	//	*AnalysisServiceEvent_MoblabVmTestResponse
 	Response             isAnalysisServiceEvent_Response `protobuf_oneof:"response"`
 	XXX_NoUnkeyedLiteral struct{}                        `json:"-"`
 	XXX_unrecognized     []byte                          `json:"-"`
@@ -94,7 +131,121 @@ type AnalysisServiceEvent_InstallPackagesRequest struct {
 	InstallPackagesRequest *api.InstallPackagesRequest `protobuf:"bytes,1,opt,name=install_packages_request,json=installPackagesRequest,proto3,oneof"`
 }
 
+type AnalysisServiceEvent_BundleRequest struct {
+	BundleRequest *api.BundleRequest `protobuf:"bytes,5,opt,name=bundle_request,json=bundleRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_BundleVmFilesRequest struct {
+	BundleVmFilesRequest *api.BundleVmFilesRequest `protobuf:"bytes,7,opt,name=bundle_vm_files_request,json=bundleVmFilesRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_BinhostGetRequest struct {
+	BinhostGetRequest *api.BinhostGetRequest `protobuf:"bytes,8,opt,name=binhost_get_request,json=binhostGetRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_AclArgsRequest struct {
+	AclArgsRequest *api.AclArgsRequest `protobuf:"bytes,10,opt,name=acl_args_request,json=aclArgsRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_PrepareBinhostUploadsRequest struct {
+	PrepareBinhostUploadsRequest *api.PrepareBinhostUploadsRequest `protobuf:"bytes,12,opt,name=prepare_binhost_uploads_request,json=prepareBinhostUploadsRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_SetBinhostRequest struct {
+	SetBinhostRequest *api.SetBinhostRequest `protobuf:"bytes,14,opt,name=set_binhost_request,json=setBinhostRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_RegenBuildCacheRequest struct {
+	RegenBuildCacheRequest *api.RegenBuildCacheRequest `protobuf:"bytes,16,opt,name=regen_build_cache_request,json=regenBuildCacheRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_GetBuildDependencyGraphRequest struct {
+	GetBuildDependencyGraphRequest *api.GetBuildDependencyGraphRequest `protobuf:"bytes,18,opt,name=get_build_dependency_graph_request,json=getBuildDependencyGraphRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_CreateImageRequest struct {
+	CreateImageRequest *api.CreateImageRequest `protobuf:"bytes,20,opt,name=create_image_request,json=createImageRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_TestImageRequest struct {
+	TestImageRequest *api.TestImageRequest `protobuf:"bytes,22,opt,name=test_image_request,json=testImageRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_CreateRequest struct {
+	CreateRequest *api.CreateRequest `protobuf:"bytes,24,opt,name=create_request,json=createRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_UpdateRequest struct {
+	UpdateRequest *api.UpdateRequest `protobuf:"bytes,26,opt,name=update_request,json=updateRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_SysrootCreateRequest struct {
+	SysrootCreateRequest *api.SysrootCreateRequest `protobuf:"bytes,28,opt,name=sysroot_create_request,json=sysrootCreateRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_InstallToolchainRequest struct {
+	InstallToolchainRequest *api.InstallToolchainRequest `protobuf:"bytes,30,opt,name=install_toolchain_request,json=installToolchainRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_BuildTargetUnitTestRequest struct {
+	BuildTargetUnitTestRequest *api.BuildTargetUnitTestRequest `protobuf:"bytes,32,opt,name=build_target_unit_test_request,json=buildTargetUnitTestRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_ChromiteUnitTestRequest struct {
+	ChromiteUnitTestRequest *api.ChromiteUnitTestRequest `protobuf:"bytes,34,opt,name=chromite_unit_test_request,json=chromiteUnitTestRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_DebugInfoTestRequest struct {
+	DebugInfoTestRequest *api.DebugInfoTestRequest `protobuf:"bytes,36,opt,name=debug_info_test_request,json=debugInfoTestRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_VmTestRequest struct {
+	VmTestRequest *api.VmTestRequest `protobuf:"bytes,38,opt,name=vm_test_request,json=vmTestRequest,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_MoblabVmTestRequest struct {
+	MoblabVmTestRequest *api.MoblabVmTestRequest `protobuf:"bytes,40,opt,name=moblab_vm_test_request,json=moblabVmTestRequest,proto3,oneof"`
+}
+
 func (*AnalysisServiceEvent_InstallPackagesRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_BundleRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_BundleVmFilesRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_BinhostGetRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_AclArgsRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_PrepareBinhostUploadsRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_SetBinhostRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_RegenBuildCacheRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_GetBuildDependencyGraphRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_CreateImageRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_TestImageRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_CreateRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_UpdateRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_SysrootCreateRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_InstallToolchainRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_BuildTargetUnitTestRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_ChromiteUnitTestRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_DebugInfoTestRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_VmTestRequest) isAnalysisServiceEvent_Request() {}
+
+func (*AnalysisServiceEvent_MoblabVmTestRequest) isAnalysisServiceEvent_Request() {}
 
 func (m *AnalysisServiceEvent) GetRequest() isAnalysisServiceEvent_Request {
 	if m != nil {
@@ -110,6 +261,139 @@ func (m *AnalysisServiceEvent) GetInstallPackagesRequest() *api.InstallPackagesR
 	return nil
 }
 
+func (m *AnalysisServiceEvent) GetBundleRequest() *api.BundleRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_BundleRequest); ok {
+		return x.BundleRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetBundleVmFilesRequest() *api.BundleVmFilesRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_BundleVmFilesRequest); ok {
+		return x.BundleVmFilesRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetBinhostGetRequest() *api.BinhostGetRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_BinhostGetRequest); ok {
+		return x.BinhostGetRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetAclArgsRequest() *api.AclArgsRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_AclArgsRequest); ok {
+		return x.AclArgsRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetPrepareBinhostUploadsRequest() *api.PrepareBinhostUploadsRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_PrepareBinhostUploadsRequest); ok {
+		return x.PrepareBinhostUploadsRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetSetBinhostRequest() *api.SetBinhostRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_SetBinhostRequest); ok {
+		return x.SetBinhostRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetRegenBuildCacheRequest() *api.RegenBuildCacheRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_RegenBuildCacheRequest); ok {
+		return x.RegenBuildCacheRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetGetBuildDependencyGraphRequest() *api.GetBuildDependencyGraphRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_GetBuildDependencyGraphRequest); ok {
+		return x.GetBuildDependencyGraphRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetCreateImageRequest() *api.CreateImageRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_CreateImageRequest); ok {
+		return x.CreateImageRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetTestImageRequest() *api.TestImageRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_TestImageRequest); ok {
+		return x.TestImageRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetCreateRequest() *api.CreateRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_CreateRequest); ok {
+		return x.CreateRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetUpdateRequest() *api.UpdateRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_UpdateRequest); ok {
+		return x.UpdateRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetSysrootCreateRequest() *api.SysrootCreateRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_SysrootCreateRequest); ok {
+		return x.SysrootCreateRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetInstallToolchainRequest() *api.InstallToolchainRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_InstallToolchainRequest); ok {
+		return x.InstallToolchainRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetBuildTargetUnitTestRequest() *api.BuildTargetUnitTestRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_BuildTargetUnitTestRequest); ok {
+		return x.BuildTargetUnitTestRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetChromiteUnitTestRequest() *api.ChromiteUnitTestRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_ChromiteUnitTestRequest); ok {
+		return x.ChromiteUnitTestRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetDebugInfoTestRequest() *api.DebugInfoTestRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_DebugInfoTestRequest); ok {
+		return x.DebugInfoTestRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetVmTestRequest() *api.VmTestRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_VmTestRequest); ok {
+		return x.VmTestRequest
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetMoblabVmTestRequest() *api.MoblabVmTestRequest {
+	if x, ok := m.GetRequest().(*AnalysisServiceEvent_MoblabVmTestRequest); ok {
+		return x.MoblabVmTestRequest
+	}
+	return nil
+}
+
 type isAnalysisServiceEvent_Response interface {
 	isAnalysisServiceEvent_Response()
 }
@@ -118,7 +402,115 @@ type AnalysisServiceEvent_InstallPackagesResponse struct {
 	InstallPackagesResponse *api.InstallPackagesResponse `protobuf:"bytes,2,opt,name=install_packages_response,json=installPackagesResponse,proto3,oneof"`
 }
 
+type AnalysisServiceEvent_BundleResponse struct {
+	BundleResponse *api.BundleResponse `protobuf:"bytes,6,opt,name=bundle_response,json=bundleResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_BinhostGetResponse struct {
+	BinhostGetResponse *api.BinhostGetResponse `protobuf:"bytes,9,opt,name=binhost_get_response,json=binhostGetResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_AclArgsResponse struct {
+	AclArgsResponse *api.AclArgsResponse `protobuf:"bytes,11,opt,name=acl_args_response,json=aclArgsResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_PrepareBinhostUploadsResponse struct {
+	PrepareBinhostUploadsResponse *api.PrepareBinhostUploadsResponse `protobuf:"bytes,13,opt,name=prepare_binhost_uploads_response,json=prepareBinhostUploadsResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_SetBinhostResponse struct {
+	SetBinhostResponse *api.SetBinhostResponse `protobuf:"bytes,15,opt,name=set_binhost_response,json=setBinhostResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_RegenBuildCacheResponse struct {
+	RegenBuildCacheResponse *api.RegenBuildCacheResponse `protobuf:"bytes,17,opt,name=regen_build_cache_response,json=regenBuildCacheResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_GetBuildDependencyGraphResponse struct {
+	GetBuildDependencyGraphResponse *api.GetBuildDependencyGraphResponse `protobuf:"bytes,19,opt,name=get_build_dependency_graph_response,json=getBuildDependencyGraphResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_CreateImageResult struct {
+	CreateImageResult *api.CreateImageResult `protobuf:"bytes,21,opt,name=create_image_result,json=createImageResult,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_TestImageResult struct {
+	TestImageResult *api.TestImageResult `protobuf:"bytes,23,opt,name=test_image_result,json=testImageResult,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_CreateResponse struct {
+	CreateResponse *api.CreateResponse `protobuf:"bytes,25,opt,name=create_response,json=createResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_UpdateResponse struct {
+	UpdateResponse *api.UpdateResponse `protobuf:"bytes,27,opt,name=update_response,json=updateResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_SysrootCreateResponse struct {
+	SysrootCreateResponse *api.SysrootCreateResponse `protobuf:"bytes,29,opt,name=sysroot_create_response,json=sysrootCreateResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_InstallToolchainResponse struct {
+	InstallToolchainResponse *api.InstallToolchainResponse `protobuf:"bytes,31,opt,name=install_toolchain_response,json=installToolchainResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_BuildTargetUnitTestResponse struct {
+	BuildTargetUnitTestResponse *api.BuildTargetUnitTestResponse `protobuf:"bytes,33,opt,name=build_target_unit_test_response,json=buildTargetUnitTestResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_ChromiteUnitTestResponse struct {
+	ChromiteUnitTestResponse *api.ChromiteUnitTestResponse `protobuf:"bytes,35,opt,name=chromite_unit_test_response,json=chromiteUnitTestResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_DebugInfoTestResponse struct {
+	DebugInfoTestResponse *api.DebugInfoTestResponse `protobuf:"bytes,37,opt,name=debug_info_test_response,json=debugInfoTestResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_VmTestResponse struct {
+	VmTestResponse *api.VmTestResponse `protobuf:"bytes,39,opt,name=vm_test_response,json=vmTestResponse,proto3,oneof"`
+}
+
+type AnalysisServiceEvent_MoblabVmTestResponse struct {
+	MoblabVmTestResponse *api.MoblabVmTestResponse `protobuf:"bytes,41,opt,name=moblab_vm_test_response,json=moblabVmTestResponse,proto3,oneof"`
+}
+
 func (*AnalysisServiceEvent_InstallPackagesResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_BundleResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_BinhostGetResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_AclArgsResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_PrepareBinhostUploadsResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_SetBinhostResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_RegenBuildCacheResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_GetBuildDependencyGraphResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_CreateImageResult) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_TestImageResult) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_CreateResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_UpdateResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_SysrootCreateResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_InstallToolchainResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_BuildTargetUnitTestResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_ChromiteUnitTestResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_DebugInfoTestResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_VmTestResponse) isAnalysisServiceEvent_Response() {}
+
+func (*AnalysisServiceEvent_MoblabVmTestResponse) isAnalysisServiceEvent_Response() {}
 
 func (m *AnalysisServiceEvent) GetResponse() isAnalysisServiceEvent_Response {
 	if m != nil {
@@ -134,11 +526,174 @@ func (m *AnalysisServiceEvent) GetInstallPackagesResponse() *api.InstallPackages
 	return nil
 }
 
+func (m *AnalysisServiceEvent) GetBundleResponse() *api.BundleResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_BundleResponse); ok {
+		return x.BundleResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetBinhostGetResponse() *api.BinhostGetResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_BinhostGetResponse); ok {
+		return x.BinhostGetResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetAclArgsResponse() *api.AclArgsResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_AclArgsResponse); ok {
+		return x.AclArgsResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetPrepareBinhostUploadsResponse() *api.PrepareBinhostUploadsResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_PrepareBinhostUploadsResponse); ok {
+		return x.PrepareBinhostUploadsResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetSetBinhostResponse() *api.SetBinhostResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_SetBinhostResponse); ok {
+		return x.SetBinhostResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetRegenBuildCacheResponse() *api.RegenBuildCacheResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_RegenBuildCacheResponse); ok {
+		return x.RegenBuildCacheResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetGetBuildDependencyGraphResponse() *api.GetBuildDependencyGraphResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_GetBuildDependencyGraphResponse); ok {
+		return x.GetBuildDependencyGraphResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetCreateImageResult() *api.CreateImageResult {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_CreateImageResult); ok {
+		return x.CreateImageResult
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetTestImageResult() *api.TestImageResult {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_TestImageResult); ok {
+		return x.TestImageResult
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetCreateResponse() *api.CreateResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_CreateResponse); ok {
+		return x.CreateResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetUpdateResponse() *api.UpdateResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_UpdateResponse); ok {
+		return x.UpdateResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetSysrootCreateResponse() *api.SysrootCreateResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_SysrootCreateResponse); ok {
+		return x.SysrootCreateResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetInstallToolchainResponse() *api.InstallToolchainResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_InstallToolchainResponse); ok {
+		return x.InstallToolchainResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetBuildTargetUnitTestResponse() *api.BuildTargetUnitTestResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_BuildTargetUnitTestResponse); ok {
+		return x.BuildTargetUnitTestResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetChromiteUnitTestResponse() *api.ChromiteUnitTestResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_ChromiteUnitTestResponse); ok {
+		return x.ChromiteUnitTestResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetDebugInfoTestResponse() *api.DebugInfoTestResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_DebugInfoTestResponse); ok {
+		return x.DebugInfoTestResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetVmTestResponse() *api.VmTestResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_VmTestResponse); ok {
+		return x.VmTestResponse
+	}
+	return nil
+}
+
+func (m *AnalysisServiceEvent) GetMoblabVmTestResponse() *api.MoblabVmTestResponse {
+	if x, ok := m.GetResponse().(*AnalysisServiceEvent_MoblabVmTestResponse); ok {
+		return x.MoblabVmTestResponse
+	}
+	return nil
+}
+
 // XXX_OneofWrappers is for the internal use of the proto package.
 func (*AnalysisServiceEvent) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
 		(*AnalysisServiceEvent_InstallPackagesRequest)(nil),
+		(*AnalysisServiceEvent_BundleRequest)(nil),
+		(*AnalysisServiceEvent_BundleVmFilesRequest)(nil),
+		(*AnalysisServiceEvent_BinhostGetRequest)(nil),
+		(*AnalysisServiceEvent_AclArgsRequest)(nil),
+		(*AnalysisServiceEvent_PrepareBinhostUploadsRequest)(nil),
+		(*AnalysisServiceEvent_SetBinhostRequest)(nil),
+		(*AnalysisServiceEvent_RegenBuildCacheRequest)(nil),
+		(*AnalysisServiceEvent_GetBuildDependencyGraphRequest)(nil),
+		(*AnalysisServiceEvent_CreateImageRequest)(nil),
+		(*AnalysisServiceEvent_TestImageRequest)(nil),
+		(*AnalysisServiceEvent_CreateRequest)(nil),
+		(*AnalysisServiceEvent_UpdateRequest)(nil),
+		(*AnalysisServiceEvent_SysrootCreateRequest)(nil),
+		(*AnalysisServiceEvent_InstallToolchainRequest)(nil),
+		(*AnalysisServiceEvent_BuildTargetUnitTestRequest)(nil),
+		(*AnalysisServiceEvent_ChromiteUnitTestRequest)(nil),
+		(*AnalysisServiceEvent_DebugInfoTestRequest)(nil),
+		(*AnalysisServiceEvent_VmTestRequest)(nil),
+		(*AnalysisServiceEvent_MoblabVmTestRequest)(nil),
 		(*AnalysisServiceEvent_InstallPackagesResponse)(nil),
+		(*AnalysisServiceEvent_BundleResponse)(nil),
+		(*AnalysisServiceEvent_BinhostGetResponse)(nil),
+		(*AnalysisServiceEvent_AclArgsResponse)(nil),
+		(*AnalysisServiceEvent_PrepareBinhostUploadsResponse)(nil),
+		(*AnalysisServiceEvent_SetBinhostResponse)(nil),
+		(*AnalysisServiceEvent_RegenBuildCacheResponse)(nil),
+		(*AnalysisServiceEvent_GetBuildDependencyGraphResponse)(nil),
+		(*AnalysisServiceEvent_CreateImageResult)(nil),
+		(*AnalysisServiceEvent_TestImageResult)(nil),
+		(*AnalysisServiceEvent_CreateResponse)(nil),
+		(*AnalysisServiceEvent_UpdateResponse)(nil),
+		(*AnalysisServiceEvent_SysrootCreateResponse)(nil),
+		(*AnalysisServiceEvent_InstallToolchainResponse)(nil),
+		(*AnalysisServiceEvent_BuildTargetUnitTestResponse)(nil),
+		(*AnalysisServiceEvent_ChromiteUnitTestResponse)(nil),
+		(*AnalysisServiceEvent_DebugInfoTestResponse)(nil),
+		(*AnalysisServiceEvent_VmTestResponse)(nil),
+		(*AnalysisServiceEvent_MoblabVmTestResponse)(nil),
 	}
 }
 
@@ -151,22 +706,77 @@ func init() {
 }
 
 var fileDescriptor_92c22ab0fbdfe575 = []byte{
-	// 267 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x8f, 0x4d, 0x4b, 0xc4, 0x30,
-	0x10, 0x86, 0xed, 0x2a, 0x7e, 0x64, 0x57, 0x90, 0x22, 0x5a, 0x7b, 0x51, 0x44, 0xd1, 0x53, 0x02,
-	0x7a, 0x16, 0x71, 0x41, 0x58, 0x6f, 0x52, 0xbd, 0xd7, 0x6c, 0x19, 0x6b, 0xb0, 0x6d, 0x62, 0x26,
-	0xbb, 0xb0, 0xff, 0xdb, 0x1f, 0xb0, 0x6c, 0x26, 0xb9, 0x2c, 0x85, 0x1e, 0x33, 0x79, 0xde, 0xe7,
-	0x9d, 0x61, 0x77, 0xb2, 0x93, 0xcd, 0x0a, 0x15, 0x96, 0x08, 0x76, 0xa9, 0x2a, 0x10, 0xdb, 0x03,
-	0x6e, 0xac, 0x76, 0x3a, 0x3d, 0xd9, 0x9e, 0xe7, 0x79, 0xf5, 0x63, 0x75, 0xab, 0x1c, 0x08, 0x69,
-	0x94, 0xc0, 0x15, 0x5a, 0xad, 0x1d, 0xd1, 0xf9, 0x65, 0xad, 0x75, 0xdd, 0x80, 0xf0, 0xaf, 0xf9,
-	0xe2, 0x5b, 0x38, 0xd5, 0x02, 0x3a, 0xd9, 0x1a, 0x02, 0xae, 0xff, 0x47, 0xec, 0xf4, 0x25, 0x18,
-	0x3f, 0x48, 0xf8, 0xba, 0x84, 0xce, 0xa5, 0x4f, 0x6c, 0x62, 0xe1, 0x6f, 0x01, 0xe8, 0xca, 0x4d,
-	0x26, 0xdb, 0xbd, 0x4a, 0xee, 0xc7, 0x0f, 0x39, 0x27, 0x21, 0x8f, 0x42, 0xfe, 0x19, 0x85, 0xc5,
-	0x38, 0xf0, 0x9b, 0x49, 0xfa, 0xcc, 0x8e, 0x2d, 0xa0, 0xd1, 0x1d, 0x02, 0xe5, 0xf7, 0x06, 0xf3,
-	0x93, 0x18, 0xf0, 0x82, 0x2f, 0x96, 0xa9, 0x0e, 0x9d, 0x6c, 0x9a, 0xd2, 0xc8, 0xea, 0x57, 0xd6,
-	0x80, 0x65, 0x28, 0xc8, 0x12, 0xef, 0xba, 0xe1, 0xf1, 0x70, 0x2e, 0x8d, 0xe2, 0x6f, 0x44, 0xbf,
-	0x07, 0xb8, 0x20, 0x76, 0xb6, 0x53, 0x9c, 0xa9, 0xde, 0x9f, 0xb4, 0x62, 0x17, 0x3d, 0x0d, 0xb4,
-	0x42, 0x36, 0xf2, 0x15, 0xb7, 0x03, 0x15, 0x04, 0xcf, 0x92, 0xe2, 0x5c, 0xf5, 0x7f, 0x4d, 0x8f,
-	0xd8, 0x41, 0xd8, 0x7a, 0xca, 0xd8, 0x61, 0xd4, 0xcf, 0xf7, 0xfd, 0xfd, 0x8f, 0xeb, 0x00, 0x00,
-	0x00, 0xff, 0xff, 0x1e, 0x29, 0x73, 0xce, 0xf7, 0x01, 0x00, 0x00,
+	// 1141 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x97, 0x79, 0x6f, 0xdb, 0x36,
+	0x18, 0xc6, 0x97, 0x1d, 0x3d, 0x98, 0x9b, 0x71, 0x6d, 0xc7, 0x4e, 0xe2, 0x34, 0xe9, 0x91, 0xee,
+	0xb0, 0x81, 0xed, 0xef, 0x61, 0xc8, 0xd1, 0x25, 0xc1, 0xb0, 0xa1, 0x73, 0x9c, 0x62, 0x58, 0xb1,
+	0x69, 0x94, 0x44, 0xcb, 0x44, 0x75, 0x55, 0xa4, 0x0c, 0x64, 0xc0, 0x3e, 0xca, 0xbe, 0x6b, 0x41,
+	0x8a, 0x22, 0x45, 0x89, 0x76, 0xf3, 0xa7, 0x9f, 0xf7, 0xe5, 0xef, 0xa1, 0xa4, 0x97, 0x7c, 0x12,
+	0xf0, 0x12, 0xc5, 0x28, 0xbc, 0xa3, 0x84, 0x3a, 0x14, 0x67, 0x73, 0xe2, 0xe1, 0x51, 0x5d, 0x18,
+	0xa6, 0x59, 0xc2, 0x12, 0xb8, 0x55, 0xd7, 0x7b, 0x7b, 0xde, 0x2c, 0x4b, 0x22, 0xc2, 0xf0, 0x08,
+	0xa5, 0x64, 0x84, 0x32, 0x46, 0xa6, 0xc8, 0x63, 0xb4, 0xe8, 0xef, 0xf5, 0x8c, 0xaa, 0x4b, 0xe2,
+	0x59, 0x42, 0x99, 0xac, 0xf5, 0x8d, 0x9a, 0x8f, 0xd3, 0x20, 0x43, 0xe9, 0x4c, 0x16, 0xbb, 0x46,
+	0x91, 0x44, 0x28, 0x90, 0x5b, 0xe8, 0xb5, 0x8d, 0x0a, 0xf5, 0xdf, 0x5b, 0xad, 0xe8, 0x1d, 0xcd,
+	0x92, 0xa4, 0xb4, 0xea, 0x18, 0x35, 0x86, 0xd5, 0x1e, 0x06, 0x41, 0x92, 0x04, 0x21, 0x1e, 0x89,
+	0x5f, 0x6e, 0x3e, 0x1d, 0x31, 0x12, 0x61, 0xca, 0x50, 0x94, 0x16, 0x0d, 0x47, 0xff, 0xef, 0x83,
+	0xd6, 0xa9, 0x7c, 0xe6, 0x9b, 0xe2, 0x91, 0x5f, 0xcf, 0x71, 0xcc, 0xe0, 0x8f, 0x60, 0x2d, 0xc3,
+	0x1f, 0x72, 0x4c, 0x99, 0xc3, 0xd7, 0x74, 0xbf, 0x38, 0x5c, 0x39, 0x59, 0xfd, 0xbe, 0x37, 0x2c,
+	0x80, 0xc3, 0x12, 0x38, 0x9c, 0x94, 0xc0, 0xf1, 0xaa, 0xec, 0xe7, 0x0a, 0xfc, 0x09, 0xac, 0x67,
+	0x98, 0xa6, 0x49, 0x4c, 0x71, 0xb1, 0xfe, 0xcb, 0x4f, 0xae, 0x5f, 0x2b, 0x17, 0x08, 0xc0, 0x3f,
+	0xa0, 0x4b, 0x62, 0xca, 0x50, 0x18, 0x3a, 0x29, 0xf2, 0xde, 0xa3, 0x00, 0x53, 0x47, 0x1a, 0x74,
+	0x57, 0x04, 0xeb, 0xd9, 0xb0, 0x7c, 0xea, 0x21, 0x4a, 0xc9, 0xf0, 0xba, 0xe8, 0x7e, 0x23, 0x9b,
+	0xc7, 0x45, 0xef, 0xd5, 0x67, 0xe3, 0x36, 0xb1, 0x56, 0xe0, 0x05, 0xd8, 0x70, 0xf3, 0xd8, 0x0f,
+	0xb1, 0xe2, 0x7e, 0x25, 0xb8, 0x7d, 0x93, 0x7b, 0x26, 0x7a, 0x34, 0x6e, 0xdd, 0xad, 0x0a, 0xf0,
+	0x1d, 0xe8, 0x48, 0xca, 0x3c, 0x72, 0xa6, 0x24, 0xac, 0x6c, 0xf3, 0xa1, 0xc0, 0x1d, 0xd9, 0x70,
+	0x6f, 0xa3, 0x9f, 0x79, 0xab, 0xa6, 0xb6, 0x5c, 0x8b, 0x0e, 0x7f, 0x07, 0x3b, 0x72, 0xa6, 0x9c,
+	0x00, 0x33, 0x05, 0x7e, 0x24, 0xc0, 0x83, 0x1a, 0xb8, 0x68, 0xbc, 0xc4, 0x4c, 0x53, 0xb7, 0xdd,
+	0xba, 0x08, 0xaf, 0xc0, 0x16, 0xf2, 0x42, 0x07, 0x65, 0x81, 0xde, 0x28, 0x10, 0xbc, 0x3d, 0x93,
+	0x77, 0xea, 0x85, 0xa7, 0x59, 0x50, 0xd9, 0xe2, 0x06, 0x32, 0x14, 0x48, 0xc1, 0x20, 0xcd, 0x70,
+	0x8a, 0x32, 0xec, 0x94, 0x9b, 0xcc, 0xd3, 0x30, 0x41, 0xbe, 0x06, 0xaf, 0x09, 0xf0, 0xd7, 0x26,
+	0xf8, 0x4d, 0xb1, 0x48, 0xee, 0xf7, 0xb6, 0x58, 0xa2, 0x6d, 0xf6, 0xd2, 0x25, 0x75, 0xfe, 0x46,
+	0x28, 0x66, 0xca, 0xb0, 0x34, 0xda, 0xb0, 0xbd, 0x91, 0x1b, 0xcc, 0x24, 0xa4, 0xf2, 0x46, 0x68,
+	0x5d, 0x84, 0x08, 0xec, 0x66, 0x38, 0xc0, 0xb1, 0xe3, 0xe6, 0x24, 0xf4, 0x1d, 0x0f, 0x79, 0x33,
+	0x3d, 0x12, 0x5b, 0xb6, 0x51, 0x1b, 0xf3, 0xf6, 0x33, 0xde, 0x7d, 0xce, 0x9b, 0x2b, 0xa3, 0x96,
+	0x59, 0x2b, 0xf0, 0x5f, 0x70, 0xc4, 0xbf, 0x5f, 0x61, 0xe0, 0xe3, 0x14, 0xc7, 0x3e, 0x8e, 0xbd,
+	0x3b, 0x47, 0xdc, 0x08, 0xca, 0x0b, 0x0a, 0xaf, 0x6f, 0x4d, 0xaf, 0x4b, 0xcc, 0x04, 0xef, 0x42,
+	0xad, 0xba, 0xe4, 0x8b, 0xb4, 0xe7, 0x41, 0xb0, 0xb4, 0x03, 0x4e, 0x40, 0xcb, 0xcb, 0x30, 0x62,
+	0xd8, 0x11, 0xb7, 0x8c, 0x72, 0x6b, 0x09, 0xb7, 0x43, 0xd3, 0xed, 0x5c, 0x74, 0x5e, 0xf3, 0x46,
+	0xed, 0x00, 0xbd, 0x86, 0x0a, 0x7f, 0x03, 0x90, 0x5f, 0x33, 0x35, 0x66, 0x5b, 0x30, 0x0f, 0x4c,
+	0xe6, 0x04, 0x53, 0x56, 0x23, 0x6e, 0xb1, 0x9a, 0xc6, 0x0f, 0xa3, 0xdc, 0x65, 0xc9, 0xea, 0xda,
+	0x0e, 0x63, 0xb1, 0xbf, 0xca, 0x61, 0xf4, 0xaa, 0x02, 0xa7, 0xe4, 0xa9, 0x5f, 0xa5, 0xf4, 0x6c,
+	0x94, 0x5b, 0xd1, 0x53, 0xa1, 0xe4, 0x55, 0x01, 0xfe, 0x09, 0xda, 0xf2, 0x7a, 0x75, 0x6a, 0x7b,
+	0xda, 0xb3, 0x9d, 0xe8, 0x9b, 0xa2, 0xb7, 0xbe, 0xb5, 0x16, 0xb5, 0xe8, 0xd0, 0x03, 0xbb, 0xe5,
+	0xb5, 0xc6, 0x92, 0x24, 0xf4, 0x66, 0x88, 0xc4, 0x0a, 0x7f, 0x20, 0xf0, 0xcf, 0xad, 0xf7, 0xda,
+	0xa4, 0xec, 0xd6, 0x0e, 0x1d, 0x62, 0x2f, 0xc1, 0x18, 0x1c, 0x14, 0xa3, 0xc6, 0x50, 0xc6, 0xe7,
+	0x2e, 0x8f, 0x09, 0x73, 0xc4, 0xe7, 0x2a, 0x9d, 0x0e, 0x85, 0xd3, 0x49, 0xfd, 0x6a, 0x22, 0xa1,
+	0x3f, 0x11, 0x4b, 0x6e, 0x63, 0xc2, 0xf8, 0x77, 0xd3, 0x66, 0x3d, 0x77, 0x61, 0x15, 0xfa, 0x40,
+	0x85, 0x93, 0xc5, 0xeb, 0xc8, 0xf6, 0x54, 0xe7, 0xf2, 0x47, 0xd3, 0x48, 0x65, 0x59, 0xdd, 0xe5,
+	0x1d, 0xe8, 0xf8, 0xd8, 0xcd, 0x03, 0x87, 0xc4, 0xd3, 0xc4, 0xb4, 0x78, 0x66, 0xfb, 0x2e, 0x17,
+	0xbc, 0xf9, 0x3a, 0x9e, 0x26, 0x26, 0xbf, 0xe5, 0x5b, 0x74, 0xf8, 0x1a, 0x6c, 0xce, 0x23, 0x13,
+	0xfa, 0xc2, 0x36, 0x3a, 0x6f, 0x23, 0x93, 0xb6, 0x3e, 0xaf, 0x0a, 0xf0, 0x0f, 0xd0, 0x8e, 0x12,
+	0x37, 0x44, 0xae, 0x53, 0xa7, 0x9d, 0x08, 0xda, 0x53, 0x93, 0xf6, 0xab, 0xe8, 0xad, 0x33, 0x77,
+	0xa2, 0xa6, 0x5c, 0x1d, 0x9c, 0x4a, 0x1e, 0x16, 0x81, 0xd9, 0xfd, 0x7c, 0xc9, 0xe0, 0xe8, 0xd8,
+	0x2b, 0x9a, 0xaf, 0x56, 0xd4, 0xe0, 0xd4, 0x4b, 0xf0, 0x12, 0x6c, 0xaa, 0x48, 0x94, 0xe8, 0x07,
+	0xb6, 0x6c, 0x28, 0x33, 0x51, 0x11, 0x37, 0x5c, 0x43, 0xe1, 0x97, 0x8e, 0x19, 0x5c, 0x92, 0xf6,
+	0xd8, 0x76, 0xe9, 0x54, 0x93, 0x4b, 0x11, 0xa1, 0xdb, 0x50, 0xe1, 0x2f, 0x60, 0xbb, 0x92, 0x5d,
+	0x12, 0xb9, 0x2a, 0x90, 0xfb, 0x0b, 0xc2, 0x4b, 0xf1, 0x36, 0x91, 0x29, 0xc1, 0x39, 0x38, 0x5c,
+	0x1c, 0x5f, 0x92, 0xbd, 0x2e, 0xd8, 0xdf, 0xdc, 0x2b, 0xbf, 0x94, 0xd3, 0x7e, 0xba, 0xac, 0x81,
+	0xbf, 0x1a, 0x33, 0xc1, 0xa4, 0xd7, 0xa6, 0xed, 0xd5, 0x54, 0x23, 0x4c, 0xbf, 0x1a, 0xda, 0x50,
+	0xf9, 0x11, 0xb4, 0x85, 0x98, 0x64, 0x6f, 0xdb, 0xe6, 0xa3, 0x91, 0x62, 0x7a, 0x3e, 0x32, 0x7b,
+	0x09, 0xfe, 0x07, 0x8e, 0x97, 0xe6, 0x98, 0xb4, 0xdb, 0x11, 0x76, 0xdf, 0xdd, 0x33, 0xc8, 0x94,
+	0xed, 0x20, 0x58, 0xde, 0xc2, 0xc3, 0xbf, 0x16, 0x65, 0x34, 0x0f, 0x59, 0xf7, 0x89, 0x2d, 0xfc,
+	0x8d, 0x24, 0xe3, 0x6d, 0x57, 0x2b, 0xe3, 0x6d, 0xaf, 0x2e, 0xf2, 0x91, 0x32, 0x72, 0x4c, 0x00,
+	0x3b, 0xb6, 0x91, 0xaa, 0xc4, 0x98, 0xc4, 0x6d, 0x32, 0x53, 0xe2, 0xc7, 0x47, 0x05, 0x86, 0x7c,
+	0x15, 0xbb, 0xb6, 0xe3, 0x53, 0x46, 0x82, 0x3e, 0x3e, 0x9e, 0xa1, 0x70, 0x90, 0xca, 0x31, 0x09,
+	0xea, 0xdb, 0x40, 0x65, 0x90, 0x69, 0x50, 0x6e, 0x28, 0xf0, 0x2f, 0xd0, 0x69, 0x44, 0x99, 0x04,
+	0xee, 0x0b, 0xe0, 0xf1, 0xd2, 0x2c, 0x53, 0xdc, 0x27, 0xd4, 0x56, 0x80, 0x53, 0xd0, 0xb3, 0xa5,
+	0x99, 0x74, 0x18, 0x08, 0x87, 0x17, 0x9f, 0x8a, 0x33, 0x65, 0xd2, 0x25, 0x0b, 0x6a, 0xf0, 0x03,
+	0x18, 0x2c, 0x0c, 0x34, 0x69, 0xf6, 0x54, 0x98, 0xbd, 0xba, 0x47, 0xa2, 0x29, 0xbf, 0xbe, 0xbb,
+	0xb8, 0x0c, 0x03, 0xd0, 0xb7, 0x66, 0x9a, 0xb4, 0x3b, 0xb6, 0x3d, 0x5b, 0x33, 0xd4, 0xf4, 0xb3,
+	0x79, 0x0b, 0x6a, 0xf0, 0x6f, 0xd0, 0x6d, 0xc6, 0x9a, 0x74, 0x79, 0x6e, 0xfb, 0x46, 0xb5, 0x5c,
+	0xd3, 0xdf, 0xc8, 0xb7, 0x15, 0xf8, 0x1f, 0xfc, 0x3a, 0x8b, 0x24, 0xf7, 0xa5, 0x6d, 0x98, 0xca,
+	0xbc, 0xd1, 0xc3, 0x34, 0x37, 0x14, 0x1e, 0xc0, 0x8d, 0x70, 0x93, 0xc0, 0x57, 0xb6, 0x00, 0x36,
+	0xd3, 0x4d, 0x61, 0x5b, 0x91, 0x45, 0x3f, 0x7b, 0x0c, 0x1e, 0xca, 0xa8, 0x3c, 0x03, 0xe0, 0x51,
+	0x09, 0x76, 0x1f, 0x88, 0x7f, 0x14, 0x7f, 0xf8, 0x18, 0x00, 0x00, 0xff, 0xff, 0x37, 0x42, 0x12,
+	0x40, 0xc2, 0x0f, 0x00, 0x00,
 }
