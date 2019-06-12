@@ -49,6 +49,17 @@ message BundleVmFilesRequest {
   string output_dir = 4;
 }
 
+// Request describing where to find Chrome orderfile artifacts
+message BundleChromeOrderfileRequest {
+  // The chroot where the orderfile lives.
+  chromiumos.Chroot chroot = 1;
+  // The build_target of the builder.
+  chromiumos.BuildTarget build_target = 2;
+  // The Chrome version that builder uses
+  string chrome_version = 3;
+  // Absolute path to the directory in which artifacts should be dropped.
+  string output_dir = 4;
+}
 
 // Service for bundling build artifacts and dumping them somewhere on disk.
 service ArtifactsService {
@@ -83,4 +94,7 @@ service ArtifactsService {
 
   // Create a tar archive with VM memory and disk images.
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
+
+  // Create Chrome orderfile builder artifacts.
+  rpc BundleOrderfileGenerationArtifacts(BundleChromeOrderfileRequest) returns (BundleResponse);
 }
