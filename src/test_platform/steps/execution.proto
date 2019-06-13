@@ -15,11 +15,11 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ste
 
 // ExecuteRequest defines the input of the Execute step.
 message ExecuteRequest {
-    // Request is the full cros_test_platform request.
-    //
-    // TODO(akeshet): Don't expose the full request to the enumeration step,
-    // pull out only the fields that it needs.
-    test_platform.Request request = 1;
+    // RequestParams are the request-wide parameters for the
+    // cros_test_platform request. This includes all the request-wide information
+    // needed in order to execute tests (e.g. labels, retry parameters,
+    // scheduling parameters).
+    test_platform.Request.Params request_params = 1;
 
     EnumerationResponse enumeration = 2;
 
