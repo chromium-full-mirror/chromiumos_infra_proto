@@ -150,5 +150,9 @@ service TestService {
   rpc VmTest(VmTestRequest) returns (VmTestResponse);
 
   // Run Moblab VM tests and report failures.
-  rpc MoblabVmTest(MoblabVmTestRequest) returns (MoblabVmTestResponse);
+  rpc MoblabVmTest(MoblabVmTestRequest) returns (MoblabVmTestResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 }
