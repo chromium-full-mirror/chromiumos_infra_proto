@@ -1,0 +1,40 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.skylab_test_runner;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
+
+// Result defines the output format of skylab_test_runner.
+// It contains a summary of test results from a single Swarming task run.
+message Result {
+  // Autotest describes the result summary for the case of autotest harness.
+  message Autotest {
+    // TestCase describes the result of an individual test case.
+    // A single control file may correspond to multiple test cases.
+    message TestCase {
+      // Test case name as it appears in status.log.
+      string name = 1;
+
+      // Verdict defines the test result to be reported.
+      enum Verdict {
+        VERDICT_UNDEFINED = 0;
+        VERDICT_PASS = 1;
+        VERDICT_FAIL = 2;
+      }
+
+      Verdict verdict = 2;
+    }
+
+    repeated TestCase test_cases = 1;
+  }
+
+  // Which test harness was used (one harness per response).
+  oneof harness {
+      Autotest autotest_result = 1;
+  }
+}
+
