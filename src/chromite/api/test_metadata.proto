@@ -49,6 +49,15 @@ message AutotestTest {
   // Only meaningful if needs_multiple_duts is true.
   // Values <= 2 are disallowed.
   int32 dut_count = 6;
+
+  enum ExecutionEnvironment {
+    EXECUTION_ENVIRONMENT_UNSPECIFIED = 0;
+    // Autotest calls tests that run on the Device Under Test "client" tests.
+    EXECUTION_ENVIRONMENT_CLIENT = 1;
+    // Autotest calls tests that run on the autotest drone "server" tests.
+    EXECUTION_ENVIRONMENT_SERVER = 2;
+  }
+  ExecutionEnvironment execution_environment = 7;
 }
 
 message AutotestTaskDependency {
