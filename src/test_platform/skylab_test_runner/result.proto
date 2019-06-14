@@ -19,7 +19,7 @@ message Result {
       // Test case name as it appears in status.log.
       string name = 1;
 
-      // Verdict defines the test result to be reported.
+      // Verdict defines the test case result to be reported.
       enum Verdict {
         VERDICT_UNDEFINED = 0;
         VERDICT_PASS = 1;
@@ -32,7 +32,7 @@ message Result {
     repeated TestCase test_cases = 1;
   }
 
-  // Which test harness was used (one harness per response).
+  // Which test harness was used.
   oneof harness {
       Autotest autotest_result = 1;
   }

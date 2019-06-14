@@ -20,7 +20,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-// Verdict defines the test result to be reported.
+// Verdict defines the test case result to be reported.
 type Result_Autotest_TestCase_Verdict int32
 
 const (
@@ -52,7 +52,7 @@ func (Result_Autotest_TestCase_Verdict) EnumDescriptor() ([]byte, []int) {
 // Result defines the output format of skylab_test_runner.
 // It contains a summary of test results from a single Swarming task run.
 type Result struct {
-	// Which test harness was used (one harness per response).
+	// Which test harness was used.
 	//
 	// Types that are valid to be assigned to Harness:
 	//	*Result_AutotestResult
