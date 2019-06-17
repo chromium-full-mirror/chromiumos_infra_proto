@@ -65,13 +65,26 @@ message Request {
     // request are prioritized relative to other requests, and how capacity for
     // them is allocated.
     message Scheduling {
-      // ManagedPool enumerates the different managed pools, which are device
-      // pools that are automatically balanced and refilled with working
-      // devices.
-      // TODO(akeshet): Paste pool enum from skylab inventory protos, or import
-      // the proto.
+      // ManagedPool enumerates the different lab platform-managed pools.
+      // Devices in these pools are automatically managed by lab platform
+      // systems and can not be arbitrarily assigned to pools by users.
+      //
+      // Managed pool implementations are specific to test platform's scheduling
+      // backends.
+      // For Skylab, see
+      // https://chromium.googlesource.com/infra/infra/+/5566668428c6b286702bf440d9dfd0be7bca1d84/go/src/infra/libs/skylab/inventory/device.proto#173
+      // For autotest, see
+      // https://chromium.googlesource.com/chromiumos/third_party/autotest/+/7436c2b6e6bd32ed1f1bd08cf8e0feb40cfe7b89/server/constants.py#18
       enum ManagedPool {
         MANAGED_POOL_UNSPECIFIED = 0;
+        MANAGED_POOL_CQ = 1;
+        MANAGED_POOL_BVT = 2;
+        MANAGED_POOL_SUITES = 3;
+        MANAGED_POOL_CTS = 4;
+        MANAGED_POOL_CTS_PERBUILD = 5;
+        MANAGED_POOL_CONTINUOUS = 6;
+        MANAGED_POOL_ARC_PRESUBMIT = 7;
+        MANAGED_POOL_QUOTA = 8;
       }
 
       oneof pool {
