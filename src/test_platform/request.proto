@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package test_platform;
 
+import "chromiumos/common.proto";
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 
 // Request represents a request to the ChromeOS Test Platform to run a test,
@@ -32,8 +34,9 @@ message Request {
     // SoftwareAttributes defines software characteristics that are strongly
     // associated with a device, though not immutable or hardware-bound.
     message SoftwareAttributes {
-      // TODO(akeshet): re-use build-target proto.
-      string board = 1;
+      chromiumos.BuildTarget build_target = 2;
+
+      string board = 1 [deprecated = true];
 
       // TODO(akeshet): add other attributes such as CTS version,
       // kernel version(?), etc.
