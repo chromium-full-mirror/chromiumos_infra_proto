@@ -127,8 +127,6 @@ message Request {
     string name = 1;
   }
 
-  repeated Suite suites = 2;
-
   message Test {
     enum Harness {
       HARNESS_UNSPECIFIED = 0;
@@ -143,11 +141,15 @@ message Request {
     repeated string test_args = 3;
   }
 
-  repeated Test tests = 3;
-
   message TestPlan {
-    // Placeholder, not yet implemented.
+    Suite suite = 1;
+    Test test = 2;
   }
 
   repeated TestPlan test_plans = 4;
+
+  // Replaced by test_plans.suite
+  repeated Suite suites = 2  [deprecated = true];
+  // Replaced by test_plans.test
+  repeated Test tests = 3 [deprecated = true];
 }
