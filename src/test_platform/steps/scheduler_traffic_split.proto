@@ -1,0 +1,24 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.steps;
+
+import "test_platform/request.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
+
+// SchedulerTrafficSplitRequest is the request to the step that determines the
+// traffic split between backend schedulers.
+message SchedulerTrafficSplitRequest {
+    test_platform.Request request = 1;
+}
+
+// SchedulerTrafficSplitResponse is the response from the step that determines
+// the traffic split between backend schedulers.
+message SchedulerTrafficSplitResponse {
+    test_platform.Request autotest_request = 1;
+    test_platform.Request skylab_request = 2;
+}
