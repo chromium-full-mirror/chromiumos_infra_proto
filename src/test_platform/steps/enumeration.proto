@@ -14,8 +14,10 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ste
 // EnumerationRequest defines the input of the test enumeration step.
 message EnumerationRequest {
     test_platform.Request.Params.Metadata metadata = 1;
-    repeated test_platform.Request.Suite suites = 2;
-    repeated test_platform.Request.Test tests = 3;
+    test_platform.Request.TestPlan test_plan = 4;
+
+    repeated test_platform.Request.Suite suites = 2 [deprecated = true];
+    repeated test_platform.Request.Test tests = 3 [deprecated = true];
 }
 
 // EnumerationResponse defines the output of the test enumeration step.
