@@ -8,6 +8,7 @@ package testplans;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
+import "chromiumos/common.proto";
 import "testplans/common.proto";
 
 // Testing restrictions to apply to a source tree.
@@ -18,6 +19,10 @@ message TestRestriction {
   bool disable_image_tests = 2;
   // Whether to disable virtual machine tests.
   bool disable_vm_tests = 3;
+  // A subset of build targets for which testing should be performed.
+  // If this is nonempty, hw/vm tests will *only* be done for the provided
+  // list of build targets.
+  repeated chromiumos.BuildTarget only_test_build_targets = 4;
 }
 
 // A set of test restrictions for a source tree.
