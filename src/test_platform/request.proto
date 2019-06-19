@@ -145,12 +145,15 @@ message Request {
   }
 
   message TestPlan {
-    Suite suite = 1;
-    Test test = 2;
+    repeated Suite suite = 1;
+    repeated Test test = 2;
   }
 
-  repeated TestPlan test_plans = 4;
+  TestPlan test_plan = 5;
 
+
+  // Replaced by test_plan
+  repeated TestPlan test_plans = 4 [deprecated = true];
   // Replaced by test_plans.suite
   repeated Suite suites = 2  [deprecated = true];
   // Replaced by test_plans.test
