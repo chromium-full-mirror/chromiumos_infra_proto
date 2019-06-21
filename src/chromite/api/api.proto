@@ -1,0 +1,38 @@
+syntax = "proto3";
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+
+
+// Request for the method discovery endpoint.
+message MethodGetRequest {
+
+}
+
+// Response from the method discovery endpoint.
+message MethodGetResponse {
+  message Method {
+    // The full method name, i.e. package.Service/Method.
+    string method = 1;
+  }
+
+  // All registered methods.
+  repeated Method methods = 1;
+}
+
+
+// Service to handle retrieving
+service MethodService {
+  option (service_options) = {
+    module: "api",
+    service_chroot_assert: OUTSIDE,
+  };
+
+  rpc Get(MethodGetRequest) returns (MethodGetResponse) {
+    option (method_options) = {
+      implementation_name: "GetMethods",
+    };
+  }
+}
