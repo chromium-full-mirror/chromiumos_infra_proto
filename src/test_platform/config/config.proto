@@ -18,4 +18,6 @@ message Config {
     }
 
     Swarming skylab_swarming = 1;
+
+    Swarming autotest_proxy = 2;
 }
