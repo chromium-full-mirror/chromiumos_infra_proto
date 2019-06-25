@@ -31,9 +31,9 @@ message Result {
 
     repeated TestCase test_cases = 1;
 
-    // True if test_cases represents all of the test cases to be run by the
-    // task. False otherwise (e.g. the task was aborted early).
-    bool is_complete = 2;
+    // False if test_cases represents all of the test cases to be run by the
+    // task. True otherwise (e.g. the task was aborted early).
+    bool incomplete = 2;
   }
 
   // Which test harness was used.
