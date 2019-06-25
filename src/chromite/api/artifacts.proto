@@ -61,6 +61,25 @@ message BundleChromeOrderfileRequest {
   string output_dir = 4;
 }
 
+// Fetch the pinned guest image uris.
+message PinnedGuestImageUriRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+  // The sysroot where the files live.
+  chromite.api.Sysroot sysroot = 2;
+}
+
+// Response from fetching pinned guest image uris.
+message PinnedGuestImageUriResponse {
+  message PinnedGuestImage {
+    string filename = 1;
+    string uri = 2;
+  }
+
+  // The pinned guest images.
+  repeated PinnedGuestImage pinned_images = 1;
+}
+
 // Service for bundling build artifacts and dumping them somewhere on disk.
 service ArtifactsService {
   option (service_options) = {
@@ -80,6 +99,10 @@ service ArtifactsService {
   // Generate zip containing all built images for the target.
   rpc BundleImageZip(BundleRequest) returns (BundleResponse);
 
+  // Create Chrome orderfile builder artifacts.
+  rpc BundleOrderfileGenerationArtifacts(BundleChromeOrderfileRequest)
+    returns (BundleResponse);
+
   // Create a tar archive with all guest images test bundles.
   rpc BundlePinnedGuestImages(BundleRequest) returns (BundleResponse);
 
@@ -95,6 +118,7 @@ service ArtifactsService {
   // Create a tar archive with VM memory and disk images.
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
-  // Create Chrome orderfile builder artifacts.
-  rpc BundleOrderfileGenerationArtifacts(BundleChromeOrderfileRequest) returns (BundleResponse);
+  // Fetch the pinned guest image locations.
+  rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
+    returns (PinnedGuestImageUriResponse);
 }
