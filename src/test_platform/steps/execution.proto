@@ -29,13 +29,20 @@ message ExecuteRequest {
 // ExecuteResponse defines the output of the Execute step.
 message ExecuteResponse {
     message TaskResult {
-        string task_id = 1;
+        // Deprecated, because the namespace for this ID is backend-dependent.
+        string task_id = 1 [deprecated=true];
 
+        // URL at which a human can view the task's run state (e.g. link to
+        // swarming or cautotest job view).
         string task_url = 2;
 
         TaskState state = 3;
 
         string name = 4;
+
+        // URL at which a human can view the task's logs (e.g. a link to
+        // stainless gs viewer for this task).
+        string log_url = 5;
     }
 
     repeated TaskResult task_results = 1;
