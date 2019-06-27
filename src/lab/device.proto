@@ -1,0 +1,38 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package lab;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
+
+// This proto defines lab config of a DUT.
+// Lab config means configs set in lab, mostly of which are set in deployment.
+// E.g. the servo/rpm/dongle connected to the DUT. These configs won't be
+// changed in any tests.
+
+import "lab/device_identifiers.proto";
+import "lab/peripherals.proto";
+import "lab/manufacturing_phase.proto";
+
+// Next Tag: 3
+message Device {
+  oneof device {
+    DeviceUnderTest dut = 1;
+    Labstation labstation = 2;
+  };
+}
+
+// Next Tag: 4
+message DeviceUnderTest{
+  DeviceIdentifiers device_identifiers = 1;
+  ManufacturingPhase phase = 2;
+  Peripherals peripherals = 3;
+}
+
+// Next Tag: 2
+message Labstation {
+  DeviceIdentifiers device_identifiers = 1;
+}

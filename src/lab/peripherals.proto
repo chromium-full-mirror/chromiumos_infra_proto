@@ -1,0 +1,70 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package lab;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
+
+import "lab/chameleon.proto";
+import "lab/rpm.proto";
+import "lab/servo.proto";
+
+// Peripherals of device. Next Tag: 8
+message Peripherals {
+  Chameleon chameleon = 1;
+  Servo servo = 2;
+  RPM rpm = 3;
+  Audio audio = 4;
+  Wifi wifi = 5;
+  repeated Camera camera = 6;
+  Touch touch = 7;
+}
+
+// Next Tag: 3
+message Audio {
+  // Indicate if the DUT is housed in an audio box to record / replay audio
+  // for audio testing.
+  bool audio_box = 1;
+  // Indicate if the DUT is connected to Atrus speakermic
+  bool atrus = 2;
+}
+
+// Next Tag: 3
+message Wifi {
+  // Indicate if the device is inside a hermetic wifi cell.
+  bool wificell = 1;
+
+  // DUT's WiFi antenna's connection.
+  // Next Tag: 3
+  enum AntennaConnection {
+    CONN_UNKNOWN = 0;
+    // WIFI antenna is connected conductively.
+    CONN_CONDUCTIVE = 1;
+    // WIFI antenna is connected over-the-air.
+    CONN_OTA = 2;
+  }
+  AntennaConnection antenna_conn = 2;
+}
+
+// Next Tag: 4
+enum CameraType {
+  CAMERA_INVALID = 0;
+  // camera Huddly GO
+  CAMERA_HUDDLY = 1;
+  // camera Logitech PTZ Pro 2
+  CAMERA_PTZPRO2 = 2;
+}
+
+// Next Tag: 2
+message Camera {
+  CameraType camera_type = 1;
+}
+
+// Next Tag: 2
+message Touch {
+  // Has touch monitor mimo.
+  bool mimo = 1;
+}

@@ -1,0 +1,51 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package lab;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
+
+// This proto defines device status of a DUT.
+// Device status varies in tests and DUTs, e.g.
+//  * the DUT is locked/removed
+//  * the audio loopback dongle is not plugged in
+//  * the servo is not well attached.
+// Some of the status can only be known by realtime scanning the DUT.
+
+import "lab/device_id.proto";
+import "lab/device_action.proto";
+
+// NEXT TAG: 6
+message DeviceStatus {
+  DeviceID device_id = 1;
+
+  // Software features
+  repeated Software software = 2;
+
+  // realtime connections we need to scan the device for.
+  repeated Connection connection = 3;
+
+  DeviceAction removed = 4;
+  DeviceAction locked = 5;
+}
+
+enum Software {
+  SOFTWARE_UNKNOWN = 0;
+  // Whether the device has the hangout app installed. It's a manual label now.
+  SOFTWARE_HANGOUT_APP = 1;
+  // Whether the device has the meet app installed. It's a manual label now.
+  SOFTWARE_MEET_APP = 2;
+}
+
+enum Connection {
+  CONNECTION_UNKNOWN = 0;
+  // Whether the device has a working chameleon.
+  CONNECTION_CHAMELEON = 1;
+  // Whether the device has a working servo.
+  CONNECTION_SERVO = 2;
+  // Whether the device has a connected audio loopback dongle.
+  CONNECTION_AUDIO_LOOPBACK_DONGLE = 3;
+}
