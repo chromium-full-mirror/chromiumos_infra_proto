@@ -8,6 +8,17 @@ import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
 
+message GetBestVisibleRequest {
+  // An atom to pass to portageq, e.g. 'chromeos-chrome'.
+  string atom = 1;
+}
+
+message GetBestVisibleResponse {
+  // TODO: is this sufficient? Needs tag too?
+  chromiumos.PackageInfo package_info = 1;
+}
+
+
 message UprevPackagesRequest {
   // The chroot path.
   // Required if not in the default location.
@@ -43,6 +54,10 @@ service PackageService {
     module: "packages",
     service_chroot_assert: OUTSIDE,
   };
+
+
+  rpc GetBestVisible(GetBestVisibleRequest)
+    returns (GetBestVisibleResponse);
 
   rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse);
 }
