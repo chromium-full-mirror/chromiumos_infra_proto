@@ -46,4 +46,8 @@ message ExecuteResponse {
     }
 
     repeated TaskResult task_results = 1;
+
+    // State encodes the state of the overall execution, including the ultimate
+    // verdict (taking into account any sub-task verdicts).
+    TaskState state = 2;
 }
