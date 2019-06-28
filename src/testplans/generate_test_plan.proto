@@ -9,6 +9,7 @@ package testplans;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "chromiumos/common.proto";
+import "google/protobuf/struct.proto";
 import "testplans/common.proto";
 import "testplans/target_test_requirements_config.proto";
 
@@ -39,6 +40,10 @@ message BuildPayload {
   // The path in the bucket in which artifacts for the build are stored, e.g.
   // eve-paladin/R73-11588.0.0-rc4
   string artifacts_gs_path = 2;
+
+  // Artifact type to files available for that type. e.g.
+  // "AUTOTEST_FILES": [ "control_files.tar" ]
+  google.protobuf.Struct files_by_artifact = 3;
 }
 
 // The parts of a TestUnit that are common among all test types.
