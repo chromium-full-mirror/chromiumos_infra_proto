@@ -22,8 +22,24 @@ message MethodGetResponse {
   repeated Method methods = 1;
 }
 
+// Request for the API (major) version number.
+message VersionGetRequest {
 
-// Service to handle retrieving
+}
+
+// Response with the API (major) version number.
+message VersionGetResponse {
+  message Version {
+    // Version number components: "major.minor.bug".
+    int32 major = 1;
+    int32 minor = 2;
+    int32 bug = 3;
+  }
+
+  Version version = 1;
+}
+
+// Service to handle retrieving the registered methods in the API.
 service MethodService {
   option (service_options) = {
     module: "api",
@@ -33,6 +49,20 @@ service MethodService {
   rpc Get(MethodGetRequest) returns (MethodGetResponse) {
     option (method_options) = {
       implementation_name: "GetMethods",
+    };
+  }
+}
+
+// Service for the API version information.
+service VersionService {
+  option (service_options) = {
+    module: "api",
+    service_chroot_assert: OUTSIDE,
+  };
+
+  rpc Get(VersionGetRequest) returns (VersionGetResponse) {
+    option (method_options) = {
+      implementation_name: "GetVersion",
     };
   }
 }
