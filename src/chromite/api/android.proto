@@ -7,26 +7,26 @@ import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
 message MarkStableRequest {
+  // Required if not default.
+  // The chroot where.
+  chromiumos.Chroot chroot = 1;
   // Required.
   // The manifest branch being used.
-  string tracking_branch = 1;
+  string tracking_branch = 2;
   // Required.
   // Portage package name for Android container.
-  string package_name = 2;
+  string package_name = 3;
   // Required.
   // Android branch to import from.
-  string android_build_branch = 3;
+  string android_build_branch = 4;
   // Force set the android build id that will be used.
-  string android_version = 4;
+  string android_version = 5;
   // Android GTS branch to copy artifacts from.
-  string android_gts_build_branch = 5;
+  string android_gts_build_branch = 6;
   // The set of relevant build targets. Used to clean old version and for a
   // emerge-able sanity check for the new version.
   // Recommended.
-  repeated chromiumos.BuildTarget boards = 6;
-  // The buildroot to use to execute the endpoint.  The chroot is the directory
-  // "chroot" in the buildroot directory.
-  string buildroot = 7;
+  repeated chromiumos.BuildTarget build_targets = 7;
 }
 
 enum MarkStableStatusType {
