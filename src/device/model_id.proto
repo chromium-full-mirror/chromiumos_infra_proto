@@ -8,11 +8,8 @@ package device;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/device";
 
-// Defines that basic ISA architecture that is implemented by a given SoC.
-enum Architecture {
-  ARCHITECTURE_UNSPECIFIED = 0;
-  X86 = 1;
-  X86_64 = 2;
-  ARM = 3;
-  ARM64 = 4;
+// Globally unique identifier.
+message ModelId {
+  // Required. Source: 'mosys platform model'.
+  string value = 1;
 }

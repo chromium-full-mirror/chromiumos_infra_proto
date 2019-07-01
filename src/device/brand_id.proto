@@ -9,7 +9,7 @@ package device;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/device";
 
 // Globally unique identifier.
-message SocFamilyId {
-  // Required.
+message BrandId {
+  // Required. Source: 'mosys platform brand', aka RLZ-code.
   string value = 1;
 }

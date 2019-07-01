@@ -9,7 +9,7 @@ package device;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/device";
 
 // Globally unique identifier.
-message DeviceBrandId {
-  // Required.
+message PlatformId {
+  // Required. Source: 'mosys platform name'.
   string value = 1;
 }
