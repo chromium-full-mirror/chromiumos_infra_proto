@@ -31,6 +31,8 @@ message Chroot {
   string cache_dir = 2;
   // Environment configuration.
   ChrootEnv env = 3;
+  // The directory where the chrome source should be mounted.
+  string chrome_dir = 4;
 }
 
 // FEATURES environment variable component message.
@@ -72,7 +74,7 @@ message UseFlag {
   string flag = 1;
 }
 
-  // The types of images that can be built.
+// The types of images that can be built.
 enum ImageType {
   IMAGE_TYPE_UNDEFINED = 0;
   BASE = 1;
