@@ -12,13 +12,97 @@ import "device/config_id.proto";
 
 // These are the distinct configs combinations that will constitue a ChromeOS
 // device.
+
+// Next tag: 11
 message Config {
 
   // Required. Unique ID of the device config.
   ConfigId id = 1;
 
-  // TODO(nednguyen): add the flatten list of device attributes here, e.g:
-  // bluetooth, form factor, architecture, soc, partner,...
+  // e.g: "att", "verizon",..
+  string carrier = 2;
+
+  // Next tag: 8
+  enum FormFactor {
+    FORM_FACTOR_UNSPECIFIED = 0;
+    FORM_FACTOR_CLAMSHELL = 1;
+    FORM_FACTOR_CONVERTIBLE = 2;
+    FORM_FACTOR_DETACHABLE = 3;
+    FORM_FACTOR_CHROMEBASE = 4;
+    FORM_FACTOR_CHROMEBOX = 5;
+    FORM_FACTOR_CHROMEBIT = 6;
+    FORM_FACTOR_CHROMESLATE = 7;
+  }
+
+  FormFactor form_factor = 3;
+
+  // e.g: "haswell", "tegra",...
+  string gpu_family = 4;
+
+  // Next Tag: 3
+  enum Graphics {
+    GRAPHICS_UNSPECIFIED = 0;
+    GRAPHICS_GL = 1;
+    GRAPHICS_GLE = 2;
+  }
+
+  Graphics graphics = 5;
+
+  // Next Tag: 9
+  enum HardwareFeature {
+    HARDWARE_FEATURE_UNSPECIFIED = 0;
+    HARDWARE_FEATURE_BLUETOOTH = 1;
+    HARDWARE_FEATURE_FLASHROM = 2;
+    HARDWARE_FEATURE_HOTWORDING = 3;
+    HARDWARE_FEATURE_INTERNAL_DISPLAY = 4;
+    HARDWARE_FEATURE_LUCID_SLEEP = 5;
+    HARDWARE_FEATURE_WEBCAM = 6;
+    HARDWARE_FEATURE_STYLUS = 7;
+    HARDWARE_FEATURE_TOUCHPAD = 8;
+    HARDWARE_FEATURE_TOUCHSCREEN = 9;
+  }
+
+  // If a hardware feature isn't specified, one can assume that it doesn't
+  // exist on the device.
+  repeated HardwareFeature hardware_features = 6;
+
+  // e.g: "altair-alt3100", "huawei-e303",..
+  string modem = 7;
+
+  // Indicate the device's power supply.
+  // Next Tag: 3
+  enum PowerSupply {
+    POWER_SUPPLY_UNSPECIFIED = 0;
+    POWER_SUPPLY_BATTERY = 1;
+    POWER_SUPPLY_AC_ONLY = 2;
+  }
+  PowerSupply power = 8;
+
+  // Next Tag: 6
+  enum Storage {
+    STORAGE_UNSPECIFIED = 0;
+    STORAGE_SSD = 1;
+    STORAGE_HDD = 2;
+    STORAGE_MMC = 3;
+    STORAGE_NVME = 4;
+    STORAGE_UFS = 5;
+  }
+  // Indicate the device's storage type.
+  Storage storage = 9;
+
+  // Next tag: 9
+  enum VideoAcceleration {
+    VIDEO_UNSPECIFIED = 0;
+    VIDEO_ACCELERATION_H264 = 1;
+    VIDEO_ACCELERATION_ENC_H264 = 2;
+    VIDEO_ACCELERATION_VP8 = 3;
+    VIDEO_ACCELERATION_ENC_VP8 = 4;
+    VIDEO_ACCELERATION_VP9 = 5;
+    VIDEO_ACCELERATION_ENC_VP9 = 6;
+    VIDEO_ACCELERATION_VP9_2 = 7;
+    VIDEO_ACCELERATION_ENC_VP9_2 = 8;
+  }
+  repeated VideoAcceleration video_acceleration_supports = 10;
 }
 
 // Message contains all ChromeOS device configs.
