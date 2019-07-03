@@ -20,3 +20,8 @@ message Config {
   // TODO(nednguyen): add the flatten list of device attributes here, e.g:
   // bluetooth, form factor, architecture, soc, partner,...
 }
+
+// Message contains all ChromeOS device configs.
+message AllConfigs {
+  repeated Config configs = 1;
+}
