@@ -7,6 +7,7 @@ syntax = "proto3";
 package test_platform;
 
 import "chromiumos/common.proto";
+import "google/protobuf/duration.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 
@@ -126,6 +127,14 @@ message Request {
     }
 
     Metadata metadata = 6;
+
+    // Time defines parameters related to timeouts.
+    message Time {
+      // Maximum duration for the entire request to be handled.
+      google.protobuf.Duration maximum_duration = 1;
+    }
+
+    Time time = 7;
   }
 
   Params params = 1;
