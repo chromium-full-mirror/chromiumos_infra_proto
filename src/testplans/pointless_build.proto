@@ -14,10 +14,6 @@ import "google/protobuf/wrappers.proto";
 
 // The input proto for invocations of the Pointless Build Checker program.
 message PointlessBuildCheckRequest {
-  // Serialized buildbucket Build proto for this child builder run.
-  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/build.proto
-  ProtoBytes buildbucket_proto = 1;
-
   // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
   // or similar. Explicit proto import is avoided here to prevent a dependency
   // on the luci-go repo.
