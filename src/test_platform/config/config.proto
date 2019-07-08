@@ -17,7 +17,14 @@ message Config {
         string auth_json_path = 2;
     }
 
+    // Isolate defines configuration parameters related to an isolate instance.
+    message Isolate {
+        string auth_json_path = 1;
+    }
+
     Swarming skylab_swarming = 1;
 
     Swarming autotest_proxy = 2;
+
+    Isolate skylab_isolate = 3;
 }
