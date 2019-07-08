@@ -37,7 +37,8 @@ message Request {
     message SoftwareAttributes {
       chromiumos.BuildTarget build_target = 2;
 
-      string board = 1 [deprecated = true];
+      reserved 1;
+      reserved "board";
 
       // TODO(akeshet): add other attributes such as CTS version,
       // kernel version(?), etc.
@@ -48,19 +49,8 @@ message Request {
     // SoftwareDependency defines mutable software characteristics of the
     // devices to run tests on (for instance, the desired version of ChromeOS).
     message SoftwareDependency {
-      // Type defines the type of software dependency.
-      enum Type {
-        TYPE_UNSPECIFIED = 0;
-        TYPE_CHROMEOS_IMAGE = 1;
-        TYPE_CHROMEOS_FIRMWARE = 2;
-      }
-
-      Type type = 1 [deprecated = true];
-
-      // Url is the authoritative URL to fetch the requested version of the
-      // software dependency from. The means of installing from this Url
-      // depends on the Type of SoftwareDependency.
-      string url = 2 [deprecated = true];
+      reserved 1, 2;
+      reserved "type", "url";
 
       oneof dep {
         // ChromeOS build name, e.g. "reef-release/R77-12345.0.0"
@@ -166,10 +156,6 @@ message Request {
   TestPlan test_plan = 5;
 
 
-  // Replaced by test_plan
-  repeated TestPlan test_plans = 4 [deprecated = true];
-  // Replaced by test_plans.suite
-  repeated Suite suites = 2  [deprecated = true];
-  // Replaced by test_plans.test
-  repeated Test tests = 3 [deprecated = true];
+  reserved 2, 3, 4;
+  reserved "suites", "tests", "test_plans";
 }
