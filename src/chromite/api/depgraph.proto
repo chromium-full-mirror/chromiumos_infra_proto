@@ -58,7 +58,7 @@ message GetBuildDependencyGraphResponse {
 service DependencyService {
   // The module implementing the service.
   option (service_options) = {
-    module: "board_build_dependency",
+    module: "dependency",
     service_chroot_assert: INSIDE,
   };
 
