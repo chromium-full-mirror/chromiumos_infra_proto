@@ -66,9 +66,6 @@ message Config {
   // exist on the device.
   repeated HardwareFeature hardware_features = 6;
 
-  // e.g: "altair-alt3100", "huawei-e303",..
-  string modem = 7;
-
   // Indicate the device's power supply.
   // Next Tag: 3
   enum PowerSupply {
