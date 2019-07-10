@@ -1,0 +1,38 @@
+syntax = "proto3";
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+import "chromiumos/common.proto";
+
+message UpdateChromeEbuildRequest {
+  chromiumos.BuildTarget build_target = 1;
+}
+
+message UpdateChromeEbuildResponse {
+}
+
+message UploadVettedOrderfileRequest {
+}
+
+message UploadVettedOrderfileResponse {
+  // Status of the service
+  bool status = 1;
+}
+
+// Service for Android/ARC related functionality.
+service ToolchainService {
+  option (service_options) = {
+    module: "toolchain",
+    service_chroot_assert: INSIDE,
+  };
+
+  // Update Chrome ebuild with most recent unvetted orderfile
+  rpc UpdateChromeEbuildWithOrderfile(UpdateChromeEbuildRequest)
+      returns (UpdateChromeEbuildResponse);
+
+  // Copy the orderfile from unvetted GS bucket to vetted bucket.
+  rpc UploadVettedOrderfile(UploadVettedOrderfileRequest)
+      returns (UploadVettedOrderfileResponse);
+}
