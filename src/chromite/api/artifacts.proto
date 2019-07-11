@@ -119,6 +119,9 @@ service ArtifactsService {
   // Create a tar archive with VM memory and disk images.
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
+  // Generate a CPE report to a file.
+  rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
+
   // Fetch the pinned guest image locations.
   rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
     returns (PinnedGuestImageUriResponse);
