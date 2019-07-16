@@ -40,5 +40,29 @@ message Result {
   oneof harness {
       Autotest autotest_result = 1;
   }
+
+  // Prejob contains all preparatory operations that run before the actual
+  // test cases.
+  message Prejob {
+    // Step describes an individual prejob operation e.g. provision.
+    message Step {
+      // Step name, e.g. as it appears in status.log.
+      string name = 1;
+
+      // Verdict defines the final step status. Eventually may have different
+      // cases from the test case verdict, e.g. VERDICT_SKIPPED.
+      enum Verdict {
+        VERDICT_UNDEFINED = 0;
+        VERDICT_PASS = 1;
+        VERDICT_FAIL = 2;
+      }
+
+      Verdict verdict = 2;
+    }
+
+    repeated Step step = 1;
+  }
+
+  Prejob prejob = 2;
 }
 
