@@ -32,6 +32,14 @@ message Config {
         string log_dog_host = 2;
     }
 
+    // AutotestBackend defines configuration parameters related to autotest
+    // backend execution.
+    message AutotestBackend {
+        // afe_host is the hostname of the autotest frontend to be used for
+        // autotest backend executions (e.g. cautotest or cautotest-staging).
+        string afe_host = 1;
+    }
+
     Swarming skylab_swarming = 1;
 
     Swarming autotest_proxy = 2;
@@ -39,4 +47,6 @@ message Config {
     Isolate skylab_isolate = 3;
 
     SkylabWorker skylab_worker = 4;
+
+    AutotestBackend autotest_backend = 5;
 }
