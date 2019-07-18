@@ -68,6 +68,15 @@ message Path {
   Location location = 2;
 }
 
+// A message used to indicate an output location for results. Specifically,
+// this is used to automatically transfer files out of the chroot when needed.
+// Note: No more than one ResultPath per message can be supported.
+message ResultPath {
+  // Required.
+  // The result directory information.
+  Path path = 1;
+}
+
 // Message for USE flags.
 message UseFlag {
   // The use flag.

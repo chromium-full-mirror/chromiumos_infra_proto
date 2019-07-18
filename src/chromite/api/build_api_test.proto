@@ -9,22 +9,26 @@ import "chromiumos/common.proto";
 
 // Messages used to test build_api message and service handling.
 
+message NestedPath {
+  chromiumos.Path path = 1;
+}
+
 // Simple input message.
 message TestRequestMessage {
-  message NestedPath {
-    chromiumos.Path path = 1;
-  }
-
   string id = 1;
   chromiumos.Chroot chroot = 2;
   chromiumos.Path path = 3;
   chromiumos.Path another_path = 4;
   NestedPath nested_path = 5;
+  chromiumos.ResultPath result_path = 6;
 }
 
 // Simple output message.
 message TestResultMessage {
   string result = 1;
+  chromiumos.Path artifact = 2;
+  NestedPath nested_artifact = 3;
+  repeated chromiumos.Path artifacts = 4;
 }
 
 
