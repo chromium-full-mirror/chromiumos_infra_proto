@@ -17,10 +17,15 @@ import "google/protobuf/timestamp.proto";
 // This proto should only be used by a recipes module to do the wrapping and a
 // layer on the Analysis Server to do the unwrapping.
 //
-// NEXT ID: 43;
+// NEXT ID: 44;
 message AnalysisServiceEvent {
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
+
+  // The name of the step doing the request and response. Must be the same
+  // format as Buildbucket Build proto's step name (i.e. parent and child step
+  // names are separated by the "|" character).
+  string step_name = 43;
 
   // The time the request and response were sent and recieved by the caller.
   google.protobuf.Timestamp request_time = 3;
