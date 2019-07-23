@@ -105,7 +105,12 @@ message Request {
     // Retry defines parameters that affect how failed tests within
     // a request are retried.
     message Retry {
-      // TODO(akeshet): Add parameters.
+      // Whether to allow test retries.
+      bool allow = 1;
+
+      // Maximum number of retries of tests within this invocation to allow.
+      // 0 = unlimited.
+      int32 max = 2;
     }
 
     Retry retry = 5;
