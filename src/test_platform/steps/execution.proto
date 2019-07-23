@@ -43,6 +43,10 @@ message ExecuteResponse {
         // URL at which a human can view the task's logs (e.g. a link to
         // stainless gs viewer for this task).
         string log_url = 5;
+
+        // The attempt number, starting at 0.
+        // Within an execution, the tuple (name, attempt) will be unique.
+        int32 attempt = 6;
     }
 
     repeated TaskResult task_results = 1;

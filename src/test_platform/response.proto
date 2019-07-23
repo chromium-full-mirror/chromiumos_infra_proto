@@ -11,5 +11,5 @@ import "test_platform/taskstate.proto";
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 
 message Response {
-    TaskState state = 1;
+    TaskState state = 1 [deprecated = true];
 }
