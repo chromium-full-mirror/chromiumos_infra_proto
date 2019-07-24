@@ -7,6 +7,7 @@ syntax = "proto3";
 package test_platform.steps;
 
 import "test_platform/request.proto";
+import "test_platform/config/config.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
@@ -14,6 +15,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ste
 // traffic split between backend schedulers.
 message SchedulerTrafficSplitRequest {
     test_platform.Request request = 1;
+    test_platform.config.Config.SchedulerMigration config = 2;
 }
 
 // SchedulerTrafficSplitResponse is the response from the step that determines

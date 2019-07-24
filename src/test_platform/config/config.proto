@@ -40,6 +40,24 @@ message Config {
         string afe_host = 1;
     }
 
+    message SchedulerMigration {
+        // gitiles_host is the host from which to fetch scheduler migration
+        // config.
+        string gitiles_host = 1;
+
+        // git_project is the git project from which to fetch scheduler
+        // migration config.
+        string git_project = 2;
+
+        // file_path is the file patch from which to fetch scheduler migration
+        // config.
+        string file_path = 3;
+
+        // commitish is the git commitish from which to fetch scheduler
+        // migration config.
+        string commitish = 4;
+    }
+
     Swarming skylab_swarming = 1;
 
     Swarming autotest_proxy = 2;
@@ -49,4 +67,6 @@ message Config {
     SkylabWorker skylab_worker = 4;
 
     AutotestBackend autotest_backend = 5;
+
+    SchedulerMigration scheduler_migration = 6;
 }
