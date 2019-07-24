@@ -5,6 +5,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
+import "chromiumos/metrics.proto";
 
 // Sysroot information.
 message Sysroot {
@@ -99,8 +100,9 @@ message InstallPackagesResponse {
   // The packages that failed to install. Will populate at least the category
   // and package fields for any failed packages.
   repeated chromiumos.PackageInfo failed_packages = 1;
+  // The metric events that occurred during the running of InstallPackages.
+  repeated chromiumos.MetricEvent events = 2;
 }
-
 
 // Service to manipulate a sysroot.
 service SysrootService {
