@@ -22,5 +22,15 @@ message EnumerationRequest {
 
 // EnumerationResponse defines the output of the test enumeration step.
 message EnumerationResponse {
+    message AutotestInvocation {
+        chromite.api.AutotestTest test = 1;
+
+        // TODO(akeshet): Add additional invocation-specific fields, such
+        // as test args and additional label dependencies.
+    }
+
+    // TODO(akeshet): Deprecate this, replace with autotest_invocations.
     repeated chromite.api.AutotestTest autotest_tests = 1;
+
+    repeated AutotestInvocation autotest_invocations = 2;
 }
