@@ -146,17 +146,17 @@ message Request {
   }
 
   message Test {
-    enum Harness {
-      HARNESS_UNSPECIFIED = 0;
-      HARNESS_AUTOTEST = 1;
-      // TODO(akeshet): add TAST, CTS, ...
-    }
-
-    Harness harness = 1;
-
+    // TODO(akeshet): delete this fields.
     string name = 2;
 
-    repeated string test_args = 3;
+    message Autotest {
+      string name = 1;
+      string test_args = 2;
+    }
+
+    oneof harness {
+      Autotest autotest = 1;
+    }
   }
 
   message TestPlan {
