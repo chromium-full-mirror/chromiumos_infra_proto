@@ -146,9 +146,6 @@ message Request {
   }
 
   message Test {
-    // TODO(akeshet): delete this fields.
-    string name = 2;
-
     message Autotest {
       string name = 1;
       string test_args = 2;

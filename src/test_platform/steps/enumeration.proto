@@ -31,8 +31,7 @@ message EnumerationResponse {
         // as additional label dependencies.
     }
 
-    // TODO(akeshet): Deprecate this, replace with autotest_invocations.
-    repeated chromite.api.AutotestTest autotest_tests = 1;
+    reserved 1;
 
     repeated AutotestInvocation autotest_invocations = 2;
 }
