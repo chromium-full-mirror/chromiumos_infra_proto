@@ -38,10 +38,7 @@ message Request {
     // associated with a device, though not immutable or hardware-bound.
     message SoftwareAttributes {
       chromiumos.BuildTarget build_target = 2;
-
-      reserved 1;
-      reserved "board";
-
+      
       // TODO(akeshet): add other attributes such as CTS version,
       // kernel version(?), etc.
     }
@@ -63,9 +60,6 @@ message Request {
     // SoftwareDependency defines mutable software characteristics of the
     // devices to run tests on (for instance, the desired version of ChromeOS).
     message SoftwareDependency {
-      reserved 1, 2;
-      reserved "type", "url";
-
       oneof dep {
         // ChromeOS build name, e.g. "reef-release/R77-12345.0.0"
         string chromeos_build = 3;
@@ -186,8 +180,4 @@ message Request {
   }
 
   TestPlan test_plan = 5;
-
-
-  reserved 2, 3, 4;
-  reserved "suites", "tests", "test_plans";
 }

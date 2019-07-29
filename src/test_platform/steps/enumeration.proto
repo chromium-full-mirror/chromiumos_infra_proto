@@ -15,9 +15,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ste
 message EnumerationRequest {
     test_platform.Request.Params.Metadata metadata = 1;
     test_platform.Request.TestPlan test_plan = 4;
-
-    reserved 2, 3;
-    reserved "suites", "tests";
 }
 
 // EnumerationResponse defines the output of the test enumeration step.
@@ -30,8 +27,6 @@ message EnumerationResponse {
         // TODO(akeshet): Add additional invocation-specific fields, such
         // as additional label dependencies.
     }
-
-    reserved 1;
 
     repeated AutotestInvocation autotest_invocations = 2;
 }

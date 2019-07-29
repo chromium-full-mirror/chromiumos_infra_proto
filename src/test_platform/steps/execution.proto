@@ -29,9 +29,6 @@ message ExecuteRequest {
 // ExecuteResponse defines the output of the Execute step.
 message ExecuteResponse {
     message TaskResult {
-        reserved 1;
-        reserved "task_id";
-
         // URL at which a human can view the task's run state (e.g. link to
         // swarming or cautotest job view).
         string task_url = 2;
