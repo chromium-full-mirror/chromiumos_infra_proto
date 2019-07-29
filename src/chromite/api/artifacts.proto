@@ -55,10 +55,8 @@ message BundleChromeOrderfileRequest {
   chromiumos.Chroot chroot = 1;
   // The build_target of the builder.
   chromiumos.BuildTarget build_target = 2;
-  // The Chrome version that builder uses
-  string chrome_version = 3;
   // Absolute path to the directory in which artifacts should be dropped.
-  string output_dir = 4;
+  string output_dir = 3;
 }
 
 // Fetch the pinned guest image uris.
