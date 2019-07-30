@@ -91,6 +91,8 @@ message BuilderConfig {
       FIRMWARE = 6;
       // Indicates wanting a tarball of the Ebuilds logs.
       EBUILD_LOGS = 7;
+      // Indicates wanting an archive of the ChromeOS Config.
+      CHROMEOS_CONFIG = 8;
     }
     repeated ArtifactTypes artifact_types = 2;
 
