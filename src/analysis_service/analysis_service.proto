@@ -5,6 +5,7 @@ import "chromite/api/artifacts.proto";
 import "chromite/api/binhost.proto";
 import "chromite/api/depgraph.proto";
 import "chromite/api/image.proto";
+import "chromite/api/packages.proto";
 import "chromite/api/sdk.proto";
 import "chromite/api/sysroot.proto";
 import "chromite/api/test.proto";
@@ -17,7 +18,7 @@ import "google/protobuf/timestamp.proto";
 // This proto should only be used by a recipes module to do the wrapping and a
 // layer on the Analysis Server to do the unwrapping.
 //
-// NEXT ID: 44;
+// NEXT ID: 48;
 message AnalysisServiceEvent {
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
@@ -54,6 +55,8 @@ message AnalysisServiceEvent {
     chromite.api.DebugInfoTestRequest debug_info_test_request = 36;
     chromite.api.VmTestRequest vm_test_request = 38;
     chromite.api.MoblabVmTestRequest moblab_vm_test_request = 40;
+    chromite.api.UprevPackagesRequest uprev_packages_request = 44;
+    chromite.api.GetBestVisibleRequest get_best_visible_request = 46;
   }
 
   // The response to upload.
@@ -77,5 +80,7 @@ message AnalysisServiceEvent {
     chromite.api.DebugInfoTestResponse debug_info_test_response = 37;
     chromite.api.VmTestResponse vm_test_response = 39;
     chromite.api.MoblabVmTestResponse moblab_vm_test_response = 41;
+    chromite.api.UprevPackagesResponse uprev_packages_response = 45;
+    chromite.api.GetBestVisibleResponse get_best_visible_response = 47;
   }
 }
