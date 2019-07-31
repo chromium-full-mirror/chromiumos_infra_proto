@@ -136,6 +136,16 @@ message Request {
     }
 
     Time time = 7;
+
+    // Decorations defines parameters that add additional decorations to
+    // test runs.
+    message Decorations {
+      // AutotestKeyvals are (key, value) pairs that will be added to all
+      // autotest tasks run.
+      map <string, string> autotest_keyvals = 1;
+    }
+
+    Decorations decorations = 8;
   }
 
   Params params = 1;
