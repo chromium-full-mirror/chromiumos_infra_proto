@@ -16,6 +16,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 // also: virtual devices) in the ChromeOS Test Lab.
 message Request {
   // Params defines parameters that apply to an entire Request.
+  //
+  // NEXT_TAG: 10
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -45,6 +47,18 @@ message Request {
     }
 
     SoftwareAttributes software_attributes = 2;
+
+    // FreeformAttributes defines user-specified device attributes that are
+    // opaque to the test platform. It is preferrable not to use these, but
+    // they are provided to cover cases in which the test platform does not
+    // present a parameter corresponding to the attributes of interest.
+    message FreeformAttributes {
+      // SwarmingDimensions are raw swarming bot dimensions, expressed as
+      // "key:value" strings.
+      repeated string swarming_dimensions = 1;
+    }
+
+    FreeformAttributes freeform_attributes = 9;
 
     // SoftwareDependency defines mutable software characteristics of the
     // devices to run tests on (for instance, the desired version of ChromeOS).
