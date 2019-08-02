@@ -48,9 +48,6 @@ message HwTestCfg {
     // e.g. could use device_target 'caroline' to test the build_target
     // 'caroline-arcnext'.
     string skylab_board = 11;
-    // TODO(crbug.com/923001): Do we need suite_args here? Possibly not, since
-    // they only seem to be used for the hardware provisioning step.
-    // https://cs.chromium.org/chromium/src/third_party/chromite/lib/config_lib.py?l=512-514&rcl=aea01e37674869d75cf26c8a826195b4dd6a890b
 
     reserved 2 to 10;
   }
