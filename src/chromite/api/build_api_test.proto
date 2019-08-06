@@ -16,16 +16,22 @@ message NestedPath {
 // Simple input message.
 message TestRequestMessage {
   string id = 1;
+  // Chroot message for parsing and automatic chroot re-execution testing.
   chromiumos.Chroot chroot = 2;
+  // Path and ResultPath messages for insertion/extraction testing.
   chromiumos.Path path = 3;
   chromiumos.Path another_path = 4;
   NestedPath nested_path = 5;
   chromiumos.ResultPath result_path = 6;
+  // BuildTarget messages for parsing tests.
+  chromiumos.BuildTarget build_target = 7;
+  repeated chromiumos.BuildTarget build_targets = 8;
 }
 
 // Simple output message.
 message TestResultMessage {
   string result = 1;
+  // Path messages for ResultPath testing.
   chromiumos.Path artifact = 2;
   NestedPath nested_artifact = 3;
   repeated chromiumos.Path artifacts = 4;
