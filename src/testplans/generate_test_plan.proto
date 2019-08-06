@@ -24,11 +24,12 @@ message GenerateTestPlanRequest {
 
 // The final test plan.
 message GenerateTestPlanResponse {
-  repeated GceTestUnit gce_test_units = 2;
   repeated HwTestUnit hw_test_units = 3;
   repeated MoblabVmTestUnit moblab_vm_test_units = 4;
   repeated TastVmTestUnit tast_vm_test_units = 5;
   repeated VmTestUnit vm_test_units = 6;
+
+  reserved 2;
 }
 
 // The files that should be tested in a test plan.
@@ -53,11 +54,6 @@ message TestUnitCommon {
 
   // The build files provided to run this test unit.
   BuildPayload build_payload = 3;
-}
-
-message GceTestUnit {
-  TestUnitCommon common = 1;
-  GceTestCfg gce_test_cfg = 2;
 }
 
 message HwTestUnit {
