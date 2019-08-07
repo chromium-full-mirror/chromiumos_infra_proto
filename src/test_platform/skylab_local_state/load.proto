@@ -12,6 +12,9 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/sky
 message Config {
   // Admin service host, e.g. foo.appspot.com.
   string admin_service = 1;
+
+  // Autotest directory on the drone, e.g. "/usr/local/autotest".
+  string autotest_dir = 2;
 }
 
 // LoadRequest defines the input of `skylab_local_state load`.
@@ -22,16 +25,13 @@ message LoadRequest {
   // be created it if does not exist yet.
   string results_dir = 2;
 
-  // skylab_inventory ID of the DUT.
-  string dut_id = 3;
+  // DUT hostname.
+  string dut_name = 3;
 }
 
 // LoadResponse defines the output of `skylab_local_state load`.
 message LoadResponse {
-  // DUT hostname.
-  string dut_name = 1;
-
   // What is currently installed on the DUT, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
-  map<string, string> provisionable_labels = 2;
+  map<string, string> provisionable_labels = 1;
 }
