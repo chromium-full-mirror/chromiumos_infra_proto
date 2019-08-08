@@ -1,0 +1,19 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.skylab_local_state;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_local_state";
+
+// Config defines configuration parameters of skylab_local_state.
+message Config {
+  // Admin service host, e.g. foo.appspot.com.
+  string admin_service = 1;
+
+  // Autotest directory on the drone, e.g. "/usr/local/autotest".
+  string autotest_dir = 2;
+}
+
