@@ -6,6 +6,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
+import "chromiumos/metrics.proto";
 
 // Messages used to test build_api message and service handling.
 
@@ -35,6 +36,7 @@ message TestResultMessage {
   chromiumos.Path artifact = 2;
   NestedPath nested_artifact = 3;
   repeated chromiumos.Path artifacts = 4;
+  repeated chromiumos.MetricEvent events = 5;
 }
 
 
