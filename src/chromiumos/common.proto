@@ -84,6 +84,8 @@ message UseFlag {
 }
 
 // The types of images that can be built.
+// These correspond to support types in lib/constants.py such
+// as IMAGE_TYPE_BASE, IMAGE_TYPE_RECOVERY, and so on.
 enum ImageType {
   IMAGE_TYPE_UNDEFINED = 0;
   BASE = 1;
@@ -91,4 +93,7 @@ enum ImageType {
   TEST = 3;
   BASE_VM = 4;
   TEST_VM = 5;
+  RECOVERY = 6;
+  FACTORY = 7;
+  FIRMWARE = 8;
 }
