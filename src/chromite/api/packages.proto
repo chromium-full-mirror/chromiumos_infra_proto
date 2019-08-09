@@ -79,10 +79,14 @@ service PackageService {
     service_chroot_assert: OUTSIDE,
   };
 
-
+  // Find the best (highest) available version of the requested package.
   rpc GetBestVisible(GetBestVisibleRequest)
     returns (GetBestVisibleResponse);
 
+  // The generic uprev process -- performs uprevs for all packages in the
+  // public and/or private overlays for the build target(s) specified.
+  // This handles all cros_workon packages except those that have a separate
+  // uprev process.
   rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse);
 
   // Uprev a package that is externally versioned (e.g. Chrome).
