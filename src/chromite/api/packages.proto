@@ -59,6 +59,9 @@ message UprevVersionedPackageRequest {
 
   // The versions to consider for an update.
   repeated GitRef versions = 3;
+
+  // The build targets whose sysroot should be cleaned of old versions.
+  repeated chromiumos.BuildTarget build_targets = 4;
 }
 
 
