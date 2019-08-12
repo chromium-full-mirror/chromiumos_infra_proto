@@ -88,6 +88,9 @@ service ArtifactsService {
   // Create a tar archive with all files needed for Autotest HW testing.
   rpc BundleAutotestFiles(BundleRequest) returns (BundleResponse);
 
+  // Create the ChromeOS Config JSON payload.
+  rpc BundleChromeOSConfig(BundleRequest) returns (BundleResponse);
+
   // Create a tar archive with ebuild logs.
   rpc BundleEbuildLogs(BundleRequest) returns (BundleResponse);
 
