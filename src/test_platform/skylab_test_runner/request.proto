@@ -1,0 +1,42 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.skylab_test_runner;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
+
+import "test_platform/request.proto";
+
+// Request represents a request for running an individual test via the
+// skylab_test_runner recipe.
+message Request {
+  // Prejob defines parameters that affect the steps before the actual test
+  // (e.g. provision).
+  message Prejob {
+    // Mutable software prerequisites (e.g. ChromeOS version). Are installed
+    // before running the test if necessary.
+    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 1;
+  }
+
+  Prejob prejob = 1;
+
+  // Test describes which test harness and which test(s) to run.
+  message Test {
+    message Autotest {
+      string name = 1;
+      string test_args = 2;
+
+      // Keyvals are key:value pairs added to the autoserv command.
+      map <string, string> keyvals = 3;
+    }
+
+    oneof harness {
+      Autotest autotest = 1;
+    }
+  }
+
+  Test test = 2;
+}
