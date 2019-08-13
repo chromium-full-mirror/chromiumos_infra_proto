@@ -20,8 +20,6 @@ message LoadRequest {
 
   // DUT hostname.
   string dut_name = 3;
-
-  string dut_id = 4 [deprecated = true];
 }
 
 // LoadResponse defines the output of `skylab_local_state load`.
@@ -29,6 +27,4 @@ message LoadResponse {
   // What is currently installed on the DUT, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
   map<string, string> provisionable_labels = 1;
-
-  string dut_name = 2 [deprecated = true];
 }
