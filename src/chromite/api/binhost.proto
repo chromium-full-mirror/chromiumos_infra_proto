@@ -147,11 +147,22 @@ enum OverlayType {
 
 // Regenerate the build cache.
 message RegenBuildCacheRequest {
+  // Required.
   // The type of overlays to push:  "public", "private", or "both".
   OverlayType overlay_type = 1;
+  // Required if not in the default location.
+  // The chroot to be used.
+  chromiumos.Chroot chroot = 2;
 }
 
 message RegenBuildCacheResponse {
+  // Message to encapsulate the modified overlays.
+  message Overlay {
+    string path = 1;
+  }
+
+  // The overlays that have outstanding cache updates.
+  repeated Overlay modified_overlays = 1;
 }
 
 // Service for reading and writing to Portage package index.
@@ -182,10 +193,5 @@ service BinhostService {
   rpc SetBinhost(SetBinhostRequest) returns (SetBinhostResponse);
 
   // Regenerate the builder cache.
-  rpc RegenBuildCache(RegenBuildCacheRequest)
-    returns (RegenBuildCacheResponse) {
-    option (method_options) = {
-      method_chroot_assert: INSIDE;
-    };
-  }
+  rpc RegenBuildCache(RegenBuildCacheRequest) returns (RegenBuildCacheResponse);
 }
