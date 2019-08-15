@@ -93,6 +93,8 @@ message BuilderConfig {
       EBUILD_LOGS = 7;
       // Indicates wanting an archive of the ChromeOS Config.
       CHROMEOS_CONFIG = 8;
+      // Indicates wanting the CPE report.
+      CPE_REPORT = 9;
     }
     repeated ArtifactTypes artifact_types = 2;
 
