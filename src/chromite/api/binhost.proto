@@ -189,6 +189,13 @@ service BinhostService {
   rpc PrepareBinhostUploads(PrepareBinhostUploadsRequest)
     returns (PrepareBinhostUploadsResponse);
 
+  // Return a list of dev-install files to upload to the binhost. Like
+  // PrepareBinhostUploads, this method assumes that all files, once uploaded,
+  // will share the same relative path on the remote disk as they do on the
+  // remote disk.
+  rpc PrepareDevInstallBinhostUploads(PrepareBinhostUploadsRequest)
+    returns (PrepareBinhostUploadsResponse);
+
   // Update the binhost key for a build targets.
   rpc SetBinhost(SetBinhostRequest) returns (SetBinhostResponse);
 
