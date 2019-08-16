@@ -11,7 +11,7 @@ message MetricEvent {
   string name = 1;
 
   // The timestamp in Unix-epoch millisecond time.
-  uint64 timestamp_milliseconds = 2;
+  int64 timestamp_milliseconds = 2;
 
   // If the event was a timer, give its duration.
   uint64 duration_milliseconds = 3;
