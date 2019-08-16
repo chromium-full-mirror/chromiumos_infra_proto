@@ -22,10 +22,9 @@ message EnumerationResponse {
     message AutotestInvocation {
         chromite.api.AutotestTest test = 1;
 
+        // Passthrough arguments from test_platform.Request_Test
         string test_args = 2;
-
-        // TODO(akeshet): Add additional invocation-specific fields, such
-        // as additional label dependencies.
+        string display_name = 3;
     }
 
     repeated AutotestInvocation autotest_invocations = 2;
