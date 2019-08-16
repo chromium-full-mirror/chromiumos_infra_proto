@@ -38,7 +38,7 @@ message Request {
     // associated with a device, though not immutable or hardware-bound.
     message SoftwareAttributes {
       chromiumos.BuildTarget build_target = 2;
-      
+
       // TODO(akeshet): add other attributes such as CTS version,
       // kernel version(?), etc.
     }
@@ -167,6 +167,13 @@ message Request {
     message Autotest {
       string name = 1;
       string test_args = 2;
+
+      // Name to be used to display this test's output artifacts, e.g. logs,
+      // results etc. By default display_name is the same as name.
+      //
+      // display_name is especially useful when using test_args to distinguish
+      // between multiple instances of the same test in a request.
+      string display_name = 3;
     }
 
     oneof harness {
