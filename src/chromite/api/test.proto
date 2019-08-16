@@ -43,6 +43,15 @@ message ChromiteUnitTestRequest {
 message ChromiteUnitTestResponse {
 }
 
+message CrosSigningTestRequest {
+  // Required if not in default location.
+  // The chroot where the tests should be executed.
+  chromiumos.Chroot chroot = 1;
+}
+
+message CrosSingingTestResponse {
+}
+
 // Run the debug_info_test script.
 message DebugInfoTestRequest {
   // The sysroot to tests.
@@ -142,6 +151,9 @@ service TestService {
 
   // Run the chromite unit tests.
   rpc ChromiteUnitTest(ChromiteUnitTestRequest) returns (ChromiteUnitTestResponse);
+
+  // Run the cros-signing unit tests.
+  rpc CrosSigningTest(CrosSigningTestRequest) returns (CrosSingingTestResponse);
 
   // Run the debug info tests on a sysroot.
   rpc DebugInfoTest(DebugInfoTestRequest) returns (DebugInfoTestResponse);
