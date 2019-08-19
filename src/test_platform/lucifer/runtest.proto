@@ -1,0 +1,43 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.lucifer;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/lucifer";
+
+import "test_platform/lucifer/common.proto";
+
+// RunTestRequest defines the input of `lucifer runtest`.
+message RunTestRequest {
+  Config config = 1;
+
+  // A test may use more than one DUT at once.
+  repeated string dut_hostnames = 2;
+
+  // Autotest describes the DUT-agnostic parameters of an autotest test run.
+  message Autotest {
+    // Test name as given in the control file.
+    string name = 1;
+
+    // Args to pass into the test run (meaning depends on the test).
+    string test_args = 2;
+
+    // Name to be used to display this test's output artifacts, e.g. logs,
+    // results etc. By default display_name is the same as name.
+    string display_name = 3;
+
+    // True for client-side tests, false for server-side tests.
+    bool is_client_test = 4;
+
+    // Key:value pairs added to the autoserv command.
+    map<string,string> keyvals = 5;
+  }
+
+  oneof test {
+    Autotest autotest = 3;
+  }
+}
+
