@@ -1,0 +1,28 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.lucifer;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/lucifer";
+
+// BotEnvironment defines bot-specific parameters used by lucifer.
+message BotEnvironment {
+  // Absolute path to the autotest directory for the bot, e.g.
+  // "/usr/local/autotest".
+  string autotest_dir = 1;
+}
+
+// TaskEnvironment defines task-specific parameters used by lucifer.
+message TaskEnvironment {
+  // Absolute path to the results directory for a given run.
+  string results_dir = 2;
+}
+
+// Config defines configuration parameters common to lucifer subcommands.
+message Config {
+  BotEnvironment bot = 1;
+  TaskEnvironment task = 2;
+}
