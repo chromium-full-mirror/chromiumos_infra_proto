@@ -48,6 +48,13 @@ message BuilderConfig {
     // Whether or not the build is considered critical. A failure in a critical
     // build for a CQ builder may, for example, prevent submission of the CL.
     google.protobuf.BoolValue critical = 1;
+
+    enum Environment {
+      ENVIRONMENT_UNSPECIFED = 0;
+      PRODUCTION = 1;
+      STAGING = 2;
+    }
+    Environment environment = 2;
   }
   General general = 2;
 
