@@ -11,6 +11,17 @@ import "test_platform/request.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/migration/scheduler";
 
+// The cros_test_platform traffic splitting stage interprets this config in two
+// phases.
+// 1. First, the request is matched to any of the rules in the suite_overrides,
+//    including the requested suite. If matching rules are found, second phase
+//    is skipped.
+// 2. Next, the request is matched against the base rules (exluding suite name)
+//    If no matching rules are found, the steps fails.
+//
+// If multiple rules are found, they *must agree on the traffic splitting
+// decision* including any pool overrides. In case of conflicting rules, the
+// step fails.
 message TrafficSplit {
   // Rules are expected to be exhaustive. If an incoming request does not match
   // any available rule, the traffic splitter will fail.
