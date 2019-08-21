@@ -13,7 +13,7 @@ import "device/config_id.proto";
 // These are the distinct configs combinations that will constitue a ChromeOS
 // device.
 
-// Next tag: 12
+// Next tag: 19
 message Config {
 
   // Required. Unique ID of the device config.
@@ -144,6 +144,47 @@ message Config {
   }
 
   SOC soc = 11;
+
+  // Full email address for TAMs responsible for device
+  repeated string tam = 12;
+
+  // Full email address for Google EEs responsible for device
+  repeated string ee = 13;
+
+  // Next Tag: 6
+  enum ODM {
+    ODM_UNSPECIFIED = 0;
+    ODM_QUANTA = 1;
+    ODM_BITLAND = 2;
+    ODM_SAMSUNG = 3;
+    ODM_PEGATRON = 4;
+    ODM_COMPAL = 5;
+  }
+
+  // ODM for device
+  ODM odm = 14;
+
+  // Group email address for this device's odm contact in buganizer (@google.com)
+  string odm_email_group = 15;
+
+  enum OEM {
+    OEM_UNSPECIFIED = 0;
+    OEM_ACER = 1;
+    OEM_DELL = 2;
+    OEM_SAMSUNG = 3;
+    OEM_HP = 4;
+    OEM_LENOVO = 5;
+    OEM_ASUS = 6;
+  }
+
+  // OEM for device
+  OEM oem = 16;
+
+  // Group email address for this device's oem contact in buganizer (@google.com)
+  string oem_email_group = 17;
+
+  // Group email address for this device's SoC contact in buganizer (@google.com)
+  string soc_email_group = 18;
 }
 
 // Message contains all ChromeOS device configs.
