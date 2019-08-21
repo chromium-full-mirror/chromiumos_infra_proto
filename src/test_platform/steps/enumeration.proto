@@ -18,6 +18,9 @@ message EnumerationRequest {
 }
 
 // EnumerationResponse defines the output of the test enumeration step.
+//
+// This is copied in test_platform.Request.Enumeration
+// Keep in sync.
 message EnumerationResponse {
     message AutotestInvocation {
         chromite.api.AutotestTest test = 1;

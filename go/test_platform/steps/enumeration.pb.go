@@ -71,6 +71,9 @@ func (m *EnumerationRequest) GetTestPlan() *test_platform.Request_TestPlan {
 }
 
 // EnumerationResponse defines the output of the test enumeration step.
+//
+// This is copied in test_platform.Request.Enumeration
+// Keep in sync.
 type EnumerationResponse struct {
 	AutotestInvocations  []*EnumerationResponse_AutotestInvocation `protobuf:"bytes,2,rep,name=autotest_invocations,json=autotestInvocations,proto3" json:"autotest_invocations,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                                  `json:"-"`

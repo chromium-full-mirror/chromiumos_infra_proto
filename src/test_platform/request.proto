@@ -6,6 +6,7 @@ syntax = "proto3";
 
 package test_platform;
 
+import "chromite/api/test_metadata.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
 
@@ -195,9 +196,23 @@ message Request {
     }
   }
 
+  // Enumeration is a previously enumerated test plan.
+  //
+  // This is a copy of test_platform.steps.EnumerationResponse
+  // Keep in sync.
+  message Enumeration {
+    message AutotestInvocation {
+      chromite.api.AutotestTest test = 1;
+      string test_args = 2;
+      string display_name = 3;
+    }
+    repeated AutotestInvocation autotest_invocations = 2;
+  }
+
   message TestPlan {
     repeated Suite suite = 1;
     repeated Test test = 2;
+    Enumeration enumeration = 3;
   }
 
   TestPlan test_plan = 5;
