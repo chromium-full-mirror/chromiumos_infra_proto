@@ -112,6 +112,16 @@ message Request {
         // quota-shared pool, and scheduled via quotascheduler.
         string quota_account = 3;
       }
+
+      // Priority corresponds to a swarming task priority; if specified, it
+      // should be in the range [50,255]. This priority will be used for
+      // any swaming tasks created by this run.
+      //
+      // Note that the scheduler behavior with a given priority depends on
+      // other factors, such as pool. In particular, if requests are run in
+      // a quotascheduler-controlled pool, then this priority will be ignored,
+      // as priority will be determined by quota account balances.
+      int64 priority = 4;
     }
 
     Scheduling scheduling = 4;
