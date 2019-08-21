@@ -161,6 +161,10 @@ message Request {
       // AutotestKeyvals are (key, value) pairs that will be added to all
       // autotest tasks run.
       map <string, string> autotest_keyvals = 1;
+
+      // Tags are swarming tags that will be applied to all swarming tasks
+      // launched.
+      repeated string tags = 2;
     }
 
     Decorations decorations = 8;
