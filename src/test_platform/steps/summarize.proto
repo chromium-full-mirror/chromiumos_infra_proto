@@ -1,0 +1,40 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.steps;
+
+import "test_platform/request.proto";
+import "test_platform/steps/enumeration.proto";
+import "test_platform/steps/execution.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
+
+// SummarizeRequest defines the input of the test summarize step.
+message SummarizeRequest {
+    // The incoming request for this cros_test_platform build.
+    test_platform.Request request = 1;
+    // The test enumeration output from the `enumerate` step.
+    EnumerationResponse enumeration = 2;
+    // The execution result from the `execute` step.
+    ExecuteResponse execution = 3;
+}
+
+// SummarizeResponse defines the output of the test summarize step.
+//
+// All fields of this message are included in the output properties of the
+// build.
+message SummarizeResponse {
+    // A possibly tweaked `execute` response that serves as the final result of
+    // this cros_test_platform build
+    ExecuteResponse result = 1;
+
+    // backfill_request can be used to backfill all unsuccessful TaskResults
+    // from this cros_test_platform build.
+    //
+    // backfill_request may be missing if this build failed too early to
+    // enumerate a TestPlan.
+    test_platform.Request backfill_request = 2;
+}
