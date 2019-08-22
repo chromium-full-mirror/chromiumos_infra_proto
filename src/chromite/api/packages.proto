@@ -72,6 +72,8 @@ message UprevPackagesResponse {
 
   // The list of ebuilds that were modified. Contains added and deleted files.
   repeated Ebuild modified_ebuilds = 1;
+  // The new version that was uprevved to when an uprev was completed.
+  string version = 2;
 }
 
 
