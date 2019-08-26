@@ -1,0 +1,31 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.multibot;
+
+import "test_platform/request.proto";
+
+// External API for requesting a multi-bot job
+message LeaderRequest {
+
+  // Number of bots to use, total
+  int32 fanout = 1;
+
+  // Required swarming dimensions for leased bots
+  test_platform.Request.Params dimensions = 2;
+}
+
+// Internal per-bot request for follower task
+message FollowerRequest {
+  // Pubsub subscription to use for this follower task (pre-existing)
+  string subscription_name = 1;
+
+  // Attribute filter to apply to judge whether incoming messages are 'for you'
+  map<string, string> incoming_filter = 2;
+
+  // Attributes to apply to outgoing messages to address them to the leader
+  map<string, string> outgoing_attributes = 3;
+}
