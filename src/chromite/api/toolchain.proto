@@ -18,6 +18,9 @@ enum AFDOArtifactType {
 
   // The type is kernel AFDO files.
   KERNEL_AFDO = 3;
+
+  // The type is Chrome AFDO used in release builders.
+  CHROME_AFDO = 4;
 }
 
 message VerifyAFDOArtifactsRequest {
