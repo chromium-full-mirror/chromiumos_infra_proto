@@ -30,7 +30,9 @@ of which looks like the following:
 
 syntax = "proto3";
 
-package recipes.chromeos.paygen;
+package chromiumos;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 
 message PayloadConfig {
   // This is current configuration for payloads.
