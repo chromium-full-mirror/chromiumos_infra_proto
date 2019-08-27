@@ -13,12 +13,12 @@ import "testplans/common.proto";
 
 // Testing restrictions to apply to a source tree.
 message TestRestriction {
-  // Whether to disable hardware tests.
+  // Whether to disable hardware test suites.
   bool disable_hw_tests = 1;
-  // Whether to disable image tests.
-  bool disable_image_tests = 2;
-  // Whether to disable virtual machine tests.
+  // Whether to disable virtual machine test suites.
   bool disable_vm_tests = 3;
+  // Whether to disable non-Tast-based test suites.
+  bool disable_non_tast_tests = 5;
   // A subset of build targets for which testing should be performed.
   // If this is nonempty, hw/vm tests will *only* be done for the provided
   // list of build targets.

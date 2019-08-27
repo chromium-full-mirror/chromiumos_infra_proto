@@ -19,6 +19,11 @@ message TestSuiteCommon {
 }
 
 message HwTestCfg {
+  enum HwTestSuiteType {
+    HW_TEST_SUITE_TYPE_UNSPECIFIED = 0;
+    AUTOTEST = 1;
+    TAST = 2;
+  }
   // Configuration for a hardware test suite.
   message HwTest {
     TestSuiteCommon common = 12;
@@ -31,6 +36,8 @@ message HwTestCfg {
     // e.g. could use device_target 'caroline' to test the build_target
     // 'caroline-arcnext'.
     string skylab_board = 11;
+
+    HwTestSuiteType hw_test_suite_type = 13;
 
     reserved 2 to 10;
   }
