@@ -11,6 +11,14 @@ import "chromiumos/common.proto";
 message GetBestVisibleRequest {
   // An atom to pass to portageq, e.g. 'chromeos-chrome'.
   string atom = 1;
+
+  // The chroot path.
+  // Required if not in the default location.
+  chromiumos.Chroot chroot = 2;
+
+  // The build target to examine. Checks the chroot when not provided.
+  // Required when examining a build target.
+  chromiumos.BuildTarget build_target = 3;
 }
 
 message GetBestVisibleResponse {
@@ -85,8 +93,14 @@ service PackageService {
   };
 
   // Find the best (highest) available version of the requested package.
+  // This must be run after the chroot is set up (for chroot package lookup) or
+  // after the sysroot is created (for build target package lookup).
   rpc GetBestVisible(GetBestVisibleRequest)
-    returns (GetBestVisibleResponse);
+    returns (GetBestVisibleResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  }
 
   // The generic uprev process -- performs uprevs for all packages in the
   // public and/or private overlays for the build target(s) specified.
