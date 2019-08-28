@@ -18,7 +18,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 10
+  // NEXT_TAG: 11
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -169,6 +169,17 @@ message Request {
     }
 
     Decorations decorations = 8;
+
+    // Legacy encodes arguments that relate to migration from legacy backend
+    // (autotest); support for these arguments will be phased out.
+    message Legacy {
+      // If autotest_suite is defined, then if the autotest backend is selected
+      // for running this request, the entire enumeration will be ignored, and
+      // replaced by a single invocation of this named autotest suite.
+      string autotest_suite = 1;
+    }
+
+    Legacy legacy = 10;
   }
 
   Params params = 1;
