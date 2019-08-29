@@ -26,6 +26,20 @@ message GetBestVisibleResponse {
   chromiumos.PackageInfo package_info = 1;
 }
 
+message GetChromeVersionRequest {
+  // The chroot path.
+  // Required if not in the default location.
+  chromiumos.Chroot chroot = 1;
+
+  // The build target to examine.
+  // Required.
+  chromiumos.BuildTarget build_target = 2;
+}
+
+message GetChromeVersionResponse {
+  // The chrome version.
+  string version = 1;
+}
 
 message UprevPackagesRequest {
   // The chroot path.
@@ -97,6 +111,17 @@ service PackageService {
   // after the sysroot is created (for build target package lookup).
   rpc GetBestVisible(GetBestVisibleRequest)
     returns (GetBestVisibleResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  }
+
+  // Like GetBestVisible, but returns only the chrome version. The chrome
+  // package version is something like 78.9.0.123_rc-r1, where the chrome
+  // version itself is just 78.9.0.123. This case does not have a spec in
+  // Portage, so it cannot be directly fetched by GetBestVisible.
+  rpc GetChromeVersion(GetChromeVersionRequest) returns
+    (GetChromeVersionResponse) {
     option (method_options) = {
       method_chroot_assert: INSIDE,
     };
