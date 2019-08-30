@@ -134,6 +134,23 @@ message MoblabVmTestRequest {
 message MoblabVmTestResponse {
 }
 
+message SimpleChromeWorkflowTestRequest {
+  // The sysroot for which SimpleChrome flow will be run.
+  // The path and build_target are required.
+  // Chrome will be built for the specified board using the sysroot.
+  Sysroot sysroot = 1;
+
+  // Chrome source directory under which chromium will be built and tested
+  // using cros chrome-sdk.
+  string chrome_root = 2;
+
+  // If true, use goma when building Chrome.
+  bool use_goma = 3;
+}
+
+message SimpleChromeWorkflowTestResponse {
+}
+
 // The test service.
 service TestService {
   option (service_options) = {
@@ -167,4 +184,8 @@ service TestService {
       method_chroot_assert: OUTSIDE,
     };
   }
+
+  // Run the Simple Chrome workflow unit tests.
+  rpc SimpleChromeWorkflowTest(SimpleChromeWorkflowTestRequest)
+    returns (SimpleChromeWorkflowTestResponse);
 }

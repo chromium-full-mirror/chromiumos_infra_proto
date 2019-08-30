@@ -104,6 +104,21 @@ message InstallPackagesResponse {
   repeated chromiumos.MetricEvent events = 2;
 }
 
+message CreateSimpleChromeSysrootRequest {
+  // The sysroot for which SimpleChrome flow will be run.
+  // The path and build_target are required.
+  Sysroot sysroot = 1;
+  // Additional environment flags which are set via the ENV VAR 'USE'.
+  repeated string use_flags = 2;
+  // Target where new sysroot for SimpleChrome is created.
+  string target_dir = 3;
+}
+
+message CreateSimpleChromeSysrootResponse {
+  // Created sysroot that can be used by SimpleChrome creation and test.
+  Sysroot sysroot = 1;
+}
+
 // Service to manipulate a sysroot.
 service SysrootService {
   option (service_options) = {
@@ -120,4 +135,8 @@ service SysrootService {
 
   // Install packages into the sysroot. By default will install all packages.
   rpc InstallPackages(InstallPackagesRequest) returns (InstallPackagesResponse);
+
+  // Install SimpleChrome sysroot.
+  rpc CreateSimpleChromeSysroot(CreateSimpleChromeSysrootRequest)
+    returns (CreateSimpleChromeSysrootResponse);
 }
