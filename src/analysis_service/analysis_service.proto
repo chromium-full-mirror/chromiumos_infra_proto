@@ -57,6 +57,7 @@ message AnalysisServiceEvent {
     chromite.api.MoblabVmTestRequest moblab_vm_test_request = 40;
     chromite.api.UprevPackagesRequest uprev_packages_request = 44;
     chromite.api.GetBestVisibleRequest get_best_visible_request = 46;
+    chromite.api.GetChromeVersionRequest get_chrome_version_request = 48;
   }
 
   // The response to upload.
@@ -82,5 +83,6 @@ message AnalysisServiceEvent {
     chromite.api.MoblabVmTestResponse moblab_vm_test_response = 41;
     chromite.api.UprevPackagesResponse uprev_packages_response = 45;
     chromite.api.GetBestVisibleResponse get_best_visible_response = 47;
+    chromite.api.GetChromeVersionResponse get_chrome_version_response = 49;
   }
 }
