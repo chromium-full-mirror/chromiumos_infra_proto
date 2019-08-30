@@ -216,6 +216,7 @@ message Request {
       chromite.api.AutotestTest test = 1;
       string test_args = 2;
       string display_name = 3;
+      map <string, string> result_keyvals = 4;
     }
     repeated AutotestInvocation autotest_invocations = 2;
   }

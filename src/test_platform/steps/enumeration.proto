@@ -28,6 +28,12 @@ message EnumerationResponse {
         // Passthrough arguments from test_platform.Request_Test
         string test_args = 2;
         string display_name = 3;
+
+        // result_keyvals are autotest keyvals that should be included in the
+        // results corresponding to this invocation.
+        //
+        // These keyvals are overridden by Request.Decorations.autotest_keyvals.
+        map <string, string> result_keyvals = 4;
     }
 
     repeated AutotestInvocation autotest_invocations = 2;
