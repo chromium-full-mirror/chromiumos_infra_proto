@@ -20,6 +20,12 @@ message GenerateTestPlanRequest {
 
   // The manifest-internal snapshot commit hash that's being used for the current build.
   string manifest_commit = 7;
+
+  // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
+  // or similar. Explicit proto import is avoided here to prevent a dependency
+  // on the luci-go repo.
+  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+  repeated ProtoBytes gerrit_changes = 8;
 }
 
 // The final test plan.
