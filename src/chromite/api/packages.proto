@@ -92,10 +92,16 @@ message UprevPackagesResponse {
     string path = 1;
   }
 
-  // The list of ebuilds that were modified. Contains added and deleted files.
-  repeated Ebuild modified_ebuilds = 1;
-  // The new version that was uprevved to when an uprev was completed.
-  string version = 2;
+  message Modified {
+    // The list of ebuilds that were modified. Contains added and deleted files.
+    repeated Ebuild ebuilds = 1;
+
+    // The new version that was uprevved to when an uprev was completed.
+    string version = 2;
+  }
+
+  // Modified versions and associated ebuilds
+  repeated Modified modified = 1;
 }
 
 
