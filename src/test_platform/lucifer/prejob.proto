@@ -16,8 +16,8 @@ message PrejobRequest {
 
   string dut_hostname = 2;
 
-  // What is currently installed on the DUT, e.g.
+  // What will be installed onto the DUT, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
-  map<string,string> existing_provisionable_labels = 3;
+  map<string,string> provisionable_labels = 3;
 }
 
