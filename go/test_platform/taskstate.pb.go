@@ -104,10 +104,22 @@ func (TaskState_LifeCycle) EnumDescriptor() ([]byte, []int) {
 type TaskState_Verdict int32
 
 const (
+	// The task produced no usable verdict (possibly because it never
+	// ran, or never finished, or the results were unparseable).
+	//
+	// Under most circumstances, this should be treated as a failure or
+	// an infrastructure failure.
 	TaskState_VERDICT_UNSPECIFIED TaskState_Verdict = 0
-	TaskState_VERDICT_PASSED      TaskState_Verdict = 1
-	TaskState_VERDICT_FAILED      TaskState_Verdict = 2
-	TaskState_VERDICT_NO_VERDICT  TaskState_Verdict = 3
+	// The task produced a definitive verdict: it passed.
+	TaskState_VERDICT_PASSED TaskState_Verdict = 1
+	// The task produced a definitive verdict: it failed.
+	TaskState_VERDICT_FAILED TaskState_Verdict = 2
+	// The task definitively produced no verdict (for instance, because
+	// the test is irrelevant in the given environment).
+	//
+	// Under most circumstances, this should be treated as a passing
+	// (but uninteresting).
+	TaskState_VERDICT_NO_VERDICT TaskState_Verdict = 3
 )
 
 var TaskState_Verdict_name = map[int32]string{
