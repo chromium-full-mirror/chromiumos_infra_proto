@@ -41,6 +41,22 @@ message GetChromeVersionResponse {
   string version = 1;
 }
 
+// This can easily be generalized to a HasPrebuilt method if necessary, but
+// currently we have no use case for anything but Chrome, and making this
+// specifically for Chrome simplifies the calling code significantly.
+message HasChromePrebuiltRequest {
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 1;
+  // The build target whose prebuilt is being checked.
+  chromiumos.BuildTarget build_target = 2;
+}
+
+message HasChromePrebuiltResponse {
+  // Whether or not it has a prebuilt.
+  bool has_prebuilt = 1;
+}
+
 message UprevPackagesRequest {
   // The chroot path.
   // Required if not in the default location.
@@ -127,6 +143,15 @@ service PackageService {
   // Portage, so it cannot be directly fetched by GetBestVisible.
   rpc GetChromeVersion(GetChromeVersionRequest) returns
     (GetChromeVersionResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  }
+
+  // Check if there is an available chrome prebuilt for the most recent
+  // version of chrome.
+  rpc HasChromePrebuilt(HasChromePrebuiltRequest) returns
+    (HasChromePrebuiltResponse) {
     option (method_options) = {
       method_chroot_assert: INSIDE,
     };
