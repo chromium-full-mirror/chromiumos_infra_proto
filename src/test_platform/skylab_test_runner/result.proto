@@ -27,6 +27,12 @@ message Result {
       }
 
       Verdict verdict = 2;
+
+      // A one line human readable description of what happened during test
+      // case execution (e.g. error/warning message). Not intended to be machine
+      // parseable. There's no guarantee that a given root cause will always
+      // resolve to the same summary.
+      string human_readable_summary = 3;
     }
 
     repeated TestCase test_cases = 1;
@@ -58,6 +64,12 @@ message Result {
       }
 
       Verdict verdict = 2;
+
+      // A one line human readable description of what happened during step
+      // execution (e.g. error/warning message). Not intended to be machine
+      // parseable. There's no guarantee that a given root cause will always
+      // resolve to the same summary.
+      string human_readable_summary = 3;
     }
 
     repeated Step step = 1;
