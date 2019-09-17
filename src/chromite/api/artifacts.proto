@@ -100,6 +100,9 @@ service ArtifactsService {
   // Create a tar archive with unsigned firmware images.
   rpc BundleFirmware(BundleRequest) returns (BundleResponse);
 
+  // Create a tar.xz archive for each image that has been created.
+  rpc BundleImageArchives(BundleRequest) returns (BundleResponse);
+
   // Generate zip containing all built images for the target.
   rpc BundleImageZip(BundleRequest) returns (BundleResponse);
 
