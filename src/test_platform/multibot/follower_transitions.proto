@@ -6,11 +6,13 @@ syntax = "proto3";
 
 package test_platform.multibot;
 
+import "test_platform/skylab_local_state/multihost.proto";
+
 // FollowerStateChange is sent over the multibot Leader->Follower channel, to
 // carry state change information. The follower will only respect forward state
-// changes
+// changes. The same message is used internally between follower states.
 message FollowerStateChange {
-  enum State {
+  enum FollowerState {
     STATE_UNDEFINED = 0x00;
     // Follower task has started executing. Note: follower will enter this state
     // automatically once it starts.
@@ -25,15 +27,16 @@ message FollowerStateChange {
     // terminate.
     STATE_CLEANING = 0x40;
   }
-  State new_state = 1;
+  FollowerState new_state = 1;
 }
+
 
 // FollowerEvent is sent over the multibot Follower->Leader channel, to carry
 // follower event information. The leader may use this to change state,
 // depending on leader-specific logic and its internal state.
 message FollowerEvent {
   message FinishedPrejob {
-    BotInfo bot_into = 1;
+    skylab_local_state.MultiBotHostInfo host_info = 1;
   }
 
   oneof event {
@@ -41,7 +44,3 @@ message FollowerEvent {
     bool died = 2;
   }
 }
-
-// Snapshot of DUT and bot state. Primarily for transferring follower's info
-// to its leader task.
-message BotInfo {}

@@ -6,9 +6,16 @@ syntax = "proto3";
 
 package test_platform.multibot;
 
+import "test_platform/skylab_local_state/host_info.proto";
+
 // Stable configuration settings needed for multi-bot tasks, shared by leader
 // and followers
 message MultiBotConfig {
   // Pub/Sub topic name
   string topic = 1;
+}
+
+// HostInfoStore stores Autotest host info blobs keyed by DUT name
+message HostInfoStore {
+  map<string, skylab_local_state.AutotestHostInfo> host_infos = 1;
 }
