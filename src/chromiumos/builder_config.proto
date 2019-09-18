@@ -144,6 +144,9 @@ message BuilderConfig {
     // Whether to apply gerrit changes, if any. Use case is to build without
     // changes after failure to identify the changes as the culprit.
     bool apply_gerrit_changes = 6;
+
+    // Packages to build, or empty to build all packages.
+    repeated PackageInfo packages = 7;
   }
   Build build = 6;
 
