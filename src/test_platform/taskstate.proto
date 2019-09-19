@@ -62,6 +62,8 @@ message TaskState {
         // Under most circumstances, this should be treated as a passing
         // (but uninteresting).
         VERDICT_NO_VERDICT = 3;
+        // The task failed, but passed after one or more retries.
+        VERDICT_PASSED_ON_RETRY = 4;
     }
 
     // Verdict describes whether the task passed, failed, or had some other
