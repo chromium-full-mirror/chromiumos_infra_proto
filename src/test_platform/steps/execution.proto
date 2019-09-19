@@ -44,6 +44,33 @@ message ExecuteResponse {
         // The attempt number, starting at 0.
         // Within an execution, the tuple (name, attempt) will be unique.
         int32 attempt = 6;
+
+        message TestCaseResult {
+            // Test case name which is generally independent from task name.
+            // E.g. a task named "tast.critical-system" may have a test case
+            // named "tast.audio.DevicePlay".
+            // For tasks with a single test case it will generally be the same
+            // as the task name, e.g. "logging_UserCrash".
+            string name = 1;
+
+            // Verdict describes whether the test case passed, failed, or had
+            // some other indefinite verdict.
+            TaskState.Verdict verdict = 2;
+
+            // A one line human readable description of what happened during
+            // test case execution (e.g. error/warning message). Not intended
+            // to be machine parseable. There's no guarantee that a given root
+            // cause will always resolve to the same summary.
+            string human_readable_summary = 3;
+        }
+
+        // The results of individual test cases that were executed as part of
+        // the task.
+        repeated TestCaseResult test_cases = 7;
+
+        // The results of steps run prior to running the actual tests
+        // (e.g. provision).
+        repeated TestCaseResult prejob_steps = 8;
     }
 
     repeated TaskResult task_results = 1;
