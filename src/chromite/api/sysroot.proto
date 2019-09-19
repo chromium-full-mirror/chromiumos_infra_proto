@@ -73,13 +73,14 @@ message InstallToolchainResponse {
   repeated chromiumos.PackageInfo failed_packages = 1;
 }
 
-
 message InstallPackagesRequest {
   message Flags {
     // Compile from source (true), or use bin packages (false).
     bool compile_source = 1;
     // Event file location.
     string event_file = 2;
+    // Whether to start goma.
+    bool use_goma = 3;
   }
 
   // The sysroot into which the packages are being installed.

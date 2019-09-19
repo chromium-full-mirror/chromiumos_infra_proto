@@ -33,11 +33,21 @@ message Chroot {
   ChrootEnv env = 3;
   // The directory where the chrome source should be mounted.
   string chrome_dir = 4;
+  // The goma config.
+  GomaConfig goma = 5;
 }
 
 // FEATURES environment variable component message.
 message Feature {
   string feature = 1;
+}
+
+message GomaConfig {
+  // The goma install location.
+  // Required.
+  string goma_dir = 1;
+  // The goma client credentials file.
+  string goma_client_json = 2;
 }
 
 // Message describing a package, The corresponding variable names are from
