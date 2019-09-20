@@ -6,16 +6,18 @@ syntax = "proto3";
 
 package test_platform.multibot;
 
+import "test_platform/lucifer/prejob.proto";
+import "test_platform/multibot/common.proto";
 import "test_platform/request.proto";
 
 // External API for requesting a multi-bot job
 message LeaderRequest {
 
-  // Number of bots to use, total
-  int32 fanout = 1;
+  // What test to run with the multi-bot task
+  test_platform.Request.Test payload = 1;
 
-  // Required swarming dimensions for leased bots
-  test_platform.Request.Params dimensions = 2;
+  // What attributes to require and provision for follower tasks
+  repeated FollowerSpec follower_specs = 2;
 }
 
 // Internal per-bot request for follower task
@@ -28,4 +30,7 @@ message FollowerRequest {
 
   // Attributes to apply to outgoing messages to address them to the leader
   map<string, string> outgoing_attributes = 3;
+
+  // Prejob request parameters
+  lucifer.PrejobRequest prejob = 4;
 }
