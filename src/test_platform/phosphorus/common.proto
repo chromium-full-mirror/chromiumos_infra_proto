@@ -4,24 +4,24 @@
 
 syntax = "proto3";
 
-package test_platform.lucifer;
+package test_platform.phosphorus;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/lucifer";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/phosphorus";
 
-// BotEnvironment defines bot-specific parameters used by lucifer.
+// BotEnvironment defines bot-specific parameters used by phosphorus.
 message BotEnvironment {
   // Absolute path to the autotest directory for the bot, e.g.
   // "/usr/local/autotest".
   string autotest_dir = 1;
 }
 
-// TaskEnvironment defines task-specific parameters used by lucifer.
+// TaskEnvironment defines task-specific parameters used by phosphorus.
 message TaskEnvironment {
   // Absolute path to the results directory for a given run.
   string results_dir = 2;
 }
 
-// Config defines configuration parameters common to lucifer subcommands.
+// Config defines configuration parameters common to phosphorus subcommands.
 message Config {
   BotEnvironment bot = 1;
   TaskEnvironment task = 2;

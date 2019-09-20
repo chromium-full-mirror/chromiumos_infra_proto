@@ -6,7 +6,7 @@ syntax = "proto3";
 
 package test_platform.multibot;
 
-import "test_platform/lucifer/prejob.proto";
+import "test_platform/phosphorus/prejob.proto";
 import "test_platform/multibot/common.proto";
 import "test_platform/request.proto";
 
@@ -32,5 +32,5 @@ message FollowerRequest {
   map<string, string> outgoing_attributes = 3;
 
   // Prejob request parameters
-  lucifer.PrejobRequest prejob = 4;
+  phosphorus.PrejobRequest prejob = 4;
 }
