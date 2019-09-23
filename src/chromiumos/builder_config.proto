@@ -102,6 +102,8 @@ message BuilderConfig {
       CHROMEOS_CONFIG = 8;
       // Indicates wanting the CPE report.
       CPE_REPORT = 9;
+      // Indicates wanting a tar.xz archive for each image that has been created.
+      IMAGE_ARCHIVES = 10;
     }
     repeated ArtifactTypes artifact_types = 2;
 
