@@ -147,6 +147,11 @@ message BuilderConfig {
 
     // Packages to build, or empty to build all packages.
     repeated PackageInfo packages = 7;
+
+    // Gerrit projects to be tested with this build. Should NOT be used to
+    // test other projects. Buildbucket has no concept of ChromeOS Repos.
+    // So, we're using Gerrit projects instead.
+    repeated string target_projects = 8;
   }
   Build build = 6;
 
