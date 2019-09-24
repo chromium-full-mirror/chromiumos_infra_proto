@@ -150,10 +150,34 @@ message BuilderConfig {
     // Packages to build, or empty to build all packages.
     repeated PackageInfo packages = 7;
 
-    // Gerrit projects to be tested with this build. Should NOT be used to
-    // test other projects. Buildbucket has no concept of ChromeOS Repos.
-    // So, we're using Gerrit projects instead.
-    repeated string target_projects = 8;
+    // Rule describing conditions under which a builder should be launched.
+    message RunWhen {
+      enum Mode {
+        MODE_UNSPECIFIED = 0;
+
+        // Always run this builder. The file_patterns field will be ignored
+        // when this mode is selected.
+        ALWAYS_RUN = 1;
+
+        // Only run this builder if any file in the input gerrit_changes
+        // matches any file_pattern specified below. If file_pattern is empty,
+        // this option implies the builder will never run.
+        ONLY_RUN_ON_FILE_MATCH = 2;
+      }
+
+      Mode mode = 1;
+
+      // chromiumos code file patterns, relative to chromiumos root, which may
+      // use * or ** for globbing.
+      // e.g.
+      // chromite/myfile.txt
+      // chromite/config/*
+      // **/*.md
+      repeated string file_patterns = 2;
+    }
+
+    // A rule describing conditions under which this builder should be launched.
+    RunWhen run_when = 9;
   }
   Build build = 6;
 
