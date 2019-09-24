@@ -97,3 +97,8 @@ enum ImageType {
   FACTORY = 7;
   FIRMWARE = 8;
 }
+
+// A wrapper around a serialized protocol buffer.
+message ProtoBytes {
+  bytes serialized_proto = 1;
+}
