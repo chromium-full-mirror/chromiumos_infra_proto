@@ -15,4 +15,7 @@ message MetricEvent {
 
   // If the event was a timer, give its duration.
   uint64 duration_milliseconds = 3;
+
+  // An arbitrary integer gauge.
+  uint64 gauge = 4;
 }
