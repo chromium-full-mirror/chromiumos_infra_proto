@@ -111,13 +111,13 @@ message CreateSimpleChromeSysrootRequest {
   Sysroot sysroot = 1;
   // Additional environment flags which are set via the ENV VAR 'USE'.
   repeated string use_flags = 2;
-  // Target where new sysroot for SimpleChrome is created.
-  string target_dir = 3;
+  // Target directory for the sysroot tarball.
+  chromiumos.ResultPath target_dir = 3;
 }
 
 message CreateSimpleChromeSysrootResponse {
-  // Created sysroot that can be used by SimpleChrome creation and test.
-  Sysroot sysroot = 1;
+  // Path where the sysroot tarball is written.
+  chromiumos.Path sysroot_archive = 1;
 }
 
 // Service to manipulate a sysroot.
