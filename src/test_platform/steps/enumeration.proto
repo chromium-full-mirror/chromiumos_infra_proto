@@ -11,6 +11,17 @@ import "test_platform/request.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
+message EnumerationRequests {
+    // Each EnumerationRequest is handled independently.
+    repeated EnumerationRequest requests = 1;
+}
+
+message EnumerationResponses {
+    // Each EnumerationResponse corresponds to a single EnumerationRequest
+    // handled independently.
+    repeated EnumerationResponse responses = 1;
+}
+
 // EnumerationRequest defines the input of the test enumeration step.
 message EnumerationRequest {
     test_platform.Request.Params.Metadata metadata = 1;

@@ -12,6 +12,18 @@ import "test_platform/steps/execution.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
+
+message SummarizeRequests {
+    // Each SummarizeRequest is handled independently.
+    repeated SummarizeRequest requests = 1;
+}
+
+message SummarizeResponses {
+    // Each SummarizeResponse corresponds to a single SummarizeRequest handled
+    // independently.
+    repeated SummarizeResponse responses = 1;
+}
+
 // SummarizeRequest defines the input of the test summarize step.
 message SummarizeRequest {
     // The incoming request for this cros_test_platform build.

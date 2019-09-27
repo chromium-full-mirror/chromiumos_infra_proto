@@ -13,6 +13,17 @@ import "test_platform/taskstate.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
+message ExecuteRequests {
+    // Each ExecuteRequest is handled independently.
+    repeated ExecuteRequest requests = 1;
+}
+
+message ExecuteResponses {
+    // Each ExecuteResponse corresponds to a single ExecuteRequest handled
+    // independently.
+    repeated ExecuteResponse responses = 1;
+}
+
 // ExecuteRequest defines the input of the Execute step.
 message ExecuteRequest {
     // RequestParams are the request-wide parameters for the

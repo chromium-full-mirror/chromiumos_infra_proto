@@ -11,6 +11,17 @@ import "test_platform/config/config.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
+message SchedulerTrafficSplitRequests {
+    // Each SchedulerTrafficSplitRequest is handled independently.
+    repeated SchedulerTrafficSplitRequest requests = 1;
+}
+
+message SchedulerTrafficSplitResponses {
+    // Each SchedulerTrafficSplitResponse corresponds to a single
+    // SchedulerTrafficSplitRequest handled independently.
+    repeated SchedulerTrafficSplitResponse responses = 1;
+}
+
 // SchedulerTrafficSplitRequest is the request to the step that determines the
 // traffic split between backend schedulers.
 message SchedulerTrafficSplitRequest {
