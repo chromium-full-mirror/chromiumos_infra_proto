@@ -184,39 +184,7 @@ message BuilderConfig {
     // Packages to build, or empty to build all packages.
     repeated PackageInfo packages = 7;
 
-    // Rule describing conditions under which a builder should be launched.
-    message RunWhen {
-      enum Mode {
-        MODE_UNSPECIFIED = 0;
-
-        // Always run this builder. The file_patterns field will be ignored
-        // when this mode is selected.
-        ALWAYS_RUN = 1;
-
-        // Only run this builder if any file in the input gerrit_changes
-        // matches any file_pattern specified below. If file_patterns is empty,
-        // this option implies the builder will never run.
-        ONLY_RUN_ON_FILE_MATCH = 2;
-
-        // Do not run the builder if all files in the input gerrit_changes
-        // match any file_attern speicifed below. If file_patterns is empty,
-        // this option implies the builder will always run.
-        NO_RUN_ON_FILE_MATCH = 3;
-      }
-
-      Mode mode = 1;
-
-      // chromiumos code file patterns, relative to chromiumos root, which may
-      // use * or ** for globbing.
-      // e.g.
-      // chromite/myfile.txt
-      // chromite/config/*
-      // **/*.md
-      repeated string file_patterns = 2;
-    }
-
-    // A rule describing conditions under which this builder should be launched.
-    RunWhen run_when = 9;
+    reserved 9;
   }
   Build build = 6;
 
