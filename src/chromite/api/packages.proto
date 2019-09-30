@@ -8,6 +8,22 @@ import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
 
+// This can easily be generalized to a Builds method if necessary, but
+// currently we have no use case for anything but Chrome, and making this
+// specifically for Chrome simplifies the calling code significantly.
+message BuildsChromeRequest {
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 1;
+  // The build target whose prebuilt is being checked.
+  chromiumos.BuildTarget build_target = 2;
+}
+
+message BuildsChromeResponse {
+  // Whether or not it builds chrome.
+  bool builds_chrome = 1;
+}
+
 message GetBestVisibleRequest {
   // An atom to pass to portageq, e.g. 'chromeos-chrome'.
   string atom = 1;
@@ -124,49 +140,47 @@ message UprevVersionedPackageResponse {
 service PackageService {
   option (service_options) = {
     module: "packages",
-    service_chroot_assert: OUTSIDE,
+    service_chroot_assert: INSIDE,
   };
+
+  // Check if the build target has chrome in its depgraph.
+  rpc BuildsChrome(BuildsChromeRequest) returns (BuildsChromeResponse);
 
   // Find the best (highest) available version of the requested package.
   // This must be run after the chroot is set up (for chroot package lookup) or
   // after the sysroot is created (for build target package lookup).
-  rpc GetBestVisible(GetBestVisibleRequest)
-    returns (GetBestVisibleResponse) {
-    option (method_options) = {
-      method_chroot_assert: INSIDE,
-    };
-  }
+  rpc GetBestVisible(GetBestVisibleRequest) returns (GetBestVisibleResponse);
 
   // Like GetBestVisible, but returns only the chrome version. The chrome
   // package version is something like 78.9.0.123_rc-r1, where the chrome
   // version itself is just 78.9.0.123. This case does not have a spec in
   // Portage, so it cannot be directly fetched by GetBestVisible.
-  rpc GetChromeVersion(GetChromeVersionRequest) returns
-    (GetChromeVersionResponse) {
-    option (method_options) = {
-      method_chroot_assert: INSIDE,
-    };
-  }
+  rpc GetChromeVersion(GetChromeVersionRequest)
+    returns (GetChromeVersionResponse);
 
   // Check if there is an available chrome prebuilt for the most recent
   // version of chrome.
-  rpc HasChromePrebuilt(HasChromePrebuiltRequest) returns
-    (HasChromePrebuiltResponse) {
-    option (method_options) = {
-      method_chroot_assert: INSIDE,
-    };
-  }
+  rpc HasChromePrebuilt(HasChromePrebuiltRequest)
+    returns (HasChromePrebuiltResponse);
 
   // The generic uprev process -- performs uprevs for all packages in the
   // public and/or private overlays for the build target(s) specified.
   // This handles all cros_workon packages except those that have a separate
   // uprev process.
-  rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse);
+  rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 
   // Uprev a package that is externally versioned (e.g. Chrome).
   // This endpoint iterates over a list of git refs that represent versions
   // and searches for a new version, updating and upreving the package ebuild
   // if such a version is found. The exact behavior depends on the package.
   rpc UprevVersionedPackage(UprevVersionedPackageRequest)
-    returns (UprevVersionedPackageResponse);
+    returns (UprevVersionedPackageResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 }
