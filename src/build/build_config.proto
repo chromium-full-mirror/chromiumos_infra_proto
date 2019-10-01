@@ -1,0 +1,200 @@
+// Configurable software attributes for ChromeOS builds.
+//
+// See
+// https://chromium.git.corp.google.com/chromiumos/platform2/+/refs/heads/master/chromeos-config/README.md
+// for documentation on Unified Builds and ChromeOS Config.
+
+syntax = "proto3";
+
+package build_config;
+
+// A single ChromeOS Config payload.
+//
+// The generated ChromeOS Config JSON uses "-", which is not valid in a proto
+// field name. Use json_name, so the JSON can be parsed directly into / out of
+// this proto.
+message ChromeOSConfig {
+  message Arc {
+    message BuildProperties {
+      // Device name to report in ‘ro.product.device’. This is often
+      // ‘{product}_cheets’ but it can be something else if desired.
+      string device = 1;
+
+      // The first Android API level that this model shipped with.
+      string first_api_level = 2 [json_name = "first-api-level"];
+
+      // Name of this model as it is called in the market, reported in
+      // ‘ro.product.model’. This often starts with ‘{oem}’.
+      string marketing_name = 3 [json_name = "marketing-name"];
+
+      // Tag to use to track metrics for this model. The tag can be shared
+      // across many devices if desired, but this will result in larger
+      // granularity for metrics reporting. Ideally the metrics system should
+      // support collation of metrics with different tags into groups, but if
+      // this is not supported, this tag can be used to achieve the same end.
+      // This is reported in ‘ro.product.metrics.tag’.
+      string metrics_tag = 4 [json_name = "metrics-tag"];
+
+      // Original Equipment Manufacturer for this model. This generally means
+      // the OEM name printed on the device.
+      string oem = 5;
+
+      string pai_regions = 6 [json_name = "pai-regions"];
+
+      // Product name to report in ‘ro.product.name’. This may be the device
+      // name, or it can be something else, to allow several devices to be
+      // grouped into one product.
+      string product = 7;
+    }
+
+    BuildProperties build_properties = 1 [json_name = "build-properties"];
+  }
+
+  message Firmware {
+    message BuildTargets {
+      // Build target of the base EC firmware for a detachable device, that will
+      // be considered dirty when building/testing
+      string base = 1;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string coreboot = 2;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string cr50 = 3;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string depthcharge = 4;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string ec = 5;
+
+      // Extra EC build targets to build within chromeos-ec.
+      repeated string ec_extras = 6;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string ish = 7;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string libpayload = 8;
+
+      // Build target that will be considered dirty when building/testing
+      // locally.
+      string u_boot = 9 [json_name = "u-boot"];
+    }
+
+    // BCS overlay path used to determine BCS file path for binary firmware
+    // downloads.
+    string bcs_overlay = 1 [json_name = "bcs-overlay"];
+
+    // The name of the firmware build. Typically the device name, but can differ
+    // when a device may have two or more different firmware builds.
+    string build_name = 2 [json_name = "build-name"];
+
+    BuildTargets build_targets = 3 [json_name = "build-targets"];
+
+    // Name of the file located in BCS under the respective bcs-overlay.
+    string ec_ro_image = 4 [json_name = "ec-ro-image"];
+
+    // Name of the file located in BCS under the respective bcs-overlay.
+    string main_ro_image = 5 [json_name = "main-ro-image"];
+
+    // Name of the file located in BCS under the respective bcs-overlay.
+    string main_rw_image = 6 [json_name = "main-rw-image"];
+
+    // This is a human-recognizable name used to refer to the firmware. It will
+    // be used when generating the shellball via firmware packer. Mainly, this
+    // is only for compatibility testing with device tree (since DT allowed
+    // firmwares to be named).
+    string name = 7;
+
+    // If present this indicates that this model has no firmware at present.
+    // This means that it will be omitted from the firmware updater
+    // (chromeos-firmware- ebuild) and it will not be included in the signer
+    // instructions file sent to the signer. This option is often useful when a
+    // model is first added, since it may not have firmware at that point.
+    bool no_firmware = 8 [json_name = "no-firmware"];
+
+    // Name of the file located in BCS under the respective bcs-overlay.
+    string pd_ro_image = 9 [json_name = "pd-ro-image"];
+  }
+
+  message FirmwareSigning {
+    // Key ID from the signer key set that is used to sign the given firmware
+    // image.
+    string key_id = 1 [json_name = "key-id"];
+
+    //   Indicates that this model cannot be decoded by the mapping table.
+    //   Instead the model is stored in the VPD (Vital Product Data) region in
+    //   the customization_id property. This allows us to determine the model to
+    //   use in the factory during the finalization stage. Note that if the VPD
+    //   is wiped then the model will be lost. This may mean that the device
+    //   will revert back to a generic model, or may not work. It is not
+    //   possible in general to test whether the model in the VPD is correct at
+    //   run-time. We simply assume that it is. The advantage of using this
+    //   property is that no hardware changes are needed to change one model
+    //   into another. For example we can create 20 different whitelabel boards,
+    //   all with the same hardware, just by changing the customization_id that
+    //   is written into SPI flash.
+    bool sig_id_in_customization_id = 2
+        [json_name = "sig-id-in-customization-id"];
+
+    // ID used to generate keys/keyblocks in the firmware signing output. This
+    // is also the value provided to mosys platform signature for the
+    // updater4.sh script.
+    string signature_id = 3 [json_name = "signature-id"];
+  }
+
+  // Defines attributes that are used by cros_config to detect the identity of
+  // the platform and which corresponding config should be used.
+  message Identity {
+    // ‘customization_id’ value set in the VPD for non-unibuild Zergs and
+    // Whitelabels. Deprecated for use in new products since 2017/07/26.
+    string customization_id = 1 [json_name = "customization-id"];
+
+    // Defines the name that is reported by ‘mosys platform name’ This is
+    // typically the reference design name with the first letter capitalized.
+    string platform_name = 2 [json_name = "platform-name"];
+
+    // SKU/Board strapping pins configured during board manufacturing. Minimum
+    // value: -0x1. Maximum value: 0x7fffffff.
+    int64 sku_id = 3 [json_name = "sku-id"];
+
+    // [x86] Firmware name built into the firmware and reflected back out in the
+    // SMBIOS tables.
+    string smbios_name_match = 4 [json_name = "smbios-name-match"];
+
+    // [ARM] String pattern (partial) that is matched against the contents of
+    // /proc/device-tree/compatible on ARM devices.
+    string device_tree_compatible_match = 5
+        [json_name = "device-tree-compatible-match"];
+
+    // ‘whitelabel_tag’ value set in the VPD, to add Whitelabel branding over an
+    // unbranded base model.
+    string whitelabel_tag = 6 [json_name = "whitelabel-tag"];
+  }
+
+  Identity identity = 1;
+
+  Arc arc = 2;
+
+  Firmware firmware = 3;
+
+  FirmwareSigning firmware_signing = 4 [json_name = "firmware-signing"];
+
+  // Unique name for the given model.
+  string name = 5;
+
+  // Brand code of the model (also called RLZ code).
+  string brand_code = 6 [json_name = "brand-code"];
+}
+
+// All ChromeOS Config payloads for a given build.
+message ChromeOSConfigs {
+  repeated ChromeOSConfig configs = 1;
+}
