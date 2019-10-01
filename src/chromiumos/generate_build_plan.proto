@@ -11,8 +11,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 import "chromiumos/builder_config.proto";
 import "chromiumos/common.proto";
 
-// The input proto for invocations of the Build Skipper program.
-message BuildSkipperRequest {
+// The input proto for invocations of the Build Planner.
+message GenerateBuildPlanRequest {
   // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
   // or similar. Explicit proto import is avoided here to prevent a dependency
   // on the luci-go repo.
@@ -26,8 +26,8 @@ message BuildSkipperRequest {
   repeated BuilderConfig builder_configs = 3;
 }
 
-// The output proto for invocations of the Build Skipper program.
-message BuildSkipperResponse {
+// The output proto for invocations of the Build Planner.
+message GenerateBuildPlanResponse {
 
   // BuilderConfigs that cannot be skipped.
   repeated BuilderConfig.Id builds_to_run = 1;
