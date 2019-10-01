@@ -106,9 +106,8 @@ message InstallPackagesResponse {
 }
 
 message CreateSimpleChromeSysrootRequest {
-  // The sysroot for which SimpleChrome flow will be run.
-  // The path and build_target are required.
-  Sysroot sysroot = 1;
+  // The board that is the build_target for the created sysroot.
+  chromiumos.BuildTarget build_target = 1;
   // Additional environment flags which are set via the ENV VAR 'USE'.
   repeated string use_flags = 2;
   // Target directory for the sysroot tarball.
