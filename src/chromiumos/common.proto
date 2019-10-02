@@ -106,6 +106,16 @@ enum ImageType {
   RECOVERY = 6;
   FACTORY = 7;
   FIRMWARE = 8;
+  CR50_FIRMWARE = 9;
+}
+
+// The various channels that we release through.
+enum Channel {
+  CHANNEL_UNSPECIFIED = 0;
+  CHANNEL_STABLE = 1;
+  CHANNEL_BETA = 2;
+  CHANNEL_DEV = 3;
+  CHANNEL_CANARY = 4;
 }
 
 // A wrapper around a serialized protocol buffer.
