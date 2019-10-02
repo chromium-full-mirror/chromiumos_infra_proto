@@ -28,7 +28,11 @@ message TestRestriction {
 // A set of test restrictions for a source tree.
 message SourceTreeTestRestriction {
   // A CrOS source tree.
+  // This will be deprecated in favor of file_pattern.
   SourceTree source_tree = 1;
+  // A file pattern, representing a segment of Chrome OS code.
+  FilePattern file_pattern = 3;
+
   // The test restrictions to apply to the source tree.
   TestRestriction test_restriction = 2;
 }

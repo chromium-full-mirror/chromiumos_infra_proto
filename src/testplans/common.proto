@@ -20,3 +20,15 @@ message ProtoBytes {
   bytes serialized_proto = 1;
 }
 
+message FilePattern {
+  // Bash pattern for matching a file in the chromiumos checkout.
+  // This may make use of globstar (i.e. **) notation to match against many
+  // subdirectories at once. The pattern will be matched against a full
+  // relative path in the chromiumos checkout.
+  // e.g.
+  // chromite/config/** to match anything under chromite/config/
+  // **/OWNERS to match any OWNERS file
+  // **/*.md to match any .md file
+  // src/somefile.java to match a specific file
+  string pattern = 1;
+}
