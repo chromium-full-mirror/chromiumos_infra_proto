@@ -48,6 +48,9 @@ message GomaConfig {
   string goma_dir = 1;
   // The goma client credentials file.
   string goma_client_json = 2;
+  // Path to the Goma client used for build package.
+  // If None, goma_dir will be used instead.
+  string chromeos_goma_dir = 3;
 }
 
 // Message describing a package, The corresponding variable names are from

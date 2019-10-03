@@ -144,8 +144,8 @@ message SimpleChromeWorkflowTestRequest {
   // using cros chrome-sdk.
   string chrome_root = 2;
 
-  // If true, use goma when building Chrome.
-  bool use_goma = 3;
+  // Options for using goma when building Chrome.
+  chromiumos.GomaConfig goma_config = 3;
 }
 
 message SimpleChromeWorkflowTestResponse {
