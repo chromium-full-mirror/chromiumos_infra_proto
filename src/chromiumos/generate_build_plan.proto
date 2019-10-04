@@ -20,7 +20,11 @@ message GenerateBuildPlanRequest {
   repeated ProtoBytes gerrit_changes = 1;
 
   // The manifest-internal snapshot commit hash that's being used for the current build.
+  // Note that manifest_commit will be soon replaced with gitiles_commit below.
   string manifest_commit = 2;
+  // Serialized buildbucket GitilesCommit, representing the manifest or
+  // manifest-internal commit to which the build is synced.
+  ProtoBytes gitiles_commit = 4;
 
   // The BuilderConfigs to consider for skipping.
   repeated BuilderConfig builder_configs = 3;

@@ -19,7 +19,12 @@ message GenerateTestPlanRequest {
   repeated ProtoBytes buildbucket_protos = 5;
 
   // The manifest-internal snapshot commit hash that's being used for the current build.
+  // Note that manifest_commit will be soon replaced with gitiles_commit below.
   string manifest_commit = 7;
+  // Serialized buildbucket GitilesCommit, representing the manifest or
+  // manifest-internal commit to which the build is synced.
+  ProtoBytes gitiles_commit = 9;
+
 
   // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
   // or similar. Explicit proto import is avoided here to prevent a dependency
