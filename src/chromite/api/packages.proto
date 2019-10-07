@@ -15,8 +15,11 @@ message BuildsChromeRequest {
   // The chroot where the operations will be executed.
   // Required.
   chromiumos.Chroot chroot = 1;
-  // The build target whose prebuilt is being checked.
+  // The build target we are checking for.
   chromiumos.BuildTarget build_target = 2;
+  // List of packages to be installed by the builder. If none are specified the
+  // standard list of packages is used.
+  repeated chromiumos.PackageInfo packages = 3;
 }
 
 message BuildsChromeResponse {
