@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+import "chromiumos/common.proto";
+
+
+// Defines a single build directory in storage.
+message Build {
+  // The board of the image "x86-mario", etc.
+  chromiumos.BuildTarget build_target = 1;
+
+  // The version of the image. "0.14.23.2", "3401.0.0", etc.
+  string version = 2;
+
+  // The bucket of the image. "chromeos-releases" as default.
+  string bucket = 3;
+
+  // The channel of the image "stable-channel", "nplusone", etc.
+  string channel = 4;
+}
+
+
+// Define a signed ChromeOS image archived.
+message SignedImage {
+  // An instance of Build that defines the build artifacts directory.
+  Build build = 1;
+
+  // The type of the image. Currently, "recovery" or "base" types are supported.
+  chromiumos.ImageType image_type = 2;
+
+  // The key the image was signed with. "premp", "mp", "mp-v2". This is not the
+  // board specific key name, but the general value used in image/payload names.
+  string key = 3;
+}
+
+
+// Define a unsigned ChromeOS image archived.
+message UnsignedImage {
+  // An instance of Build that defines the build artifacts directory.
+  Build build = 1;
+
+  /// The type of the image. Currently one of "test", "recovery", or "base".
+  chromiumos.ImageType image_type = 2;
+
+  // The most recent branch corresponding to the version; "R19" etc.
+  string milestone = 3;
+
+}
+
+
+// Request payload generation to be done with a source and target image.
+message PayloadGenerationRequest {
+
+  // Source image properties, must be either full_update or the same type as
+  // the included tgt_image_oneof. full_update indicates the lack of a source.
+  oneof src_image_oneof {
+    bool full_update = 1;
+    SignedImage src_signed_image = 2;
+    UnsignedImage src_unsigned_image = 3;
+  }
+
+  // Target image properties.
+  oneof tgt_image_oneof {
+    SignedImage tgt_signed_image = 4;
+    UnsignedImage tgt_unsigned_image = 5;
+  }
+
+  // TODO(engeg@): We could override the output build artifacts location via
+  //               specifying an additional parameter build and supplying it to
+  //               paygen_payload_lib.py but have chosen not to implement yet.
+
+  // The destination bucket (defaults to "chromeos-releases").
+  string bucket = 6;
+
+  // Should we run verification?
+  bool verify = 7;
+
+  // The keyset to sign with (e.g. "coral-mp-v16"), if empty do not sign.
+  string keyset = 8;
+
+}
+
+// Result of a payload generation.
+message PayloadGenerationResult {
+  // Whether we've completed successfully.
+  bool success = 1;
+}
+
+// The image service definition.
+service PayloadService {
+  option (service_options) = {
+    module: "payload",
+    service_chroot_assert: OUTSIDE,
+  };
+  rpc GeneratePayload(PayloadGenerationRequest) returns (PayloadGenerationResult);
+}
