@@ -187,5 +187,9 @@ service TestService {
 
   // Run the Simple Chrome workflow unit tests.
   rpc SimpleChromeWorkflowTest(SimpleChromeWorkflowTestRequest)
-    returns (SimpleChromeWorkflowTestResponse);
+    returns (SimpleChromeWorkflowTestResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 }
