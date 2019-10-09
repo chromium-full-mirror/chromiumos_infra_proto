@@ -1,0 +1,8 @@
+Make sure that you install cuelang's go package first:
+$ go get "cuelang.org/go/encoding/protobuf"
+$ go get "cuelang.org/go/cue"
+
+From within this folder, run:
+$ go run device_proto2cue.go
+
+
