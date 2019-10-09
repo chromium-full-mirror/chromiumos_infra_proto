@@ -60,6 +60,33 @@ message GetChromeVersionResponse {
   string version = 1;
 }
 
+message GetTargetVersionsRequest {
+  // The chroot path.
+  // Required if not in the default location.
+  chromiumos.Chroot chroot = 1;
+
+  // The build target to examine.
+  // Required.
+  chromiumos.BuildTarget build_target = 2;
+}
+
+message GetTargetVersionsResponse {
+  // Android version, e.g. 5812377
+  string android_version = 1;
+  // Android-branch version, e.g. git_nyc
+  string android_branch_version = 2;
+  // Android-target version, e.g. cheets
+  string android_target_version = 3;
+  // Chrome version, e.g. 78.0.3877.0.
+  string chrome_version = 4;
+  // Full version, e.g. R78-12438.0.0.
+  string full_version = 5;
+  // Milestone version, e.g. 78.
+  string milestone_version = 6;
+  // Platform version, e.g. 12438.0.0.
+  string platform_version = 7;
+}
+
 // This can easily be generalized to a HasPrebuilt method if necessary, but
 // currently we have no use case for anything but Chrome, and making this
 // specifically for Chrome simplifies the calling code significantly.
@@ -160,6 +187,11 @@ service PackageService {
   // Portage, so it cannot be directly fetched by GetBestVisible.
   rpc GetChromeVersion(GetChromeVersionRequest)
     returns (GetChromeVersionResponse);
+
+  // Return the various build version fields that can be stored (e.g. in
+  // metadata.json).
+  rpc GetTargetVersions(GetTargetVersionsRequest)
+    returns (GetTargetVersionsResponse);
 
   // Check if there is an available chrome prebuilt for the most recent
   // version of chrome.
