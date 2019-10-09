@@ -6,6 +6,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
+import "chromiumos/metrics.proto";
 
 // Image argument - encapsulate data about an image.
 message Image {
@@ -49,6 +50,8 @@ message CreateImageResult {
   repeated Image images = 2;
   // Any packages that failed to build. Empty on success.
   repeated chromiumos.PackageInfo failed_packages = 3;
+  // The metric events that occurred during the running of CreateImage.
+  repeated chromiumos.MetricEvent events = 4;
 }
 
 // The image test arguments.
