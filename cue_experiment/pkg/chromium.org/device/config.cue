@@ -53,8 +53,7 @@ Config: {
 }
 
 // Next tag: 8
-Config_FormFactor:
-	*"FORM_FACTOR_UNSPECIFIED" |
+Config_FormFactor: "FORM_FACTOR_UNSPECIFIED" |
 	"FORM_FACTOR_CLAMSHELL" |
 	"FORM_FACTOR_CONVERTIBLE" |
 	"FORM_FACTOR_DETACHABLE" |
@@ -75,8 +74,7 @@ Config_FormFactor_value: {
 }
 
 // Next Tag: 3
-Config_Graphics:
-	*"GRAPHICS_UNSPECIFIED" |
+Config_Graphics: "GRAPHICS_UNSPECIFIED" |
 	"GRAPHICS_GL" |
 	"GRAPHICS_GLE"
 
@@ -87,8 +85,7 @@ Config_Graphics_value: {
 }
 
 // Next Tag: 9
-Config_HardwareFeature:
-	*"HARDWARE_FEATURE_UNSPECIFIED" |
+Config_HardwareFeature: "HARDWARE_FEATURE_UNSPECIFIED" |
 	"HARDWARE_FEATURE_BLUETOOTH" |
 	"HARDWARE_FEATURE_FLASHROM" |
 	"HARDWARE_FEATURE_HOTWORDING" |
@@ -114,8 +111,7 @@ Config_HardwareFeature_value: {
 
 // Indicate the device's power supply.
 // Next Tag: 3
-Config_PowerSupply:
-	*"POWER_SUPPLY_UNSPECIFIED" |
+Config_PowerSupply: "POWER_SUPPLY_UNSPECIFIED" |
 	"POWER_SUPPLY_BATTERY" |
 	"POWER_SUPPLY_AC_ONLY"
 
@@ -126,8 +122,7 @@ Config_PowerSupply_value: {
 }
 
 // Next Tag: 6
-Config_Storage:
-	*"STORAGE_UNSPECIFIED" |
+Config_Storage: "STORAGE_UNSPECIFIED" |
 	"STORAGE_SSD" |
 	"STORAGE_HDD" |
 	"STORAGE_MMC" |
@@ -144,8 +139,7 @@ Config_Storage_value: {
 }
 
 // Next tag: 13
-Config_VideoAcceleration:
-	*"VIDEO_UNSPECIFIED" |
+Config_VideoAcceleration: "VIDEO_UNSPECIFIED" |
 	"VIDEO_ACCELERATION_H264" |
 	"VIDEO_ACCELERATION_ENC_H264" |
 	"VIDEO_ACCELERATION_VP8" |
@@ -176,8 +170,7 @@ Config_VideoAcceleration_value: {
 }
 
 // Next Tag: 31
-Config_SOC:
-	*"SOC_UNSPECIFIED" |
+Config_SOC: "SOC_UNSPECIFIED" |
 
 	// Aka AML-Y
 	"SOC_AMBERLAKE_Y" |
@@ -250,8 +243,7 @@ Config_SOC_value: {
 }
 
 // Next Tag: 6
-Config_ODM:
-	*"ODM_UNSPECIFIED" |
+Config_ODM: "ODM_UNSPECIFIED" |
 	"ODM_QUANTA" |
 	"ODM_BITLAND" |
 	"ODM_SAMSUNG" |
@@ -266,8 +258,7 @@ Config_ODM_value: {
 	"ODM_PEGATRON":    4
 	"ODM_COMPAL":      5
 }
-Config_OEM:
-	*"OEM_UNSPECIFIED" |
+Config_OEM: "OEM_UNSPECIFIED" |
 	"OEM_ACER" |
 	"OEM_DELL" |
 	"OEM_SAMSUNG" |
