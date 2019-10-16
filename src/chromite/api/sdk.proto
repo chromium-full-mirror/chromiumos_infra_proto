@@ -39,6 +39,16 @@ message CreateResponse {
   ChrootVersion version = 1;
 }
 
+// Delete request message.
+message DeleteRequest {
+  // The chroot to delete.
+  chromiumos.Chroot chroot = 2;
+}
+
+// Delete request message.
+message DeleteResponse {
+}
+
 // Chroot update request message.
 // Example json:
 // {"toolchain_targets": [{"name": "eve"}]}
@@ -73,6 +83,9 @@ service SdkService {
 
   // Create method, supports replacing an existing chroot.
   rpc Create(CreateRequest) returns (CreateResponse);
+
+  // Delete a chroot.
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 
   // Update the chroot.
   rpc Update(UpdateRequest) returns (UpdateResponse) {
