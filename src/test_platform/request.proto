@@ -180,6 +180,15 @@ message Request {
     }
 
     Legacy legacy = 10;
+
+    // Notification defines parameters for the request to use to notify callers
+    // of its test's status updates.
+    message Notification {
+      // Pubsub topic to broadcast status updates to
+      string pubsub_topic = 1;
+    }
+
+    Notification notification = 11;
   }
 
   Params params = 1;
