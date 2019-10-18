@@ -1,0 +1,19 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package lab_platform;
+
+// import "lab_platform/build_target.proto";
+import "chromiumos/common.proto";
+import "device/model_id.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab_platform";
+
+// Next Tag: 3
+message StableVersionKey {
+    device.ModelId model_id = 1;
+    chromiumos.BuildTarget build_target = 2;
+}
