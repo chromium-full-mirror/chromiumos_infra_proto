@@ -51,6 +51,16 @@ message GomaConfig {
   // Path to the Goma client used for build package.
   // If None, goma_dir will be used instead.
   string chromeos_goma_dir = 3;
+
+  // Facilitates testing new Goma approaches before rolling them out
+  // more widely.
+  enum GomaApproach {
+    GOMA_APPROACH_UNSPECIFIED = 0;
+    DEFAULT = 1;
+    RBE_PROD = 2;
+    RBE_STAGING = 3;
+  }
+  GomaApproach goma_approach = 4;
 }
 
 // Message describing a package, The corresponding variable names are from
