@@ -18,7 +18,7 @@ import "google/protobuf/timestamp.proto";
 // This proto should only be used by a recipes module to do the wrapping and a
 // layer on the Analysis Server to do the unwrapping.
 //
-// NEXT ID: 48;
+// NEXT ID: 52;
 message AnalysisServiceEvent {
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
@@ -32,6 +32,11 @@ message AnalysisServiceEvent {
   google.protobuf.Timestamp request_time = 3;
   google.protobuf.Timestamp response_time = 4;
 
+  // The stdout and stderr logs for a stage. Either log string may be truncated
+  // to ensure individual entries and proto request sizes work well for upload
+  // and for later querying.
+  string stdout = 50;
+  string stderr = 51;
 
   // The request to upload.
   oneof request {
