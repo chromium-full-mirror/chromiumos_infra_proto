@@ -1,0 +1,41 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package config;
+
+import "google/protobuf/field_mask.proto";
+
+// Describes how a single file should be replicated.
+message FileReplicationRule {
+    // Path to the original file. Should be relative to the source root,
+    // e.g. "src/private-overlays/overlay-coral-private/chromeos-base/chromeos-config-bsp-coral-private/files/build_config.json"
+    string source_path = 1;
+
+    // Path to output the file. Should be relative to the source root,
+    // e.g. "src/overlays/overlay-coral/chromeos-base/chromeos-config-bsp-coral/files/build_config.json"
+    string destination_path = 2;
+
+    // Fields to replicate to destination config payloads. Relevant to JSON or
+    // proto (binary, textpb, or jsonpb) config payloads, has no effect on other
+    // file types. If not set for a relevant file, no fields will be copied.
+    //
+    // # Behavior Specific to ChromeOS Config Payloads
+    //
+    // The mask applies to each device config in the config payload, NOT to the
+    // top-level payload; i.e. to copy the "audio" field to the destination,
+    // the mask should be "audio", not "chromeos.configs.audio". This is
+    // analogous to standard FieldMask behavior on a REST list operation, where
+    // the mask applies to each individual message. Sub-fields are still
+    // fully-qualified, as per standard FieldMasks, e.g.
+    // "bluetooth.config.build-path"
+    google.protobuf.FieldMask destination_fields = 3;
+}
+
+// Describes how files should be replicated, e.g. from private to public.
+message ReplicationConfig {
+    // Files to be replicated.
+    repeated FileReplicationRule file_replication_rules = 1;
+}
