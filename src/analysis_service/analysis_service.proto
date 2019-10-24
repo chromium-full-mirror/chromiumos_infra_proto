@@ -11,6 +11,18 @@ import "chromite/api/sysroot.proto";
 import "chromite/api/test.proto";
 import "google/protobuf/timestamp.proto";
 
+// Data about the execution of a step. Fields mirror those of the
+// ExecutionResult object returned by a step.
+message StepExecutionResult {
+  int32 retcode = 1;
+
+  bool had_timeout = 2;
+
+  bool had_exception = 3;
+
+  bool was_cancelled = 4;
+}
+
 // Requests and responses are sent to the Artifacts Analysis Service on a single
 // Pub/Sub topic; thus, the type of the request and response need to be encoded
 // in the Pub/Sub message. This is done with this wrapper proto.
@@ -18,7 +30,7 @@ import "google/protobuf/timestamp.proto";
 // This proto should only be used by a recipes module to do the wrapping and a
 // layer on the Analysis Server to do the unwrapping.
 //
-// NEXT ID: 52;
+// NEXT ID: 53;
 message AnalysisServiceEvent {
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
@@ -37,6 +49,9 @@ message AnalysisServiceEvent {
   // and for later querying.
   string stdout = 50;
   string stderr = 51;
+
+  // Data about the execution of the step doing the request and response.
+  StepExecutionResult step_execution_result = 52;
 
   // The request to upload.
   oneof request {
