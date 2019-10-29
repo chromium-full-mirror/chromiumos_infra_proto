@@ -16,8 +16,12 @@ message TKOConfig {
 
   string mysql_user = 2 [json_name = "mysql_user"];
 
-  // File containing the MySQL password.
+  // File containing the MySQL password. Populated from the encrypted password.
   string mysql_password_file = 3 [json_name = "mysql_password_file"];
+
+  // MySQL password encrypted using the Cloud KMS key and encoded as base64
+  // string.
+  string encrypted_mysql_password = 4 [json_name = "encrypted_mysql_password"];
 }
 
 // GoogleStorageConfig describes GS offloading params.
