@@ -18,8 +18,6 @@ message DepGraph {
   // List of packages in the dependency graph and their infos, which include
   // dependency packages and the source paths.
   repeated PackageDepInfo package_deps = 2;
-  // The chroot to use to execute the endpoint.
-  chromiumos.Chroot chroot = 3;
 }
 
 // Message describing a package and its dependencies.
@@ -47,6 +45,8 @@ message GetBuildDependencyGraphRequest {
   // Required.
   // The board whose dependency graph is being created.
   chromiumos.BuildTarget build_target = 1;
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 2;
 }
 
 // Response from creating dependency graph json map.
