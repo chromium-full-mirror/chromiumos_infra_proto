@@ -39,6 +39,8 @@ message BuilderConfig {
       CQ = 1;
       // Postsubmit build.
       POSTSUBMIT = 2;
+      // Toolchain build.
+      TOOLCHAIN = 3;
     }
     Type type = 3;
   }
