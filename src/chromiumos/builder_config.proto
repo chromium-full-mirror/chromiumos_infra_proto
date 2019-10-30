@@ -9,6 +9,7 @@ package chromiumos;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 
 import "chromiumos/common.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 // Configuration used by a builder during execution.
@@ -89,6 +90,11 @@ message BuilderConfig {
 
     // A rule describing conditions under which this builder should be launched.
     RunWhen run_when = 3;
+
+    // Time before which ToT had a bug that would not manifest at the
+    // build stage. The CQ orchestrator should NOT reuse successful builds
+    // of the build_config before this.
+    google.protobuf.Timestamp broken_before = 4;
   }
   General general = 2;
 
