@@ -159,6 +159,12 @@ message UprevPackagesResponse {
 
   // The new version that was uprevved to when an uprev was completed.
   string version = 2;
+
+  // Optional.
+  // Message generated from uprreving the packages. This
+  // can be used as part of the commit message if one is to
+  // commit the uprev change.
+  string uprev_message = 3;
 }
 
 message UprevVersionedPackageResponse {
