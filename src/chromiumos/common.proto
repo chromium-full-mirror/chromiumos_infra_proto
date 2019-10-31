@@ -148,6 +148,8 @@ enum ImageType {
   FACTORY = 7;
   FIRMWARE = 8;
   CR50_FIRMWARE = 9;
+  BASE_GUEST_VM = 10;
+  TEST_GUEST_VM = 11;
 }
 
 // The various channels that we release through.
