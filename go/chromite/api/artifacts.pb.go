@@ -242,6 +242,8 @@ func (m *BundleVmFilesRequest) GetOutputDir() string {
 	return ""
 }
 
+// DEPRECATED for recipes: crbug/1019868: This is being replaced with
+// BundleRequest.
 // Request describing where to find Chrome AFDO artifacts
 type BundleChromeAFDORequest struct {
 	// The chroot where the orderfile lives.

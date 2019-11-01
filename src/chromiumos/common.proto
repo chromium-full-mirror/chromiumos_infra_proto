@@ -100,6 +100,34 @@ message ResultPath {
   Path path = 1;
 }
 
+// See also crrev.com/c/1929452 and:
+//   https://cs.corp.google.com/piper///depot/google3/third_party/luci/buildbucket/proto/common.proto?l=147-176&rcl=257714215
+// A Gerrit patchset.
+message GerritChange {
+  // Gerrit hostname, e.g. "chromium-review.googlesource.com".
+  string host = 1;
+  // Gerrit project, e.g. "chromium/src".
+  string project = 2;
+  // Change number, e.g. 12345.
+  int64 change = 3;
+  // Patch set number, e.g. 1.
+  int64 patchset = 4;
+}
+
+message GitilesCommit {
+  // Gitiles hostname, e.g. "chromium.googlesource.com".
+  string host = 1;
+  // Repository name on the host, e.g. "chromium/src".
+  string project = 2;
+  // Commit HEX SHA1.
+  string id = 3;
+  // Commit ref, e.g. "refs/heads/master".
+  // NOT a branch name: if specified, must start with "refs/".
+  string ref = 4;
+  // Defines a total order of commits on the ref. Requires ref field.
+  uint32 position = 5;
+}
+
 // Message for USE flags.
 message UseFlag {
   // The use flag.
@@ -136,12 +164,10 @@ message ProtoBytes {
   bytes serialized_proto = 1;
 }
 
-// TODO(crbug.com/1020615): Drop this from chromite/api/toolchain.proto once
-// this is live in production and all of the users have migrated to using
-// chromiumos.AFDOArtifactType. Meanwhile, keep this in sync with
-// chromite/api/toolchain.proto.
-
-// The various toolchain optimization artifact types.
+// TODO(crbug.com/1020615): Drop this from chromite/api/toolchain.proto (and
+// here) once usage has migrated to BuilderConfig.Artifacts.ArtifactType.
+// Meanwhile, keep this in sync with chromite/api/toolchain.proto.  The various
+// toolchain optimization artifact types.
 enum AFDOArtifactType {
   // No AFDO artifact type specified.
   NONE_TYPE = 0;

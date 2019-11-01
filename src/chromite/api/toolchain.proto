@@ -3,12 +3,38 @@ package chromite.api;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
+import "chromite/api/artifacts.proto";
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
+// Prepare the build for artifact building.
+message PrepareForToolchainBuildRequest {
+  // There is no sysroot or chroot to specify at this point in the build.
+  // See PrepareForBuildResponse.
+
+  // TODO(crbug/1019868): At a minimum, the AFDO verify builders will need
+  // enough information to be able to find the artifact created by the
+  // AFDO_record HW Test.
+}
+
+message PrepareForToolchainBuildResponse {
+  // Does this artifact require a build?
+  enum BuildRelevance {
+    UNSPECIFIED = 0;
+    // Build is necessary to generate artifacts.
+    NEEDED = 1;
+    // Defer to other artifacts.  Used primarily for aggregation of artifact
+    // results.
+    UNKNOWN = 2;
+    // Artifacts are already generated.  The build is pointless.
+    POINTLESS = 3;
+  }
+  BuildRelevance build_relevance = 1;
+}
+
 // TODO(crbug.com/1020615): Drop this once this is live in production and all of
-// the users have migrated to using chromiumos.AFDOArtifactType.
-// Meanwhile, keep this in sync with chromiumos/common.proto.
+// the users have migrated to using BuilderConfig.Artifacts.ArtifactType
+// Meanwhile, keep this in sync with chromiumos/builder_config.proto.
 enum AFDOArtifactType {
   // No AFDO artifact type specified.
   NONE_TYPE = 0;
@@ -36,19 +62,86 @@ message VerifyAFDOArtifactsResponse {
   // Status of the service
   bool status = 1;
 }
+// End of TODO(crbug.com/1020615).
 
 // Service for Android/ARC related functionality.
 service ToolchainService {
   option (service_options) = {
     module: "toolchain",
-    service_chroot_assert: INSIDE,
+    service_chroot_assert: OUTSIDE,
   };
 
+  // DEPRECATED for recipes: used only by legacy toolchain builders.
   // Update Chrome ebuild with most recent unvetted orderfile
   rpc UpdateEbuildWithAFDOArtifacts(VerifyAFDOArtifactsRequest)
-      returns (VerifyAFDOArtifactsResponse);
+    returns (VerifyAFDOArtifactsResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE;
+    };
+  }
 
+  // DEPRECATED for recipes: used only by legacy toolchain builders.
   // Copy the orderfile from unvetted GS bucket to vetted bucket.
   rpc UploadVettedAFDOArtifacts(VerifyAFDOArtifactsRequest)
-      returns (VerifyAFDOArtifactsResponse);
+    returns (VerifyAFDOArtifactsResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE;
+    };
+  }
+
+  // Create Chrome AFDO Generate builder artifacts.
+  rpc PrepareForBuildUnverifiedChromeAFDOFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Chrome AFDO Verification builder artifacts.
+  rpc PrepareForBuildVerifiedChromeAFDOFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Kernel AFDO Verification builder artifacts.
+  rpc PrepareForBuildVerifiedKernelAFDOFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Chrome Llvm Clang Tidy builder artifacts.
+  rpc PrepareForBuildChromeClangWarningsFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Llvm PGO Generate builder artifacts.
+  rpc PrepareForBuildUnverifiedLLVMPgoFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Chrome OrderfileGenerate builder artifacts.
+  rpc PrepareForBuildUnverifiedOrderingFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Chrome OrderfileVerify builder artifacts.
+  rpc PrepareForBuildVerifiedOrderingFile(PrepareForToolchainBuildRequest)
+    returns (PrepareForToolchainBuildResponse);
+
+  // Create Chrome AFDO Generate builder artifacts.
+  rpc BundleUnverifiedChromeAFDOFile(BundleRequest)
+    returns (BundleResponse);
+
+  // Create Chrome AFDO Verification builder artifacts.
+  rpc BundleVerifiedChromeAFDOFile(BundleRequest)
+    returns (BundleResponse);
+
+  // Create Kernel AFDO Verification builder artifacts.
+  rpc BundleVerifiedKernelAFDOFile(BundleRequest)
+    returns (BundleResponse);
+
+  // Create Chrome Llvm Clang Tidy builder artifacts.
+  rpc BundleChromeClangWarningsFile(BundleRequest)
+    returns (BundleResponse);
+
+  // Create Llvm PGO Generate builder artifacts.
+  rpc BundleUnverifiedLLVMPgoFile(BundleRequest)
+    returns (BundleResponse);
+
+  // Create Chrome OrderfileGenerate builder artifacts.
+  rpc BundleUnverifiedOrderingFile(BundleRequest)
+    returns (BundleResponse);
+
+  // Create Chrome OrderfileVerify builder artifacts.
+  rpc BundleVerifiedOrderingFile(BundleRequest)
+    returns (BundleResponse);
 }
