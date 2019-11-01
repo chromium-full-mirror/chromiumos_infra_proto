@@ -5,7 +5,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
-import "chromite/api/toolchain.proto";
 import "chromiumos/common.proto";
 
 // An artifact is a file generated during or after a build.
@@ -59,7 +58,7 @@ message BundleChromeAFDORequest {
   // Absolute path to the directory in which artifacts should be dropped.
   string output_dir = 3;
   // The type of AFDO artifact (benchmark-afdo or orderfile)
-  AFDOArtifactType artifact_type = 4;
+  chromiumos.AFDOArtifactType artifact_type = 4;
 }
 
 // Fetch the pinned guest image uris.

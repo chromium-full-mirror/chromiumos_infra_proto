@@ -6,6 +6,9 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
+// TODO(crbug.com/1020615): Drop this once this is live in production and all of
+// the users have migrated to using chromiumos.AFDOArtifactType.
+// Meanwhile, keep this in sync with chromiumos/common.proto.
 enum AFDOArtifactType {
   // No AFDO artifact type specified.
   NONE_TYPE = 0;
@@ -26,7 +29,7 @@ enum AFDOArtifactType {
 message VerifyAFDOArtifactsRequest {
   chromiumos.BuildTarget build_target = 1;
   // The type of AFDO artifact to test.
-  AFDOArtifactType artifact_type = 2;
+  chromiumos.AFDOArtifactType artifact_type = 2;
 }
 
 message VerifyAFDOArtifactsResponse {
