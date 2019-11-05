@@ -13,7 +13,7 @@ import "device/config_id.proto";
 // These are the distinct configs combinations that will constitue a ChromeOS
 // device.
 
-// Next tag: 19
+// Next tag: 20
 message Config {
 
   // Required. Unique ID of the device config.
@@ -190,6 +190,14 @@ message Config {
 
   // Group email address for this device's SoC contact in buganizer (@google.com)
   string soc_email_group = 18;
+
+  // A bit field used by firmware to make decisions. The definition of this
+  // firmware configuration field is per firmware build. This does not have
+  // 1st-class definitions for values in the top-level configuration proto since
+  // each firmware build target can appropriate the bits within this 32-bit
+  // field differently. Each firmware build can vary significantly in the
+  // configuration space that needs customization.
+  uint32 firmware_configuration = 19;
 }
 
 // Message contains all ChromeOS device configs.
