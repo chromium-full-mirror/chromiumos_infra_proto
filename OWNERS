@@ -19,3 +19,4 @@ pprabhu@chromium.org
 
 # Allow anyone to update the proto file descriptor.
 per-file descpb.bin=*
+per-file go/*=*
