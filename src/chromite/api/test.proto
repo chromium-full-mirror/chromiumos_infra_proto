@@ -6,6 +6,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
+import "chromiumos/metrics.proto";
 
 // Proto for executing test-related functionality.
 
@@ -32,6 +33,8 @@ message BuildTargetUnitTestResponse {
   string tarball_path = 1;
   // The list of packages that failed.
   repeated chromiumos.PackageInfo failed_packages = 2;
+  // The metric events that occurred during the running of BuildTargetUnitTest.
+  repeated chromiumos.MetricEvent events = 3;
 }
 
 // Chromite UnitTest request.
