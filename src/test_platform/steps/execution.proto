@@ -6,6 +6,7 @@ syntax = "proto3";
 
 package test_platform.steps;
 
+import "test_platform/common/task.proto";
 import "test_platform/request.proto";
 import "test_platform/steps/enumeration.proto";
 import "test_platform/config/config.proto";
@@ -82,6 +83,11 @@ message ExecuteResponse {
         // The results of steps run prior to running the actual tests
         // (e.g. provision).
         repeated TestCaseResult prejob_steps = 8;
+
+        // Logdata is the location at which the task's full output will
+        // eventually be available. Not intended for human's to view; use
+        // log_url instead.
+        test_platform.common.TaskLogData log_data = 9;
     }
 
     // TODO(crbug.com/1020326) Deprecate and delete this in favor of
