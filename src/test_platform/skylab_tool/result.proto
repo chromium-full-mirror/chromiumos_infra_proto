@@ -36,6 +36,12 @@ message WaitTaskResult {
     Task result = 1 [json_name="task-result"];
     string stdout = 2;
     repeated Task child_results = 3 [json_name="child-results"];
+
+    message LogDataURL {
+      string isolate_url = 1;
+    }
+
+    LogDataURL log_data_url = 4;
 }
 
 // WaitTasksResult describes the format returned by the `skylab wait-tasks` subcommand.
