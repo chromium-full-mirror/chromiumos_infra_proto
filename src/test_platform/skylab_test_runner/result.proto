@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package test_platform.skylab_test_runner;
 
+import "test_platform/common/task.proto";
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
 // Result defines the output format of skylab_test_runner.
@@ -76,5 +78,9 @@ message Result {
   }
 
   Prejob prejob = 2;
+
+  // Logdata is the location at which the task's full output will eventually
+  // be available.
+  test_platform.common.TaskLogData log_data = 3;
 }
 
