@@ -17,12 +17,14 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ste
 message ExecuteRequests {
     // Each ExecuteRequest is handled independently.
     repeated ExecuteRequest requests = 1;
+    map<string, ExecuteRequest> tagged_requests = 2;
 }
 
 message ExecuteResponses {
     // Each ExecuteResponse corresponds to a single ExecuteRequest handled
     // independently.
     repeated ExecuteResponse responses = 1;
+    map<string, ExecuteResponse> tagged_responses = 2;
 }
 
 // ExecuteRequest defines the input of the Execute step.

@@ -14,12 +14,14 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ste
 message EnumerationRequests {
     // Each EnumerationRequest is handled independently.
     repeated EnumerationRequest requests = 1;
+    map<string, EnumerationRequest> tagged_requests = 2;
 }
 
 message EnumerationResponses {
     // Each EnumerationResponse corresponds to a single EnumerationRequest
     // handled independently.
     repeated EnumerationResponse responses = 1;
+    map<string, EnumerationResponse> tagged_responses = 2;
 }
 
 // EnumerationRequest defines the input of the test enumeration step.
