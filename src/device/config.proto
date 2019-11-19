@@ -19,8 +19,13 @@ message Config {
   // Required. Unique ID of the device config.
   ConfigId id = 1;
 
-  // e.g: "att", "verizon",..
-  string carrier = 2;
+  // NOTE: anytime a proto field is removed, make sure to add them to these
+  // "reserved" lists below (see
+  // https://developers.google.com/protocol-buffers/docs/proto3#reserved)
+
+  // For removing `carrier = 2`
+  reserved 2;
+  reserved "carrier";
 
   // Next tag: 8
   enum FormFactor {
