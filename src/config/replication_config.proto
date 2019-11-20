@@ -34,6 +34,15 @@ enum ReplicationType {
     REPLICATION_TYPE_FILTER = 2;
 }
 
+// Describes how to replace a text with another text.
+message StringReplacementRule {
+    // The text before the transformation.
+    string before = 1;
+
+    // The text after the transformation.
+    string after = 2;
+}
+
 // Describes how a single file should be replicated.
 message FileReplicationRule {
     // Path to the original file. Should be relative to the source root,
@@ -64,6 +73,15 @@ message FileReplicationRule {
     // fully-qualified, as per standard FieldMasks, e.g.
     // "bluetooth.config.build-path"
     google.protobuf.FieldMask destination_fields = 5;
+
+    // String replacements to be done on the destination file. Replacements are
+    // done in the order they appear in this list.
+    //
+    // Note that replacements are done after filtering. For example, say a
+    // replacement rule changes the name of a field, "field1" -> "field2"; if
+    // destination_fields specifies "field2", the renamed fields will not be
+    // copied.
+    repeated StringReplacementRule string_replacement_rules = 6;
 }
 
 // Describes how files should be replicated, e.g. from private to public.
