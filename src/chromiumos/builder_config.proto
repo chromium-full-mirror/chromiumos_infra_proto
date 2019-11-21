@@ -203,6 +203,9 @@ message BuilderConfig {
     repeated ToolchainStep toolchain_steps = 8;
 
     reserved 9;
+
+    // Build packages from source.
+    bool compile_source = 10;
   }
   Build build = 6;
 
