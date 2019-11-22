@@ -114,10 +114,10 @@ message BuilderConfig {
     // Follow on orchestrator to launch, and possibly wait for.
     message FollowOnOrchestrator {
       // BuilderConfig.Id.name of the follow on orchestrator.
-      string follow_on_orchestrator = 1;
+      string name = 1;
 
       // Whether to wait for the follow on orchestrator to finish.
-      bool wait_for_follow_on = 2;
+      bool await_completion = 2;
     }
     FollowOnOrchestrator follow_on_orchestrator = 3;
   }
@@ -137,6 +137,7 @@ message BuilderConfig {
     // Used to indicate artifact types that should be uploaded by the builder.
     // Must be kept in sync with the dictionary in:
     // https://chromium.googlesource.com/chromiumos/infra/recipes/+/refs/heads/master/recipe_modules/cros_artifacts/api.py
+    // TODO(crbug/1027720): Migrate this to common.proto
     enum ArtifactTypes {
       ARTIFACT_TYPES_UNSPECIFIED = 0;
       // Indicates wanting a zip file of everything in the image directory.

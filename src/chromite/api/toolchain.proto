@@ -5,12 +5,19 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/artifacts.proto";
 import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
+// TODO(crbug/1027720): Migrate BuilderConfig.Artifacts.ArtifactType to
+// common.proto, and stop including builder_config.proto.
+import "chromiumos/builder_config.proto";
 import "chromiumos/common.proto";
 
 // Prepare the build for artifact building.
 message PrepareForToolchainBuildRequest {
   // There is no sysroot or chroot to specify at this point in the build.
-  // See PrepareForBuildResponse.
+  // See PrepareForBuildToolchainResponse.
+
+  // The artifact types that this build should make.
+  repeated chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_types = 1;
 
   // TODO(crbug/1019868): At a minimum, the AFDO verify builders will need
   // enough information to be able to find the artifact created by the
@@ -30,6 +37,32 @@ message PrepareForToolchainBuildResponse {
     POINTLESS = 3;
   }
   BuildRelevance build_relevance = 1;
+}
+
+message BundleToolchainRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+  // The sysroot where the files live.
+  chromite.api.Sysroot sysroot = 2;
+
+  // Absolute path to the directory in which artifacts should be dropped.
+  string output_dir = 3;
+
+  // Which artifacts are wanted?
+  repeated chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_types = 4;
+}
+
+// Response describing which bundles were dumped to the given output directory.
+message BundleToolchainResponse {
+  // The artifacts that added to the output directory.
+  message ArtifactInfo {
+    // The ArtifactType.
+    chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_type = 1;
+
+    // Artifacts for this ArtifactType.
+    repeated Artifact artifacts = 2;
+  }
+  repeated ArtifactInfo artifacts_info = 1;
 }
 
 // TODO(crbug.com/1020615): Drop this once this is live in production and all of
@@ -72,6 +105,7 @@ service ToolchainService {
   };
 
   // DEPRECATED for recipes: used only by legacy toolchain builders.
+  // See also crbug/1019868.
   // Update Chrome ebuild with most recent unvetted orderfile
   rpc UpdateEbuildWithAFDOArtifacts(VerifyAFDOArtifactsRequest)
     returns (VerifyAFDOArtifactsResponse) {
@@ -81,6 +115,7 @@ service ToolchainService {
   }
 
   // DEPRECATED for recipes: used only by legacy toolchain builders.
+  // See also crbug/1019868.
   // Copy the orderfile from unvetted GS bucket to vetted bucket.
   rpc UploadVettedAFDOArtifacts(VerifyAFDOArtifactsRequest)
     returns (VerifyAFDOArtifactsResponse) {
@@ -89,59 +124,11 @@ service ToolchainService {
     };
   }
 
-  // Create Chrome AFDO Generate builder artifacts.
-  rpc PrepareForBuildUnverifiedChromeAFDOFile(PrepareForToolchainBuildRequest)
+  // Prepare to build toolchain artifacts.
+  rpc PrepareForBuild(PrepareForToolchainBuildRequest)
     returns (PrepareForToolchainBuildResponse);
 
-  // Create Chrome AFDO Verification builder artifacts.
-  rpc PrepareForBuildVerifiedChromeAFDOFile(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
-
-  // Create Kernel AFDO Verification builder artifacts.
-  rpc PrepareForBuildVerifiedKernelAFDOFile(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
-
-  // Create Chrome Llvm Clang Tidy builder artifacts.
-  rpc PrepareForBuildChromeClangWarningsFile(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
-
-  // Create Llvm PGO Generate builder artifacts.
-  rpc PrepareForBuildUnverifiedLLVMPgoFile(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
-
-  // Create Chrome OrderfileGenerate builder artifacts.
-  rpc PrepareForBuildUnverifiedOrderingFile(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
-
-  // Create Chrome OrderfileVerify builder artifacts.
-  rpc PrepareForBuildVerifiedOrderingFile(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
-
-  // Create Chrome AFDO Generate builder artifacts.
-  rpc BundleUnverifiedChromeAFDOFile(BundleRequest)
-    returns (BundleResponse);
-
-  // Create Chrome AFDO Verification builder artifacts.
-  rpc BundleVerifiedChromeAFDOFile(BundleRequest)
-    returns (BundleResponse);
-
-  // Create Kernel AFDO Verification builder artifacts.
-  rpc BundleVerifiedKernelAFDOFile(BundleRequest)
-    returns (BundleResponse);
-
-  // Create Chrome Llvm Clang Tidy builder artifacts.
-  rpc BundleChromeClangWarningsFile(BundleRequest)
-    returns (BundleResponse);
-
-  // Create Llvm PGO Generate builder artifacts.
-  rpc BundleUnverifiedLLVMPgoFile(BundleRequest)
-    returns (BundleResponse);
-
-  // Create Chrome OrderfileGenerate builder artifacts.
-  rpc BundleUnverifiedOrderingFile(BundleRequest)
-    returns (BundleResponse);
-
-  // Create Chrome OrderfileVerify builder artifacts.
-  rpc BundleVerifiedOrderingFile(BundleRequest)
-    returns (BundleResponse);
+  // Bundle toolchain artifacts.
+  rpc BundleArtifacts(BundleToolchainRequest)
+    returns (BundleToolchainResponse);
 }
