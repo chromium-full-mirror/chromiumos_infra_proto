@@ -52,6 +52,7 @@ message GetBuildDependencyGraphRequest {
 // Response from creating dependency graph json map.
 message GetBuildDependencyGraphResponse {
   DepGraph dep_graph = 1;
+  DepGraph sdk_dep_graph = 2;
 }
 
 // Service to create a variety of package dependency graphs.
