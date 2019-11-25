@@ -10,7 +10,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_condition";
 
 import "lab/chameleon.proto";
 import "lab/peripherals.proto";
-import "lab/servo.proto";
 
 // Represents boolean and "missing" value. If UNSPECIFIED, this matches with
 // any bool value. If TRUE or FALSE, these matches true and false respectively.
@@ -103,13 +102,12 @@ message LabServoCondition {
   // in this field.
   repeated string no_servo_serials = 7;
 
-  // If this is not SERVO_UNKNOWN, servo_type and lab.Servo.servo_type must
-  // have same value.
-  lab.ServoType servo_type = 8;
+  // If not empty, servo_type and lab.Servo.servo_type must have same value.
+  string servo_type = 8;
 
   // If not empty, the value of lab.Servo.servo_type must not be contained
   // in this field.
-  repeated lab.ServoType no_servo_types = 9;
+  repeated string no_servo_types = 9;
 }
 
 // Represents the condition of lab.DeviceID message. If all conditions for
