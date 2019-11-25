@@ -8,9 +8,7 @@ package lab;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
-// Remote power management info.
-// NEXT TAG: 3
-message RPM {
-  string powerunit_name = 1;
-  string powerunit_outlet = 2;
+message ChromeOSDeviceID {
+  // A unique ID for chromeos device, a randomly generated uuid or AssetTag.
+  string value = 1;
 }

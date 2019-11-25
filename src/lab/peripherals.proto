@@ -9,18 +9,41 @@ package lab;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
 import "lab/chameleon.proto";
-import "lab/rpm.proto";
 import "lab/servo.proto";
+
+// This proto defines setup labels in lab config of a DUT.
 
 // Peripherals of device. Next Tag: 8
 message Peripherals {
-  Chameleon chameleon = 1;
-  Servo servo = 2;
+  Servo servo = 1;
+  Chameleon chameleon = 2;
   RPM rpm = 3;
-  Audio audio = 4;
-  Wifi wifi = 5;
-  repeated Camera camera = 6;
+  // refer to cameras that connected to the device.
+  repeated Camera connected_camera = 4;
+  Audio audio = 5;
+  Wifi wifi = 6;
   Touch touch = 7;
+}
+
+// Remote power management info.
+// Next Tag: 3
+message RPM {
+  string powerunit_name = 1;
+  string powerunit_outlet = 2;
+}
+
+// Next Tag: 3
+enum CameraType {
+  CAMERA_INVALID = 0;
+  // camera Huddly GO
+  CAMERA_HUDDLY = 1;
+  // camera Logitech PTZ Pro 2
+  CAMERA_PTZPRO2 = 2;
+}
+
+// Next Tag: 2
+message Camera {
+  CameraType camera_type = 1;
 }
 
 // Next Tag: 3
@@ -47,20 +70,6 @@ message Wifi {
     CONN_OTA = 2;
   }
   AntennaConnection antenna_conn = 2;
-}
-
-// Next Tag: 4
-enum CameraType {
-  CAMERA_INVALID = 0;
-  // camera Huddly GO
-  CAMERA_HUDDLY = 1;
-  // camera Logitech PTZ Pro 2
-  CAMERA_PTZPRO2 = 2;
-}
-
-// Next Tag: 2
-message Camera {
-  CameraType camera_type = 1;
 }
 
 // Next Tag: 2

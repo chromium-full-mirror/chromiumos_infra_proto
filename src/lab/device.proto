@@ -8,31 +8,36 @@ package lab;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
-// This proto defines lab config of a DUT.
-// Lab config means configs set in lab, mostly of which are set in deployment.
-// E.g. the servo/rpm/dongle connected to the DUT. These configs won't be
-// changed in any tests.
-
-import "lab/device_identifiers.proto";
+import "device/config_id.proto";
+import "lab/chromeos_device_id.proto";
 import "lab/peripherals.proto";
-import "lab/manufacturing_phase.proto";
+import "lab/servo.proto";
+import "manufacturing/config_id.proto";
 
-// Next Tag: 3
-message Device {
+// Next Tag: 7
+message ChromeOSDevice {
+  // A unique ID for chromeos device, a randomly generated uuid or AssetTag.
+  ChromeOSDeviceID id = 1;
+  string serial_number = 2;
+  manufacturing.ConfigID manufacturing_id = 3;
+  // Device config identifiers.
+  // These values will be extracted from DUT and joinable to device config.
+  device.ConfigId device_config_id = 4;
+
   oneof device {
-    DeviceUnderTest dut = 1;
-    Labstation labstation = 2;
+    DeviceUnderTest dut = 5;
+    Labstation labstation = 6;
   };
 }
 
-// Next Tag: 4
+// Next Tag: 3
 message DeviceUnderTest{
-  DeviceIdentifiers device_identifiers = 1;
-  ManufacturingPhase phase = 2;
-  Peripherals peripherals = 3;
+  string hostname = 1;
+  Peripherals peripherals = 2;
 }
 
-// Next Tag: 2
+// Next Tag: 3
 message Labstation {
-  DeviceIdentifiers device_identifiers = 1;
+  string hostname = 1;
+  repeated Servo servos = 2;
 }

@@ -1,0 +1,29 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package lab;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
+
+import "lab/chromeos_device_id.proto";
+
+// This proto defines status labels in lab config of a DUT.
+
+// Next Tag: 3
+message DutState {
+    ChromeOSDeviceID id = 1;
+    PeripheralState servo = 2;
+    PeripheralState chameleon = 3;
+    PeripheralState audio_loopback_dongle = 4;
+}
+
+// Next Tag: 3
+enum PeripheralState {
+  // keep for all unknown states except working & not_connected.
+  UNKNOWN = 0;
+  WORKING = 1;
+  NOT_CONNECTED = 2;
+}

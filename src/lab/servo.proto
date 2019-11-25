@@ -8,12 +8,8 @@ package lab;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
-import "lab/device_id.proto";
-
 // NEXT TAG: 6
 message Servo {
-  DeviceID device_id = 1;
-
   // Servo-specific configs
   string servo_hostname = 2;
   int32 servo_port = 3;
