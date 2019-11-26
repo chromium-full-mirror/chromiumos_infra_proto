@@ -1,0 +1,28 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package prototype;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
+
+import "prototype/partner.proto";
+import "prototype/ref_design_kit.proto";
+
+message RefDesignId {
+  string value = 1;
+}
+
+message RefDesign {
+  RefDesignId id = 1;
+  RefDesignKitId ref_design_kit_id = 2;
+  PartnerId odm = 3;
+  string name = 4;
+  FormFactor form_factor = 5;
+}
+
+message RefDesignList {
+  repeated RefDesign value = 1;
+}

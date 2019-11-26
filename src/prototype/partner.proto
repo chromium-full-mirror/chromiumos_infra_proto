@@ -1,0 +1,23 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package prototype;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
+
+message PartnerId {
+  string value = 1;
+}
+
+message Partner {
+  PartnerId id = 1;
+  string name = 2;
+  string email_group = 3;
+}
+
+message PartnerList {
+  repeated Partner value = 1;
+}
