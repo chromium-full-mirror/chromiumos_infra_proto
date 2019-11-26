@@ -14,12 +14,13 @@ import "test_platform/skylab_local_state/common.proto";
 message LoadRequest {
   Config config = 1;
 
-  // The path to the directory where the host info file will be placed. It will
-  // be created it if does not exist yet.
-  string results_dir = 2;
+  string results_dir = 2 [deprecated=true];
 
   // DUT hostname.
   string dut_name = 3;
+
+  // Swarming run ID. Used in the results directory name.
+  string run_id = 4;
 }
 
 // LoadResponse defines the output of `skylab_local_state load`.
@@ -27,4 +28,7 @@ message LoadResponse {
   // What is currently installed on the DUT, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
   map<string, string> provisionable_labels = 1;
+
+  // The path to the newly created directory containing the host info file.
+  string results_dir = 2;
 }
