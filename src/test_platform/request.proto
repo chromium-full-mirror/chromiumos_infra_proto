@@ -143,7 +143,15 @@ message Request {
     // Metadata defines parameters that determine where test definitions
     // and metadata are stored and discovered from.
     message Metadata {
+      // A Google Storage path to the location of test metadata to be used.
+      // For example:
+      // "gs://chromeos-image-archive/arkham-release/R57-9202.10.11".
       string test_metadata_url = 1;
+
+      // A Google Storage path to the location of image archive in which to find
+      // debug symbols to be used in post-process symbolication of crashes. This
+      // is generally the same as test_metadata_url.
+      string debug_symbols_archive_url = 2;
     }
 
     Metadata metadata = 6;
