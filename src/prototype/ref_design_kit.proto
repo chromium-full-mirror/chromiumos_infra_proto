@@ -1,0 +1,57 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package prototype;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
+
+// common.proto
+message Soc {
+  enum Architecture {
+    ARCHITECTURE_UNDEFINED = 0;
+    X86 = 1;
+    X86_64 = 2;
+    ARM = 3;
+    ARM64 = 4;
+  }
+
+  extend google.protobuf.EnumValueOptions {
+    Architecture arch = 1914502;
+  }
+
+  enum Family {
+    FAMILY_UNDEFINED = 0;
+    FAMILY_RK3399 = 1 [(arch) = ARM64];
+    SOC_GEMINI_LAKE = 2 [(arch) = X86_64];
+  }
+}
+
+enum FormFactor {
+  FORM_FACTOR_UNDEFINED = 0;
+  FORM_FACTOR_CLAMSHELL = 1;
+  FORM_FACTOR_CONVERTIBLE = 2;
+  FORM_FACTOR_DETACHABLE = 3;
+  FORM_FACTOR_CHROMEBASE = 4;
+  FORM_FACTOR_CHROMEBOX = 5;
+  FORM_FACTOR_CHROMEBIT = 6;
+  FORM_FACTOR_CHROMESLATE = 7;
+}
+
+message RefDesignKitId {
+  string value = 1;
+}
+
+message RefDesignKit {
+  RefDesignKitId id = 1;
+  Soc.Family soc = 2;
+  repeated FormFactor form_factors = 3;
+}
+
+message RefDesignKitList {
+  repeated RefDesignKit value = 1;
+}
