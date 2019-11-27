@@ -111,6 +111,9 @@ message BuilderConfig {
     // GitilesCommit to use if not provided.
     GitilesCommit gitiles_commit = 2;
 
+    // GerritChanges to use if not provided.
+    repeated GerritChange gerrit_changes = 3;
+
     // Follow on orchestrator to launch, and possibly wait for.
     message FollowOnOrchestrator {
       // BuilderConfig.Id.name of the follow on orchestrator.
@@ -119,7 +122,7 @@ message BuilderConfig {
       // Whether to wait for the follow on orchestrator to finish.
       bool await_completion = 2;
     }
-    FollowOnOrchestrator follow_on_orchestrator = 3;
+    FollowOnOrchestrator follow_on_orchestrator = 4;
   }
   Orchestrator orchestrator = 3;
 
