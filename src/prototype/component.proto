@@ -44,8 +44,8 @@ message Soc {
 
   enum Family {
     FAMILY_UNDEFINED = 0;
-    FAMILY_RK3399 = 1 [(arch) = ARM64];
-    SOC_GEMINI_LAKE = 2 [(arch) = X86_64];
+    RK3399 = 1 [(arch) = ARM64];
+    GEMINI_LAKE = 2 [(arch) = X86_64];
   }
 
   message Component {
@@ -91,4 +91,8 @@ message Component {
     Soc.Component soc = 2;
     Memory.Component memory = 3;
   }
+}
+
+message ComponentList {
+  repeated Component value = 1;
 }
