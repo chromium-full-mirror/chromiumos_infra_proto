@@ -82,5 +82,14 @@ message Result {
   // Logdata is the location at which the task's full output will eventually
   // be available.
   test_platform.common.TaskLogData log_data = 3;
+
+  // StateUpdate contains Skylab state changes that resulted from the test run.
+  // It is consumed by `skylab_local_state save`.
+  message StateUpdate {
+    // E.g. "needs_repair", "ready" etc.
+    string dut_state = 1;
+  }
+
+  StateUpdate state_update = 4;
 }
 
