@@ -27,6 +27,7 @@ message RefDesignKitId {
 
 message RefDesignKit {
   RefDesignKitId id = 1;
+  repeated Requirements reqs = 2;
 
   message Requirements {
     FormFactor form_factor = 1;
