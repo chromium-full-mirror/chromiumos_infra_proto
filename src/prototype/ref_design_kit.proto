@@ -6,30 +6,9 @@ syntax = "proto3";
 
 package prototype;
 
-import "google/protobuf/descriptor.proto";
+import "prototype/component.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
-
-// common.proto
-message Soc {
-  enum Architecture {
-    ARCHITECTURE_UNDEFINED = 0;
-    X86 = 1;
-    X86_64 = 2;
-    ARM = 3;
-    ARM64 = 4;
-  }
-
-  extend google.protobuf.EnumValueOptions {
-    Architecture arch = 1914502;
-  }
-
-  enum Family {
-    FAMILY_UNDEFINED = 0;
-    FAMILY_RK3399 = 1 [(arch) = ARM64];
-    SOC_GEMINI_LAKE = 2 [(arch) = X86_64];
-  }
-}
 
 enum FormFactor {
   FORM_FACTOR_UNDEFINED = 0;
@@ -48,8 +27,12 @@ message RefDesignKitId {
 
 message RefDesignKit {
   RefDesignKitId id = 1;
-  Soc.Family soc = 2;
-  repeated FormFactor form_factors = 3;
+
+  message Requirements {
+    FormFactor form_factor = 1;
+    Soc.Constraint soc = 2;
+    Memory.Constraint memory = 3;
+  }
 }
 
 message RefDesignKitList {
