@@ -19,10 +19,7 @@ message RefDesign {
   RefDesignId id = 1;
   RefDesignKitId ref_design_kit_id = 2;
   PartnerId odm_id = 6;
-  // TODO(shapiroc): Delete after config is migrated on next CL
-  PartnerId odm = 3 [deprecated = true];
   string name = 4;
-  FormFactor form_factor = 5;
 }
 
 message RefDesignList {
