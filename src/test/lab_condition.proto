@@ -74,9 +74,7 @@ message LabChameleonCondition {
 // Represents the condition of lab.Servo message. If all conditions for
 // each field are satisfied, this message is considered as satisfied.
 message LabServoCondition {
-  // Condition of lab.DeviceID. This condition needs to be satisfied by
-  // lab.Servo.device_id.
-  LabDeviceIDCondition device_id = 1;
+  reserved 1;
 
   // If not empty, servo_hostname and lab.Servo.servo_hostname must have
   // same value.
@@ -108,17 +106,6 @@ message LabServoCondition {
   // If not empty, the value of lab.Servo.servo_type must not be contained
   // in this field.
   repeated string no_servo_types = 9;
-}
-
-// Represents the condition of lab.DeviceID message. If all conditions for
-// each field are satisfied, this message is considered as satisfied.
-message LabDeviceIDCondition {
-  // If not empty, id and lab.DeviceID.id must have same value.
-  string id = 1;
-
-  // If not empty, the value of lab.DeviceID.id must not be contained in this
-  // field.
-  repeated string no_ids = 2;
 }
 
 // Represents the condition of lab.RPM message. If all conditions for
