@@ -52,7 +52,7 @@ message CrosSigningTestRequest {
   chromiumos.Chroot chroot = 1;
 }
 
-message CrosSingingTestResponse {
+message CrosSigningTestResponse {
 }
 
 // Run the debug_info_test script.
@@ -173,7 +173,7 @@ service TestService {
   rpc ChromiteUnitTest(ChromiteUnitTestRequest) returns (ChromiteUnitTestResponse);
 
   // Run the cros-signing unit tests.
-  rpc CrosSigningTest(CrosSigningTestRequest) returns (CrosSingingTestResponse);
+  rpc CrosSigningTest(CrosSigningTestRequest) returns (CrosSigningTestResponse);
 
   // Run the debug info tests on a sysroot.
   rpc DebugInfoTest(DebugInfoTestRequest) returns (DebugInfoTestResponse);
