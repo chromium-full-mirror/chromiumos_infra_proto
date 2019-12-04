@@ -11,17 +11,30 @@ import "chromite/api/sysroot.proto";
 import "chromiumos/builder_config.proto";
 import "chromiumos/common.proto";
 
+// Information about a collection of artifacts.
+message ArtifactInfo {
+  // The ArtifactType.
+  chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_type = 1;
+
+  // Artifacts for this ArtifactType.
+  repeated Artifact artifacts = 2;
+}
+
 // Prepare the build for artifact building.
 message PrepareForToolchainBuildRequest {
-  // There is no sysroot or chroot to specify at this point in the build.
-  // See PrepareForBuildToolchainResponse.
-
   // The artifact types that this build should make.
   repeated chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_types = 1;
+
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 2;
+  // The sysroot where the files live.
+  chromite.api.Sysroot sysroot = 3;
 
   // TODO(crbug/1019868): At a minimum, the AFDO verify builders will need
   // enough information to be able to find the artifact created by the
   // AFDO_record HW Test.
+  // The artifacts available for preparing.
+  repeated ArtifactInfo artifacts_info = 4;
 }
 
 message PrepareForToolchainBuildResponse {
@@ -54,15 +67,11 @@ message BundleToolchainRequest {
 
 // Response describing which bundles were dumped to the given output directory.
 message BundleToolchainResponse {
-  // The artifacts that added to the output directory.
-  message ArtifactInfo {
-    // The ArtifactType.
-    chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_type = 1;
 
-    // Artifacts for this ArtifactType.
-    repeated Artifact artifacts = 2;
-  }
-  repeated ArtifactInfo artifacts_info = 1;
+  reserved 1;
+
+  // The artifacts that added to the output directory.
+  repeated ArtifactInfo artifacts_info = 2;
 }
 
 // TODO(crbug.com/1020615): Drop this once this is live in production and all of

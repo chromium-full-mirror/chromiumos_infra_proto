@@ -858,7 +858,8 @@ type BuilderConfig_Build struct {
 	ImageTypes []ImageType `protobuf:"varint,3,rep,packed,name=image_types,json=imageTypes,proto3,enum=chromiumos.ImageType" json:"image_types,omitempty"`
 	// Controls the running of the install packages step.
 	InstallPackages BuilderConfig_RunSpec `protobuf:"varint,4,opt,name=install_packages,json=installPackages,proto3,enum=chromiumos.BuilderConfig_RunSpec" json:"install_packages,omitempty"`
-	// Compile toolchain from source (true), or use bin packages (false).
+	// Compile toolchain from source (true), or use bin packages (false).  This
+	// applies to both the update sdk and install packages steps.
 	CompileToolchain bool `protobuf:"varint,5,opt,name=compile_toolchain,json=compileToolchain,proto3" json:"compile_toolchain,omitempty"`
 	// Whether to apply gerrit changes, if any. Use case is to build without
 	// changes after failure to identify the changes as the culprit.
@@ -866,7 +867,7 @@ type BuilderConfig_Build struct {
 	// Packages to build, or empty to build all packages.
 	Packages       []*PackageInfo                       `protobuf:"bytes,7,rep,name=packages,proto3" json:"packages,omitempty"`
 	ToolchainSteps []*BuilderConfig_Build_ToolchainStep `protobuf:"bytes,8,rep,name=toolchain_steps,json=toolchainSteps,proto3" json:"toolchain_steps,omitempty"`
-	// Build packages from source.
+	// Build packages from source (true), or use bin packages (false).
 	CompileSource        bool     `protobuf:"varint,10,opt,name=compile_source,json=compileSource,proto3" json:"compile_source,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

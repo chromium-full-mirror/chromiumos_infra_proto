@@ -230,7 +230,8 @@ message BuilderConfig {
     // Controls the running of the install packages step.
     RunSpec install_packages = 4;
 
-    // Compile toolchain from source (true), or use bin packages (false).
+    // Compile toolchain from source (true), or use bin packages (false).  This
+    // applies to both the update sdk and install packages steps.
     bool compile_toolchain = 5;
 
     // Whether to apply gerrit changes, if any. Use case is to build without
@@ -255,7 +256,7 @@ message BuilderConfig {
 
     reserved 9;
 
-    // Build packages from source.
+    // Build packages from source (true), or use bin packages (false).
     bool compile_source = 10;
   }
   Build build = 6;
