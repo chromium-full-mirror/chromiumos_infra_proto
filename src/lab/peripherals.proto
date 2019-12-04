@@ -13,7 +13,7 @@ import "lab/servo.proto";
 
 // This proto defines setup labels in lab config of a DUT.
 
-// Peripherals of device. Next Tag: 8
+// Peripherals of device. Next Tag: 10
 message Peripherals {
   Servo servo = 1;
   Chameleon chameleon = 2;
@@ -23,6 +23,11 @@ message Peripherals {
   Audio audio = 5;
   Wifi wifi = 6;
   Touch touch = 7;
+  // e.g: "att", "verizon",.. It's a manual label set by lab, varies dut by dut.
+  string carrier = 8;
+  // Indicate if the device is setup in a steady and controllable camera box environment for camera test automation.
+  // https://docs.google.com/document/d/12YqHhBuOUolA7BjVEcG4rOIVIO2pgmb4jnOEApB806Y/edit#
+  bool camerabox = 9;
 }
 
 // Remote power management info.
