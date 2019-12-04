@@ -16,9 +16,11 @@ message Request {
   // Prejob defines parameters that affect the steps before the actual test
   // (e.g. provision).
   message Prejob {
-    // Mutable software prerequisites (e.g. ChromeOS version). Are installed
-    // before running the test if necessary.
-    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 1;
+    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 1 [deprecated = true];
+
+    // Mutable software prerequisites. Are installed before running the test if
+    // necessary. E.g. {"cros-version" : "reef-release/R77-12345.0.0"}
+    map<string, string> provisionable_labels = 2;
   }
 
   Prejob prejob = 1;
