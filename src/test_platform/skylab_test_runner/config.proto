@@ -1,0 +1,30 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.skylab_test_runner;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
+
+// Config defines configuration parameters of skylab_test_runner.
+message Config {
+    // Lab defines configuration parameters related to the lab and the lab
+    // platform services.
+    message Lab {
+      // Admin service host, e.g. foo.appspot.com.
+      string admin_service = 1;
+    }
+
+    // Harness defines configuration parameters related to the test harness
+    // (autotest, tast, etc).
+    message Harness {
+      // Autotest directory inside the drone container,
+      // e.g. "/usr/local/autotest".
+      string autotest_dir = 1;
+    }
+
+    Lab lab = 1;
+    Harness harness = 2;
+  }
