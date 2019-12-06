@@ -27,6 +27,9 @@ message TestRequestMessage {
   // BuildTarget messages for parsing tests.
   chromiumos.BuildTarget build_target = 7;
   repeated chromiumos.BuildTarget build_targets = 8;
+  // For SyncedDir syncing tests.
+  chromiumos.SyncedDir synced_dir = 9;
+  repeated chromiumos.SyncedDir synced_dirs = 10;
 }
 
 // Simple output message.

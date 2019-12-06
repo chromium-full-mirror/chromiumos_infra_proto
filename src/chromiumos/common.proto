@@ -100,6 +100,15 @@ message ResultPath {
   Path path = 1;
 }
 
+// A SyncedDir will have all of its contents transferred into a tmp directory
+// in the chroot before the endpoint is called, and afterwords its contents
+// will be exactly what was in the tmp directory when the endpoint completed.
+message SyncedDir {
+  // Required.
+  // The directory being synced.
+  string dir = 1;
+}
+
 // See also crrev.com/c/1929452 and:
 //   https://cs.corp.google.com/piper///depot/google3/third_party/luci/buildbucket/proto/common.proto?l=147-176&rcl=257714215
 // A Gerrit patchset.
