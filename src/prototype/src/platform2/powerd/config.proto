@@ -1,0 +1,15 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package prototype;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
+
+message PowerdConfig {
+  double als_smoothing_consant = 1;
+  bool avoid_suspend_when_headphone_jack_plugged = 2;
+  int32 battery_poll_interval_ms = 3;
+}

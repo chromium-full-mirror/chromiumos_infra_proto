@@ -1,0 +1,15 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package prototype;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
+
+import "prototype/src/platform2/config.proto";
+
+message OverlayConfig {
+  Platform2Config platform2_config = 1;
+}
