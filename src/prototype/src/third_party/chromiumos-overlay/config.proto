@@ -1,0 +1,32 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package prototype;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
+
+import "prototype/src/overlays/config.proto";
+
+message FirmwarePayload {
+  string build_target = 1;
+  string pinned_version = 2;
+}
+
+message FirmwareConfig {
+  FirmwarePayload ap_ro = 1;
+  FirmwarePayload ap_rw = 2;
+  FirmwarePayload ec = 3;
+}
+
+message BuildTargetId {
+  string value = 1;
+}
+
+message DeviceBuildConfig {
+  BuildTargetId id = 1;
+  OverlayConfig overlay_config = 2;
+  FirmwareConfig firmware_config = 3;
+}
