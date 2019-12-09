@@ -8,6 +8,7 @@ package prototype;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
+import "prototype/ref_design.proto";
 import "prototype/src/overlays/config.proto";
 
 message FirmwarePayload {
@@ -21,12 +22,17 @@ message FirmwareConfig {
   FirmwarePayload ec = 3;
 }
 
+message DeviceVariantConfig {
+  DeviceVariantId id = 1;
+  OverlayConfig overlay_config = 2;
+  FirmwareConfig firmware_config = 3;
+}
+
 message BuildTargetId {
   string value = 1;
 }
 
-message DeviceBuildConfig {
+message BuildTargetConfig {
   BuildTargetId id = 1;
-  OverlayConfig overlay_config = 2;
-  FirmwareConfig firmware_config = 3;
+  repeated DeviceVariantConfig variant_config = 2;
 }

@@ -15,11 +15,21 @@ message RefDesignId {
   string value = 1;
 }
 
+message DeviceVariantId {
+  string value = 1;
+}
+
+message DeviceVariant {
+  DeviceVariantId id = 1;
+}
+
 message RefDesign {
   RefDesignId id = 1;
   RefDesignKitId ref_design_kit_id = 2;
-  PartnerId odm_id = 6;
+  PartnerId odm_id = 3;
   string name = 4;
+
+  repeated DeviceVariant variants = 5;
 }
 
 message RefDesignList {
