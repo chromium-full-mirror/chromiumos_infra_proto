@@ -61,6 +61,13 @@ message GomaConfig {
     RBE_STAGING = 3;
   }
   GomaApproach goma_approach = 4;
+
+  // The directory where the goma logs will be extracted.
+  SyncedDir log_dir = 5;
+  // The name of the goma stats file. It will be dumped inside log_dir.
+  string stats_file = 6;
+  // The name of the goma counterz file. It will be dumped inside log_dir.
+  string counterz_file = 7;
 }
 
 // Message describing a package, The corresponding variable names are from
