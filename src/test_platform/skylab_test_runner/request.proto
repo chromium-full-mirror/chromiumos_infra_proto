@@ -33,6 +33,20 @@ message Request {
 
       // Keyvals are key:value pairs added to the autoserv command.
       map <string, string> keyvals = 3;
+
+      // If true, run the test as a client-side test: the test logic is
+      // executed in its entirety on the DUT itself.
+      // Otherwise, run the test as a server-side test: the test logic is
+      // executed on the drone server and interacts with the DUT as an external
+      // object.
+      bool is_client_test = 4;
+
+      // Name to be used to display this test's output artifacts, e.g. logs,
+      // results etc. By default display_name is the same as name.
+      //
+      // display_name is especially useful when using test_args to distinguish
+      // between multiple instances of the same test in a request.
+      string display_name = 5;
     }
 
     oneof harness {
