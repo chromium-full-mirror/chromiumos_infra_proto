@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -481,4 +483,76 @@ var fileDescriptor_805b925169bdc23a = []byte{
 	0xbe, 0xbc, 0x3c, 0x67, 0xb7, 0x57, 0xcd, 0x60, 0xd1, 0xb9, 0x39, 0x77, 0x23, 0xfd, 0xf0, 0x2c,
 	0xa2, 0xa6, 0x3c, 0x91, 0xe6, 0x39, 0x33, 0xe7, 0x2f, 0xeb, 0x69, 0x5d, 0x96, 0xf7, 0xff, 0x05,
 	0x00, 0x00, 0xff, 0xff, 0x33, 0xe3, 0x1e, 0x7b, 0xbe, 0x05, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// TestMetadataServiceClient is the client API for TestMetadataService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type TestMetadataServiceClient interface {
+	Get(ctx context.Context, in *TestMetadataRequest, opts ...grpc.CallOption) (*TestMetadataResponse, error)
+}
+
+type testMetadataServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewTestMetadataServiceClient(cc *grpc.ClientConn) TestMetadataServiceClient {
+	return &testMetadataServiceClient{cc}
+}
+
+func (c *testMetadataServiceClient) Get(ctx context.Context, in *TestMetadataRequest, opts ...grpc.CallOption) (*TestMetadataResponse, error) {
+	out := new(TestMetadataResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestMetadataService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TestMetadataServiceServer is the server API for TestMetadataService service.
+type TestMetadataServiceServer interface {
+	Get(context.Context, *TestMetadataRequest) (*TestMetadataResponse, error)
+}
+
+func RegisterTestMetadataServiceServer(s *grpc.Server, srv TestMetadataServiceServer) {
+	s.RegisterService(&_TestMetadataService_serviceDesc, srv)
+}
+
+func _TestMetadataService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestMetadataServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestMetadataService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestMetadataServiceServer).Get(ctx, req.(*TestMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _TestMetadataService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.TestMetadataService",
+	HandlerType: (*TestMetadataServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _TestMetadataService_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/test_metadata.proto",
 }

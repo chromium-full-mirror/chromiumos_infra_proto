@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -467,4 +469,76 @@ var fileDescriptor_0ecdf1e4e8bef7a4 = []byte{
 	0xcb, 0x44, 0xfc, 0x5e, 0xea, 0x40, 0x14, 0x49, 0xd8, 0xb8, 0x30, 0x8c, 0x2f, 0x8a, 0x28, 0x34,
 	0x07, 0x26, 0x4c, 0x44, 0xd8, 0xbc, 0x4c, 0xb3, 0xae, 0x51, 0x5f, 0xfe, 0x0a, 0x00, 0x00, 0xff,
 	0xff, 0x30, 0x59, 0x9d, 0x03, 0xda, 0x04, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// PayloadServiceClient is the client API for PayloadService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type PayloadServiceClient interface {
+	GeneratePayload(ctx context.Context, in *PayloadGenerationRequest, opts ...grpc.CallOption) (*PayloadGenerationResult, error)
+}
+
+type payloadServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewPayloadServiceClient(cc *grpc.ClientConn) PayloadServiceClient {
+	return &payloadServiceClient{cc}
+}
+
+func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *PayloadGenerationRequest, opts ...grpc.CallOption) (*PayloadGenerationResult, error) {
+	out := new(PayloadGenerationResult)
+	err := c.cc.Invoke(ctx, "/chromite.api.PayloadService/GeneratePayload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PayloadServiceServer is the server API for PayloadService service.
+type PayloadServiceServer interface {
+	GeneratePayload(context.Context, *PayloadGenerationRequest) (*PayloadGenerationResult, error)
+}
+
+func RegisterPayloadServiceServer(s *grpc.Server, srv PayloadServiceServer) {
+	s.RegisterService(&_PayloadService_serviceDesc, srv)
+}
+
+func _PayloadService_GeneratePayload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayloadGenerationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayloadServiceServer).GeneratePayload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PayloadService/GeneratePayload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayloadServiceServer).GeneratePayload(ctx, req.(*PayloadGenerationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _PayloadService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.PayloadService",
+	HandlerType: (*PayloadServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GeneratePayload",
+			Handler:    _PayloadService_GeneratePayload_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/payload.proto",
 }

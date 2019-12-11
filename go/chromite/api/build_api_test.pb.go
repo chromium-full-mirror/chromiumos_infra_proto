@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -299,4 +301,315 @@ var fileDescriptor_78ca3263cf74c05a = []byte{
 	0x7c, 0x76, 0x0e, 0x3c, 0x2e, 0x86, 0x7e, 0xe5, 0x32, 0x61, 0xc9, 0xa5, 0xa0, 0xbe, 0xbe, 0x4a,
 	0xfc, 0x21, 0xf7, 0xab, 0xb7, 0xd3, 0x45, 0x43, 0xbf, 0xde, 0xfd, 0x1d, 0x00, 0x00, 0xff, 0xff,
 	0x53, 0x13, 0xb7, 0xd6, 0xe5, 0x06, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// TestApiServiceClient is the client API for TestApiService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type TestApiServiceClient interface {
+	// Method that has input and output messages.
+	InputOutputMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	// Method name override.
+	RenamedMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+}
+
+type testApiServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewTestApiServiceClient(cc *grpc.ClientConn) TestApiServiceClient {
+	return &testApiServiceClient{cc}
+}
+
+func (c *testApiServiceClient) InputOutputMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestApiService/InputOutputMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testApiServiceClient) RenamedMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestApiService/RenamedMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TestApiServiceServer is the server API for TestApiService service.
+type TestApiServiceServer interface {
+	// Method that has input and output messages.
+	InputOutputMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	// Method name override.
+	RenamedMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+}
+
+func RegisterTestApiServiceServer(s *grpc.Server, srv TestApiServiceServer) {
+	s.RegisterService(&_TestApiService_serviceDesc, srv)
+}
+
+func _TestApiService_InputOutputMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestApiServiceServer).InputOutputMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestApiService/InputOutputMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestApiServiceServer).InputOutputMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestApiService_RenamedMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestApiServiceServer).RenamedMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestApiService/RenamedMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestApiServiceServer).RenamedMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _TestApiService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.TestApiService",
+	HandlerType: (*TestApiServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "InputOutputMethod",
+			Handler:    _TestApiService_InputOutputMethod_Handler,
+		},
+		{
+			MethodName: "RenamedMethod",
+			Handler:    _TestApiService_RenamedMethod_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/build_api_test.proto",
+}
+
+// InsideChrootApiServiceClient is the client API for InsideChrootApiService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type InsideChrootApiServiceClient interface {
+	// No override of service level inside assertion.
+	InsideServiceInsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	// Override service level inside assertion with outside assertion.
+	InsideServiceOutsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+}
+
+type insideChrootApiServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewInsideChrootApiServiceClient(cc *grpc.ClientConn) InsideChrootApiServiceClient {
+	return &insideChrootApiServiceClient{cc}
+}
+
+func (c *insideChrootApiServiceClient) InsideServiceInsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.InsideChrootApiService/InsideServiceInsideMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *insideChrootApiServiceClient) InsideServiceOutsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.InsideChrootApiService/InsideServiceOutsideMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// InsideChrootApiServiceServer is the server API for InsideChrootApiService service.
+type InsideChrootApiServiceServer interface {
+	// No override of service level inside assertion.
+	InsideServiceInsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	// Override service level inside assertion with outside assertion.
+	InsideServiceOutsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+}
+
+func RegisterInsideChrootApiServiceServer(s *grpc.Server, srv InsideChrootApiServiceServer) {
+	s.RegisterService(&_InsideChrootApiService_serviceDesc, srv)
+}
+
+func _InsideChrootApiService_InsideServiceInsideMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InsideChrootApiServiceServer).InsideServiceInsideMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.InsideChrootApiService/InsideServiceInsideMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InsideChrootApiServiceServer).InsideServiceInsideMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InsideChrootApiService_InsideServiceOutsideMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InsideChrootApiServiceServer).InsideServiceOutsideMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.InsideChrootApiService/InsideServiceOutsideMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InsideChrootApiServiceServer).InsideServiceOutsideMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _InsideChrootApiService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.InsideChrootApiService",
+	HandlerType: (*InsideChrootApiServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "InsideServiceInsideMethod",
+			Handler:    _InsideChrootApiService_InsideServiceInsideMethod_Handler,
+		},
+		{
+			MethodName: "InsideServiceOutsideMethod",
+			Handler:    _InsideChrootApiService_InsideServiceOutsideMethod_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/build_api_test.proto",
+}
+
+// OutsideChrootApiServiceClient is the client API for OutsideChrootApiService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type OutsideChrootApiServiceClient interface {
+	// No override of service level outside assertion.
+	OutsideServiceOutsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	// Override service level outside assertion with inside assertion.
+	OutsideServiceInsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+}
+
+type outsideChrootApiServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewOutsideChrootApiServiceClient(cc *grpc.ClientConn) OutsideChrootApiServiceClient {
+	return &outsideChrootApiServiceClient{cc}
+}
+
+func (c *outsideChrootApiServiceClient) OutsideServiceOutsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.OutsideChrootApiService/OutsideServiceOutsideMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *outsideChrootApiServiceClient) OutsideServiceInsideMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.OutsideChrootApiService/OutsideServiceInsideMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// OutsideChrootApiServiceServer is the server API for OutsideChrootApiService service.
+type OutsideChrootApiServiceServer interface {
+	// No override of service level outside assertion.
+	OutsideServiceOutsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	// Override service level outside assertion with inside assertion.
+	OutsideServiceInsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+}
+
+func RegisterOutsideChrootApiServiceServer(s *grpc.Server, srv OutsideChrootApiServiceServer) {
+	s.RegisterService(&_OutsideChrootApiService_serviceDesc, srv)
+}
+
+func _OutsideChrootApiService_OutsideServiceOutsideMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OutsideChrootApiServiceServer).OutsideServiceOutsideMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.OutsideChrootApiService/OutsideServiceOutsideMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OutsideChrootApiServiceServer).OutsideServiceOutsideMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OutsideChrootApiService_OutsideServiceInsideMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OutsideChrootApiServiceServer).OutsideServiceInsideMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.OutsideChrootApiService/OutsideServiceInsideMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OutsideChrootApiServiceServer).OutsideServiceInsideMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _OutsideChrootApiService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.OutsideChrootApiService",
+	HandlerType: (*OutsideChrootApiServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "OutsideServiceOutsideMethod",
+			Handler:    _OutsideChrootApiService_OutsideServiceOutsideMethod_Handler,
+		},
+		{
+			MethodName: "OutsideServiceInsideMethod",
+			Handler:    _OutsideChrootApiService_OutsideServiceInsideMethod_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/build_api_test.proto",
 }

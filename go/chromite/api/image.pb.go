@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -452,4 +454,180 @@ var fileDescriptor_abef4ffabc69f3ed = []byte{
 	0x20, 0x55, 0x12, 0xd6, 0x9e, 0x44, 0x91, 0x8d, 0x14, 0x0b, 0xf1, 0x41, 0x0c, 0x13, 0x19, 0xd6,
 	0xdf, 0xd8, 0x81, 0x8b, 0xe1, 0x67, 0x3f, 0x02, 0x00, 0x00, 0xff, 0xff, 0x79, 0xed, 0x5a, 0xdd,
 	0xa2, 0x05, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// ImageServiceClient is the client API for ImageService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ImageServiceClient interface {
+	// Build an image.
+	// Example json:
+	// {
+	//  "build_target": {"name": "reef"},
+	// }
+	Create(ctx context.Context, in *CreateImageRequest, opts ...grpc.CallOption) (*CreateImageResult, error)
+	// Test an image.
+	// Example json:
+	// {
+	//  "build_target": {"name": "reef"},
+	//  "image": {"path": "/mnt/host/source/src/build/images/reef/latest"},
+	//  "result": {"directory": "/tmp/image_test_results"}
+	// }
+	Test(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error)
+	// Execute SignerTest for an image.
+	// Example json:
+	// {
+	//  "build_target": {"name": "reef"},
+	//  "image": {"path": "/mnt/host/source/src/build/images/reef/latest"},
+	//  "result": {"directory": "/tmp/image_test_results"}
+	// }
+	SignerTest(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error)
+}
+
+type imageServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewImageServiceClient(cc *grpc.ClientConn) ImageServiceClient {
+	return &imageServiceClient{cc}
+}
+
+func (c *imageServiceClient) Create(ctx context.Context, in *CreateImageRequest, opts ...grpc.CallOption) (*CreateImageResult, error) {
+	out := new(CreateImageResult)
+	err := c.cc.Invoke(ctx, "/chromite.api.ImageService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *imageServiceClient) Test(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error) {
+	out := new(TestImageResult)
+	err := c.cc.Invoke(ctx, "/chromite.api.ImageService/Test", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *imageServiceClient) SignerTest(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error) {
+	out := new(TestImageResult)
+	err := c.cc.Invoke(ctx, "/chromite.api.ImageService/SignerTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ImageServiceServer is the server API for ImageService service.
+type ImageServiceServer interface {
+	// Build an image.
+	// Example json:
+	// {
+	//  "build_target": {"name": "reef"},
+	// }
+	Create(context.Context, *CreateImageRequest) (*CreateImageResult, error)
+	// Test an image.
+	// Example json:
+	// {
+	//  "build_target": {"name": "reef"},
+	//  "image": {"path": "/mnt/host/source/src/build/images/reef/latest"},
+	//  "result": {"directory": "/tmp/image_test_results"}
+	// }
+	Test(context.Context, *TestImageRequest) (*TestImageResult, error)
+	// Execute SignerTest for an image.
+	// Example json:
+	// {
+	//  "build_target": {"name": "reef"},
+	//  "image": {"path": "/mnt/host/source/src/build/images/reef/latest"},
+	//  "result": {"directory": "/tmp/image_test_results"}
+	// }
+	SignerTest(context.Context, *TestImageRequest) (*TestImageResult, error)
+}
+
+func RegisterImageServiceServer(s *grpc.Server, srv ImageServiceServer) {
+	s.RegisterService(&_ImageService_serviceDesc, srv)
+}
+
+func _ImageService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImageServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ImageService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImageServiceServer).Create(ctx, req.(*CreateImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ImageService_Test_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImageServiceServer).Test(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ImageService/Test",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImageServiceServer).Test(ctx, req.(*TestImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ImageService_SignerTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImageServiceServer).SignerTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ImageService/SignerTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImageServiceServer).SignerTest(ctx, req.(*TestImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ImageService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.ImageService",
+	HandlerType: (*ImageServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _ImageService_Create_Handler,
+		},
+		{
+			MethodName: "Test",
+			Handler:    _ImageService_Test_Handler,
+		},
+		{
+			MethodName: "SignerTest",
+			Handler:    _ImageService_SignerTest_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/image.proto",
 }

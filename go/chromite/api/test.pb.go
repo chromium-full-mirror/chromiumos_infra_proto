@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -972,4 +974,288 @@ var fileDescriptor_f5c91b4ac6233d9e = []byte{
 	0xfa, 0xdd, 0xd3, 0x80, 0x8d, 0x5b, 0xc4, 0x61, 0x59, 0xe0, 0x16, 0xfe, 0x59, 0xc3, 0xa4, 0x9f,
 	0x11, 0x57, 0xfe, 0xb1, 0xba, 0x01, 0x73, 0x8b, 0xbf, 0xc0, 0xdd, 0xba, 0x14, 0x7f, 0xfc, 0x77,
 	0x00, 0x00, 0x00, 0xff, 0xff, 0xc8, 0x04, 0x73, 0xe8, 0x5e, 0x0b, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// TestServiceClient is the client API for TestService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type TestServiceClient interface {
+	// Run a build target's ebuild unit tests.
+	BuildTargetUnitTest(ctx context.Context, in *BuildTargetUnitTestRequest, opts ...grpc.CallOption) (*BuildTargetUnitTestResponse, error)
+	// Run the chromite unit tests.
+	ChromiteUnitTest(ctx context.Context, in *ChromiteUnitTestRequest, opts ...grpc.CallOption) (*ChromiteUnitTestResponse, error)
+	// Run the cros-signing unit tests.
+	CrosSigningTest(ctx context.Context, in *CrosSigningTestRequest, opts ...grpc.CallOption) (*CrosSigningTestResponse, error)
+	// Run the debug info tests on a sysroot.
+	DebugInfoTest(ctx context.Context, in *DebugInfoTestRequest, opts ...grpc.CallOption) (*DebugInfoTestResponse, error)
+	// Run VM tests and report failures.
+	VmTest(ctx context.Context, in *VmTestRequest, opts ...grpc.CallOption) (*VmTestResponse, error)
+	// Run Moblab VM tests and report failures.
+	MoblabVmTest(ctx context.Context, in *MoblabVmTestRequest, opts ...grpc.CallOption) (*MoblabVmTestResponse, error)
+	// Run the Simple Chrome workflow unit tests.
+	SimpleChromeWorkflowTest(ctx context.Context, in *SimpleChromeWorkflowTestRequest, opts ...grpc.CallOption) (*SimpleChromeWorkflowTestResponse, error)
+}
+
+type testServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewTestServiceClient(cc *grpc.ClientConn) TestServiceClient {
+	return &testServiceClient{cc}
+}
+
+func (c *testServiceClient) BuildTargetUnitTest(ctx context.Context, in *BuildTargetUnitTestRequest, opts ...grpc.CallOption) (*BuildTargetUnitTestResponse, error) {
+	out := new(BuildTargetUnitTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/BuildTargetUnitTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) ChromiteUnitTest(ctx context.Context, in *ChromiteUnitTestRequest, opts ...grpc.CallOption) (*ChromiteUnitTestResponse, error) {
+	out := new(ChromiteUnitTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/ChromiteUnitTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) CrosSigningTest(ctx context.Context, in *CrosSigningTestRequest, opts ...grpc.CallOption) (*CrosSigningTestResponse, error) {
+	out := new(CrosSigningTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/CrosSigningTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) DebugInfoTest(ctx context.Context, in *DebugInfoTestRequest, opts ...grpc.CallOption) (*DebugInfoTestResponse, error) {
+	out := new(DebugInfoTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/DebugInfoTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) VmTest(ctx context.Context, in *VmTestRequest, opts ...grpc.CallOption) (*VmTestResponse, error) {
+	out := new(VmTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/VmTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) MoblabVmTest(ctx context.Context, in *MoblabVmTestRequest, opts ...grpc.CallOption) (*MoblabVmTestResponse, error) {
+	out := new(MoblabVmTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/MoblabVmTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) SimpleChromeWorkflowTest(ctx context.Context, in *SimpleChromeWorkflowTestRequest, opts ...grpc.CallOption) (*SimpleChromeWorkflowTestResponse, error) {
+	out := new(SimpleChromeWorkflowTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/SimpleChromeWorkflowTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TestServiceServer is the server API for TestService service.
+type TestServiceServer interface {
+	// Run a build target's ebuild unit tests.
+	BuildTargetUnitTest(context.Context, *BuildTargetUnitTestRequest) (*BuildTargetUnitTestResponse, error)
+	// Run the chromite unit tests.
+	ChromiteUnitTest(context.Context, *ChromiteUnitTestRequest) (*ChromiteUnitTestResponse, error)
+	// Run the cros-signing unit tests.
+	CrosSigningTest(context.Context, *CrosSigningTestRequest) (*CrosSigningTestResponse, error)
+	// Run the debug info tests on a sysroot.
+	DebugInfoTest(context.Context, *DebugInfoTestRequest) (*DebugInfoTestResponse, error)
+	// Run VM tests and report failures.
+	VmTest(context.Context, *VmTestRequest) (*VmTestResponse, error)
+	// Run Moblab VM tests and report failures.
+	MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error)
+	// Run the Simple Chrome workflow unit tests.
+	SimpleChromeWorkflowTest(context.Context, *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error)
+}
+
+func RegisterTestServiceServer(s *grpc.Server, srv TestServiceServer) {
+	s.RegisterService(&_TestService_serviceDesc, srv)
+}
+
+func _TestService_BuildTargetUnitTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildTargetUnitTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).BuildTargetUnitTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/BuildTargetUnitTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).BuildTargetUnitTest(ctx, req.(*BuildTargetUnitTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_ChromiteUnitTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChromiteUnitTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).ChromiteUnitTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/ChromiteUnitTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).ChromiteUnitTest(ctx, req.(*ChromiteUnitTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_CrosSigningTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CrosSigningTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).CrosSigningTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/CrosSigningTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).CrosSigningTest(ctx, req.(*CrosSigningTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_DebugInfoTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DebugInfoTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).DebugInfoTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/DebugInfoTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).DebugInfoTest(ctx, req.(*DebugInfoTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_VmTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VmTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).VmTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/VmTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).VmTest(ctx, req.(*VmTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_MoblabVmTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoblabVmTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).MoblabVmTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/MoblabVmTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).MoblabVmTest(ctx, req.(*MoblabVmTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_SimpleChromeWorkflowTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SimpleChromeWorkflowTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).SimpleChromeWorkflowTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/SimpleChromeWorkflowTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).SimpleChromeWorkflowTest(ctx, req.(*SimpleChromeWorkflowTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _TestService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.TestService",
+	HandlerType: (*TestServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "BuildTargetUnitTest",
+			Handler:    _TestService_BuildTargetUnitTest_Handler,
+		},
+		{
+			MethodName: "ChromiteUnitTest",
+			Handler:    _TestService_ChromiteUnitTest_Handler,
+		},
+		{
+			MethodName: "CrosSigningTest",
+			Handler:    _TestService_CrosSigningTest_Handler,
+		},
+		{
+			MethodName: "DebugInfoTest",
+			Handler:    _TestService_DebugInfoTest_Handler,
+		},
+		{
+			MethodName: "VmTest",
+			Handler:    _TestService_VmTest_Handler,
+		},
+		{
+			MethodName: "MoblabVmTest",
+			Handler:    _TestService_MoblabVmTest_Handler,
+		},
+		{
+			MethodName: "SimpleChromeWorkflowTest",
+			Handler:    _TestService_SimpleChromeWorkflowTest_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/test.proto",
 }

@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -1034,4 +1036,265 @@ var fileDescriptor_d632782a0b1177ef = []byte{
 	0xce, 0xf8, 0xd2, 0xb3, 0x2a, 0xe1, 0x4f, 0x69, 0xc5, 0xa6, 0x95, 0xf8, 0xbf, 0xec, 0xc5, 0x56,
 	0xa8, 0xfe, 0xfc, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x99, 0xf0, 0x51, 0xc7, 0x2a, 0x0b, 0x00,
 	0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// BinhostServiceClient is the client API for BinhostService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type BinhostServiceClient interface {
+	// Get the binhosts for a build target.
+	Get(ctx context.Context, in *BinhostGetRequest, opts ...grpc.CallOption) (*BinhostGetResponse, error)
+	// Get the arguments from the private overlay's ACL file.
+	GetPrivatePrebuiltAclArgs(ctx context.Context, in *AclArgsRequest, opts ...grpc.CallOption) (*AclArgsResponse, error)
+	// Return a list of files to upload to the binhost. Importantly, this method
+	// assumes that all files, once uploaded, will share the same relative path
+	// on the remote disk as they do on the remote disk. E.g., package foo/bar,
+	// stored locally at /mnt/bin/foo/bar, must be uploaded to <uri>/foo/bar.
+	PrepareBinhostUploads(ctx context.Context, in *PrepareBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareBinhostUploadsResponse, error)
+	// Return a list of dev-install files to upload to the binhost. Like
+	// PrepareBinhostUploads, this method assumes that all files, once uploaded,
+	// will share the same relative path on the remote disk as they do on the
+	// remote disk.
+	PrepareDevInstallBinhostUploads(ctx context.Context, in *PrepareDevInstallBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareDevInstallBinhostUploadsResponse, error)
+	// Update the binhost key for a build targets.
+	SetBinhost(ctx context.Context, in *SetBinhostRequest, opts ...grpc.CallOption) (*SetBinhostResponse, error)
+	// Regenerate the builder cache.
+	RegenBuildCache(ctx context.Context, in *RegenBuildCacheRequest, opts ...grpc.CallOption) (*RegenBuildCacheResponse, error)
+}
+
+type binhostServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewBinhostServiceClient(cc *grpc.ClientConn) BinhostServiceClient {
+	return &binhostServiceClient{cc}
+}
+
+func (c *binhostServiceClient) Get(ctx context.Context, in *BinhostGetRequest, opts ...grpc.CallOption) (*BinhostGetResponse, error) {
+	out := new(BinhostGetResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *binhostServiceClient) GetPrivatePrebuiltAclArgs(ctx context.Context, in *AclArgsRequest, opts ...grpc.CallOption) (*AclArgsResponse, error) {
+	out := new(AclArgsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/GetPrivatePrebuiltAclArgs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *binhostServiceClient) PrepareBinhostUploads(ctx context.Context, in *PrepareBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareBinhostUploadsResponse, error) {
+	out := new(PrepareBinhostUploadsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/PrepareBinhostUploads", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *binhostServiceClient) PrepareDevInstallBinhostUploads(ctx context.Context, in *PrepareDevInstallBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareDevInstallBinhostUploadsResponse, error) {
+	out := new(PrepareDevInstallBinhostUploadsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/PrepareDevInstallBinhostUploads", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *binhostServiceClient) SetBinhost(ctx context.Context, in *SetBinhostRequest, opts ...grpc.CallOption) (*SetBinhostResponse, error) {
+	out := new(SetBinhostResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/SetBinhost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *binhostServiceClient) RegenBuildCache(ctx context.Context, in *RegenBuildCacheRequest, opts ...grpc.CallOption) (*RegenBuildCacheResponse, error) {
+	out := new(RegenBuildCacheResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/RegenBuildCache", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BinhostServiceServer is the server API for BinhostService service.
+type BinhostServiceServer interface {
+	// Get the binhosts for a build target.
+	Get(context.Context, *BinhostGetRequest) (*BinhostGetResponse, error)
+	// Get the arguments from the private overlay's ACL file.
+	GetPrivatePrebuiltAclArgs(context.Context, *AclArgsRequest) (*AclArgsResponse, error)
+	// Return a list of files to upload to the binhost. Importantly, this method
+	// assumes that all files, once uploaded, will share the same relative path
+	// on the remote disk as they do on the remote disk. E.g., package foo/bar,
+	// stored locally at /mnt/bin/foo/bar, must be uploaded to <uri>/foo/bar.
+	PrepareBinhostUploads(context.Context, *PrepareBinhostUploadsRequest) (*PrepareBinhostUploadsResponse, error)
+	// Return a list of dev-install files to upload to the binhost. Like
+	// PrepareBinhostUploads, this method assumes that all files, once uploaded,
+	// will share the same relative path on the remote disk as they do on the
+	// remote disk.
+	PrepareDevInstallBinhostUploads(context.Context, *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error)
+	// Update the binhost key for a build targets.
+	SetBinhost(context.Context, *SetBinhostRequest) (*SetBinhostResponse, error)
+	// Regenerate the builder cache.
+	RegenBuildCache(context.Context, *RegenBuildCacheRequest) (*RegenBuildCacheResponse, error)
+}
+
+func RegisterBinhostServiceServer(s *grpc.Server, srv BinhostServiceServer) {
+	s.RegisterService(&_BinhostService_serviceDesc, srv)
+}
+
+func _BinhostService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BinhostGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).Get(ctx, req.(*BinhostGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BinhostService_GetPrivatePrebuiltAclArgs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AclArgsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).GetPrivatePrebuiltAclArgs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/GetPrivatePrebuiltAclArgs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).GetPrivatePrebuiltAclArgs(ctx, req.(*AclArgsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BinhostService_PrepareBinhostUploads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrepareBinhostUploadsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).PrepareBinhostUploads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/PrepareBinhostUploads",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).PrepareBinhostUploads(ctx, req.(*PrepareBinhostUploadsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BinhostService_PrepareDevInstallBinhostUploads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrepareDevInstallBinhostUploadsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).PrepareDevInstallBinhostUploads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/PrepareDevInstallBinhostUploads",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).PrepareDevInstallBinhostUploads(ctx, req.(*PrepareDevInstallBinhostUploadsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BinhostService_SetBinhost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetBinhostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).SetBinhost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/SetBinhost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).SetBinhost(ctx, req.(*SetBinhostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BinhostService_RegenBuildCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegenBuildCacheRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).RegenBuildCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/RegenBuildCache",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).RegenBuildCache(ctx, req.(*RegenBuildCacheRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _BinhostService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.BinhostService",
+	HandlerType: (*BinhostServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _BinhostService_Get_Handler,
+		},
+		{
+			MethodName: "GetPrivatePrebuiltAclArgs",
+			Handler:    _BinhostService_GetPrivatePrebuiltAclArgs_Handler,
+		},
+		{
+			MethodName: "PrepareBinhostUploads",
+			Handler:    _BinhostService_PrepareBinhostUploads_Handler,
+		},
+		{
+			MethodName: "PrepareDevInstallBinhostUploads",
+			Handler:    _BinhostService_PrepareDevInstallBinhostUploads_Handler,
+		},
+		{
+			MethodName: "SetBinhost",
+			Handler:    _BinhostService_SetBinhost_Handler,
+		},
+		{
+			MethodName: "RegenBuildCache",
+			Handler:    _BinhostService_RegenBuildCache_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/binhost.proto",
 }

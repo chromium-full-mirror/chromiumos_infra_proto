@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -476,4 +478,148 @@ var fileDescriptor_b3d6bdc7c0e50b1e = []byte{
 	0xf9, 0xf2, 0x2a, 0xc3, 0x5d, 0x0e, 0x01, 0x8a, 0x2c, 0x6c, 0xbd, 0x78, 0x5e, 0xae, 0x04, 0x0d,
 	0xf5, 0x83, 0x0f, 0x33, 0x0c, 0xdb, 0x5f, 0x8a, 0xa5, 0xad, 0xe1, 0x17, 0x3f, 0x03, 0x00, 0x00,
 	0xff, 0xff, 0x9c, 0xe1, 0x5f, 0x86, 0x66, 0x04, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// SdkServiceClient is the client API for SdkService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type SdkServiceClient interface {
+	// Create method, supports replacing an existing chroot.
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	// Delete a chroot.
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	// Update the chroot.
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+}
+
+type sdkServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewSdkServiceClient(cc *grpc.ClientConn) SdkServiceClient {
+	return &sdkServiceClient{cc}
+}
+
+func (c *sdkServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+	out := new(CreateResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sdkServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+	out := new(DeleteResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sdkServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SdkServiceServer is the server API for SdkService service.
+type SdkServiceServer interface {
+	// Create method, supports replacing an existing chroot.
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	// Delete a chroot.
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	// Update the chroot.
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+}
+
+func RegisterSdkServiceServer(s *grpc.Server, srv SdkServiceServer) {
+	s.RegisterService(&_SdkService_serviceDesc, srv)
+}
+
+func _SdkService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).Create(ctx, req.(*CreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SdkService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).Delete(ctx, req.(*DeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SdkService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).Update(ctx, req.(*UpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _SdkService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.SdkService",
+	HandlerType: (*SdkServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _SdkService_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _SdkService_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _SdkService_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/sdk.proto",
 }

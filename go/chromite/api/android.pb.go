@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -324,4 +326,115 @@ var fileDescriptor_f74c095a284c1bd1 = []byte{
 	0xa1, 0x55, 0x78, 0xef, 0x51, 0x72, 0x96, 0x61, 0x8b, 0x3f, 0x77, 0x2b, 0xa4, 0x56, 0xf1, 0x3b,
 	0x31, 0xad, 0xf0, 0xf2, 0xf3, 0xdf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x4d, 0x3d, 0x49, 0x44, 0x68,
 	0x04, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// AndroidServiceClient is the client API for AndroidService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type AndroidServiceClient interface {
+	// The MarkStable method uprevs Android, verifies the newly revved package
+	// can be emerged, and returns the new package info.
+	MarkStable(ctx context.Context, in *MarkStableRequest, opts ...grpc.CallOption) (*MarkStableResponse, error)
+	// Unpin the Android package version.
+	UnpinVersion(ctx context.Context, in *UnpinVersionRequest, opts ...grpc.CallOption) (*UnpinVersionResponse, error)
+}
+
+type androidServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewAndroidServiceClient(cc *grpc.ClientConn) AndroidServiceClient {
+	return &androidServiceClient{cc}
+}
+
+func (c *androidServiceClient) MarkStable(ctx context.Context, in *MarkStableRequest, opts ...grpc.CallOption) (*MarkStableResponse, error) {
+	out := new(MarkStableResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.AndroidService/MarkStable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *androidServiceClient) UnpinVersion(ctx context.Context, in *UnpinVersionRequest, opts ...grpc.CallOption) (*UnpinVersionResponse, error) {
+	out := new(UnpinVersionResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.AndroidService/UnpinVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AndroidServiceServer is the server API for AndroidService service.
+type AndroidServiceServer interface {
+	// The MarkStable method uprevs Android, verifies the newly revved package
+	// can be emerged, and returns the new package info.
+	MarkStable(context.Context, *MarkStableRequest) (*MarkStableResponse, error)
+	// Unpin the Android package version.
+	UnpinVersion(context.Context, *UnpinVersionRequest) (*UnpinVersionResponse, error)
+}
+
+func RegisterAndroidServiceServer(s *grpc.Server, srv AndroidServiceServer) {
+	s.RegisterService(&_AndroidService_serviceDesc, srv)
+}
+
+func _AndroidService_MarkStable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkStableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AndroidServiceServer).MarkStable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.AndroidService/MarkStable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AndroidServiceServer).MarkStable(ctx, req.(*MarkStableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AndroidService_UnpinVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpinVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AndroidServiceServer).UnpinVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.AndroidService/UnpinVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AndroidServiceServer).UnpinVersion(ctx, req.(*UnpinVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _AndroidService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.AndroidService",
+	HandlerType: (*AndroidServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "MarkStable",
+			Handler:    _AndroidService_MarkStable_Handler,
+		},
+		{
+			MethodName: "UnpinVersion",
+			Handler:    _AndroidService_UnpinVersion_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/android.proto",
 }

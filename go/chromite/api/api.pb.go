@@ -4,8 +4,10 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -296,4 +298,140 @@ var fileDescriptor_4c67cb8e48a2638e = []byte{
 	0xfb, 0x0c, 0x75, 0x93, 0x3a, 0x0f, 0x90, 0x67, 0x61, 0x53, 0x60, 0x15, 0xb2, 0xe2, 0x8d, 0xa7,
 	0xa1, 0x7c, 0x62, 0x61, 0x86, 0x61, 0xfb, 0x09, 0x2e, 0x7a, 0x12, 0xdf, 0xfd, 0x06, 0x00, 0x00,
 	0xff, 0xff, 0x9f, 0x6c, 0x42, 0xd2, 0xbf, 0x02, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// MethodServiceClient is the client API for MethodService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type MethodServiceClient interface {
+	Get(ctx context.Context, in *MethodGetRequest, opts ...grpc.CallOption) (*MethodGetResponse, error)
+}
+
+type methodServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewMethodServiceClient(cc *grpc.ClientConn) MethodServiceClient {
+	return &methodServiceClient{cc}
+}
+
+func (c *methodServiceClient) Get(ctx context.Context, in *MethodGetRequest, opts ...grpc.CallOption) (*MethodGetResponse, error) {
+	out := new(MethodGetResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.MethodService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MethodServiceServer is the server API for MethodService service.
+type MethodServiceServer interface {
+	Get(context.Context, *MethodGetRequest) (*MethodGetResponse, error)
+}
+
+func RegisterMethodServiceServer(s *grpc.Server, srv MethodServiceServer) {
+	s.RegisterService(&_MethodService_serviceDesc, srv)
+}
+
+func _MethodService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MethodGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MethodServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.MethodService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MethodServiceServer).Get(ctx, req.(*MethodGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _MethodService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.MethodService",
+	HandlerType: (*MethodServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _MethodService_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/api.proto",
+}
+
+// VersionServiceClient is the client API for VersionService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type VersionServiceClient interface {
+	Get(ctx context.Context, in *VersionGetRequest, opts ...grpc.CallOption) (*VersionGetResponse, error)
+}
+
+type versionServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewVersionServiceClient(cc *grpc.ClientConn) VersionServiceClient {
+	return &versionServiceClient{cc}
+}
+
+func (c *versionServiceClient) Get(ctx context.Context, in *VersionGetRequest, opts ...grpc.CallOption) (*VersionGetResponse, error) {
+	out := new(VersionGetResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.VersionService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// VersionServiceServer is the server API for VersionService service.
+type VersionServiceServer interface {
+	Get(context.Context, *VersionGetRequest) (*VersionGetResponse, error)
+}
+
+func RegisterVersionServiceServer(s *grpc.Server, srv VersionServiceServer) {
+	s.RegisterService(&_VersionService_serviceDesc, srv)
+}
+
+func _VersionService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VersionGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VersionServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.VersionService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VersionServiceServer).Get(ctx, req.(*VersionGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _VersionService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.VersionService",
+	HandlerType: (*VersionServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _VersionService_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/api.proto",
 }

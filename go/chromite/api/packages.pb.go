@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -973,4 +975,314 @@ var fileDescriptor_40286986e1d9a416 = []byte{
 	0xc7, 0x9f, 0xff, 0xf4, 0xd9, 0x48, 0xe4, 0x0d, 0xa9, 0x2d, 0xe4, 0xa8, 0x53, 0xf8, 0xbd, 0xf3,
 	0x78, 0x28, 0x69, 0xc7, 0x7c, 0xde, 0x3b, 0x23, 0xd1, 0x29, 0xfe, 0xfa, 0x7b, 0x35, 0x23, 0x7e,
 	0xf8, 0x3a, 0x00, 0x00, 0xff, 0xff, 0x90, 0xe1, 0xe5, 0x40, 0x53, 0x0c, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// PackageServiceClient is the client API for PackageService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type PackageServiceClient interface {
+	// Check if the build target has chrome in its depgraph.
+	BuildsChrome(ctx context.Context, in *BuildsChromeRequest, opts ...grpc.CallOption) (*BuildsChromeResponse, error)
+	// Find the best (highest) available version of the requested package.
+	// This must be run after the chroot is set up (for chroot package lookup) or
+	// after the sysroot is created (for build target package lookup).
+	GetBestVisible(ctx context.Context, in *GetBestVisibleRequest, opts ...grpc.CallOption) (*GetBestVisibleResponse, error)
+	// Like GetBestVisible, but returns only the chrome version. The chrome
+	// package version is something like 78.9.0.123_rc-r1, where the chrome
+	// version itself is just 78.9.0.123. This case does not have a spec in
+	// Portage, so it cannot be directly fetched by GetBestVisible.
+	GetChromeVersion(ctx context.Context, in *GetChromeVersionRequest, opts ...grpc.CallOption) (*GetChromeVersionResponse, error)
+	// Return the various build version fields that can be stored (e.g. in
+	// metadata.json).
+	GetTargetVersions(ctx context.Context, in *GetTargetVersionsRequest, opts ...grpc.CallOption) (*GetTargetVersionsResponse, error)
+	// Check if there is an available chrome prebuilt for the most recent
+	// version of chrome.
+	HasChromePrebuilt(ctx context.Context, in *HasChromePrebuiltRequest, opts ...grpc.CallOption) (*HasChromePrebuiltResponse, error)
+	// The generic uprev process -- performs uprevs for all packages in the
+	// public and/or private overlays for the build target(s) specified.
+	// This handles all cros_workon packages except those that have a separate
+	// uprev process.
+	Uprev(ctx context.Context, in *UprevPackagesRequest, opts ...grpc.CallOption) (*UprevPackagesResponse, error)
+	// Uprev a package that is externally versioned (e.g. Chrome).
+	// This endpoint iterates over a list of git refs that represent versions
+	// and searches for a new version, updating and upreving the package ebuild
+	// if such a version is found. The exact behavior depends on the package.
+	UprevVersionedPackage(ctx context.Context, in *UprevVersionedPackageRequest, opts ...grpc.CallOption) (*UprevVersionedPackageResponse, error)
+}
+
+type packageServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewPackageServiceClient(cc *grpc.ClientConn) PackageServiceClient {
+	return &packageServiceClient{cc}
+}
+
+func (c *packageServiceClient) BuildsChrome(ctx context.Context, in *BuildsChromeRequest, opts ...grpc.CallOption) (*BuildsChromeResponse, error) {
+	out := new(BuildsChromeResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/BuildsChrome", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) GetBestVisible(ctx context.Context, in *GetBestVisibleRequest, opts ...grpc.CallOption) (*GetBestVisibleResponse, error) {
+	out := new(GetBestVisibleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/GetBestVisible", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) GetChromeVersion(ctx context.Context, in *GetChromeVersionRequest, opts ...grpc.CallOption) (*GetChromeVersionResponse, error) {
+	out := new(GetChromeVersionResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/GetChromeVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) GetTargetVersions(ctx context.Context, in *GetTargetVersionsRequest, opts ...grpc.CallOption) (*GetTargetVersionsResponse, error) {
+	out := new(GetTargetVersionsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/GetTargetVersions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) HasChromePrebuilt(ctx context.Context, in *HasChromePrebuiltRequest, opts ...grpc.CallOption) (*HasChromePrebuiltResponse, error) {
+	out := new(HasChromePrebuiltResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/HasChromePrebuilt", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) Uprev(ctx context.Context, in *UprevPackagesRequest, opts ...grpc.CallOption) (*UprevPackagesResponse, error) {
+	out := new(UprevPackagesResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/Uprev", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) UprevVersionedPackage(ctx context.Context, in *UprevVersionedPackageRequest, opts ...grpc.CallOption) (*UprevVersionedPackageResponse, error) {
+	out := new(UprevVersionedPackageResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/UprevVersionedPackage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PackageServiceServer is the server API for PackageService service.
+type PackageServiceServer interface {
+	// Check if the build target has chrome in its depgraph.
+	BuildsChrome(context.Context, *BuildsChromeRequest) (*BuildsChromeResponse, error)
+	// Find the best (highest) available version of the requested package.
+	// This must be run after the chroot is set up (for chroot package lookup) or
+	// after the sysroot is created (for build target package lookup).
+	GetBestVisible(context.Context, *GetBestVisibleRequest) (*GetBestVisibleResponse, error)
+	// Like GetBestVisible, but returns only the chrome version. The chrome
+	// package version is something like 78.9.0.123_rc-r1, where the chrome
+	// version itself is just 78.9.0.123. This case does not have a spec in
+	// Portage, so it cannot be directly fetched by GetBestVisible.
+	GetChromeVersion(context.Context, *GetChromeVersionRequest) (*GetChromeVersionResponse, error)
+	// Return the various build version fields that can be stored (e.g. in
+	// metadata.json).
+	GetTargetVersions(context.Context, *GetTargetVersionsRequest) (*GetTargetVersionsResponse, error)
+	// Check if there is an available chrome prebuilt for the most recent
+	// version of chrome.
+	HasChromePrebuilt(context.Context, *HasChromePrebuiltRequest) (*HasChromePrebuiltResponse, error)
+	// The generic uprev process -- performs uprevs for all packages in the
+	// public and/or private overlays for the build target(s) specified.
+	// This handles all cros_workon packages except those that have a separate
+	// uprev process.
+	Uprev(context.Context, *UprevPackagesRequest) (*UprevPackagesResponse, error)
+	// Uprev a package that is externally versioned (e.g. Chrome).
+	// This endpoint iterates over a list of git refs that represent versions
+	// and searches for a new version, updating and upreving the package ebuild
+	// if such a version is found. The exact behavior depends on the package.
+	UprevVersionedPackage(context.Context, *UprevVersionedPackageRequest) (*UprevVersionedPackageResponse, error)
+}
+
+func RegisterPackageServiceServer(s *grpc.Server, srv PackageServiceServer) {
+	s.RegisterService(&_PackageService_serviceDesc, srv)
+}
+
+func _PackageService_BuildsChrome_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildsChromeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).BuildsChrome(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/BuildsChrome",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).BuildsChrome(ctx, req.(*BuildsChromeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_GetBestVisible_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBestVisibleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).GetBestVisible(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/GetBestVisible",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).GetBestVisible(ctx, req.(*GetBestVisibleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_GetChromeVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChromeVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).GetChromeVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/GetChromeVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).GetChromeVersion(ctx, req.(*GetChromeVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_GetTargetVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTargetVersionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).GetTargetVersions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/GetTargetVersions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).GetTargetVersions(ctx, req.(*GetTargetVersionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_HasChromePrebuilt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HasChromePrebuiltRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).HasChromePrebuilt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/HasChromePrebuilt",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).HasChromePrebuilt(ctx, req.(*HasChromePrebuiltRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_Uprev_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UprevPackagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).Uprev(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/Uprev",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).Uprev(ctx, req.(*UprevPackagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_UprevVersionedPackage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UprevVersionedPackageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).UprevVersionedPackage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/UprevVersionedPackage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).UprevVersionedPackage(ctx, req.(*UprevVersionedPackageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _PackageService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.PackageService",
+	HandlerType: (*PackageServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "BuildsChrome",
+			Handler:    _PackageService_BuildsChrome_Handler,
+		},
+		{
+			MethodName: "GetBestVisible",
+			Handler:    _PackageService_GetBestVisible_Handler,
+		},
+		{
+			MethodName: "GetChromeVersion",
+			Handler:    _PackageService_GetChromeVersion_Handler,
+		},
+		{
+			MethodName: "GetTargetVersions",
+			Handler:    _PackageService_GetTargetVersions_Handler,
+		},
+		{
+			MethodName: "HasChromePrebuilt",
+			Handler:    _PackageService_HasChromePrebuilt_Handler,
+		},
+		{
+			MethodName: "Uprev",
+			Handler:    _PackageService_Uprev_Handler,
+		},
+		{
+			MethodName: "UprevVersionedPackage",
+			Handler:    _PackageService_UprevVersionedPackage_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/packages.proto",
 }

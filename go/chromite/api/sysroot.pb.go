@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -769,4 +771,183 @@ var fileDescriptor_f8efa85b3e33e938 = []byte{
 	0x46, 0x7c, 0xd2, 0x5d, 0x8f, 0x8b, 0x91, 0x5f, 0xf9, 0xb9, 0x60, 0xc9, 0x50, 0x10, 0x5f, 0xfd,
 	0x5a, 0xf8, 0x23, 0xee, 0x57, 0xff, 0x56, 0x6e, 0x9a, 0x2a, 0x7c, 0xf8, 0x26, 0x00, 0x00, 0xff,
 	0xff, 0xfb, 0xad, 0xe2, 0xc7, 0xee, 0x08, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// SysrootServiceClient is the client API for SysrootService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type SysrootServiceClient interface {
+	// Create the base sysroot structure.
+	Create(ctx context.Context, in *SysrootCreateRequest, opts ...grpc.CallOption) (*SysrootCreateResponse, error)
+	// Install the toolchain into the sysroot.
+	InstallToolchain(ctx context.Context, in *InstallToolchainRequest, opts ...grpc.CallOption) (*InstallToolchainResponse, error)
+	// Install packages into the sysroot. By default will install all packages.
+	InstallPackages(ctx context.Context, in *InstallPackagesRequest, opts ...grpc.CallOption) (*InstallPackagesResponse, error)
+	// Install SimpleChrome sysroot.
+	CreateSimpleChromeSysroot(ctx context.Context, in *CreateSimpleChromeSysrootRequest, opts ...grpc.CallOption) (*CreateSimpleChromeSysrootResponse, error)
+}
+
+type sysrootServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewSysrootServiceClient(cc *grpc.ClientConn) SysrootServiceClient {
+	return &sysrootServiceClient{cc}
+}
+
+func (c *sysrootServiceClient) Create(ctx context.Context, in *SysrootCreateRequest, opts ...grpc.CallOption) (*SysrootCreateResponse, error) {
+	out := new(SysrootCreateResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysrootServiceClient) InstallToolchain(ctx context.Context, in *InstallToolchainRequest, opts ...grpc.CallOption) (*InstallToolchainResponse, error) {
+	out := new(InstallToolchainResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/InstallToolchain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysrootServiceClient) InstallPackages(ctx context.Context, in *InstallPackagesRequest, opts ...grpc.CallOption) (*InstallPackagesResponse, error) {
+	out := new(InstallPackagesResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/InstallPackages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysrootServiceClient) CreateSimpleChromeSysroot(ctx context.Context, in *CreateSimpleChromeSysrootRequest, opts ...grpc.CallOption) (*CreateSimpleChromeSysrootResponse, error) {
+	out := new(CreateSimpleChromeSysrootResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/CreateSimpleChromeSysroot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SysrootServiceServer is the server API for SysrootService service.
+type SysrootServiceServer interface {
+	// Create the base sysroot structure.
+	Create(context.Context, *SysrootCreateRequest) (*SysrootCreateResponse, error)
+	// Install the toolchain into the sysroot.
+	InstallToolchain(context.Context, *InstallToolchainRequest) (*InstallToolchainResponse, error)
+	// Install packages into the sysroot. By default will install all packages.
+	InstallPackages(context.Context, *InstallPackagesRequest) (*InstallPackagesResponse, error)
+	// Install SimpleChrome sysroot.
+	CreateSimpleChromeSysroot(context.Context, *CreateSimpleChromeSysrootRequest) (*CreateSimpleChromeSysrootResponse, error)
+}
+
+func RegisterSysrootServiceServer(s *grpc.Server, srv SysrootServiceServer) {
+	s.RegisterService(&_SysrootService_serviceDesc, srv)
+}
+
+func _SysrootService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SysrootCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysrootServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SysrootService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysrootServiceServer).Create(ctx, req.(*SysrootCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SysrootService_InstallToolchain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstallToolchainRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysrootServiceServer).InstallToolchain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SysrootService/InstallToolchain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysrootServiceServer).InstallToolchain(ctx, req.(*InstallToolchainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SysrootService_InstallPackages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstallPackagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysrootServiceServer).InstallPackages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SysrootService/InstallPackages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysrootServiceServer).InstallPackages(ctx, req.(*InstallPackagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SysrootService_CreateSimpleChromeSysroot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSimpleChromeSysrootRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysrootServiceServer).CreateSimpleChromeSysroot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SysrootService/CreateSimpleChromeSysroot",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysrootServiceServer).CreateSimpleChromeSysroot(ctx, req.(*CreateSimpleChromeSysrootRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _SysrootService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.SysrootService",
+	HandlerType: (*SysrootServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _SysrootService_Create_Handler,
+		},
+		{
+			MethodName: "InstallToolchain",
+			Handler:    _SysrootService_InstallToolchain_Handler,
+		},
+		{
+			MethodName: "InstallPackages",
+			Handler:    _SysrootService_InstallPackages_Handler,
+		},
+		{
+			MethodName: "CreateSimpleChromeSysroot",
+			Handler:    _SysrootService_CreateSimpleChromeSysroot_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/sysroot.proto",
 }

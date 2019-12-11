@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -314,4 +316,78 @@ var fileDescriptor_7a5308b238ddba97 = []byte{
 	0xe9, 0xed, 0x20, 0x2f, 0x57, 0x8a, 0x26, 0x76, 0x05, 0x93, 0x42, 0x24, 0xfd, 0xdd, 0x5d, 0x1e,
 	0xdb, 0xeb, 0xcb, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x28, 0x10, 0x0e, 0x5a, 0xfd, 0x03, 0x00,
 	0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// DependencyServiceClient is the client API for DependencyService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type DependencyServiceClient interface {
+	// Get the build dependency graph.
+	GetBuildDependencyGraph(ctx context.Context, in *GetBuildDependencyGraphRequest, opts ...grpc.CallOption) (*GetBuildDependencyGraphResponse, error)
+}
+
+type dependencyServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewDependencyServiceClient(cc *grpc.ClientConn) DependencyServiceClient {
+	return &dependencyServiceClient{cc}
+}
+
+func (c *dependencyServiceClient) GetBuildDependencyGraph(ctx context.Context, in *GetBuildDependencyGraphRequest, opts ...grpc.CallOption) (*GetBuildDependencyGraphResponse, error) {
+	out := new(GetBuildDependencyGraphResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.DependencyService/GetBuildDependencyGraph", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DependencyServiceServer is the server API for DependencyService service.
+type DependencyServiceServer interface {
+	// Get the build dependency graph.
+	GetBuildDependencyGraph(context.Context, *GetBuildDependencyGraphRequest) (*GetBuildDependencyGraphResponse, error)
+}
+
+func RegisterDependencyServiceServer(s *grpc.Server, srv DependencyServiceServer) {
+	s.RegisterService(&_DependencyService_serviceDesc, srv)
+}
+
+func _DependencyService_GetBuildDependencyGraph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBuildDependencyGraphRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DependencyServiceServer).GetBuildDependencyGraph(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.DependencyService/GetBuildDependencyGraph",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DependencyServiceServer).GetBuildDependencyGraph(ctx, req.(*GetBuildDependencyGraphRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _DependencyService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.DependencyService",
+	HandlerType: (*DependencyServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetBuildDependencyGraph",
+			Handler:    _DependencyService_GetBuildDependencyGraph_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/depgraph.proto",
 }

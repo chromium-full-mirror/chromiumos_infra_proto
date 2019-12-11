@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -520,4 +522,191 @@ var fileDescriptor_7ff43bdb7436d394 = []byte{
 	0x49, 0x24, 0x60, 0x99, 0xd0, 0x65, 0x23, 0xf1, 0x86, 0x9a, 0x96, 0x41, 0xf5, 0x86, 0xf7, 0x84,
 	0x36, 0x96, 0xa4, 0x91, 0x7c, 0x9a, 0x67, 0x39, 0xef, 0xf8, 0xcb, 0x7f, 0x02, 0x00, 0x00, 0xff,
 	0xff, 0x8c, 0xe7, 0x6d, 0xec, 0x19, 0x08, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// ToolchainServiceClient is the client API for ToolchainService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ToolchainServiceClient interface {
+	// DEPRECATED for recipes: used only by legacy toolchain builders.
+	// See also crbug/1019868.
+	// Update Chrome ebuild with most recent unvetted orderfile
+	UpdateEbuildWithAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
+	// DEPRECATED for recipes: used only by legacy toolchain builders.
+	// See also crbug/1019868.
+	// Copy the orderfile from unvetted GS bucket to vetted bucket.
+	UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
+	// Prepare to build toolchain artifacts.
+	PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error)
+	// Bundle toolchain artifacts.
+	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
+}
+
+type toolchainServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewToolchainServiceClient(cc *grpc.ClientConn) ToolchainServiceClient {
+	return &toolchainServiceClient{cc}
+}
+
+func (c *toolchainServiceClient) UpdateEbuildWithAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error) {
+	out := new(VerifyAFDOArtifactsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/UpdateEbuildWithAFDOArtifacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *toolchainServiceClient) UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error) {
+	out := new(VerifyAFDOArtifactsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/UploadVettedAFDOArtifacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *toolchainServiceClient) PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error) {
+	out := new(PrepareForToolchainBuildResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/PrepareForBuild", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *toolchainServiceClient) BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error) {
+	out := new(BundleToolchainResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/BundleArtifacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ToolchainServiceServer is the server API for ToolchainService service.
+type ToolchainServiceServer interface {
+	// DEPRECATED for recipes: used only by legacy toolchain builders.
+	// See also crbug/1019868.
+	// Update Chrome ebuild with most recent unvetted orderfile
+	UpdateEbuildWithAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
+	// DEPRECATED for recipes: used only by legacy toolchain builders.
+	// See also crbug/1019868.
+	// Copy the orderfile from unvetted GS bucket to vetted bucket.
+	UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
+	// Prepare to build toolchain artifacts.
+	PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error)
+	// Bundle toolchain artifacts.
+	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
+}
+
+func RegisterToolchainServiceServer(s *grpc.Server, srv ToolchainServiceServer) {
+	s.RegisterService(&_ToolchainService_serviceDesc, srv)
+}
+
+func _ToolchainService_UpdateEbuildWithAFDOArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyAFDOArtifactsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).UpdateEbuildWithAFDOArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/UpdateEbuildWithAFDOArtifacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).UpdateEbuildWithAFDOArtifacts(ctx, req.(*VerifyAFDOArtifactsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ToolchainService_UploadVettedAFDOArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyAFDOArtifactsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).UploadVettedAFDOArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/UploadVettedAFDOArtifacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).UploadVettedAFDOArtifacts(ctx, req.(*VerifyAFDOArtifactsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ToolchainService_PrepareForBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrepareForToolchainBuildRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).PrepareForBuild(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/PrepareForBuild",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).PrepareForBuild(ctx, req.(*PrepareForToolchainBuildRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ToolchainService_BundleArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleToolchainRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).BundleArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/BundleArtifacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).BundleArtifacts(ctx, req.(*BundleToolchainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ToolchainService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.ToolchainService",
+	HandlerType: (*ToolchainServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UpdateEbuildWithAFDOArtifacts",
+			Handler:    _ToolchainService_UpdateEbuildWithAFDOArtifacts_Handler,
+		},
+		{
+			MethodName: "UploadVettedAFDOArtifacts",
+			Handler:    _ToolchainService_UploadVettedAFDOArtifacts_Handler,
+		},
+		{
+			MethodName: "PrepareForBuild",
+			Handler:    _ToolchainService_PrepareForBuild_Handler,
+		},
+		{
+			MethodName: "BundleArtifacts",
+			Handler:    _ToolchainService_BundleArtifacts_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/toolchain.proto",
 }

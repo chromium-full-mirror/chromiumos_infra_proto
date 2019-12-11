@@ -4,9 +4,11 @@
 package api
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -516,4 +518,537 @@ var fileDescriptor_62a7d4c8524262a7 = []byte{
 	0x57, 0x44, 0x83, 0xbe, 0xc0, 0xae, 0xfe, 0x29, 0x72, 0x07, 0xcc, 0x9d, 0xfd, 0x97, 0x3a, 0x5f,
 	0xd6, 0xe1, 0x67, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x05, 0xaa, 0x8b, 0x68, 0xac, 0x09, 0x00,
 	0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// ArtifactsServiceClient is the client API for ArtifactsService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ArtifactsServiceClient interface {
+	// Create a tar archive with all files needed for Autotest HW testing.
+	BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create the ChromeOS Config JSON payload.
+	BundleChromeOSConfig(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create a tar archive with ebuild logs.
+	BundleEbuildLogs(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create a tar archive with unsigned firmware images.
+	BundleFirmware(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create a tar.xz archive for each image that has been created.
+	BundleImageArchives(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Generate zip containing all built images for the target.
+	BundleImageZip(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
+	// ToolchainService.Bundle{ArtifactType}()
+	// Create Chrome Benchmark AFDO builder artifacts.
+	BundleAFDOGenerationArtifacts(ctx context.Context, in *BundleChromeAFDORequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create a tar archive with all guest images test bundles.
+	BundlePinnedGuestImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create the simple chrome artifacts.
+	BundleSimpleChromeArtifacts(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create a tar archive with all files needed for Tast HW testing.
+	BundleTastFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Generate minimal update payloads to be used in HW testing.
+	BundleTestUpdatePayloads(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Create a tar archive with VM memory and disk images.
+	BundleVmFiles(ctx context.Context, in *BundleVmFilesRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Generate a CPE report to a file.
+	ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// Fetch the pinned guest image locations.
+	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
+}
+
+type artifactsServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewArtifactsServiceClient(cc *grpc.ClientConn) ArtifactsServiceClient {
+	return &artifactsServiceClient{cc}
+}
+
+func (c *artifactsServiceClient) BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleAutotestFiles", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleChromeOSConfig(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleChromeOSConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleEbuildLogs(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleEbuildLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleFirmware(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleFirmware", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleImageArchives(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleImageArchives", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleImageZip(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleImageZip", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleAFDOGenerationArtifacts(ctx context.Context, in *BundleChromeAFDORequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleAFDOGenerationArtifacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundlePinnedGuestImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundlePinnedGuestImages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleSimpleChromeArtifacts(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleSimpleChromeArtifacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleTastFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleTastFiles", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleTestUpdatePayloads(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleTestUpdatePayloads", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleVmFiles(ctx context.Context, in *BundleVmFilesRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleVmFiles", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
+	out := new(BundleResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/ExportCpeReport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error) {
+	out := new(PinnedGuestImageUriResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ArtifactsServiceServer is the server API for ArtifactsService service.
+type ArtifactsServiceServer interface {
+	// Create a tar archive with all files needed for Autotest HW testing.
+	BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create the ChromeOS Config JSON payload.
+	BundleChromeOSConfig(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create a tar archive with ebuild logs.
+	BundleEbuildLogs(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create a tar archive with unsigned firmware images.
+	BundleFirmware(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create a tar.xz archive for each image that has been created.
+	BundleImageArchives(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Generate zip containing all built images for the target.
+	BundleImageZip(context.Context, *BundleRequest) (*BundleResponse, error)
+	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
+	// ToolchainService.Bundle{ArtifactType}()
+	// Create Chrome Benchmark AFDO builder artifacts.
+	BundleAFDOGenerationArtifacts(context.Context, *BundleChromeAFDORequest) (*BundleResponse, error)
+	// Create a tar archive with all guest images test bundles.
+	BundlePinnedGuestImages(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create the simple chrome artifacts.
+	BundleSimpleChromeArtifacts(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create a tar archive with all files needed for Tast HW testing.
+	BundleTastFiles(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Generate minimal update payloads to be used in HW testing.
+	BundleTestUpdatePayloads(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Create a tar archive with VM memory and disk images.
+	BundleVmFiles(context.Context, *BundleVmFilesRequest) (*BundleResponse, error)
+	// Generate a CPE report to a file.
+	ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error)
+	// Fetch the pinned guest image locations.
+	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
+}
+
+func RegisterArtifactsServiceServer(s *grpc.Server, srv ArtifactsServiceServer) {
+	s.RegisterService(&_ArtifactsService_serviceDesc, srv)
+}
+
+func _ArtifactsService_BundleAutotestFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleAutotestFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleAutotestFiles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleAutotestFiles(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleChromeOSConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleChromeOSConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleChromeOSConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleChromeOSConfig(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleEbuildLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleEbuildLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleEbuildLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleEbuildLogs(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleFirmware_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleFirmware(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleFirmware",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleFirmware(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleImageArchives_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleImageArchives(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleImageArchives",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleImageArchives(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleImageZip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleImageZip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleImageZip",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleImageZip(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleAFDOGenerationArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleChromeAFDORequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleAFDOGenerationArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleAFDOGenerationArtifacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleAFDOGenerationArtifacts(ctx, req.(*BundleChromeAFDORequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundlePinnedGuestImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundlePinnedGuestImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundlePinnedGuestImages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundlePinnedGuestImages(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleSimpleChromeArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleSimpleChromeArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleSimpleChromeArtifacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleSimpleChromeArtifacts(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleTastFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleTastFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleTastFiles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleTastFiles(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleTestUpdatePayloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleTestUpdatePayloads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleTestUpdatePayloads",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleTestUpdatePayloads(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleVmFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleVmFilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleVmFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleVmFiles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleVmFiles(ctx, req.(*BundleVmFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_ExportCpeReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).ExportCpeReport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/ExportCpeReport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).ExportCpeReport(ctx, req.(*BundleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_FetchPinnedGuestImageUris_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PinnedGuestImageUriRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, req.(*PinnedGuestImageUriRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ArtifactsService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.ArtifactsService",
+	HandlerType: (*ArtifactsServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "BundleAutotestFiles",
+			Handler:    _ArtifactsService_BundleAutotestFiles_Handler,
+		},
+		{
+			MethodName: "BundleChromeOSConfig",
+			Handler:    _ArtifactsService_BundleChromeOSConfig_Handler,
+		},
+		{
+			MethodName: "BundleEbuildLogs",
+			Handler:    _ArtifactsService_BundleEbuildLogs_Handler,
+		},
+		{
+			MethodName: "BundleFirmware",
+			Handler:    _ArtifactsService_BundleFirmware_Handler,
+		},
+		{
+			MethodName: "BundleImageArchives",
+			Handler:    _ArtifactsService_BundleImageArchives_Handler,
+		},
+		{
+			MethodName: "BundleImageZip",
+			Handler:    _ArtifactsService_BundleImageZip_Handler,
+		},
+		{
+			MethodName: "BundleAFDOGenerationArtifacts",
+			Handler:    _ArtifactsService_BundleAFDOGenerationArtifacts_Handler,
+		},
+		{
+			MethodName: "BundlePinnedGuestImages",
+			Handler:    _ArtifactsService_BundlePinnedGuestImages_Handler,
+		},
+		{
+			MethodName: "BundleSimpleChromeArtifacts",
+			Handler:    _ArtifactsService_BundleSimpleChromeArtifacts_Handler,
+		},
+		{
+			MethodName: "BundleTastFiles",
+			Handler:    _ArtifactsService_BundleTastFiles_Handler,
+		},
+		{
+			MethodName: "BundleTestUpdatePayloads",
+			Handler:    _ArtifactsService_BundleTestUpdatePayloads_Handler,
+		},
+		{
+			MethodName: "BundleVmFiles",
+			Handler:    _ArtifactsService_BundleVmFiles_Handler,
+		},
+		{
+			MethodName: "ExportCpeReport",
+			Handler:    _ArtifactsService_ExportCpeReport_Handler,
+		},
+		{
+			MethodName: "FetchPinnedGuestImageUris",
+			Handler:    _ArtifactsService_FetchPinnedGuestImageUris_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/artifacts.proto",
 }

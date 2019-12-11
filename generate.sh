@@ -32,7 +32,7 @@ find go -name '*.pb.go' -exec rm '{}' \;
 # Go files need to be processed individually until this is fixed:
 # https://github.com/golang/protobuf/issues/39
 find src -name '*.proto' -exec \
-  protoc -Isrc --go_out=paths=source_relative:go '{}' \;
+     protoc -Isrc --go_out=paths=source_relative,plugins=grpc:go '{}' \;
 
 # Assemble a proto descriptor set with all protos in this repo, it is later
 # used by lucicfg to work with these protos when generating configs.
