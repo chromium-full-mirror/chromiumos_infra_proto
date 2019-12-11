@@ -33,8 +33,7 @@ message PrepareForToolchainBuildRequest {
   // TODO(crbug/1019868): At a minimum, the AFDO verify builders will need
   // enough information to be able to find the artifact created by the
   // AFDO_record HW Test.
-  // The artifacts available for preparing.
-  repeated ArtifactInfo artifacts_info = 4;
+  reserved 4;
 }
 
 message PrepareForToolchainBuildResponse {
