@@ -1,0 +1,124 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package tls;
+
+import "xmlrpc/xmlrpc.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/tls";
+
+// Wiring APIs are implemented by TLS wiring providers for all low
+// level access to lab services.
+//
+// It is expected that TLEs do not implement most of the methods.
+// TLEs only need to implement the services that it wants to provide to clients.
+//
+// All clients should pass gRPC metadata key request_trace_id with at least one value.
+// Clients that do not pass request_trace_id may be rejected so that they can be fixed.
+service Wiring {
+  // Open a port on the DUT for the caller.
+  // The TLE attempts to keep this port open for the duration of the
+  // RTD's runtime.
+  // This RPC can be called repeatedly for the same RTD, DUT, and port.
+  // On subsequent calls, the implementation should attempt to return the same address.
+  // If the implementation lost and cannot reobtain the previous
+  // address, it should return a new address.
+  rpc OpenDutPort(OpenDutPortRequest) returns (OpenDutPortResponse);
+
+  // CacheForDut caches some data to be accesible for the DUT.
+  // This will be made available to the DUT via a returned URL.
+  // The service will periodically return STATUS_CONTINUE messages to keep the stream alive.
+  // Implementations should use a reasonable interval (e.g., one minute)
+  // to ensure the stream does not time out.
+  // The client should continue streaming replies until getting success or failure.
+  //
+  // Experimental
+  rpc CacheForDut(CacheForDutRequest) returns (stream CacheForDutResponse);
+
+  // CallServoXmlRpc performs an XML-RPC call against the servo connected to a DUT.
+  //
+  // This RPC mirrors the XML-RPC specification (http://xmlrpc.com/spec.md).
+  //
+  // Experimental
+  rpc CallServoXmlRpc(CallServoXmlRpcRequest) returns (CallServoXmlRpcResponse);
+}
+
+message OpenDutPortRequest {
+  // dut is some identifier for the DUT.
+  // The DUT ID is passed to the RTD when it is started.
+  // This could be the DUT hostname, but the caller should not be able
+  // to use the hostname to SSH or otherwise interact with the DUT
+  // directly.
+  string dut = 1;
+  // Port to open on the DUT.
+  int32 dut_port = 2;
+}
+message OpenDutPortResponse {
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_OK = 1;
+    // STATUS_BAD_DUT indicates that the DUT is not known,
+    // or the caller does not have access to it.
+    STATUS_BAD_DUT = 2;
+    // STATUS_DUT_UNREACHABLE indicates that the DUT is not reachable
+    // over the network.
+    STATUS_DUT_UNREACHABLE = 3;
+  }
+  Status status = 1;
+  // address which is forwarded to the DUT, in the form host:port.
+  // TLEs should return an IP address to avoid name resolution issues.
+  // If TLEs return a hostname, they should ensure that the hostname is
+  // resolveable by the RTD via standard name resolution facilities.
+  string address = 2;
+  // reason provides human friendly context for any error status.
+  string reason = 3;
+}
+
+message CacheForDutRequest {
+  // url identifies the resource to cache.
+  // Only http, https, and gs are supported.
+  string url = 1;
+}
+message CacheForDutResponse {
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_OK = 1;
+    STATUS_CONTINUE = 2;
+    STATUS_NOT_FOUND = 3;
+    STATUS_TIMEOUT = 4;
+  }
+  Status status = 1;
+  // url is where the resource is cached at.
+  // This should be accessible to the DUT.
+  // If the host is a name, it should be resolveable by the DUT via
+  // standard name resolution facilities.
+  string url = 2;
+  // reason provides human friendly context for any error status.
+  string reason = 3;
+}
+
+message CallServoXmlRpcRequest {
+  string dut = 1;
+  string method = 2;
+  repeated xmlrpc.Value args = 3;
+}
+message CallServoXmlRpcResponse {
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_OK = 1;
+    // STATUS_BAD_DUT indicates that the DUT is not known,
+    // or the caller does not have access to it.
+    STATUS_BAD_DUT = 2;
+    // STATUS_NO_METHOD indicates that the requested method does not
+    // exist.
+    STATUS_NO_METHOD = 3;
+  }
+  Status status = 1;
+  xmlrpc.Value value = 2;
+  // fault indicates that the servo XML-RPC returned a fault.
+  // The fault value is stored in the value field.
+  bool fault = 3;
+}

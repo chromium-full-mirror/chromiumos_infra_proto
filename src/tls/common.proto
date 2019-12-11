@@ -1,0 +1,34 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package tls;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/tls";
+
+// Common lab services implemented on top of the wiring APIs.
+service Common {
+  // Runs a shell command with the default shell.
+  // Does not spawn a tty.
+  rpc DutShell(DutShellRequest) returns (stream DutShellResponse);
+}
+
+message DutShellRequest {
+  // dut is some identifier for the DUT.  This could be the DUT
+  // hostname, but the caller shouldn't know or care whether this is a
+  // hostname or not, as they would not be able to use the hostname to
+  // SSH or otherwise interact with the DUT directly.
+  string dut = 1;
+  string command = 2;
+
+}
+// For the last response in the stream, exited will be true and status
+// will be set.
+message DutShellResponse {
+  int32 status = 1;
+  bool exited = 2;
+  bytes stdout = 3;
+  bytes stderr = 4;
+}
