@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -543,6 +545,20 @@ type SdkServiceServer interface {
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	// Update the chroot.
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+}
+
+// UnimplementedSdkServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedSdkServiceServer struct {
+}
+
+func (*UnimplementedSdkServiceServer) Create(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (*UnimplementedSdkServiceServer) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedSdkServiceServer) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 
 func RegisterSdkServiceServer(s *grpc.Server, srv SdkServiceServer) {

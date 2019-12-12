@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -596,6 +598,23 @@ type ToolchainServiceServer interface {
 	PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error)
 	// Bundle toolchain artifacts.
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
+}
+
+// UnimplementedToolchainServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedToolchainServiceServer struct {
+}
+
+func (*UnimplementedToolchainServiceServer) UpdateEbuildWithAFDOArtifacts(ctx context.Context, req *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEbuildWithAFDOArtifacts not implemented")
+}
+func (*UnimplementedToolchainServiceServer) UploadVettedAFDOArtifacts(ctx context.Context, req *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadVettedAFDOArtifacts not implemented")
+}
+func (*UnimplementedToolchainServiceServer) PrepareForBuild(ctx context.Context, req *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareForBuild not implemented")
+}
+func (*UnimplementedToolchainServiceServer) BundleArtifacts(ctx context.Context, req *BundleToolchainRequest) (*BundleToolchainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleArtifacts not implemented")
 }
 
 func RegisterToolchainServiceServer(s *grpc.Server, srv ToolchainServiceServer) {

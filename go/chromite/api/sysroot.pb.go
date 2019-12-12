@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -849,6 +851,23 @@ type SysrootServiceServer interface {
 	InstallPackages(context.Context, *InstallPackagesRequest) (*InstallPackagesResponse, error)
 	// Install SimpleChrome sysroot.
 	CreateSimpleChromeSysroot(context.Context, *CreateSimpleChromeSysrootRequest) (*CreateSimpleChromeSysrootResponse, error)
+}
+
+// UnimplementedSysrootServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedSysrootServiceServer struct {
+}
+
+func (*UnimplementedSysrootServiceServer) Create(ctx context.Context, req *SysrootCreateRequest) (*SysrootCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (*UnimplementedSysrootServiceServer) InstallToolchain(ctx context.Context, req *InstallToolchainRequest) (*InstallToolchainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InstallToolchain not implemented")
+}
+func (*UnimplementedSysrootServiceServer) InstallPackages(ctx context.Context, req *InstallPackagesRequest) (*InstallPackagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InstallPackages not implemented")
+}
+func (*UnimplementedSysrootServiceServer) CreateSimpleChromeSysroot(ctx context.Context, req *CreateSimpleChromeSysrootRequest) (*CreateSimpleChromeSysrootResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSimpleChromeSysroot not implemented")
 }
 
 func RegisterSysrootServiceServer(s *grpc.Server, srv SysrootServiceServer) {

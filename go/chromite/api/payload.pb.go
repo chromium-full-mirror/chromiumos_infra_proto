@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -506,6 +508,14 @@ func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *PayloadG
 // PayloadServiceServer is the server API for PayloadService service.
 type PayloadServiceServer interface {
 	GeneratePayload(context.Context, *PayloadGenerationRequest) (*PayloadGenerationResult, error)
+}
+
+// UnimplementedPayloadServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedPayloadServiceServer struct {
+}
+
+func (*UnimplementedPayloadServiceServer) GeneratePayload(ctx context.Context, req *PayloadGenerationRequest) (*PayloadGenerationResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GeneratePayload not implemented")
 }
 
 func RegisterPayloadServiceServer(s *grpc.Server, srv PayloadServiceServer) {

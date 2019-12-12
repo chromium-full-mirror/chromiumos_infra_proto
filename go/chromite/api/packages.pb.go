@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1118,6 +1120,32 @@ type PackageServiceServer interface {
 	// and searches for a new version, updating and upreving the package ebuild
 	// if such a version is found. The exact behavior depends on the package.
 	UprevVersionedPackage(context.Context, *UprevVersionedPackageRequest) (*UprevVersionedPackageResponse, error)
+}
+
+// UnimplementedPackageServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedPackageServiceServer struct {
+}
+
+func (*UnimplementedPackageServiceServer) BuildsChrome(ctx context.Context, req *BuildsChromeRequest) (*BuildsChromeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildsChrome not implemented")
+}
+func (*UnimplementedPackageServiceServer) GetBestVisible(ctx context.Context, req *GetBestVisibleRequest) (*GetBestVisibleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBestVisible not implemented")
+}
+func (*UnimplementedPackageServiceServer) GetChromeVersion(ctx context.Context, req *GetChromeVersionRequest) (*GetChromeVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChromeVersion not implemented")
+}
+func (*UnimplementedPackageServiceServer) GetTargetVersions(ctx context.Context, req *GetTargetVersionsRequest) (*GetTargetVersionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTargetVersions not implemented")
+}
+func (*UnimplementedPackageServiceServer) HasChromePrebuilt(ctx context.Context, req *HasChromePrebuiltRequest) (*HasChromePrebuiltResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HasChromePrebuilt not implemented")
+}
+func (*UnimplementedPackageServiceServer) Uprev(ctx context.Context, req *UprevPackagesRequest) (*UprevPackagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Uprev not implemented")
+}
+func (*UnimplementedPackageServiceServer) UprevVersionedPackage(ctx context.Context, req *UprevVersionedPackageRequest) (*UprevVersionedPackageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UprevVersionedPackage not implemented")
 }
 
 func RegisterPackageServiceServer(s *grpc.Server, srv PackageServiceServer) {

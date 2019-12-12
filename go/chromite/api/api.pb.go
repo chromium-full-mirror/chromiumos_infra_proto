@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -337,6 +339,14 @@ type MethodServiceServer interface {
 	Get(context.Context, *MethodGetRequest) (*MethodGetResponse, error)
 }
 
+// UnimplementedMethodServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedMethodServiceServer struct {
+}
+
+func (*UnimplementedMethodServiceServer) Get(ctx context.Context, req *MethodGetRequest) (*MethodGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+
 func RegisterMethodServiceServer(s *grpc.Server, srv MethodServiceServer) {
 	s.RegisterService(&_MethodService_serviceDesc, srv)
 }
@@ -399,6 +409,14 @@ func (c *versionServiceClient) Get(ctx context.Context, in *VersionGetRequest, o
 // VersionServiceServer is the server API for VersionService service.
 type VersionServiceServer interface {
 	Get(context.Context, *VersionGetRequest) (*VersionGetResponse, error)
+}
+
+// UnimplementedVersionServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedVersionServiceServer struct {
+}
+
+func (*UnimplementedVersionServiceServer) Get(ctx context.Context, req *VersionGetRequest) (*VersionGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 
 func RegisterVersionServiceServer(s *grpc.Server, srv VersionServiceServer) {

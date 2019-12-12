@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -355,6 +357,17 @@ type TestApiServiceServer interface {
 	RenamedMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
 }
 
+// UnimplementedTestApiServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedTestApiServiceServer struct {
+}
+
+func (*UnimplementedTestApiServiceServer) InputOutputMethod(ctx context.Context, req *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InputOutputMethod not implemented")
+}
+func (*UnimplementedTestApiServiceServer) RenamedMethod(ctx context.Context, req *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenamedMethod not implemented")
+}
+
 func RegisterTestApiServiceServer(s *grpc.Server, srv TestApiServiceServer) {
 	s.RegisterService(&_TestApiService_serviceDesc, srv)
 }
@@ -456,6 +469,17 @@ type InsideChrootApiServiceServer interface {
 	InsideServiceOutsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
 }
 
+// UnimplementedInsideChrootApiServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedInsideChrootApiServiceServer struct {
+}
+
+func (*UnimplementedInsideChrootApiServiceServer) InsideServiceInsideMethod(ctx context.Context, req *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsideServiceInsideMethod not implemented")
+}
+func (*UnimplementedInsideChrootApiServiceServer) InsideServiceOutsideMethod(ctx context.Context, req *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsideServiceOutsideMethod not implemented")
+}
+
 func RegisterInsideChrootApiServiceServer(s *grpc.Server, srv InsideChrootApiServiceServer) {
 	s.RegisterService(&_InsideChrootApiService_serviceDesc, srv)
 }
@@ -555,6 +579,17 @@ type OutsideChrootApiServiceServer interface {
 	OutsideServiceOutsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
 	// Override service level outside assertion with inside assertion.
 	OutsideServiceInsideMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+}
+
+// UnimplementedOutsideChrootApiServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedOutsideChrootApiServiceServer struct {
+}
+
+func (*UnimplementedOutsideChrootApiServiceServer) OutsideServiceOutsideMethod(ctx context.Context, req *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OutsideServiceOutsideMethod not implemented")
+}
+func (*UnimplementedOutsideChrootApiServiceServer) OutsideServiceInsideMethod(ctx context.Context, req *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OutsideServiceInsideMethod not implemented")
 }
 
 func RegisterOutsideChrootApiServiceServer(s *grpc.Server, srv OutsideChrootApiServiceServer) {

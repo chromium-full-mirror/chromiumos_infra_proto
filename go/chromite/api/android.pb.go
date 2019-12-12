@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -380,6 +382,17 @@ type AndroidServiceServer interface {
 	MarkStable(context.Context, *MarkStableRequest) (*MarkStableResponse, error)
 	// Unpin the Android package version.
 	UnpinVersion(context.Context, *UnpinVersionRequest) (*UnpinVersionResponse, error)
+}
+
+// UnimplementedAndroidServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAndroidServiceServer struct {
+}
+
+func (*UnimplementedAndroidServiceServer) MarkStable(ctx context.Context, req *MarkStableRequest) (*MarkStableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MarkStable not implemented")
+}
+func (*UnimplementedAndroidServiceServer) UnpinVersion(ctx context.Context, req *UnpinVersionRequest) (*UnpinVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnpinVersion not implemented")
 }
 
 func RegisterAndroidServiceServer(s *grpc.Server, srv AndroidServiceServer) {

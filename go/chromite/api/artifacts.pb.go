@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -730,6 +732,53 @@ type ArtifactsServiceServer interface {
 	ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error)
 	// Fetch the pinned guest image locations.
 	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
+}
+
+// UnimplementedArtifactsServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedArtifactsServiceServer struct {
+}
+
+func (*UnimplementedArtifactsServiceServer) BundleAutotestFiles(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleAutotestFiles not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleChromeOSConfig(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleChromeOSConfig not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleEbuildLogs(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleEbuildLogs not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleFirmware(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleFirmware not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleImageArchives(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleImageArchives not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleImageZip(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleImageZip not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleAFDOGenerationArtifacts(ctx context.Context, req *BundleChromeAFDORequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleAFDOGenerationArtifacts not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundlePinnedGuestImages(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundlePinnedGuestImages not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleSimpleChromeArtifacts(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleSimpleChromeArtifacts not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleTastFiles(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleTastFiles not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleTestUpdatePayloads(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleTestUpdatePayloads not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleVmFiles(ctx context.Context, req *BundleVmFilesRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleVmFiles not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) ExportCpeReport(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportCpeReport not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) FetchPinnedGuestImageUris(ctx context.Context, req *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchPinnedGuestImageUris not implemented")
 }
 
 func RegisterArtifactsServiceServer(s *grpc.Server, srv ArtifactsServiceServer) {

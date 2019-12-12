@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -551,6 +553,20 @@ type ImageServiceServer interface {
 	//  "result": {"directory": "/tmp/image_test_results"}
 	// }
 	SignerTest(context.Context, *TestImageRequest) (*TestImageResult, error)
+}
+
+// UnimplementedImageServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedImageServiceServer struct {
+}
+
+func (*UnimplementedImageServiceServer) Create(ctx context.Context, req *CreateImageRequest) (*CreateImageResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (*UnimplementedImageServiceServer) Test(ctx context.Context, req *TestImageRequest) (*TestImageResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Test not implemented")
+}
+func (*UnimplementedImageServiceServer) SignerTest(ctx context.Context, req *TestImageRequest) (*TestImageResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignerTest not implemented")
 }
 
 func RegisterImageServiceServer(s *grpc.Server, srv ImageServiceServer) {

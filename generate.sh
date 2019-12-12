@@ -8,7 +8,7 @@
 
 # Versions of packages to get from CIPD.
 CIPD_PROTOC_VERSION='v3.6.1'
-CIPD_PROTOC_GEN_GO_VERSION='v1.3.1'
+CIPD_PROTOC_GEN_GO_VERSION='v1.3.2'
 
 # Move to this script's directory.
 cd "$(dirname "$0")"

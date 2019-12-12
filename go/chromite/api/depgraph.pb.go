@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -365,6 +367,14 @@ func (c *dependencyServiceClient) GetBuildDependencyGraph(ctx context.Context, i
 type DependencyServiceServer interface {
 	// Get the build dependency graph.
 	GetBuildDependencyGraph(context.Context, *GetBuildDependencyGraphRequest) (*GetBuildDependencyGraphResponse, error)
+}
+
+// UnimplementedDependencyServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedDependencyServiceServer struct {
+}
+
+func (*UnimplementedDependencyServiceServer) GetBuildDependencyGraph(ctx context.Context, req *GetBuildDependencyGraphRequest) (*GetBuildDependencyGraphResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBuildDependencyGraph not implemented")
 }
 
 func RegisterDependencyServiceServer(s *grpc.Server, srv DependencyServiceServer) {

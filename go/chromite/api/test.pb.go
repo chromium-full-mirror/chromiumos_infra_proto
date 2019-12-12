@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1091,6 +1093,32 @@ type TestServiceServer interface {
 	MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
 	SimpleChromeWorkflowTest(context.Context, *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error)
+}
+
+// UnimplementedTestServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedTestServiceServer struct {
+}
+
+func (*UnimplementedTestServiceServer) BuildTargetUnitTest(ctx context.Context, req *BuildTargetUnitTestRequest) (*BuildTargetUnitTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildTargetUnitTest not implemented")
+}
+func (*UnimplementedTestServiceServer) ChromiteUnitTest(ctx context.Context, req *ChromiteUnitTestRequest) (*ChromiteUnitTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChromiteUnitTest not implemented")
+}
+func (*UnimplementedTestServiceServer) CrosSigningTest(ctx context.Context, req *CrosSigningTestRequest) (*CrosSigningTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CrosSigningTest not implemented")
+}
+func (*UnimplementedTestServiceServer) DebugInfoTest(ctx context.Context, req *DebugInfoTestRequest) (*DebugInfoTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DebugInfoTest not implemented")
+}
+func (*UnimplementedTestServiceServer) VmTest(ctx context.Context, req *VmTestRequest) (*VmTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VmTest not implemented")
+}
+func (*UnimplementedTestServiceServer) MoblabVmTest(ctx context.Context, req *MoblabVmTestRequest) (*MoblabVmTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoblabVmTest not implemented")
+}
+func (*UnimplementedTestServiceServer) SimpleChromeWorkflowTest(ctx context.Context, req *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SimpleChromeWorkflowTest not implemented")
 }
 
 func RegisterTestServiceServer(s *grpc.Server, srv TestServiceServer) {

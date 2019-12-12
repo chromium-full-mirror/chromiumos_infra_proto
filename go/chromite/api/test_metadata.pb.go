@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -520,6 +522,14 @@ func (c *testMetadataServiceClient) Get(ctx context.Context, in *TestMetadataReq
 // TestMetadataServiceServer is the server API for TestMetadataService service.
 type TestMetadataServiceServer interface {
 	Get(context.Context, *TestMetadataRequest) (*TestMetadataResponse, error)
+}
+
+// UnimplementedTestMetadataServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedTestMetadataServiceServer struct {
+}
+
+func (*UnimplementedTestMetadataServiceServer) Get(ctx context.Context, req *TestMetadataRequest) (*TestMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 
 func RegisterTestMetadataServiceServer(s *grpc.Server, srv TestMetadataServiceServer) {

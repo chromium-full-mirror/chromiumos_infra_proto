@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1152,6 +1154,29 @@ type BinhostServiceServer interface {
 	SetBinhost(context.Context, *SetBinhostRequest) (*SetBinhostResponse, error)
 	// Regenerate the builder cache.
 	RegenBuildCache(context.Context, *RegenBuildCacheRequest) (*RegenBuildCacheResponse, error)
+}
+
+// UnimplementedBinhostServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedBinhostServiceServer struct {
+}
+
+func (*UnimplementedBinhostServiceServer) Get(ctx context.Context, req *BinhostGetRequest) (*BinhostGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedBinhostServiceServer) GetPrivatePrebuiltAclArgs(ctx context.Context, req *AclArgsRequest) (*AclArgsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPrivatePrebuiltAclArgs not implemented")
+}
+func (*UnimplementedBinhostServiceServer) PrepareBinhostUploads(ctx context.Context, req *PrepareBinhostUploadsRequest) (*PrepareBinhostUploadsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareBinhostUploads not implemented")
+}
+func (*UnimplementedBinhostServiceServer) PrepareDevInstallBinhostUploads(ctx context.Context, req *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareDevInstallBinhostUploads not implemented")
+}
+func (*UnimplementedBinhostServiceServer) SetBinhost(ctx context.Context, req *SetBinhostRequest) (*SetBinhostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetBinhost not implemented")
+}
+func (*UnimplementedBinhostServiceServer) RegenBuildCache(ctx context.Context, req *RegenBuildCacheRequest) (*RegenBuildCacheResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegenBuildCache not implemented")
 }
 
 func RegisterBinhostServiceServer(s *grpc.Server, srv BinhostServiceServer) {
