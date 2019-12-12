@@ -47,6 +47,9 @@ message GetBuildDependencyGraphRequest {
   chromiumos.BuildTarget build_target = 1;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 2;
+  // List of packages for which to create the dependency graph. If none are
+  // specified the standard list of packages is used.
+  repeated chromiumos.PackageInfo packages = 3;
 }
 
 // Response from creating dependency graph json map.
