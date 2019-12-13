@@ -197,6 +197,19 @@ message Request {
     }
 
     Notification notification = 11;
+
+    // Migrations defines parameters that facilitate gradual migrations between
+    // different implementations of downstream components.
+    message Migrations {
+      // If true, schedule individual tests via buildbucket and run them via
+      // test_runner recipe.
+      // Otherwise, schedule individual tests via raw swarming calls and run
+      // them via skylab_swarming_worker.
+      // TODO(crbug/1033287): remove when migration is complete.
+      bool use_test_runner = 1;
+    }
+
+    Migrations migrations = 12;
   }
 
   Params params = 1;
