@@ -96,6 +96,10 @@ message HasChromePrebuiltRequest {
   chromiumos.Chroot chroot = 1;
   // The build target whose prebuilt is being checked.
   chromiumos.BuildTarget build_target = 2;
+  // Whether to look for internal chrome, or external chromium prebuilts.
+  // Shortcut for ensuring USE=chrome_internal. Does not disable
+  // chrome_internal when false if otherwise set (e.g. chroot env).
+  bool chrome = 3;
 }
 
 message HasChromePrebuiltResponse {
