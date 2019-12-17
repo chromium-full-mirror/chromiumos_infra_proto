@@ -212,6 +212,7 @@ func (m *PrepareForToolchainBuildRequest) GetSysroot() *Sysroot {
 	return nil
 }
 
+// TODO(crbug/1019868): Migrate to using chromiumos.PrepareForBuildResponse.
 type PrepareForToolchainBuildResponse struct {
 	BuildRelevance       PrepareForToolchainBuildResponse_BuildRelevance `protobuf:"varint,1,opt,name=build_relevance,json=buildRelevance,proto3,enum=chromite.api.PrepareForToolchainBuildResponse_BuildRelevance" json:"build_relevance,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                                        `json:"-"`

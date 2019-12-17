@@ -182,6 +182,23 @@ message ProtoBytes {
   bytes serialized_proto = 1;
 }
 
+// TODO(crbug/1019868): Consider migrating
+// chromite.api.toolchain.PrepareForToolchainBuildRequest as well.
+message PrepareForBuildResponse {
+  // Does this artifact require a build?
+  enum BuildRelevance {
+    UNSPECIFIED = 0;
+    // Build is necessary to generate artifacts.
+    NEEDED = 1;
+    // Defer to other artifacts.  Used primarily for aggregation of artifact
+    // results.
+    UNKNOWN = 2;
+    // Artifacts are already generated.  The build is pointless.
+    POINTLESS = 3;
+  }
+  BuildRelevance build_relevance = 1;
+}
+
 // TODO(crbug.com/1020615): Drop this from chromite/api/toolchain.proto (and
 // here) once usage has migrated to BuilderConfig.Artifacts.ArtifactType.
 // Meanwhile, keep this in sync with chromite/api/toolchain.proto.  The various
