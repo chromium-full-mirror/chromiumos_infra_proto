@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package cycler;
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler/config.proto";
 
 import "cycler/action.proto";
@@ -9,8 +11,8 @@ message RunLogConfiguration {
   // The destination url 'directory' for the logs, can be file:// or gs://.
   string destination_url = 1;
 
-  // The rough chunk size to deliver the logs in (before compression).
-  int64 chunk_size = 2;
+  // The rough chunk size in bytes to deliver the logs in (before compression).
+  int64 chunk_size_bytes = 2;
 
   // How many outstanding log messages can we have before blocking producers.
   int64 channel_size = 3;
@@ -77,10 +79,10 @@ message RunConfig {
 message PolicyActionConfiguration {
   // The action configuration must be one of the following configs.
 oneof action_configuration {
-  NoopActionConfiguration noop_action_config = 1;
-  MoveActionConfiguration move_action_config = 2;
-  ChillActionConfiguration chill_action_config = 3;
-  CopyActionConfiguration action_config = 4;
+    NoopActionConfiguration noop_action_config = 1;
+    MoveActionConfiguration move_action_config = 2;
+    ChillActionConfiguration chill_action_config = 3;
+    CopyActionConfiguration action_config = 4;
 }
 
 // Common configuration values may live in this top level (non exist yet).

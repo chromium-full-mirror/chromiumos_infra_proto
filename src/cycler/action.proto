@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package cycler;
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler/action.proto";
 
 // Like it says on the tin.
@@ -13,7 +15,7 @@ message MoveActionConfiguration {
   // The destination prefix for the moved objects (e.g. moved-files-prefix).
   string destination_prefix = 2;
 
-};
+}
 
 message CopyActionConfiguration {
 
@@ -22,6 +24,6 @@ message CopyActionConfiguration {
 
   // The destination prefix for the copied objects (e.g. copied-files-prefix).
   string destination_prefix = 2;
-};
+}
 
 message ChillActionConfiguration {};
