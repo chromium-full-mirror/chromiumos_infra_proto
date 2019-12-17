@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler/config.proto";
+
+import "cycler/action.proto";
+
+// Options for the log generation during a cycler run.
+message RunLogConfiguration {
+  // The destination url 'directory' for the logs, can be file:// or gs://.
+  string destination_url = 1;
+
+  // The rough chunk size to deliver the logs in (before compression).
+  int64 chunk_size = 2;
+
+  // How many outstanding log messages can we have before blocking producers.
+  int64 channel_size = 3;
+
+  // How many retries we should make to persist logs.
+  int64 persist_retries = 4;
+
+  // How many logs we'll allow to fail persistence and still continue.
+  int64 max_unpublished_logs = 5;
+}
+
+// Options for the Histogram generation during a cycler run.
+// See definition in: "google.golang.org/grpc/benchmark/stats"
+message HistogramOptions {
+  // The number of unique buckets in the histrogram.
+  int64 num_buckets = 1;
+
+  // The growth factor of each bucket to the next.
+  int64 growth_factor = 2;
+
+  // The base bucket's size.
+  int64 base_bucket_size = 3;
+
+  // The minimum valued bucket's value.
+  int64 min_value = 4;
+}
+
+// Options provided to any run providing bucket stats.
+message BucketStatsConfiguration {
+  // Should each object iterated's attributes be sent to the logging stream.
+  bool log_every_object = 1;
+
+  // When generating a report for a bucket, how deep should the breakdown be.
+  int64 prefix_report_max_depth = 2;
+
+  // Histogram options for the objects ages.
+  HistogramOptions age_days_histogram_options = 3;
+
+  // Histogram options for the objects sizes.
+	HistogramOptions age_bytes_histogram_options = 4;
+}
+
+// Closure of all config for a single cycler run.
+message RunConfig {
+  // The runlog configuration.
+  RunLogConfiguration run_log_configuration = 1;
+
+  // The bucket stats configuration.
+  BucketStatsConfiguration bucket_stats_configuration = 2;
+
+  // Policy action configuration.
+  PolicyActionConfiguration policy_action_configuration = 3;
+
+  // The policy document to be parsed by rego and executed to determine if an
+  // action is going to be taken upon the object. TODO(engeg): This may not be
+  // best as a string, perhaps we should reference it by filename or attempt to
+  // make a proto wrapper around the document definition.
+  string policy_document = 4;
+
+  // Must match the command line arguement and policy action as well.
+  bool mutation_allowed = 5;
+}
+
+message PolicyActionConfiguration {
+  // The action configuration must be one of the following configs.
+oneof action_configuration {
+  NoopActionConfiguration noop_action_config = 1;
+  MoveActionConfiguration move_action_config = 2;
+  ChillActionConfiguration chill_action_config = 3;
+  CopyActionConfiguration action_config = 4;
+}
+
+// Common configuration values may live in this top level (non exist yet).
+// ...
+}
