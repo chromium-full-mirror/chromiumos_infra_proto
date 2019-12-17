@@ -95,11 +95,16 @@ message VmTestCfg {
 
 // Specifies a CrOS builder to target.
 message TargetCriteria {
+  // DEPRECATED: we need to target builder_name instead. build_target
+  // has to go away. See https://crbug.com/1016536
   oneof target_type {
     // Any CrOS build target, such as "kevin". This should correspond to a
     // Portage overlay.
     string build_target = 2;
   }
+  // A CrOS builder to target for testing, e.g. eve-postsubmit or
+  // amd64-generic-kernel-v5_4-cq.
+  string builder_name = 3;
 }
 
 // Details which testing is needed for a single CrOS build target.
