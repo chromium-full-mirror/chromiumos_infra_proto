@@ -52,7 +52,7 @@ message BucketStatsConfiguration {
   HistogramOptions age_days_histogram_options = 3;
 
   // Histogram options for the objects sizes.
-	HistogramOptions age_bytes_histogram_options = 4;
+  HistogramOptions size_bytes_histogram_options = 4;
 }
 
 // Closure of all config for a single cycler run.
