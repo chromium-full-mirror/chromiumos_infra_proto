@@ -28,3 +28,7 @@ This folder contains definitions of the cros_test_platform API, as well as inter
 ## device
 
 ## testplans
+
+## cycler
+
+Cycler protos: go/cros-gs-lifecycler

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cycler;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler/config.proto";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler";
 
 import "cycler/action.proto";
 

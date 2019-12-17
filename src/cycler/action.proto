@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cycler;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler/action.proto";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler";
 
 // Like it says on the tin.
 message NoopActionConfiguration {};
