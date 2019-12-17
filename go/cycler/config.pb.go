@@ -20,6 +20,83 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// Closure of all config for a single cycler run.
+type RunConfig struct {
+	// The runlog configuration.
+	RunLogConfiguration *RunLogConfiguration `protobuf:"bytes,1,opt,name=run_log_configuration,json=runLogConfiguration,proto3" json:"run_log_configuration,omitempty"`
+	// The stats configuration for the prefix and the action statistics.
+	StatsConfiguration *StatsConfiguration `protobuf:"bytes,2,opt,name=stats_configuration,json=statsConfiguration,proto3" json:"stats_configuration,omitempty"`
+	// Policy effect configuration.
+	PolicyEffectConfiguration *PolicyEffectConfiguration `protobuf:"bytes,3,opt,name=policy_effect_configuration,json=policyEffectConfiguration,proto3" json:"policy_effect_configuration,omitempty"`
+	// Must match the command line argument and policy effect as well.
+	MutationAllowed bool `protobuf:"varint,4,opt,name=mutation_allowed,json=mutationAllowed,proto3" json:"mutation_allowed,omitempty"`
+	// The bucket to operate on (can be overridden on the command line).
+	Bucket               string   `protobuf:"bytes,5,opt,name=bucket,proto3" json:"bucket,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RunConfig) Reset()         { *m = RunConfig{} }
+func (m *RunConfig) String() string { return proto.CompactTextString(m) }
+func (*RunConfig) ProtoMessage()    {}
+func (*RunConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_093cc71b7e56221a, []int{0}
+}
+
+func (m *RunConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RunConfig.Unmarshal(m, b)
+}
+func (m *RunConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RunConfig.Marshal(b, m, deterministic)
+}
+func (m *RunConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RunConfig.Merge(m, src)
+}
+func (m *RunConfig) XXX_Size() int {
+	return xxx_messageInfo_RunConfig.Size(m)
+}
+func (m *RunConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_RunConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RunConfig proto.InternalMessageInfo
+
+func (m *RunConfig) GetRunLogConfiguration() *RunLogConfiguration {
+	if m != nil {
+		return m.RunLogConfiguration
+	}
+	return nil
+}
+
+func (m *RunConfig) GetStatsConfiguration() *StatsConfiguration {
+	if m != nil {
+		return m.StatsConfiguration
+	}
+	return nil
+}
+
+func (m *RunConfig) GetPolicyEffectConfiguration() *PolicyEffectConfiguration {
+	if m != nil {
+		return m.PolicyEffectConfiguration
+	}
+	return nil
+}
+
+func (m *RunConfig) GetMutationAllowed() bool {
+	if m != nil {
+		return m.MutationAllowed
+	}
+	return false
+}
+
+func (m *RunConfig) GetBucket() string {
+	if m != nil {
+		return m.Bucket
+	}
+	return ""
+}
+
 // Options for the log generation during a cycler run.
 type RunLogConfiguration struct {
 	// The destination url 'directory' for the logs, can be file:// or gs://.
@@ -31,7 +108,9 @@ type RunLogConfiguration struct {
 	// How many retries we should make to persist logs.
 	PersistRetries int64 `protobuf:"varint,4,opt,name=persist_retries,json=persistRetries,proto3" json:"persist_retries,omitempty"`
 	// How many logs we'll allow to fail persistence and still continue.
-	MaxUnpublishedLogs   int64    `protobuf:"varint,5,opt,name=max_unpublished_logs,json=maxUnpublishedLogs,proto3" json:"max_unpublished_logs,omitempty"`
+	// Since we do log shipping in goroutines this is also the cap on the number
+	// of those.
+	MaxUnpersistedLogs   int64    `protobuf:"varint,5,opt,name=max_unpersisted_logs,json=maxUnpersistedLogs,proto3" json:"max_unpersisted_logs,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -41,7 +120,7 @@ func (m *RunLogConfiguration) Reset()         { *m = RunLogConfiguration{} }
 func (m *RunLogConfiguration) String() string { return proto.CompactTextString(m) }
 func (*RunLogConfiguration) ProtoMessage()    {}
 func (*RunLogConfiguration) Descriptor() ([]byte, []int) {
-	return fileDescriptor_093cc71b7e56221a, []int{0}
+	return fileDescriptor_093cc71b7e56221a, []int{1}
 }
 
 func (m *RunLogConfiguration) XXX_Unmarshal(b []byte) error {
@@ -90,22 +169,81 @@ func (m *RunLogConfiguration) GetPersistRetries() int64 {
 	return 0
 }
 
-func (m *RunLogConfiguration) GetMaxUnpublishedLogs() int64 {
+func (m *RunLogConfiguration) GetMaxUnpersistedLogs() int64 {
 	if m != nil {
-		return m.MaxUnpublishedLogs
+		return m.MaxUnpersistedLogs
 	}
 	return 0
+}
+
+// Options provided to any run providing stats.
+type StatsConfiguration struct {
+	// When generating a report for a prefix, how deep should the breakdown be.
+	PrefixReportMaxDepth int64 `protobuf:"varint,1,opt,name=prefix_report_max_depth,json=prefixReportMaxDepth,proto3" json:"prefix_report_max_depth,omitempty"`
+	// Histogram options for the objects ages.
+	AgeDaysHistogramOptions *HistogramOptions `protobuf:"bytes,2,opt,name=age_days_histogram_options,json=ageDaysHistogramOptions,proto3" json:"age_days_histogram_options,omitempty"`
+	// Histogram options for the objects sizes.
+	SizeBytesHistogramOptions *HistogramOptions `protobuf:"bytes,3,opt,name=size_bytes_histogram_options,json=sizeBytesHistogramOptions,proto3" json:"size_bytes_histogram_options,omitempty"`
+	XXX_NoUnkeyedLiteral      struct{}          `json:"-"`
+	XXX_unrecognized          []byte            `json:"-"`
+	XXX_sizecache             int32             `json:"-"`
+}
+
+func (m *StatsConfiguration) Reset()         { *m = StatsConfiguration{} }
+func (m *StatsConfiguration) String() string { return proto.CompactTextString(m) }
+func (*StatsConfiguration) ProtoMessage()    {}
+func (*StatsConfiguration) Descriptor() ([]byte, []int) {
+	return fileDescriptor_093cc71b7e56221a, []int{2}
+}
+
+func (m *StatsConfiguration) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsConfiguration.Unmarshal(m, b)
+}
+func (m *StatsConfiguration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsConfiguration.Marshal(b, m, deterministic)
+}
+func (m *StatsConfiguration) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsConfiguration.Merge(m, src)
+}
+func (m *StatsConfiguration) XXX_Size() int {
+	return xxx_messageInfo_StatsConfiguration.Size(m)
+}
+func (m *StatsConfiguration) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsConfiguration.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StatsConfiguration proto.InternalMessageInfo
+
+func (m *StatsConfiguration) GetPrefixReportMaxDepth() int64 {
+	if m != nil {
+		return m.PrefixReportMaxDepth
+	}
+	return 0
+}
+
+func (m *StatsConfiguration) GetAgeDaysHistogramOptions() *HistogramOptions {
+	if m != nil {
+		return m.AgeDaysHistogramOptions
+	}
+	return nil
+}
+
+func (m *StatsConfiguration) GetSizeBytesHistogramOptions() *HistogramOptions {
+	if m != nil {
+		return m.SizeBytesHistogramOptions
+	}
+	return nil
 }
 
 // Options for the Histogram generation during a cycler run.
 // See definition in: "google.golang.org/grpc/benchmark/stats"
 type HistogramOptions struct {
 	// The number of unique buckets in the histrogram.
-	NumBuckets int64 `protobuf:"varint,1,opt,name=num_buckets,json=numBuckets,proto3" json:"num_buckets,omitempty"`
+	NumBuckets int32 `protobuf:"varint,1,opt,name=num_buckets,json=numBuckets,proto3" json:"num_buckets,omitempty"`
 	// The growth factor of each bucket to the next.
-	GrowthFactor int64 `protobuf:"varint,2,opt,name=growth_factor,json=growthFactor,proto3" json:"growth_factor,omitempty"`
+	GrowthFactor float64 `protobuf:"fixed64,2,opt,name=growth_factor,json=growthFactor,proto3" json:"growth_factor,omitempty"`
 	// The base bucket's size.
-	BaseBucketSize int64 `protobuf:"varint,3,opt,name=base_bucket_size,json=baseBucketSize,proto3" json:"base_bucket_size,omitempty"`
+	BaseBucketSize float64 `protobuf:"fixed64,3,opt,name=base_bucket_size,json=baseBucketSize,proto3" json:"base_bucket_size,omitempty"`
 	// The minimum valued bucket's value.
 	MinValue             int64    `protobuf:"varint,4,opt,name=min_value,json=minValue,proto3" json:"min_value,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -117,7 +255,7 @@ func (m *HistogramOptions) Reset()         { *m = HistogramOptions{} }
 func (m *HistogramOptions) String() string { return proto.CompactTextString(m) }
 func (*HistogramOptions) ProtoMessage()    {}
 func (*HistogramOptions) Descriptor() ([]byte, []int) {
-	return fileDescriptor_093cc71b7e56221a, []int{1}
+	return fileDescriptor_093cc71b7e56221a, []int{3}
 }
 
 func (m *HistogramOptions) XXX_Unmarshal(b []byte) error {
@@ -138,21 +276,21 @@ func (m *HistogramOptions) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_HistogramOptions proto.InternalMessageInfo
 
-func (m *HistogramOptions) GetNumBuckets() int64 {
+func (m *HistogramOptions) GetNumBuckets() int32 {
 	if m != nil {
 		return m.NumBuckets
 	}
 	return 0
 }
 
-func (m *HistogramOptions) GetGrowthFactor() int64 {
+func (m *HistogramOptions) GetGrowthFactor() float64 {
 	if m != nil {
 		return m.GrowthFactor
 	}
 	return 0
 }
 
-func (m *HistogramOptions) GetBaseBucketSize() int64 {
+func (m *HistogramOptions) GetBaseBucketSize() float64 {
 	if m != nil {
 		return m.BaseBucketSize
 	}
@@ -166,321 +304,182 @@ func (m *HistogramOptions) GetMinValue() int64 {
 	return 0
 }
 
-// Options provided to any run providing bucket stats.
-type BucketStatsConfiguration struct {
-	// Should each object iterated's attributes be sent to the logging stream.
-	LogEveryObject bool `protobuf:"varint,1,opt,name=log_every_object,json=logEveryObject,proto3" json:"log_every_object,omitempty"`
-	// When generating a report for a bucket, how deep should the breakdown be.
-	PrefixReportMaxDepth int64 `protobuf:"varint,2,opt,name=prefix_report_max_depth,json=prefixReportMaxDepth,proto3" json:"prefix_report_max_depth,omitempty"`
-	// Histogram options for the objects ages.
-	AgeDaysHistogramOptions *HistogramOptions `protobuf:"bytes,3,opt,name=age_days_histogram_options,json=ageDaysHistogramOptions,proto3" json:"age_days_histogram_options,omitempty"`
-	// Histogram options for the objects sizes.
-	SizeBytesHistogramOptions *HistogramOptions `protobuf:"bytes,4,opt,name=size_bytes_histogram_options,json=sizeBytesHistogramOptions,proto3" json:"size_bytes_histogram_options,omitempty"`
-	XXX_NoUnkeyedLiteral      struct{}          `json:"-"`
-	XXX_unrecognized          []byte            `json:"-"`
-	XXX_sizecache             int32             `json:"-"`
-}
-
-func (m *BucketStatsConfiguration) Reset()         { *m = BucketStatsConfiguration{} }
-func (m *BucketStatsConfiguration) String() string { return proto.CompactTextString(m) }
-func (*BucketStatsConfiguration) ProtoMessage()    {}
-func (*BucketStatsConfiguration) Descriptor() ([]byte, []int) {
-	return fileDescriptor_093cc71b7e56221a, []int{2}
-}
-
-func (m *BucketStatsConfiguration) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BucketStatsConfiguration.Unmarshal(m, b)
-}
-func (m *BucketStatsConfiguration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BucketStatsConfiguration.Marshal(b, m, deterministic)
-}
-func (m *BucketStatsConfiguration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BucketStatsConfiguration.Merge(m, src)
-}
-func (m *BucketStatsConfiguration) XXX_Size() int {
-	return xxx_messageInfo_BucketStatsConfiguration.Size(m)
-}
-func (m *BucketStatsConfiguration) XXX_DiscardUnknown() {
-	xxx_messageInfo_BucketStatsConfiguration.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_BucketStatsConfiguration proto.InternalMessageInfo
-
-func (m *BucketStatsConfiguration) GetLogEveryObject() bool {
-	if m != nil {
-		return m.LogEveryObject
-	}
-	return false
-}
-
-func (m *BucketStatsConfiguration) GetPrefixReportMaxDepth() int64 {
-	if m != nil {
-		return m.PrefixReportMaxDepth
-	}
-	return 0
-}
-
-func (m *BucketStatsConfiguration) GetAgeDaysHistogramOptions() *HistogramOptions {
-	if m != nil {
-		return m.AgeDaysHistogramOptions
-	}
-	return nil
-}
-
-func (m *BucketStatsConfiguration) GetSizeBytesHistogramOptions() *HistogramOptions {
-	if m != nil {
-		return m.SizeBytesHistogramOptions
-	}
-	return nil
-}
-
-// Closure of all config for a single cycler run.
-type RunConfig struct {
-	// The runlog configuration.
-	RunLogConfiguration *RunLogConfiguration `protobuf:"bytes,1,opt,name=run_log_configuration,json=runLogConfiguration,proto3" json:"run_log_configuration,omitempty"`
-	// The bucket stats configuration.
-	BucketStatsConfiguration *BucketStatsConfiguration `protobuf:"bytes,2,opt,name=bucket_stats_configuration,json=bucketStatsConfiguration,proto3" json:"bucket_stats_configuration,omitempty"`
-	// Policy action configuration.
-	PolicyActionConfiguration *PolicyActionConfiguration `protobuf:"bytes,3,opt,name=policy_action_configuration,json=policyActionConfiguration,proto3" json:"policy_action_configuration,omitempty"`
+// A policy effect configuration defines the policy and the resulting effect.
+type PolicyEffectConfiguration struct {
+	// The effect configuration must be one of the following configs.
+	//
+	// Types that are valid to be assigned to EffectConfiguration:
+	//	*PolicyEffectConfiguration_Noop
+	//	*PolicyEffectConfiguration_Move
+	//	*PolicyEffectConfiguration_Chill
+	//	*PolicyEffectConfiguration_Duplicate
+	EffectConfiguration isPolicyEffectConfiguration_EffectConfiguration `protobuf_oneof:"effect_configuration"`
 	// The policy document to be parsed by rego and executed to determine if an
-	// action is going to be taken upon the object. TODO(engeg): This may not be
-	// best as a string, perhaps we should reference it by filename or attempt to
-	// make a proto wrapper around the document definition.
-	PolicyDocument string `protobuf:"bytes,4,opt,name=policy_document,json=policyDocument,proto3" json:"policy_document,omitempty"`
-	// Must match the command line arguement and policy action as well.
-	MutationAllowed      bool     `protobuf:"varint,5,opt,name=mutation_allowed,json=mutationAllowed,proto3" json:"mutation_allowed,omitempty"`
+	// effect is going to be taken upon the object.
+	PolicyDocumentPath   string   `protobuf:"bytes,5,opt,name=policy_document_path,json=policyDocumentPath,proto3" json:"policy_document_path,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RunConfig) Reset()         { *m = RunConfig{} }
-func (m *RunConfig) String() string { return proto.CompactTextString(m) }
-func (*RunConfig) ProtoMessage()    {}
-func (*RunConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_093cc71b7e56221a, []int{3}
+func (m *PolicyEffectConfiguration) Reset()         { *m = PolicyEffectConfiguration{} }
+func (m *PolicyEffectConfiguration) String() string { return proto.CompactTextString(m) }
+func (*PolicyEffectConfiguration) ProtoMessage()    {}
+func (*PolicyEffectConfiguration) Descriptor() ([]byte, []int) {
+	return fileDescriptor_093cc71b7e56221a, []int{4}
 }
 
-func (m *RunConfig) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RunConfig.Unmarshal(m, b)
+func (m *PolicyEffectConfiguration) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PolicyEffectConfiguration.Unmarshal(m, b)
 }
-func (m *RunConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RunConfig.Marshal(b, m, deterministic)
+func (m *PolicyEffectConfiguration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PolicyEffectConfiguration.Marshal(b, m, deterministic)
 }
-func (m *RunConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RunConfig.Merge(m, src)
+func (m *PolicyEffectConfiguration) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PolicyEffectConfiguration.Merge(m, src)
 }
-func (m *RunConfig) XXX_Size() int {
-	return xxx_messageInfo_RunConfig.Size(m)
+func (m *PolicyEffectConfiguration) XXX_Size() int {
+	return xxx_messageInfo_PolicyEffectConfiguration.Size(m)
 }
-func (m *RunConfig) XXX_DiscardUnknown() {
-	xxx_messageInfo_RunConfig.DiscardUnknown(m)
+func (m *PolicyEffectConfiguration) XXX_DiscardUnknown() {
+	xxx_messageInfo_PolicyEffectConfiguration.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RunConfig proto.InternalMessageInfo
+var xxx_messageInfo_PolicyEffectConfiguration proto.InternalMessageInfo
 
-func (m *RunConfig) GetRunLogConfiguration() *RunLogConfiguration {
+type isPolicyEffectConfiguration_EffectConfiguration interface {
+	isPolicyEffectConfiguration_EffectConfiguration()
+}
+
+type PolicyEffectConfiguration_Noop struct {
+	Noop *NoopEffectConfiguration `protobuf:"bytes,1,opt,name=noop,proto3,oneof"`
+}
+
+type PolicyEffectConfiguration_Move struct {
+	Move *MoveEffectConfiguration `protobuf:"bytes,2,opt,name=move,proto3,oneof"`
+}
+
+type PolicyEffectConfiguration_Chill struct {
+	Chill *ChillEffectConfiguration `protobuf:"bytes,3,opt,name=chill,proto3,oneof"`
+}
+
+type PolicyEffectConfiguration_Duplicate struct {
+	Duplicate *DuplicateEffectConfiguration `protobuf:"bytes,4,opt,name=duplicate,proto3,oneof"`
+}
+
+func (*PolicyEffectConfiguration_Noop) isPolicyEffectConfiguration_EffectConfiguration() {}
+
+func (*PolicyEffectConfiguration_Move) isPolicyEffectConfiguration_EffectConfiguration() {}
+
+func (*PolicyEffectConfiguration_Chill) isPolicyEffectConfiguration_EffectConfiguration() {}
+
+func (*PolicyEffectConfiguration_Duplicate) isPolicyEffectConfiguration_EffectConfiguration() {}
+
+func (m *PolicyEffectConfiguration) GetEffectConfiguration() isPolicyEffectConfiguration_EffectConfiguration {
 	if m != nil {
-		return m.RunLogConfiguration
+		return m.EffectConfiguration
 	}
 	return nil
 }
 
-func (m *RunConfig) GetBucketStatsConfiguration() *BucketStatsConfiguration {
-	if m != nil {
-		return m.BucketStatsConfiguration
+func (m *PolicyEffectConfiguration) GetNoop() *NoopEffectConfiguration {
+	if x, ok := m.GetEffectConfiguration().(*PolicyEffectConfiguration_Noop); ok {
+		return x.Noop
 	}
 	return nil
 }
 
-func (m *RunConfig) GetPolicyActionConfiguration() *PolicyActionConfiguration {
-	if m != nil {
-		return m.PolicyActionConfiguration
+func (m *PolicyEffectConfiguration) GetMove() *MoveEffectConfiguration {
+	if x, ok := m.GetEffectConfiguration().(*PolicyEffectConfiguration_Move); ok {
+		return x.Move
 	}
 	return nil
 }
 
-func (m *RunConfig) GetPolicyDocument() string {
+func (m *PolicyEffectConfiguration) GetChill() *ChillEffectConfiguration {
+	if x, ok := m.GetEffectConfiguration().(*PolicyEffectConfiguration_Chill); ok {
+		return x.Chill
+	}
+	return nil
+}
+
+func (m *PolicyEffectConfiguration) GetDuplicate() *DuplicateEffectConfiguration {
+	if x, ok := m.GetEffectConfiguration().(*PolicyEffectConfiguration_Duplicate); ok {
+		return x.Duplicate
+	}
+	return nil
+}
+
+func (m *PolicyEffectConfiguration) GetPolicyDocumentPath() string {
 	if m != nil {
-		return m.PolicyDocument
+		return m.PolicyDocumentPath
 	}
 	return ""
 }
 
-func (m *RunConfig) GetMutationAllowed() bool {
-	if m != nil {
-		return m.MutationAllowed
-	}
-	return false
-}
-
-type PolicyActionConfiguration struct {
-	// The action configuration must be one of the following configs.
-	//
-	// Types that are valid to be assigned to ActionConfiguration:
-	//	*PolicyActionConfiguration_NoopActionConfig
-	//	*PolicyActionConfiguration_MoveActionConfig
-	//	*PolicyActionConfiguration_ChillActionConfig
-	//	*PolicyActionConfiguration_ActionConfig
-	ActionConfiguration  isPolicyActionConfiguration_ActionConfiguration `protobuf_oneof:"action_configuration"`
-	XXX_NoUnkeyedLiteral struct{}                                        `json:"-"`
-	XXX_unrecognized     []byte                                          `json:"-"`
-	XXX_sizecache        int32                                           `json:"-"`
-}
-
-func (m *PolicyActionConfiguration) Reset()         { *m = PolicyActionConfiguration{} }
-func (m *PolicyActionConfiguration) String() string { return proto.CompactTextString(m) }
-func (*PolicyActionConfiguration) ProtoMessage()    {}
-func (*PolicyActionConfiguration) Descriptor() ([]byte, []int) {
-	return fileDescriptor_093cc71b7e56221a, []int{4}
-}
-
-func (m *PolicyActionConfiguration) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PolicyActionConfiguration.Unmarshal(m, b)
-}
-func (m *PolicyActionConfiguration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PolicyActionConfiguration.Marshal(b, m, deterministic)
-}
-func (m *PolicyActionConfiguration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PolicyActionConfiguration.Merge(m, src)
-}
-func (m *PolicyActionConfiguration) XXX_Size() int {
-	return xxx_messageInfo_PolicyActionConfiguration.Size(m)
-}
-func (m *PolicyActionConfiguration) XXX_DiscardUnknown() {
-	xxx_messageInfo_PolicyActionConfiguration.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PolicyActionConfiguration proto.InternalMessageInfo
-
-type isPolicyActionConfiguration_ActionConfiguration interface {
-	isPolicyActionConfiguration_ActionConfiguration()
-}
-
-type PolicyActionConfiguration_NoopActionConfig struct {
-	NoopActionConfig *NoopActionConfiguration `protobuf:"bytes,1,opt,name=noop_action_config,json=noopActionConfig,proto3,oneof"`
-}
-
-type PolicyActionConfiguration_MoveActionConfig struct {
-	MoveActionConfig *MoveActionConfiguration `protobuf:"bytes,2,opt,name=move_action_config,json=moveActionConfig,proto3,oneof"`
-}
-
-type PolicyActionConfiguration_ChillActionConfig struct {
-	ChillActionConfig *ChillActionConfiguration `protobuf:"bytes,3,opt,name=chill_action_config,json=chillActionConfig,proto3,oneof"`
-}
-
-type PolicyActionConfiguration_ActionConfig struct {
-	ActionConfig *CopyActionConfiguration `protobuf:"bytes,4,opt,name=action_config,json=actionConfig,proto3,oneof"`
-}
-
-func (*PolicyActionConfiguration_NoopActionConfig) isPolicyActionConfiguration_ActionConfiguration() {}
-
-func (*PolicyActionConfiguration_MoveActionConfig) isPolicyActionConfiguration_ActionConfiguration() {}
-
-func (*PolicyActionConfiguration_ChillActionConfig) isPolicyActionConfiguration_ActionConfiguration() {
-}
-
-func (*PolicyActionConfiguration_ActionConfig) isPolicyActionConfiguration_ActionConfiguration() {}
-
-func (m *PolicyActionConfiguration) GetActionConfiguration() isPolicyActionConfiguration_ActionConfiguration {
-	if m != nil {
-		return m.ActionConfiguration
-	}
-	return nil
-}
-
-func (m *PolicyActionConfiguration) GetNoopActionConfig() *NoopActionConfiguration {
-	if x, ok := m.GetActionConfiguration().(*PolicyActionConfiguration_NoopActionConfig); ok {
-		return x.NoopActionConfig
-	}
-	return nil
-}
-
-func (m *PolicyActionConfiguration) GetMoveActionConfig() *MoveActionConfiguration {
-	if x, ok := m.GetActionConfiguration().(*PolicyActionConfiguration_MoveActionConfig); ok {
-		return x.MoveActionConfig
-	}
-	return nil
-}
-
-func (m *PolicyActionConfiguration) GetChillActionConfig() *ChillActionConfiguration {
-	if x, ok := m.GetActionConfiguration().(*PolicyActionConfiguration_ChillActionConfig); ok {
-		return x.ChillActionConfig
-	}
-	return nil
-}
-
-func (m *PolicyActionConfiguration) GetActionConfig() *CopyActionConfiguration {
-	if x, ok := m.GetActionConfiguration().(*PolicyActionConfiguration_ActionConfig); ok {
-		return x.ActionConfig
-	}
-	return nil
-}
-
 // XXX_OneofWrappers is for the internal use of the proto package.
-func (*PolicyActionConfiguration) XXX_OneofWrappers() []interface{} {
+func (*PolicyEffectConfiguration) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
-		(*PolicyActionConfiguration_NoopActionConfig)(nil),
-		(*PolicyActionConfiguration_MoveActionConfig)(nil),
-		(*PolicyActionConfiguration_ChillActionConfig)(nil),
-		(*PolicyActionConfiguration_ActionConfig)(nil),
+		(*PolicyEffectConfiguration_Noop)(nil),
+		(*PolicyEffectConfiguration_Move)(nil),
+		(*PolicyEffectConfiguration_Chill)(nil),
+		(*PolicyEffectConfiguration_Duplicate)(nil),
 	}
 }
 
 func init() {
-	proto.RegisterType((*RunLogConfiguration)(nil), "cycler.RunLogConfiguration")
-	proto.RegisterType((*HistogramOptions)(nil), "cycler.HistogramOptions")
-	proto.RegisterType((*BucketStatsConfiguration)(nil), "cycler.BucketStatsConfiguration")
 	proto.RegisterType((*RunConfig)(nil), "cycler.RunConfig")
-	proto.RegisterType((*PolicyActionConfiguration)(nil), "cycler.PolicyActionConfiguration")
+	proto.RegisterType((*RunLogConfiguration)(nil), "cycler.RunLogConfiguration")
+	proto.RegisterType((*StatsConfiguration)(nil), "cycler.StatsConfiguration")
+	proto.RegisterType((*HistogramOptions)(nil), "cycler.HistogramOptions")
+	proto.RegisterType((*PolicyEffectConfiguration)(nil), "cycler.PolicyEffectConfiguration")
 }
 
 func init() { proto.RegisterFile("cycler/config.proto", fileDescriptor_093cc71b7e56221a) }
 
 var fileDescriptor_093cc71b7e56221a = []byte{
-	// 702 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x54, 0xd1, 0x4e, 0xdb, 0x48,
-	0x14, 0xdd, 0x24, 0x2c, 0x22, 0x13, 0x08, 0xd9, 0x09, 0xbb, 0x18, 0x58, 0x09, 0xc8, 0x3e, 0x6c,
-	0xfa, 0x92, 0x20, 0xaa, 0x7e, 0x00, 0x81, 0x22, 0x1e, 0xa0, 0xa9, 0x5c, 0x51, 0xa9, 0x7d, 0xe8,
-	0x68, 0xe2, 0x4c, 0xec, 0x29, 0xf6, 0x5c, 0x6b, 0x66, 0x1c, 0x12, 0x7e, 0xa6, 0x5f, 0xd0, 0xdf,
-	0xea, 0x7b, 0xd5, 0x1f, 0xa8, 0x66, 0xc6, 0x16, 0x89, 0x9b, 0xa8, 0x8f, 0x73, 0xce, 0xf5, 0xb9,
-	0xf7, 0x9e, 0x7b, 0xaf, 0x51, 0x3b, 0x98, 0x07, 0x31, 0x93, 0xfd, 0x00, 0xc4, 0x84, 0x87, 0xbd,
-	0x54, 0x82, 0x06, 0xbc, 0xe9, 0xc0, 0xc3, 0x82, 0xa4, 0x81, 0xe6, 0x20, 0x1c, 0xd9, 0xf9, 0x56,
-	0x41, 0x6d, 0x3f, 0x13, 0xb7, 0x10, 0x5e, 0xda, 0x6f, 0x32, 0x49, 0x0d, 0x8b, 0xff, 0x47, 0xbb,
-	0x63, 0xa6, 0x34, 0x17, 0xf6, 0x49, 0x32, 0x19, 0x7b, 0x95, 0x93, 0x4a, 0xb7, 0xee, 0x37, 0x17,
-	0xe0, 0x7b, 0x19, 0xe3, 0x2e, 0x6a, 0x05, 0x51, 0x26, 0x1e, 0x88, 0xe2, 0x4f, 0x8c, 0x8c, 0xe6,
-	0x9a, 0x29, 0xaf, 0x7a, 0x52, 0xe9, 0xd6, 0xfc, 0xa6, 0xc5, 0xdf, 0xf1, 0x27, 0x36, 0x30, 0x28,
-	0x3e, 0x45, 0xdb, 0x41, 0x44, 0x85, 0x60, 0xb1, 0x8d, 0xf5, 0x6a, 0x36, 0xaa, 0x91, 0x63, 0x26,
-	0xce, 0x64, 0x4d, 0x99, 0x54, 0x5c, 0x69, 0x22, 0x99, 0x96, 0x9c, 0x29, 0x6f, 0xc3, 0x69, 0xe5,
-	0xb0, 0xef, 0x50, 0x7c, 0x86, 0xf6, 0x12, 0x3a, 0x23, 0x99, 0x48, 0xb3, 0x51, 0xcc, 0x55, 0xc4,
-	0xc6, 0x24, 0x86, 0x50, 0x79, 0x7f, 0xda, 0x68, 0x9c, 0xd0, 0xd9, 0xfd, 0x33, 0x75, 0x0b, 0xa1,
-	0xea, 0x7c, 0xa9, 0xa0, 0xd6, 0x0d, 0x57, 0x1a, 0x42, 0x49, 0x93, 0x61, 0x6a, 0xca, 0x57, 0xf8,
-	0x18, 0x35, 0x44, 0x96, 0x90, 0x51, 0x16, 0x3c, 0x30, 0xad, 0x6c, 0x87, 0x35, 0x1f, 0x89, 0x2c,
-	0x19, 0x38, 0x04, 0xff, 0x87, 0x76, 0x42, 0x09, 0x8f, 0x3a, 0x22, 0x13, 0x1a, 0x68, 0x90, 0x79,
-	0x6b, 0xdb, 0x0e, 0xbc, 0xb6, 0x98, 0xb1, 0x60, 0x44, 0x15, 0xcb, 0x65, 0x16, 0x9b, 0x6b, 0x1a,
-	0xdc, 0x69, 0xd9, 0xfe, 0x8e, 0x50, 0x3d, 0xe1, 0x82, 0x4c, 0x69, 0x9c, 0xb1, 0xbc, 0xb3, 0xad,
-	0x84, 0x8b, 0xf7, 0xe6, 0xdd, 0xf9, 0x5a, 0x45, 0x5e, 0x1e, 0xab, 0xa9, 0x56, 0xcb, 0xf3, 0xe8,
-	0xa2, 0x56, 0x0c, 0x21, 0x61, 0x53, 0x26, 0xe7, 0x04, 0x46, 0x9f, 0x59, 0xa0, 0x6d, 0xb9, 0x5b,
-	0x7e, 0x33, 0x86, 0xf0, 0xb5, 0x81, 0x87, 0x16, 0xc5, 0xaf, 0xd0, 0x7e, 0x2a, 0xd9, 0x84, 0xcf,
-	0x88, 0x64, 0x29, 0x48, 0x4d, 0x8c, 0x51, 0x63, 0x96, 0xea, 0x28, 0x2f, 0x7e, 0xcf, 0xd1, 0xbe,
-	0x65, 0xef, 0xe8, 0xec, 0xca, 0x70, 0xf8, 0x1e, 0x1d, 0xd2, 0x90, 0x91, 0x31, 0x9d, 0x2b, 0x12,
-	0x15, 0x3e, 0x11, 0x70, 0x46, 0xd9, 0x76, 0x1a, 0xe7, 0x5e, 0xcf, 0xad, 0x50, 0xaf, 0x6c, 0xa4,
-	0xbf, 0x4f, 0x43, 0x76, 0x45, 0xe7, 0xea, 0x17, 0x87, 0x3f, 0xa0, 0x7f, 0x9f, 0x17, 0x63, 0x85,
-	0xf0, 0xc6, 0x6f, 0x84, 0x0f, 0x54, 0xb1, 0x3f, 0x65, 0xaa, 0xf3, 0xa3, 0x8a, 0xea, 0x7e, 0x26,
-	0x9c, 0x4f, 0x78, 0x88, 0xfe, 0x96, 0x99, 0x30, 0x5b, 0x40, 0x82, 0x45, 0xe7, 0xac, 0x4b, 0x8d,
-	0xf3, 0xa3, 0x22, 0xc3, 0x8a, 0x65, 0xf7, 0xdb, 0x72, 0xc5, 0x05, 0x7c, 0x42, 0x87, 0xc5, 0x40,
-	0xcd, 0x38, 0x4a, 0xaa, 0x55, 0xab, 0x7a, 0x52, 0xa8, 0xae, 0x9b, 0x9b, 0xef, 0x8d, 0xd6, 0x4d,
-	0x94, 0xa2, 0xa3, 0x14, 0x62, 0x1e, 0xcc, 0x89, 0x3b, 0xc8, 0x52, 0x02, 0xe7, 0xf8, 0x69, 0x91,
-	0xe0, 0xad, 0x0d, 0xbd, 0xb0, 0x91, 0xcb, 0x19, 0x0e, 0xd2, 0x75, 0x94, 0x3d, 0x27, 0x97, 0x62,
-	0x0c, 0x41, 0x96, 0x30, 0xa1, 0xad, 0xdf, 0x75, 0xbf, 0xe9, 0xe0, 0xab, 0x1c, 0xc5, 0x2f, 0x50,
-	0x2b, 0xc9, 0xb4, 0x3b, 0x75, 0x1a, 0xc7, 0xf0, 0xc8, 0xc6, 0xf6, 0x94, 0xb6, 0xfc, 0xdd, 0x02,
-	0xbf, 0x70, 0x70, 0xe7, 0x7b, 0x15, 0x1d, 0xac, 0x2d, 0x06, 0x0f, 0x11, 0x16, 0x00, 0xe9, 0x72,
-	0x4b, 0xf9, 0x08, 0x8e, 0x8b, 0x5e, 0xde, 0x00, 0xa4, 0x2b, 0x3e, 0xbe, 0xf9, 0xc3, 0x6f, 0x89,
-	0x12, 0x65, 0x04, 0x13, 0x98, 0xb2, 0x92, 0x60, 0x75, 0x59, 0xf0, 0x0e, 0xa6, 0x6c, 0x8d, 0x60,
-	0x52, 0xa2, 0xb0, 0x8f, 0xda, 0x41, 0xc4, 0xe3, 0xb8, 0xa4, 0x58, 0x5b, 0x9e, 0xe7, 0xa5, 0x09,
-	0x59, 0x2d, 0xf9, 0x57, 0x50, 0xe6, 0xf0, 0x35, 0xda, 0x59, 0x56, 0xdb, 0x58, 0xae, 0xef, 0x12,
-	0xd2, 0xf9, 0x6a, 0xb1, 0x6d, 0xba, 0x00, 0x0f, 0xfe, 0x41, 0x7b, 0xab, 0x76, 0x61, 0x70, 0xfe,
-	0xf1, 0x2c, 0x84, 0x5e, 0x10, 0x49, 0x48, 0x78, 0x96, 0xf4, 0x40, 0x86, 0xfd, 0xe2, 0x01, 0xaa,
-	0xcf, 0xc5, 0x44, 0xd2, 0xbe, 0xfd, 0x9d, 0xf7, 0x43, 0xe8, 0xbb, 0x9c, 0xa3, 0x4d, 0x0b, 0xbc,
-	0xfc, 0x19, 0x00, 0x00, 0xff, 0xff, 0xca, 0x1a, 0xcd, 0xc7, 0x13, 0x06, 0x00, 0x00,
+	// 683 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x54, 0xdd, 0x4e, 0xdb, 0x3a,
+	0x1c, 0x3f, 0xa1, 0x80, 0xa8, 0xcb, 0x29, 0xc8, 0xe5, 0x40, 0x81, 0x23, 0x51, 0xba, 0x49, 0xeb,
+	0x6e, 0x5a, 0xc4, 0x84, 0xb4, 0xdb, 0x95, 0x6e, 0x42, 0x1a, 0x0c, 0x64, 0xc4, 0xa4, 0xed, 0xc6,
+	0x72, 0x13, 0x37, 0xb1, 0x48, 0xec, 0xc8, 0x1f, 0xd0, 0xf2, 0x32, 0x7b, 0xa4, 0x5d, 0xec, 0x1d,
+	0xf6, 0x16, 0x93, 0x26, 0xdb, 0xc9, 0x0a, 0x6d, 0xd1, 0xee, 0xea, 0xdf, 0x57, 0xfa, 0xff, 0xb0,
+	0x41, 0x23, 0x9c, 0x84, 0x29, 0x95, 0xbd, 0x50, 0xf0, 0x11, 0x8b, 0xbb, 0xb9, 0x14, 0x5a, 0xc0,
+	0x55, 0x0f, 0xee, 0x95, 0x24, 0x1d, 0x8d, 0x68, 0xa8, 0x3d, 0xd9, 0xfe, 0xbe, 0x04, 0xaa, 0xc8,
+	0xf0, 0x53, 0x67, 0x80, 0x97, 0xe0, 0x3f, 0x69, 0x38, 0x4e, 0x45, 0x8c, 0x7d, 0x84, 0x91, 0x44,
+	0x33, 0xc1, 0x9b, 0x41, 0x2b, 0xe8, 0xd4, 0x8e, 0xf7, 0xbb, 0x3e, 0xa2, 0x8b, 0x0c, 0x3f, 0x17,
+	0xf1, 0xe9, 0x63, 0x09, 0x6a, 0xc8, 0x79, 0x10, 0x7e, 0x04, 0x0d, 0xa5, 0x89, 0x56, 0x33, 0x71,
+	0x4b, 0x2e, 0x6e, 0xaf, 0x8c, 0xbb, 0xb6, 0x92, 0xa7, 0x69, 0x50, 0xcd, 0x61, 0x90, 0x80, 0xfd,
+	0x5c, 0xa4, 0x2c, 0x9c, 0x60, 0x5f, 0xc2, 0x4c, 0x68, 0xc5, 0x85, 0x1e, 0x96, 0xa1, 0x57, 0x4e,
+	0xfa, 0xde, 0x29, 0x9f, 0x66, 0xef, 0xe6, 0xcf, 0x51, 0xf0, 0x35, 0xd8, 0xcc, 0x8c, 0x76, 0xbf,
+	0x31, 0x49, 0x53, 0x71, 0x4f, 0xa3, 0xe6, 0x72, 0x2b, 0xe8, 0xac, 0xa1, 0x8d, 0x12, 0x7f, 0xe7,
+	0x61, 0xb8, 0x0d, 0x56, 0x87, 0x26, 0xbc, 0xa5, 0xba, 0xb9, 0xd2, 0x0a, 0x3a, 0x55, 0x54, 0x9c,
+	0xda, 0x3f, 0x03, 0xd0, 0x58, 0xd0, 0x1f, 0xf8, 0x0a, 0x6c, 0x44, 0x54, 0x69, 0xc6, 0x7d, 0xba,
+	0x91, 0xa9, 0xeb, 0x6a, 0x15, 0xd5, 0x1f, 0xc1, 0x37, 0x32, 0x85, 0x1d, 0xb0, 0x19, 0x26, 0x86,
+	0xdf, 0x62, 0xc5, 0x1e, 0x28, 0x1e, 0x4e, 0x34, 0x55, 0xae, 0x61, 0x15, 0x54, 0x77, 0xf8, 0x35,
+	0x7b, 0xa0, 0x7d, 0x8b, 0xc2, 0x43, 0xb0, 0x1e, 0x26, 0x84, 0x73, 0x9a, 0x3a, 0xad, 0xeb, 0x40,
+	0x05, 0xd5, 0x0a, 0xcc, 0xea, 0xec, 0x57, 0x73, 0x2a, 0x15, 0x53, 0x1a, 0x4b, 0xaa, 0x25, 0xa3,
+	0xca, 0xd5, 0x53, 0x41, 0xf5, 0x02, 0x46, 0x1e, 0x85, 0x47, 0x60, 0x2b, 0x23, 0x63, 0x6c, 0x78,
+	0x81, 0xd3, 0xc8, 0xae, 0x81, 0x72, 0xc5, 0x55, 0x10, 0xcc, 0xc8, 0xf8, 0x66, 0x4a, 0x9d, 0x8b,
+	0x58, 0xb5, 0x7f, 0x05, 0x00, 0xce, 0x4f, 0x0e, 0x9e, 0x80, 0x9d, 0x5c, 0xd2, 0x11, 0x1b, 0x63,
+	0x49, 0x73, 0x21, 0x35, 0xb6, 0xb1, 0x11, 0xcd, 0x75, 0xe2, 0xea, 0xad, 0xa0, 0x2d, 0x4f, 0x23,
+	0xc7, 0x5e, 0x90, 0xf1, 0xc0, 0x72, 0xf0, 0x06, 0xec, 0x91, 0x98, 0xe2, 0x88, 0x4c, 0x14, 0x4e,
+	0x98, 0xd2, 0x22, 0x96, 0x24, 0xc3, 0x22, 0xb7, 0x99, 0xaa, 0x58, 0x98, 0x66, 0x39, 0xdb, 0xb3,
+	0x52, 0x70, 0xe9, 0x79, 0xb4, 0x43, 0x62, 0x3a, 0x20, 0x13, 0x35, 0x4b, 0xc0, 0x2f, 0xe0, 0xff,
+	0x69, 0x1b, 0x17, 0x04, 0x57, 0xfe, 0x12, 0xbc, 0xab, 0xca, 0x6e, 0xcf, 0x52, 0xed, 0x6f, 0x01,
+	0xd8, 0x9c, 0xfb, 0xde, 0x01, 0xa8, 0x71, 0x93, 0x61, 0xbf, 0x0b, 0xca, 0x55, 0xbc, 0x82, 0x00,
+	0x37, 0x59, 0xdf, 0x23, 0xf0, 0x05, 0xf8, 0x37, 0x96, 0xe2, 0x5e, 0x27, 0x78, 0x44, 0x42, 0x2d,
+	0xa4, 0x2b, 0x2d, 0x40, 0xeb, 0x1e, 0xfc, 0xe0, 0x30, 0xbb, 0x02, 0x43, 0xa2, 0x68, 0x11, 0x33,
+	0x1d, 0x6e, 0x80, 0xea, 0x16, 0xf7, 0x59, 0x6e, 0xbe, 0xfb, 0xa0, 0x9a, 0x31, 0x8e, 0xef, 0x48,
+	0x6a, 0x68, 0x31, 0xd9, 0xb5, 0x8c, 0xf1, 0xcf, 0xf6, 0xdc, 0xfe, 0xb1, 0x04, 0x76, 0x9f, 0xbd,
+	0x06, 0xf0, 0x04, 0x2c, 0x73, 0x21, 0xf2, 0xe2, 0x6e, 0x1f, 0x94, 0x2d, 0xf8, 0x24, 0x44, 0xbe,
+	0x40, 0x7e, 0xf6, 0x0f, 0x72, 0x72, 0x6b, 0xcb, 0xc4, 0x1d, 0x2d, 0x46, 0xf2, 0xc7, 0x76, 0x21,
+	0xee, 0xe8, 0x33, 0x36, 0x2b, 0x87, 0x6f, 0xc1, 0x4a, 0x98, 0xb0, 0x34, 0x2d, 0x3a, 0xde, 0x2a,
+	0x7d, 0xa7, 0x16, 0x5c, 0x6c, 0xf4, 0x06, 0x38, 0x00, 0xd5, 0xc8, 0xe4, 0x29, 0x0b, 0x89, 0xf6,
+	0x25, 0xd6, 0x8e, 0x5f, 0x96, 0xee, 0x41, 0x49, 0x2c, 0x4e, 0x98, 0x1a, 0xed, 0x7e, 0x17, 0x8f,
+	0x47, 0x24, 0x42, 0x93, 0x51, 0xae, 0x71, 0x4e, 0x74, 0x52, 0x5c, 0x5e, 0xe8, 0xb9, 0x41, 0x41,
+	0x5d, 0x11, 0x9d, 0xf4, 0xb7, 0xc1, 0xd6, 0xa2, 0x77, 0xa6, 0x7f, 0xfc, 0xf5, 0x28, 0x16, 0xdd,
+	0x30, 0x91, 0x22, 0x63, 0x26, 0xeb, 0x0a, 0x19, 0xf7, 0xca, 0x83, 0x50, 0x3d, 0xc6, 0x47, 0x92,
+	0xf4, 0xdc, 0xe3, 0xda, 0x8b, 0x45, 0xcf, 0xff, 0xcf, 0xe1, 0xaa, 0x03, 0xde, 0xfc, 0x0e, 0x00,
+	0x00, 0xff, 0xff, 0xc9, 0x0e, 0x8f, 0xa3, 0xa1, 0x05, 0x00, 0x00,
 }

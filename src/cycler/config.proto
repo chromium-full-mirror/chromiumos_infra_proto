@@ -4,7 +4,27 @@ package cycler;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler";
 
-import "cycler/action.proto";
+import "cycler/effect.proto";
+
+
+// Closure of all config for a single cycler run.
+message RunConfig {
+
+  // The runlog configuration.
+  RunLogConfiguration run_log_configuration = 1;
+
+  // The stats configuration for the prefix and the action statistics.
+  StatsConfiguration stats_configuration = 2;
+
+  // Policy effect configuration.
+  PolicyEffectConfiguration policy_effect_configuration = 3;
+
+  // Must match the command line argument and policy effect as well.
+  bool mutation_allowed = 4;
+
+  // The bucket to operate on (can be overridden on the command line).
+  string bucket = 5;
+}
 
 // Options for the log generation during a cycler run.
 message RunLogConfiguration {
@@ -21,70 +41,59 @@ message RunLogConfiguration {
   int64 persist_retries = 4;
 
   // How many logs we'll allow to fail persistence and still continue.
-  int64 max_unpublished_logs = 5;
+  // Since we do log shipping in goroutines this is also the cap on the number
+  // of those.
+  int64 max_unpersisted_logs = 5;
+}
+
+// Options provided to any run providing stats.
+message StatsConfiguration {
+
+  // When generating a report for a prefix, how deep should the breakdown be.
+  int64 prefix_report_max_depth = 1;
+
+  // Histogram options for the objects ages.
+  HistogramOptions age_days_histogram_options = 2;
+
+  // Histogram options for the objects sizes.
+  HistogramOptions size_bytes_histogram_options = 3;
 }
 
 // Options for the Histogram generation during a cycler run.
 // See definition in: "google.golang.org/grpc/benchmark/stats"
 message HistogramOptions {
+
   // The number of unique buckets in the histrogram.
-  int64 num_buckets = 1;
+  int32 num_buckets = 1;
 
   // The growth factor of each bucket to the next.
-  int64 growth_factor = 2;
+  double growth_factor = 2;
 
   // The base bucket's size.
-  int64 base_bucket_size = 3;
+  double base_bucket_size = 3;
 
   // The minimum valued bucket's value.
   int64 min_value = 4;
 }
 
-// Options provided to any run providing bucket stats.
-message BucketStatsConfiguration {
-  // Should each object iterated's attributes be sent to the logging stream.
-  bool log_every_object = 1;
+// A policy effect configuration defines the policy and the resulting effect.
+message PolicyEffectConfiguration {
 
-  // When generating a report for a bucket, how deep should the breakdown be.
-  int64 prefix_report_max_depth = 2;
-
-  // Histogram options for the objects ages.
-  HistogramOptions age_days_histogram_options = 3;
-
-  // Histogram options for the objects sizes.
-  HistogramOptions size_bytes_histogram_options = 4;
+  // The effect configuration must be one of the following configs.
+oneof effect_configuration {
+  // Do nothing, will still gather stats.
+  NoopEffectConfiguration noop = 1;
+  // Move the object to another location (same bucket or another).
+  MoveEffectConfiguration move = 2;
+  // Change the storage class of the objects.
+  ChillEffectConfiguration chill = 3;
+  // Duplicate the object to another location (same bucket or another).
+  DuplicateEffectConfiguration duplicate = 4;
 }
 
-// Closure of all config for a single cycler run.
-message RunConfig {
-  // The runlog configuration.
-  RunLogConfiguration run_log_configuration = 1;
+// Common configuration values.
 
-  // The bucket stats configuration.
-  BucketStatsConfiguration bucket_stats_configuration = 2;
-
-  // Policy action configuration.
-  PolicyActionConfiguration policy_action_configuration = 3;
-
-  // The policy document to be parsed by rego and executed to determine if an
-  // action is going to be taken upon the object. TODO(engeg): This may not be
-  // best as a string, perhaps we should reference it by filename or attempt to
-  // make a proto wrapper around the document definition.
-  string policy_document = 4;
-
-  // Must match the command line arguement and policy action as well.
-  bool mutation_allowed = 5;
-}
-
-message PolicyActionConfiguration {
-  // The action configuration must be one of the following configs.
-oneof action_configuration {
-    NoopActionConfiguration noop_action_config = 1;
-    MoveActionConfiguration move_action_config = 2;
-    ChillActionConfiguration chill_action_config = 3;
-    CopyActionConfiguration action_config = 4;
-}
-
-// Common configuration values may live in this top level (non exist yet).
-// ...
+// The policy document to be parsed by rego and executed to determine if an
+// effect is going to be taken upon the object.
+string policy_document_path = 5;
 }
