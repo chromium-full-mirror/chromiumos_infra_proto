@@ -58,6 +58,16 @@ message GetBuildDependencyGraphResponse {
   DepGraph sdk_dep_graph = 2;
 }
 
+message GetToolchainPathsRequest {
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+}
+
+message GetToolchainPathsResponse {
+  // List of paths considered relevant to toolchain packages.
+  repeated SourcePath paths = 1;
+}
+
 // Service to create a variety of package dependency graphs.
 service DependencyService {
   // The module implementing the service.
@@ -69,4 +79,8 @@ service DependencyService {
   // Get the build dependency graph.
   rpc GetBuildDependencyGraph(GetBuildDependencyGraphRequest)
     returns (GetBuildDependencyGraphResponse);
+
+  // Get the list of source paths that are relevant to the toolchain
+  rpc GetToolchainPaths(GetToolchainPathsRequest)
+    returns (GetToolchainPathsResponse);
 }
