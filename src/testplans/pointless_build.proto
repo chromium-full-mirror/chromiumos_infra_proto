@@ -24,6 +24,15 @@ message PointlessBuildCheckRequest {
   // DepGraph-based pointless build checking should be skipped.
   chromite.api.DepGraph dep_graph = 5;
 
+
+  message Path {
+    string path = 1;
+  }
+
+  // A list of paths to be considered as relevant to the current build. Can
+  // be used instead of passing a full DepGraph.
+  repeated Path relevant_paths = 9;
+
   // The manifest-internal snapshot commit hash that's being used for the current build.
   // Note that manifest_commit will be soon replaced with gitiles_commit below.
   string manifest_commit = 6;
@@ -32,6 +41,7 @@ message PointlessBuildCheckRequest {
   ProtoBytes gitiles_commit = 8;
 
 }
+
 
 // The output proto for invocations of the Pointless Build Checker program.
 message PointlessBuildCheckResponse {
