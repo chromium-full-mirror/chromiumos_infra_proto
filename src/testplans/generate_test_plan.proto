@@ -63,6 +63,9 @@ message TestUnitCommon {
   // The build target for this test unit.
   chromiumos.BuildTarget build_target = 2;
 
+  // A builder name for this test unit, e.g. eve-arcvm-cq.
+  string builder_name = 4;
+
   // The build files provided to run this test unit.
   BuildPayload build_payload = 3;
 }

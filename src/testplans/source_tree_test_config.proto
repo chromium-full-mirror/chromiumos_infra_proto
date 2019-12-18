@@ -22,7 +22,17 @@ message TestRestriction {
   // A subset of build targets for which testing should be performed.
   // If this is nonempty, hw/vm tests will *only* be done for the provided
   // list of build targets.
+  // DEPRECATED: being replaced in favor of cq_only_test_builders.
   repeated chromiumos.BuildTarget only_test_build_targets = 4;
+
+  message OnlyTestBuilder {
+    string builder_name = 1;
+  }
+
+  // A subset of CQ builders for which testing should be performed.
+  // If this is nonempty, hw/vm tests will *only* be done for the provided
+  // list of build targets.
+  repeated OnlyTestBuilder cq_only_test_builders = 6;
 }
 
 // A set of test restrictions for a source tree.
