@@ -32,12 +32,21 @@ message RunTestRequest {
     // True for client-side tests, false for server-side tests.
     bool is_client_test = 4;
 
-    // Key:value pairs added to the autoserv command.
+    // Key:value pairs added to the autoserv command. These are metadata which
+    // should not affect code execution.
     map<string,string> keyvals = 5;
   }
 
   oneof test {
     Autotest autotest = 3;
   }
+
+  // remote test drive-agnostic environment variables and similar parameters
+  message Environment {
+    // A directory whose contents will be offloaded as an Isolated output
+    string isolated_output_dir = 1;
+  }
+
+  Environment environment = 4;
 }
 
