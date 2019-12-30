@@ -310,6 +310,7 @@ type Chroot struct {
 	// The directory where the chrome source should be mounted.
 	ChromeDir string `protobuf:"bytes,4,opt,name=chrome_dir,json=chromeDir,proto3" json:"chrome_dir,omitempty"`
 	// The goma config.
+	// Deprecated.
 	Goma                 *GomaConfig `protobuf:"bytes,5,opt,name=goma,proto3" json:"goma,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`

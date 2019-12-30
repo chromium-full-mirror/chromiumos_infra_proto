@@ -95,6 +95,8 @@ message InstallPackagesRequest {
   chromiumos.Chroot chroot = 4;
   // USE flags to set before building the packages.
   repeated chromiumos.UseFlag use_flags = 5;
+  // Goma Config.
+  chromiumos.GomaConfig goma_config = 6;
 }
 
 message InstallPackagesResponse {
