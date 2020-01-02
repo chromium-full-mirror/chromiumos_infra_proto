@@ -84,12 +84,29 @@ message Memory {
   }
 }
 
+message UsbDeviceId {
+  uint32 vendor_id = 1;
+  uint32 product_id = 2;
+  uint32 bcd_device = 3;
+}
+
+message Bluetooth {
+  message Component {
+    UsbDeviceId usb_device_id = 1;
+  }
+
+  message Constraint {
+    repeated ComponentId bluetooth_devices = 1;
+  }
+}
+
 message Component {
   ComponentId id = 1;
 
   oneof type {
     Soc.Component soc = 2;
     Memory.Component memory = 3;
+    Bluetooth.Component bluetooth = 4;
   }
 }
 

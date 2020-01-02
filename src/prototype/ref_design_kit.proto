@@ -33,6 +33,7 @@ message RefDesignKit {
     FormFactor form_factor = 1;
     Soc.Constraint soc = 2;
     Memory.Constraint memory = 3;
+    Bluetooth.Constraint bluetooth = 4;
   }
 }
 
