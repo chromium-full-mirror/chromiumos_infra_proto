@@ -10,6 +10,14 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
 import "prototype/src/platform2/config.proto";
 
+message AudioConfig {
+  string card_name = 1;
+  string card_settings_file = 2;
+  string dsp_config_file = 3;
+  string ucm_config_file = 4;
+}
+
 message OverlayConfig {
-  Platform2Config platform2_config = 1;
+  AudioConfig audio_config = 1;
+  Platform2Config platform2_config = 2;
 }
