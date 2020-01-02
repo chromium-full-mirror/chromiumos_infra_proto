@@ -32,3 +32,7 @@ This folder contains definitions of the cros_test_platform API, as well as inter
 ## cycler
 
 Cycler protos: go/cros-gs-lifecycler
+
+## bot_scaling
+
+RoboCrop protos: go/robocrop
