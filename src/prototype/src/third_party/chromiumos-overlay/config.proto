@@ -36,3 +36,7 @@ message BuildTargetConfig {
   BuildTargetId id = 1;
   repeated DeviceVariantConfig variant_config = 2;
 }
+
+message BuildTargetConfigList {
+  repeated BuildTargetConfig value = 1;
+}
