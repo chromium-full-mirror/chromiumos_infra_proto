@@ -10,6 +10,35 @@ import "prototype/component.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
+enum Presence {
+  PRESENCE_UNKNOWN = 0;
+  PRESENT = 1;
+  NOT_PRESENT = 2;
+}
+
+message DeviceComponent {
+  message Fingerprint {
+    enum Location {
+      FINGERPRINT_LOCATION_UKNOWN = 0;
+      POWER_BUTTON_TOP_LEFT = 1;
+      KEYBOARD_TOP_RIGHT = 2;
+      KEYBOARD_BOTTOM_RIGHT = 3;
+    }
+    Presence presence = 1;
+    Location location = 2;
+  }
+
+  message Camera {
+    enum Location {
+      CAMERA_LOCATION_UKNOWN = 0;
+      FRONT_FACING = 1;
+      WORLD_FACING = 2;
+    }
+    Presence presence = 1;
+    Location location = 2;
+  }
+}
+
 message RefDesignKitId {
   string value = 1;
 }
@@ -27,6 +56,17 @@ message RefDesignKit {
     CHROMEBOX = 5;
     CHROMEBIT = 6;
     CHROMESLATE = 7;
+  }
+
+  message Requirement {
+    enum Type {
+      TYPE_UNKNOWN = 0;
+      REQUIRED = 1;
+      PREFERRED = 2;
+      OPTIONAL = 3;
+    }
+
+    Type type = 1;
   }
 
   message Requirements {

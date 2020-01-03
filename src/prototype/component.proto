@@ -12,13 +12,6 @@ import "prototype/partner.proto";
 
 import "google/protobuf/descriptor.proto";
 
-enum ConstraintType {
-  CONSTRAINT_TYPE_UNKNOWN = 0;
-  MUST = 1;
-  SHOULD = 2;
-  MAY = 3;
-}
-
 message ComponentId {
   string value = 1;
 }
@@ -119,11 +112,11 @@ message Camera {
   }
 
   message Component {
+    Feature features = 1;
     ClockType clock_type = 2;
   }
 
   message Constraint {
-    ConstraintType type = 1;
     repeated Feature features = 2;
   }
 }

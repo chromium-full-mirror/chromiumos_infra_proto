@@ -21,6 +21,8 @@ message DeviceVariantId {
 
 message DeviceVariant {
   DeviceVariantId id = 1;
+  repeated DeviceComponent.Camera cameras = 2;
+  DeviceComponent.Fingerprint fingerprint = 3;
 }
 
 message RefDesign {
