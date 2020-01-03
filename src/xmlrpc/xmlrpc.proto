@@ -10,24 +10,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/xmlrpc";
 
 // Value represents a value in XML-RPC.
 message Value {
-  enum Type {
-    TYPE_UNKNOWN = 0;
-    // Make the enum values line up with the fields.
-    reserved 1;
-    TYPE_INT = 2;
-    TYPE_BOOLEAN = 3;
-    TYPE_STRING = 4;
-    TYPE_DOUBLE = 5;
-    TYPE_DATETIME = 6;
-    TYPE_BASE64 = 7;
-    TYPE_STRUCT = 8;
-    TYPE_ARRAY = 9;
-  }
-  // type indicates the type of the XML-RPC value.
-  // This is needed to distinguish zero/default values.
-  Type type = 1;
-
-  // Only the field indicated by the type field is used.
   oneof scalar_oneof {
     sint32 int = 2;
     bool boolean = 3;
@@ -36,7 +18,15 @@ message Value {
     // ISO8601 datetime
     string datetime = 6;
     bytes base64 = 7;
+    Struct struct = 8;
+    Array array = 9;
   }
-  map<string, Value> struct = 8;
-  repeated Value array = 9;
+}
+
+message Struct {
+  map<string, Value> members = 1;
+}
+
+message Array {
+  repeated Value values = 1;
 }
