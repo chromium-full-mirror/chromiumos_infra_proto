@@ -42,6 +42,9 @@ message Result {
     // False if test_cases represents all of the test cases to be run by the
     // task. True otherwise (e.g. the task was aborted early).
     bool incomplete = 2;
+
+    // Path within Isolated output at which to find client-specific results
+    string client_offload_relative_path = 3;
   }
 
   // Which test harness was used.
