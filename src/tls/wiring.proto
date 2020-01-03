@@ -28,6 +28,12 @@ service Wiring {
   // address, it should return a new address.
   rpc OpenDutPort(OpenDutPortRequest) returns (OpenDutPortResponse);
 
+  // SetDutPowerSupply sets the connected power state for the DUT.  It is
+  // the caller's responsibility to wait for the effects of the call
+  // to propagate, e.g. waiting in between calls to set the power OFF
+  // and ON.
+  rpc SetDutPowerSupply(SetDutPowerSupplyRequest) returns (SetDutPowerSupplyResponse);
+
   // CacheForDut caches some data to be accesible for the DUT.
   // This will be made available to the DUT via a returned URL.
   // The service will periodically return STATUS_CONTINUE messages to keep the stream alive.
@@ -75,6 +81,33 @@ message OpenDutPortResponse {
   string address = 2;
   // reason provides human friendly context for any error status.
   string reason = 3;
+}
+
+message SetDutPowerSupplyRequest {
+  string dut = 1;
+  enum State {
+    STATE_UNKNOWN = 0;
+    STATE_ON = 1;
+    STATE_OFF = 2;
+  }
+  State state = 2;
+}
+message SetDutPowerSupplyResponse {
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_OK = 1;
+    // STATUS_BAD_DUT indicates that the DUT is not known,
+    // or the caller does not have access to it.
+    STATUS_BAD_DUT = 2;
+    // STATUS_BAD_REQUEST indicates that the request was invalid,
+    // e.g., passing an invalid state.
+    STATUS_BAD_REQUEST = 3;
+    STATUS_NO_RPM = 4;
+    STATUS_RPM_ERROR = 5;
+  }
+  Status status = 1;
+  // reason provides human friendly context for any error status.
+  string reason = 2;
 }
 
 message CacheForDutRequest {
