@@ -34,6 +34,8 @@ message RefDesignKit {
     Soc.Constraint soc = 2;
     Memory.Constraint memory = 3;
     Bluetooth.Constraint bluetooth = 4;
+    repeated Camera.Constraint user_camera = 5;
+    repeated Camera.Constraint world_camera = 6;
   }
 }
 

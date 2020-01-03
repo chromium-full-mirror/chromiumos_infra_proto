@@ -12,6 +12,7 @@ import "prototype/component.proto";
 import "prototype/partner.proto";
 import "prototype/ref_design.proto";
 import "prototype/ref_design_kit.proto";
+import "prototype/device_project.proto";
 
 import "prototype/src/third_party/chromiumos-overlay/config.proto";
 
@@ -20,5 +21,6 @@ message Config {
   ComponentList components = 2;
   RefDesignKitList ref_design_kits = 3;
   RefDesignList ref_designs = 4;
+  DeviceProject device_projects = 6;
   BuildTargetConfigList build_configs = 5;
 }

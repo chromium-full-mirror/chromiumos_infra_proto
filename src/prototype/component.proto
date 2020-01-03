@@ -12,6 +12,13 @@ import "prototype/partner.proto";
 
 import "google/protobuf/descriptor.proto";
 
+enum ConstraintType {
+  CONSTRAINT_TYPE_UNKNOWN = 0;
+  MUST = 1;
+  SHOULD = 2;
+  MAY = 3;
+}
+
 message ComponentId {
   string value = 1;
 }
@@ -100,6 +107,27 @@ message Bluetooth {
   }
 }
 
+message Camera {
+  enum Feature {
+    FEATURE_UNKNOWN = 0;
+    ACTIVITY_LED = 1;
+  }
+  enum ClockType {
+    CLOCK_TYPE_UNDEFINED = 0;
+    MONOTONIC = 1;
+    BOOTTIME = 2;
+  }
+
+  message Component {
+    ClockType clock_type = 2;
+  }
+
+  message Constraint {
+    ConstraintType type = 1;
+    repeated Feature features = 2;
+  }
+}
+
 message Component {
   ComponentId id = 1;
 
@@ -107,6 +135,7 @@ message Component {
     Soc.Component soc = 2;
     Memory.Component memory = 3;
     Bluetooth.Component bluetooth = 4;
+    Camera.Component camera = 5;
   }
 }
 
