@@ -16,7 +16,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/tls";
 // It is expected that TLEs do not implement most of the methods.
 // TLEs only need to implement the services that it wants to provide to clients.
 //
-// All clients should pass gRPC metadata key request_trace_id with at least one value.
+// All clients should pass gRPC metadata key request_trace_id with one value.
+// The value is a unique string that is associated with the method call in metrics.
 // Clients that do not pass request_trace_id may be rejected so that they can be fixed.
 service Wiring {
   // Open a port on the DUT for the caller.

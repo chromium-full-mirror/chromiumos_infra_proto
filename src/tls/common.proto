@@ -9,6 +9,12 @@ package tls;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/tls";
 
 // Common lab services implemented on top of the wiring APIs.
+//
+// All clients should pass gRPC metadata key request_trace_id with one value.
+// The value is a unique string that is associated with the method
+// call in metrics.
+// Clients that do not pass request_trace_id may be rejected so that
+// they can be fixed.
 service Common {
   // Runs a shell command with the default shell.
   // Does not spawn a tty.
