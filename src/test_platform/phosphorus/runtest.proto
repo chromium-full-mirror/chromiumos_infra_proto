@@ -44,7 +44,8 @@ message RunTestRequest {
   // remote test drive-agnostic environment variables and similar parameters
   message Environment {
     // A directory whose contents will be offloaded as an Isolated output
-    string isolated_output_dir = 1;
+    // This is impractical for the intended use case and so is stillborn.
+    string isolated_output_dir = 1 [deprecated=true];
   }
 
   Environment environment = 4;
