@@ -71,6 +71,25 @@ message Config {
         CrosTestPlatformBinary cros_test_platform_binary = 1;
     }
 
+    // Buildbucket defines configuration parameters of a builder.
+    message Buildbucket {
+        // Buildbucket host, e.g. "cr-buildbucket.appspot.com".
+        string host = 1;
+
+        // Project+bucket+builder serves as a unique builder identifier, see
+        // BuilderID in the build proto:
+        // https://cs.chromium.org/search/?q=f:build.proto+BuilderID
+        string project = 2;
+        string bucket = 3;
+        string builder = 4;
+    }
+
+    // TestRunner defines configuration parameters related to the test_runner
+    // recipe.
+    message TestRunner {
+        Buildbucket buildbucket = 1;
+    }
+
     Swarming skylab_swarming = 1;
 
     Swarming autotest_proxy = 2;
@@ -84,4 +103,6 @@ message Config {
     SchedulerMigration scheduler_migration = 6;
 
     Versioning versioning = 7;
+
+    TestRunner test_runner = 8;
 }
