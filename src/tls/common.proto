@@ -28,7 +28,6 @@ message DutShellRequest {
   // SSH or otherwise interact with the DUT directly.
   string dut = 1;
   string command = 2;
-
 }
 // For the last response in the stream, exited will be true and status
 // will be set.
