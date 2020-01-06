@@ -35,12 +35,12 @@ message DesignOptions {
       KEYBOARD_TOP_RIGHT = 2;
       KEYBOARD_BOTTOM_RIGHT = 3;
     }
-    Presence presence = 1;
+    Presence.Indicator presence = 1;
     Location location = 2;
   }
 
   message Camera {
-    Presence presence = 1;
+    Presence.Indicator presence = 1;
   }
 }
 
