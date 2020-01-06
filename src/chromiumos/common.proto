@@ -18,6 +18,9 @@ message BuildTarget {
 
 // Chroot is used to define how to enter a chroot.
 message Chroot {
+  // Deprecated fields.
+  reserved 5;
+
   message ChrootEnv {
     // USE flags to set.
     repeated UseFlag use_flags = 1;
@@ -33,9 +36,6 @@ message Chroot {
   ChrootEnv env = 3;
   // The directory where the chrome source should be mounted.
   string chrome_dir = 4;
-  // The goma config.
-  // Deprecated.
-  GomaConfig goma = 5;
 }
 
 // FEATURES environment variable component message.
