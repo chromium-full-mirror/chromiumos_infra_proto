@@ -45,7 +45,7 @@ message Constraint {
 
   message Camera {
     repeated Component.Camera.Feature features = 1;
-    DesignOptions.Camera usage = 2;
+    DesignOptions.Feature usage = 2;
   }
 }
 

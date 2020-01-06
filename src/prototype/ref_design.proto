@@ -25,8 +25,25 @@ message RefDesignVariantId {
 
 message DesignOptions {
   Fingerprint fingerprint = 1;
-  Camera front_camera = 2;
-  Camera rear_camera = 3;
+  Feature front_camera = 2;
+  Feature rear_camera = 3;
+  Feature base_accelerometer = 4;
+  Feature lid_accelerometer = 5;
+  Feature base_gyroscope = 6;
+  Feature lid_gyroscope = 7;
+  Feature base_magnetometer = 8;
+  Feature lid_magnetometer = 9;
+  Feature base_light_sensor = 10;
+  Feature lid_light_sensor = 11;
+  Feature touchscreen = 12;
+  Feature stlyus = 13;
+
+  // General feature presense proto that can be used
+  // for any features that don't have specific attributes.
+  // E.g. See Fingerprint below
+  message Feature {
+    Presence.Indicator presence = 1;
+  }
 
   message Fingerprint {
     enum Location {
@@ -37,10 +54,6 @@ message DesignOptions {
     }
     Presence.Indicator presence = 1;
     Location location = 2;
-  }
-
-  message Camera {
-    Presence.Indicator presence = 1;
   }
 }
 
