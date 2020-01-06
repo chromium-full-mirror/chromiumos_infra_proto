@@ -36,7 +36,7 @@ message DesignOptions {
   Feature base_light_sensor = 10;
   Feature lid_light_sensor = 11;
   Feature touchscreen = 12;
-  Stylus stlyus = 13;
+  Stylus stylus = 13;
 
   // General feature presense proto that can be used
   // for any features that don't have specific attributes.
