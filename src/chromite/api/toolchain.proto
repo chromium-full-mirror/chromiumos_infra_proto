@@ -32,10 +32,8 @@ message PrepareForToolchainBuildRequest {
   // The sysroot where the files live.
   chromite.api.Sysroot sysroot = 3;
 
-  // TODO(crbug/1019868): At a minimum, the AFDO verify builders will need
-  // enough information to be able to find the artifact created by the
-  // AFDO_record HW Test.
-  reserved 4;
+  // Information about artifacts available when preparing.
+  repeated chromiumos.BuilderConfig.Artifacts.InputArtifactInfo input_artifacts = 4;
 }
 
 // TODO(crbug/1019868): Migrate to using chromiumos.PrepareForBuildResponse.

@@ -202,6 +202,17 @@ message BuilderConfig {
     }
     // There may be more than one set of publishing instructions.
     repeated PublishInfo publish_artifacts = 5;
+
+    message InputArtifactInfo {
+      // Artifact type to seek in these buckets.  Use the first instance of the
+      // artifact found in the list of locations.
+      ArtifactTypes input_artifact_type = 1;
+
+      // Google storage locations containing these artifacts.
+      repeated string input_artifact_gs_locations = 2;
+    }
+    // There may be more than one set of consumable artifacts.
+    repeated InputArtifactInfo input_artifacts = 6;
   }
   Artifacts artifacts = 4;
 
