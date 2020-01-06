@@ -30,7 +30,7 @@ message DesignOptions {
 
   message Fingerprint {
     enum Location {
-      FINGERPRINT_LOCATION_UKNOWN = 0;
+      FINGERPRINT_LOCATION_UNKNOWN = 0;
       POWER_BUTTON_TOP_LEFT = 1;
       KEYBOARD_TOP_RIGHT = 2;
       KEYBOARD_BOTTOM_RIGHT = 3;
