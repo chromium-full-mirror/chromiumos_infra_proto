@@ -17,7 +17,7 @@ message DeviceBrandId {
 
 message DeviceBrand {
   DeviceBrandId id = 1;
-  RefDesign ref_design_id = 2;
+  RefDesignId ref_design_id = 2;
   PartnerId oem_id = 3;
   string brand_code = 4;
   string brand_name = 5;
@@ -30,6 +30,10 @@ message DeviceBrandList {
 // Metadata around all of the logistics for the project
 message DeviceProject {
   DeviceBrandId id = 1;
-  string bug_component_id = 2;
-  string project_group = 3;
+  string name = 2;
+  string bug_component_id = 3;
+}
+
+message DeviceProjectList {
+  repeated DeviceProject value = 1;
 }
