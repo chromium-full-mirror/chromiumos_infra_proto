@@ -90,6 +90,10 @@ message ExecuteResponse {
         // eventually be available. Not intended for human's to view; use
         // log_url instead.
         test_platform.common.TaskLogData log_data = 9;
+
+        // Location, as URL, at which to place low-latency, high-importance
+        // log data which fails the task if not offloaded properly.
+        string synchronous_log_data_url = 10;
     }
 
     // TODO(crbug.com/1020326) Deprecate and delete this in favor of
