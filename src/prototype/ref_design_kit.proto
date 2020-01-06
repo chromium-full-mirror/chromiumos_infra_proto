@@ -6,76 +6,56 @@ syntax = "proto3";
 
 package prototype;
 
+import "prototype/common.proto";
 import "prototype/component.proto";
+import "prototype/ref_design.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-enum Presence {
-  PRESENCE_UNKNOWN = 0;
-  PRESENT = 1;
-  NOT_PRESENT = 2;
-}
+message Constraint {
+  enum Level {
+    TYPE_UNKNOWN = 0;
+    REQUIRED = 1;
+    PREFERRED = 2;
+    OPTIONAL = 3;
+  }
 
-message DeviceComponent {
-  message Fingerprint {
-    enum Location {
-      FINGERPRINT_LOCATION_UKNOWN = 0;
-      POWER_BUTTON_TOP_LEFT = 1;
-      KEYBOARD_TOP_RIGHT = 2;
-      KEYBOARD_BOTTOM_RIGHT = 3;
-    }
-    Presence presence = 1;
-    Location location = 2;
+  Level level = 1;
+
+  oneof type {
+    Soc soc = 3;
+    Memory memory = 4;
+    Bluetooth bluetooth = 5;
+    Camera front_camera = 6;
+    Camera rear_camera = 7;
+  }
+
+  message Soc {
+    repeated ComponentId models = 1;
+  }
+
+  message Memory {
+    ByteSize min_size = 1;
+    repeated Component.Memory.Type types = 2;
+  }
+
+  message Bluetooth {
+    repeated ComponentId models = 1;
   }
 
   message Camera {
-    enum Location {
-      CAMERA_LOCATION_UKNOWN = 0;
-      FRONT_FACING = 1;
-      WORLD_FACING = 2;
-    }
-    Presence presence = 1;
-    Location location = 2;
+    repeated Component.Camera.Feature features = 1;
+    DesignOptions.Camera usage = 2;
   }
-}
-
-message RefDesignKitId {
-  string value = 1;
 }
 
 message RefDesignKit {
   RefDesignKitId id = 1;
-  repeated Requirements reqs = 2;
-
-  enum FormFactor {
-    FORM_FACTOR_UNDEFINED = 0;
-    CLAMSHELL = 1;
-    CONVERTIBLE = 2;
-    DETACHABLE = 3;
-    CHROMEBASE = 4;
-    CHROMEBOX = 5;
-    CHROMEBIT = 6;
-    CHROMESLATE = 7;
-  }
+  repeated Requirement reqs = 2;
 
   message Requirement {
-    enum Type {
-      TYPE_UNKNOWN = 0;
-      REQUIRED = 1;
-      PREFERRED = 2;
-      OPTIONAL = 3;
-    }
-
-    Type type = 1;
-  }
-
-  message Requirements {
-    FormFactor form_factor = 1;
-    Soc.Constraint soc = 2;
-    Memory.Constraint memory = 3;
-    Bluetooth.Constraint bluetooth = 4;
-    repeated Camera.Constraint user_camera = 5;
-    repeated Camera.Constraint world_camera = 6;
+    repeated RefDesign.FormFactor form_factors = 1;
+    repeated Constraint constraints = 2;
   }
 }
 

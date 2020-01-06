@@ -8,6 +8,7 @@ package prototype;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
+import "prototype/common.proto";
 import "prototype/partner.proto";
 
 import "google/protobuf/descriptor.proto";
@@ -16,61 +17,51 @@ message ComponentId {
   string value = 1;
 }
 
-message ByteSize {
-  enum Unit {
-    UNIT_UNDEFINED = 0;
-    BYTE = 1;
-    KB = 2;
-    MB = 3;
-    GB = 4;
+message Component {
+  ComponentId id = 1;
+
+  oneof type {
+    Soc soc = 2;
+    Memory memory = 3;
+    Bluetooth bluetooth = 4;
+    Camera camera = 5;
   }
 
-  int32 value = 1;
-  Unit unit = 2;
-}
+  message Soc {
+    enum Architecture {
+      ARCHITECTURE_UNDEFINED = 0;
+      X86 = 1;
+      X86_64 = 2;
+      ARM = 3;
+      ARM64 = 4;
+    }
 
-message Soc {
-  enum Architecture {
-    ARCHITECTURE_UNDEFINED = 0;
-    X86 = 1;
-    X86_64 = 2;
-    ARM = 3;
-    ARM64 = 4;
-  }
+    extend google.protobuf.EnumValueOptions {
+      Architecture arch = 1914503;
+    }
 
-  extend google.protobuf.EnumValueOptions {
-    Architecture arch = 1914502;
-  }
+    enum Family {
+      FAMILY_UNDEFINED = 0;
+      RK3399 = 1 [(arch) = ARM64];
+      GEMINI_LAKE = 2 [(arch) = X86_64];
+    }
 
-  enum Family {
-    FAMILY_UNDEFINED = 0;
-    RK3399 = 1 [(arch) = ARM64];
-    GEMINI_LAKE = 2 [(arch) = X86_64];
-  }
-
-  message Component {
     Family family = 1;
     string model = 2;
     int32 cores = 3;
   }
 
-  message Constraint {
-    repeated ComponentId soc_models = 1;
-  }
-}
+  message Memory {
+    enum Type {
+      TYPE_UNDEFINED = 0;
+      DDR = 1;
+      DDR2 = 2;
+      DDR3 = 3;
+      DDR4 = 4;
+      LP_DDR3 = 5;
+      LP_DDR4 = 6;
+    }
 
-message Memory {
-  enum Type {
-    TYPE_UNDEFINED = 0;
-    DDR = 1;
-    DDR2 = 2;
-    DDR3 = 3;
-    DDR4 = 4;
-    LP_DDR3 = 5;
-    LP_DDR4 = 6;
-  }
-
-  message Component {
     Type type = 1;
     int32 speed_mhz = 2;
     ByteSize size = 3;
@@ -78,57 +69,23 @@ message Memory {
     PartnerId manufacturer_id = 5;
   }
 
-  message Constraint {
-    ByteSize min_size = 1;
-    repeated Type types = 2;
-  }
-}
-
-message UsbDeviceId {
-  uint32 vendor_id = 1;
-  uint32 product_id = 2;
-  uint32 bcd_device = 3;
-}
-
-message Bluetooth {
-  message Component {
+  message Bluetooth {
     UsbDeviceId usb_device_id = 1;
   }
 
-  message Constraint {
-    repeated ComponentId bluetooth_devices = 1;
-  }
-}
+  message Camera {
+    enum Feature {
+      FEATURE_UNKNOWN = 0;
+      ACTIVITY_LED = 1;
+    }
+    enum ClockType {
+      CLOCK_TYPE_UNDEFINED = 0;
+      MONOTONIC = 1;
+      BOOTTIME = 2;
+    }
 
-message Camera {
-  enum Feature {
-    FEATURE_UNKNOWN = 0;
-    ACTIVITY_LED = 1;
-  }
-  enum ClockType {
-    CLOCK_TYPE_UNDEFINED = 0;
-    MONOTONIC = 1;
-    BOOTTIME = 2;
-  }
-
-  message Component {
-    Feature features = 1;
+    repeated Feature features = 1;
     ClockType clock_type = 2;
-  }
-
-  message Constraint {
-    repeated Feature features = 2;
-  }
-}
-
-message Component {
-  ComponentId id = 1;
-
-  oneof type {
-    Soc.Component soc = 2;
-    Memory.Component memory = 3;
-    Bluetooth.Component bluetooth = 4;
-    Camera.Component camera = 5;
   }
 }
 

@@ -11,6 +11,10 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 import "prototype/ref_design.proto";
 import "prototype/src/overlays/config.proto";
 
+message BuildTargetId {
+  string value = 1;
+}
+
 message FirmwarePayload {
   string build_target = 1;
   string pinned_version = 2;
@@ -22,21 +26,21 @@ message FirmwareConfig {
   FirmwarePayload ec = 3;
 }
 
-message DeviceVariantConfig {
-  DeviceVariantId id = 1;
-  OverlayConfig overlay_config = 2;
-  FirmwareConfig firmware_config = 3;
+message VariantBuildConfig {
+  RefDesignVariantId id = 1;
+  BuildTargetId build_target_id = 2;
+  OverlayConfig overlay_config = 3;
+  FirmwareConfig firmware_config = 4;
 }
 
-message BuildTargetId {
-  string value = 1;
+message VariantBuildConfigList {
+  repeated VariantBuildConfig value = 1;
 }
 
-message BuildTargetConfig {
+message BuildTarget {
   BuildTargetId id = 1;
-  repeated DeviceVariantConfig variant_config = 2;
 }
 
-message BuildTargetConfigList {
-  repeated BuildTargetConfig value = 1;
+message BuildTargetList {
+  repeated BuildTarget value = 1;
 }

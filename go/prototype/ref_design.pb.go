@@ -20,6 +20,119 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type DesignOptions_Fingerprint_Location int32
+
+const (
+	DesignOptions_Fingerprint_FINGERPRINT_LOCATION_UKNOWN DesignOptions_Fingerprint_Location = 0
+	DesignOptions_Fingerprint_POWER_BUTTON_TOP_LEFT       DesignOptions_Fingerprint_Location = 1
+	DesignOptions_Fingerprint_KEYBOARD_TOP_RIGHT          DesignOptions_Fingerprint_Location = 2
+	DesignOptions_Fingerprint_KEYBOARD_BOTTOM_RIGHT       DesignOptions_Fingerprint_Location = 3
+)
+
+var DesignOptions_Fingerprint_Location_name = map[int32]string{
+	0: "FINGERPRINT_LOCATION_UKNOWN",
+	1: "POWER_BUTTON_TOP_LEFT",
+	2: "KEYBOARD_TOP_RIGHT",
+	3: "KEYBOARD_BOTTOM_RIGHT",
+}
+
+var DesignOptions_Fingerprint_Location_value = map[string]int32{
+	"FINGERPRINT_LOCATION_UKNOWN": 0,
+	"POWER_BUTTON_TOP_LEFT":       1,
+	"KEYBOARD_TOP_RIGHT":          2,
+	"KEYBOARD_BOTTOM_RIGHT":       3,
+}
+
+func (x DesignOptions_Fingerprint_Location) String() string {
+	return proto.EnumName(DesignOptions_Fingerprint_Location_name, int32(x))
+}
+
+func (DesignOptions_Fingerprint_Location) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{3, 0, 0}
+}
+
+type RefDesign_FormFactor int32
+
+const (
+	RefDesign_FORM_FACTOR_UNDEFINED RefDesign_FormFactor = 0
+	RefDesign_CLAMSHELL             RefDesign_FormFactor = 1
+	RefDesign_CONVERTIBLE           RefDesign_FormFactor = 2
+	RefDesign_DETACHABLE            RefDesign_FormFactor = 3
+	RefDesign_CHROMEBASE            RefDesign_FormFactor = 4
+	RefDesign_CHROMEBOX             RefDesign_FormFactor = 5
+	RefDesign_CHROMEBIT             RefDesign_FormFactor = 6
+	RefDesign_CHROMESLATE           RefDesign_FormFactor = 7
+)
+
+var RefDesign_FormFactor_name = map[int32]string{
+	0: "FORM_FACTOR_UNDEFINED",
+	1: "CLAMSHELL",
+	2: "CONVERTIBLE",
+	3: "DETACHABLE",
+	4: "CHROMEBASE",
+	5: "CHROMEBOX",
+	6: "CHROMEBIT",
+	7: "CHROMESLATE",
+}
+
+var RefDesign_FormFactor_value = map[string]int32{
+	"FORM_FACTOR_UNDEFINED": 0,
+	"CLAMSHELL":             1,
+	"CONVERTIBLE":           2,
+	"DETACHABLE":            3,
+	"CHROMEBASE":            4,
+	"CHROMEBOX":             5,
+	"CHROMEBIT":             6,
+	"CHROMESLATE":           7,
+}
+
+func (x RefDesign_FormFactor) String() string {
+	return proto.EnumName(RefDesign_FormFactor_name, int32(x))
+}
+
+func (RefDesign_FormFactor) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{4, 0}
+}
+
+type RefDesignKitId struct {
+	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RefDesignKitId) Reset()         { *m = RefDesignKitId{} }
+func (m *RefDesignKitId) String() string { return proto.CompactTextString(m) }
+func (*RefDesignKitId) ProtoMessage()    {}
+func (*RefDesignKitId) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{0}
+}
+
+func (m *RefDesignKitId) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RefDesignKitId.Unmarshal(m, b)
+}
+func (m *RefDesignKitId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RefDesignKitId.Marshal(b, m, deterministic)
+}
+func (m *RefDesignKitId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RefDesignKitId.Merge(m, src)
+}
+func (m *RefDesignKitId) XXX_Size() int {
+	return xxx_messageInfo_RefDesignKitId.Size(m)
+}
+func (m *RefDesignKitId) XXX_DiscardUnknown() {
+	xxx_messageInfo_RefDesignKitId.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RefDesignKitId proto.InternalMessageInfo
+
+func (m *RefDesignKitId) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
 type RefDesignId struct {
 	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -31,7 +144,7 @@ func (m *RefDesignId) Reset()         { *m = RefDesignId{} }
 func (m *RefDesignId) String() string { return proto.CompactTextString(m) }
 func (*RefDesignId) ProtoMessage()    {}
 func (*RefDesignId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8b01ef610afbd7fa, []int{0}
+	return fileDescriptor_8b01ef610afbd7fa, []int{1}
 }
 
 func (m *RefDesignId) XXX_Unmarshal(b []byte) error {
@@ -59,116 +172,202 @@ func (m *RefDesignId) GetValue() string {
 	return ""
 }
 
-type DeviceVariantId struct {
+type RefDesignVariantId struct {
 	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeviceVariantId) Reset()         { *m = DeviceVariantId{} }
-func (m *DeviceVariantId) String() string { return proto.CompactTextString(m) }
-func (*DeviceVariantId) ProtoMessage()    {}
-func (*DeviceVariantId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8b01ef610afbd7fa, []int{1}
+func (m *RefDesignVariantId) Reset()         { *m = RefDesignVariantId{} }
+func (m *RefDesignVariantId) String() string { return proto.CompactTextString(m) }
+func (*RefDesignVariantId) ProtoMessage()    {}
+func (*RefDesignVariantId) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{2}
 }
 
-func (m *DeviceVariantId) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeviceVariantId.Unmarshal(m, b)
+func (m *RefDesignVariantId) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RefDesignVariantId.Unmarshal(m, b)
 }
-func (m *DeviceVariantId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeviceVariantId.Marshal(b, m, deterministic)
+func (m *RefDesignVariantId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RefDesignVariantId.Marshal(b, m, deterministic)
 }
-func (m *DeviceVariantId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeviceVariantId.Merge(m, src)
+func (m *RefDesignVariantId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RefDesignVariantId.Merge(m, src)
 }
-func (m *DeviceVariantId) XXX_Size() int {
-	return xxx_messageInfo_DeviceVariantId.Size(m)
+func (m *RefDesignVariantId) XXX_Size() int {
+	return xxx_messageInfo_RefDesignVariantId.Size(m)
 }
-func (m *DeviceVariantId) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeviceVariantId.DiscardUnknown(m)
+func (m *RefDesignVariantId) XXX_DiscardUnknown() {
+	xxx_messageInfo_RefDesignVariantId.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeviceVariantId proto.InternalMessageInfo
+var xxx_messageInfo_RefDesignVariantId proto.InternalMessageInfo
 
-func (m *DeviceVariantId) GetValue() string {
+func (m *RefDesignVariantId) GetValue() string {
 	if m != nil {
 		return m.Value
 	}
 	return ""
 }
 
-type DeviceVariant struct {
-	Id                   *DeviceVariantId             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Cameras              []*DeviceComponent_Camera    `protobuf:"bytes,2,rep,name=cameras,proto3" json:"cameras,omitempty"`
-	Fingerprint          *DeviceComponent_Fingerprint `protobuf:"bytes,3,opt,name=fingerprint,proto3" json:"fingerprint,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
-	XXX_unrecognized     []byte                       `json:"-"`
-	XXX_sizecache        int32                        `json:"-"`
+type DesignOptions struct {
+	Fingerprint          *DesignOptions_Fingerprint `protobuf:"bytes,1,opt,name=fingerprint,proto3" json:"fingerprint,omitempty"`
+	FrontCamera          *DesignOptions_Camera      `protobuf:"bytes,2,opt,name=front_camera,json=frontCamera,proto3" json:"front_camera,omitempty"`
+	RearCamera           *DesignOptions_Camera      `protobuf:"bytes,3,opt,name=rear_camera,json=rearCamera,proto3" json:"rear_camera,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
+	XXX_unrecognized     []byte                     `json:"-"`
+	XXX_sizecache        int32                      `json:"-"`
 }
 
-func (m *DeviceVariant) Reset()         { *m = DeviceVariant{} }
-func (m *DeviceVariant) String() string { return proto.CompactTextString(m) }
-func (*DeviceVariant) ProtoMessage()    {}
-func (*DeviceVariant) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8b01ef610afbd7fa, []int{2}
+func (m *DesignOptions) Reset()         { *m = DesignOptions{} }
+func (m *DesignOptions) String() string { return proto.CompactTextString(m) }
+func (*DesignOptions) ProtoMessage()    {}
+func (*DesignOptions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{3}
 }
 
-func (m *DeviceVariant) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeviceVariant.Unmarshal(m, b)
+func (m *DesignOptions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DesignOptions.Unmarshal(m, b)
 }
-func (m *DeviceVariant) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeviceVariant.Marshal(b, m, deterministic)
+func (m *DesignOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DesignOptions.Marshal(b, m, deterministic)
 }
-func (m *DeviceVariant) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeviceVariant.Merge(m, src)
+func (m *DesignOptions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DesignOptions.Merge(m, src)
 }
-func (m *DeviceVariant) XXX_Size() int {
-	return xxx_messageInfo_DeviceVariant.Size(m)
+func (m *DesignOptions) XXX_Size() int {
+	return xxx_messageInfo_DesignOptions.Size(m)
 }
-func (m *DeviceVariant) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeviceVariant.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeviceVariant proto.InternalMessageInfo
-
-func (m *DeviceVariant) GetId() *DeviceVariantId {
-	if m != nil {
-		return m.Id
-	}
-	return nil
+func (m *DesignOptions) XXX_DiscardUnknown() {
+	xxx_messageInfo_DesignOptions.DiscardUnknown(m)
 }
 
-func (m *DeviceVariant) GetCameras() []*DeviceComponent_Camera {
-	if m != nil {
-		return m.Cameras
-	}
-	return nil
-}
+var xxx_messageInfo_DesignOptions proto.InternalMessageInfo
 
-func (m *DeviceVariant) GetFingerprint() *DeviceComponent_Fingerprint {
+func (m *DesignOptions) GetFingerprint() *DesignOptions_Fingerprint {
 	if m != nil {
 		return m.Fingerprint
 	}
 	return nil
 }
 
+func (m *DesignOptions) GetFrontCamera() *DesignOptions_Camera {
+	if m != nil {
+		return m.FrontCamera
+	}
+	return nil
+}
+
+func (m *DesignOptions) GetRearCamera() *DesignOptions_Camera {
+	if m != nil {
+		return m.RearCamera
+	}
+	return nil
+}
+
+type DesignOptions_Fingerprint struct {
+	Presence             Presence                           `protobuf:"varint,1,opt,name=presence,proto3,enum=prototype.Presence" json:"presence,omitempty"`
+	Location             DesignOptions_Fingerprint_Location `protobuf:"varint,2,opt,name=location,proto3,enum=prototype.DesignOptions_Fingerprint_Location" json:"location,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                           `json:"-"`
+	XXX_unrecognized     []byte                             `json:"-"`
+	XXX_sizecache        int32                              `json:"-"`
+}
+
+func (m *DesignOptions_Fingerprint) Reset()         { *m = DesignOptions_Fingerprint{} }
+func (m *DesignOptions_Fingerprint) String() string { return proto.CompactTextString(m) }
+func (*DesignOptions_Fingerprint) ProtoMessage()    {}
+func (*DesignOptions_Fingerprint) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{3, 0}
+}
+
+func (m *DesignOptions_Fingerprint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DesignOptions_Fingerprint.Unmarshal(m, b)
+}
+func (m *DesignOptions_Fingerprint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DesignOptions_Fingerprint.Marshal(b, m, deterministic)
+}
+func (m *DesignOptions_Fingerprint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DesignOptions_Fingerprint.Merge(m, src)
+}
+func (m *DesignOptions_Fingerprint) XXX_Size() int {
+	return xxx_messageInfo_DesignOptions_Fingerprint.Size(m)
+}
+func (m *DesignOptions_Fingerprint) XXX_DiscardUnknown() {
+	xxx_messageInfo_DesignOptions_Fingerprint.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DesignOptions_Fingerprint proto.InternalMessageInfo
+
+func (m *DesignOptions_Fingerprint) GetPresence() Presence {
+	if m != nil {
+		return m.Presence
+	}
+	return Presence_PRESENCE_UNKNOWN
+}
+
+func (m *DesignOptions_Fingerprint) GetLocation() DesignOptions_Fingerprint_Location {
+	if m != nil {
+		return m.Location
+	}
+	return DesignOptions_Fingerprint_FINGERPRINT_LOCATION_UKNOWN
+}
+
+type DesignOptions_Camera struct {
+	Presence             Presence `protobuf:"varint,1,opt,name=presence,proto3,enum=prototype.Presence" json:"presence,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DesignOptions_Camera) Reset()         { *m = DesignOptions_Camera{} }
+func (m *DesignOptions_Camera) String() string { return proto.CompactTextString(m) }
+func (*DesignOptions_Camera) ProtoMessage()    {}
+func (*DesignOptions_Camera) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{3, 1}
+}
+
+func (m *DesignOptions_Camera) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DesignOptions_Camera.Unmarshal(m, b)
+}
+func (m *DesignOptions_Camera) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DesignOptions_Camera.Marshal(b, m, deterministic)
+}
+func (m *DesignOptions_Camera) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DesignOptions_Camera.Merge(m, src)
+}
+func (m *DesignOptions_Camera) XXX_Size() int {
+	return xxx_messageInfo_DesignOptions_Camera.Size(m)
+}
+func (m *DesignOptions_Camera) XXX_DiscardUnknown() {
+	xxx_messageInfo_DesignOptions_Camera.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DesignOptions_Camera proto.InternalMessageInfo
+
+func (m *DesignOptions_Camera) GetPresence() Presence {
+	if m != nil {
+		return m.Presence
+	}
+	return Presence_PRESENCE_UNKNOWN
+}
+
 type RefDesign struct {
-	Id                   *RefDesignId     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	RefDesignKitId       *RefDesignKitId  `protobuf:"bytes,2,opt,name=ref_design_kit_id,json=refDesignKitId,proto3" json:"ref_design_kit_id,omitempty"`
-	OdmId                *PartnerId       `protobuf:"bytes,3,opt,name=odm_id,json=odmId,proto3" json:"odm_id,omitempty"`
-	Name                 string           `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Variants             []*DeviceVariant `protobuf:"bytes,5,rep,name=variants,proto3" json:"variants,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+	Id                   *RefDesignId         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	RefDesignKitId       *RefDesignKitId      `protobuf:"bytes,2,opt,name=ref_design_kit_id,json=refDesignKitId,proto3" json:"ref_design_kit_id,omitempty"`
+	OdmId                *PartnerId           `protobuf:"bytes,3,opt,name=odm_id,json=odmId,proto3" json:"odm_id,omitempty"`
+	Name                 string               `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Variants             []*RefDesign_Variant `protobuf:"bytes,6,rep,name=variants,proto3" json:"variants,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *RefDesign) Reset()         { *m = RefDesign{} }
 func (m *RefDesign) String() string { return proto.CompactTextString(m) }
 func (*RefDesign) ProtoMessage()    {}
 func (*RefDesign) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8b01ef610afbd7fa, []int{3}
+	return fileDescriptor_8b01ef610afbd7fa, []int{4}
 }
 
 func (m *RefDesign) XXX_Unmarshal(b []byte) error {
@@ -217,9 +416,64 @@ func (m *RefDesign) GetName() string {
 	return ""
 }
 
-func (m *RefDesign) GetVariants() []*DeviceVariant {
+func (m *RefDesign) GetVariants() []*RefDesign_Variant {
 	if m != nil {
 		return m.Variants
+	}
+	return nil
+}
+
+type RefDesign_Variant struct {
+	Id                   *RefDesignVariantId  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	FormFactor           RefDesign_FormFactor `protobuf:"varint,2,opt,name=form_factor,json=formFactor,proto3,enum=prototype.RefDesign_FormFactor" json:"form_factor,omitempty"`
+	DesignOptions        *DesignOptions       `protobuf:"bytes,3,opt,name=design_options,json=designOptions,proto3" json:"design_options,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *RefDesign_Variant) Reset()         { *m = RefDesign_Variant{} }
+func (m *RefDesign_Variant) String() string { return proto.CompactTextString(m) }
+func (*RefDesign_Variant) ProtoMessage()    {}
+func (*RefDesign_Variant) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8b01ef610afbd7fa, []int{4, 0}
+}
+
+func (m *RefDesign_Variant) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RefDesign_Variant.Unmarshal(m, b)
+}
+func (m *RefDesign_Variant) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RefDesign_Variant.Marshal(b, m, deterministic)
+}
+func (m *RefDesign_Variant) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RefDesign_Variant.Merge(m, src)
+}
+func (m *RefDesign_Variant) XXX_Size() int {
+	return xxx_messageInfo_RefDesign_Variant.Size(m)
+}
+func (m *RefDesign_Variant) XXX_DiscardUnknown() {
+	xxx_messageInfo_RefDesign_Variant.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RefDesign_Variant proto.InternalMessageInfo
+
+func (m *RefDesign_Variant) GetId() *RefDesignVariantId {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *RefDesign_Variant) GetFormFactor() RefDesign_FormFactor {
+	if m != nil {
+		return m.FormFactor
+	}
+	return RefDesign_FORM_FACTOR_UNDEFINED
+}
+
+func (m *RefDesign_Variant) GetDesignOptions() *DesignOptions {
+	if m != nil {
+		return m.DesignOptions
 	}
 	return nil
 }
@@ -235,7 +489,7 @@ func (m *RefDesignList) Reset()         { *m = RefDesignList{} }
 func (m *RefDesignList) String() string { return proto.CompactTextString(m) }
 func (*RefDesignList) ProtoMessage()    {}
 func (*RefDesignList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8b01ef610afbd7fa, []int{4}
+	return fileDescriptor_8b01ef610afbd7fa, []int{5}
 }
 
 func (m *RefDesignList) XXX_Unmarshal(b []byte) error {
@@ -264,39 +518,65 @@ func (m *RefDesignList) GetValue() []*RefDesign {
 }
 
 func init() {
+	proto.RegisterEnum("prototype.DesignOptions_Fingerprint_Location", DesignOptions_Fingerprint_Location_name, DesignOptions_Fingerprint_Location_value)
+	proto.RegisterEnum("prototype.RefDesign_FormFactor", RefDesign_FormFactor_name, RefDesign_FormFactor_value)
+	proto.RegisterType((*RefDesignKitId)(nil), "prototype.RefDesignKitId")
 	proto.RegisterType((*RefDesignId)(nil), "prototype.RefDesignId")
-	proto.RegisterType((*DeviceVariantId)(nil), "prototype.DeviceVariantId")
-	proto.RegisterType((*DeviceVariant)(nil), "prototype.DeviceVariant")
+	proto.RegisterType((*RefDesignVariantId)(nil), "prototype.RefDesignVariantId")
+	proto.RegisterType((*DesignOptions)(nil), "prototype.DesignOptions")
+	proto.RegisterType((*DesignOptions_Fingerprint)(nil), "prototype.DesignOptions.Fingerprint")
+	proto.RegisterType((*DesignOptions_Camera)(nil), "prototype.DesignOptions.Camera")
 	proto.RegisterType((*RefDesign)(nil), "prototype.RefDesign")
+	proto.RegisterType((*RefDesign_Variant)(nil), "prototype.RefDesign.Variant")
 	proto.RegisterType((*RefDesignList)(nil), "prototype.RefDesignList")
 }
 
 func init() { proto.RegisterFile("prototype/ref_design.proto", fileDescriptor_8b01ef610afbd7fa) }
 
 var fileDescriptor_8b01ef610afbd7fa = []byte{
-	// 371 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0x5f, 0x4f, 0xf2, 0x30,
-	0x14, 0xc6, 0xb3, 0xf1, 0xe7, 0x7d, 0x39, 0x0b, 0x1a, 0x1b, 0xa2, 0x73, 0x17, 0x06, 0x67, 0x82,
-	0x44, 0x93, 0x2d, 0x01, 0xbd, 0xe2, 0x4e, 0x88, 0x91, 0xe8, 0x85, 0xd9, 0x85, 0x17, 0xde, 0x90,
-	0x4a, 0xbb, 0xd9, 0xe8, 0xda, 0xa5, 0x2b, 0x24, 0x7e, 0x3d, 0x3f, 0x91, 0x1f, 0xc1, 0xd0, 0x49,
-	0x19, 0x08, 0xde, 0xf5, 0xb4, 0xcf, 0xef, 0xf4, 0x9c, 0xe7, 0x01, 0x2f, 0x93, 0x42, 0x09, 0xf5,
-	0x91, 0xd1, 0x50, 0xd2, 0x78, 0x42, 0x68, 0xce, 0x12, 0x1e, 0xe8, 0x4b, 0xd4, 0x30, 0x6f, 0xde,
-	0xd1, 0x4a, 0x96, 0x61, 0xa9, 0x38, 0x95, 0x85, 0xc6, 0x3b, 0xd9, 0xc6, 0x4f, 0xde, 0x98, 0x2a,
-	0xde, 0xfd, 0x33, 0x70, 0x22, 0x1a, 0x8f, 0xf4, 0xf5, 0x98, 0xa0, 0x16, 0xd4, 0xe6, 0xf8, 0x7d,
-	0x46, 0x5d, 0xab, 0x6d, 0x75, 0x1b, 0x51, 0x51, 0xf8, 0xe7, 0xb0, 0x3f, 0xa2, 0x73, 0x36, 0xa5,
-	0x4f, 0x58, 0x32, 0xcc, 0xd5, 0x4e, 0xe1, 0xa7, 0x05, 0xcd, 0x35, 0x25, 0xba, 0x00, 0x9b, 0x11,
-	0x2d, 0x72, 0x7a, 0x5e, 0x60, 0x86, 0x09, 0x36, 0xfa, 0x45, 0x36, 0x23, 0x68, 0x00, 0xff, 0xa6,
-	0x38, 0xa5, 0x12, 0xe7, 0xae, 0xdd, 0xae, 0x74, 0x9d, 0xde, 0xe9, 0x2f, 0x60, 0x28, 0xd2, 0x4c,
-	0x70, 0xca, 0x55, 0x30, 0xd4, 0xca, 0x68, 0x49, 0xa0, 0x3b, 0x70, 0x62, 0xc6, 0x13, 0x2a, 0x33,
-	0xc9, 0xb8, 0x72, 0x2b, 0xfa, 0xc7, 0xce, 0x1f, 0x0d, 0x6e, 0x57, 0xea, 0xa8, 0x8c, 0xfa, 0x5f,
-	0x16, 0x34, 0x8c, 0x27, 0xa8, 0x53, 0x5a, 0xe0, 0xb0, 0xd4, 0xae, 0xe4, 0x9a, 0x1e, 0x7e, 0x04,
-	0x07, 0xeb, 0x06, 0x4f, 0x18, 0x71, 0x6d, 0x8d, 0x1d, 0x6f, 0xc3, 0xee, 0xd9, 0x62, 0xed, 0x3d,
-	0xb9, 0x56, 0xa3, 0x4b, 0xa8, 0x0b, 0x92, 0x2e, 0xd0, 0x62, 0x81, 0x56, 0x09, 0x7d, 0x2c, 0x82,
-	0x1d, 0x93, 0xa8, 0x26, 0x48, 0x3a, 0x26, 0x08, 0x41, 0x95, 0xe3, 0x94, 0xba, 0x55, 0x1d, 0x81,
-	0x3e, 0xa3, 0x2b, 0xf8, 0x3f, 0x2f, 0x4c, 0xcd, 0xdd, 0x9a, 0x36, 0xd1, 0xdd, 0xe5, 0x7a, 0x64,
-	0x94, 0xfe, 0x00, 0x9a, 0x66, 0xb0, 0x07, 0x96, 0x2f, 0x62, 0x33, 0xf1, 0x56, 0x36, 0xc6, 0x30,
-	0xc2, 0x9f, 0xd0, 0x6f, 0xae, 0x9f, 0xfb, 0x89, 0x08, 0xa6, 0xaf, 0x52, 0xa4, 0x6c, 0x96, 0x06,
-	0x42, 0x26, 0xe1, 0xb2, 0x10, 0x79, 0xc8, 0x78, 0x2c, 0x71, 0xa8, 0xf1, 0x30, 0x11, 0xa1, 0xe9,
-	0xf3, 0x52, 0xd7, 0xc7, 0xfe, 0x77, 0x00, 0x00, 0x00, 0xff, 0xff, 0x8e, 0x94, 0x02, 0xe2, 0xe2,
-	0x02, 0x00, 0x00,
+	// 703 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0xcd, 0x6e, 0xd3, 0x4c,
+	0x14, 0x6d, 0x7e, 0x9a, 0x26, 0xd7, 0x5f, 0xf2, 0x99, 0xa1, 0x94, 0x34, 0x80, 0x5a, 0x05, 0x54,
+	0x55, 0x45, 0x75, 0xa4, 0x54, 0x48, 0x20, 0x16, 0xd4, 0x49, 0xec, 0xc6, 0xaa, 0xe3, 0x89, 0xa6,
+	0x6e, 0x0b, 0x6c, 0x2c, 0x13, 0xdb, 0xc1, 0xa2, 0xf6, 0x44, 0x13, 0xb7, 0x52, 0xf7, 0x3c, 0x03,
+	0x5b, 0x1e, 0x84, 0x47, 0xe0, 0xa5, 0x90, 0xc7, 0xae, 0xe3, 0xa2, 0x44, 0x2a, 0xbb, 0x39, 0x77,
+	0xce, 0x39, 0x33, 0x73, 0x7d, 0xae, 0xa1, 0x35, 0x63, 0x34, 0xa2, 0xd1, 0xed, 0xcc, 0xed, 0x30,
+	0xd7, 0xb3, 0x1c, 0x77, 0xee, 0x4f, 0x43, 0x89, 0x17, 0x51, 0x2d, 0xdb, 0x6b, 0x6d, 0x2d, 0x68,
+	0x13, 0x1a, 0x04, 0x34, 0xa5, 0xb4, 0x9e, 0x2e, 0xea, 0x33, 0x9b, 0x45, 0xa1, 0xcb, 0x92, 0x8d,
+	0xf6, 0x1e, 0x34, 0x88, 0xeb, 0x0d, 0xb8, 0xdd, 0xa9, 0x1f, 0x69, 0x0e, 0xda, 0x84, 0xf5, 0x1b,
+	0xfb, 0xea, 0xda, 0x6d, 0x16, 0x76, 0x0b, 0xfb, 0x35, 0x92, 0x80, 0xf6, 0x4b, 0x10, 0x32, 0xde,
+	0x4a, 0xd2, 0x01, 0xa0, 0x8c, 0x74, 0x61, 0x33, 0xdf, 0x0e, 0x57, 0x1b, 0xfe, 0x2c, 0x43, 0x3d,
+	0x61, 0xe2, 0x59, 0xe4, 0xd3, 0x70, 0x8e, 0x54, 0x10, 0x3c, 0x3f, 0x9c, 0xba, 0x6c, 0xc6, 0xfc,
+	0x30, 0xe2, 0x6c, 0xa1, 0xfb, 0x4a, 0xca, 0x6e, 0x2e, 0xdd, 0xa3, 0x4b, 0xea, 0x82, 0x4b, 0xf2,
+	0x42, 0xd4, 0x83, 0xff, 0x3c, 0x46, 0xc3, 0xc8, 0x9a, 0xd8, 0x81, 0xcb, 0xec, 0x66, 0x91, 0x1b,
+	0xed, 0xac, 0x34, 0xea, 0x73, 0x1a, 0x11, 0xb8, 0x28, 0x01, 0xe8, 0x18, 0x04, 0xe6, 0xda, 0xec,
+	0xce, 0xa2, 0xf4, 0x30, 0x0b, 0x88, 0x35, 0xc9, 0xba, 0xf5, 0xbd, 0x08, 0x42, 0xee, 0x8a, 0xa8,
+	0x03, 0xd5, 0x19, 0x73, 0xe7, 0x6e, 0x38, 0x49, 0x1a, 0xd1, 0xe8, 0x3e, 0xce, 0xd9, 0x8d, 0xd3,
+	0x2d, 0x92, 0x91, 0x90, 0x06, 0xd5, 0x2b, 0x3a, 0xb1, 0xe3, 0x03, 0xf8, 0x13, 0x1a, 0xdd, 0xc3,
+	0x87, 0xf4, 0x42, 0xd2, 0x53, 0x11, 0xc9, 0xe4, 0xed, 0x5b, 0xa8, 0xde, 0x55, 0xd1, 0x0e, 0x3c,
+	0x53, 0x35, 0xe3, 0x44, 0x21, 0x63, 0xa2, 0x19, 0xa6, 0xa5, 0xe3, 0xbe, 0x6c, 0x6a, 0xd8, 0xb0,
+	0xce, 0x4f, 0x0d, 0x7c, 0x69, 0x88, 0x6b, 0x68, 0x1b, 0x9e, 0x8c, 0xf1, 0xa5, 0x42, 0xac, 0xde,
+	0xb9, 0x69, 0x62, 0xc3, 0x32, 0xf1, 0xd8, 0xd2, 0x15, 0xd5, 0x14, 0x0b, 0x68, 0x0b, 0xd0, 0xa9,
+	0xf2, 0xa9, 0x87, 0x65, 0x32, 0xe0, 0x65, 0xa2, 0x9d, 0x0c, 0x4d, 0xb1, 0x18, 0x4b, 0xb2, 0x7a,
+	0x0f, 0x9b, 0x26, 0x1e, 0xa5, 0x5b, 0xa5, 0xd6, 0x3b, 0xa8, 0xa4, 0x2d, 0xfd, 0xd7, 0x06, 0xb4,
+	0x7f, 0x97, 0xa1, 0x96, 0xc5, 0x09, 0xed, 0x41, 0xd1, 0x77, 0xd2, 0x50, 0x6c, 0xe5, 0x84, 0xb9,
+	0x54, 0x92, 0xa2, 0xef, 0xa0, 0x01, 0x3c, 0x5a, 0x0c, 0x88, 0xf5, 0xcd, 0x8f, 0x2c, 0xdf, 0x49,
+	0x23, 0xb0, 0xbd, 0x4c, 0xc6, 0x43, 0x4f, 0x1a, 0xec, 0xfe, 0x10, 0xbc, 0x86, 0x0a, 0x75, 0x82,
+	0x58, 0x9a, 0x7c, 0xfa, 0xcd, 0xfc, 0x55, 0x93, 0x01, 0xd2, 0x1c, 0xb2, 0x4e, 0x9d, 0x40, 0x73,
+	0x10, 0x82, 0x72, 0x68, 0x07, 0x6e, 0xb3, 0xcc, 0xf3, 0xcd, 0xd7, 0xe8, 0x2d, 0x54, 0x6f, 0x92,
+	0x09, 0x98, 0x37, 0x2b, 0xbb, 0xa5, 0x7d, 0xa1, 0xfb, 0x7c, 0xd9, 0xe9, 0x52, 0x3a, 0x26, 0x24,
+	0x63, 0xb7, 0x7e, 0x15, 0x60, 0x23, 0xad, 0xa2, 0xc3, 0xdc, 0xa3, 0x5f, 0x2c, 0xd3, 0x67, 0x53,
+	0xc6, 0xdf, 0x7e, 0x0c, 0x82, 0x47, 0x59, 0x60, 0x79, 0xf6, 0x24, 0xa2, 0x2c, 0x4d, 0xcd, 0xce,
+	0xd2, 0x73, 0x55, 0xca, 0x02, 0x95, 0xd3, 0x08, 0x78, 0xd9, 0x1a, 0x7d, 0x80, 0x46, 0xda, 0x39,
+	0x9a, 0x44, 0x2b, 0x7d, 0x7f, 0x73, 0x55, 0xf4, 0x48, 0xdd, 0xc9, 0xc3, 0xf6, 0x8f, 0x02, 0xc0,
+	0xc2, 0x3b, 0x4e, 0x86, 0x8a, 0xc9, 0xc8, 0x52, 0xe5, 0xbe, 0x89, 0x89, 0x75, 0x6e, 0x0c, 0x14,
+	0x55, 0x33, 0x94, 0x81, 0xb8, 0x86, 0xea, 0x50, 0xeb, 0xeb, 0xf2, 0xe8, 0x6c, 0xa8, 0xe8, 0xba,
+	0x58, 0x40, 0xff, 0x83, 0xd0, 0xc7, 0xc6, 0x85, 0x42, 0x4c, 0xad, 0xa7, 0x2b, 0x62, 0x11, 0x35,
+	0x00, 0x06, 0x8a, 0x29, 0xf7, 0x87, 0x72, 0x8c, 0x4b, 0x31, 0xee, 0x0f, 0x09, 0x1e, 0x29, 0x3d,
+	0xf9, 0x4c, 0x11, 0xcb, 0x5c, 0x9f, 0x60, 0xfc, 0x51, 0x5c, 0xcf, 0x41, 0xcd, 0x14, 0x2b, 0xdc,
+	0x8e, 0xc3, 0x33, 0x5d, 0x36, 0x15, 0x71, 0xa3, 0xfd, 0x1e, 0xea, 0xd9, 0xeb, 0x75, 0x7f, 0x1e,
+	0xa1, 0x83, 0xc5, 0x6f, 0xa9, 0xf4, 0xd7, 0x17, 0xce, 0x88, 0xe9, 0xcf, 0xaa, 0xf7, 0xe6, 0xf3,
+	0xd1, 0x94, 0x4a, 0x93, 0xaf, 0x8c, 0x06, 0xfe, 0x75, 0x20, 0x51, 0x36, 0xed, 0xdc, 0x01, 0x3a,
+	0xef, 0xf8, 0xa1, 0xc7, 0xec, 0x0e, 0x97, 0x77, 0xa6, 0xb4, 0x93, 0xf9, 0x7c, 0xa9, 0xf0, 0xe5,
+	0xd1, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x0f, 0xdb, 0x78, 0x88, 0xbd, 0x05, 0x00, 0x00,
 }

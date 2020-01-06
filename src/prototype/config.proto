@@ -21,6 +21,8 @@ message Config {
   ComponentList components = 2;
   RefDesignKitList ref_design_kits = 3;
   RefDesignList ref_designs = 4;
-  DeviceProject device_projects = 6;
-  BuildTargetConfigList build_configs = 5;
+  DeviceProject device_projects = 5;
+
+  BuildTargetList build_targets = 6;
+  VariantBuildConfigList variant_build_configs = 7;
 }

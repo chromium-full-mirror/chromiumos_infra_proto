@@ -20,344 +20,355 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Presence int32
+type Constraint_Level int32
 
 const (
-	Presence_PRESENCE_UNKNOWN Presence = 0
-	Presence_PRESENT          Presence = 1
-	Presence_NOT_PRESENT      Presence = 2
+	Constraint_TYPE_UNKNOWN Constraint_Level = 0
+	Constraint_REQUIRED     Constraint_Level = 1
+	Constraint_PREFERRED    Constraint_Level = 2
+	Constraint_OPTIONAL     Constraint_Level = 3
 )
 
-var Presence_name = map[int32]string{
-	0: "PRESENCE_UNKNOWN",
-	1: "PRESENT",
-	2: "NOT_PRESENT",
-}
-
-var Presence_value = map[string]int32{
-	"PRESENCE_UNKNOWN": 0,
-	"PRESENT":          1,
-	"NOT_PRESENT":      2,
-}
-
-func (x Presence) String() string {
-	return proto.EnumName(Presence_name, int32(x))
-}
-
-func (Presence) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{0}
-}
-
-type DeviceComponent_Fingerprint_Location int32
-
-const (
-	DeviceComponent_Fingerprint_FINGERPRINT_LOCATION_UKNOWN DeviceComponent_Fingerprint_Location = 0
-	DeviceComponent_Fingerprint_POWER_BUTTON_TOP_LEFT       DeviceComponent_Fingerprint_Location = 1
-	DeviceComponent_Fingerprint_KEYBOARD_TOP_RIGHT          DeviceComponent_Fingerprint_Location = 2
-	DeviceComponent_Fingerprint_KEYBOARD_BOTTOM_RIGHT       DeviceComponent_Fingerprint_Location = 3
-)
-
-var DeviceComponent_Fingerprint_Location_name = map[int32]string{
-	0: "FINGERPRINT_LOCATION_UKNOWN",
-	1: "POWER_BUTTON_TOP_LEFT",
-	2: "KEYBOARD_TOP_RIGHT",
-	3: "KEYBOARD_BOTTOM_RIGHT",
-}
-
-var DeviceComponent_Fingerprint_Location_value = map[string]int32{
-	"FINGERPRINT_LOCATION_UKNOWN": 0,
-	"POWER_BUTTON_TOP_LEFT":       1,
-	"KEYBOARD_TOP_RIGHT":          2,
-	"KEYBOARD_BOTTOM_RIGHT":       3,
-}
-
-func (x DeviceComponent_Fingerprint_Location) String() string {
-	return proto.EnumName(DeviceComponent_Fingerprint_Location_name, int32(x))
-}
-
-func (DeviceComponent_Fingerprint_Location) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{0, 0, 0}
-}
-
-type DeviceComponent_Camera_Location int32
-
-const (
-	DeviceComponent_Camera_CAMERA_LOCATION_UKNOWN DeviceComponent_Camera_Location = 0
-	DeviceComponent_Camera_FRONT_FACING           DeviceComponent_Camera_Location = 1
-	DeviceComponent_Camera_WORLD_FACING           DeviceComponent_Camera_Location = 2
-)
-
-var DeviceComponent_Camera_Location_name = map[int32]string{
-	0: "CAMERA_LOCATION_UKNOWN",
-	1: "FRONT_FACING",
-	2: "WORLD_FACING",
-}
-
-var DeviceComponent_Camera_Location_value = map[string]int32{
-	"CAMERA_LOCATION_UKNOWN": 0,
-	"FRONT_FACING":           1,
-	"WORLD_FACING":           2,
-}
-
-func (x DeviceComponent_Camera_Location) String() string {
-	return proto.EnumName(DeviceComponent_Camera_Location_name, int32(x))
-}
-
-func (DeviceComponent_Camera_Location) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{0, 1, 0}
-}
-
-type RefDesignKit_FormFactor int32
-
-const (
-	RefDesignKit_FORM_FACTOR_UNDEFINED RefDesignKit_FormFactor = 0
-	RefDesignKit_CLAMSHELL             RefDesignKit_FormFactor = 1
-	RefDesignKit_CONVERTIBLE           RefDesignKit_FormFactor = 2
-	RefDesignKit_DETACHABLE            RefDesignKit_FormFactor = 3
-	RefDesignKit_CHROMEBASE            RefDesignKit_FormFactor = 4
-	RefDesignKit_CHROMEBOX             RefDesignKit_FormFactor = 5
-	RefDesignKit_CHROMEBIT             RefDesignKit_FormFactor = 6
-	RefDesignKit_CHROMESLATE           RefDesignKit_FormFactor = 7
-)
-
-var RefDesignKit_FormFactor_name = map[int32]string{
-	0: "FORM_FACTOR_UNDEFINED",
-	1: "CLAMSHELL",
-	2: "CONVERTIBLE",
-	3: "DETACHABLE",
-	4: "CHROMEBASE",
-	5: "CHROMEBOX",
-	6: "CHROMEBIT",
-	7: "CHROMESLATE",
-}
-
-var RefDesignKit_FormFactor_value = map[string]int32{
-	"FORM_FACTOR_UNDEFINED": 0,
-	"CLAMSHELL":             1,
-	"CONVERTIBLE":           2,
-	"DETACHABLE":            3,
-	"CHROMEBASE":            4,
-	"CHROMEBOX":             5,
-	"CHROMEBIT":             6,
-	"CHROMESLATE":           7,
-}
-
-func (x RefDesignKit_FormFactor) String() string {
-	return proto.EnumName(RefDesignKit_FormFactor_name, int32(x))
-}
-
-func (RefDesignKit_FormFactor) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{2, 0}
-}
-
-type RefDesignKit_Requirement_Type int32
-
-const (
-	RefDesignKit_Requirement_TYPE_UNKNOWN RefDesignKit_Requirement_Type = 0
-	RefDesignKit_Requirement_REQUIRED     RefDesignKit_Requirement_Type = 1
-	RefDesignKit_Requirement_PREFERRED    RefDesignKit_Requirement_Type = 2
-	RefDesignKit_Requirement_OPTIONAL     RefDesignKit_Requirement_Type = 3
-)
-
-var RefDesignKit_Requirement_Type_name = map[int32]string{
+var Constraint_Level_name = map[int32]string{
 	0: "TYPE_UNKNOWN",
 	1: "REQUIRED",
 	2: "PREFERRED",
 	3: "OPTIONAL",
 }
 
-var RefDesignKit_Requirement_Type_value = map[string]int32{
+var Constraint_Level_value = map[string]int32{
 	"TYPE_UNKNOWN": 0,
 	"REQUIRED":     1,
 	"PREFERRED":    2,
 	"OPTIONAL":     3,
 }
 
-func (x RefDesignKit_Requirement_Type) String() string {
-	return proto.EnumName(RefDesignKit_Requirement_Type_name, int32(x))
+func (x Constraint_Level) String() string {
+	return proto.EnumName(Constraint_Level_name, int32(x))
 }
 
-func (RefDesignKit_Requirement_Type) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{2, 0, 0}
-}
-
-type DeviceComponent struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeviceComponent) Reset()         { *m = DeviceComponent{} }
-func (m *DeviceComponent) String() string { return proto.CompactTextString(m) }
-func (*DeviceComponent) ProtoMessage()    {}
-func (*DeviceComponent) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{0}
-}
-
-func (m *DeviceComponent) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeviceComponent.Unmarshal(m, b)
-}
-func (m *DeviceComponent) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeviceComponent.Marshal(b, m, deterministic)
-}
-func (m *DeviceComponent) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeviceComponent.Merge(m, src)
-}
-func (m *DeviceComponent) XXX_Size() int {
-	return xxx_messageInfo_DeviceComponent.Size(m)
-}
-func (m *DeviceComponent) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeviceComponent.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeviceComponent proto.InternalMessageInfo
-
-type DeviceComponent_Fingerprint struct {
-	Presence             Presence                             `protobuf:"varint,1,opt,name=presence,proto3,enum=prototype.Presence" json:"presence,omitempty"`
-	Location             DeviceComponent_Fingerprint_Location `protobuf:"varint,2,opt,name=location,proto3,enum=prototype.DeviceComponent_Fingerprint_Location" json:"location,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                             `json:"-"`
-	XXX_unrecognized     []byte                               `json:"-"`
-	XXX_sizecache        int32                                `json:"-"`
-}
-
-func (m *DeviceComponent_Fingerprint) Reset()         { *m = DeviceComponent_Fingerprint{} }
-func (m *DeviceComponent_Fingerprint) String() string { return proto.CompactTextString(m) }
-func (*DeviceComponent_Fingerprint) ProtoMessage()    {}
-func (*DeviceComponent_Fingerprint) Descriptor() ([]byte, []int) {
+func (Constraint_Level) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_2836f6fdcf860f2e, []int{0, 0}
 }
 
-func (m *DeviceComponent_Fingerprint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeviceComponent_Fingerprint.Unmarshal(m, b)
-}
-func (m *DeviceComponent_Fingerprint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeviceComponent_Fingerprint.Marshal(b, m, deterministic)
-}
-func (m *DeviceComponent_Fingerprint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeviceComponent_Fingerprint.Merge(m, src)
-}
-func (m *DeviceComponent_Fingerprint) XXX_Size() int {
-	return xxx_messageInfo_DeviceComponent_Fingerprint.Size(m)
-}
-func (m *DeviceComponent_Fingerprint) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeviceComponent_Fingerprint.DiscardUnknown(m)
+type Constraint struct {
+	Level Constraint_Level `protobuf:"varint,1,opt,name=level,proto3,enum=prototype.Constraint_Level" json:"level,omitempty"`
+	// Types that are valid to be assigned to Type:
+	//	*Constraint_Soc_
+	//	*Constraint_Memory_
+	//	*Constraint_Bluetooth_
+	//	*Constraint_FrontCamera
+	//	*Constraint_RearCamera
+	Type                 isConstraint_Type `protobuf_oneof:"type"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
-var xxx_messageInfo_DeviceComponent_Fingerprint proto.InternalMessageInfo
+func (m *Constraint) Reset()         { *m = Constraint{} }
+func (m *Constraint) String() string { return proto.CompactTextString(m) }
+func (*Constraint) ProtoMessage()    {}
+func (*Constraint) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2836f6fdcf860f2e, []int{0}
+}
 
-func (m *DeviceComponent_Fingerprint) GetPresence() Presence {
+func (m *Constraint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Constraint.Unmarshal(m, b)
+}
+func (m *Constraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Constraint.Marshal(b, m, deterministic)
+}
+func (m *Constraint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Constraint.Merge(m, src)
+}
+func (m *Constraint) XXX_Size() int {
+	return xxx_messageInfo_Constraint.Size(m)
+}
+func (m *Constraint) XXX_DiscardUnknown() {
+	xxx_messageInfo_Constraint.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Constraint proto.InternalMessageInfo
+
+func (m *Constraint) GetLevel() Constraint_Level {
 	if m != nil {
-		return m.Presence
+		return m.Level
 	}
-	return Presence_PRESENCE_UNKNOWN
+	return Constraint_TYPE_UNKNOWN
 }
 
-func (m *DeviceComponent_Fingerprint) GetLocation() DeviceComponent_Fingerprint_Location {
+type isConstraint_Type interface {
+	isConstraint_Type()
+}
+
+type Constraint_Soc_ struct {
+	Soc *Constraint_Soc `protobuf:"bytes,3,opt,name=soc,proto3,oneof"`
+}
+
+type Constraint_Memory_ struct {
+	Memory *Constraint_Memory `protobuf:"bytes,4,opt,name=memory,proto3,oneof"`
+}
+
+type Constraint_Bluetooth_ struct {
+	Bluetooth *Constraint_Bluetooth `protobuf:"bytes,5,opt,name=bluetooth,proto3,oneof"`
+}
+
+type Constraint_FrontCamera struct {
+	FrontCamera *Constraint_Camera `protobuf:"bytes,6,opt,name=front_camera,json=frontCamera,proto3,oneof"`
+}
+
+type Constraint_RearCamera struct {
+	RearCamera *Constraint_Camera `protobuf:"bytes,7,opt,name=rear_camera,json=rearCamera,proto3,oneof"`
+}
+
+func (*Constraint_Soc_) isConstraint_Type() {}
+
+func (*Constraint_Memory_) isConstraint_Type() {}
+
+func (*Constraint_Bluetooth_) isConstraint_Type() {}
+
+func (*Constraint_FrontCamera) isConstraint_Type() {}
+
+func (*Constraint_RearCamera) isConstraint_Type() {}
+
+func (m *Constraint) GetType() isConstraint_Type {
 	if m != nil {
-		return m.Location
+		return m.Type
 	}
-	return DeviceComponent_Fingerprint_FINGERPRINT_LOCATION_UKNOWN
+	return nil
 }
 
-type DeviceComponent_Camera struct {
-	Presence             Presence                        `protobuf:"varint,1,opt,name=presence,proto3,enum=prototype.Presence" json:"presence,omitempty"`
-	Location             DeviceComponent_Camera_Location `protobuf:"varint,2,opt,name=location,proto3,enum=prototype.DeviceComponent_Camera_Location" json:"location,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                        `json:"-"`
-	XXX_unrecognized     []byte                          `json:"-"`
-	XXX_sizecache        int32                           `json:"-"`
+func (m *Constraint) GetSoc() *Constraint_Soc {
+	if x, ok := m.GetType().(*Constraint_Soc_); ok {
+		return x.Soc
+	}
+	return nil
 }
 
-func (m *DeviceComponent_Camera) Reset()         { *m = DeviceComponent_Camera{} }
-func (m *DeviceComponent_Camera) String() string { return proto.CompactTextString(m) }
-func (*DeviceComponent_Camera) ProtoMessage()    {}
-func (*DeviceComponent_Camera) Descriptor() ([]byte, []int) {
+func (m *Constraint) GetMemory() *Constraint_Memory {
+	if x, ok := m.GetType().(*Constraint_Memory_); ok {
+		return x.Memory
+	}
+	return nil
+}
+
+func (m *Constraint) GetBluetooth() *Constraint_Bluetooth {
+	if x, ok := m.GetType().(*Constraint_Bluetooth_); ok {
+		return x.Bluetooth
+	}
+	return nil
+}
+
+func (m *Constraint) GetFrontCamera() *Constraint_Camera {
+	if x, ok := m.GetType().(*Constraint_FrontCamera); ok {
+		return x.FrontCamera
+	}
+	return nil
+}
+
+func (m *Constraint) GetRearCamera() *Constraint_Camera {
+	if x, ok := m.GetType().(*Constraint_RearCamera); ok {
+		return x.RearCamera
+	}
+	return nil
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*Constraint) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*Constraint_Soc_)(nil),
+		(*Constraint_Memory_)(nil),
+		(*Constraint_Bluetooth_)(nil),
+		(*Constraint_FrontCamera)(nil),
+		(*Constraint_RearCamera)(nil),
+	}
+}
+
+type Constraint_Soc struct {
+	Models               []*ComponentId `protobuf:"bytes,1,rep,name=models,proto3" json:"models,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *Constraint_Soc) Reset()         { *m = Constraint_Soc{} }
+func (m *Constraint_Soc) String() string { return proto.CompactTextString(m) }
+func (*Constraint_Soc) ProtoMessage()    {}
+func (*Constraint_Soc) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2836f6fdcf860f2e, []int{0, 0}
+}
+
+func (m *Constraint_Soc) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Constraint_Soc.Unmarshal(m, b)
+}
+func (m *Constraint_Soc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Constraint_Soc.Marshal(b, m, deterministic)
+}
+func (m *Constraint_Soc) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Constraint_Soc.Merge(m, src)
+}
+func (m *Constraint_Soc) XXX_Size() int {
+	return xxx_messageInfo_Constraint_Soc.Size(m)
+}
+func (m *Constraint_Soc) XXX_DiscardUnknown() {
+	xxx_messageInfo_Constraint_Soc.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Constraint_Soc proto.InternalMessageInfo
+
+func (m *Constraint_Soc) GetModels() []*ComponentId {
+	if m != nil {
+		return m.Models
+	}
+	return nil
+}
+
+type Constraint_Memory struct {
+	MinSize              *ByteSize               `protobuf:"bytes,1,opt,name=min_size,json=minSize,proto3" json:"min_size,omitempty"`
+	Types                []Component_Memory_Type `protobuf:"varint,2,rep,packed,name=types,proto3,enum=prototype.Component_Memory_Type" json:"types,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
+	XXX_unrecognized     []byte                  `json:"-"`
+	XXX_sizecache        int32                   `json:"-"`
+}
+
+func (m *Constraint_Memory) Reset()         { *m = Constraint_Memory{} }
+func (m *Constraint_Memory) String() string { return proto.CompactTextString(m) }
+func (*Constraint_Memory) ProtoMessage()    {}
+func (*Constraint_Memory) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2836f6fdcf860f2e, []int{0, 1}
 }
 
-func (m *DeviceComponent_Camera) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeviceComponent_Camera.Unmarshal(m, b)
+func (m *Constraint_Memory) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Constraint_Memory.Unmarshal(m, b)
 }
-func (m *DeviceComponent_Camera) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeviceComponent_Camera.Marshal(b, m, deterministic)
+func (m *Constraint_Memory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Constraint_Memory.Marshal(b, m, deterministic)
 }
-func (m *DeviceComponent_Camera) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeviceComponent_Camera.Merge(m, src)
+func (m *Constraint_Memory) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Constraint_Memory.Merge(m, src)
 }
-func (m *DeviceComponent_Camera) XXX_Size() int {
-	return xxx_messageInfo_DeviceComponent_Camera.Size(m)
+func (m *Constraint_Memory) XXX_Size() int {
+	return xxx_messageInfo_Constraint_Memory.Size(m)
 }
-func (m *DeviceComponent_Camera) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeviceComponent_Camera.DiscardUnknown(m)
+func (m *Constraint_Memory) XXX_DiscardUnknown() {
+	xxx_messageInfo_Constraint_Memory.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeviceComponent_Camera proto.InternalMessageInfo
+var xxx_messageInfo_Constraint_Memory proto.InternalMessageInfo
 
-func (m *DeviceComponent_Camera) GetPresence() Presence {
+func (m *Constraint_Memory) GetMinSize() *ByteSize {
 	if m != nil {
-		return m.Presence
+		return m.MinSize
 	}
-	return Presence_PRESENCE_UNKNOWN
+	return nil
 }
 
-func (m *DeviceComponent_Camera) GetLocation() DeviceComponent_Camera_Location {
+func (m *Constraint_Memory) GetTypes() []Component_Memory_Type {
 	if m != nil {
-		return m.Location
+		return m.Types
 	}
-	return DeviceComponent_Camera_CAMERA_LOCATION_UKNOWN
+	return nil
 }
 
-type RefDesignKitId struct {
-	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type Constraint_Bluetooth struct {
+	Models               []*ComponentId `protobuf:"bytes,1,rep,name=models,proto3" json:"models,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
-func (m *RefDesignKitId) Reset()         { *m = RefDesignKitId{} }
-func (m *RefDesignKitId) String() string { return proto.CompactTextString(m) }
-func (*RefDesignKitId) ProtoMessage()    {}
-func (*RefDesignKitId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{1}
+func (m *Constraint_Bluetooth) Reset()         { *m = Constraint_Bluetooth{} }
+func (m *Constraint_Bluetooth) String() string { return proto.CompactTextString(m) }
+func (*Constraint_Bluetooth) ProtoMessage()    {}
+func (*Constraint_Bluetooth) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2836f6fdcf860f2e, []int{0, 2}
 }
 
-func (m *RefDesignKitId) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RefDesignKitId.Unmarshal(m, b)
+func (m *Constraint_Bluetooth) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Constraint_Bluetooth.Unmarshal(m, b)
 }
-func (m *RefDesignKitId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RefDesignKitId.Marshal(b, m, deterministic)
+func (m *Constraint_Bluetooth) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Constraint_Bluetooth.Marshal(b, m, deterministic)
 }
-func (m *RefDesignKitId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RefDesignKitId.Merge(m, src)
+func (m *Constraint_Bluetooth) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Constraint_Bluetooth.Merge(m, src)
 }
-func (m *RefDesignKitId) XXX_Size() int {
-	return xxx_messageInfo_RefDesignKitId.Size(m)
+func (m *Constraint_Bluetooth) XXX_Size() int {
+	return xxx_messageInfo_Constraint_Bluetooth.Size(m)
 }
-func (m *RefDesignKitId) XXX_DiscardUnknown() {
-	xxx_messageInfo_RefDesignKitId.DiscardUnknown(m)
+func (m *Constraint_Bluetooth) XXX_DiscardUnknown() {
+	xxx_messageInfo_Constraint_Bluetooth.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RefDesignKitId proto.InternalMessageInfo
+var xxx_messageInfo_Constraint_Bluetooth proto.InternalMessageInfo
 
-func (m *RefDesignKitId) GetValue() string {
+func (m *Constraint_Bluetooth) GetModels() []*ComponentId {
 	if m != nil {
-		return m.Value
+		return m.Models
 	}
-	return ""
+	return nil
+}
+
+type Constraint_Camera struct {
+	Features             []Component_Camera_Feature `protobuf:"varint,1,rep,packed,name=features,proto3,enum=prototype.Component_Camera_Feature" json:"features,omitempty"`
+	Usage                *DesignOptions_Camera      `protobuf:"bytes,2,opt,name=usage,proto3" json:"usage,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
+	XXX_unrecognized     []byte                     `json:"-"`
+	XXX_sizecache        int32                      `json:"-"`
+}
+
+func (m *Constraint_Camera) Reset()         { *m = Constraint_Camera{} }
+func (m *Constraint_Camera) String() string { return proto.CompactTextString(m) }
+func (*Constraint_Camera) ProtoMessage()    {}
+func (*Constraint_Camera) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2836f6fdcf860f2e, []int{0, 3}
+}
+
+func (m *Constraint_Camera) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Constraint_Camera.Unmarshal(m, b)
+}
+func (m *Constraint_Camera) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Constraint_Camera.Marshal(b, m, deterministic)
+}
+func (m *Constraint_Camera) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Constraint_Camera.Merge(m, src)
+}
+func (m *Constraint_Camera) XXX_Size() int {
+	return xxx_messageInfo_Constraint_Camera.Size(m)
+}
+func (m *Constraint_Camera) XXX_DiscardUnknown() {
+	xxx_messageInfo_Constraint_Camera.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Constraint_Camera proto.InternalMessageInfo
+
+func (m *Constraint_Camera) GetFeatures() []Component_Camera_Feature {
+	if m != nil {
+		return m.Features
+	}
+	return nil
+}
+
+func (m *Constraint_Camera) GetUsage() *DesignOptions_Camera {
+	if m != nil {
+		return m.Usage
+	}
+	return nil
 }
 
 type RefDesignKit struct {
-	Id                   *RefDesignKitId              `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Reqs                 []*RefDesignKit_Requirements `protobuf:"bytes,2,rep,name=reqs,proto3" json:"reqs,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
-	XXX_unrecognized     []byte                       `json:"-"`
-	XXX_sizecache        int32                        `json:"-"`
+	Id                   *RefDesignKitId             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Reqs                 []*RefDesignKit_Requirement `protobuf:"bytes,2,rep,name=reqs,proto3" json:"reqs,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                    `json:"-"`
+	XXX_unrecognized     []byte                      `json:"-"`
+	XXX_sizecache        int32                       `json:"-"`
 }
 
 func (m *RefDesignKit) Reset()         { *m = RefDesignKit{} }
 func (m *RefDesignKit) String() string { return proto.CompactTextString(m) }
 func (*RefDesignKit) ProtoMessage()    {}
 func (*RefDesignKit) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{2}
+	return fileDescriptor_2836f6fdcf860f2e, []int{1}
 }
 
 func (m *RefDesignKit) XXX_Unmarshal(b []byte) error {
@@ -385,7 +396,7 @@ func (m *RefDesignKit) GetId() *RefDesignKitId {
 	return nil
 }
 
-func (m *RefDesignKit) GetReqs() []*RefDesignKit_Requirements {
+func (m *RefDesignKit) GetReqs() []*RefDesignKit_Requirement {
 	if m != nil {
 		return m.Reqs
 	}
@@ -393,17 +404,18 @@ func (m *RefDesignKit) GetReqs() []*RefDesignKit_Requirements {
 }
 
 type RefDesignKit_Requirement struct {
-	Type                 RefDesignKit_Requirement_Type `protobuf:"varint,1,opt,name=type,proto3,enum=prototype.RefDesignKit_Requirement_Type" json:"type,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                      `json:"-"`
-	XXX_unrecognized     []byte                        `json:"-"`
-	XXX_sizecache        int32                         `json:"-"`
+	FormFactors          []RefDesign_FormFactor `protobuf:"varint,1,rep,packed,name=form_factors,json=formFactors,proto3,enum=prototype.RefDesign_FormFactor" json:"form_factors,omitempty"`
+	Constraints          []*Constraint          `protobuf:"bytes,2,rep,name=constraints,proto3" json:"constraints,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
 func (m *RefDesignKit_Requirement) Reset()         { *m = RefDesignKit_Requirement{} }
 func (m *RefDesignKit_Requirement) String() string { return proto.CompactTextString(m) }
 func (*RefDesignKit_Requirement) ProtoMessage()    {}
 func (*RefDesignKit_Requirement) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{2, 0}
+	return fileDescriptor_2836f6fdcf860f2e, []int{1, 0}
 }
 
 func (m *RefDesignKit_Requirement) XXX_Unmarshal(b []byte) error {
@@ -424,88 +436,16 @@ func (m *RefDesignKit_Requirement) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RefDesignKit_Requirement proto.InternalMessageInfo
 
-func (m *RefDesignKit_Requirement) GetType() RefDesignKit_Requirement_Type {
+func (m *RefDesignKit_Requirement) GetFormFactors() []RefDesign_FormFactor {
 	if m != nil {
-		return m.Type
-	}
-	return RefDesignKit_Requirement_TYPE_UNKNOWN
-}
-
-type RefDesignKit_Requirements struct {
-	FormFactor           RefDesignKit_FormFactor `protobuf:"varint,1,opt,name=form_factor,json=formFactor,proto3,enum=prototype.RefDesignKit_FormFactor" json:"form_factor,omitempty"`
-	Soc                  *Soc_Constraint         `protobuf:"bytes,2,opt,name=soc,proto3" json:"soc,omitempty"`
-	Memory               *Memory_Constraint      `protobuf:"bytes,3,opt,name=memory,proto3" json:"memory,omitempty"`
-	Bluetooth            *Bluetooth_Constraint   `protobuf:"bytes,4,opt,name=bluetooth,proto3" json:"bluetooth,omitempty"`
-	UserCamera           []*Camera_Constraint    `protobuf:"bytes,5,rep,name=user_camera,json=userCamera,proto3" json:"user_camera,omitempty"`
-	WorldCamera          []*Camera_Constraint    `protobuf:"bytes,6,rep,name=world_camera,json=worldCamera,proto3" json:"world_camera,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
-}
-
-func (m *RefDesignKit_Requirements) Reset()         { *m = RefDesignKit_Requirements{} }
-func (m *RefDesignKit_Requirements) String() string { return proto.CompactTextString(m) }
-func (*RefDesignKit_Requirements) ProtoMessage()    {}
-func (*RefDesignKit_Requirements) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{2, 1}
-}
-
-func (m *RefDesignKit_Requirements) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RefDesignKit_Requirements.Unmarshal(m, b)
-}
-func (m *RefDesignKit_Requirements) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RefDesignKit_Requirements.Marshal(b, m, deterministic)
-}
-func (m *RefDesignKit_Requirements) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RefDesignKit_Requirements.Merge(m, src)
-}
-func (m *RefDesignKit_Requirements) XXX_Size() int {
-	return xxx_messageInfo_RefDesignKit_Requirements.Size(m)
-}
-func (m *RefDesignKit_Requirements) XXX_DiscardUnknown() {
-	xxx_messageInfo_RefDesignKit_Requirements.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RefDesignKit_Requirements proto.InternalMessageInfo
-
-func (m *RefDesignKit_Requirements) GetFormFactor() RefDesignKit_FormFactor {
-	if m != nil {
-		return m.FormFactor
-	}
-	return RefDesignKit_FORM_FACTOR_UNDEFINED
-}
-
-func (m *RefDesignKit_Requirements) GetSoc() *Soc_Constraint {
-	if m != nil {
-		return m.Soc
+		return m.FormFactors
 	}
 	return nil
 }
 
-func (m *RefDesignKit_Requirements) GetMemory() *Memory_Constraint {
+func (m *RefDesignKit_Requirement) GetConstraints() []*Constraint {
 	if m != nil {
-		return m.Memory
-	}
-	return nil
-}
-
-func (m *RefDesignKit_Requirements) GetBluetooth() *Bluetooth_Constraint {
-	if m != nil {
-		return m.Bluetooth
-	}
-	return nil
-}
-
-func (m *RefDesignKit_Requirements) GetUserCamera() []*Camera_Constraint {
-	if m != nil {
-		return m.UserCamera
-	}
-	return nil
-}
-
-func (m *RefDesignKit_Requirements) GetWorldCamera() []*Camera_Constraint {
-	if m != nil {
-		return m.WorldCamera
+		return m.Constraints
 	}
 	return nil
 }
@@ -521,7 +461,7 @@ func (m *RefDesignKitList) Reset()         { *m = RefDesignKitList{} }
 func (m *RefDesignKitList) String() string { return proto.CompactTextString(m) }
 func (*RefDesignKitList) ProtoMessage()    {}
 func (*RefDesignKitList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2836f6fdcf860f2e, []int{3}
+	return fileDescriptor_2836f6fdcf860f2e, []int{2}
 }
 
 func (m *RefDesignKitList) XXX_Unmarshal(b []byte) error {
@@ -550,74 +490,59 @@ func (m *RefDesignKitList) GetValue() []*RefDesignKit {
 }
 
 func init() {
-	proto.RegisterEnum("prototype.Presence", Presence_name, Presence_value)
-	proto.RegisterEnum("prototype.DeviceComponent_Fingerprint_Location", DeviceComponent_Fingerprint_Location_name, DeviceComponent_Fingerprint_Location_value)
-	proto.RegisterEnum("prototype.DeviceComponent_Camera_Location", DeviceComponent_Camera_Location_name, DeviceComponent_Camera_Location_value)
-	proto.RegisterEnum("prototype.RefDesignKit_FormFactor", RefDesignKit_FormFactor_name, RefDesignKit_FormFactor_value)
-	proto.RegisterEnum("prototype.RefDesignKit_Requirement_Type", RefDesignKit_Requirement_Type_name, RefDesignKit_Requirement_Type_value)
-	proto.RegisterType((*DeviceComponent)(nil), "prototype.DeviceComponent")
-	proto.RegisterType((*DeviceComponent_Fingerprint)(nil), "prototype.DeviceComponent.Fingerprint")
-	proto.RegisterType((*DeviceComponent_Camera)(nil), "prototype.DeviceComponent.Camera")
-	proto.RegisterType((*RefDesignKitId)(nil), "prototype.RefDesignKitId")
+	proto.RegisterEnum("prototype.Constraint_Level", Constraint_Level_name, Constraint_Level_value)
+	proto.RegisterType((*Constraint)(nil), "prototype.Constraint")
+	proto.RegisterType((*Constraint_Soc)(nil), "prototype.Constraint.Soc")
+	proto.RegisterType((*Constraint_Memory)(nil), "prototype.Constraint.Memory")
+	proto.RegisterType((*Constraint_Bluetooth)(nil), "prototype.Constraint.Bluetooth")
+	proto.RegisterType((*Constraint_Camera)(nil), "prototype.Constraint.Camera")
 	proto.RegisterType((*RefDesignKit)(nil), "prototype.RefDesignKit")
 	proto.RegisterType((*RefDesignKit_Requirement)(nil), "prototype.RefDesignKit.Requirement")
-	proto.RegisterType((*RefDesignKit_Requirements)(nil), "prototype.RefDesignKit.Requirements")
 	proto.RegisterType((*RefDesignKitList)(nil), "prototype.RefDesignKitList")
 }
 
 func init() { proto.RegisterFile("prototype/ref_design_kit.proto", fileDescriptor_2836f6fdcf860f2e) }
 
 var fileDescriptor_2836f6fdcf860f2e = []byte{
-	// 801 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0x41, 0x8f, 0xdb, 0x44,
-	0x14, 0xae, 0x9d, 0x6c, 0x9a, 0x7d, 0x5e, 0xb6, 0xd6, 0x50, 0x4a, 0x36, 0x20, 0x5a, 0x45, 0x08,
-	0x2d, 0x45, 0x38, 0xd2, 0x16, 0x24, 0x0e, 0x14, 0xe4, 0x38, 0xe3, 0x5d, 0xb3, 0x8e, 0x27, 0x4c,
-	0x26, 0x2c, 0xe5, 0x62, 0xa5, 0xce, 0x24, 0xb5, 0x58, 0x7b, 0xd2, 0xb1, 0x53, 0x94, 0x3f, 0xc0,
-	0x99, 0x13, 0xfc, 0x2a, 0xfe, 0x08, 0x77, 0xee, 0xc8, 0x13, 0x3b, 0x71, 0xa1, 0x8b, 0xb6, 0x37,
-	0xbf, 0xef, 0x7d, 0xdf, 0x9b, 0xf7, 0xbe, 0x79, 0x63, 0xf8, 0x68, 0x25, 0x45, 0x2e, 0xf2, 0xcd,
-	0x8a, 0xf7, 0x25, 0x5f, 0x84, 0x73, 0x9e, 0xc5, 0xcb, 0x34, 0xfc, 0x39, 0xce, 0x2d, 0x95, 0x40,
-	0x87, 0xbb, 0x7c, 0xf7, 0x64, 0x4f, 0x8d, 0x44, 0xb2, 0x12, 0x29, 0x4f, 0x4b, 0x56, 0xef, 0xaf,
-	0x06, 0xdc, 0x1b, 0xf2, 0x57, 0x71, 0xc4, 0x9d, 0x2a, 0xd3, 0xfd, 0x55, 0x07, 0xc3, 0x8d, 0xd3,
-	0x25, 0x97, 0x2b, 0x19, 0xa7, 0x39, 0xea, 0x43, 0x7b, 0x25, 0x79, 0xc6, 0xd3, 0x88, 0x77, 0xb4,
-	0x47, 0xda, 0xe9, 0xf1, 0xd9, 0xbb, 0xd6, 0xae, 0xa2, 0x35, 0x2e, 0x53, 0x74, 0x47, 0x42, 0x97,
-	0xd0, 0xbe, 0x16, 0xd1, 0x2c, 0x8f, 0x45, 0xda, 0xd1, 0x95, 0xa0, 0x5f, 0x13, 0xfc, 0xeb, 0x38,
-	0xab, 0x76, 0x94, 0xe5, 0x97, 0x32, 0xba, 0x2b, 0xd0, 0xdb, 0x40, 0xbb, 0x42, 0xd1, 0x43, 0xf8,
-	0xc0, 0xf5, 0x82, 0x73, 0x4c, 0xc7, 0xd4, 0x0b, 0x58, 0xe8, 0x13, 0xc7, 0x66, 0x1e, 0x09, 0xc2,
-	0xe9, 0x65, 0x40, 0xae, 0x02, 0xf3, 0x0e, 0x3a, 0x81, 0xf7, 0xc6, 0xe4, 0x0a, 0xd3, 0x70, 0x30,
-	0x65, 0x8c, 0x04, 0x21, 0x23, 0xe3, 0xd0, 0xc7, 0x2e, 0x33, 0x35, 0xf4, 0x00, 0xd0, 0x25, 0x7e,
-	0x36, 0x20, 0x36, 0x1d, 0x2a, 0x98, 0x7a, 0xe7, 0x17, 0xcc, 0xd4, 0x0b, 0xc9, 0x0e, 0x1f, 0x10,
-	0xc6, 0xc8, 0xa8, 0x4c, 0x35, 0xba, 0x7f, 0x6a, 0xd0, 0x72, 0x66, 0x09, 0x97, 0xb3, 0xb7, 0xf7,
-	0xc0, 0xfd, 0x8f, 0x07, 0x8f, 0xff, 0xc7, 0x83, 0xed, 0x29, 0x6f, 0x1a, 0xff, 0xbb, 0xda, 0xf8,
-	0x5d, 0x78, 0xe0, 0xd8, 0x23, 0x4c, 0xed, 0x37, 0x4c, 0x6e, 0xc2, 0x91, 0x4b, 0x49, 0xc0, 0x42,
-	0xd7, 0x76, 0xbc, 0xe0, 0xdc, 0xd4, 0x0a, 0xe4, 0x8a, 0x50, 0x7f, 0x58, 0x21, 0x7a, 0xef, 0x13,
-	0x38, 0xa6, 0x7c, 0x31, 0x54, 0x9b, 0x72, 0x19, 0xe7, 0xde, 0x1c, 0xdd, 0x87, 0x83, 0x57, 0xb3,
-	0xeb, 0xf5, 0x76, 0xa6, 0x43, 0xba, 0x0d, 0x7a, 0x7f, 0xb4, 0xe0, 0xa8, 0x4e, 0x44, 0x9f, 0x82,
-	0x1e, 0xcf, 0x15, 0xc7, 0x38, 0x3b, 0xa9, 0x8d, 0xf1, 0x7a, 0x35, 0xaa, 0xc7, 0x73, 0xf4, 0x15,
-	0x34, 0x25, 0x7f, 0x99, 0x75, 0xf4, 0x47, 0x8d, 0x53, 0xe3, 0xec, 0xe3, 0x1b, 0xc8, 0x16, 0xe5,
-	0x2f, 0xd7, 0xb1, 0xe4, 0x09, 0x4f, 0xf3, 0x8c, 0x2a, 0x45, 0xf7, 0x37, 0x0d, 0x8c, 0x1a, 0x8c,
-	0xbe, 0x86, 0x66, 0xa1, 0x2b, 0xed, 0x3e, 0xbd, 0x45, 0x25, 0x8b, 0x6d, 0x56, 0x9c, 0x2a, 0x55,
-	0xcf, 0x81, 0x66, 0x11, 0x15, 0x2e, 0xb0, 0x67, 0x63, 0x1c, 0x4e, 0x83, 0xca, 0xa9, 0x23, 0x68,
-	0x53, 0xfc, 0xfd, 0xd4, 0xa3, 0x78, 0x68, 0x6a, 0xe8, 0x1d, 0x38, 0x1c, 0x53, 0xec, 0x62, 0x5a,
-	0x84, 0x7a, 0x91, 0x24, 0xe3, 0xc2, 0x59, 0xdb, 0x37, 0x1b, 0xdd, 0xbf, 0xf5, 0xc2, 0x88, 0x7d,
-	0xa7, 0xc8, 0x01, 0x63, 0x21, 0x64, 0x12, 0x2e, 0x66, 0x51, 0x2e, 0x64, 0xd9, 0x5a, 0xef, 0xa6,
-	0xd6, 0x5c, 0x21, 0x13, 0x57, 0x31, 0x29, 0x2c, 0x76, 0xdf, 0xe8, 0x33, 0x68, 0x64, 0x22, 0x52,
-	0x5b, 0xf1, 0xba, 0x9d, 0x13, 0x11, 0x59, 0x8e, 0x48, 0xb3, 0x5c, 0xce, 0xe2, 0x34, 0xa7, 0x05,
-	0x0b, 0x7d, 0x01, 0xad, 0x84, 0x27, 0x42, 0x6e, 0x3a, 0x0d, 0xc5, 0xff, 0xb0, 0xc6, 0x1f, 0xa9,
-	0x44, 0x5d, 0x52, 0x72, 0xd1, 0x53, 0x38, 0x7c, 0x7e, 0xbd, 0xe6, 0xb9, 0x10, 0xf9, 0x8b, 0x4e,
-	0x53, 0x09, 0x1f, 0xd6, 0x84, 0x83, 0x2a, 0x57, 0xd7, 0xee, 0x15, 0xe8, 0x29, 0x18, 0xeb, 0x8c,
-	0xcb, 0x30, 0x52, 0x6b, 0xd9, 0x39, 0x50, 0x77, 0x59, 0x3f, 0xb9, 0xdc, 0xd7, 0x9a, 0x1a, 0x0a,
-	0x41, 0xf9, 0x58, 0xbe, 0x85, 0xa3, 0x5f, 0x84, 0xbc, 0x9e, 0x57, 0xfa, 0xd6, 0x2d, 0xf4, 0x86,
-	0x52, 0x6c, 0xf1, 0xde, 0xef, 0x1a, 0xc0, 0xde, 0xbc, 0xe2, 0x89, 0xba, 0x84, 0x8e, 0x8a, 0x45,
-	0x66, 0x84, 0x86, 0xd3, 0x60, 0x88, 0x5d, 0x2f, 0xc0, 0x43, 0xf3, 0x4e, 0x71, 0x7d, 0x8e, 0x6f,
-	0x8f, 0x26, 0x17, 0xd8, 0xf7, 0x4d, 0x0d, 0xdd, 0x03, 0xc3, 0x21, 0xc1, 0x0f, 0x98, 0x32, 0x6f,
-	0xe0, 0x63, 0x53, 0x47, 0xc7, 0x00, 0x43, 0xcc, 0x6c, 0xe7, 0xc2, 0x2e, 0xe2, 0x46, 0x11, 0x3b,
-	0x17, 0x94, 0x8c, 0xf0, 0xc0, 0x9e, 0x60, 0xb3, 0xa9, 0xf4, 0xdb, 0x98, 0xfc, 0x68, 0x1e, 0xd4,
-	0x42, 0x8f, 0x99, 0x2d, 0x55, 0x4e, 0x85, 0x13, 0xdf, 0x66, 0xd8, 0xbc, 0xdb, 0xb3, 0xc1, 0xac,
-	0xdf, 0xb0, 0x1f, 0x67, 0x39, 0xfa, 0x7c, 0xff, 0x86, 0x8a, 0x31, 0xdf, 0xbf, 0x61, 0x1b, 0xca,
-	0xc7, 0xf5, 0xf8, 0x1b, 0x68, 0x57, 0xbf, 0x0b, 0x74, 0x1f, 0xcc, 0x31, 0xc5, 0x13, 0x1c, 0x38,
-	0xf5, 0x05, 0x35, 0xe0, 0xee, 0x16, 0x65, 0xdb, 0x89, 0x02, 0xc2, 0xc2, 0x0a, 0xd0, 0x07, 0x5f,
-	0xfe, 0xf4, 0x64, 0x29, 0xac, 0xe8, 0x85, 0x14, 0x49, 0xbc, 0x4e, 0x2c, 0x21, 0x97, 0xfd, 0x2a,
-	0x10, 0x59, 0x3f, 0x4e, 0x17, 0x72, 0xd6, 0x57, 0x1d, 0xf4, 0x97, 0xa2, 0xbf, 0x6b, 0xe5, 0x79,
-	0x4b, 0x7d, 0x3e, 0xf9, 0x27, 0x00, 0x00, 0xff, 0xff, 0x6b, 0xee, 0x55, 0xee, 0x37, 0x06, 0x00,
-	0x00,
+	// 630 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x92, 0x41, 0x4f, 0xdb, 0x4c,
+	0x10, 0x86, 0xe3, 0x84, 0x18, 0x32, 0xce, 0x87, 0xa2, 0xfd, 0x54, 0x6a, 0xdc, 0xaa, 0x44, 0xe9,
+	0x25, 0x3d, 0xe0, 0xa8, 0x41, 0xc0, 0xa1, 0x07, 0x44, 0x20, 0x51, 0x22, 0x68, 0x42, 0x17, 0x50,
+	0xd5, 0x5e, 0x22, 0xe3, 0xac, 0xc3, 0xaa, 0x59, 0x6f, 0x58, 0x6f, 0x90, 0xc2, 0xa9, 0xe7, 0xfe,
+	0x8c, 0xfe, 0xd1, 0x56, 0xde, 0x75, 0x8c, 0x51, 0xdd, 0xaa, 0xbd, 0xed, 0x78, 0x9e, 0xf7, 0x9d,
+	0xf1, 0xcc, 0xc0, 0xab, 0xb9, 0xe0, 0x92, 0xcb, 0xe5, 0x9c, 0xb4, 0x04, 0x09, 0xc6, 0x13, 0x12,
+	0xd1, 0x69, 0x38, 0xfe, 0x42, 0xa5, 0xab, 0x12, 0xa8, 0x92, 0xe6, 0x9d, 0xad, 0x47, 0xd4, 0xe7,
+	0x8c, 0xf1, 0x50, 0x23, 0xce, 0xf6, 0x93, 0xef, 0x73, 0x1e, 0x92, 0x30, 0x51, 0x3b, 0x4e, 0x9e,
+	0xbb, 0xce, 0x35, 0xbe, 0x9b, 0x00, 0x27, 0x3c, 0x8c, 0xa4, 0xf0, 0x68, 0x28, 0xd1, 0x5b, 0x28,
+	0xcf, 0xc8, 0x3d, 0x99, 0xd9, 0x46, 0xdd, 0x68, 0x6e, 0xb6, 0x5f, 0xb8, 0xa9, 0xd4, 0x7d, 0xa4,
+	0xdc, 0xf3, 0x18, 0xc1, 0x9a, 0x44, 0xbb, 0x50, 0x8a, 0xb8, 0x6f, 0x97, 0xea, 0x46, 0xd3, 0x6a,
+	0x6f, 0xe7, 0x0b, 0x2e, 0xb9, 0xdf, 0x2f, 0xe0, 0x98, 0x43, 0x07, 0x60, 0x32, 0xc2, 0xb8, 0x58,
+	0xda, 0x6b, 0x4a, 0xf1, 0x32, 0x5f, 0xf1, 0x5e, 0x31, 0xfd, 0x02, 0x4e, 0x68, 0x74, 0x04, 0x95,
+	0x9b, 0xd9, 0x82, 0x48, 0xce, 0xe5, 0xad, 0x5d, 0x56, 0xd2, 0x9d, 0x7c, 0x69, 0x67, 0x85, 0xf5,
+	0x0b, 0xf8, 0x51, 0x83, 0x8e, 0xa1, 0x1a, 0x08, 0x1e, 0xca, 0xb1, 0xef, 0x31, 0x22, 0x3c, 0xdb,
+	0xfc, 0x53, 0xf9, 0x13, 0xc5, 0xf4, 0x0b, 0xd8, 0x52, 0x1a, 0x1d, 0xa2, 0x23, 0xb0, 0x04, 0xf1,
+	0xc4, 0xca, 0x61, 0xfd, 0xaf, 0x1c, 0x20, 0x96, 0xe8, 0xc8, 0xd9, 0x87, 0xd2, 0x25, 0xf7, 0x91,
+	0x0b, 0x26, 0xe3, 0x13, 0x32, 0x8b, 0x6c, 0xa3, 0x5e, 0x6a, 0x5a, 0xed, 0xad, 0x27, 0x16, 0xc9,
+	0xf2, 0x06, 0x13, 0x9c, 0x50, 0xce, 0x1c, 0x4c, 0x3d, 0x0f, 0xe4, 0xc2, 0x06, 0xa3, 0xe1, 0x38,
+	0xa2, 0x0f, 0x44, 0xad, 0xc8, 0x6a, 0xff, 0x9f, 0xd1, 0x76, 0x96, 0x92, 0x5c, 0xd2, 0x07, 0x82,
+	0xd7, 0x19, 0x0d, 0xe3, 0x07, 0x3a, 0x80, 0x72, 0x9c, 0x89, 0xec, 0x62, 0xbd, 0xd4, 0xdc, 0x6c,
+	0xd7, 0xf3, 0x0a, 0x25, 0xb3, 0x76, 0xaf, 0x96, 0x73, 0x82, 0x35, 0xee, 0xbc, 0x83, 0x4a, 0x3a,
+	0xc6, 0x7f, 0x6e, 0xf7, 0xab, 0x01, 0x66, 0x3a, 0xb1, 0x8d, 0x80, 0x78, 0x72, 0x21, 0x88, 0x16,
+	0x6f, 0xb6, 0x5f, 0xe7, 0xb6, 0xa0, 0x71, 0xb7, 0xa7, 0x59, 0x9c, 0x8a, 0xd0, 0x3e, 0x94, 0x17,
+	0x91, 0x37, 0x25, 0x76, 0xf1, 0x97, 0x95, 0x9f, 0xaa, 0x3b, 0x1e, 0xcd, 0x25, 0xe5, 0x61, 0x94,
+	0x38, 0x60, 0x4d, 0x37, 0x4e, 0xa1, 0xac, 0x8e, 0x14, 0xd5, 0xa0, 0x7a, 0xf5, 0xe9, 0xa2, 0x3b,
+	0xbe, 0x1e, 0x9e, 0x0d, 0x47, 0x1f, 0x87, 0xb5, 0x02, 0xaa, 0xc2, 0x06, 0xee, 0x7e, 0xb8, 0x1e,
+	0xe0, 0xee, 0x69, 0xcd, 0x40, 0xff, 0x41, 0xe5, 0x02, 0x77, 0x7b, 0x5d, 0x1c, 0x87, 0xc5, 0x38,
+	0x39, 0xba, 0xb8, 0x1a, 0x8c, 0x86, 0xc7, 0xe7, 0xb5, 0x52, 0xc7, 0x84, 0xb5, 0xb8, 0x52, 0xe3,
+	0x87, 0x01, 0x55, 0x4c, 0x02, 0x5d, 0xf0, 0x8c, 0x4a, 0xf4, 0x06, 0x8a, 0x74, 0x92, 0x2c, 0x20,
+	0x7b, 0xf2, 0x59, 0x68, 0x30, 0xc1, 0x45, 0x3a, 0x41, 0x87, 0xb0, 0x26, 0xc8, 0x9d, 0x5e, 0x80,
+	0xf5, 0xe4, 0xef, 0xb3, 0xb0, 0x8b, 0xc9, 0xdd, 0x82, 0x0a, 0xc2, 0x48, 0x28, 0xb1, 0x12, 0x38,
+	0xdf, 0x0c, 0xb0, 0x32, 0x5f, 0x51, 0x07, 0xaa, 0x01, 0x17, 0x6c, 0x1c, 0x78, 0xbe, 0xe4, 0x62,
+	0x35, 0xce, 0x9d, 0x3c, 0x43, 0xb7, 0xc7, 0x05, 0xeb, 0x29, 0x0e, 0x5b, 0x41, 0xfa, 0x8e, 0xd0,
+	0x21, 0x58, 0x7e, 0x7a, 0xa2, 0xab, 0x9e, 0x9e, 0xe5, 0x1e, 0x30, 0xce, 0x92, 0x8d, 0x63, 0xa8,
+	0x65, 0xdb, 0x3d, 0xa7, 0x91, 0x44, 0xbb, 0x50, 0xbe, 0xf7, 0x66, 0x0b, 0x92, 0x5c, 0xc5, 0xf3,
+	0xdf, 0xfc, 0x1a, 0xd6, 0x54, 0x67, 0xff, 0xf3, 0xde, 0x94, 0xbb, 0xfe, 0xad, 0xe0, 0x8c, 0x2e,
+	0x98, 0xcb, 0xc5, 0xb4, 0xb5, 0x0a, 0x78, 0xd4, 0xa2, 0x61, 0x20, 0xbc, 0x96, 0x72, 0x68, 0x4d,
+	0x79, 0x2b, 0xb5, 0xba, 0x31, 0xd5, 0x73, 0xef, 0x67, 0x00, 0x00, 0x00, 0xff, 0xff, 0xf1, 0xd2,
+	0x18, 0x22, 0x23, 0x05, 0x00, 0x00,
 }

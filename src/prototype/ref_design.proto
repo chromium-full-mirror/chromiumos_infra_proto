@@ -8,21 +8,40 @@ package prototype;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
+import "prototype/common.proto";
 import "prototype/partner.proto";
-import "prototype/ref_design_kit.proto";
+
+message RefDesignKitId {
+  string value = 1;
+}
 
 message RefDesignId {
   string value = 1;
 }
 
-message DeviceVariantId {
+message RefDesignVariantId {
   string value = 1;
 }
 
-message DeviceVariant {
-  DeviceVariantId id = 1;
-  repeated DeviceComponent.Camera cameras = 2;
-  DeviceComponent.Fingerprint fingerprint = 3;
+message DesignOptions {
+  Fingerprint fingerprint = 1;
+  Camera front_camera = 2;
+  Camera rear_camera = 3;
+
+  message Fingerprint {
+    enum Location {
+      FINGERPRINT_LOCATION_UKNOWN = 0;
+      POWER_BUTTON_TOP_LEFT = 1;
+      KEYBOARD_TOP_RIGHT = 2;
+      KEYBOARD_BOTTOM_RIGHT = 3;
+    }
+    Presence presence = 1;
+    Location location = 2;
+  }
+
+  message Camera {
+    Presence presence = 1;
+  }
 }
 
 message RefDesign {
@@ -31,7 +50,24 @@ message RefDesign {
   PartnerId odm_id = 3;
   string name = 4;
 
-  repeated DeviceVariant variants = 5;
+  repeated Variant variants = 6;
+
+  message Variant {
+    RefDesignVariantId id = 1;
+    FormFactor form_factor = 2;
+    DesignOptions design_options = 3;
+  }
+
+  enum FormFactor {
+    FORM_FACTOR_UNDEFINED = 0;
+    CLAMSHELL = 1;
+    CONVERTIBLE = 2;
+    DETACHABLE = 3;
+    CHROMEBASE = 4;
+    CHROMEBOX = 5;
+    CHROMEBIT = 6;
+    CHROMESLATE = 7;
+  }
 }
 
 message RefDesignList {

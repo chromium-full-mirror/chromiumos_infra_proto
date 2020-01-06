@@ -21,51 +21,17 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type ByteSize_Unit int32
+type Component_Soc_Architecture int32
 
 const (
-	ByteSize_UNIT_UNDEFINED ByteSize_Unit = 0
-	ByteSize_BYTE           ByteSize_Unit = 1
-	ByteSize_KB             ByteSize_Unit = 2
-	ByteSize_MB             ByteSize_Unit = 3
-	ByteSize_GB             ByteSize_Unit = 4
+	Component_Soc_ARCHITECTURE_UNDEFINED Component_Soc_Architecture = 0
+	Component_Soc_X86                    Component_Soc_Architecture = 1
+	Component_Soc_X86_64                 Component_Soc_Architecture = 2
+	Component_Soc_ARM                    Component_Soc_Architecture = 3
+	Component_Soc_ARM64                  Component_Soc_Architecture = 4
 )
 
-var ByteSize_Unit_name = map[int32]string{
-	0: "UNIT_UNDEFINED",
-	1: "BYTE",
-	2: "KB",
-	3: "MB",
-	4: "GB",
-}
-
-var ByteSize_Unit_value = map[string]int32{
-	"UNIT_UNDEFINED": 0,
-	"BYTE":           1,
-	"KB":             2,
-	"MB":             3,
-	"GB":             4,
-}
-
-func (x ByteSize_Unit) String() string {
-	return proto.EnumName(ByteSize_Unit_name, int32(x))
-}
-
-func (ByteSize_Unit) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{1, 0}
-}
-
-type Soc_Architecture int32
-
-const (
-	Soc_ARCHITECTURE_UNDEFINED Soc_Architecture = 0
-	Soc_X86                    Soc_Architecture = 1
-	Soc_X86_64                 Soc_Architecture = 2
-	Soc_ARM                    Soc_Architecture = 3
-	Soc_ARM64                  Soc_Architecture = 4
-)
-
-var Soc_Architecture_name = map[int32]string{
+var Component_Soc_Architecture_name = map[int32]string{
 	0: "ARCHITECTURE_UNDEFINED",
 	1: "X86",
 	2: "X86_64",
@@ -73,7 +39,7 @@ var Soc_Architecture_name = map[int32]string{
 	4: "ARM64",
 }
 
-var Soc_Architecture_value = map[string]int32{
+var Component_Soc_Architecture_value = map[string]int32{
 	"ARCHITECTURE_UNDEFINED": 0,
 	"X86":                    1,
 	"X86_64":                 2,
@@ -81,55 +47,55 @@ var Soc_Architecture_value = map[string]int32{
 	"ARM64":                  4,
 }
 
-func (x Soc_Architecture) String() string {
-	return proto.EnumName(Soc_Architecture_name, int32(x))
+func (x Component_Soc_Architecture) String() string {
+	return proto.EnumName(Component_Soc_Architecture_name, int32(x))
 }
 
-func (Soc_Architecture) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{2, 0}
+func (Component_Soc_Architecture) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 0, 0}
 }
 
-type Soc_Family int32
+type Component_Soc_Family int32
 
 const (
-	Soc_FAMILY_UNDEFINED Soc_Family = 0
-	Soc_RK3399           Soc_Family = 1
-	Soc_GEMINI_LAKE      Soc_Family = 2
+	Component_Soc_FAMILY_UNDEFINED Component_Soc_Family = 0
+	Component_Soc_RK3399           Component_Soc_Family = 1
+	Component_Soc_GEMINI_LAKE      Component_Soc_Family = 2
 )
 
-var Soc_Family_name = map[int32]string{
+var Component_Soc_Family_name = map[int32]string{
 	0: "FAMILY_UNDEFINED",
 	1: "RK3399",
 	2: "GEMINI_LAKE",
 }
 
-var Soc_Family_value = map[string]int32{
+var Component_Soc_Family_value = map[string]int32{
 	"FAMILY_UNDEFINED": 0,
 	"RK3399":           1,
 	"GEMINI_LAKE":      2,
 }
 
-func (x Soc_Family) String() string {
-	return proto.EnumName(Soc_Family_name, int32(x))
+func (x Component_Soc_Family) String() string {
+	return proto.EnumName(Component_Soc_Family_name, int32(x))
 }
 
-func (Soc_Family) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{2, 1}
+func (Component_Soc_Family) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 0, 1}
 }
 
-type Memory_Type int32
+type Component_Memory_Type int32
 
 const (
-	Memory_TYPE_UNDEFINED Memory_Type = 0
-	Memory_DDR            Memory_Type = 1
-	Memory_DDR2           Memory_Type = 2
-	Memory_DDR3           Memory_Type = 3
-	Memory_DDR4           Memory_Type = 4
-	Memory_LP_DDR3        Memory_Type = 5
-	Memory_LP_DDR4        Memory_Type = 6
+	Component_Memory_TYPE_UNDEFINED Component_Memory_Type = 0
+	Component_Memory_DDR            Component_Memory_Type = 1
+	Component_Memory_DDR2           Component_Memory_Type = 2
+	Component_Memory_DDR3           Component_Memory_Type = 3
+	Component_Memory_DDR4           Component_Memory_Type = 4
+	Component_Memory_LP_DDR3        Component_Memory_Type = 5
+	Component_Memory_LP_DDR4        Component_Memory_Type = 6
 )
 
-var Memory_Type_name = map[int32]string{
+var Component_Memory_Type_name = map[int32]string{
 	0: "TYPE_UNDEFINED",
 	1: "DDR",
 	2: "DDR2",
@@ -139,7 +105,7 @@ var Memory_Type_name = map[int32]string{
 	6: "LP_DDR4",
 }
 
-var Memory_Type_value = map[string]int32{
+var Component_Memory_Type_value = map[string]int32{
 	"TYPE_UNDEFINED": 0,
 	"DDR":            1,
 	"DDR2":           2,
@@ -149,65 +115,65 @@ var Memory_Type_value = map[string]int32{
 	"LP_DDR4":        6,
 }
 
-func (x Memory_Type) String() string {
-	return proto.EnumName(Memory_Type_name, int32(x))
+func (x Component_Memory_Type) String() string {
+	return proto.EnumName(Component_Memory_Type_name, int32(x))
 }
 
-func (Memory_Type) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{3, 0}
+func (Component_Memory_Type) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 1, 0}
 }
 
-type Camera_Feature int32
+type Component_Camera_Feature int32
 
 const (
-	Camera_FEATURE_UNKNOWN Camera_Feature = 0
-	Camera_ACTIVITY_LED    Camera_Feature = 1
+	Component_Camera_FEATURE_UNKNOWN Component_Camera_Feature = 0
+	Component_Camera_ACTIVITY_LED    Component_Camera_Feature = 1
 )
 
-var Camera_Feature_name = map[int32]string{
+var Component_Camera_Feature_name = map[int32]string{
 	0: "FEATURE_UNKNOWN",
 	1: "ACTIVITY_LED",
 }
 
-var Camera_Feature_value = map[string]int32{
+var Component_Camera_Feature_value = map[string]int32{
 	"FEATURE_UNKNOWN": 0,
 	"ACTIVITY_LED":    1,
 }
 
-func (x Camera_Feature) String() string {
-	return proto.EnumName(Camera_Feature_name, int32(x))
+func (x Component_Camera_Feature) String() string {
+	return proto.EnumName(Component_Camera_Feature_name, int32(x))
 }
 
-func (Camera_Feature) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{6, 0}
+func (Component_Camera_Feature) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 3, 0}
 }
 
-type Camera_ClockType int32
+type Component_Camera_ClockType int32
 
 const (
-	Camera_CLOCK_TYPE_UNDEFINED Camera_ClockType = 0
-	Camera_MONOTONIC            Camera_ClockType = 1
-	Camera_BOOTTIME             Camera_ClockType = 2
+	Component_Camera_CLOCK_TYPE_UNDEFINED Component_Camera_ClockType = 0
+	Component_Camera_MONOTONIC            Component_Camera_ClockType = 1
+	Component_Camera_BOOTTIME             Component_Camera_ClockType = 2
 )
 
-var Camera_ClockType_name = map[int32]string{
+var Component_Camera_ClockType_name = map[int32]string{
 	0: "CLOCK_TYPE_UNDEFINED",
 	1: "MONOTONIC",
 	2: "BOOTTIME",
 }
 
-var Camera_ClockType_value = map[string]int32{
+var Component_Camera_ClockType_value = map[string]int32{
 	"CLOCK_TYPE_UNDEFINED": 0,
 	"MONOTONIC":            1,
 	"BOOTTIME":             2,
 }
 
-func (x Camera_ClockType) String() string {
-	return proto.EnumName(Camera_ClockType_name, int32(x))
+func (x Component_Camera_ClockType) String() string {
+	return proto.EnumName(Component_Camera_ClockType_name, int32(x))
 }
 
-func (Camera_ClockType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{6, 1}
+func (Component_Camera_ClockType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 3, 1}
 }
 
 type ComponentId struct {
@@ -249,624 +215,13 @@ func (m *ComponentId) GetValue() string {
 	return ""
 }
 
-type ByteSize struct {
-	Value                int32         `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
-	Unit                 ByteSize_Unit `protobuf:"varint,2,opt,name=unit,proto3,enum=prototype.ByteSize_Unit" json:"unit,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *ByteSize) Reset()         { *m = ByteSize{} }
-func (m *ByteSize) String() string { return proto.CompactTextString(m) }
-func (*ByteSize) ProtoMessage()    {}
-func (*ByteSize) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{1}
-}
-
-func (m *ByteSize) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ByteSize.Unmarshal(m, b)
-}
-func (m *ByteSize) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ByteSize.Marshal(b, m, deterministic)
-}
-func (m *ByteSize) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ByteSize.Merge(m, src)
-}
-func (m *ByteSize) XXX_Size() int {
-	return xxx_messageInfo_ByteSize.Size(m)
-}
-func (m *ByteSize) XXX_DiscardUnknown() {
-	xxx_messageInfo_ByteSize.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ByteSize proto.InternalMessageInfo
-
-func (m *ByteSize) GetValue() int32 {
-	if m != nil {
-		return m.Value
-	}
-	return 0
-}
-
-func (m *ByteSize) GetUnit() ByteSize_Unit {
-	if m != nil {
-		return m.Unit
-	}
-	return ByteSize_UNIT_UNDEFINED
-}
-
-type Soc struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Soc) Reset()         { *m = Soc{} }
-func (m *Soc) String() string { return proto.CompactTextString(m) }
-func (*Soc) ProtoMessage()    {}
-func (*Soc) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{2}
-}
-
-func (m *Soc) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Soc.Unmarshal(m, b)
-}
-func (m *Soc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Soc.Marshal(b, m, deterministic)
-}
-func (m *Soc) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Soc.Merge(m, src)
-}
-func (m *Soc) XXX_Size() int {
-	return xxx_messageInfo_Soc.Size(m)
-}
-func (m *Soc) XXX_DiscardUnknown() {
-	xxx_messageInfo_Soc.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Soc proto.InternalMessageInfo
-
-var E_Soc_Arch = &proto.ExtensionDesc{
-	ExtendedType:  (*descriptor.EnumValueOptions)(nil),
-	ExtensionType: (Soc_Architecture)(nil),
-	Field:         1914502,
-	Name:          "prototype.Soc.arch",
-	Tag:           "varint,1914502,opt,name=arch,enum=prototype.Soc_Architecture",
-	Filename:      "prototype/component.proto",
-}
-
-type Soc_Component struct {
-	Family               Soc_Family `protobuf:"varint,1,opt,name=family,proto3,enum=prototype.Soc_Family" json:"family,omitempty"`
-	Model                string     `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
-	Cores                int32      `protobuf:"varint,3,opt,name=cores,proto3" json:"cores,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *Soc_Component) Reset()         { *m = Soc_Component{} }
-func (m *Soc_Component) String() string { return proto.CompactTextString(m) }
-func (*Soc_Component) ProtoMessage()    {}
-func (*Soc_Component) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{2, 0}
-}
-
-func (m *Soc_Component) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Soc_Component.Unmarshal(m, b)
-}
-func (m *Soc_Component) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Soc_Component.Marshal(b, m, deterministic)
-}
-func (m *Soc_Component) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Soc_Component.Merge(m, src)
-}
-func (m *Soc_Component) XXX_Size() int {
-	return xxx_messageInfo_Soc_Component.Size(m)
-}
-func (m *Soc_Component) XXX_DiscardUnknown() {
-	xxx_messageInfo_Soc_Component.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Soc_Component proto.InternalMessageInfo
-
-func (m *Soc_Component) GetFamily() Soc_Family {
-	if m != nil {
-		return m.Family
-	}
-	return Soc_FAMILY_UNDEFINED
-}
-
-func (m *Soc_Component) GetModel() string {
-	if m != nil {
-		return m.Model
-	}
-	return ""
-}
-
-func (m *Soc_Component) GetCores() int32 {
-	if m != nil {
-		return m.Cores
-	}
-	return 0
-}
-
-type Soc_Constraint struct {
-	SocModels            []*ComponentId `protobuf:"bytes,1,rep,name=soc_models,json=socModels,proto3" json:"soc_models,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *Soc_Constraint) Reset()         { *m = Soc_Constraint{} }
-func (m *Soc_Constraint) String() string { return proto.CompactTextString(m) }
-func (*Soc_Constraint) ProtoMessage()    {}
-func (*Soc_Constraint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{2, 1}
-}
-
-func (m *Soc_Constraint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Soc_Constraint.Unmarshal(m, b)
-}
-func (m *Soc_Constraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Soc_Constraint.Marshal(b, m, deterministic)
-}
-func (m *Soc_Constraint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Soc_Constraint.Merge(m, src)
-}
-func (m *Soc_Constraint) XXX_Size() int {
-	return xxx_messageInfo_Soc_Constraint.Size(m)
-}
-func (m *Soc_Constraint) XXX_DiscardUnknown() {
-	xxx_messageInfo_Soc_Constraint.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Soc_Constraint proto.InternalMessageInfo
-
-func (m *Soc_Constraint) GetSocModels() []*ComponentId {
-	if m != nil {
-		return m.SocModels
-	}
-	return nil
-}
-
-type Memory struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Memory) Reset()         { *m = Memory{} }
-func (m *Memory) String() string { return proto.CompactTextString(m) }
-func (*Memory) ProtoMessage()    {}
-func (*Memory) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{3}
-}
-
-func (m *Memory) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Memory.Unmarshal(m, b)
-}
-func (m *Memory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Memory.Marshal(b, m, deterministic)
-}
-func (m *Memory) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Memory.Merge(m, src)
-}
-func (m *Memory) XXX_Size() int {
-	return xxx_messageInfo_Memory.Size(m)
-}
-func (m *Memory) XXX_DiscardUnknown() {
-	xxx_messageInfo_Memory.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Memory proto.InternalMessageInfo
-
-type Memory_Component struct {
-	Type                 Memory_Type `protobuf:"varint,1,opt,name=type,proto3,enum=prototype.Memory_Type" json:"type,omitempty"`
-	SpeedMhz             int32       `protobuf:"varint,2,opt,name=speed_mhz,json=speedMhz,proto3" json:"speed_mhz,omitempty"`
-	Size                 *ByteSize   `protobuf:"bytes,3,opt,name=size,proto3" json:"size,omitempty"`
-	PartNumber           string      `protobuf:"bytes,4,opt,name=part_number,json=partNumber,proto3" json:"part_number,omitempty"`
-	ManufacturerId       *PartnerId  `protobuf:"bytes,5,opt,name=manufacturer_id,json=manufacturerId,proto3" json:"manufacturer_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *Memory_Component) Reset()         { *m = Memory_Component{} }
-func (m *Memory_Component) String() string { return proto.CompactTextString(m) }
-func (*Memory_Component) ProtoMessage()    {}
-func (*Memory_Component) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{3, 0}
-}
-
-func (m *Memory_Component) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Memory_Component.Unmarshal(m, b)
-}
-func (m *Memory_Component) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Memory_Component.Marshal(b, m, deterministic)
-}
-func (m *Memory_Component) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Memory_Component.Merge(m, src)
-}
-func (m *Memory_Component) XXX_Size() int {
-	return xxx_messageInfo_Memory_Component.Size(m)
-}
-func (m *Memory_Component) XXX_DiscardUnknown() {
-	xxx_messageInfo_Memory_Component.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Memory_Component proto.InternalMessageInfo
-
-func (m *Memory_Component) GetType() Memory_Type {
-	if m != nil {
-		return m.Type
-	}
-	return Memory_TYPE_UNDEFINED
-}
-
-func (m *Memory_Component) GetSpeedMhz() int32 {
-	if m != nil {
-		return m.SpeedMhz
-	}
-	return 0
-}
-
-func (m *Memory_Component) GetSize() *ByteSize {
-	if m != nil {
-		return m.Size
-	}
-	return nil
-}
-
-func (m *Memory_Component) GetPartNumber() string {
-	if m != nil {
-		return m.PartNumber
-	}
-	return ""
-}
-
-func (m *Memory_Component) GetManufacturerId() *PartnerId {
-	if m != nil {
-		return m.ManufacturerId
-	}
-	return nil
-}
-
-type Memory_Constraint struct {
-	MinSize              *ByteSize     `protobuf:"bytes,1,opt,name=min_size,json=minSize,proto3" json:"min_size,omitempty"`
-	Types                []Memory_Type `protobuf:"varint,2,rep,packed,name=types,proto3,enum=prototype.Memory_Type" json:"types,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *Memory_Constraint) Reset()         { *m = Memory_Constraint{} }
-func (m *Memory_Constraint) String() string { return proto.CompactTextString(m) }
-func (*Memory_Constraint) ProtoMessage()    {}
-func (*Memory_Constraint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{3, 1}
-}
-
-func (m *Memory_Constraint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Memory_Constraint.Unmarshal(m, b)
-}
-func (m *Memory_Constraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Memory_Constraint.Marshal(b, m, deterministic)
-}
-func (m *Memory_Constraint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Memory_Constraint.Merge(m, src)
-}
-func (m *Memory_Constraint) XXX_Size() int {
-	return xxx_messageInfo_Memory_Constraint.Size(m)
-}
-func (m *Memory_Constraint) XXX_DiscardUnknown() {
-	xxx_messageInfo_Memory_Constraint.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Memory_Constraint proto.InternalMessageInfo
-
-func (m *Memory_Constraint) GetMinSize() *ByteSize {
-	if m != nil {
-		return m.MinSize
-	}
-	return nil
-}
-
-func (m *Memory_Constraint) GetTypes() []Memory_Type {
-	if m != nil {
-		return m.Types
-	}
-	return nil
-}
-
-type UsbDeviceId struct {
-	VendorId             uint32   `protobuf:"varint,1,opt,name=vendor_id,json=vendorId,proto3" json:"vendor_id,omitempty"`
-	ProductId            uint32   `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	BcdDevice            uint32   `protobuf:"varint,3,opt,name=bcd_device,json=bcdDevice,proto3" json:"bcd_device,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UsbDeviceId) Reset()         { *m = UsbDeviceId{} }
-func (m *UsbDeviceId) String() string { return proto.CompactTextString(m) }
-func (*UsbDeviceId) ProtoMessage()    {}
-func (*UsbDeviceId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{4}
-}
-
-func (m *UsbDeviceId) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UsbDeviceId.Unmarshal(m, b)
-}
-func (m *UsbDeviceId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UsbDeviceId.Marshal(b, m, deterministic)
-}
-func (m *UsbDeviceId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UsbDeviceId.Merge(m, src)
-}
-func (m *UsbDeviceId) XXX_Size() int {
-	return xxx_messageInfo_UsbDeviceId.Size(m)
-}
-func (m *UsbDeviceId) XXX_DiscardUnknown() {
-	xxx_messageInfo_UsbDeviceId.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UsbDeviceId proto.InternalMessageInfo
-
-func (m *UsbDeviceId) GetVendorId() uint32 {
-	if m != nil {
-		return m.VendorId
-	}
-	return 0
-}
-
-func (m *UsbDeviceId) GetProductId() uint32 {
-	if m != nil {
-		return m.ProductId
-	}
-	return 0
-}
-
-func (m *UsbDeviceId) GetBcdDevice() uint32 {
-	if m != nil {
-		return m.BcdDevice
-	}
-	return 0
-}
-
-type Bluetooth struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Bluetooth) Reset()         { *m = Bluetooth{} }
-func (m *Bluetooth) String() string { return proto.CompactTextString(m) }
-func (*Bluetooth) ProtoMessage()    {}
-func (*Bluetooth) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{5}
-}
-
-func (m *Bluetooth) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Bluetooth.Unmarshal(m, b)
-}
-func (m *Bluetooth) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Bluetooth.Marshal(b, m, deterministic)
-}
-func (m *Bluetooth) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Bluetooth.Merge(m, src)
-}
-func (m *Bluetooth) XXX_Size() int {
-	return xxx_messageInfo_Bluetooth.Size(m)
-}
-func (m *Bluetooth) XXX_DiscardUnknown() {
-	xxx_messageInfo_Bluetooth.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Bluetooth proto.InternalMessageInfo
-
-type Bluetooth_Component struct {
-	UsbDeviceId          *UsbDeviceId `protobuf:"bytes,1,opt,name=usb_device_id,json=usbDeviceId,proto3" json:"usb_device_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
-}
-
-func (m *Bluetooth_Component) Reset()         { *m = Bluetooth_Component{} }
-func (m *Bluetooth_Component) String() string { return proto.CompactTextString(m) }
-func (*Bluetooth_Component) ProtoMessage()    {}
-func (*Bluetooth_Component) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{5, 0}
-}
-
-func (m *Bluetooth_Component) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Bluetooth_Component.Unmarshal(m, b)
-}
-func (m *Bluetooth_Component) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Bluetooth_Component.Marshal(b, m, deterministic)
-}
-func (m *Bluetooth_Component) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Bluetooth_Component.Merge(m, src)
-}
-func (m *Bluetooth_Component) XXX_Size() int {
-	return xxx_messageInfo_Bluetooth_Component.Size(m)
-}
-func (m *Bluetooth_Component) XXX_DiscardUnknown() {
-	xxx_messageInfo_Bluetooth_Component.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Bluetooth_Component proto.InternalMessageInfo
-
-func (m *Bluetooth_Component) GetUsbDeviceId() *UsbDeviceId {
-	if m != nil {
-		return m.UsbDeviceId
-	}
-	return nil
-}
-
-type Bluetooth_Constraint struct {
-	BluetoothDevices     []*ComponentId `protobuf:"bytes,1,rep,name=bluetooth_devices,json=bluetoothDevices,proto3" json:"bluetooth_devices,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *Bluetooth_Constraint) Reset()         { *m = Bluetooth_Constraint{} }
-func (m *Bluetooth_Constraint) String() string { return proto.CompactTextString(m) }
-func (*Bluetooth_Constraint) ProtoMessage()    {}
-func (*Bluetooth_Constraint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{5, 1}
-}
-
-func (m *Bluetooth_Constraint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Bluetooth_Constraint.Unmarshal(m, b)
-}
-func (m *Bluetooth_Constraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Bluetooth_Constraint.Marshal(b, m, deterministic)
-}
-func (m *Bluetooth_Constraint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Bluetooth_Constraint.Merge(m, src)
-}
-func (m *Bluetooth_Constraint) XXX_Size() int {
-	return xxx_messageInfo_Bluetooth_Constraint.Size(m)
-}
-func (m *Bluetooth_Constraint) XXX_DiscardUnknown() {
-	xxx_messageInfo_Bluetooth_Constraint.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Bluetooth_Constraint proto.InternalMessageInfo
-
-func (m *Bluetooth_Constraint) GetBluetoothDevices() []*ComponentId {
-	if m != nil {
-		return m.BluetoothDevices
-	}
-	return nil
-}
-
-type Camera struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Camera) Reset()         { *m = Camera{} }
-func (m *Camera) String() string { return proto.CompactTextString(m) }
-func (*Camera) ProtoMessage()    {}
-func (*Camera) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{6}
-}
-
-func (m *Camera) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Camera.Unmarshal(m, b)
-}
-func (m *Camera) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Camera.Marshal(b, m, deterministic)
-}
-func (m *Camera) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Camera.Merge(m, src)
-}
-func (m *Camera) XXX_Size() int {
-	return xxx_messageInfo_Camera.Size(m)
-}
-func (m *Camera) XXX_DiscardUnknown() {
-	xxx_messageInfo_Camera.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Camera proto.InternalMessageInfo
-
-type Camera_Component struct {
-	Features             Camera_Feature   `protobuf:"varint,1,opt,name=features,proto3,enum=prototype.Camera_Feature" json:"features,omitempty"`
-	ClockType            Camera_ClockType `protobuf:"varint,2,opt,name=clock_type,json=clockType,proto3,enum=prototype.Camera_ClockType" json:"clock_type,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
-}
-
-func (m *Camera_Component) Reset()         { *m = Camera_Component{} }
-func (m *Camera_Component) String() string { return proto.CompactTextString(m) }
-func (*Camera_Component) ProtoMessage()    {}
-func (*Camera_Component) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{6, 0}
-}
-
-func (m *Camera_Component) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Camera_Component.Unmarshal(m, b)
-}
-func (m *Camera_Component) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Camera_Component.Marshal(b, m, deterministic)
-}
-func (m *Camera_Component) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Camera_Component.Merge(m, src)
-}
-func (m *Camera_Component) XXX_Size() int {
-	return xxx_messageInfo_Camera_Component.Size(m)
-}
-func (m *Camera_Component) XXX_DiscardUnknown() {
-	xxx_messageInfo_Camera_Component.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Camera_Component proto.InternalMessageInfo
-
-func (m *Camera_Component) GetFeatures() Camera_Feature {
-	if m != nil {
-		return m.Features
-	}
-	return Camera_FEATURE_UNKNOWN
-}
-
-func (m *Camera_Component) GetClockType() Camera_ClockType {
-	if m != nil {
-		return m.ClockType
-	}
-	return Camera_CLOCK_TYPE_UNDEFINED
-}
-
-type Camera_Constraint struct {
-	Features             []Camera_Feature `protobuf:"varint,2,rep,packed,name=features,proto3,enum=prototype.Camera_Feature" json:"features,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
-}
-
-func (m *Camera_Constraint) Reset()         { *m = Camera_Constraint{} }
-func (m *Camera_Constraint) String() string { return proto.CompactTextString(m) }
-func (*Camera_Constraint) ProtoMessage()    {}
-func (*Camera_Constraint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{6, 1}
-}
-
-func (m *Camera_Constraint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Camera_Constraint.Unmarshal(m, b)
-}
-func (m *Camera_Constraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Camera_Constraint.Marshal(b, m, deterministic)
-}
-func (m *Camera_Constraint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Camera_Constraint.Merge(m, src)
-}
-func (m *Camera_Constraint) XXX_Size() int {
-	return xxx_messageInfo_Camera_Constraint.Size(m)
-}
-func (m *Camera_Constraint) XXX_DiscardUnknown() {
-	xxx_messageInfo_Camera_Constraint.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Camera_Constraint proto.InternalMessageInfo
-
-func (m *Camera_Constraint) GetFeatures() []Camera_Feature {
-	if m != nil {
-		return m.Features
-	}
-	return nil
-}
-
 type Component struct {
 	Id *ComponentId `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// Types that are valid to be assigned to Type:
-	//	*Component_Soc
-	//	*Component_Memory
-	//	*Component_Bluetooth
-	//	*Component_Camera
+	//	*Component_Soc_
+	//	*Component_Memory_
+	//	*Component_Bluetooth_
+	//	*Component_Camera_
 	Type                 isComponent_Type `protobuf_oneof:"type"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
@@ -877,7 +232,7 @@ func (m *Component) Reset()         { *m = Component{} }
 func (m *Component) String() string { return proto.CompactTextString(m) }
 func (*Component) ProtoMessage()    {}
 func (*Component) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{7}
+	return fileDescriptor_04855929ef1e786b, []int{1}
 }
 
 func (m *Component) XXX_Unmarshal(b []byte) error {
@@ -909,29 +264,29 @@ type isComponent_Type interface {
 	isComponent_Type()
 }
 
-type Component_Soc struct {
-	Soc *Soc_Component `protobuf:"bytes,2,opt,name=soc,proto3,oneof"`
+type Component_Soc_ struct {
+	Soc *Component_Soc `protobuf:"bytes,2,opt,name=soc,proto3,oneof"`
 }
 
-type Component_Memory struct {
-	Memory *Memory_Component `protobuf:"bytes,3,opt,name=memory,proto3,oneof"`
+type Component_Memory_ struct {
+	Memory *Component_Memory `protobuf:"bytes,3,opt,name=memory,proto3,oneof"`
 }
 
-type Component_Bluetooth struct {
-	Bluetooth *Bluetooth_Component `protobuf:"bytes,4,opt,name=bluetooth,proto3,oneof"`
+type Component_Bluetooth_ struct {
+	Bluetooth *Component_Bluetooth `protobuf:"bytes,4,opt,name=bluetooth,proto3,oneof"`
 }
 
-type Component_Camera struct {
-	Camera *Camera_Component `protobuf:"bytes,5,opt,name=camera,proto3,oneof"`
+type Component_Camera_ struct {
+	Camera *Component_Camera `protobuf:"bytes,5,opt,name=camera,proto3,oneof"`
 }
 
-func (*Component_Soc) isComponent_Type() {}
+func (*Component_Soc_) isComponent_Type() {}
 
-func (*Component_Memory) isComponent_Type() {}
+func (*Component_Memory_) isComponent_Type() {}
 
-func (*Component_Bluetooth) isComponent_Type() {}
+func (*Component_Bluetooth_) isComponent_Type() {}
 
-func (*Component_Camera) isComponent_Type() {}
+func (*Component_Camera_) isComponent_Type() {}
 
 func (m *Component) GetType() isComponent_Type {
 	if m != nil {
@@ -940,29 +295,29 @@ func (m *Component) GetType() isComponent_Type {
 	return nil
 }
 
-func (m *Component) GetSoc() *Soc_Component {
-	if x, ok := m.GetType().(*Component_Soc); ok {
+func (m *Component) GetSoc() *Component_Soc {
+	if x, ok := m.GetType().(*Component_Soc_); ok {
 		return x.Soc
 	}
 	return nil
 }
 
-func (m *Component) GetMemory() *Memory_Component {
-	if x, ok := m.GetType().(*Component_Memory); ok {
+func (m *Component) GetMemory() *Component_Memory {
+	if x, ok := m.GetType().(*Component_Memory_); ok {
 		return x.Memory
 	}
 	return nil
 }
 
-func (m *Component) GetBluetooth() *Bluetooth_Component {
-	if x, ok := m.GetType().(*Component_Bluetooth); ok {
+func (m *Component) GetBluetooth() *Component_Bluetooth {
+	if x, ok := m.GetType().(*Component_Bluetooth_); ok {
 		return x.Bluetooth
 	}
 	return nil
 }
 
-func (m *Component) GetCamera() *Camera_Component {
-	if x, ok := m.GetType().(*Component_Camera); ok {
+func (m *Component) GetCamera() *Component_Camera {
+	if x, ok := m.GetType().(*Component_Camera_); ok {
 		return x.Camera
 	}
 	return nil
@@ -971,11 +326,232 @@ func (m *Component) GetCamera() *Camera_Component {
 // XXX_OneofWrappers is for the internal use of the proto package.
 func (*Component) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
-		(*Component_Soc)(nil),
-		(*Component_Memory)(nil),
-		(*Component_Bluetooth)(nil),
-		(*Component_Camera)(nil),
+		(*Component_Soc_)(nil),
+		(*Component_Memory_)(nil),
+		(*Component_Bluetooth_)(nil),
+		(*Component_Camera_)(nil),
 	}
+}
+
+type Component_Soc struct {
+	Family               Component_Soc_Family `protobuf:"varint,1,opt,name=family,proto3,enum=prototype.Component_Soc_Family" json:"family,omitempty"`
+	Model                string               `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
+	Cores                int32                `protobuf:"varint,3,opt,name=cores,proto3" json:"cores,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *Component_Soc) Reset()         { *m = Component_Soc{} }
+func (m *Component_Soc) String() string { return proto.CompactTextString(m) }
+func (*Component_Soc) ProtoMessage()    {}
+func (*Component_Soc) Descriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 0}
+}
+
+func (m *Component_Soc) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Component_Soc.Unmarshal(m, b)
+}
+func (m *Component_Soc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Component_Soc.Marshal(b, m, deterministic)
+}
+func (m *Component_Soc) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Component_Soc.Merge(m, src)
+}
+func (m *Component_Soc) XXX_Size() int {
+	return xxx_messageInfo_Component_Soc.Size(m)
+}
+func (m *Component_Soc) XXX_DiscardUnknown() {
+	xxx_messageInfo_Component_Soc.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Component_Soc proto.InternalMessageInfo
+
+func (m *Component_Soc) GetFamily() Component_Soc_Family {
+	if m != nil {
+		return m.Family
+	}
+	return Component_Soc_FAMILY_UNDEFINED
+}
+
+func (m *Component_Soc) GetModel() string {
+	if m != nil {
+		return m.Model
+	}
+	return ""
+}
+
+func (m *Component_Soc) GetCores() int32 {
+	if m != nil {
+		return m.Cores
+	}
+	return 0
+}
+
+var E_Component_Soc_Arch = &proto.ExtensionDesc{
+	ExtendedType:  (*descriptor.EnumValueOptions)(nil),
+	ExtensionType: (Component_Soc_Architecture)(nil),
+	Field:         1914503,
+	Name:          "prototype.Component.Soc.arch",
+	Tag:           "varint,1914503,opt,name=arch,enum=prototype.Component_Soc_Architecture",
+	Filename:      "prototype/component.proto",
+}
+
+type Component_Memory struct {
+	Type                 Component_Memory_Type `protobuf:"varint,1,opt,name=type,proto3,enum=prototype.Component_Memory_Type" json:"type,omitempty"`
+	SpeedMhz             int32                 `protobuf:"varint,2,opt,name=speed_mhz,json=speedMhz,proto3" json:"speed_mhz,omitempty"`
+	Size                 *ByteSize             `protobuf:"bytes,3,opt,name=size,proto3" json:"size,omitempty"`
+	PartNumber           string                `protobuf:"bytes,4,opt,name=part_number,json=partNumber,proto3" json:"part_number,omitempty"`
+	ManufacturerId       *PartnerId            `protobuf:"bytes,5,opt,name=manufacturer_id,json=manufacturerId,proto3" json:"manufacturer_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *Component_Memory) Reset()         { *m = Component_Memory{} }
+func (m *Component_Memory) String() string { return proto.CompactTextString(m) }
+func (*Component_Memory) ProtoMessage()    {}
+func (*Component_Memory) Descriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 1}
+}
+
+func (m *Component_Memory) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Component_Memory.Unmarshal(m, b)
+}
+func (m *Component_Memory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Component_Memory.Marshal(b, m, deterministic)
+}
+func (m *Component_Memory) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Component_Memory.Merge(m, src)
+}
+func (m *Component_Memory) XXX_Size() int {
+	return xxx_messageInfo_Component_Memory.Size(m)
+}
+func (m *Component_Memory) XXX_DiscardUnknown() {
+	xxx_messageInfo_Component_Memory.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Component_Memory proto.InternalMessageInfo
+
+func (m *Component_Memory) GetType() Component_Memory_Type {
+	if m != nil {
+		return m.Type
+	}
+	return Component_Memory_TYPE_UNDEFINED
+}
+
+func (m *Component_Memory) GetSpeedMhz() int32 {
+	if m != nil {
+		return m.SpeedMhz
+	}
+	return 0
+}
+
+func (m *Component_Memory) GetSize() *ByteSize {
+	if m != nil {
+		return m.Size
+	}
+	return nil
+}
+
+func (m *Component_Memory) GetPartNumber() string {
+	if m != nil {
+		return m.PartNumber
+	}
+	return ""
+}
+
+func (m *Component_Memory) GetManufacturerId() *PartnerId {
+	if m != nil {
+		return m.ManufacturerId
+	}
+	return nil
+}
+
+type Component_Bluetooth struct {
+	UsbDeviceId          *UsbDeviceId `protobuf:"bytes,1,opt,name=usb_device_id,json=usbDeviceId,proto3" json:"usb_device_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *Component_Bluetooth) Reset()         { *m = Component_Bluetooth{} }
+func (m *Component_Bluetooth) String() string { return proto.CompactTextString(m) }
+func (*Component_Bluetooth) ProtoMessage()    {}
+func (*Component_Bluetooth) Descriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 2}
+}
+
+func (m *Component_Bluetooth) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Component_Bluetooth.Unmarshal(m, b)
+}
+func (m *Component_Bluetooth) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Component_Bluetooth.Marshal(b, m, deterministic)
+}
+func (m *Component_Bluetooth) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Component_Bluetooth.Merge(m, src)
+}
+func (m *Component_Bluetooth) XXX_Size() int {
+	return xxx_messageInfo_Component_Bluetooth.Size(m)
+}
+func (m *Component_Bluetooth) XXX_DiscardUnknown() {
+	xxx_messageInfo_Component_Bluetooth.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Component_Bluetooth proto.InternalMessageInfo
+
+func (m *Component_Bluetooth) GetUsbDeviceId() *UsbDeviceId {
+	if m != nil {
+		return m.UsbDeviceId
+	}
+	return nil
+}
+
+type Component_Camera struct {
+	Features             []Component_Camera_Feature `protobuf:"varint,1,rep,packed,name=features,proto3,enum=prototype.Component_Camera_Feature" json:"features,omitempty"`
+	ClockType            Component_Camera_ClockType `protobuf:"varint,2,opt,name=clock_type,json=clockType,proto3,enum=prototype.Component_Camera_ClockType" json:"clock_type,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
+	XXX_unrecognized     []byte                     `json:"-"`
+	XXX_sizecache        int32                      `json:"-"`
+}
+
+func (m *Component_Camera) Reset()         { *m = Component_Camera{} }
+func (m *Component_Camera) String() string { return proto.CompactTextString(m) }
+func (*Component_Camera) ProtoMessage()    {}
+func (*Component_Camera) Descriptor() ([]byte, []int) {
+	return fileDescriptor_04855929ef1e786b, []int{1, 3}
+}
+
+func (m *Component_Camera) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Component_Camera.Unmarshal(m, b)
+}
+func (m *Component_Camera) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Component_Camera.Marshal(b, m, deterministic)
+}
+func (m *Component_Camera) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Component_Camera.Merge(m, src)
+}
+func (m *Component_Camera) XXX_Size() int {
+	return xxx_messageInfo_Component_Camera.Size(m)
+}
+func (m *Component_Camera) XXX_DiscardUnknown() {
+	xxx_messageInfo_Component_Camera.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Component_Camera proto.InternalMessageInfo
+
+func (m *Component_Camera) GetFeatures() []Component_Camera_Feature {
+	if m != nil {
+		return m.Features
+	}
+	return nil
+}
+
+func (m *Component_Camera) GetClockType() Component_Camera_ClockType {
+	if m != nil {
+		return m.ClockType
+	}
+	return Component_Camera_CLOCK_TYPE_UNDEFINED
 }
 
 type ComponentList struct {
@@ -989,7 +565,7 @@ func (m *ComponentList) Reset()         { *m = ComponentList{} }
 func (m *ComponentList) String() string { return proto.CompactTextString(m) }
 func (*ComponentList) ProtoMessage()    {}
 func (*ComponentList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_04855929ef1e786b, []int{8}
+	return fileDescriptor_04855929ef1e786b, []int{2}
 }
 
 func (m *ComponentList) XXX_Unmarshal(b []byte) error {
@@ -1018,102 +594,77 @@ func (m *ComponentList) GetValue() []*Component {
 }
 
 func init() {
-	proto.RegisterEnum("prototype.ByteSize_Unit", ByteSize_Unit_name, ByteSize_Unit_value)
-	proto.RegisterEnum("prototype.Soc_Architecture", Soc_Architecture_name, Soc_Architecture_value)
-	proto.RegisterEnum("prototype.Soc_Family", Soc_Family_name, Soc_Family_value)
-	proto.RegisterEnum("prototype.Memory_Type", Memory_Type_name, Memory_Type_value)
-	proto.RegisterEnum("prototype.Camera_Feature", Camera_Feature_name, Camera_Feature_value)
-	proto.RegisterEnum("prototype.Camera_ClockType", Camera_ClockType_name, Camera_ClockType_value)
+	proto.RegisterEnum("prototype.Component_Soc_Architecture", Component_Soc_Architecture_name, Component_Soc_Architecture_value)
+	proto.RegisterEnum("prototype.Component_Soc_Family", Component_Soc_Family_name, Component_Soc_Family_value)
+	proto.RegisterEnum("prototype.Component_Memory_Type", Component_Memory_Type_name, Component_Memory_Type_value)
+	proto.RegisterEnum("prototype.Component_Camera_Feature", Component_Camera_Feature_name, Component_Camera_Feature_value)
+	proto.RegisterEnum("prototype.Component_Camera_ClockType", Component_Camera_ClockType_name, Component_Camera_ClockType_value)
 	proto.RegisterType((*ComponentId)(nil), "prototype.ComponentId")
-	proto.RegisterType((*ByteSize)(nil), "prototype.ByteSize")
-	proto.RegisterExtension(E_Soc_Arch)
-	proto.RegisterType((*Soc)(nil), "prototype.Soc")
-	proto.RegisterType((*Soc_Component)(nil), "prototype.Soc.Component")
-	proto.RegisterType((*Soc_Constraint)(nil), "prototype.Soc.Constraint")
-	proto.RegisterType((*Memory)(nil), "prototype.Memory")
-	proto.RegisterType((*Memory_Component)(nil), "prototype.Memory.Component")
-	proto.RegisterType((*Memory_Constraint)(nil), "prototype.Memory.Constraint")
-	proto.RegisterType((*UsbDeviceId)(nil), "prototype.UsbDeviceId")
-	proto.RegisterType((*Bluetooth)(nil), "prototype.Bluetooth")
-	proto.RegisterType((*Bluetooth_Component)(nil), "prototype.Bluetooth.Component")
-	proto.RegisterType((*Bluetooth_Constraint)(nil), "prototype.Bluetooth.Constraint")
-	proto.RegisterType((*Camera)(nil), "prototype.Camera")
-	proto.RegisterType((*Camera_Component)(nil), "prototype.Camera.Component")
-	proto.RegisterType((*Camera_Constraint)(nil), "prototype.Camera.Constraint")
 	proto.RegisterType((*Component)(nil), "prototype.Component")
+	proto.RegisterExtension(E_Component_Soc_Arch)
+	proto.RegisterType((*Component_Soc)(nil), "prototype.Component.Soc")
+	proto.RegisterType((*Component_Memory)(nil), "prototype.Component.Memory")
+	proto.RegisterType((*Component_Bluetooth)(nil), "prototype.Component.Bluetooth")
+	proto.RegisterType((*Component_Camera)(nil), "prototype.Component.Camera")
 	proto.RegisterType((*ComponentList)(nil), "prototype.ComponentList")
 }
 
 func init() { proto.RegisterFile("prototype/component.proto", fileDescriptor_04855929ef1e786b) }
 
 var fileDescriptor_04855929ef1e786b = []byte{
-	// 1085 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x56, 0x4b, 0x73, 0xe3, 0x44,
-	0x10, 0x5e, 0x3d, 0xec, 0x58, 0xed, 0x4d, 0x76, 0x76, 0x76, 0x09, 0x5e, 0xa7, 0x80, 0x20, 0xaa,
-	0x20, 0x45, 0x05, 0x99, 0x72, 0x1e, 0xb5, 0xbb, 0x3c, 0xaa, 0x6c, 0xd9, 0xce, 0xaa, 0xe2, 0x47,
-	0x50, 0x94, 0x65, 0x03, 0x07, 0x95, 0x2d, 0x8d, 0x63, 0x81, 0xa5, 0x71, 0xe9, 0x91, 0xaa, 0xe4,
-	0xc0, 0x91, 0x13, 0x77, 0xfe, 0x01, 0x70, 0x84, 0xdf, 0xc0, 0xef, 0xe0, 0xce, 0x85, 0xff, 0x40,
-	0xcd, 0x48, 0x56, 0xe4, 0x4d, 0x78, 0x9c, 0x3c, 0xdd, 0xfd, 0x75, 0x4f, 0x4f, 0x7f, 0xdd, 0x2d,
-	0xc3, 0x93, 0x45, 0x48, 0x63, 0x1a, 0x5f, 0x2d, 0x48, 0xc3, 0xa1, 0xfe, 0x82, 0x06, 0x24, 0x88,
-	0x35, 0xae, 0xc3, 0x4a, 0x6e, 0xaa, 0xbf, 0x79, 0x83, 0x5a, 0x8c, 0xc3, 0x38, 0x20, 0x61, 0x8a,
-	0xa9, 0x6f, 0x5f, 0x50, 0x7a, 0x31, 0x27, 0x0d, 0x2e, 0x4d, 0x92, 0x69, 0xc3, 0x25, 0x91, 0x13,
-	0x7a, 0x8b, 0x98, 0x66, 0x08, 0xf5, 0x3d, 0xa8, 0xea, 0xcb, 0xc0, 0x86, 0x8b, 0x1f, 0x43, 0xe9,
-	0x72, 0x3c, 0x4f, 0x48, 0x4d, 0xd8, 0x16, 0x76, 0x14, 0x33, 0x15, 0xd4, 0x1f, 0x04, 0xa8, 0xb4,
-	0xaf, 0x62, 0x72, 0xea, 0x5d, 0x93, 0x55, 0x48, 0x29, 0x83, 0xe0, 0x5d, 0x90, 0x93, 0xc0, 0x8b,
-	0x6b, 0xe2, 0xb6, 0xb0, 0xb3, 0xd1, 0xac, 0x69, 0x79, 0x46, 0xda, 0xd2, 0x51, 0x3b, 0x0b, 0xbc,
-	0xd8, 0xe4, 0x28, 0xf5, 0x53, 0x90, 0x99, 0x84, 0x31, 0x6c, 0x9c, 0x0d, 0x0d, 0xcb, 0x3e, 0x1b,
-	0x76, 0xba, 0x3d, 0x63, 0xd8, 0xed, 0xa0, 0x7b, 0xb8, 0x02, 0x72, 0xfb, 0xdc, 0xea, 0x22, 0x01,
-	0x97, 0x41, 0x3c, 0x6e, 0x23, 0x91, 0xfd, 0x0e, 0xda, 0x48, 0x62, 0xbf, 0x47, 0x6d, 0x24, 0xab,
-	0xbf, 0x48, 0x20, 0x9d, 0x52, 0xa7, 0x3e, 0x05, 0x25, 0xcf, 0x1d, 0x7f, 0x04, 0xe5, 0xe9, 0xd8,
-	0xf7, 0xe6, 0x57, 0x3c, 0xaf, 0x8d, 0xe6, 0x1b, 0x85, 0x14, 0x4e, 0xa9, 0xa3, 0xf5, 0xb8, 0xd1,
-	0xcc, 0x40, 0xec, 0x15, 0x3e, 0x75, 0xc9, 0x9c, 0x27, 0xac, 0x98, 0xa9, 0xc0, 0xb4, 0x0e, 0x0d,
-	0x49, 0x54, 0x93, 0xd2, 0xb7, 0x71, 0xa1, 0xae, 0x03, 0xe8, 0x34, 0x88, 0xe2, 0x70, 0xec, 0x05,
-	0x31, 0x3e, 0x00, 0x88, 0xa8, 0x63, 0x73, 0x87, 0xa8, 0x26, 0x6c, 0x4b, 0x3b, 0xd5, 0xe6, 0x66,
-	0xe1, 0xb2, 0x42, 0x39, 0x4d, 0x25, 0xa2, 0xce, 0x80, 0x03, 0xd5, 0x53, 0xb8, 0xdf, 0x0a, 0x9d,
-	0x99, 0x17, 0x13, 0x27, 0x4e, 0x42, 0x82, 0xeb, 0xb0, 0xd9, 0x32, 0xf5, 0x17, 0x86, 0xd5, 0xd5,
-	0xad, 0x33, 0xb3, 0xbb, 0x52, 0x82, 0x35, 0x90, 0x5e, 0x3d, 0x3d, 0x44, 0x02, 0x06, 0x28, 0xbf,
-	0x7a, 0x7a, 0x68, 0x1f, 0xee, 0x23, 0x91, 0x29, 0x5b, 0xe6, 0x00, 0x49, 0x58, 0x81, 0x52, 0xcb,
-	0x1c, 0x1c, 0xee, 0x23, 0x59, 0x35, 0xa0, 0xdc, 0x5b, 0xbe, 0x07, 0xf5, 0x5a, 0x03, 0xa3, 0x7f,
-	0xbe, 0x12, 0xe8, 0x21, 0x94, 0xcd, 0xe3, 0xbd, 0xbd, 0x67, 0xcf, 0x90, 0x50, 0x2f, 0xfd, 0xfa,
-	0xe7, 0x4f, 0x6b, 0x32, 0xde, 0x84, 0xea, 0x51, 0x77, 0x60, 0x0c, 0x0d, 0xbb, 0xdf, 0x3a, 0xee,
-	0x22, 0x31, 0xd5, 0x8b, 0x4d, 0x0b, 0xe4, 0x71, 0xe8, 0xcc, 0xf0, 0xbb, 0x5a, 0xda, 0x33, 0xda,
-	0xb2, 0x67, 0xb4, 0x6e, 0x90, 0xf8, 0x2f, 0x19, 0xc9, 0xa3, 0x45, 0xec, 0xd1, 0x20, 0xaa, 0x7d,
-	0xff, 0x57, 0xcc, 0x4b, 0xbc, 0xf5, 0x5a, 0x89, 0x8b, 0xef, 0x33, 0x79, 0x34, 0xf5, 0x37, 0x09,
-	0xca, 0x03, 0xe2, 0xd3, 0xf0, 0xaa, 0xfe, 0x87, 0x50, 0xa4, 0xeb, 0x43, 0x90, 0x99, 0x5f, 0x46,
-	0x56, 0xb1, 0x7e, 0x29, 0x5c, 0xb3, 0xae, 0x16, 0xc4, 0xe4, 0x18, 0xbc, 0x05, 0x4a, 0xb4, 0x20,
-	0xc4, 0xb5, 0xfd, 0xd9, 0x35, 0xe7, 0xab, 0x64, 0x56, 0xb8, 0x62, 0x30, 0xbb, 0xc6, 0x1f, 0x80,
-	0x1c, 0x79, 0xd7, 0x84, 0x33, 0x56, 0x6d, 0x3e, 0xba, 0xa3, 0xf1, 0x4c, 0x0e, 0xc0, 0xef, 0x40,
-	0x95, 0x0d, 0x87, 0x1d, 0x24, 0xfe, 0x84, 0x84, 0x35, 0x99, 0xf3, 0x0e, 0x4c, 0x35, 0xe4, 0x1a,
-	0xfc, 0x19, 0x3c, 0xf0, 0xc7, 0x41, 0x32, 0x1d, 0xf3, 0x07, 0x84, 0xb6, 0xe7, 0xd6, 0x4a, 0x3c,
-	0xe8, 0xe3, 0x42, 0xd0, 0x93, 0x74, 0xbe, 0x0c, 0xd7, 0xdc, 0x28, 0x82, 0x0d, 0xb7, 0xfe, 0xcd,
-	0x4a, 0x97, 0x68, 0x50, 0xf1, 0xbd, 0xc0, 0xe6, 0xa9, 0x09, 0xff, 0x9c, 0xda, 0x9a, 0xef, 0x05,
-	0x7c, 0xaa, 0x76, 0xa1, 0xc4, 0x2c, 0x51, 0x4d, 0xdc, 0x96, 0xfe, 0xa5, 0x20, 0x29, 0x48, 0xfd,
-	0x1a, 0x64, 0x26, 0xb2, 0xf9, 0xb1, 0xce, 0x4f, 0x6e, 0x35, 0x4f, 0xa7, 0x63, 0x22, 0x81, 0x0d,
-	0x52, 0xa7, 0x63, 0x36, 0x91, 0x98, 0x9d, 0xf6, 0x90, 0x94, 0x9d, 0xf6, 0x91, 0x8c, 0xab, 0xb0,
-	0xd6, 0x3f, 0xb1, 0xb9, 0xba, 0x74, 0x23, 0xec, 0xa3, 0xb2, 0x3a, 0x83, 0xea, 0x59, 0x34, 0xe9,
-	0x90, 0x4b, 0xcf, 0x21, 0x86, 0xcb, 0xaa, 0x7f, 0x49, 0x02, 0x97, 0xf2, 0x82, 0xb0, 0xa7, 0xac,
-	0x9b, 0x95, 0x54, 0x61, 0xb8, 0xf8, 0x2d, 0x80, 0x45, 0x48, 0xdd, 0xc4, 0x89, 0x99, 0x55, 0xe4,
-	0x56, 0x25, 0xd3, 0xa4, 0xe6, 0x89, 0xe3, 0xda, 0x2e, 0x8f, 0xc5, 0x29, 0x5a, 0x37, 0x95, 0x89,
-	0xe3, 0xa6, 0xc1, 0xd5, 0x9f, 0x05, 0x50, 0xda, 0xf3, 0x84, 0xc4, 0x94, 0xc6, 0xb3, 0xfa, 0x51,
-	0xb1, 0x3f, 0x9e, 0xc3, 0x7a, 0x12, 0x4d, 0x32, 0xcf, 0xe5, 0xcd, 0xab, 0x83, 0x56, 0x48, 0xd2,
-	0xac, 0x26, 0x37, 0x42, 0xfd, 0x8b, 0x15, 0x26, 0x74, 0x78, 0x38, 0x59, 0xde, 0x91, 0xc5, 0xfb,
-	0xaf, 0xb1, 0x45, 0xb9, 0x43, 0x1a, 0x33, 0x52, 0x7f, 0x17, 0xa1, 0xac, 0x8f, 0x7d, 0x12, 0x8e,
-	0xeb, 0xdf, 0x15, 0xd3, 0x3c, 0x80, 0xca, 0x94, 0x8c, 0x59, 0x0b, 0x44, 0x59, 0x2b, 0x3f, 0x29,
-	0xc6, 0xe4, 0x1e, 0x5a, 0x2f, 0x45, 0x98, 0x39, 0x14, 0x3f, 0x07, 0x70, 0xe6, 0xd4, 0xf9, 0xd6,
-	0xe6, 0x33, 0x20, 0xde, 0x9a, 0xa6, 0xcc, 0x51, 0x67, 0x18, 0xce, 0xbb, 0xe2, 0x2c, 0x8f, 0xb7,
-	0xb6, 0xd1, 0x4d, 0x02, 0x69, 0xeb, 0xfc, 0x9f, 0x04, 0xd4, 0x8f, 0x61, 0x2d, 0x53, 0xe2, 0x47,
-	0xf0, 0xa0, 0xd7, 0x6d, 0x65, 0x3b, 0xe8, 0x78, 0x38, 0xfa, 0x72, 0x88, 0xee, 0x61, 0x04, 0xf7,
-	0x5b, 0xba, 0x65, 0xbc, 0x34, 0xac, 0x73, 0xbb, 0xdf, 0xed, 0x20, 0x41, 0x6d, 0x83, 0x92, 0xa7,
-	0x83, 0x6b, 0xf0, 0x58, 0xef, 0x8f, 0xf4, 0x63, 0xfb, 0x56, 0xf7, 0xad, 0x83, 0x32, 0x18, 0x0d,
-	0x47, 0xd6, 0x68, 0x68, 0xe8, 0x48, 0xc0, 0xf7, 0xa1, 0xd2, 0x1e, 0x8d, 0x2c, 0xcb, 0x18, 0x74,
-	0x91, 0xa8, 0xfe, 0x28, 0x16, 0x6b, 0xf7, 0x3e, 0x88, 0x77, 0xf2, 0x5a, 0x64, 0x42, 0xf4, 0x5c,
-	0xbc, 0x0b, 0x52, 0x44, 0x1d, 0x5e, 0xa5, 0xea, 0xca, 0x97, 0x85, 0xed, 0x9c, 0x1c, 0xfc, 0xe2,
-	0x9e, 0xc9, 0x60, 0xf8, 0x00, 0xca, 0x3e, 0x1f, 0x98, 0x6c, 0x23, 0x6c, 0xdd, 0x9e, 0xa4, 0xa2,
-	0x4f, 0x06, 0xc6, 0x9f, 0x83, 0x92, 0x93, 0xce, 0x77, 0x43, 0xb5, 0xf9, 0x76, 0x71, 0x60, 0x97,
-	0xb6, 0x15, 0xe7, 0x1b, 0x17, 0x76, 0xad, 0xc3, 0x8b, 0x9d, 0xed, 0x8c, 0xbb, 0xd8, 0x2c, 0x5e,
-	0x9b, 0x82, 0xdb, 0xe5, 0x74, 0x0d, 0xaa, 0x9f, 0xc0, 0x7a, 0x6e, 0xee, 0x7b, 0x11, 0xdb, 0x8f,
-	0xf9, 0x57, 0x56, 0x7a, 0x6d, 0x05, 0xe5, 0xc0, 0xec, 0xdb, 0xdb, 0x3e, 0xf8, 0x6a, 0xef, 0x82,
-	0x6a, 0xce, 0x2c, 0xa4, 0xbe, 0x97, 0xf8, 0x1a, 0x0d, 0x2f, 0x1a, 0x4b, 0x81, 0x46, 0x0d, 0x2f,
-	0x98, 0x86, 0xe3, 0xf4, 0x1f, 0x40, 0xe3, 0x82, 0x36, 0xf2, 0x38, 0x93, 0x32, 0x3f, 0xee, 0xfd,
-	0x1d, 0x00, 0x00, 0xff, 0xff, 0x26, 0x6a, 0x8e, 0x1f, 0x64, 0x08, 0x00, 0x00,
+	// 860 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x94, 0xeb, 0x6e, 0xe3, 0xc4,
+	0x17, 0xc0, 0x13, 0x27, 0x71, 0xeb, 0x93, 0xb6, 0x3b, 0xff, 0xd9, 0xaa, 0x7f, 0x93, 0x95, 0xd8,
+	0x92, 0x15, 0xb0, 0x42, 0xc8, 0x41, 0x49, 0xb6, 0xec, 0x82, 0x00, 0x25, 0xb6, 0xb3, 0xb5, 0x9a,
+	0x4b, 0x35, 0x75, 0x97, 0x2d, 0x48, 0x58, 0x8e, 0x3d, 0x49, 0x2c, 0x62, 0x4f, 0xe4, 0xcb, 0x4a,
+	0xe9, 0x77, 0xc4, 0x33, 0xf0, 0x02, 0x3c, 0x03, 0x5f, 0x79, 0x1b, 0x84, 0xc4, 0x3b, 0x20, 0x8f,
+	0x1d, 0x27, 0xcb, 0x76, 0xfb, 0x6d, 0xce, 0x99, 0xdf, 0xb9, 0xcc, 0xb9, 0x0c, 0x7c, 0xb0, 0x0a,
+	0x59, 0xcc, 0xe2, 0xf5, 0x8a, 0xb6, 0x1c, 0xe6, 0xaf, 0x58, 0x40, 0x83, 0x58, 0xe1, 0x3a, 0x2c,
+	0x15, 0x57, 0x8d, 0x93, 0xb7, 0x28, 0x9f, 0x05, 0x19, 0xd2, 0xf8, 0xff, 0x56, 0xbf, 0xb2, 0xc3,
+	0x38, 0xa0, 0x61, 0x7e, 0x71, 0x3a, 0x67, 0x6c, 0xbe, 0xa4, 0x2d, 0x2e, 0x4d, 0x93, 0x59, 0xcb,
+	0xa5, 0x91, 0x13, 0x7a, 0xab, 0x98, 0xe5, 0x44, 0xf3, 0x09, 0xd4, 0xd5, 0x4d, 0x40, 0xc3, 0xc5,
+	0xc7, 0x50, 0x7b, 0x63, 0x2f, 0x13, 0x2a, 0x97, 0x4f, 0xcb, 0x4f, 0x25, 0x92, 0x09, 0xcd, 0xdf,
+	0x00, 0xa4, 0x82, 0xc2, 0x9f, 0x80, 0xe0, 0xb9, 0x1c, 0xa8, 0xb7, 0x4f, 0x94, 0x22, 0xb4, 0xb2,
+	0xe3, 0x87, 0x08, 0x9e, 0x8b, 0x3f, 0x87, 0x4a, 0xc4, 0x1c, 0x59, 0xe0, 0xa0, 0x7c, 0x17, 0xa8,
+	0x5c, 0x31, 0xe7, 0xbc, 0x44, 0x52, 0x0c, 0x3f, 0x03, 0xd1, 0xa7, 0x3e, 0x0b, 0xd7, 0x72, 0x85,
+	0x1b, 0x3c, 0xba, 0xd3, 0x60, 0xc4, 0x91, 0xf3, 0x12, 0xc9, 0x61, 0xfc, 0x2d, 0x48, 0xd3, 0x65,
+	0x42, 0x63, 0xc6, 0xe2, 0x85, 0x5c, 0xe5, 0x96, 0x1f, 0xde, 0x69, 0xd9, 0xdf, 0x50, 0xe7, 0x25,
+	0xb2, 0x35, 0x49, 0xc3, 0x3a, 0xb6, 0x4f, 0x43, 0x5b, 0xae, 0xdd, 0x13, 0x56, 0xe5, 0x48, 0x1a,
+	0x36, 0x83, 0x1b, 0x7f, 0x0b, 0x50, 0xb9, 0x62, 0x0e, 0xfe, 0x12, 0xc4, 0x99, 0xed, 0x7b, 0xcb,
+	0x35, 0xaf, 0xc7, 0x51, 0xfb, 0xf1, 0xfb, 0x9e, 0xa9, 0x0c, 0x38, 0x46, 0x72, 0x3c, 0x2d, 0xb4,
+	0xcf, 0x5c, 0xba, 0xe4, 0xe5, 0x91, 0x48, 0x26, 0xa4, 0x5a, 0x87, 0x85, 0x34, 0xe2, 0x35, 0xa8,
+	0x91, 0x4c, 0x68, 0x5e, 0xc1, 0x41, 0x2f, 0x74, 0x16, 0x5e, 0x4c, 0x9d, 0x38, 0x09, 0x29, 0x6e,
+	0xc0, 0x49, 0x8f, 0xa8, 0xe7, 0x86, 0xa9, 0xab, 0xe6, 0x35, 0xd1, 0xad, 0xeb, 0xb1, 0xa6, 0x0f,
+	0x8c, 0xb1, 0xae, 0xa1, 0x12, 0xde, 0x83, 0xca, 0xeb, 0xe7, 0x67, 0xa8, 0x8c, 0x01, 0xc4, 0xd7,
+	0xcf, 0xcf, 0xac, 0xb3, 0x2e, 0x12, 0x52, 0x65, 0x8f, 0x8c, 0x50, 0x05, 0x4b, 0x50, 0xeb, 0x91,
+	0xd1, 0x59, 0x17, 0x55, 0x9b, 0x06, 0x88, 0x83, 0x4d, 0x2a, 0x68, 0xd0, 0x1b, 0x19, 0xc3, 0x9b,
+	0xb7, 0x1c, 0xfd, 0x0f, 0x44, 0x72, 0xd1, 0xe9, 0xbc, 0x78, 0x81, 0xca, 0x8d, 0xda, 0x1f, 0x7f,
+	0xfd, 0xbe, 0x57, 0xc5, 0x27, 0x50, 0x7f, 0xa9, 0x8f, 0x8c, 0xb1, 0x61, 0x0d, 0x7b, 0x17, 0x3a,
+	0x12, 0x32, 0xbd, 0xd0, 0xfe, 0x09, 0xaa, 0x76, 0xe8, 0x2c, 0xf0, 0x47, 0x4a, 0x36, 0x6e, 0xca,
+	0x66, 0xdc, 0x14, 0x3d, 0x48, 0xfc, 0x57, 0xe9, 0x08, 0x4d, 0x56, 0xb1, 0xc7, 0x82, 0x48, 0xfe,
+	0xf5, 0x9f, 0x98, 0xd7, 0xe9, 0xe3, 0xf7, 0xd6, 0x69, 0xf7, 0xa5, 0x84, 0xfb, 0x6d, 0xfc, 0x29,
+	0x80, 0x98, 0x35, 0x1e, 0x77, 0xa1, 0x9a, 0xda, 0xe4, 0xd5, 0x3e, 0xbd, 0x67, 0x46, 0x14, 0x73,
+	0xbd, 0xa2, 0x84, 0xd3, 0xf8, 0x11, 0x48, 0xd1, 0x8a, 0x52, 0xd7, 0xf2, 0x17, 0xb7, 0xbc, 0xe0,
+	0x35, 0xb2, 0xcf, 0x15, 0xa3, 0xc5, 0x2d, 0xfe, 0x14, 0xaa, 0x91, 0x77, 0x4b, 0xf3, 0xb1, 0x7b,
+	0xb8, 0xe3, 0xb2, 0xbf, 0x8e, 0xe9, 0x95, 0x77, 0x4b, 0x09, 0x07, 0xf0, 0x63, 0xa8, 0xa7, 0xdb,
+	0x65, 0x05, 0x89, 0x3f, 0xa5, 0x21, 0x1f, 0x36, 0x89, 0x40, 0xaa, 0x1a, 0x73, 0x0d, 0xfe, 0x06,
+	0x1e, 0xf8, 0x76, 0x90, 0xcc, 0x6c, 0x9e, 0x7c, 0x68, 0x79, 0x6e, 0x3e, 0x54, 0xc7, 0x3b, 0x4e,
+	0x2f, 0xb3, 0x05, 0x35, 0x5c, 0x72, 0xb4, 0x0b, 0x1b, 0x6e, 0xf3, 0x47, 0xa8, 0xa6, 0x39, 0x63,
+	0x0c, 0x47, 0xe6, 0xcd, 0xe5, 0x3b, 0x6d, 0xd5, 0x34, 0x82, 0xca, 0x78, 0x1f, 0xaa, 0x9a, 0x46,
+	0xda, 0x48, 0xc8, 0x4f, 0x1d, 0x54, 0xc9, 0x4f, 0x5d, 0x54, 0xc5, 0x75, 0xd8, 0x1b, 0x5e, 0x5a,
+	0x5c, 0x5d, 0xdb, 0x0a, 0x5d, 0x24, 0x36, 0x5e, 0x82, 0x54, 0x6c, 0x00, 0xfe, 0x0a, 0x0e, 0x93,
+	0x68, 0x6a, 0xb9, 0xf4, 0x8d, 0xe7, 0x50, 0xeb, 0xce, 0x65, 0xbe, 0x8e, 0xa6, 0x1a, 0xbf, 0x36,
+	0x5c, 0x52, 0x4f, 0xb6, 0x42, 0xe3, 0x17, 0x01, 0xc4, 0x6c, 0x1d, 0xf0, 0x77, 0xb0, 0x3f, 0xa3,
+	0x76, 0x9a, 0x7e, 0x24, 0x97, 0x4f, 0x2b, 0x4f, 0x8f, 0xda, 0x4f, 0xee, 0xd9, 0x1e, 0x65, 0x90,
+	0xb1, 0xa4, 0x30, 0xc2, 0x1a, 0x80, 0xb3, 0x64, 0xce, 0xcf, 0x16, 0xef, 0xa9, 0x70, 0xcf, 0x64,
+	0xe4, 0x2e, 0xd4, 0x94, 0xe6, 0x8d, 0x95, 0x9c, 0xcd, 0xb1, 0xf9, 0x05, 0xec, 0xe5, 0xae, 0xf1,
+	0x43, 0x78, 0x30, 0xd0, 0x7b, 0xf9, 0x52, 0x5c, 0x8c, 0x27, 0xdf, 0x8f, 0x51, 0x09, 0x23, 0x38,
+	0xe8, 0xa9, 0xa6, 0xf1, 0xca, 0x30, 0x6f, 0xac, 0xa1, 0xae, 0xa1, 0x72, 0xb3, 0x0f, 0x52, 0xe1,
+	0x09, 0xcb, 0x70, 0xac, 0x0e, 0x27, 0xea, 0x85, 0xf5, 0x4e, 0xd1, 0x0f, 0x41, 0x1a, 0x4d, 0xc6,
+	0x13, 0x73, 0x32, 0x36, 0x54, 0x54, 0xc6, 0x07, 0xb0, 0xdf, 0x9f, 0x4c, 0x4c, 0xd3, 0x18, 0xe9,
+	0x48, 0xe8, 0x8b, 0xd9, 0x24, 0x36, 0xbf, 0x86, 0xc3, 0x22, 0xcd, 0xa1, 0x17, 0xc5, 0xf8, 0xb3,
+	0xed, 0x17, 0x5a, 0xf9, 0x4f, 0xef, 0x0b, 0x30, 0xff, 0x58, 0xfb, 0xcf, 0x7e, 0xe8, 0xcc, 0x99,
+	0xe2, 0x2c, 0x42, 0xe6, 0x7b, 0x89, 0xaf, 0xb0, 0x70, 0xde, 0xda, 0x08, 0x2c, 0x6a, 0x79, 0xc1,
+	0x2c, 0xb4, 0xb3, 0xbf, 0xbb, 0x35, 0x67, 0xad, 0xc2, 0xcf, 0x54, 0xe4, 0xc7, 0xce, 0xbf, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0x63, 0xfa, 0x3e, 0x86, 0x36, 0x06, 0x00, 0x00,
 }
