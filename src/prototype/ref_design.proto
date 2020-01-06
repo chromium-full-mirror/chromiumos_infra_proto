@@ -36,7 +36,7 @@ message DesignOptions {
   Feature base_light_sensor = 10;
   Feature lid_light_sensor = 11;
   Feature touchscreen = 12;
-  Feature stlyus = 13;
+  Stylus stlyus = 13;
 
   // General feature presense proto that can be used
   // for any features that don't have specific attributes.
@@ -54,6 +54,16 @@ message DesignOptions {
     }
     Presence.Indicator presence = 1;
     Location location = 2;
+  }
+
+  message Stylus {
+    enum Category {
+      STYLUS_CATEGORY_UNKNOWN = 0;
+      INTERNAL = 1;
+      EXTERNAL = 2;
+    }
+    Presence.Indicator presence = 1;
+    Category category = 2;
   }
 }
 
