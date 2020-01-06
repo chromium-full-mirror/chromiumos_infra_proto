@@ -1,0 +1,61 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package chromiumos;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+
+// Bot Policy to apply to a bot pool.
+message BotPolicy {
+    // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
+    string bot_group = 1;
+
+    // The type of bot to be requested.
+    message BotType {
+        // The string bot "shirt size" to be requested for the pool.
+        string bot_size = 1;
+        // The number of cores per bot. Will be used to limit quota usage.
+        int32 cores_per_bot = 2;
+    }
+    BotType bot_type = 2;
+
+    // Scaling restriction specifies the limits on how the group can be
+    // expanded or reduced.
+    message ScalingRestriction {
+        // Hard limit on the maximum number of bots to request.
+        int32 bot_ceiling = 1;
+        // Hard limit on the minimum number of bots to request.
+        int32 bot_floor = 2;
+        // Soft limit on the number of idle bots to maintain.
+        int32 min_idle = 3;
+        // Hard minimum limit on the absolute delta between request amount and
+        // existing bot count.
+        int32 step_size = 4;
+        // Static number to request when demand is not accessible.
+        int32 bot_fallback = 5;
+    }
+    ScalingRestriction scaling_restriction = 3;
+
+    // A set of restrictions on the regions and how to distribute bots
+    // between them.
+    message RegionRestriction {
+        // Region of the bot group.
+        string region = 1;
+        // Specific prefix of the bot group.
+        string prefix = 2;
+        // Weight to be applied to this group. The number of bots requested
+        // from each region will be proportional to the weight unless a
+        // quota limit is violated.
+        float weight = 3;
+    }
+    repeated RegionRestriction region_restrictions = 4;
+}
+
+// Configures the root message.
+message BotPolicyCfg {
+  // All bot policies.
+  repeated BotPolicy bot_policies = 1;
+}
