@@ -23,15 +23,9 @@ message Constraint {
   Level level = 1;
 
   oneof type {
-    Soc soc = 3;
     Memory memory = 4;
-    Bluetooth bluetooth = 5;
     Camera front_camera = 6;
     Camera rear_camera = 7;
-  }
-
-  message Soc {
-    repeated ComponentId models = 1;
   }
 
   message Memory {
@@ -39,19 +33,27 @@ message Constraint {
     repeated Component.Memory.Type types = 2;
   }
 
-  message Bluetooth {
-    repeated ComponentId models = 1;
-  }
-
   message Camera {
-    repeated Component.Camera.Feature features = 1;
-    DesignOptions.Feature usage = 2;
+    Presence.Indicator presence = 1;
+    repeated Component.Camera.Feature features = 2;
   }
+}
+
+message ComponentQual {
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    REQUESTED = 1;
+    TECHNICALLY_QUALIFIED = 2;
+    QUALIFIED = 3;
+  }
+  ComponentId component_id = 1;
+  Status status = 2;
 }
 
 message RefDesignKit {
   RefDesignKitId id = 1;
   repeated Requirement reqs = 2;
+  repeated ComponentQual component_quals = 3;
 
   message Requirement {
     repeated RefDesign.FormFactor form_factors = 1;
