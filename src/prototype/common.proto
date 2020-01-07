@@ -29,8 +29,9 @@ message ByteSize {
   Unit unit = 2;
 }
 
+// 4-digit hex encoded strings
 message UsbDeviceId {
-  uint32 vendor_id = 1;
-  uint32 product_id = 2;
-  uint32 bcd_device = 3;
+  string vendor_id = 1;
+  string product_id = 2;
+  string bcd_device = 3;
 }
