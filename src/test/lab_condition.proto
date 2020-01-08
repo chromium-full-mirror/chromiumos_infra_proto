@@ -58,9 +58,10 @@ message LabPeripheralsCondition {
 // Represents the condition of lab.Chameleon message. If all conditions for
 // each field are satisfied, this message is considered as satisfied.
 message LabChameleonCondition {
-  // If this is not CHAMELEON_TYPE_INVALID, chameleon_type and
-  // labs.Chameleon.chameleon_type must have same value.
-  lab.ChameleonType chameleon_type = 1;
+  reserved 1;
+  // If this is not CHAMELEON_TYPE_INVALID, chameleon_peripherals and
+  // labs.Chameleon.chameleon_peripherals must have same value.
+  repeated lab.ChameleonType chameleon_peripherals = 4;
 
   // If not empty, the value of lab.Chameleon.chameleon_type must not be
   // contained in this field.

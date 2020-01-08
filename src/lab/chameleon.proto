@@ -8,9 +8,10 @@ package lab;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
-// NEXT TAG: 3
+// NEXT TAG: 4
 message Chameleon {
-  ChameleonType chameleon_type = 1;
+  reserved 1;
+  repeated ChameleonType chameleon_peripherals = 3;
   // Indicate if there's audio_board in the chameleon.
   bool audio_board = 2;
 }
