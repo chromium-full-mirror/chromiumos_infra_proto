@@ -8,18 +8,21 @@ package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 
-// Bot Policy to apply to a bot pool.
+
+// Defines a type of bot associated with a bot group.
+message BotType {
+    // The string bot "shirt size" to be requested for the group.
+    string bot_size = 1;
+    // The number of cores per bot. Will be used to limit quota usage.
+    int32 cores_per_bot = 2;
+}
+
+// Bot Policy to apply to a bot group.
 message BotPolicy {
     // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
     string bot_group = 1;
 
     // The type of bot to be requested.
-    message BotType {
-        // The string bot "shirt size" to be requested for the pool.
-        string bot_size = 1;
-        // The number of cores per bot. Will be used to limit quota usage.
-        int32 cores_per_bot = 2;
-    }
     BotType bot_type = 2;
 
     // Scaling restriction specifies the limits on how the group can be
@@ -42,11 +45,11 @@ message BotPolicy {
     // A set of restrictions on the regions and how to distribute bots
     // between them.
     message RegionRestriction {
-        // Region of the bot group.
+        // Region of the bot sub-group.
         string region = 1;
-        // Specific prefix of the bot group.
+        // Specific prefix of the bot sub-group.
         string prefix = 2;
-        // Weight to be applied to this group. The number of bots requested
+        // Weight to be applied to this sub-group. The number of bots requested
         // from each region will be proportional to the weight unless a
         // quota limit is violated.
         float weight = 3;
@@ -58,4 +61,31 @@ message BotPolicy {
 message BotPolicyCfg {
   // All bot policies.
   repeated BotPolicy bot_policies = 1;
+}
+
+// Scaling Action that resulted because of bot demand.
+message ScalingAction {
+    // Bot group modified by the action. Should be the same as BotPolicy.
+    string bot_group = 1;
+
+    // The type of bot requested. Should be the same as BotPolicy.
+    BotType bot_type = 2;
+
+    // Whether there has been a change in the number of bots requested.
+    // See step_size for more info.
+    bool actionable = 3;
+
+    // Total number of bots requested for the group.
+    int32 bots_requested = 4;
+
+    // How the bot requests are distributed between regions & prefixes.
+    message RegionalAction {
+        // Region of the bot sub-group.
+        string region = 1;
+        // Specific prefix of the bot sub-group.
+        string prefix = 2;
+        // Number of bots requested from the sub-group.
+        int32 bots_requested = 3;
+    }
+    repeated RegionalAction regional_actions = 5;
 }
