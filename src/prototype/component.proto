@@ -25,6 +25,7 @@ message Component {
     Memory memory = 3;
     Bluetooth bluetooth = 4;
     Camera camera = 5;
+    Touchscreen touchscreen = 6;
   }
 
   message Soc {
@@ -86,6 +87,13 @@ message Component {
 
     repeated Feature features = 1;
     ClockType clock_type = 2;
+  }
+
+  message Touchscreen {
+    string vendor_id = 1;
+    string product_id = 2;
+    string fw_version = 3;
+    string fw_path = 4;
   }
 }
 
