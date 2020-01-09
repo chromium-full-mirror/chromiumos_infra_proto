@@ -34,6 +34,7 @@ message SchedulerTrafficSplitRequest {
 // SchedulerTrafficSplitResponse is the response from the step that determines
 // the traffic split between backend schedulers.
 message SchedulerTrafficSplitResponse {
-    test_platform.Request autotest_request = 1;
+    reserved 1;
+
     test_platform.Request skylab_request = 2;
 }
