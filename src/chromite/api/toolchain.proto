@@ -133,10 +133,10 @@ service ToolchainService {
     };
   }
 
-  // TODO(crbug/1019868): Decide which of these PrepareForBuild entrypoints will
-  // survive.
-
-  // Prepare to build toolchain artifacts.
+  // Prepare to build toolchain artifacts.  This will be called twice:
+  // Once with chroot and sysroot = None, before the chroot is created, and
+  // again at the start of the 'install packages' step, if the build gets that
+  // far.
   rpc PrepareForBuild(PrepareForToolchainBuildRequest)
     returns (PrepareForToolchainBuildResponse);
 

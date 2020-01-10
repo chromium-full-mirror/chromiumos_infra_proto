@@ -202,10 +202,22 @@ message BuilderConfig {
 
     message PublishInfo {
       // Google storage bucket to publish these artifact types to.
+      // TODO(crbug/1019868): remove this after uses have migrated.
+      // DEPRECTATED: use publish_gs_location.
       string publish_gs_bucket = 1;
 
       // Artifact types to publish to this bucket.
       repeated ArtifactTypes publish_types = 2;
+
+      // GS location in which to publish artifacts ("gs://" is prepended).
+      // Several fields can be logically specified:
+      //   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+      //   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+      //   %(build_id)s: Buildbucket job ID.
+      //   %(target)s: build target name.
+      //   %(gs_path)s: "%(target)s-%(kind)s/%(version)s-%(build_id)s".
+      //   %(artifact_name)s: The name of the artifact being published.
+      string publish_gs_location = 3;
     }
     // There may be more than one set of publishing instructions.
     repeated PublishInfo publish_artifacts = 5;

@@ -547,7 +547,10 @@ type ToolchainServiceClient interface {
 	// See also crbug/1019868.
 	// Copy the orderfile from unvetted GS bucket to vetted bucket.
 	UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
-	// Prepare to build toolchain artifacts.
+	// Prepare to build toolchain artifacts.  This will be called twice:
+	// Once with chroot and sysroot = None, before the chroot is created, and
+	// again at the start of the 'install packages' step, if the build gets that
+	// far.
 	PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error)
 	// Bundle toolchain artifacts.
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
@@ -607,7 +610,10 @@ type ToolchainServiceServer interface {
 	// See also crbug/1019868.
 	// Copy the orderfile from unvetted GS bucket to vetted bucket.
 	UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
-	// Prepare to build toolchain artifacts.
+	// Prepare to build toolchain artifacts.  This will be called twice:
+	// Once with chroot and sysroot = None, before the chroot is created, and
+	// again at the start of the 'install packages' step, if the build gets that
+	// far.
 	PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error)
 	// Bundle toolchain artifacts.
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
