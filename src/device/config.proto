@@ -13,7 +13,7 @@ import "device/config_id.proto";
 // These are the distinct configs combinations that will constitue a ChromeOS
 // device.
 
-// Next tag: 20
+// Next tag: 21
 message Config {
 
   // Required. Unique ID of the device config.
@@ -53,18 +53,29 @@ message Config {
 
   Graphics graphics = 5;
 
-  // Next Tag: 9
+  // Next Tag: 12
   enum HardwareFeature {
     HARDWARE_FEATURE_UNSPECIFIED = 0;
     HARDWARE_FEATURE_BLUETOOTH = 1;
     HARDWARE_FEATURE_FLASHROM = 2;
+    // Indicate if the device support audio hotwording, an audio listening module
+    // included with Google Chrome and Chromium to support Google Assistant.
+    // https://chromeos.google.com/partner/dlm/docs/latest-requirements/chromebook.html#audio-hotwording-always-on-listening
     HARDWARE_FEATURE_HOTWORDING = 3;
     HARDWARE_FEATURE_INTERNAL_DISPLAY = 4;
+    // Indicate if the device has support for lucid sleep (a connected lower power state,
+    // in which the device should still has some network communications)
+    // https://chromeos.google.com/partner/dlm/docs/p-hardware-specs/lucidsleep.html
     HARDWARE_FEATURE_LUCID_SLEEP = 5;
     HARDWARE_FEATURE_WEBCAM = 6;
     HARDWARE_FEATURE_STYLUS = 7;
     HARDWARE_FEATURE_TOUCHPAD = 8;
     HARDWARE_FEATURE_TOUCHSCREEN = 9;
+    // Indicate if the device has detachable keyboard.
+    // https://chromeos.google.com/partner/dlm/docs/latest-requirements/detachable.html#keyboard-external
+    HARDWARE_FEATURE_DETACHABLE_KEYBOARD = 10;
+    // Indicate if the device has fingerprint sensor.
+    HARDWARE_FEATURE_FINGERPRINT = 11;
   }
 
   // If a hardware feature isn't specified, one can assume that it doesn't
@@ -198,6 +209,15 @@ message Config {
   // field differently. Each firmware build can vary significantly in the
   // configuration space that needs customization.
   uint32 firmware_configuration = 19;
+
+  enum Architecture {
+    ARCHITECTURE_UNDEFINED = 0;
+    X86 = 1;
+    X86_64 = 2;
+    ARM = 3;
+    ARM64 = 4;
+  }
+  Architecture cpu = 20;
 }
 
 // Message contains all ChromeOS device configs.
