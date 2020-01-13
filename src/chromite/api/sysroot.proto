@@ -31,6 +31,8 @@ message SysrootCreateRequest {
     // otherwise keep the existing sysroot. No effect when the sysroot does not
     // exist.
     bool replace = 2;
+    // Whether a toolchain change has occurred.
+    bool toolchain_changed = 3;
   }
 
   // The target whose sysroot is being created.
@@ -56,6 +58,8 @@ message InstallToolchainRequest {
   message Flags {
     // Compile from source (true), or use bin packages (false).
     bool compile_source = 1;
+    // Whether a toolchain change has occurred.
+    bool toolchain_changed = 2;
   }
 
   // The sysroot where the toolchain is being installed.
@@ -81,6 +85,8 @@ message InstallPackagesRequest {
     string event_file = 2;
     // Whether to start goma.
     bool use_goma = 3;
+    // Whether a toolchain change has occurred.
+    bool toolchain_changed = 4;
   }
 
   // The sysroot into which the packages are being installed.

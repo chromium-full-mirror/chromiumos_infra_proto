@@ -14,7 +14,9 @@ message BuildTargetUnitTestRequest {
   message Flags {
     // Assume the sysroot is empty.
     bool empty_sysroot = 1;
-  }
+    // Whether a toolchain change has occurred.
+    bool toolchain_changed = 2;
+   }
 
   // The build target being tested.
   chromiumos.BuildTarget build_target = 1;

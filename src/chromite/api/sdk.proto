@@ -57,6 +57,8 @@ message UpdateRequest {
   message Flags {
     // Whether to build from source or use prebuilt packages.
     bool build_source = 1;
+    // Whether a toolchain change has occurred.
+    bool toolchain_changed = 2;
   }
 
   // The flags.
