@@ -21,3 +21,8 @@ message UploadToGSRequest {
   // Swarming task ID (added to GS path for uniqueness)
   string task_id = 3;
 }
+
+message UploadToGSResponse {
+  // URL of Google Storage location containing offloaded files
+  string gs_url = 1;
+}
