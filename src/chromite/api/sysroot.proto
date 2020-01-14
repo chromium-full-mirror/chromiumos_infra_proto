@@ -111,6 +111,9 @@ message InstallPackagesResponse {
   repeated chromiumos.PackageInfo failed_packages = 1;
   // The metric events that occurred during the running of InstallPackages.
   repeated chromiumos.MetricEvent events = 2;
+  // Goma artifacts will only be populated if
+  // InstallPackagesRequest.goma_config.log_dir was not empty.
+  chromiumos.GomaArtifacts goma_artifacts = 3;
 }
 
 message CreateSimpleChromeSysrootRequest {

@@ -71,6 +71,19 @@ message GomaConfig {
   string counterz_file = 7;
 }
 
+message GomaArtifacts {
+  // The Goma artifacts (stats file, counterz file, and log files) are placed
+  // in the directory specified by the GomaConfig.log_dir.
+
+  // Goma stats file.
+  string stats_file = 1;
+  // Goma counterz file.
+  string counterz_file = 2;
+  // Goma log files.
+  repeated string log_files = 3;
+}
+
+
 // Message describing a package, The corresponding variable names are from
 // https://devmanual.gentoo.org/ebuild-writing/variables/index.html
 message PackageInfo {
