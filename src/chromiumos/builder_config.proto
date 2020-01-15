@@ -41,6 +41,8 @@ message BuilderConfig {
       POSTSUBMIT = 2;
       // Toolchain build.
       TOOLCHAIN = 3;
+      // Informational build.
+      INFORMATIONAL = 4;
     }
     Type type = 3;
   }
