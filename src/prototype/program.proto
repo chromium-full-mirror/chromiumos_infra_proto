@@ -8,7 +8,7 @@ package prototype;
 
 import "prototype/common.proto";
 import "prototype/component.proto";
-import "prototype/ref_design.proto";
+import "prototype/board_design.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
@@ -50,17 +50,17 @@ message ComponentQual {
   Status status = 2;
 }
 
-message RefDesignKit {
-  RefDesignKitId id = 1;
+message Program {
+  ProgramId id = 1;
   repeated Requirement reqs = 2;
   repeated ComponentQual component_quals = 3;
 
   message Requirement {
-    repeated RefDesign.FormFactor form_factors = 1;
+    repeated BoardDesign.FormFactor form_factors = 1;
     repeated Constraint constraints = 2;
   }
 }
 
-message RefDesignKitList {
-  repeated RefDesignKit value = 1;
+message ProgramList {
+  repeated Program value = 1;
 }

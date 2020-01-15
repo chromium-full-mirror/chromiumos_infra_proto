@@ -8,7 +8,7 @@ package prototype;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-import "prototype/ref_design.proto";
+import "prototype/board_design.proto";
 import "prototype/src/overlays/config.proto";
 
 message BuildTargetId {
@@ -27,7 +27,7 @@ message FirmwareConfig {
 }
 
 message VariantBuildConfig {
-  RefDesignVariantId id = 1;
+  DesignVariantId id = 1;
   BuildTargetId build_target_id = 2;
   OverlayConfig overlay_config = 3;
   FirmwareConfig firmware_config = 4;

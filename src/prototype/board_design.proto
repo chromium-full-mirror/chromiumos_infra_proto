@@ -11,15 +11,15 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 import "prototype/common.proto";
 import "prototype/partner.proto";
 
-message RefDesignKitId {
+message ProgramId {
   string value = 1;
 }
 
-message RefDesignId {
+message BoardDesignId {
   string value = 1;
 }
 
-message RefDesignVariantId {
+message DesignVariantId {
   string value = 1;
 }
 
@@ -67,16 +67,16 @@ message DesignOptions {
   }
 }
 
-message RefDesign {
-  RefDesignId id = 1;
-  RefDesignKitId ref_design_kit_id = 2;
+message BoardDesign {
+  BoardDesignId id = 1;
+  ProgramId program_id = 2;
   PartnerId odm_id = 3;
   string name = 4;
 
   repeated Variant variants = 6;
 
   message Variant {
-    RefDesignVariantId id = 1;
+    DesignVariantId id = 1;
     FormFactor form_factor = 2;
     DesignOptions design_options = 3;
   }
@@ -93,6 +93,6 @@ message RefDesign {
   }
 }
 
-message RefDesignList {
-  repeated RefDesign value = 1;
+message BoardDesignList {
+  repeated BoardDesign value = 1;
 }

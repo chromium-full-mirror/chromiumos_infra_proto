@@ -10,8 +10,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
 import "prototype/component.proto";
 import "prototype/partner.proto";
-import "prototype/ref_design.proto";
-import "prototype/ref_design_kit.proto";
+import "prototype/board_design.proto";
+import "prototype/program.proto";
 import "prototype/device_project.proto";
 
 import "prototype/src/third_party/chromiumos-overlay/config.proto";
@@ -19,8 +19,8 @@ import "prototype/src/third_party/chromiumos-overlay/config.proto";
 message Config {
   PartnerList partners = 1;
   ComponentList components = 2;
-  RefDesignKitList ref_design_kits = 3;
-  RefDesignList ref_designs = 4;
+  ProgramList programs = 3;
+  BoardDesignList board_designs = 4;
   DeviceBrandList device_brands = 8;
   DeviceProjectList device_projects = 5;
 
