@@ -13,7 +13,7 @@ import "lab/servo.proto";
 
 // This proto defines setup labels in lab config of a DUT.
 
-// Peripherals of device. Next Tag: 10
+// Peripherals of device. Next Tag: 12
 message Peripherals {
   Servo servo = 1;
   Chameleon chameleon = 2;
@@ -28,6 +28,10 @@ message Peripherals {
   // Indicate if the device is setup in a steady and controllable camera box environment for camera test automation.
   // https://docs.google.com/document/d/12YqHhBuOUolA7BjVEcG4rOIVIO2pgmb4jnOEApB806Y/edit#
   bool camerabox = 9;
+  // Indicate if the device is setup in a chaos environment. It's a special settings for running wifi interop tests.
+  bool chaos = 10;
+  // Indicate the cables that connect audio, printer to the device in ACS lab.
+  repeated Cable cable = 11;
 }
 
 // Remote power management info.
@@ -49,6 +53,17 @@ enum CameraType {
 // Next Tag: 2
 message Camera {
   CameraType camera_type = 1;
+}
+
+enum CableType {
+  CABLE_INVALID = 0;
+  CABLE_AUDIOJACK = 1;
+  CABLE_USBAUDIO = 2;
+  CABLE_USBPRINTING = 3;
+}
+
+message Cable {
+  CableType type = 1;
 }
 
 // Next Tag: 3
