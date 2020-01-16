@@ -8,7 +8,6 @@ package testplans;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
-import "chromite/api/depgraph.proto";
 import "testplans/common.proto";
 import "google/protobuf/wrappers.proto";
 
@@ -19,11 +18,6 @@ message PointlessBuildCheckRequest {
   // on the luci-go repo.
   // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
   repeated ProtoBytes gerrit_changes = 7;
-
-  // The DepGraph for a child builder. This can be left empty, implying that no
-  // DepGraph-based pointless build checking should be skipped.
-  chromite.api.DepGraph dep_graph = 5;
-
 
   message Path {
     string path = 1;
@@ -40,6 +34,7 @@ message PointlessBuildCheckRequest {
   // manifest-internal commit to which the build is synced.
   ProtoBytes gitiles_commit = 8;
 
+  reserved 5;
 }
 
 
