@@ -15,7 +15,7 @@ message ProgramId {
   string value = 1;
 }
 
-message BoardDesignId {
+message DesignId {
   string value = 1;
 }
 
@@ -67,8 +67,8 @@ message DesignOptions {
   }
 }
 
-message BoardDesign {
-  BoardDesignId id = 1;
+message Design {
+  DesignId id = 1;
   ProgramId program_id = 2;
   PartnerId odm_id = 3;
   string name = 4;
@@ -93,6 +93,6 @@ message BoardDesign {
   }
 }
 
-message BoardDesignList {
-  repeated BoardDesign value = 1;
+message DesignList {
+  repeated Design value = 1;
 }

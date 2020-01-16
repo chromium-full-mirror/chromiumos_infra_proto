@@ -8,7 +8,7 @@ package prototype;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-import "prototype/board_design.proto";
+import "prototype/design.proto";
 import "prototype/src/overlays/config.proto";
 
 message BuildTargetId {

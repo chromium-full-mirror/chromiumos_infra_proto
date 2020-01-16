@@ -8,7 +8,7 @@ package prototype;
 
 import "prototype/common.proto";
 import "prototype/component.proto";
-import "prototype/board_design.proto";
+import "prototype/design.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
@@ -56,7 +56,7 @@ message Program {
   repeated ComponentQual component_quals = 3;
 
   message Requirement {
-    repeated BoardDesign.FormFactor form_factors = 1;
+    repeated Design.FormFactor form_factors = 1;
     repeated Constraint constraints = 2;
   }
 }
