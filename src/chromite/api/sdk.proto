@@ -97,6 +97,9 @@ service SdkService {
   // Delete a chroot.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
 
+  // Unmount a chroot.
+  rpc Unmount(UnmountRequest) returns (UnmountResponse);
+
   // Update the chroot.
   rpc Update(UpdateRequest) returns (UpdateResponse) {
     option (method_options) = {
