@@ -63,6 +63,15 @@ message BotPolicyCfg {
   repeated BotPolicy bot_policies = 1;
 }
 
+// Specifies if there has been a change since the last iteration.
+enum Actionable {
+  UNSPECIFIED = 0;
+  // There is a change since last time.
+  YES = 1;
+  // There is no change since last time.
+  NO = 2;
+}
+
 // Scaling Action that resulted because of bot demand.
 message ScalingAction {
     // Bot group modified by the action. Should be the same as BotPolicy.
@@ -71,9 +80,9 @@ message ScalingAction {
     // The type of bot requested. Should be the same as BotPolicy.
     BotType bot_type = 2;
 
-    // Whether there has been a change in the number of bots requested.
-    // See step_size for more info.
-    bool actionable = 3;
+    // Whether there has been a change in the number of bots requested
+    // for this bot group. See step_size for more info.
+    Actionable actionable = 3;
 
     // Total number of bots requested for the group.
     int32 bots_requested = 4;
@@ -88,4 +97,14 @@ message ScalingAction {
         int32 bots_requested = 3;
     }
     repeated RegionalAction regional_actions = 5;
+}
+
+// All the actions that will be executed by RoboCrop.
+message RoboCropAction {
+    // Whether there has been any change in any of the bot groups
+    // since the last RoboCrop execution.
+    Actionable actionable = 1;
+
+    // List of an action per bot group scaled by RoboCrop.
+    repeated ScalingAction scaling_actions = 2;
 }
