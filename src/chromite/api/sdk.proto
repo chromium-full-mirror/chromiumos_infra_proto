@@ -49,6 +49,14 @@ message DeleteRequest {
 message DeleteResponse {
 }
 
+message UnmountRequest {
+  // The chroot to unmount.
+  chromiumos.Chroot chroot = 1;
+}
+
+message UnmountResponse {
+}
+
 // Chroot update request message.
 // Example json:
 // {"toolchain_targets": [{"name": "eve"}]}
