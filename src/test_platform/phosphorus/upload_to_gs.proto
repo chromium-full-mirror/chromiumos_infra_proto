@@ -15,8 +15,8 @@ import "test_platform/phosphorus/common.proto";
 message UploadToGSRequest {
   Config config = 1;
 
-  // GS bucket to upload to
-  string bucket = 2;
+  // GS path to upload to, e.g. gs://foo/bar/baz/
+  string gs_directory = 2;
 
   // Swarming task ID (added to GS path for uniqueness)
   string task_id = 3;
