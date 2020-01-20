@@ -60,6 +60,7 @@ enum CableType {
   CABLE_AUDIOJACK = 1;
   CABLE_USBAUDIO = 2;
   CABLE_USBPRINTING = 3;
+  CABLE_HDMIAUDIO = 4;
 }
 
 message Cable {
