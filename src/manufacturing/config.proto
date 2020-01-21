@@ -11,7 +11,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/manufacturing";
 import "manufacturing/config_id.proto";
 
 // These are the configs that's provided in manufacture stage of a ChromeOS device.
-// Next Tag: 6
+// Next Tag: 7
 message Config {
   ConfigID manufacturing_id = 1;
 
@@ -49,6 +49,9 @@ message Config {
 
   // wifi chip that is installed on the DUT in manufacturing stage.
   string wifi_chip = 5;
+
+  // Save repeated hwid components obtained from hwid service
+  repeated string hwid_component = 6;
 }
 
 // Message contains all ChromeOS manufacturing configs.
