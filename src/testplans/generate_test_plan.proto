@@ -39,6 +39,7 @@ message GenerateTestPlanResponse {
   repeated MoblabVmTestUnit moblab_vm_test_units = 4;
   repeated TastVmTestUnit tast_vm_test_units = 5;
   repeated VmTestUnit vm_test_units = 6;
+  repeated TastVmTestUnit direct_tast_vm_test_units = 7;
 
   reserved 2;
 }
