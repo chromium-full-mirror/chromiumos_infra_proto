@@ -115,8 +115,9 @@ message PerTargetTestRequirements {
   // These configure what testing is needed for these BuildCriteria.
   HwTestCfg hw_test_cfg = 3;
   MoblabVmTestCfg moblab_vm_test_cfg = 4;
-  TastVmTestCfg tast_vm_test_cfg = 6;
   VmTestCfg vm_test_cfg = 5;
+  TastVmTestCfg tast_vm_test_cfg = 6;
+  TastVmTestCfg direct_tast_vm_test_cfg = 7;
 
   reserved 2;
 }
