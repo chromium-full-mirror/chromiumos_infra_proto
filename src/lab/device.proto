@@ -30,7 +30,7 @@ message ChromeOSDevice {
   };
 }
 
-// Next Tag: 3
+// Next Tag: 5
 message DeviceUnderTest{
   string hostname = 1;
   Peripherals peripherals = 2;
@@ -38,6 +38,7 @@ message DeviceUnderTest{
   // critical_pools are pool labels that the builders are dependent on, and
   // that the cros-infra team is responsible for managing explicitly. All other
   // pool labels used for adhoc labeling of DUTs go into self_serve_pools.
+  // TO BE DELETED
   enum DUTPool {
     DUT_POOL_INVALID = 0;
     DUT_POOL_CQ = 1;
@@ -50,11 +51,14 @@ message DeviceUnderTest{
     DUT_POOL_QUOTA = 8;
   }
   repeated DUTPool critical_pools = 3;
+
+  repeated string pools = 4;
 }
 
-// Next Tag: 3
+// Next Tag: 5
 message Labstation {
   string hostname = 1;
   repeated Servo servos = 2;
   RPM rpm = 3;
+  repeated string pools = 4;
 }
