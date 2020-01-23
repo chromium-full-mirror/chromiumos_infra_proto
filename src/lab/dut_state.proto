@@ -26,4 +26,5 @@ enum PeripheralState {
   UNKNOWN = 0;
   WORKING = 1;
   NOT_CONNECTED = 2;
+  BROKEN = 3;
 }
