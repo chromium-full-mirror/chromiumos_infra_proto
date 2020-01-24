@@ -39,14 +39,34 @@ message FirmwareBuildInfo {
   chromite.api.Artifact artifact = 3;
 }
 
+// BranchFilter defines the target branch of the new build, on which we
+// kick off suite test.
+message BranchFilter {
+  enum Channel {
+    BRANCH_REF_NOT_SET = 0;
+    MASTER = 1;
+    DEV = 2;
+    BETA = 3;
+    STABLE = 4;
+  }
+  Channel channel = 1;
+  // Number of minor versions behind tip-of-tree allowed
+  // on channel.
+  // e.g. a filter of the form ">=tot-2" is stated as
+  // { channel = MASTER; lag = 2; }
+  int32 lag = 2;
+}
+
 // BuildFilters defines on which build to run a suite test.
 message BuildFilters {
   // If true, use the relax_builds.
   bool only_hwtest_sanity_required = 1;
+
+  repeated BranchFilter branch_filters = 2;
   // The firmware build type, e.g., "RELEASE" or "FIRMWARE". Note,
   // in suite scheduler, "cros" = "RELEASE".
-  chromiumos.Branch.BranchType firmware_ro_build_spec = 2;
-  chromiumos.Branch.BranchType firmware_rw_build_spec = 3;
+  chromiumos.Branch.BranchType firmware_ro_build_spec = 3;
+  chromiumos.Branch.BranchType firmware_rw_build_spec = 4;
 }
 
 // ScheduleJobTrigger defines the trigger to kick off a suite test.
@@ -61,15 +81,20 @@ message ScheduleJobTrigger {
   message NightlyTrigger {
     uint32 hour = 1;
   }
-  // NewBuildTrigger is for the suite test upon new build.
-  // "specs" are branch builds e.g., [">=tot-2"].
-  message NewBuildTrigger{
-    repeated string specs = 1;
+  // IntervalTrigger is for the suite test running every N times the
+  // scheduler operates.
+  message IntervalTrigger {
+    // pause represents the number of times scheduler skips this job
+    // once the job completed. If pause is zero, we pick this job
+    // whenever scheduler is kicked off.
+    uint32 pause = 1;
   }
   oneof trigger {
     WeeklyTrigger weekly = 1;
     NightlyTrigger nightly =  2;
-    NewBuildTrigger new_build = 3;
+    // TODO: This feature is not implemented to suite scheduler yet. So
+    // if IntervalTrigger is configured, pause should be zero all the time.
+    IntervalTrigger interval = 3;
   }
   BuildFilters build_filters = 4;
 }
@@ -103,9 +128,9 @@ message ScheduleJobSection {
   // Trigger to run jobs under this section.
   ScheduleJobTrigger schedule_job_trigger = 2;
   // Specific models to run this suite.
-  repeated device.ModelId model = 3;
+  repeated device.ModelId models = 3;
   // Specific boards to run this suite.
-  repeated chromiumos.BuildTarget build_target = 4;
+  repeated chromiumos.BuildTarget build_targets = 4;
   // The build matched with this job section on BuildTarget and BuildFilters.
   message MatchedBuild {
     oneof cros_build {
@@ -116,7 +141,8 @@ message ScheduleJobSection {
       // "only_hwtest_sanity_required: True".
       BuildInfo relax_build = 2;
       // The firmware build information.
-      FirmwareBuildInfo firmware_build = 3;
+      FirmwareBuildInfo firmware_ro_build = 3;
+      FirmwareBuildInfo firmware_rw_build = 4;
     }
   }
   repeated MatchedBuild matched_builds = 5;
