@@ -38,17 +38,19 @@ message WaitTaskResult {
     repeated Task child_results = 3 [json_name="child-results"];
 
     message LogDataURL {
-      string isolate_url = 1;
+      string isolate_url = 1 [deprecated = true];
+
+      // Google Storage URL, in full "gs://bucket/foo/bar/baz" form
+      string gs_url = 2 [json_name="gs-url"];
     }
 
-    LogDataURL log_data_url = 4;
+    LogDataURL log_data_url = 4 [json_name="log-data-url"];
 }
 
 // WaitTasksResult describes the format returned by the `skylab wait-tasks` subcommand.
 message WaitTasksResult {
     repeated WaitTaskResult results = 1;
 
-    // True if an error or timeout was encountered while waiting for tasks
-    // to complete.
+    // True if an error or timeout was encountered while waiting for tasks to complete.
     bool incomplete = 2;
 }
