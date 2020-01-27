@@ -25,6 +25,13 @@ message Config {
       string autotest_dir = 1;
     }
 
+    // Output defines parameters around how the task will deliver output to
+    // the callers, e.g. Google Storage bucket.
+    message Output {
+      string gs_root_dir = 1;
+    }
+
     Lab lab = 1;
     Harness harness = 2;
+    Output output = 3;
   }

@@ -52,6 +52,14 @@ message Request {
     oneof harness {
       Autotest autotest = 1;
     }
+
+    // User-specified options for how results are served to clients
+    message OffloadOptions {
+      // If this test needs synchronous offloading of results to Google Storage
+      bool synchronous_gs_enable = 1;
+    }
+
+    OffloadOptions offload = 2;
   }
 
   Test test = 2;
