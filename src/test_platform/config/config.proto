@@ -10,6 +10,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/con
 
 // Config defined configuration parameters of cros_test_platform.
 message Config {
+    reserved 2, 5, 6;
+
     // Swarming defines configuration parameters related to a swarming instance.
     message Swarming {
         string server = 1;
@@ -30,32 +32,6 @@ message Config {
 
         // LogDog host for test task logs, e.g. luci-logdog.appspot.com
         string log_dog_host = 2;
-    }
-
-    // AutotestBackend defines configuration parameters related to autotest
-    // backend execution.
-    message AutotestBackend {
-        // afe_host is the hostname of the autotest frontend to be used for
-        // autotest backend executions (e.g. cautotest or cautotest-staging).
-        string afe_host = 1;
-    }
-
-    message SchedulerMigration {
-        // gitiles_host is the host from which to fetch scheduler migration
-        // config.
-        string gitiles_host = 1;
-
-        // git_project is the git project from which to fetch scheduler
-        // migration config.
-        string git_project = 2;
-
-        // file_path is the file patch from which to fetch scheduler migration
-        // config.
-        string file_path = 3;
-
-        // commitish is the git commitish from which to fetch scheduler
-        // migration config.
-        string commitish = 4;
     }
 
     // Versioning defines configuration parameters dictating which versions of
@@ -92,15 +68,9 @@ message Config {
 
     Swarming skylab_swarming = 1;
 
-    Swarming autotest_proxy = 2;
-
     Isolate skylab_isolate = 3;
 
     SkylabWorker skylab_worker = 4;
-
-    AutotestBackend autotest_backend = 5;
-
-    SchedulerMigration scheduler_migration = 6;
 
     Versioning versioning = 7;
 
