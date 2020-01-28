@@ -7,9 +7,10 @@ syntax = "proto3";
 package test_platform.steps;
 
 import "test_platform/common/task.proto";
+import "test_platform/config/config.proto";
 import "test_platform/request.proto";
 import "test_platform/steps/enumeration.proto";
-import "test_platform/config/config.proto";
+import "test_platform/steps/execute/build.proto";
 import "test_platform/taskstate.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
@@ -34,10 +35,11 @@ message ExecuteRequest {
     // needed in order to execute tests (e.g. labels, retry parameters,
     // scheduling parameters).
     test_platform.Request.Params request_params = 1;
-
     EnumerationResponse enumeration = 2;
-
     test_platform.config.Config config = 3;
+    // Build contains relevant information about the current test platform
+    // buildbucket build.
+    test_platform.steps.execute.Build build = 4;
 }
 
 // ExecuteResponse defines the output of the Execute step.
