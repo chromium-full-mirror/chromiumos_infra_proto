@@ -76,7 +76,7 @@ message Audio {
   bool atrus = 2;
 }
 
-// Next Tag: 3
+// Next Tag: 4
 message Wifi {
   // Indicate if the device is inside a hermetic wifi cell.
   bool wificell = 1;
@@ -91,6 +91,14 @@ message Wifi {
     CONN_OTA = 2;
   }
   AntennaConnection antenna_conn = 2;
+
+  enum Router {
+    ROUTER_UNSPECIFIED = 0;
+    ROUTER_802_11AX = 1;
+  }
+  // Indicate if the device is in a pre-setup environment with 802.11ax routers.
+  // crbug.com/1044786
+  Router router = 3;
 }
 
 // Next Tag: 2
