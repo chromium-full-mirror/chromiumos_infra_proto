@@ -39,8 +39,11 @@ message FirmwareBuildInfo {
   chromite.api.Artifact artifact = 3;
 }
 
-// BranchFilter defines the target branch of the new build, on which we
-// kick off suite test.
+// BranchFilter is a combination of channel, operator and
+// lag, e.g. a filter of the form ">=tot-2" is stated as
+// { channel = MASTER; operator = GE; lag = 2; };
+// a filter of "==tot" is translated to
+// { channel = MASTER; operator = EQ; lag = 0; }.
 message BranchFilter {
   enum Channel {
     BRANCH_REF_NOT_SET = 0;
@@ -50,18 +53,23 @@ message BranchFilter {
     STABLE = 4;
   }
   Channel channel = 1;
-  // Number of minor versions behind tip-of-tree allowed
-  // on channel.
-  // e.g. a filter of the form ">=tot-2" is stated as
-  // { channel = MASTER; lag = 2; }
-  int32 lag = 2;
+  enum Operator {
+      UNDEFINED = 0;
+      EQ = 1; // "=="
+      GE = 2; // ">="
+      LE = 3; // "<="
+  }
+  Operator operator = 2;
+  // Number of minor versions behind tip-of-tree on channel.
+  int32 lag = 3;
 }
 
 // BuildFilters defines on which build to run a suite test.
 message BuildFilters {
   // If true, use the relax_builds.
   bool only_hwtest_sanity_required = 1;
-
+  // BranchFilter defines the target branch of the new build.
+  // Note, the final result is "AND" of each single filter.
   repeated BranchFilter branch_filters = 2;
   // The firmware build type, e.g., "RELEASE" or "FIRMWARE". Note,
   // in suite scheduler, "cros" = "RELEASE".
