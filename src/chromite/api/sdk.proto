@@ -83,6 +83,12 @@ message UpdateResponse {
   ChrootVersion version = 1;
 }
 
+message CleanRequest {
+  chromiumos.Chroot chroot = 1;
+}
+
+message CleanResponse {}
+
 // SDK operations.
 service SdkService {
   // The service options (see build_api.proto).
@@ -96,6 +102,9 @@ service SdkService {
 
   // Delete a chroot.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
+
+  // Clean up unneeded files from the chroot.
+  rpc Clean(CleanRequest) returns (CleanResponse);
 
   // Unmount a chroot.
   rpc Unmount(UnmountRequest) returns (UnmountResponse);
