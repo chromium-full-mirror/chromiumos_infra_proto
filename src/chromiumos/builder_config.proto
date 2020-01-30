@@ -257,13 +257,16 @@ message BuilderConfig {
     PortageProfile portage_profile = 2;
 
     // Image types to build.
+    // DEPRECATED: Use steps.build_images.image_types.
     repeated ImageType image_types = 3;
 
     // Controls the running of the install packages step.
+    // DEPRECATED: Use steps.install_packages_conf.run_spec.
     RunSpec install_packages = 4;
 
     // Compile toolchain from source (true), or use bin packages (false).  This
     // applies to the install toolchain step only.
+    // DEPRECATED: Use steps.install_toolchain.compile_source.
     bool compile_toolchain = 5;
 
     // Whether to apply gerrit changes, if any. Use case is to build without
@@ -271,17 +274,60 @@ message BuilderConfig {
     bool apply_gerrit_changes = 6;
 
     // Packages to build, or empty to build all packages.
+    // DEPRECATED: Use steps.install_packages_conf.packages.
     repeated PackageInfo packages = 7;
 
     reserved 8, 9;
 
     // Build packages from source (true), or use bin packages (false).  This
     // applies to the install packages step only.
+    // DEPRECATED: Use steps.install_packages_conf.compile_source.
     bool compile_source = 10;
 
     // Compile sdk packages from source (true) or use prebuilts (false).  This
     // applies to the update sdk step only.
+    // DEPRECATED: Use steps.sdk_update.compile_source.
     bool compile_update_sdk = 11;
+
+    // Below here are configuration specifications for the steps that call the
+    // Build API endpoints.
+    //
+    // TODO(crbug/1038975): remove DEPRECATED fields above.
+    //
+    // Controls for the call to SdkService.Update.
+    message SdkUpdate {
+      // Whether to compile from source (vs using prebuilts when able.)
+      bool compile_source = 1;
+    }
+    SdkUpdate sdk_update = 12;
+
+    // Controls for the call to SysrootService.InstallToolchain.
+    message InstallToolchain {
+      // Whether to compile from source (vs using prebuilts when able.)
+      bool compile_source = 1;
+    }
+    InstallToolchain install_toolchain = 13;
+
+    // Controls for the call to InstallPackages.
+    message InstallPackages {
+      // Whether to compile from source (vs using prebuilts when able.)
+      bool compile_source = 1;
+
+      // Controls the running of the install packages step.
+      RunSpec run_spec = 2;
+
+      // Packages to build, or empty to build all packages.
+      repeated PackageInfo packages = 3;
+    }
+    // TODO(crbug/1038975): rename this to install_packages once the RunSpec is
+    // gone above.
+    InstallPackages install_packages_conf = 14;
+
+    message BuildImages {
+      // Image types to build.
+      repeated ImageType image_types = 1;
+    }
+    BuildImages build_images = 15;
   }
   Build build = 6;
 
