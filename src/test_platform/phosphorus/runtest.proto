@@ -8,6 +8,7 @@ package test_platform.phosphorus;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/phosphorus";
 
+import "google/protobuf/timestamp.proto";
 import "test_platform/phosphorus/common.proto";
 
 // RunTestRequest defines the input of `phosphorus runtest`.
@@ -49,5 +50,10 @@ message RunTestRequest {
   }
 
   Environment environment = 4;
+
+  // Hard deadline for execution.
+  //
+  // All test execution should abort beyond this deadline.
+  google.protobuf.Timestamp deadline = 5;
 }
 

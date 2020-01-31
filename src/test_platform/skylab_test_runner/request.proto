@@ -8,6 +8,7 @@ package test_platform.skylab_test_runner;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
+import "google/protobuf/timestamp.proto";
 import "test_platform/request.proto";
 
 // Request represents a request for running an individual test via the
@@ -63,4 +64,10 @@ message Request {
   }
 
   Test test = 2;
+
+  // Soft deadline for test_runner execution.
+  //
+  // All prejob or test execution should abort beyond this deadline.
+  // Clean up actions may execute beyond the deadline.
+  google.protobuf.Timestamp deadline = 3;
 }

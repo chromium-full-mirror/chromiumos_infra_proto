@@ -8,6 +8,7 @@ package test_platform.phosphorus;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/phosphorus";
 
+import "google/protobuf/timestamp.proto";
 import "test_platform/phosphorus/common.proto";
 
 // PrejobRequest defines the input of `phosphorus prejob`.
@@ -25,5 +26,10 @@ message PrejobRequest {
   // What is installed on the DUT before the prejob, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
   map<string,string> existing_provisionable_labels = 5;
+
+  // Hard deadline for execution.
+  //
+  // All prejob execution should abort beyond this deadline.
+  google.protobuf.Timestamp deadline = 6;
 }
 
