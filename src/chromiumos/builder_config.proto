@@ -306,8 +306,7 @@ message BuilderConfig {
       // goma disabled.
       bool disable_goma = 4;
     }
-    // TODO(crbug:1038975): drop install_packages_conf
-    InstallPackages install_packages_conf = 14;
+    reserved 14;
     InstallPackages install_packages = 16;
 
     message BuildImages {
