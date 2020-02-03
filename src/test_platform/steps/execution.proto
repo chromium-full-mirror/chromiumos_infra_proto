@@ -19,6 +19,9 @@ message ExecuteRequests {
     // Each ExecuteRequest is handled independently.
     repeated ExecuteRequest requests = 1;
     map<string, ExecuteRequest> tagged_requests = 2;
+    // Build contains relevant information about the current test platform
+    // buildbucket build.
+    test_platform.steps.execute.Build build = 3;
 }
 
 message ExecuteResponses {
@@ -37,9 +40,6 @@ message ExecuteRequest {
     test_platform.Request.Params request_params = 1;
     EnumerationResponse enumeration = 2;
     test_platform.config.Config config = 3;
-    // Build contains relevant information about the current test platform
-    // buildbucket build.
-    test_platform.steps.execute.Build build = 4;
 }
 
 // ExecuteResponse defines the output of the Execute step.
