@@ -196,7 +196,8 @@ message BuilderConfig {
       VERIFIED_CHROME_BENCHMARK_AFDO_FILE = 16;
 
       // Indicates a vetted AFDO Kernel profile.
-      VERIFIED_KERNEL_AFDO_FILE = 17;
+      VERIFIED_KERNEL_AFDO_FILE = 17;  // DEPRECATED.
+      VERIFIED_KERNEL_CWP_AFDO_FILE = 17;
       // Indicates an unvetted AFDO Kernel CWP profile.
       UNVERIFIED_KERNEL_CWP_AFDO_FILE = 18;
 
