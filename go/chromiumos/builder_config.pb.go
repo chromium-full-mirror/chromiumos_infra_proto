@@ -910,7 +910,9 @@ type BuilderConfig_Artifacts_PublishInfo struct {
 	//   %(version)s: Chromeos version (e.g., R81-12813.0.0)
 	//   %(build_id)s: Buildbucket job ID.
 	//   %(target)s: build target name.
-	//   %(gs_path)s: "%(target)s-%(kind)s/%(version)s-%(build_id)s".
+	//   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+	//       underscores turned into hyphens.
+	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
 	//   %(artifact_name)s: The name of the artifact being published.
 	PublishGsLocation    string   `protobuf:"bytes,3,opt,name=publish_gs_location,json=publishGsLocation,proto3" json:"publish_gs_location,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
