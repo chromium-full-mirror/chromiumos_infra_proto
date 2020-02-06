@@ -112,10 +112,34 @@ message BuilderConfig {
   // Configuration pertaining to builders operating as "orchestrators".
   // Orchestrators orchestrate the running of other child builders.
   message Orchestrator {
+    // TODO(dburger): transition to child_specs and remove children.
+
     // BuilderConfig.Id.name of the child builds. They would expect to match
     // this name and the BuilderConfig.Id.branch and BuilderConfig.Id.type of
     // this parent orchestrator builder.
     repeated string children = 1;
+
+    // Defines a child the orchestrator spawns and how it is handled.
+    message ChildSpec {
+      // BuilderConfig.Id.name of the child build. Would be expected to match
+      // this name and the BuilderConfig.Id.branch and BuilderConfig.Id.type of
+      // this parent orchestrator builder.
+      string name = 1;
+
+      enum CollectHandling {
+        COLLECT_HANDLING_UNSPECIFIED = 0;
+        // Indicates the result should be collected. Currently also indicates
+        // that should the orchestrator terminate before this child finishes
+        // the child will be killed.
+        COLLECT = 1;
+        // Indicates the result should not be collected. Currently also
+        // indicates that should the orchestrator terminate before this child
+        // finishes this child is allowed to continue.
+        NO_COLLECT = 2;
+      }
+      CollectHandling collect_handling = 2;
+    }
+    repeated ChildSpec child_specs = 5;
 
     // GitilesCommit to use if not provided.
     GitilesCommit gitiles_commit = 2;
