@@ -52,6 +52,26 @@ message SysrootCreateResponse {
   Sysroot sysroot = 1;
 }
 
+// Sysroot generate archive request.
+message SysrootGenerateArchiveRequest {
+  // The target whose sysroot is being created.
+  chromiumos.BuildTarget build_target = 1;
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 2;
+  // Packages to generate the sysroot for, such as 'virtual/target-fuzzers'.
+  // This is passed in based on the informaitonal builder type, see
+  // chromite/config/chromeos_config.py for examples.
+  repeated chromiumos.PackageInfo packages = 3;
+  // Target directory for the sysroot tarball.
+  chromiumos.ResultPath target_dir = 4;
+}
+
+// Generate archive response.
+message SysrootGenerateArchiveResponse {
+  // Path where the sysroot tarball is written.
+  chromiumos.Path sysroot_archive = 1;
+}
+
 // Request to install the toolchain into the sysroot.
 message InstallToolchainRequest {
   // The install toolchain flags.
@@ -139,6 +159,10 @@ service SysrootService {
 
   // Create the base sysroot structure.
   rpc Create(SysrootCreateRequest) returns (SysrootCreateResponse);
+
+  // Generate sysroot archive.
+  rpc GenerateArchive(SysrootGenerateArchiveRequest)
+    returns (SysrootGenerateArchiveResponse);
 
   // Install the toolchain into the sysroot.
   rpc InstallToolchain(InstallToolchainRequest)
