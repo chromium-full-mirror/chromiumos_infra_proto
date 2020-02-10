@@ -233,3 +233,14 @@ enum AFDOArtifactType {
   // The type is Chrome AFDO used in release builders.
   CHROME_AFDO = 4;
 }
+
+// Additional information about artifacts used by PrepareForBuild endpoints.
+message PrepareForBuildAdditionalArgs {
+  oneof prepare_for_build_args {
+    // ToolchainService Chrome AFDO artifacts require profile name.
+    string chrome_cwp_profile = 1;
+
+    // ToolchainService Kernel AFDO artifacts require a kernel version.
+    string kernel_version = 2;
+  }
+}

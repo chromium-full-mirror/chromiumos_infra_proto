@@ -302,7 +302,16 @@ message BuilderConfig {
     reserved 7 to 11;
 
     // Below here are configuration specifications for the steps that call the
-    // Build API endpoints.
+    // Build API endpoints.  They are listed in the order in which steps are
+    // generally called, rather than in numerical order.
+
+    // Controls for the call to cros_artifacts.prepare_for_build.
+    message PrepareForBuild {
+      // Additional arguments from common.proto, passed into any
+      // PrepareFor*Build endpoint.
+      PrepareForBuildAdditionalArgs additional_args = 1;
+    }
+    PrepareForBuild prepare_for_build = 17;
 
     // Controls for the call to SdkService.Update.
     message SdkUpdate {
