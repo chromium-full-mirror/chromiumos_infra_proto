@@ -112,12 +112,7 @@ message BuilderConfig {
   // Configuration pertaining to builders operating as "orchestrators".
   // Orchestrators orchestrate the running of other child builders.
   message Orchestrator {
-    // TODO(dburger): transition to child_specs and remove children.
-
-    // BuilderConfig.Id.name of the child builds. They would expect to match
-    // this name and the BuilderConfig.Id.branch and BuilderConfig.Id.type of
-    // this parent orchestrator builder.
-    repeated string children = 1;
+    reserved 1;
 
     // Defines a child the orchestrator spawns and how it is handled.
     message ChildSpec {
