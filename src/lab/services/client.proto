@@ -1,0 +1,16 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package lab.services;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab/services";
+
+// Configuration information required by clients of Test Lab Services.
+message ClientConfig {
+  // Local TCP port to be used by the Remote Test Driver to communicate with
+  // the Test Lab Services.
+  int32 port = 1;
+}
