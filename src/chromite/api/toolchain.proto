@@ -66,6 +66,9 @@ message BundleToolchainRequest {
 
   // Which artifacts are wanted?
   repeated chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_types = 4;
+
+  // Additional arguments that were used in PrepareForBuild.
+  chromiumos.PrepareForBuildAdditionalArgs additional_args = 5;
 }
 
 // Response describing which bundles were dumped to the given output directory.
