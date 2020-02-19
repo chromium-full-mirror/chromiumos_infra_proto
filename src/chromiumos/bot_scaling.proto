@@ -17,6 +17,14 @@ message BotType {
     int32 cores_per_bot = 2;
 }
 
+// Defines Swarming dimensions associated with a bot group.
+message SwarmingDimension {
+    // Dimesion name
+    string name = 1;
+    // Dimension value
+    string value = 2;
+}
+
 // Bot Policy to apply to a bot group.
 message BotPolicy {
     // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
@@ -55,6 +63,8 @@ message BotPolicy {
         float weight = 3;
     }
     repeated RegionRestriction region_restrictions = 4;
+    // A set of dimensions used to validate current Swarming allocations.
+    repeated SwarmingDimension swarming_dimensions = 5;
 }
 
 // Configures the root message.
