@@ -13,26 +13,47 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/tls";
 // Wiring APIs are implemented by TLS wiring providers for all low
 // level access to lab services.
 //
-// It is expected that TLEs do not implement most of the methods.
-// TLEs only need to implement the services that it wants to provide to clients.
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
 //
-// All clients should pass gRPC metadata key request_trace_id with one value.
-// The value is a unique string that is associated with the method call in metrics.
-// Clients that do not pass request_trace_id may be rejected so that they can be fixed.
+// Implementations of the service MAY leave methods unimplemented.
+//
+// All clients SHOULD pass the gRPC metadata key request_trace_id with one value.
+// The value is a unique string that is associated with the method
+// call in metrics.
+// Clients that do not pass request_trace_id MAY be rejected so that
+// they can be fixed.
 service Wiring {
-  // Open a port on the DUT for the caller.
-  // The TLE attempts to keep this port open for the duration of the
-  // RTD's runtime.
-  // This RPC can be called repeatedly for the same RTD, DUT, and port.
-  // On subsequent calls, the implementation should attempt to return the same address.
+  // Open a port on the DUT and return an address which the client can
+  // use to connect to the port on the DUT.
+  // The TLE SHOULD attempt to keep this address-to-port connection open for
+  // the duration of the RTD's runtime.
+  // The connection is not restarted if it is interrupted.
+  //
+  // If the connection from a previous call with the same arguments is
+  // still open, this RPC SHOULD do nothing and return the same
+  // response.
+  // If the previous connection was closed, the implementation SHOULD
+  // attempt to rebind and return the same address.
   // If the implementation lost and cannot reobtain the previous
-  // address, it should return a new address.
+  // address, it MAY return a new address.
+  //
+  // This RPC does NOT ensure that there is a service running on the
+  // DUT for the given port.
+  // A service running on the given port MUST NOT required for this RPC
+  // to succeed.
+  // It is not specified whether this RPC will open the given port in
+  // the DUT's firewall, if the DUT has a firewall.
   rpc OpenDutPort(OpenDutPortRequest) returns (OpenDutPortResponse);
 
   // SetDutPowerSupply sets the connected power state for the DUT.  It is
   // the caller's responsibility to wait for the effects of the call
   // to propagate, e.g. waiting in between calls to set the power OFF
   // and ON.
+  //
+  // EXPERIMENTAL
   rpc SetDutPowerSupply(SetDutPowerSupplyRequest) returns (SetDutPowerSupplyResponse);
 
   // CacheForDut caches some data to be accesible for the DUT.
@@ -42,46 +63,38 @@ service Wiring {
   // to ensure the stream does not time out.
   // The client should continue streaming replies until getting success or failure.
   //
-  // Experimental
+  // EXPERIMENTAL
   rpc CacheForDut(CacheForDutRequest) returns (stream CacheForDutResponse);
 
   // CallServoXmlRpc performs an XML-RPC call against the servo connected to a DUT.
   //
   // This RPC mirrors the XML-RPC specification (http://xmlrpc.com/spec.md).
   //
-  // Experimental
+  // EXPERIMENTAL
   rpc CallServoXmlRpc(CallServoXmlRpcRequest) returns (CallServoXmlRpcResponse);
 }
 
 message OpenDutPortRequest {
-  // dut is some identifier for the DUT.
-  // The DUT ID is passed to the RTD when it is started.
-  // This could be the DUT hostname, but the caller should not be able
-  // to use the hostname to SSH or otherwise interact with the DUT
-  // directly.
-  string dut = 1;
-  // Port to open on the DUT.
-  int32 dut_port = 2;
+  // name is the resource name for the DUT.
+  // The DUT name is passed to the RTD when the RTD is started.
+  // It is not specified whether the name is the DUT hostname.
+  string name = 1;
+  // port is the port to open on the DUT.
+  int32 port = 2;
 }
 message OpenDutPortResponse {
-  enum Status {
-    STATUS_UNKNOWN = 0;
-    STATUS_OK = 1;
-    // STATUS_BAD_DUT indicates that the DUT is not known,
-    // or the caller does not have access to it.
-    STATUS_BAD_DUT = 2;
-    // STATUS_DUT_UNREACHABLE indicates that the DUT is not reachable
-    // over the network.
-    STATUS_DUT_UNREACHABLE = 3;
-  }
-  Status status = 1;
-  // address which is forwarded to the DUT, in the form host:port.
-  // TLEs should return an IP address to avoid name resolution issues.
-  // If TLEs return a hostname, they should ensure that the hostname is
-  // resolveable by the RTD via standard name resolution facilities.
-  string address = 2;
-  // reason provides human friendly context for any error status.
-  string reason = 3;
+  // address for which a port is forwarded to the DUT.
+  // TLEs SHOULD return an IPv4 or IPv6 address to avoid name
+  // resolution issues.
+  // IPv4 addresses MUST be in standard dotted decimal notation.
+  // IPv6 addresses MUST be formatted according to RFC4291, Section
+  // 2.2.  The mixed IPv4 and IPv6 form MUST NOT be used.
+  // If TLEs return a hostname, they SHOULD ensure that the hostname
+  // can be resolved by the RTD via standard name resolution
+  // facilities.
+  string address = 1;
+  // port on the address which is forwarded to the DUT.
+  int32 port = 2;
 }
 
 message SetDutPowerSupplyRequest {

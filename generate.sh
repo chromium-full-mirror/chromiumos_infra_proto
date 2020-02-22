@@ -8,11 +8,8 @@
 
 CROS_CONFIG_REPO="https://chromium.googlesource.com/chromiumos/config"
 
-# Versions of packages to get from CIPD.
-CIPD_PROTOC_VERSION='v3.6.1'
-CIPD_PROTOC_GEN_GO_VERSION='v1.3.2'
-
 readonly script_dir="$(dirname "$(realpath -e "${BASH_SOURCE[0]}")")"
+source "${script_dir}/setup_cipd.sh"
 
 readonly work_dir=$(mktemp --tmpdir -d genprotoXXXXXX)
 trap "rm -rf ${work_dir}" EXIT
@@ -28,19 +25,6 @@ else
     "${work_dir}/config"
 fi
 readonly cros_config_subdir="config/proto"
-
-# Get protobuf compiler from CIPD.
-readonly cipd_root="${script_dir}/.cipd_bin"
-cipd ensure \
-  -log-level warning \
-  -root "${cipd_root}" \
-  -ensure-file - \
-  <<ENSURE_FILE
-infra/tools/protoc/\${platform} protobuf_version:${CIPD_PROTOC_VERSION}
-chromiumos/infra/tools/protoc-gen-go version:${CIPD_PROTOC_GEN_GO_VERSION}
-ENSURE_FILE
-
-PATH="${cipd_root}:${PATH}"
 
 cd "${script_dir}"
 

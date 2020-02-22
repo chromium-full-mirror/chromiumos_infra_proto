@@ -12,7 +12,7 @@ def _HasLocalChanges(input_api):
 def CheckGenerated(input_api, output_api):
   results = []
   input_api.subprocess.call(
-      ['bash', './generate.sh'],
+      ['./generate.sh'],
       stdout=input_api.subprocess.PIPE,
       stderr=input_api.subprocess.PIPE)
   if _HasLocalChanges(input_api):
@@ -21,8 +21,25 @@ def CheckGenerated(input_api, output_api):
     results.append(output_api.PresubmitError(msg))
   return results
 
+def CheckExamples(input_api, output_api):
+  results = []
+  ret = input_api.subprocess.call(
+      ['./check_examples.sh'],
+      stdout=input_api.subprocess.PIPE,
+      stderr=input_api.subprocess.PIPE)
+  if ret:
+    results.append(output_api.PresubmitError(
+      'go test failed. Please run check_examples.sh for details.'))
+  return results
+
 def CheckChangeOnUpload(input_api, output_api):
-  return CheckGenerated(input_api, output_api)
+  results = []
+  results.extend(CheckGenerated(input_api, output_api))
+  results.extend(CheckExamples(input_api, output_api))
+  return results
 
 def CheckChangeOnCommit(input_api, output_api):
-  return CheckGenerated(input_api, output_api)
+  results = []
+  results.extend(CheckGenerated(input_api, output_api))
+  results.extend(CheckExamples(input_api, output_api))
+  return results
