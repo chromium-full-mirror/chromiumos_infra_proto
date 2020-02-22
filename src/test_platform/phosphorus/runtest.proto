@@ -57,3 +57,28 @@ message RunTestRequest {
   google.protobuf.Timestamp deadline = 5;
 }
 
+// RunTestResponse defines the output of `phosphorus runtest`.
+message RunTestResponse {
+  // Values should be consistent with https://aip.dev/216
+  enum State {
+    // Should not be used.
+    STATE_UNSPECIFIED = 0;
+    // The test succeeded.
+    //
+    // Some test failures may not be detectable during execution. These
+    // failures will be detected when parsing results off the test logs in a
+    // later step of test_runner.
+    SUCCEEDED = 1;
+    // The test failed.
+    FAILED = 2;
+    // The test hit the requested timeout.
+    TIMED_OUT = 3;
+    // The test was aborted externally.
+    ABORTED = 4;
+  }
+
+  // `phosphorus runtest` exits with exit code 0 unless there is an
+  // infrastructure failure. When the exit code is 0, `state` indicates the
+  // best known state of the test execution (see comments on State enum).
+  State state = 1;
+}

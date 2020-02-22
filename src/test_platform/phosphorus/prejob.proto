@@ -33,3 +33,28 @@ message PrejobRequest {
   google.protobuf.Timestamp deadline = 6;
 }
 
+// PrejobResponse defines the output of `phosphorus prejob`.
+message PrejobResponse {
+  // Values should be consistent with https://aip.dev/216
+  enum State {
+    // Should not be used.
+    STATE_UNSPECIFIED = 0;
+    // The prejob succeeded.
+    //
+    // Some prejob failures may not be detectable during execution. These
+    // failures will be detected when parsing results off the prejob logs in a
+    // later step of test_runner.
+    SUCCEEDED = 1;
+    // The prejob failed.
+    FAILED = 2;
+    // The prejob hit the requested timeout.
+    TIMED_OUT = 3;
+    // The prejob was aborted externally.
+    ABORTED = 4;
+  }
+
+  // `phosphorus prejob` exits with exit code 0 unless there is an
+  // infrastructure failure. When the exit code is 0, `state` indicates the
+  // best known state of the prejob execution (see comments on State enum).
+  State state = 1;
+}
