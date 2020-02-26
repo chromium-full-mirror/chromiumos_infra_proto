@@ -81,4 +81,8 @@ message RunTestResponse {
   // infrastructure failure. When the exit code is 0, `state` indicates the
   // best known state of the test execution (see comments on State enum).
   State state = 1;
+
+  // Absolute path to the test results directory created by `runtest`.
+  // Must be inside config.task.results_dir (the overall results directory).
+  string results_dir = 2;
 }
