@@ -33,9 +33,3 @@ find go -name '*.pb.go' -exec rm '{}' \;
 # https://github.com/golang/protobuf/issues/39
 find src -name '*.proto' -exec \
      protoc -Isrc --go_out=paths=source_relative,plugins=grpc:go '{}' \;
-
-# Assemble a proto descriptor set with all protos in this repo, it is later
-# used by lucicfg to work with these protos when generating configs.
-export LC_ALL=C  # for stable sorting order
-all_protos=$(find src -name "*.proto" | cut -d'/' -f2- | sort)
-protoc -Isrc --descriptor_set_out=descpb.bin ${all_protos}
