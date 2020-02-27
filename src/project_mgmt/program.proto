@@ -1,0 +1,23 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package project_mgmt;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/project_mgmt";
+
+// Defines the metadata for a program, which ultimately controls how this
+// program is managed throughout the infrastructure.
+message Program {
+  // Defines the git-repo path for the program.
+  string repo = 1;
+  // Defines that path that stores all of the program configuration.
+  // Relative to the git-repo
+  string config_path = 2;
+}
+
+message ProgramList {
+  repeated Program value = 1;
+}
