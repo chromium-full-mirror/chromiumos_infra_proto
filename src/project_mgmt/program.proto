@@ -13,9 +13,12 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/project_mgmt";
 message Program {
   // Defines the git-repo path for the program.
   string repo = 1;
-  // Defines that path that stores all of the program configuration.
+  // Defines the path that stores all of the program configuration.
   // Relative to the git-repo
   string config_path = 2;
+  // Defines the path the repo is checked out to in the source tree, i.e. the
+  // "path" attribute in the manifest.
+  string repo_checkout_path = 3;
 }
 
 message ProgramList {
