@@ -47,13 +47,13 @@ message DUT {
   // Peripherals information about the lab deployment of the device.
   lab.Peripherals peripherals = 2;
 
-  // ID for the DUT for using Test Lab Services to interact with the
+  // Name for the DUT for using Test Lab Services to interact with the
   // device and its peripherals.
   // The RTD must pass this to certain Test Lab Service RPCs to specify
   // DUTs to act on.
   // See the tls.OpenDutPortRequest message for an example of where
   // this is used.
-  string test_lab_services_id = 3;
+  string tls_dut_name = 3;
 }
 
 // Request for execution of a single test.metadata.Test
