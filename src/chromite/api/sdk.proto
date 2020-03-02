@@ -89,6 +89,26 @@ message CleanRequest {
 
 message CleanResponse {}
 
+// An opaque key to a chroot snapshot state.
+message SnapshotToken {
+  string value = 1;
+}
+
+message CreateSnapshotRequest {
+  chromiumos.Chroot chroot = 1;
+}
+
+message CreateSnapshotResponse {
+  SnapshotToken snapshot_token = 1;
+}
+
+message RestoreSnapshotRequest {
+  chromiumos.Chroot chroot = 1;
+  SnapshotToken snapshot_token = 2;
+}
+
+message RestoreSnapshotResponse {}
+
 // SDK operations.
 service SdkService {
   // The service options (see build_api.proto).
@@ -115,4 +135,10 @@ service SdkService {
       method_chroot_assert: INSIDE,
     };
   }
+
+  // Create a chroot snapshot.
+  rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse);
+
+  // Restore a chroot to a snapshot.
+  rpc RestoreSnapshot(RestoreSnapshotRequest) returns (RestoreSnapshotResponse);
 }
