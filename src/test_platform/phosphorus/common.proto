@@ -18,7 +18,8 @@ message BotEnvironment {
 // TaskEnvironment defines task-specific parameters used by phosphorus.
 message TaskEnvironment {
 
-  // Absolute path to the client offload directory, for high-reliability results
+  // Path to the client offload directory relative to the results directory
+  //  Intended for log-data which is needed synchronously with high reliability
   string synchronous_offload_dir = 1;
 
   // Absolute path to the results directory for a given run.

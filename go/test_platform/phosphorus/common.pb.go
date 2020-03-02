@@ -64,7 +64,8 @@ func (m *BotEnvironment) GetAutotestDir() string {
 
 // TaskEnvironment defines task-specific parameters used by phosphorus.
 type TaskEnvironment struct {
-	// Absolute path to the client offload directory, for high-reliability results
+	// Path to the client offload directory relative to the results directory
+	//  Intended for log-data which is needed synchronously with high reliability
 	SynchronousOffloadDir string `protobuf:"bytes,1,opt,name=synchronous_offload_dir,json=synchronousOffloadDir,proto3" json:"synchronous_offload_dir,omitempty"`
 	// Absolute path to the results directory for a given run.
 	ResultsDir           string   `protobuf:"bytes,2,opt,name=results_dir,json=resultsDir,proto3" json:"results_dir,omitempty"`
