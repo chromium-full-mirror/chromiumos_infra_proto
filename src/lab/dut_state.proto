@@ -22,11 +22,12 @@ message DutState {
     int32 working_bluetooth_btpeer = 5;
 }
 
-// Next Tag: 3
+// Next Tag: 5
 enum PeripheralState {
   // keep for all unknown states except working & not_connected.
   UNKNOWN = 0;
   WORKING = 1;
   NOT_CONNECTED = 2;
   BROKEN = 3;
+  WRONG_CONFIG = 4;
 }
