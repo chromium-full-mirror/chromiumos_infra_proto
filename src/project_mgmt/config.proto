@@ -9,9 +9,7 @@ package project_mgmt;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/project_mgmt";
 
 import "project_mgmt/program.proto";
-import "project_mgmt/project.proto";
 
 message Config {
   ProgramList programs = 1;
-  ProjectList projects = 2;
 }
