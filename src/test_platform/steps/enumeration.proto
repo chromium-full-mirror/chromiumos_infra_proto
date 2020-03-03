@@ -50,4 +50,13 @@ message EnumerationResponse {
     }
 
     repeated AutotestInvocation autotest_invocations = 2;
+
+    // If set, a summary of the errors encountered during enumeration.
+    //
+    // If set, the corresponding request's final verdict must reflect failure.
+    //
+    // autotest_invocations may be non-empty even when error_summary is set.
+    // In that case all included autotest_invocations must be executed, despite
+    // the error_summary.
+    string error_summary = 3;
 }
