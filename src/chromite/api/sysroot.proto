@@ -99,10 +99,10 @@ message InstallToolchainResponse {
 
 message InstallPackagesRequest {
   message Flags {
+    reserved 2;
+
     // Compile from source (true), or use bin packages (false).
     bool compile_source = 1;
-    // Event file location.
-    string event_file = 2;
     // Whether to start goma.
     bool use_goma = 3;
     // Whether a toolchain change has occurred.
