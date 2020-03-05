@@ -27,6 +27,9 @@ message SuiteRetryCfg {
 
     // Verdict of the test run.
     test_platform.TaskState.Verdict verdict = 3;
+
+    // Should the DUT/VM restart before retry?
+    bool requires_restart = 4;
   }
 
   // Scenarios to retry for each build_target.
