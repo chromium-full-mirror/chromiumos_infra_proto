@@ -109,9 +109,9 @@ message Request {
         // Must not be a managed pool.
         string unmanaged_pool = 2;
 
-        // Quota account to use. If specified, request will run in the
-        // quota-shared pool, and scheduled via quotascheduler.
-        string quota_account = 3;
+        // TODO(crbug/1059076): Remove this field after the migration is done. Use
+        // qs_account to specify quota account for both managed and unmanaged pools.
+        string quota_account = 3 [deprecated = true];
       }
 
       // Priority corresponds to a swarming task priority; if specified, it
@@ -123,6 +123,14 @@ message Request {
       // a quotascheduler-controlled pool, then this priority will be ignored,
       // as priority will be determined by quota account balances.
       int64 priority = 4;
+
+     // It is an error to set both qs_account and priority at the same time.
+     // qs_account should be used if the request is scheduled on a pool
+     // managed by QuotaScheduler. See go/qs-enabled-pools for details.
+     // If qs_account is set for requests on no QuotaScheduler pools,
+     // it will be ignored and the request will default to running at
+     // the lowest priority.
+      string qs_account = 5;
     }
 
     Scheduling scheduling = 4;
