@@ -156,6 +156,10 @@ message ScheduleJobSection {
   repeated MatchedBuild matched_builds = 5;
   // Jobs in this section.
   repeated ScheduleJob schedule_jobs = 6;
+  // The pool to run jobs in this section.
+  string pool = 7;
+  // The suite name this section to execute.
+  string suite = 8;
 }
 
 // The response received from cros_test_platform.
