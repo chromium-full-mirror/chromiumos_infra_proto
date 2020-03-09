@@ -17,9 +17,9 @@ package test.metadata.v1;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/metadata";
 option java_outer_classname = "MetadataProto";
 
-import "device/config.proto";
 import "google/protobuf/struct.proto";
 import "lab/device.proto";
+import "test/common/device.proto";
 import "test/metadata/v1/remote_test_driver.proto";
 
 // Metadata required for scheduling, invocation and results analysis of tests
@@ -115,16 +115,15 @@ message DUTCondition {
   //
   // Typical instructive examples of expressions are:
   //
-  // - A specific value for a hardware feature, e.g.:
-  //     scope.device.graphics == device.Config.GRAPHICS_GL
-  // - Some initialized value for a hardware feature, e.g.:
-  //     has(s.device.form_factor)
-  // - Exclude certain values for a hardware feaure, e.g.:
-  //     scope.device.storage != device.Config.STORAGE_UFS
-  //     && s.device.sorage != device.Config.STORAGE_NVME
-  // - Exclude certain models, while selecting for other features, e.g.:
-  //     scope.lab_dut.peripherals.touch.mimo == true
-  //     && scope.device.id.model_id.value != "nautilus"
+  // - A specific characteristic for a hardware feature, e.g.:
+  //     scope.device.hardware_topology.screen.milliinch.value == 14000    
+  // - A specific topology for a hardware feature, e.g.:
+  //     scope.device.hardware_topology.form_factor.id == "fancy_clamshell"
+  // - Existence of a hardware feature, e.g.:
+  //     (scope.device.hardware_features.lte ==
+  //      scope.device.hardware_features.PRESENT)
+  // - Exclude certain hardware topologies, e.g.:
+  //     scope.device.hardware_topology.stylus.id != "pencil"
   //
   // ## CEL support
   //
@@ -197,10 +196,8 @@ message DUTCondition {
   // Scope includes the Device Under Test features that can be targeted for test
   // targetting.
   message Scope {
-    // Device Under Test features.
-    //
-    // TODO(crbug.com/1051694) Migrate to chromiumos/config/api
-    device.Config device = 1;
+    // Device Under Test specification.
+    test.common.Device device = 1;
 
     // Peripherals information about the lab deployment of the device.
     lab.DeviceUnderTest lab_dut = 2;

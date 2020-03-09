@@ -8,11 +8,10 @@ package test.rtd.v1;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/invocation";
 
-import "device/config.proto";
 import "lab/peripherals.proto";
 import "lab/services/client.proto";
+import "test/common/device.proto";
 import "test/rtd/v1/progress.proto";
-
 
 // Input to a Remote Test Driver invocation.
 //
@@ -41,8 +40,8 @@ message Invocation {
 // Contains all configuration data required to interact with a single device
 // under test during a test invocation.
 message DUT {
-  // Device Under Test features.
-  device.Config device = 1;
+  // Device Under Test sepcification.
+  test.common.Device device =1;
 
   // Peripherals information about the lab deployment of the device.
   lab.Peripherals peripherals = 2;

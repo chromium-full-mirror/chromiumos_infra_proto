@@ -8,8 +8,8 @@ package test.plan.v1;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan";
 
-import "device/config.proto";
 import "lab/device.proto";
+import "test/common/device.proto";
 import "test/metadata/v1/remote_test_driver.proto";
 
 // A Plan fully specifies a Test Platform end-user's coverage needs.
@@ -132,20 +132,34 @@ message DUTCoverageCondition {
   //
   // ## Examples
   //
+
+    // - A specific topology for a hardware feature, e.g.:
+  //     scope.device.hardware_toplogy.form_factor.id == "fancy_clamshell"
+  // - Existence of a hardware feature, e.g.:
+  //     (scope.device.hardware_features.lte ==
+  //       scope.device.hardware_features.PRESENT)
+  // - Exclude certain hardware topolgies, e.g.:
+  //     scope.device.hardware_toplogy.stylus.id != "pencil"
+  // - Exclude certain models, while selecting for other features, e.g.:
+  //     TODO(pprabhu,shaprico): Need a way to specify model for migration.
+
   // Typical instructive examples of expressions are:
   //
   // - Constraints: All pre-F20 plans only specify constraints on what devices
   //   may be used, e.g.:
   //    - Run each test on one DUT with model 'nautilus'.
+  //        TODO(pprabhu, shapiroc): Need a way to specify model for migration.
   //        (duts.all(dut, dut.device.id.model_id.value = 'nautilus')
   //         && size(duts) == 1)
-  //    - Run each test on one DUT manufactured by Acer.
-  //        (duts.all(dut, dut.device.oem = device.Config.OEM.OEM_ACER)
+  //    - Run each test on one DUT with a stylus.
+  //        (duts.all(dut, dut.device.hardware_features.stylus ==
+  //                  dut.device.hardware_features.PRESENT))
   //         && size(duts) == 1)
   //  - Fanout (not yet supported): In addition to constraints, the
   //    plan may want to ensure coverage across some device features.
-  //    - Run each test on one x86 and ARM DUT manufactured by Acer.
-  //        (duts.all(dut, dut.device.oem = device.OEM.OEM_ACER)
+  //    TODO(pprabhu) This is an instructive example. We can't say what arch yet.
+  //    - Run each test on one x86 and ARM DUT with a specific camera.
+  //        (duts.all(dut, dut.device.hardware_toplogy.camera.id != "gomoe")
   //         && duts.exist(dut,
   //                       dut.device.cpu = device.Config.Architecture.X86)
   //         && duts.exist(dut,
@@ -240,13 +254,11 @@ message DUTCoverageCondition {
 
     // Device Under Test features relevant for test plan conditions.
     message DUT {
-      // Device Under Test features.
-      //
-      // TODO(crbug.com/1051694) Migrate to chromiumos/config/api
-      device.Config device = 1;
-
+      // Device Under Test specification.
+      test.common.Device device = 1;
       // Configuration information about the lab deployment of the device.
       lab.DeviceUnderTest lab_dut = 2;
+
     }
   }
 }
