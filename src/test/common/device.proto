@@ -8,14 +8,16 @@ syntax = "proto3";
 // APIs.
 package test.common;
 
+// TODO(crbug.com/1051694) re-populate this file once recipe roll is fixed.
+
 // From chromiumos/config repo.
-import "api/hardware_topology.proto";
-import "api/topology.proto";
+// import "api/hardware_topology.proto";
+// import "api/topology.proto";
 
 // Specification of known characteristics of a Device Under Test.
 message Device {
     // The relationship between topology and features is described at
     // https://chromium.googlesource.com/chromiumos/config/+/master/proto/api/hardware_topology.md
-    chromiumos.config.api.HardwareTopology hardware_topology = 1;
-    chromiumos.config.api.HardwareFeatures hardware_features = 2;
+    // chromiumos.config.api.HardwareTopology hardware_topology = 1;
+    // chromiumos.config.api.HardwareFeatures hardware_features = 2;
 }
