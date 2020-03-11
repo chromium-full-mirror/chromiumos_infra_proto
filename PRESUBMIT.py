@@ -5,13 +5,11 @@
 def CheckGenerated(input_api, output_api):
   results = []
   input_api.subprocess.call(
-      './generate.sh',
-      shell=True,
+      ['bash', './generate.sh'],
       stdout=input_api.subprocess.PIPE,
       stderr=input_api.subprocess.PIPE)
   if input_api.subprocess.call(
-      'git diff --exit-code',
-      shell=True,
+      ['git', 'diff', '--exit-code'],
       stdout=input_api.subprocess.PIPE,
       stderr=input_api.subprocess.PIPE) != 0:
     msg = ('Running generate.sh produced a diff. Please '
