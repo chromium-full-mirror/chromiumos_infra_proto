@@ -22,8 +22,14 @@ message TaskEnvironment {
   //  Intended for log-data which is needed synchronously with high reliability
   string synchronous_offload_dir = 1;
 
-  // Absolute path to the results directory for a given run.
+  // Absolute path to the results directory for a given run. Include results of
+  //  both tests and non-test tasks like provision
   string results_dir = 2;
+
+  // Absolute path to the results directory for a given run's tests.
+  //  MUST be equal to ${results_dir}/autoserv_test if present. This restriction
+  //  may be lifted in the future.
+  string test_results_dir = 3;
 }
 
 // Config defines configuration parameters common to phosphorus subcommands.
