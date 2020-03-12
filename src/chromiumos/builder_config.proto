@@ -228,6 +228,9 @@ message BuilderConfig {
       VERIFIED_CHROME_CWP_AFDO_FILE = 20;
       // Indicates a vetted AFDO profile for release.
       VERIFIED_RELEASE_AFDO_FILE = 21;
+
+      // Indicates an unvetted AFDO perf data file (from HW Test).
+      UNVERIFIED_CHROME_BENCHMARK_PERF_FILE = 22;
     }
     repeated ArtifactTypes artifact_types = 2;
 
