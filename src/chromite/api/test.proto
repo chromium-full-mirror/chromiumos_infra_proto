@@ -48,6 +48,14 @@ message ChromiteUnitTestRequest {
 message ChromiteUnitTestResponse {
 }
 
+message ChromitePytestRequest {
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+}
+
+message ChromitePytestResponse {
+}
+
 message CrosSigningTestRequest {
   // Required if not in default location.
   // The chroot where the tests should be executed.
@@ -173,6 +181,9 @@ service TestService {
 
   // Run the chromite unit tests.
   rpc ChromiteUnitTest(ChromiteUnitTestRequest) returns (ChromiteUnitTestResponse);
+
+  // Run Pytest in chromite.
+  rpc ChromitePytest(ChromitePytestRequest) returns (ChromitePytestResponse);
 
   // Run the cros-signing unit tests.
   rpc CrosSigningTest(CrosSigningTestRequest) returns (CrosSigningTestResponse);
