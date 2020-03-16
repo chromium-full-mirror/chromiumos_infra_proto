@@ -13,13 +13,17 @@ import "test_platform/phosphorus/common.proto";
 // UploadToGSRequest defines the input of `phosphorus upload-to-gs`, for
 // uploading to Google Storage.
 message UploadToGSRequest {
-  Config config = 1;
+  // Deprecated in favor of local_directory, which is the only thing it's used
+  // for. Assembling that directory is moving to the 'callers'.
+  Config config = 1 [deprecated = true];
 
   // GS path to upload to, e.g. gs://foo/bar/baz/
   string gs_directory = 2;
 
-  // Swarming task ID (added to GS path for uniqueness)
-  string task_id = 3;
+  reserved 3; // Task ID, was never used
+
+  // Absolute path to local directory to upload to GS, e.g. /usr/local/foo/bar
+  string local_directory = 4;
 }
 
 message UploadToGSResponse {
