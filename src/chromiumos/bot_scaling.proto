@@ -8,63 +8,74 @@ package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 
-
 // Defines a type of bot associated with a bot group.
 message BotType {
-    // The string bot "shirt size" to be requested for the group.
-    string bot_size = 1;
-    // The number of cores per bot. Will be used to limit quota usage.
-    int32 cores_per_bot = 2;
+  // The string bot "shirt size" to be requested for the group.
+  string bot_size = 1;
+  // The number of cores per bot. Will be used to limit quota usage.
+  int32 cores_per_bot = 2;
 }
 
 // Defines Swarming dimensions associated with a bot group.
 message SwarmingDimension {
-    // Dimesion name
-    string name = 1;
-    // Dimension value
-    string value = 2;
+  // Dimesion name
+  string name = 1;
+  // Dimension value
+  string value = 2;
+}
+
+// Specifies mode for a bot policy
+enum Mode {
+  UNKNOWN_MODE = 0;
+  // Collect stats only for a bot group.
+  MONITORED = 1;
+  // Generate configuration updates for bot group.
+  CONFIGURED = 2;
 }
 
 // Bot Policy to apply to a bot group.
 message BotPolicy {
-    // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
-    string bot_group = 1;
+  // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
+  string bot_group = 1;
 
-    // The type of bot to be requested.
-    BotType bot_type = 2;
+  // The type of bot to be requested.
+  BotType bot_type = 2;
 
-    // Scaling restriction specifies the limits on how the group can be
-    // expanded or reduced.
-    message ScalingRestriction {
-        // Hard limit on the maximum number of bots to request.
-        int32 bot_ceiling = 1;
-        // Hard limit on the minimum number of bots to request.
-        int32 bot_floor = 2;
-        // Soft limit on the number of idle bots to maintain.
-        int32 min_idle = 3;
-        // Hard minimum limit on the absolute delta between request amount and
-        // existing bot count.
-        int32 step_size = 4;
-        // Static number to request when demand is not accessible.
-        int32 bot_fallback = 5;
-    }
-    ScalingRestriction scaling_restriction = 3;
+  // Scaling restriction specifies the limits on how the group can be
+  // expanded or reduced.
+  message ScalingRestriction {
+    // Hard limit on the maximum number of bots to request.
+    int32 bot_ceiling = 1;
+    // Hard limit on the minimum number of bots to request.
+    int32 bot_floor = 2;
+    // Soft limit on the number of idle bots to maintain.
+    int32 min_idle = 3;
+    // Hard minimum limit on the absolute delta between request amount and
+    // existing bot count.
+    int32 step_size = 4;
+    // Static number to request when demand is not accessible.
+    int32 bot_fallback = 5;
+  }
+  ScalingRestriction scaling_restriction = 3;
 
-    // A set of restrictions on the regions and how to distribute bots
-    // between them.
-    message RegionRestriction {
-        // Region of the bot sub-group.
-        string region = 1;
-        // Specific prefix of the bot sub-group.
-        string prefix = 2;
-        // Weight to be applied to this sub-group. The number of bots requested
-        // from each region will be proportional to the weight unless a
-        // quota limit is violated.
-        float weight = 3;
-    }
-    repeated RegionRestriction region_restrictions = 4;
-    // A set of dimensions used to validate current Swarming allocations.
-    repeated SwarmingDimension swarming_dimensions = 5;
+  // A set of restrictions on the regions and how to distribute bots
+  // between them.
+  message RegionRestriction {
+    // Region of the bot sub-group.
+    string region = 1;
+    // Specific prefix of the bot sub-group.
+    string prefix = 2;
+    // Weight to be applied to this sub-group. The number of bots requested
+    // from each region will be proportional to the weight unless a
+    // quota limit is violated.
+    float weight = 3;
+  }
+  repeated RegionRestriction region_restrictions = 4;
+  // A set of dimensions used to validate current Swarming allocations.
+  repeated SwarmingDimension swarming_dimensions = 5;
+
+  // Set whether a bot group should be configured or only monitored.
+  Mode policy_mode = 6;
 }
 
 // Configures the root message.
@@ -84,37 +95,37 @@ enum Actionable {
 
 // Scaling Action that resulted because of bot demand.
 message ScalingAction {
-    // Bot group modified by the action. Should be the same as BotPolicy.
-    string bot_group = 1;
+  // Bot group modified by the action. Should be the same as BotPolicy.
+  string bot_group = 1;
 
-    // The type of bot requested. Should be the same as BotPolicy.
-    BotType bot_type = 2;
+  // The type of bot requested. Should be the same as BotPolicy.
+  BotType bot_type = 2;
 
-    // Whether there has been a change in the number of bots requested
-    // for this bot group. See step_size for more info.
-    Actionable actionable = 3;
+  // Whether there has been a change in the number of bots requested
+  // for this bot group. See step_size for more info.
+  Actionable actionable = 3;
 
-    // Total number of bots requested for the group.
-    int32 bots_requested = 4;
+  // Total number of bots requested for the group.
+  int32 bots_requested = 4;
 
-    // How the bot requests are distributed between regions & prefixes.
-    message RegionalAction {
-        // Region of the bot sub-group.
-        string region = 1;
-        // Specific prefix of the bot sub-group.
-        string prefix = 2;
-        // Number of bots requested from the sub-group.
-        int32 bots_requested = 3;
-    }
-    repeated RegionalAction regional_actions = 5;
+  // How the bot requests are distributed between regions & prefixes.
+  message RegionalAction {
+    // Region of the bot sub-group.
+    string region = 1;
+    // Specific prefix of the bot sub-group.
+    string prefix = 2;
+    // Number of bots requested from the sub-group.
+    int32 bots_requested = 3;
+  }
+  repeated RegionalAction regional_actions = 5;
 }
 
 // All the actions that will be executed by RoboCrop.
 message RoboCropAction {
-    // Whether there has been any change in any of the bot groups
-    // since the last RoboCrop execution.
-    Actionable actionable = 1;
+  // Whether there has been any change in any of the bot groups
+  // since the last RoboCrop execution.
+  Actionable actionable = 1;
 
-    // List of an action per bot group scaled by RoboCrop.
-    repeated ScalingAction scaling_actions = 2;
+  // List of an action per bot group scaled by RoboCrop.
+  repeated ScalingAction scaling_actions = 2;
 }
