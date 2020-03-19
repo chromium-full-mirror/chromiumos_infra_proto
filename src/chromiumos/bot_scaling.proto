@@ -24,15 +24,6 @@ message SwarmingDimension {
   string value = 2;
 }
 
-// Specifies mode for a bot policy
-enum Mode {
-  UNKNOWN_MODE = 0;
-  // Collect stats only for a bot group.
-  MONITORED = 1;
-  // Generate configuration updates for bot group.
-  CONFIGURED = 2;
-}
-
 // Bot Policy to apply to a bot group.
 message BotPolicy {
   // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
@@ -74,6 +65,15 @@ message BotPolicy {
   // A set of dimensions used to validate current Swarming allocations.
   repeated SwarmingDimension swarming_dimensions = 5;
 
+  // Specifies mode for a bot policy
+  enum Mode {
+    UNKNOWN_MODE = 0;
+    // Collect stats only for a bot group.
+    MONITORED = 1;
+    // Generate configuration updates for bot group.
+    CONFIGURED = 2;
+  }
+
   // Set whether a bot group should be configured or only monitored.
   Mode policy_mode = 6;
 }
@@ -84,15 +84,6 @@ message BotPolicyCfg {
   repeated BotPolicy bot_policies = 1;
 }
 
-// Specifies if there has been a change since the last iteration.
-enum Actionable {
-  UNSPECIFIED = 0;
-  // There is a change since last time.
-  YES = 1;
-  // There is no change since last time.
-  NO = 2;
-}
-
 // Scaling Action that resulted because of bot demand.
 message ScalingAction {
   // Bot group modified by the action. Should be the same as BotPolicy.
@@ -100,6 +91,15 @@ message ScalingAction {
 
   // The type of bot requested. Should be the same as BotPolicy.
   BotType bot_type = 2;
+
+  // Specifies if there has been a change since the last iteration.
+  enum Actionable {
+    UNSPECIFIED = 0;
+    // There is a change since last time.
+    YES = 1;
+    // There is no change since last time.
+    NO = 2;
+  }
 
   // Whether there has been a change in the number of bots requested
   // for this bot group. See step_size for more info.
@@ -122,10 +122,6 @@ message ScalingAction {
 
 // All the actions that will be executed by RoboCrop.
 message RoboCropAction {
-  // Whether there has been any change in any of the bot groups
-  // since the last RoboCrop execution.
-  Actionable actionable = 1;
-
   // List of an action per bot group scaled by RoboCrop.
-  repeated ScalingAction scaling_actions = 2;
+  repeated ScalingAction scaling_actions = 1;
 }
