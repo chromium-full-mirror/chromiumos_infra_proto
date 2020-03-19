@@ -31,12 +31,17 @@ message Plan {
 
 // Specifies a particular set of tests to be run to meet specific conditions.
 message Unit {
+  // A test plan unit name, unique within a plan.
+  //
+  // Must be valid resource name per https://aip.dev/122.
+  string name = 1;
+
   // Selects tests to include in this test plan unit.
-  TestCondition test_condition = 1;
+  TestCondition test_condition = 2;
 
   // Selects the set of Devices Under Test that tests must be run on to satisfy
   // this test plan unit.
-  DUTCoverageCondition dut_coverage_condition = 2;
+  DUTCoverageCondition dut_coverage_condition = 3;
 
   // Chrome OS platform software covered by this test plan.
   //
@@ -52,7 +57,7 @@ message Unit {
   // For a test plan unit with no `code_coverage` specified, Test Platform must
   // assume coverage of all platform software (i.e., this test plan unit must
   // never be skipped for code coverage considerations).
-  CodeCoverage code_coverage = 3;
+  CodeCoverage code_coverage = 4;
 }
 
 // Selects the test.metadata.Test to include in a test plan unit.
