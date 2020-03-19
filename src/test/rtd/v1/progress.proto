@@ -37,13 +37,11 @@ service ProgressSink {
 
   // A log stream from the Remote Test Driver invocation.
   //
-  // Each call to this method must report data for a single invocation
-  // request and log file. Data for the same file may be split over multiple
-  // ReportLogData calls. In case of concurrent methods calls for the same
-  // log file, Remote Test Servers need not make any guarantees about the
-  // interleaving of received data.
-  rpc ReportLogData(stream ReportLogRequest)
-    returns (ReportLogResponse);
+  // Each call to this method must stream logs for a single invocation request
+  // and log file. Data for the same file may be split over multiple ReportLog
+  // calls. Data received from concurrent methods calls for the same log file
+  // may be interleved arbitrarily.
+  rpc ReportLog(stream ReportLogRequest) returns (ReportLogResponse);
 }
 
 message ReportResultRequest {
