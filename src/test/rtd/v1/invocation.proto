@@ -76,31 +76,31 @@ message Request {
 
   // Per-request Remote Test Server environment configuration.
   message Environment {
-    // Absolute path to a directory where prod-critical log-data may be written.
+    // Absolute path to a directory for writing arbitrary files.
     //
     // This directory must be created by Remote Test Server prior to the Remote
-    // Test Driver invocation and its contents must be successfully offloaded to
-    // the requested long-term storage for the request to be considered
-    // successful.
+    // Test Driver invocation.
     //
-    // Note: Remote Test Drivers should use
-    // test.invocation.ProgressClient.ReportLogData() to report logs whenever
-    // possible. This log-data reporting feature is grandfathered into the
-    // current API to support test-specific critical log-data reporting.
-    string critical_log_data_path = 1;
-
-    // Absolute path to a directory where non prod-critical log-data may be
-    // written.
+    // * Remote Test Drivers should use
+    // test.invocation.ProgressClient.ReportLog() to report logs.
+    // * Remote Test Drivers should use
+    // test.invocation.ProgressClient.ArchiveArtifact() to archive critical
+    // artifacts.
     //
-    // This directory must be created by Remote Test Server prior to the Remote
-    // Test Driver invocation. It's contents may be offloaded to long-term
+    // Remote Test Servers may archive the work_dir contents to non-ephemeral
     // storage as a best effort asynchronous task.
+    string work_dir = 1;
+
+    // Absolute path to a directory for writing temporary files.
     //
-    // Note: Remote Test Drivers should use
-    // test.invocation.ProgressClient.ReportLogData() to report logs whenever
-    // possible. This log-data reporting feature is grandfathered into the
-    // current API to support test-specific log files.
-    string log_data_path = 2;
+    // This directory must be created by Remote Test Server prior to the Remote
+    // Test Driver invocation.
+    //
+    // Remote Test Drivers must use this directory for temporary files and must
+    // not attempt to use defaults like /tmp or the TMP environment variable.
+    //
+    // See also: Environment.work_dir
+    string temp_dir = 2;
   }
 
   // Environment configuration set by the Remote Test Server for a specific

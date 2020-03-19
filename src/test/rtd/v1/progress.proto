@@ -42,6 +42,19 @@ service ProgressSink {
   // calls. Data received from concurrent methods calls for the same log file
   // may be interleved arbitrarily.
   rpc ReportLog(stream ReportLogRequest) returns (ReportLogResponse);
+
+  // Archive test artifacts to non-ephemeral storage.
+  //
+  // Different Test Lab Environments may use very different non-ephemeral
+  // storage technologies. Remote Test Servers must archive the artifacts to
+  // final storage synchronously and return an error if the archival fails.
+  //
+  // Note: Remote Test Drivers should use ReportLog() to report logs.
+  // ArchiveArtifact() should be used to report structured or binary data only.
+  //
+  // Remote Test Server may limit the size of artifacts that may be offloaded
+  // per request and may fail further requests with RESOURCE_EXHAUSTED.
+  rpc ArchiveArtifact(ArchiveArtifactRequest) returns (ArchiveArtifactResponse);
 }
 
 message ReportResultRequest {
@@ -151,3 +164,24 @@ message ReportLogRequest {
 }
 
 message ReportLogResponse {}
+
+message ArchiveArtifactRequest {
+  // Name for the archived artifact.
+  //
+  // name may be interpreted as a local file path or part of a URL. name must be
+  // a valid resource name per https://aip.dev/122 and must be a valid POSIX
+  // file path.
+  //
+  // name must be unique across all artifacts archived from a single invocation
+  // request.
+  string name = 1;
+
+  // The request to archive artifacts for, identified by the
+  // Invocation.Request.name field.
+  string request = 2;
+
+  // Absolute path to a file or directory to archive.
+  string local_path = 3;
+}
+
+message ArchiveArtifactResponse {}
