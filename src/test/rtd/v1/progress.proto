@@ -57,15 +57,6 @@ service ProgressSink {
   rpc ArchiveArtifact(ArchiveArtifactRequest) returns (ArchiveArtifactResponse);
 }
 
-message ReportResultRequest {
-  // The request to report results for, identified by the
-  // Invocation.Request.name field.
-  string name = 1;
-
-  // Result to report.
-  Result result = 2;
-}
-
 // Result for a single invocation request.
 message Result {
   // Enum entries *may* be added to this enum in the future.
@@ -141,6 +132,15 @@ message Result {
   repeated Error errors = 2;
 }
 
+message ReportResultRequest {
+  // The request to report results for, identified by the
+  // Invocation.Request.name field.
+  string request = 1;
+
+  // Result to report.
+  Result result = 2;
+}
+
 message ReportResultResponse {
   // If set, the invocation should immediately terminate, skipping remaining
   // requests.
@@ -148,16 +148,16 @@ message ReportResultResponse {
 }
 
 message ReportLogRequest {
-  // The request to report logs for, identified by the
-  // Invocation.Request.name field.
-  string name = 1;
-
-  // path of the log "file".
+  // Name of the log sink.
   //
-  // path may be interpreted as local file paths or parts of a URL. path must be
+  // name may be interpreted as a local file path or part of a URL. name must be
   // a valid resource name per https://aip.dev/122 and must be a valid POSIX
   // file path.
-  string path = 2;
+  string name = 1;
+
+  // The request to report logs for, identified by the
+  // Invocation.Request.name field.
+  string request = 2;
 
   // Uninterpreted chunk of log-data.
   bytes data = 3;
