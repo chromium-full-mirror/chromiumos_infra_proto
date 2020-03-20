@@ -16,6 +16,17 @@ message TestSuiteCommon {
 
   // Whether or not the test suite is considered critical.
   google.protobuf.BoolValue critical = 2;
+
+  message TestSuiteGroup {
+    string test_suite_group = 1;
+  }
+  // A list of groups to which this test suite belongs.
+  // This is a key into other testingconfig modules.
+  repeated TestSuiteGroup test_suite_groups = 3;
+
+  // Whether this suite should be disabled by default. It will only be enabled
+  // if some other rule forces it to be put into the test plan.
+  bool disable_by_default = 4;
 }
 
 message HwTestCfg {

@@ -26,7 +26,20 @@ message TestRestriction {
   // A subset of CQ builders for which testing should be performed.
   // If this is nonempty, hw/vm tests will *only* be done for the provided
   // list of build targets.
+  // SOON TO BE DEPRECATED: this concept will be replaced with CqTestWhen
+  // rules, as below.
   repeated OnlyTestBuilder cq_only_test_builders = 6;
+
+  oneof CqTestWhen {
+    // Indicates a set of test suites to run, to the exclusion of all others.
+    // This is a key into target_test_requirements.
+    string cq_only_test_group = 7;
+
+    // Indicates a set of test suites that should also be run, especially
+    // if they're suites that wouldn't be run by default.
+    // This is a key into target_test_requirements.
+    string cq_also_test_group = 8;
+  }
 
   reserved 4;
 }
