@@ -13,7 +13,7 @@ import "lab/servo.proto";
 
 // This proto defines setup labels in lab config of a DUT.
 
-// Peripherals of device. Next Tag: 12
+// Peripherals of device. Next Tag: 13
 message Peripherals {
   Servo servo = 1;
   Chameleon chameleon = 2;
@@ -26,12 +26,14 @@ message Peripherals {
   // e.g: "att", "verizon",.. It's a manual label set by lab, varies dut by dut.
   string carrier = 8;
   // Indicate if the device is setup in a steady and controllable camera box environment for camera test automation.
-  // https://docs.google.com/document/d/12YqHhBuOUolA7BjVEcG4rOIVIO2pgmb4jnOEApB806Y/edit#
+  // http://go/cros-camera-box
   bool camerabox = 9;
   // Indicate if the device is setup in a chaos environment. It's a special settings for running wifi interop tests.
   bool chaos = 10;
   // Indicate the cables that connect audio, printer to the device in ACS lab.
   repeated Cable cable = 11;
+  // Incompatible upgraded type from bool camerabox=9.
+  Camerabox camerabox_info = 12;
 }
 
 // Remote power management info.
@@ -105,4 +107,18 @@ message Wifi {
 message Touch {
   // Has touch monitor mimo.
   bool mimo = 1;
+}
+
+// Next Tag: 2
+message Camerabox {
+  // Facing of DUT's camera to be tested whose FOV should cover chart tablet's screen.
+  // Next Tag: 3
+  enum Facing {
+    FACING_UNKNOWN = 0;
+    // DUT's back camera is facing to chart tablet.
+    FACING_BACK = 1;
+    // DUT's front camera is facing to chart tablet.
+    FACING_FRONT = 2;
+  }
+  Facing facing = 1;
 }
