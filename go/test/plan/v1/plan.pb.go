@@ -7,9 +7,9 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	lab "go.chromium.org/chromiumos/infra/proto/go/lab"
+	common "go.chromium.org/chromiumos/infra/proto/go/test/common"
 	metadata "go.chromium.org/chromiumos/infra/proto/go/test/metadata"
 	math "math"
-	common "test/common"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

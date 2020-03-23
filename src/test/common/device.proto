@@ -8,6 +8,9 @@ syntax = "proto3";
 // APIs.
 package test.common;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/common";
+option java_outer_classname = "CommonProto";
+
 // From chromiumos/config repo.
 import "api/hardware_topology.proto";
 import "api/topology.proto";

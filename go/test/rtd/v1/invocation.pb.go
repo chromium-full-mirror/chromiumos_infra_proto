@@ -8,8 +8,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	lab "go.chromium.org/chromiumos/infra/proto/go/lab"
 	services "go.chromium.org/chromiumos/infra/proto/go/lab/services"
+	common "go.chromium.org/chromiumos/infra/proto/go/test/common"
 	math "math"
-	common "test/common"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
