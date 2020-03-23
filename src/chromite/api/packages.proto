@@ -107,6 +107,31 @@ message HasChromePrebuiltResponse {
   bool has_prebuilt = 1;
 }
 
+// The generic version of HasChromePrebuilt.
+message HasPrebuiltRequest {
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 1;
+
+  // The build target whose prebuilt is being checked.
+  // Required.
+  chromiumos.BuildTarget build_target = 2;
+
+  // Whether to look for internal chrome, or external chromium prebuilts.
+  // Shortcut for ensuring USE=chrome_internal. Does not disable
+  // chrome_internal when false if otherwise set (e.g. chroot env).
+  bool chrome = 3;
+
+  // The package whose prebuilt is being queried.
+  // The category and package name are required.
+  chromiumos.PackageInfo package_info = 4;
+}
+
+message HasPrebuiltResponse {
+  // Whether or not it has a prebuilt.
+  bool has_prebuilt = 1;
+}
+
 message UprevPackagesRequest {
   // The chroot path.
   // Required if not in the default location.
@@ -201,6 +226,10 @@ service PackageService {
   // version of chrome.
   rpc HasChromePrebuilt(HasChromePrebuiltRequest)
     returns (HasChromePrebuiltResponse);
+
+  // Check if there is an available prebuilt for the most recent version of the
+  // package.
+  rpc HasPrebuilt(HasPrebuiltRequest) returns (HasPrebuiltResponse);
 
   // The generic uprev process -- performs uprevs for all packages in the
   // public and/or private overlays for the build target(s) specified.
