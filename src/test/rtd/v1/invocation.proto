@@ -40,7 +40,7 @@ message Invocation {
 // Contains all configuration data required to interact with a single device
 // under test during a test invocation.
 message DUT {
-  // Device Under Test sepcification.
+  // Device Under Test specification.
   test.common.Device device =1;
 
   // Peripherals information about the lab deployment of the device.

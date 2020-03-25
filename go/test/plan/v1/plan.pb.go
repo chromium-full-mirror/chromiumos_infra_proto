@@ -198,7 +198,7 @@ type TestCondition struct {
 	//
 	// - A variable 'scope' of type TestCondition.Scope. This variable contains
 	//   the information about a particular Test being tested for
-	//   inclusion in the test plan unit via `expresssion`.
+	//   inclusion in the test plan unit via `expression`.
 	// - Protobuf definitions in this git project (i.e., rooted at infra/proto/).
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -246,7 +246,7 @@ type TestCondition_Scope struct {
 	Test string `protobuf:"bytes,2,opt,name=test,proto3" json:"test,omitempty"`
 	// The test attribute name as specified in the test.metadata.Attribute.name
 	//
-	// attibutes are populated from test.metadata.Test.attributes.
+	// attributes are populated from test.metadata.Test.attributes.
 	Attributes           []string `protobuf:"bytes,3,rep,name=attributes,proto3" json:"attributes,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -355,7 +355,7 @@ type DUTCoverageCondition struct {
 	//
 	// - A variable 'scope' of type DUTCoverageCondition.Scope. This variable
 	//   contains the information about the set of Devices Under Test being
-	//   tested for acceptance via `expresssion`.
+	//   tested for acceptance via `expression`.
 	// - Protobuf definitions in this git project (i.e., rooted at infra/proto/)
 	//
 	// ### Syntax

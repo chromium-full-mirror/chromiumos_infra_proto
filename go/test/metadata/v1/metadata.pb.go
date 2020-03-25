@@ -283,7 +283,7 @@ type DUTCondition struct {
 	//
 	// - A variable 'scope' of type DUTCondition.Scope. This variable contains the
 	//   information about a particular Device Under Test being tested for
-	//   acceptance via `expresssion`.
+	//   acceptance via `expression`.
 	// - Protobuf definitions in this git project (i.e., rooted at infra/proto/).
 	//
 	// ### Syntax
@@ -369,7 +369,7 @@ func (m *DUTCondition) GetExpression() string {
 // Protocol buffer scope for interpretation of `expression`.
 //
 // Scope includes the Device Under Test features that can be targeted for test
-// targetting.
+// targeting.
 type DUTCondition_Scope struct {
 	// Device Under Test specification.
 	Device *common.Device `protobuf:"bytes,1,opt,name=device,proto3" json:"device,omitempty"`

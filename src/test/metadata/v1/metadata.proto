@@ -144,7 +144,7 @@ message DUTCondition {
   //
   // - A variable 'scope' of type DUTCondition.Scope. This variable contains the
   //   information about a particular Device Under Test being tested for
-  //   acceptance via `expresssion`.
+  //   acceptance via `expression`.
   // - Protobuf definitions in this git project (i.e., rooted at infra/proto/).
   //
   // ### Syntax
@@ -194,7 +194,7 @@ message DUTCondition {
   // Protocol buffer scope for interpretation of `expression`.
   //
   // Scope includes the Device Under Test features that can be targeted for test
-  // targetting.
+  // targeting.
   message Scope {
     // Device Under Test specification.
     test.common.Device device = 1;

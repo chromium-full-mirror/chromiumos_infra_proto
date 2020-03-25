@@ -59,7 +59,7 @@ func (PeripheralState) EnumDescriptor() ([]byte, []int) {
 // CR50-related configs by definition shouldn't be a state config, but a build config.
 // However, we don't have a way to source it from any external configuration system,
 // and it's changed frequently enough to handle cr50 tests, which makes
-// it basically imposible for manual updatings: See crbug.com/1057145 for the
+// it basically impossible for manual updatings: See crbug.com/1057145 for the
 // troubles it causes.
 //
 // So we temporarily set it in state config so that repair job can update it.

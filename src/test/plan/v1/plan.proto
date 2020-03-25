@@ -93,7 +93,7 @@ message TestCondition {
   //
   // - A variable 'scope' of type TestCondition.Scope. This variable contains
   //   the information about a particular Test being tested for
-  //   inclusion in the test plan unit via `expresssion`.
+  //   inclusion in the test plan unit via `expression`.
   // - Protobuf definitions in this git project (i.e., rooted at infra/proto/).
   string expression = 1;
 
@@ -107,7 +107,7 @@ message TestCondition {
 
     // The test attribute name as specified in the test.metadata.Attribute.name
     //
-    // attibutes are populated from test.metadata.Test.attributes.
+    // attributes are populated from test.metadata.Test.attributes.
     repeated string attributes = 3;
   }
 }
@@ -123,7 +123,7 @@ message DUTCoverageCondition {
   // necessary coverage - Test Platform will determine a set of devices that
   // satisfies `expression` and execute the tests in the plan on all selected
   // devices.
-  // - Plaform may freely choose the exact set of devices used if `expression`
+  // - Platform may freely choose the exact set of devices used if `expression`
   //   is satisfiable by more than one set.
   // - Different tests in the plan may be executed on different sets of devices,
   //   as long as they all satisfy `expression` individually.
@@ -202,7 +202,7 @@ message DUTCoverageCondition {
   //
   // - A variable 'scope' of type DUTCoverageCondition.Scope. This variable
   //   contains the information about the set of Devices Under Test being
-  //   tested for acceptance via `expresssion`.
+  //   tested for acceptance via `expression`.
   // - Protobuf definitions in this git project (i.e., rooted at infra/proto/)
   //
   // ### Syntax

@@ -102,7 +102,7 @@ func (m *Invocation) GetTestLabServicesConfig() *services.ClientConfig {
 // Contains all configuration data required to interact with a single device
 // under test during a test invocation.
 type DUT struct {
-	// Device Under Test sepcification.
+	// Device Under Test specification.
 	Device *common.Device `protobuf:"bytes,1,opt,name=device,proto3" json:"device,omitempty"`
 	// Peripherals information about the lab deployment of the device.
 	Peripherals *lab.Peripherals `protobuf:"bytes,2,opt,name=peripherals,proto3" json:"peripherals,omitempty"`

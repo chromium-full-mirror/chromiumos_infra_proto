@@ -48,7 +48,7 @@ type DeviceConfigCondition struct {
 	// If not empty, all values in this field must be contained in the
 	// device.Config.hardware_features list.
 	HardwareFeatures []device.Config_HardwareFeature `protobuf:"varint,8,rep,packed,name=hardware_features,json=hardwareFeatures,proto3,enum=device.Config_HardwareFeature" json:"hardware_features,omitempty"`
-	// If not emtpy, any value in device.Config.hardware_features must not be
+	// If not empty, any value in device.Config.hardware_features must not be
 	// contained in this field.
 	NoHardwareFeatures []device.Config_HardwareFeature `protobuf:"varint,9,rep,packed,name=no_hardware_features,json=noHardwareFeatures,proto3,enum=device.Config_HardwareFeature" json:"no_hardware_features,omitempty"`
 	// If this is not POWER_SUPPLY_UNSPECIFIED, power and device.Config.power
@@ -237,7 +237,7 @@ func (m *DeviceConfigCondition) GetNoSocs() []device.Config_SOC {
 // the test for such a case.
 // On the other hand, chromeos/infra/config is expected to be used for
 // disabling tests on a specific board, regardless of versions, because of
-// temporaly infra/lab issue, for example.
+// temporary infra/lab issue, for example.
 type ConfigIdCondition struct {
 	// Condition of device.PlatformId. This condition needs to be satisfied by
 	// device.ConfigId.platform_id.

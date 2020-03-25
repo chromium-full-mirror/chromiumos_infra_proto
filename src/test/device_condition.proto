@@ -48,7 +48,7 @@ message DeviceConfigCondition {
   // device.Config.hardware_features list.
   repeated device.Config.HardwareFeature hardware_features = 8;
 
-  // If not emtpy, any value in device.Config.hardware_features must not be
+  // If not empty, any value in device.Config.hardware_features must not be
   // contained in this field.
   repeated device.Config.HardwareFeature no_hardware_features = 9;
 
@@ -98,7 +98,7 @@ message DeviceConfigCondition {
 // the test for such a case.
 // On the other hand, chromeos/infra/config is expected to be used for
 // disabling tests on a specific board, regardless of versions, because of
-// temporaly infra/lab issue, for example.
+// temporary infra/lab issue, for example.
 message ConfigIdCondition {
   // Condition of device.PlatformId. This condition needs to be satisfied by
   // device.ConfigId.platform_id.
