@@ -10,6 +10,16 @@ import "test_platform/common/task.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
+// AsyncResults contains references to locations where task results will
+// eventually be available.
+message AsyncResults {
+  // The URL at which a human will be able to view the task's logs.
+  string logs_url = 1;
+
+  // The full google storage URL at which a task's full logs will be stored.
+  string gs_url = 2;
+}
+
 // Result defines the output format of skylab_test_runner.
 // It contains a summary of test results from a single Swarming task run.
 message Result {
@@ -82,9 +92,7 @@ message Result {
 
   Prejob prejob = 2;
 
-  // Logdata is the location at which the task's full output will eventually
-  // be available.
-  test_platform.common.TaskLogData log_data = 3;
+  test_platform.common.TaskLogData log_data = 3 [deprecated = true];
 
   // StateUpdate contains Skylab state changes that resulted from the test run.
   // It is consumed by `skylab_local_state save`.
@@ -94,5 +102,7 @@ message Result {
   }
 
   StateUpdate state_update = 4;
+
+  AsyncResults async_results = 5;
 }
 
