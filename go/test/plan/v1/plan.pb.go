@@ -33,6 +33,8 @@ type Plan struct {
 	// A globally unique test plan name.
 	//
 	// Must be valid resource name per https://aip.dev/122.
+	//
+	// Pattern: plans/{plan}
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Each test plan unit specifies a particular set of tests to be run to meet
 	// specific conditions.
@@ -83,9 +85,12 @@ func (m *Plan) GetUnits() []*Unit {
 
 // Specifies a particular set of tests to be run to meet specific conditions.
 type Unit struct {
-	// A test plan unit name, unique within a plan.
+	// A globally unique test plan unit name.
 	//
 	// Must be valid resource name per https://aip.dev/122.
+	//
+	// Pattern: plans/{plan}/units/{unit}
+	//   where {plan} is the parent Plan of this Unit.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Selects tests to include in this test plan unit.
 	TestCondition *TestCondition `protobuf:"bytes,2,opt,name=test_condition,json=testCondition,proto3" json:"test_condition,omitempty"`

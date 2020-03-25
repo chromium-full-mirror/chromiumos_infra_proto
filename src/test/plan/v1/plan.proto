@@ -25,6 +25,8 @@ message Plan {
   // A globally unique test plan name.
   //
   // Must be valid resource name per https://aip.dev/122.
+  //
+  // Pattern: plans/{plan}
   string name = 1;
 
   // Each test plan unit specifies a particular set of tests to be run to meet
@@ -34,9 +36,12 @@ message Plan {
 
 // Specifies a particular set of tests to be run to meet specific conditions.
 message Unit {
-  // A test plan unit name, unique within a plan.
+  // A globally unique test plan unit name.
   //
   // Must be valid resource name per https://aip.dev/122.
+  //
+  // Pattern: plans/{plan}/units/{unit}
+  //   where {plan} is the parent Plan of this Unit.
   string name = 1;
 
   // Selects tests to include in this test plan unit.
