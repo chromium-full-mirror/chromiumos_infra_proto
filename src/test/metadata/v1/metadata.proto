@@ -18,9 +18,12 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/metadata";
 option java_outer_classname = "MetadataProto";
 
 import "google/protobuf/struct.proto";
-import "lab/device.proto";
-import "test/common/device.proto";
+import "lab/peripherals.proto";
 import "test/metadata/v1/remote_test_driver.proto";
+
+// From chromiumos/config repo.
+import "api/hardware_topology.proto";
+import "api/topology.proto";
 
 // Metadata required for scheduling, invocation and results analysis of tests
 // for a Remote Test Driver.
@@ -116,14 +119,13 @@ message DUTCondition {
   // Typical instructive examples of expressions are:
   //
   // - A specific characteristic for a hardware feature, e.g.:
-  //     scope.device.hardware_topology.screen.milliinch.value == 14000    
+  //     scope.hardware_topology.screen.milliinch.value == 14000
   // - A specific topology for a hardware feature, e.g.:
-  //     scope.device.hardware_topology.form_factor.id == "fancy_clamshell"
+  //     scope.hardware_topology.form_factor.id == "fancy_clamshell"
   // - Existence of a hardware feature, e.g.:
-  //     (scope.device.hardware_features.lte ==
-  //      scope.device.hardware_features.PRESENT)
+  //     scope.hardware_features.lte == scope.hardware_features.PRESENT
   // - Exclude certain hardware topologies, e.g.:
-  //     scope.device.hardware_topology.stylus.id != "pencil"
+  //     scope.hardware_topology.stylus.id != "pencil"
   //
   // ## CEL support
   //
@@ -196,11 +198,12 @@ message DUTCondition {
   // Scope includes the Device Under Test features that can be targeted for test
   // targeting.
   message Scope {
-    // Device Under Test specification.
-    test.common.Device device = 1;
-
     // Peripherals information about the lab deployment of the device.
-    lab.DeviceUnderTest lab_dut = 2;
+    lab.Peripherals peripherals = 1;
+    // The relationship between topology and features is described at
+    // https://chromium.googlesource.com/chromiumos/config/+/master/proto/api/hardware_topology.md
+    chromiumos.config.api.HardwareTopology hardware_topology = 2;
+    chromiumos.config.api.HardwareFeatures hardware_features = 3;
   }
 }
 

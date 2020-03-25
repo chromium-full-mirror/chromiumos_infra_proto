@@ -10,8 +10,11 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/invocation";
 
 import "lab/peripherals.proto";
 import "lab/services/client.proto";
-import "test/common/device.proto";
 import "test/rtd/v1/progress.proto";
+
+// From chromiumos/config repo.
+import "api/hardware_topology.proto";
+import "api/topology.proto";
 
 // Input to a Remote Test Driver invocation.
 //
@@ -36,15 +39,16 @@ message Invocation {
   lab.services.ClientConfig test_lab_services_config = 4;
 }
 
-
 // Contains all configuration data required to interact with a single device
 // under test during a test invocation.
 message DUT {
-  // Device Under Test specification.
-  test.common.Device device =1;
-
   // Peripherals information about the lab deployment of the device.
-  lab.Peripherals peripherals = 2;
+  lab.Peripherals peripherals = 1;
+
+  // The relationship between topology and features is described at
+  // https://chromium.googlesource.com/chromiumos/config/+/master/proto/api/hardware_topology.md
+  chromiumos.config.api.HardwareTopology hardware_topology = 2;
+  chromiumos.config.api.HardwareFeatures hardware_features = 3;
 
   // Name for the DUT for using Test Lab Services to interact with the
   // device and its peripherals.
@@ -52,7 +56,7 @@ message DUT {
   // DUTs to act on.
   // See the tls.OpenDutPortRequest message for an example of where
   // this is used.
-  string tls_dut_name = 3;
+  string tls_dut_name = 4;
 }
 
 // Request for execution of a single test.metadata.Test
