@@ -6,7 +6,7 @@ syntax = "proto3";
 
 package test.rtd.v1;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/invocation";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/rtd/v1;rtd";
 
 import "lab/peripherals.proto";
 import "lab/services/client.proto";

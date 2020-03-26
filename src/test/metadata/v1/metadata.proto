@@ -14,7 +14,7 @@ syntax = "proto3";
 // must be respected in all Test Lab Environments.
 package test.metadata.v1;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/metadata";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/metadata/v1;metadata";
 option java_outer_classname = "MetadataProto";
 
 import "google/protobuf/struct.proto";

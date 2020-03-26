@@ -6,7 +6,7 @@ syntax = "proto3";
 
 package test.plan.v1;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan/v1;plan";
 
 import "lab/device.proto";
 
