@@ -19,27 +19,96 @@ option java_outer_classname = "MetadataProto";
 
 import "google/protobuf/struct.proto";
 import "lab/peripherals.proto";
-import "test/metadata/v1/remote_test_driver.proto";
 
 // From chromiumos/config repo.
 import "api/hardware_topology.proto";
 import "api/topology.proto";
 
-// Metadata required for scheduling, invocation and results analysis of tests
-// for a Remote Test Driver.
-message Metadata {
-  // The Remote Test Driver this test metadata is for.
+// The test metadata specification.
+//
+// Test metadata must be generated for each Remote Test Driver as one of the
+// test artifacts generated from Chrome OS build system.
+message Specification {
+  // A set of Remote Test Driver packages.
   //
-  // There may be more than one metadata instance for a Remote Test Driver.
-  // Common reasons for multiple instances are:
-  // - The test definitions may be split over multiple source locations. Thus,
-  //   it may be more convenient to generate metadata for the tests spearately.
-  // - The Remote Test Driver metadata may differ for tests in the same Remote
-  //   Test Driver.
-  RemoteTestDriver remote_test_driver = 1;
+  // In practice, a complete specification of all known Remote Test Drivers may
+  // consist of multiple Specification instances. In that case the test names
+  // MUST be unique across different Specification instances.
+  //
+  // Unlike tests, a RemoteTestDriver (identified by its name) may be specified
+  // multiple times, in a single Specification or across different Specification
+  // instances. In that case, all fields except the list of tests must be
+  // identical across these RemoteTestDriver instances. The list of tests across
+  // these instances will be concatenated together.
+  repeated RemoteTestDriver remote_test_drivers = 1;
+}
+
+// go/cros-rtd-spec describes the Remote Test Driver bootstrapping flow inside
+// the Remote Test Server. Remote Test Driver configures the bootstrapping flow
+// for a test invocation.
+message RemoteTestDriver {
+  // Globally unique name for a Remote Test Driver package.
+  //
+  //
+  // Must be a valid resource per https://aip.dev/122.
+  //
+  // Pattern: remoteTestDrivers/{remoteTestDriver}
+  //
+  // The two most commonly used Remote Test Drivers are named
+  // - remoteTestDrivers/tauto
+  // - remoteTestDrivers/tast
+  // and contain the common public tests written in the Tauto and Tast framework
+  // respectively.
+  string name = 1;
+
+  // A container image containing all the required dependencies and other build
+  // artifacts required for test invocations.
+  //
+  // Test Lab Environments should fail with an error indicating that the request
+  // was invalid if the image fails to be found for a test invocation.
+  BuildArtifact image = 2;
+
+  // Command to invoke the Remote Test Driver inside `image`.
+  //
+  // Remote Test Servers must run `command` as
+  //   $ ${command} -input_json ${input_json}
+  // where ${command} and ${input_json} are absolute paths inside the container.
+  //
+  // Remote Test Servers must populate `input_json` with a JSON encoded
+  // test.invocation.Request message.
+  string command = 3;
 
   // Metadata for the smallest schedulable test units.
-  repeated Test test = 2;
+  repeated Test test = 4;
+}
+
+// A Chrome OS build artifact required for test execution.
+message BuildArtifact {
+  // All build artifacts are assumed to be archived in some common directory
+  // root. `relative_path` is the relative path inside the root archive
+  // directory.
+  //
+  // Infrastructure Test Lab Environment: Chrome OS Continuous Integration
+  // builders archive build artifacts to a path on Google Storage. The Test
+  // Platform requests include a reference to the root archival path.
+  // e.g.,
+  // * The builder archives all build artifacts to
+  //   gs://chromeos-image-archive/link-release/R64-0.0.0.0/
+  // * Test Platform request includes this archival path.
+  // * `relative_path` is set to tast/mighty.bin
+  // * Then, the full path to the artifact is
+  //   gs://chromeos-image-archive/link-release/R64-0.0.0.0/tast/mighty.bin
+  //
+  // Developer Test Lab Environment: For developer flow outside of the
+  // infrastructure, it is assumed that the build artifacts are available at a
+  // local path with the same directory layout as the Google Storage archival.
+  // e.g.,
+  // * Local build copies all artifacts to /tmp/cbuildbot/archive/
+  // * Local tooling includes a reference to this path.
+  // * `relative_path` is set to tauto/ssp.bin
+  // * Then, the full path to the artifact is
+  //   /tmp/cbuildbot/archive/tauto/ssp.bin
+  string relative_path = 1;
 }
 
 // The smallest schedulable test unit.
@@ -59,13 +128,13 @@ message Metadata {
 //    Remote Test Driver invocation request: test/rtd/invocation.proto
 //    Remote Test Driver progress API: test/rtd/progress.proto
 message Test {
-  // Identifying name for this test.
+  // Globally unique name for this test.
   //
   // Must be a valid resource per https://aip.dev/122.
   //
-  // Name must be unique across all known tests for the test's Remote Test
-  // Driver. Thus, the tuple (remote_test_driver.id, name) is globally unique
-  // across all test metadata.
+  // Pattern: remoteTestDrivers/{remoteTestDriver}/tests/{test}
+  //   where {remoteTestDriver} is the Remote Test Driver package that contains
+  //   this test.
   string name = 1;
 
   // Attributes are used to include tests in test plans.

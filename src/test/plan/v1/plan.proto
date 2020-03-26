@@ -9,7 +9,6 @@ package test.plan.v1;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan";
 
 import "lab/device.proto";
-import "test/metadata/v1/remote_test_driver.proto";
 
 // From chromiumos/config repo.
 import "api/hardware_topology.proto";
@@ -106,17 +105,13 @@ message TestCondition {
   string expression = 1;
 
   message Scope {
-    test.metadata.v1.RemoteTestDriver.ID remote_test_driver = 1;
-
     // Name of the test as specified in test.metadata.Test.name
-    //
-    // The tuple (remote_test_driver, test) is globally unique.
-    string test = 2;
+    string test = 1;
 
     // The test attribute name as specified in the test.metadata.Attribute.name
     //
-    // attributes are populated from test.metadata.Test.attributes.
-    repeated string attributes = 3;
+    // attibutes are populated from test.metadata.Test.attributes.
+    repeated string attributes = 2;
   }
 }
 
