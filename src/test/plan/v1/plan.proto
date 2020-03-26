@@ -14,6 +14,15 @@ import "lab/device.proto";
 import "api/hardware_topology.proto";
 import "api/topology.proto";
 
+// A set of known test plans.
+//
+// In practice, a complete specification of all known plans may consist of
+// multiple Specification instances. In that case the plan names MUST be unique
+// across different Specification instances.
+message Specification {
+  repeated Plan plans = 1;
+}
+
 // A Plan fully specifies a Test Platform end-user's coverage needs.
 //
 // Plans should associate platform software and Device Under Test condition
