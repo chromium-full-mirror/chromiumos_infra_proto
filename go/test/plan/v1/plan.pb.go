@@ -68,14 +68,14 @@ func (m *Specification) GetPlans() []*Plan {
 
 // A Plan fully specifies a Test Platform end-user's coverage needs.
 //
-// Plans should associate platform software and Device Under Test condition
-// coverage rules with tests that exercise those components. Plans must be used
+// Plans SHOULD associate platform software and Device Under Test condition
+// coverage rules with tests that exercise those components. Plans MUST be used
 // in the Test Platform request API. Other Test Lab Environments may use plans
 // to ease interoperation with the Test Platform.
 type Plan struct {
 	// A globally unique test plan name.
 	//
-	// Must be valid resource name per https://aip.dev/122.
+	// MUST be valid resource name per https://aip.dev/122.
 	//
 	// Pattern: plans/{plan}
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -130,29 +130,29 @@ func (m *Plan) GetUnits() []*Unit {
 type Unit struct {
 	// A globally unique test plan unit name.
 	//
-	// Must be valid resource name per https://aip.dev/122.
+	// MUST be valid resource name per https://aip.dev/122.
 	//
 	// Pattern: plans/{plan}/units/{unit}
 	//   where {plan} is the parent Plan of this Unit.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Selects tests to include in this test plan unit.
 	TestCondition *TestCondition `protobuf:"bytes,2,opt,name=test_condition,json=testCondition,proto3" json:"test_condition,omitempty"`
-	// Selects the set of Devices Under Test that tests must be run on to satisfy
-	// this test plan unit.
+	// Selects the set of Devices Under Test that satisfy the coverage
+	// requirements of this test plan unit.
 	DutCoverageCondition *DUTCoverageCondition `protobuf:"bytes,3,opt,name=dut_coverage_condition,json=dutCoverageCondition,proto3" json:"dut_coverage_condition,omitempty"`
 	// Chrome OS platform software covered by this test plan.
 	//
 	// Test Platform requests may optionally include a reference to platform
 	// software to be tested via the test plan. For such requests, Test Platform
-	// must only execute test plan units that have non-trivial coverage of the
-	// referenced platform software. Unrelated test plan units must be skipped.
+	// MUST only execute test plan units that have non-trivial coverage of the
+	// referenced platform software. Unrelated test plan units MUST be skipped.
 	//
 	// A typical example is presubmit testing: When testing a change to the
 	// network manager, it may be desirable to only run test plan units that
 	// are known to exercise the network manager.
 	//
-	// For a test plan unit with no `code_coverage` specified, Test Platform must
-	// assume coverage of all platform software (i.e., this test plan unit must
+	// For a test plan unit with no `code_coverage` specified, Test Platform MUST
+	// assume coverage of all platform software (i.e., this test plan unit MUST
 	// never be skipped for code coverage considerations).
 	CodeCoverage         *CodeCoverage `protobuf:"bytes,4,opt,name=code_coverage,json=codeCoverage,proto3" json:"code_coverage,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
@@ -218,7 +218,7 @@ type TestCondition struct {
 	// A Common Expression Language (CEL) expression to specify test conditions.
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	// Test Platform must interpret `expression` in the scope of
+	// Test Platform MUST interpret `expression` in the scope of
 	// `test.plan.TestCondition.Scope` defined below.
 	//
 	// ## Examples
@@ -236,13 +236,14 @@ type TestCondition struct {
 	//
 	// ## CEL support
 	//
-	// All standard CEL syntax, macros and functions must be supported.
+	// All standard CEL syntax, macros and functions MUST be supported.
 	//
 	// ### Evaluation context
 	//
-	// A CEL expression must be evaluated in some context that provides the basic
-	// bindings for name resolution. `expression` must be evaluated in an
-	// evaluation context that contains
+	// In general, a CEL expression must be evaluated in some context that
+	// provides the basic bindings for name resolution.
+	//
+	// In this case, `expression` MUST be evaluated in a context that contains
 	//
 	// - A variable 'scope' of type TestCondition.Scope. This variable contains
 	//   the information about a particular Test being tested for
@@ -342,7 +343,7 @@ type DUTCoverageCondition struct {
 	// A Common Expression Language (CEL) expression to specify set of DUTs that
 	// provide the necessary coverage.
 	//
-	// Test Platform must interpret `expression` in the scope of the
+	// Test Platform MUST interpret `expression` in the scope of the
 	// protobuf message DUTCoverageCondition.Scope defined below. In summary, the
 	// expression allows selection of a set of Devices Under Test that provide the
 	// necessary coverage - Test Platform will determine a set of devices that
@@ -355,7 +356,7 @@ type DUTCoverageCondition struct {
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
 	// This API only supports a sub-set of the CEL features as described here.
-	// Test Platform must validate the expression and reject use of unsupported
+	// Test Platform MUST validate the expression and reject use of unsupported
 	// features.
 	//
 	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
@@ -392,7 +393,7 @@ type DUTCoverageCondition struct {
 	//      minimal set of devices to run the plan is best effort.
 	//
 	// Currently, only single-DUT constraints are supported by the Test Platform.
-	// i.e., `expression` must be of the form:
+	// i.e., `expression` MUST be of the form:
 	//   duts.all(DUT_SELECTOR) && size(duts) == 1
 	// where DUT_SELECTOR is an expression that does not refer to `duts`.
 	// This restriction will be lifted as this API matures.
@@ -410,9 +411,10 @@ type DUTCoverageCondition struct {
 	//
 	// ### Evaluation context
 	//
-	// A CEL expression must be evaluated in some context that provides the basic
-	// bindings for name resolution. `expression` must be evaluated in an
-	// evaluation context that contains
+	// In general, a CEL expression must be evaluated in some context that
+	// provides the basic bindings for name resolution.
+	//
+	// In this case, `expression` MUST be evaluated in a context that contains
 	//
 	// - A variable 'scope' of type DUTCoverageCondition.Scope. This variable
 	//   contains the information about the set of Devices Under Test being
@@ -607,7 +609,7 @@ type CodeCoverage struct {
 	// A Common Expression Language (CEL) expression to specify code coverage.
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	// Test Platform must interpret `expression` in the scope of
+	// Test Platform MUST interpret `expression` in the scope of
 	// `test.plan.CodeCoverageCondition.Scope` defined below.
 	//
 	// ## Examples
@@ -626,13 +628,14 @@ type CodeCoverage struct {
 	//
 	// ## CEL support
 	//
-	// All standard CEL syntax, macros and functions must be supported.
+	// All standard CEL syntax, macros and functions MUST be supported.
 	//
 	// ### Evaluation context
 	//
-	// A CEL expression must be evaluated in some context that provides the basic
-	// bindings for name resolution. `expression` must be evaluated in an
-	// evaluation context that contains
+	// In general, a CEL expression must be evaluated in some context that
+	// provides the basic bindings for name resolution.
+	//
+	// In this case, `expression` MUST be evaluated in a context that contains
 	//
 	// - A variable 'scope' of type CodeCoverage.Scope. This variable contains
 	//   the information about what platform software changes are intended to be

@@ -33,9 +33,9 @@ type Invocation struct {
 	ProgressSinkClientConfig *ProgressSinkClientConfig `protobuf:"bytes,1,opt,name=progress_sink_client_config,json=progressSinkClientConfig,proto3" json:"progress_sink_client_config,omitempty"`
 	// Set of DUTs used for each of the requests in this invocation.
 	Duts []*DUT `protobuf:"bytes,2,rep,name=duts,proto3" json:"duts,omitempty"`
-	// Smallest unit of an invocation request for which results must be reported.
+	// Smallest unit of an invocation request for which results MUST be reported.
 	//
-	// An invocation must execute all requests serially in-order. This assumption
+	// An invocation MUST execute all requests serially in-order. This assumption
 	// is necessary for future support of test sequences in test plans.
 	Requests []*Request `protobuf:"bytes,3,rep,name=requests,proto3" json:"requests,omitempty"`
 	// Configuration information for using Test Lab Services to interact
@@ -110,9 +110,9 @@ type DUT struct {
 	HardwareFeatures *api.HardwareFeatures `protobuf:"bytes,3,opt,name=hardware_features,json=hardwareFeatures,proto3" json:"hardware_features,omitempty"`
 	// Name for the DUT for using Test Lab Services to interact with the
 	// device and its peripherals.
-	// The RTD must pass this to certain Test Lab Service RPCs to specify
-	// DUTs to act on.
-	// See the tls.OpenDutPortRequest message for an example of where
+	//
+	// The RTD MUST pass this to Test Lab Service RPCs that act on a particular
+	// DUT. See the tls.OpenDutPortRequest message for an example of where
 	// this is used.
 	TlsDutName           string   `protobuf:"bytes,4,opt,name=tls_dut_name,json=tlsDutName,proto3" json:"tls_dut_name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -175,10 +175,10 @@ func (m *DUT) GetTlsDutName() string {
 
 // Request for execution of a single test.metadata.Test
 type Request struct {
-	// name must be unique across all requests in this invocation.
+	// name MUST be unique across all requests in this invocation.
 	//
 	// Remote Test Drivers are recommended to use name as the opaque tag
-	// required by the Test Lab Services API. Thus, name should be unique across
+	// required by the Test Lab Services API. Thus, name SHOULD be unique across
 	// all invocations to simplify analytics. UUIDs are recommended.
 	//
 	// See also:
@@ -248,12 +248,12 @@ func (m *Request) GetEnvironment() *Request_Environment {
 type Request_Environment struct {
 	// Absolute path to a directory for writing arbitrary files.
 	//
-	// This directory must be created by Remote Test Server prior to the Remote
+	// This directory MUST be created by Remote Test Server prior to the Remote
 	// Test Driver invocation.
 	//
-	// * Remote Test Drivers should use
+	// * Remote Test Drivers SHOULD use
 	// test.invocation.ProgressClient.ReportLog() to report logs.
-	// * Remote Test Drivers should use
+	// * Remote Test Drivers SHOULD use
 	// test.invocation.ProgressClient.ArchiveArtifact() to archive critical
 	// artifacts.
 	//
@@ -262,11 +262,11 @@ type Request_Environment struct {
 	WorkDir string `protobuf:"bytes,1,opt,name=work_dir,json=workDir,proto3" json:"work_dir,omitempty"`
 	// Absolute path to a directory for writing temporary files.
 	//
-	// This directory must be created by Remote Test Server prior to the Remote
+	// This directory MUST be created by Remote Test Server prior to the Remote
 	// Test Driver invocation.
 	//
-	// Remote Test Drivers must use this directory for temporary files and must
-	// not attempt to use defaults like /tmp or the TMP environment variable.
+	// Remote Test Drivers MUST use this directory for temporary files and MUST
+	// NOT attempt to use defaults like /tmp or the TMP environment variable.
 	//
 	// See also: Environment.work_dir
 	TempDir              string   `protobuf:"bytes,2,opt,name=temp_dir,json=tempDir,proto3" json:"temp_dir,omitempty"`

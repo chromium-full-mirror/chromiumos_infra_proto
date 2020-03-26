@@ -28,9 +28,9 @@ message Invocation {
   // Set of DUTs used for each of the requests in this invocation.
   repeated DUT duts = 2;
 
-  // Smallest unit of an invocation request for which results must be reported.
+  // Smallest unit of an invocation request for which results MUST be reported.
   //
-  // An invocation must execute all requests serially in-order. This assumption
+  // An invocation MUST execute all requests serially in-order. This assumption
   // is necessary for future support of test sequences in test plans.
   repeated Request requests = 3;
 
@@ -52,19 +52,19 @@ message DUT {
 
   // Name for the DUT for using Test Lab Services to interact with the
   // device and its peripherals.
-  // The RTD must pass this to certain Test Lab Service RPCs to specify
-  // DUTs to act on.
-  // See the tls.OpenDutPortRequest message for an example of where
+  //
+  // The RTD MUST pass this to Test Lab Service RPCs that act on a particular
+  // DUT. See the tls.OpenDutPortRequest message for an example of where
   // this is used.
   string tls_dut_name = 4;
 }
 
 // Request for execution of a single test.metadata.Test
 message Request {
-  // name must be unique across all requests in this invocation.
+  // name MUST be unique across all requests in this invocation.
   //
   // Remote Test Drivers are recommended to use name as the opaque tag
-  // required by the Test Lab Services API. Thus, name should be unique across
+  // required by the Test Lab Services API. Thus, name SHOULD be unique across
   // all invocations to simplify analytics. UUIDs are recommended.
   //
   // See also:
@@ -82,12 +82,12 @@ message Request {
   message Environment {
     // Absolute path to a directory for writing arbitrary files.
     //
-    // This directory must be created by Remote Test Server prior to the Remote
+    // This directory MUST be created by Remote Test Server prior to the Remote
     // Test Driver invocation.
     //
-    // * Remote Test Drivers should use
+    // * Remote Test Drivers SHOULD use
     // test.invocation.ProgressClient.ReportLog() to report logs.
-    // * Remote Test Drivers should use
+    // * Remote Test Drivers SHOULD use
     // test.invocation.ProgressClient.ArchiveArtifact() to archive critical
     // artifacts.
     //
@@ -97,11 +97,11 @@ message Request {
 
     // Absolute path to a directory for writing temporary files.
     //
-    // This directory must be created by Remote Test Server prior to the Remote
+    // This directory MUST be created by Remote Test Server prior to the Remote
     // Test Driver invocation.
     //
-    // Remote Test Drivers must use this directory for temporary files and must
-    // not attempt to use defaults like /tmp or the TMP environment variable.
+    // Remote Test Drivers MUST use this directory for temporary files and MUST
+    // NOT attempt to use defaults like /tmp or the TMP environment variable.
     //
     // See also: Environment.work_dir
     string temp_dir = 2;

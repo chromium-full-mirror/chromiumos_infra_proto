@@ -29,7 +29,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type Result_State int32
 
 const (
-	// No end state specified. Must not be used.
+	// No end state specified. MUST NOT be used.
 	Result_STATE_UNSPECIFIED Result_State = 0
 	// Test request succeeded. All was well.
 	Result_SUCCEEDED Result_State = 1
@@ -40,7 +40,7 @@ const (
 	// Common reasons a test may be skipped:
 	//
 	// * A runtime check by the Remote Test Driver concluded that the test is
-	//   not applicable to the targeted device(s). The Remote Test Driver should
+	//   not applicable to the targeted device(s). The Remote Test Driver SHOULD
 	//   include detailed reasons in `errors`.
 	Result_SKIPPED Result_State = 3
 )
@@ -71,9 +71,9 @@ func (Result_State) EnumDescriptor() ([]byte, []int) {
 type Result_Error_Source int32
 
 const (
-	// No Source specified. Should not be used.
+	// No Source specified. SHOULD NOT be used.
 	//
-	// If source is unspecified, the Test Lab Environment should assume the
+	// If source is unspecified, the Test Lab Environment SHOULD assume the
 	// source to be the Remote Test Driver.
 	Result_Error_SOURCE_UNSPECIFIED Result_Error_Source = 0
 	// The test failed.
@@ -110,12 +110,12 @@ func (Result_Error_Source) EnumDescriptor() ([]byte, []int) {
 type Result_Error_Severity int32
 
 const (
-	// No Severity set. Should not be used.
+	// No Severity set. SHOULD NOT be used.
 	Result_Error_SEVERITY_UNSPECIFIED Result_Error_Severity = 0
-	// Remote Test Server should validate that a Result contains a CRITICAL
+	// Remote Test Server SHOULD validate that a Result contains a CRITICAL
 	// message iff state == FAILED.
 	Result_Error_CRITICAL Result_Error_Severity = 1
-	// Must not, by itself, lead to a FAILED Result.state.
+	// MUST NOT, by itself, lead to a FAILED Result.state.
 	Result_Error_WARNING Result_Error_Severity = 2
 )
 
@@ -185,9 +185,9 @@ func (m *ProgressSinkClientConfig) GetPort() int32 {
 type Result struct {
 	// Final state of the test execution.
 	//
-	// Error details must be available in `errors` if state != SUCCEEDED.
+	// Error details MUST be available in `errors` if state != SUCCEEDED.
 	State Result_State `protobuf:"varint,1,opt,name=state,proto3,enum=test.rtd.v1.Result_State" json:"state,omitempty"`
-	// errors must be set if state != SUCCEEDED.
+	// errors MUST be set if state != SUCCEEDED.
 	//
 	// errors may be provided even if state == SUCCEEDED. Remote Test Drivers are
 	// encouraged to provide multiple observed errors in Result to aid end-user
@@ -244,10 +244,10 @@ type Result_Error struct {
 	Severity Result_Error_Severity `protobuf:"varint,2,opt,name=severity,proto3,enum=test.rtd.v1.Result_Error_Severity" json:"severity,omitempty"`
 	// Machine parseable details about the error.
 	//
-	// Test Lab Environments and Remote Test Servers must not interpret the
+	// Test Lab Environments and Remote Test Servers MUST NOT interpret the
 	// details.
 	//
-	// Remote Test Drivers should use uniform stable schema for `details` to
+	// Remote Test Drivers SHOULD use uniform stable schema for `details` to
 	// enable robust analytics.
 	Details              *_struct.Struct `protobuf:"bytes,3,opt,name=details,proto3" json:"details,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
@@ -352,7 +352,7 @@ func (m *ReportResultRequest) GetResult() *Result {
 }
 
 type ReportResultResponse struct {
-	// If set, the invocation should immediately terminate, skipping remaining
+	// If set, the invocation SHOULD immediately terminate, skipping remaining
 	// requests.
 	Terminate            bool     `protobuf:"varint,1,opt,name=terminate,proto3" json:"terminate,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -395,8 +395,8 @@ func (m *ReportResultResponse) GetTerminate() bool {
 type ReportLogRequest struct {
 	// Name of the log sink.
 	//
-	// name may be interpreted as a local file path or part of a URL. name must be
-	// a valid resource name per https://aip.dev/122 and must be a valid POSIX
+	// name may be interpreted as a local file path or part of a URL. name MUST be
+	// a valid resource name per https://aip.dev/122 and MUST be a valid POSIX
 	// file path.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The request to report logs for, identified by the
@@ -489,11 +489,11 @@ var xxx_messageInfo_ReportLogResponse proto.InternalMessageInfo
 type ArchiveArtifactRequest struct {
 	// Name for the archived artifact.
 	//
-	// name may be interpreted as a local file path or part of a URL. name must be
-	// a valid resource name per https://aip.dev/122 and must be a valid POSIX
+	// name may be interpreted as a local file path or part of a URL. name MUST be
+	// a valid resource name per https://aip.dev/122 and MUST be a valid POSIX
 	// file path.
 	//
-	// name must be unique across all artifacts archived from a single invocation
+	// name MUST be unique across all artifacts archived from a single invocation
 	// request.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The request to archive artifacts for, identified by the
@@ -659,12 +659,12 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ProgressSinkClient interface {
-	// A Remote Test Driver invocation must call ReportResult exactly once per
+	// A Remote Test Driver invocation MUST call ReportResult exactly once per
 	// request.
 	ReportResult(ctx context.Context, in *ReportResultRequest, opts ...grpc.CallOption) (*ReportResultResponse, error)
 	// A log stream from the Remote Test Driver invocation.
 	//
-	// Each call to this method must stream logs for a single invocation request
+	// Each call to this method MUST stream logs for a single invocation request
 	// and log file. Data for the same file may be split over multiple ReportLog
 	// calls. Data received from concurrent methods calls for the same log file
 	// may be interleved arbitrarily.
@@ -672,11 +672,11 @@ type ProgressSinkClient interface {
 	// Archive test artifacts to non-ephemeral storage.
 	//
 	// Different Test Lab Environments may use very different non-ephemeral
-	// storage technologies. Remote Test Servers must archive the artifacts to
+	// storage technologies. Remote Test Servers MUST archive the artifacts to
 	// final storage synchronously and return an error if the archival fails.
 	//
-	// Note: Remote Test Drivers should use ReportLog() to report logs.
-	// ArchiveArtifact() should be used to report structured or binary data only.
+	// Note: Remote Test Drivers SHOULD use ReportLog() to report logs.
+	// ArchiveArtifact() SHOULD be used to report structured or binary data only.
 	//
 	// Remote Test Server may limit the size of artifacts that may be offloaded
 	// per request and may fail further requests with RESOURCE_EXHAUSTED.
@@ -745,12 +745,12 @@ func (c *progressSinkClient) ArchiveArtifact(ctx context.Context, in *ArchiveArt
 
 // ProgressSinkServer is the server API for ProgressSink service.
 type ProgressSinkServer interface {
-	// A Remote Test Driver invocation must call ReportResult exactly once per
+	// A Remote Test Driver invocation MUST call ReportResult exactly once per
 	// request.
 	ReportResult(context.Context, *ReportResultRequest) (*ReportResultResponse, error)
 	// A log stream from the Remote Test Driver invocation.
 	//
-	// Each call to this method must stream logs for a single invocation request
+	// Each call to this method MUST stream logs for a single invocation request
 	// and log file. Data for the same file may be split over multiple ReportLog
 	// calls. Data received from concurrent methods calls for the same log file
 	// may be interleved arbitrarily.
@@ -758,11 +758,11 @@ type ProgressSinkServer interface {
 	// Archive test artifacts to non-ephemeral storage.
 	//
 	// Different Test Lab Environments may use very different non-ephemeral
-	// storage technologies. Remote Test Servers must archive the artifacts to
+	// storage technologies. Remote Test Servers MUST archive the artifacts to
 	// final storage synchronously and return an error if the archival fails.
 	//
-	// Note: Remote Test Drivers should use ReportLog() to report logs.
-	// ArchiveArtifact() should be used to report structured or binary data only.
+	// Note: Remote Test Drivers SHOULD use ReportLog() to report logs.
+	// ArchiveArtifact() SHOULD be used to report structured or binary data only.
 	//
 	// Remote Test Server may limit the size of artifacts that may be offloaded
 	// per request and may fail further requests with RESOURCE_EXHAUSTED.

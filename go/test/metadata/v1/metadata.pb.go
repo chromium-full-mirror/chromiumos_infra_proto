@@ -7,8 +7,8 @@
 // This metadata is used for test execution requests, scheduling decisions and
 // results analytics in various Test Lab Environments.
 //
-// Metadata must be generated for all tests in supported Remote Test Drivers and
-// must be respected in all Test Lab Environments.
+// Metadata MUST be generated for all tests in supported Remote Test Drivers and
+// MUST be respected in all Test Lab Environments.
 
 package metadata
 
@@ -34,7 +34,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // The test metadata specification.
 //
-// Test metadata must be generated for each Remote Test Driver as one of the
+// Test metadata MUST be generated for each Remote Test Driver as one of the
 // test artifacts generated from Chrome OS build system.
 type Specification struct {
 	// A set of Remote Test Driver packages.
@@ -45,7 +45,7 @@ type Specification struct {
 	//
 	// Unlike tests, a RemoteTestDriver (identified by its name) may be specified
 	// multiple times, in a single Specification or across different Specification
-	// instances. In that case, all fields except the list of tests must be
+	// instances. In that case, all fields except the list of tests MUST be
 	// identical across these RemoteTestDriver instances. The list of tests across
 	// these instances will be concatenated together.
 	RemoteTestDrivers    []*RemoteTestDriver `protobuf:"bytes,1,rep,name=remote_test_drivers,json=remoteTestDrivers,proto3" json:"remote_test_drivers,omitempty"`
@@ -93,7 +93,7 @@ type RemoteTestDriver struct {
 	// Globally unique name for a Remote Test Driver package.
 	//
 	//
-	// Must be a valid resource per https://aip.dev/122.
+	// MUST be a valid resource per https://aip.dev/122.
 	//
 	// Pattern: remoteTestDrivers/{remoteTestDriver}
 	//
@@ -106,16 +106,16 @@ type RemoteTestDriver struct {
 	// A container image containing all the required dependencies and other build
 	// artifacts required for test invocations.
 	//
-	// Test Lab Environments should fail with an error indicating that the request
+	// Test Lab Environments SHOULD fail with an error indicating that the request
 	// was invalid if the image fails to be found for a test invocation.
 	Image *BuildArtifact `protobuf:"bytes,2,opt,name=image,proto3" json:"image,omitempty"`
 	// Command to invoke the Remote Test Driver inside `image`.
 	//
-	// Remote Test Servers must run `command` as
+	// Remote Test Servers MUST run `command` as
 	//   $ ${command} -input_json ${input_json}
 	// where ${command} and ${input_json} are absolute paths inside the container.
 	//
-	// Remote Test Servers must populate `input_json` with a JSON encoded
+	// Remote Test Servers MUST populate `input_json` with a JSON encoded
 	// test.invocation.Request message.
 	Command string `protobuf:"bytes,3,opt,name=command,proto3" json:"command,omitempty"`
 	// Metadata for the smallest schedulable test units.
@@ -251,7 +251,7 @@ func (m *BuildArtifact) GetRelativePath() string {
 // this restriction.
 //
 // A single test platform request or Remote Test Driver invocation may contain
-// multiple instances of multiple Tests, but each instance of a Test must
+// multiple instances of multiple Tests, but each instance of a Test MUST
 // correspond to exactly one reported result.
 //
 // See Also:
@@ -261,7 +261,7 @@ func (m *BuildArtifact) GetRelativePath() string {
 type Test struct {
 	// Globally unique name for this test.
 	//
-	// Must be a valid resource per https://aip.dev/122.
+	// MUST be a valid resource per https://aip.dev/122.
 	//
 	// Pattern: remoteTestDrivers/{remoteTestDriver}/tests/{test}
 	//   where {remoteTestDriver} is the Remote Test Driver package that contains
@@ -345,9 +345,9 @@ func (m *Test) GetInformational() *Informational {
 type Attribute struct {
 	// Opaque name for this attribute.
 	//
-	// Value must be valid resource names per https://aip.dev/122.
+	// Value MUST be valid resource names per https://aip.dev/122.
 	//
-	// Must not be interpreted by Test Lab Environments.
+	// MUST NOT be interpreted by Test Lab Environments.
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -392,12 +392,12 @@ type DUTCondition struct {
 	//
 	// Test Lab Environments may optionally support targeting test requests to
 	// Device Under Test based on DUTConditions. If this feature is supported, the
-	// Test Lab Environment must interpret `expression` in the scope of the
+	// Test Lab Environment MUST interpret `expression` in the scope of the
 	// protobuf message DUTCondition.Scope as defined below.
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
 	// This API only currently only supports a small sub-set of the CEL features,
-	// as described here. Test Lab Environments should validate the expression and
+	// as described here. Test Lab Environments SHOULD validate the expression and
 	// reject use of unsupported features.
 	//
 	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
@@ -428,9 +428,10 @@ type DUTCondition struct {
 	//
 	// ### Evaluation context
 	//
-	// A CEL expression must be evaluated in some context that provides the basic
-	// bindings for name resolution. `expression` must be evaluated in an
-	// evaluation context that contains
+	// In general, a CEL expression must be evaluated in some context that
+	// provides the basic bindings for name resolution.
+	//
+	// In this case, `expression` MUST be evaluated in a context that contains
 	//
 	// - A variable 'scope' of type DUTCondition.Scope. This variable contains the
 	//   information about a particular Device Under Test being tested for
@@ -585,7 +586,7 @@ type Informational struct {
 	Authors []*Contact `protobuf:"bytes,1,rep,name=authors,proto3" json:"authors,omitempty"`
 	// Machine readable test-specific information.
 	//
-	// Remote Test Drivers should include detailed information to aid analytics.
+	// Remote Test Drivers SHOULD include detailed information to aid analytics.
 	// For example, test authors may minimize code duplication by writing
 	// paramterized tests. Thus, multiple test metadata may refer to the
 	// same test implementation with different arguments. It is useful to include
@@ -598,7 +599,7 @@ type Informational struct {
 	//      }
 	//   }
 	//
-	// This field must not be interpreted by the Test Lab Environments, but Remote
+	// This field MUST NOT be interpreted by the Test Lab Environments, but Remote
 	// Test Drivers can enrich analytics by using uniform stable schema for
 	// details across all their tests.
 	Details              *_struct.Struct `protobuf:"bytes,2,opt,name=details,proto3" json:"details,omitempty"`
