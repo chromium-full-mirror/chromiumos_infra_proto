@@ -44,9 +44,12 @@ message RunTestRequest {
 
   // remote test drive-agnostic environment variables and similar parameters
   message Environment {
-    // A directory whose contents will be offloaded as an Isolated output
-    // This is impractical for the intended use case and so is stillborn.
-    string isolated_output_dir = 1 [deprecated=true];
+    reserved 1; // formerly isolated output dir
+
+    // Directory in Google Storage (bucket or subdirectory) in which
+    // synchronous log-data will be offloaded. Reused across tasks.
+    // ex. "gs://chromeos-autotest-results/sync-offloads-testing"
+    string gs_root_dir = 2;
   }
 
   Environment environment = 4;
