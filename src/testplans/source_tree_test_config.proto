@@ -19,17 +19,6 @@ message TestRestriction {
   // Whether to disable non-Tast-based test suites.
   bool disable_non_tast_tests = 5;
 
-  message OnlyTestBuilder {
-    string builder_name = 1;
-  }
-
-  // A subset of CQ builders for which testing should be performed.
-  // If this is nonempty, hw/vm tests will *only* be done for the provided
-  // list of build targets.
-  // SOON TO BE DEPRECATED: this concept will be replaced with CqTestWhen
-  // rules, as below.
-  repeated OnlyTestBuilder cq_only_test_builders = 6;
-
   oneof CqTestWhen {
     // Indicates a set of test suites to run, to the exclusion of all others.
     // This is a key into target_test_requirements.
@@ -41,7 +30,7 @@ message TestRestriction {
     string cq_also_test_group = 8;
   }
 
-  reserved 4;
+  reserved 4, 6;
 }
 
 // A set of test restrictions for a source tree.
