@@ -79,7 +79,7 @@ message RemoteTestDriver {
   string command = 3;
 
   // Metadata for the smallest schedulable test units.
-  repeated Test test = 4;
+  repeated Test tests = 4;
 }
 
 // A Chrome OS build artifact required for test execution.
