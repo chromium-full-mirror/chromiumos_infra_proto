@@ -23,6 +23,10 @@ message Config {
       // Autotest directory inside the drone container,
       // e.g. "/usr/local/autotest".
       string autotest_dir = 1;
+
+      // Subdirectory, as relative path from the autotest results directory,
+      // to use for synchronous offloads
+      string synch_offload_subdir = 2;
     }
 
     // Output defines parameters around how the task will deliver output to
