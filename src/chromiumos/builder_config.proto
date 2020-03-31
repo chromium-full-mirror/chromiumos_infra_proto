@@ -106,6 +106,9 @@ message BuilderConfig {
     // the number present in the version file, and the SDK Cache will be
     // invalidated if there is a mismatch.
     int32 sdk_cache_version = 5;
+
+    // Indicates whether the target is a unibuild.
+    bool unibuild = 6;
   }
   General general = 2;
 
