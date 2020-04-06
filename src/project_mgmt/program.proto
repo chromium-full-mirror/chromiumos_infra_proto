@@ -13,7 +13,7 @@ import "project_mgmt/project.proto";
 // Defines the metadata for a program, which ultimately controls how this
 // program is managed throughout the infrastructure.
 //
-// NEXT ID: 6
+// NEXT ID: 7
 message Program {
   // Defines the human-readable name for the program.
   string name = 1;
@@ -27,6 +27,8 @@ message Program {
   string repo_checkout_path = 4;
   // Defines projects within this program.
   ProjectList projects = 5;
+  // The Google Storage bucket for artifacts from the program's builds.
+  string gs_bucket = 6;
 }
 
 message ProgramList {
