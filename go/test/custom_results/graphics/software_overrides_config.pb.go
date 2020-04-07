@@ -22,7 +22,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Next Tag: 2
 type SoftwareOverridesConfig struct {
-	// Packages that were explicitly overriden from the normal system softare.
+	// Packages that were explicitly overridden from the normal system softare.
 	Packages             []*Package `protobuf:"bytes,1,rep,name=packages,proto3" json:"packages,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`

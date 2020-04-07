@@ -12,6 +12,6 @@ import "test/custom_results/graphics/package.proto";
 
 // Next Tag: 2
 message SoftwareOverridesConfig {
-  // Packages that were explicitly overriden from the normal system softare.
+  // Packages that were explicitly overridden from the normal system softare.
   repeated Package packages = 1;
 }

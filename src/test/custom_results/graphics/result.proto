@@ -96,7 +96,7 @@ message Result {
   }
   repeated Label labels = 15;
 
-  // Software that was explicitly overriden from the normal system software
+  // Software that was explicitly overridden from the normal system software
   // for a given result.
   SoftwareOverridesConfig overrides = 18;
 }

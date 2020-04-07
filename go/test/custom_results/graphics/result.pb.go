@@ -103,7 +103,7 @@ type Result struct {
 	// Identify the most interesting metric to show by default for a given result.
 	PrimaryMetricName string          `protobuf:"bytes,14,opt,name=primary_metric_name,json=primaryMetricName,proto3" json:"primary_metric_name,omitempty"`
 	Labels            []*Result_Label `protobuf:"bytes,15,rep,name=labels,proto3" json:"labels,omitempty"`
-	// Software that was explicitly overriden from the normal system software
+	// Software that was explicitly overridden from the normal system software
 	// for a given result.
 	Overrides            *SoftwareOverridesConfig `protobuf:"bytes,18,opt,name=overrides,proto3" json:"overrides,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`

@@ -292,7 +292,7 @@ type TestCondition_Scope struct {
 	Test string `protobuf:"bytes,1,opt,name=test,proto3" json:"test,omitempty"`
 	// The test attribute name as specified in the test.metadata.Attribute.name
 	//
-	// attibutes are populated from test.metadata.Test.attributes.
+	// attributes are populated from test.metadata.Test.attributes.
 	Attributes           []string `protobuf:"bytes,2,rep,name=attributes,proto3" json:"attributes,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

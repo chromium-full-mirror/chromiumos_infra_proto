@@ -120,7 +120,7 @@ message TestCondition {
 
     // The test attribute name as specified in the test.metadata.Attribute.name
     //
-    // attibutes are populated from test.metadata.Test.attributes.
+    // attributes are populated from test.metadata.Test.attributes.
     repeated string attributes = 2;
   }
 }
