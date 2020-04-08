@@ -235,6 +235,7 @@ enum AFDOArtifactType {
 }
 
 // Additional information about artifacts used by PrepareForBuild endpoints.
+// TODO(crbug/1019868): This is migrating to ArtifactProfileInfo.
 message PrepareForBuildAdditionalArgs {
   oneof prepare_for_build_args {
     // ToolchainService Chrome AFDO artifacts require profile name.
@@ -242,5 +243,32 @@ message PrepareForBuildAdditionalArgs {
 
     // ToolchainService Kernel AFDO artifacts require a kernel version.
     string kernel_version = 2;
+  }
+}
+
+// ToolchainService Unverified Release AFDO artifacts require information
+// about the builder that created the image used to generate the unverified
+// chrome benchmark perf file.
+message AfdoRelease {
+  // ToolchainService Chrome AFDO artifacts require profile name.
+  string chrome_cwp_profile = 1;
+
+  // The build id of the image_build.  Used to generate the location for the
+  // image archive.
+  int64 image_build_id = 2;
+}
+
+// Artifact profile information used by artifact prepare/bundle endpoints in
+// addition to input_artifacts.
+message ArtifactProfileInfo {
+  oneof artifact_profile_info {
+    // ToolchainService Chrome AFDO artifacts require profile name.
+    string chrome_cwp_profile = 1;
+
+    // ToolchainService Kernel AFDO artifacts require a kernel version.
+    string kernel_version = 2;
+
+    // ToolchainService Unverified Release AFDO artifacts require more.
+    AfdoRelease afdo_relase = 3;
   }
 }

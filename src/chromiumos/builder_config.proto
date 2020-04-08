@@ -266,6 +266,9 @@ message BuilderConfig {
     }
     // There may be more than one set of consumable artifacts.
     repeated InputArtifactInfo input_artifacts = 6;
+
+    // Profile information needed by artifact prepare/bundle endpoints.
+    ArtifactProfileInfo artifact_profile_info = 7;
   }
   Artifacts artifacts = 4;
 
@@ -301,6 +304,8 @@ message BuilderConfig {
     // generally called, rather than in numerical order.
 
     // Controls for the call to cros_artifacts.prepare_for_build.
+    // TODO(crbug/1019868): Drop this after all users have switched to
+    // artifacts.artifactProfileInfo.
     message PrepareForBuild {
       // Additional arguments from common.proto, passed into any
       // PrepareFor*Build endpoint.

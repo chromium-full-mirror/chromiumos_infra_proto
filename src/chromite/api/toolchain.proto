@@ -36,7 +36,11 @@ message PrepareForToolchainBuildRequest {
   repeated chromiumos.BuilderConfig.Artifacts.InputArtifactInfo input_artifacts = 4;
 
   // Additional arguments used in PrepareForBuild.
+  // TODO(crbug/1019868): Transition to artifact_profile_info.
   chromiumos.PrepareForBuildAdditionalArgs additional_args = 5;
+
+  // Profile information used for the artifact.
+  chromiumos.ArtifactProfileInfo profile_info = 6;
 }
 
 // TODO(crbug/1019868): Migrate to using chromiumos.PrepareForBuildResponse.
@@ -68,7 +72,11 @@ message BundleToolchainRequest {
   repeated chromiumos.BuilderConfig.Artifacts.ArtifactTypes artifact_types = 4;
 
   // Additional arguments that were used in PrepareForBuild.
+  // TODO(crbug/1019868): Transition to artifact_profile_info.
   chromiumos.PrepareForBuildAdditionalArgs additional_args = 5;
+
+  // Profile information used for the artifact.
+  chromiumos.ArtifactProfileInfo profile_info = 6;
 }
 
 // Response describing which bundles were dumped to the given output directory.
