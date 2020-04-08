@@ -8,7 +8,7 @@ package test.plan.v1;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan/v1;plan";
 
-import "lab/device.proto";
+import "test/fleet/v1/dut.proto";
 
 // From chromiumos/config repo.
 import "chromiumos/config/api/hardware_topology.proto";
@@ -263,7 +263,7 @@ message DUTCoverageCondition {
     // Device Under Test features relevant for test plan conditions.
     message DUT {
       // Configuration information about the lab deployment of the device.
-      lab.DeviceUnderTest lab_dut = 1;
+      test.fleet.v1.DeviceUnderTest fleet_dut = 1;
       // The relationship between topology and features is described at
       // https://chromium.googlesource.com/chromiumos/config/+/master/proto/api/hardware_topology.md
       chromiumos.config.api.HardwareTopology hardware_topology = 2;
