@@ -269,6 +269,6 @@ message ArtifactProfileInfo {
     string kernel_version = 2;
 
     // ToolchainService Unverified Release AFDO artifacts require more.
-    AfdoRelease afdo_relase = 3;
+    AfdoRelease afdo_release = 3;
   }
 }
