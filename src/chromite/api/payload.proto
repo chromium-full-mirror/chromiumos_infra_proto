@@ -82,6 +82,8 @@ message PayloadGenerationRequest {
   // The keyset to sign with (e.g. "coral-mp-v16"), if empty do not sign.
   string keyset = 8;
 
+  // Do not sign images or upload artifacts.
+  bool dryrun = 9;
 }
 
 // Result of a payload generation.
