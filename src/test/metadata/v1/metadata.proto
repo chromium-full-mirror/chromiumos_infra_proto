@@ -21,8 +21,8 @@ import "google/protobuf/struct.proto";
 import "lab/peripherals.proto";
 
 // From chromiumos/config repo.
-import "api/hardware_topology.proto";
-import "api/topology.proto";
+import "chromiumos/config/api/hardware_topology.proto";
+import "chromiumos/config/api/topology.proto";
 
 // The test metadata specification.
 //

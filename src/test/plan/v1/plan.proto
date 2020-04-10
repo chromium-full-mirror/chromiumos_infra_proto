@@ -11,8 +11,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan/v1;plan
 import "lab/device.proto";
 
 // From chromiumos/config repo.
-import "api/hardware_topology.proto";
-import "api/topology.proto";
+import "chromiumos/config/api/hardware_topology.proto";
+import "chromiumos/config/api/topology.proto";
 
 // A set of known test plans.
 //
