@@ -76,6 +76,8 @@ message BotPolicy {
 
   // Set whether a bot group should be configured or only monitored.
   Mode policy_mode = 6;
+  // Number of hours to lookback for Swarming stats.
+  sint32 lookback_hours = 7;
 }
 
 // Configures the root message.
