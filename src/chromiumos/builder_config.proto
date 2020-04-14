@@ -226,6 +226,8 @@ message BuilderConfig {
 
       // Indicates an unvetted AFDO perf data file (from HW Test).
       UNVERIFIED_CHROME_BENCHMARK_PERF_FILE = 22;
+      // Indicates an unstripped Chrome binary.
+      CHROME_DEBUG_BINARY = 23;
     }
     repeated ArtifactTypes artifact_types = 2;
 
