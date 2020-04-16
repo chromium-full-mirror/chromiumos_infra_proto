@@ -22,6 +22,8 @@ message SwarmingDimension {
   string name = 1;
   // Dimension value
   string value = 2;
+  // Dimension multiple values
+  repeated string values = 3;
 }
 
 // Bot Policy to apply to a bot group.
