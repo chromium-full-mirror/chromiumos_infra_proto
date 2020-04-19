@@ -648,7 +648,8 @@ type BuilderConfig_Orchestrator struct {
 	ChildSpecs []*BuilderConfig_Orchestrator_ChildSpec `protobuf:"bytes,5,rep,name=child_specs,json=childSpecs,proto3" json:"child_specs,omitempty"`
 	// GitilesCommit to use if not provided.
 	GitilesCommit *GitilesCommit `protobuf:"bytes,2,opt,name=gitiles_commit,json=gitilesCommit,proto3" json:"gitiles_commit,omitempty"`
-	// GerritChanges to use if not provided.
+	// GerritChanges to apply.  To ignore these changes, use
+	// $chromeos/cros_infra_config.ignore_config_changelist=True.
 	GerritChanges        []*GerritChange                                  `protobuf:"bytes,3,rep,name=gerrit_changes,json=gerritChanges,proto3" json:"gerrit_changes,omitempty"`
 	FollowOnOrchestrator *BuilderConfig_Orchestrator_FollowOnOrchestrator `protobuf:"bytes,4,opt,name=follow_on_orchestrator,json=followOnOrchestrator,proto3" json:"follow_on_orchestrator,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                                         `json:"-"`

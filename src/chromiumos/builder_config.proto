@@ -142,7 +142,8 @@ message BuilderConfig {
     // GitilesCommit to use if not provided.
     GitilesCommit gitiles_commit = 2;
 
-    // GerritChanges to use if not provided.
+    // GerritChanges to apply.  To ignore these changes, use
+    // $chromeos/cros_infra_config.ignore_config_changelist=True.
     repeated GerritChange gerrit_changes = 3;
 
     // Follow on orchestrator to launch, and possibly wait for.
