@@ -9,7 +9,6 @@ package test.rtd.v1;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/rtd/v1;rtd";
 
 import "lab/peripherals.proto";
-import "lab/services/client.proto";
 import "test/rtd/v1/progress.proto";
 
 // From chromiumos/config repo.
@@ -36,7 +35,7 @@ message Invocation {
 
   // Configuration information for using Test Lab Services to interact
   // with DUTs and their peripherals.
-  lab.services.ClientConfig test_lab_services_config = 4;
+  TLSClientConfig test_lab_services_config = 4;
 }
 
 // Contains all configuration data required to interact with a single device
@@ -110,4 +109,26 @@ message Request {
   // Environment configuration set by the Remote Test Server for a specific
   // request of the Remote Test Driver.
   Environment environment = 3;
+}
+
+// Configuration information required for using Test Lab & Wiring Services.
+message TLSClientConfig {
+  // Address where Test Lab Services is reachable.
+  // This should be an IPv4 or IPv6 address to avoid name
+  // resolution issues.
+  // IPv4 addresses will be in standard dotted decimal notation.
+  // IPv6 addresses will be formatted according to RFC4291, Section
+  // 2.2, 1. (no zero compression)
+  // If this is a hostname, the RTS should ensure that the hostname
+  // can be resolved by the RTD via standard name resolution
+  // facilities.
+  string tls_address = 1;
+  // Port on the tls_address where the service is reachable.
+  int32 tls_port = 2;
+
+  // Address where Test Lab Services Wiring is reachable.
+  // This has the same format as tls_address.
+  string tlw_address = 3;
+  // Port on the tlw_address where the service is reachable.
+  int32 tlw_port = 4;
 }
