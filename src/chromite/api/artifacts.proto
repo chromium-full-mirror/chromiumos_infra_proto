@@ -13,8 +13,58 @@ message Artifact {
   string path = 1;
 }
 
+message PrepareForBuildRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+
+  // The sysroot where the files live.
+  Sysroot sysroot = 2;
+
+  // Information about the artifacts.
+  chromiumos.ArtifactsByService artifact_info = 3;
+
+  // Whether we will proceed even if the build is POINTLESS.
+  bool forced_build_relevance = 4;
+}
+
+message PrepareForBuildResponse {
+  // Whether this artifact requires a build.
+  enum BuildRelevance {
+    UNSPECIFIED = 0;
+    // Build is necessary to generate artifacts.
+    NEEDED = 1;
+    // Defer to other artifacts.  Used primarily for aggregation of artifact
+    // results.
+    UNKNOWN = 2;
+    // Artifacts are already generated.  The build is pointless.
+    POINTLESS = 3;
+  }
+  BuildRelevance build_relevance = 1;
+}
+
+message BundleArtifactsRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+
+  // The sysroot where the files live.
+  Sysroot sysroot = 2;
+
+  // Artifact information.
+  chromiumos.ArtifactsByService artifact_info = 3;
+
+  // Absolute path to the directory in which artifacts should be dropped.
+  string output_dir = 4;
+}
+
+message BundleArtifactsResponse {
+  // The artifacts that were bundled.
+  chromiumos.UploadedArtifactsByService artifacts = 1;
+}
+
 // Request describing where build artifact bundles for a given build target
 // should be dumped.
+// TODO(crbug/1034529): BundleRequest and BundleResponse are being deprecated
+// (along with most of this file).  See BundleArtifactsRequest/Response
 message BundleRequest {
   // The build target to bundle artifacts for.
   // Deprecated. Use sysroot instead.
@@ -89,49 +139,72 @@ service ArtifactsService {
     service_chroot_assert: OUTSIDE,
   };
 
+  // Prepare to build artifacts.
+  rpc PrepareForBuild(PrepareForBuildRequest) returns (PrepareForBuildResponse);
+
+  // Bundle artifacts for build.
+  rpc BundleArtifacts(BundleArtifactsRequest) returns (BundleArtifactsResponse);
+
+  // Fetch the pinned guest image locations.
+  rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
+    returns (PinnedGuestImageUriResponse);
+
+  //
+  // EVERYTHING THAT FOLLOWS THIS LINE IS DEPRECATED.
+  //
+
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with all files needed for Autotest HW testing.
   rpc BundleAutotestFiles(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create the ChromeOS Config JSON payload.
   rpc BundleChromeOSConfig(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with ebuild logs.
   rpc BundleEbuildLogs(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with unsigned firmware images.
   rpc BundleFirmware(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar.xz archive for each image that has been created.
   rpc BundleImageArchives(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Generate zip containing all built images for the target.
   rpc BundleImageZip(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // DEPRECATED for recipes: crbug/1019868: This are being replaced by
   // ToolchainService.Bundle{ArtifactType}()
   // Create Chrome Benchmark AFDO builder artifacts.
   rpc BundleAFDOGenerationArtifacts(BundleChromeAFDORequest)
     returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with all guest images test bundles.
   rpc BundlePinnedGuestImages(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create the simple chrome artifacts.
   rpc BundleSimpleChromeArtifacts(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with all files needed for Tast HW testing.
   rpc BundleTastFiles(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Generate minimal update payloads to be used in HW testing.
   rpc BundleTestUpdatePayloads(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with VM memory and disk images.
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Generate a CPE report to a file.
   rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
-
-  // Fetch the pinned guest image locations.
-  rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
-    returns (PinnedGuestImageUriResponse);
 }

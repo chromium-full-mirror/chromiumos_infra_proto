@@ -25,6 +25,42 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// Whether this artifact requires a build.
+type PrepareForBuildResponse_BuildRelevance int32
+
+const (
+	PrepareForBuildResponse_UNSPECIFIED PrepareForBuildResponse_BuildRelevance = 0
+	// Build is necessary to generate artifacts.
+	PrepareForBuildResponse_NEEDED PrepareForBuildResponse_BuildRelevance = 1
+	// Defer to other artifacts.  Used primarily for aggregation of artifact
+	// results.
+	PrepareForBuildResponse_UNKNOWN PrepareForBuildResponse_BuildRelevance = 2
+	// Artifacts are already generated.  The build is pointless.
+	PrepareForBuildResponse_POINTLESS PrepareForBuildResponse_BuildRelevance = 3
+)
+
+var PrepareForBuildResponse_BuildRelevance_name = map[int32]string{
+	0: "UNSPECIFIED",
+	1: "NEEDED",
+	2: "UNKNOWN",
+	3: "POINTLESS",
+}
+
+var PrepareForBuildResponse_BuildRelevance_value = map[string]int32{
+	"UNSPECIFIED": 0,
+	"NEEDED":      1,
+	"UNKNOWN":     2,
+	"POINTLESS":   3,
+}
+
+func (x PrepareForBuildResponse_BuildRelevance) String() string {
+	return proto.EnumName(PrepareForBuildResponse_BuildRelevance_name, int32(x))
+}
+
+func (PrepareForBuildResponse_BuildRelevance) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_62a7d4c8524262a7, []int{2, 0}
+}
+
 // An artifact is a file generated during or after a build.
 type Artifact struct {
 	// Absolute path to the artifact file.
@@ -66,8 +102,223 @@ func (m *Artifact) GetPath() string {
 	return ""
 }
 
+type PrepareForBuildRequest struct {
+	// The chroot where the sysroot lives.
+	Chroot *chromiumos.Chroot `protobuf:"bytes,1,opt,name=chroot,proto3" json:"chroot,omitempty"`
+	// The sysroot where the files live.
+	Sysroot *Sysroot `protobuf:"bytes,2,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
+	// Information about the artifacts.
+	ArtifactInfo *chromiumos.ArtifactsByService `protobuf:"bytes,3,opt,name=artifact_info,json=artifactInfo,proto3" json:"artifact_info,omitempty"`
+	// Whether we will proceed even if the build is POINTLESS.
+	ForcedBuildRelevance bool     `protobuf:"varint,4,opt,name=forced_build_relevance,json=forcedBuildRelevance,proto3" json:"forced_build_relevance,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PrepareForBuildRequest) Reset()         { *m = PrepareForBuildRequest{} }
+func (m *PrepareForBuildRequest) String() string { return proto.CompactTextString(m) }
+func (*PrepareForBuildRequest) ProtoMessage()    {}
+func (*PrepareForBuildRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_62a7d4c8524262a7, []int{1}
+}
+
+func (m *PrepareForBuildRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PrepareForBuildRequest.Unmarshal(m, b)
+}
+func (m *PrepareForBuildRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PrepareForBuildRequest.Marshal(b, m, deterministic)
+}
+func (m *PrepareForBuildRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrepareForBuildRequest.Merge(m, src)
+}
+func (m *PrepareForBuildRequest) XXX_Size() int {
+	return xxx_messageInfo_PrepareForBuildRequest.Size(m)
+}
+func (m *PrepareForBuildRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrepareForBuildRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrepareForBuildRequest proto.InternalMessageInfo
+
+func (m *PrepareForBuildRequest) GetChroot() *chromiumos.Chroot {
+	if m != nil {
+		return m.Chroot
+	}
+	return nil
+}
+
+func (m *PrepareForBuildRequest) GetSysroot() *Sysroot {
+	if m != nil {
+		return m.Sysroot
+	}
+	return nil
+}
+
+func (m *PrepareForBuildRequest) GetArtifactInfo() *chromiumos.ArtifactsByService {
+	if m != nil {
+		return m.ArtifactInfo
+	}
+	return nil
+}
+
+func (m *PrepareForBuildRequest) GetForcedBuildRelevance() bool {
+	if m != nil {
+		return m.ForcedBuildRelevance
+	}
+	return false
+}
+
+type PrepareForBuildResponse struct {
+	BuildRelevance       PrepareForBuildResponse_BuildRelevance `protobuf:"varint,1,opt,name=build_relevance,json=buildRelevance,proto3,enum=chromite.api.PrepareForBuildResponse_BuildRelevance" json:"build_relevance,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                               `json:"-"`
+	XXX_unrecognized     []byte                                 `json:"-"`
+	XXX_sizecache        int32                                  `json:"-"`
+}
+
+func (m *PrepareForBuildResponse) Reset()         { *m = PrepareForBuildResponse{} }
+func (m *PrepareForBuildResponse) String() string { return proto.CompactTextString(m) }
+func (*PrepareForBuildResponse) ProtoMessage()    {}
+func (*PrepareForBuildResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_62a7d4c8524262a7, []int{2}
+}
+
+func (m *PrepareForBuildResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PrepareForBuildResponse.Unmarshal(m, b)
+}
+func (m *PrepareForBuildResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PrepareForBuildResponse.Marshal(b, m, deterministic)
+}
+func (m *PrepareForBuildResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrepareForBuildResponse.Merge(m, src)
+}
+func (m *PrepareForBuildResponse) XXX_Size() int {
+	return xxx_messageInfo_PrepareForBuildResponse.Size(m)
+}
+func (m *PrepareForBuildResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrepareForBuildResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrepareForBuildResponse proto.InternalMessageInfo
+
+func (m *PrepareForBuildResponse) GetBuildRelevance() PrepareForBuildResponse_BuildRelevance {
+	if m != nil {
+		return m.BuildRelevance
+	}
+	return PrepareForBuildResponse_UNSPECIFIED
+}
+
+type BundleArtifactsRequest struct {
+	// The chroot where the sysroot lives.
+	Chroot *chromiumos.Chroot `protobuf:"bytes,1,opt,name=chroot,proto3" json:"chroot,omitempty"`
+	// The sysroot where the files live.
+	Sysroot *Sysroot `protobuf:"bytes,2,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
+	// Artifact information.
+	ArtifactInfo *chromiumos.ArtifactsByService `protobuf:"bytes,3,opt,name=artifact_info,json=artifactInfo,proto3" json:"artifact_info,omitempty"`
+	// Absolute path to the directory in which artifacts should be dropped.
+	OutputDir            string   `protobuf:"bytes,4,opt,name=output_dir,json=outputDir,proto3" json:"output_dir,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *BundleArtifactsRequest) Reset()         { *m = BundleArtifactsRequest{} }
+func (m *BundleArtifactsRequest) String() string { return proto.CompactTextString(m) }
+func (*BundleArtifactsRequest) ProtoMessage()    {}
+func (*BundleArtifactsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_62a7d4c8524262a7, []int{3}
+}
+
+func (m *BundleArtifactsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BundleArtifactsRequest.Unmarshal(m, b)
+}
+func (m *BundleArtifactsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BundleArtifactsRequest.Marshal(b, m, deterministic)
+}
+func (m *BundleArtifactsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BundleArtifactsRequest.Merge(m, src)
+}
+func (m *BundleArtifactsRequest) XXX_Size() int {
+	return xxx_messageInfo_BundleArtifactsRequest.Size(m)
+}
+func (m *BundleArtifactsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_BundleArtifactsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BundleArtifactsRequest proto.InternalMessageInfo
+
+func (m *BundleArtifactsRequest) GetChroot() *chromiumos.Chroot {
+	if m != nil {
+		return m.Chroot
+	}
+	return nil
+}
+
+func (m *BundleArtifactsRequest) GetSysroot() *Sysroot {
+	if m != nil {
+		return m.Sysroot
+	}
+	return nil
+}
+
+func (m *BundleArtifactsRequest) GetArtifactInfo() *chromiumos.ArtifactsByService {
+	if m != nil {
+		return m.ArtifactInfo
+	}
+	return nil
+}
+
+func (m *BundleArtifactsRequest) GetOutputDir() string {
+	if m != nil {
+		return m.OutputDir
+	}
+	return ""
+}
+
+type BundleArtifactsResponse struct {
+	// The artifacts that were bundled.
+	Artifacts            *chromiumos.UploadedArtifactsByService `protobuf:"bytes,1,opt,name=artifacts,proto3" json:"artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                               `json:"-"`
+	XXX_unrecognized     []byte                                 `json:"-"`
+	XXX_sizecache        int32                                  `json:"-"`
+}
+
+func (m *BundleArtifactsResponse) Reset()         { *m = BundleArtifactsResponse{} }
+func (m *BundleArtifactsResponse) String() string { return proto.CompactTextString(m) }
+func (*BundleArtifactsResponse) ProtoMessage()    {}
+func (*BundleArtifactsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_62a7d4c8524262a7, []int{4}
+}
+
+func (m *BundleArtifactsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BundleArtifactsResponse.Unmarshal(m, b)
+}
+func (m *BundleArtifactsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BundleArtifactsResponse.Marshal(b, m, deterministic)
+}
+func (m *BundleArtifactsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BundleArtifactsResponse.Merge(m, src)
+}
+func (m *BundleArtifactsResponse) XXX_Size() int {
+	return xxx_messageInfo_BundleArtifactsResponse.Size(m)
+}
+func (m *BundleArtifactsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_BundleArtifactsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BundleArtifactsResponse proto.InternalMessageInfo
+
+func (m *BundleArtifactsResponse) GetArtifacts() *chromiumos.UploadedArtifactsByService {
+	if m != nil {
+		return m.Artifacts
+	}
+	return nil
+}
+
 // Request describing where build artifact bundles for a given build target
 // should be dumped.
+// TODO(crbug/1034529): BundleRequest and BundleResponse are being deprecated
+// (along with most of this file).  See BundleArtifactsRequest/Response
 type BundleRequest struct {
 	// The build target to bundle artifacts for.
 	// Deprecated. Use sysroot instead.
@@ -87,7 +338,7 @@ func (m *BundleRequest) Reset()         { *m = BundleRequest{} }
 func (m *BundleRequest) String() string { return proto.CompactTextString(m) }
 func (*BundleRequest) ProtoMessage()    {}
 func (*BundleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{1}
+	return fileDescriptor_62a7d4c8524262a7, []int{5}
 }
 
 func (m *BundleRequest) XXX_Unmarshal(b []byte) error {
@@ -149,7 +400,7 @@ func (m *BundleResponse) Reset()         { *m = BundleResponse{} }
 func (m *BundleResponse) String() string { return proto.CompactTextString(m) }
 func (*BundleResponse) ProtoMessage()    {}
 func (*BundleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{2}
+	return fileDescriptor_62a7d4c8524262a7, []int{6}
 }
 
 func (m *BundleResponse) XXX_Unmarshal(b []byte) error {
@@ -197,7 +448,7 @@ func (m *BundleVmFilesRequest) Reset()         { *m = BundleVmFilesRequest{} }
 func (m *BundleVmFilesRequest) String() string { return proto.CompactTextString(m) }
 func (*BundleVmFilesRequest) ProtoMessage()    {}
 func (*BundleVmFilesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{3}
+	return fileDescriptor_62a7d4c8524262a7, []int{7}
 }
 
 func (m *BundleVmFilesRequest) XXX_Unmarshal(b []byte) error {
@@ -267,7 +518,7 @@ func (m *BundleChromeAFDORequest) Reset()         { *m = BundleChromeAFDORequest
 func (m *BundleChromeAFDORequest) String() string { return proto.CompactTextString(m) }
 func (*BundleChromeAFDORequest) ProtoMessage()    {}
 func (*BundleChromeAFDORequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{4}
+	return fileDescriptor_62a7d4c8524262a7, []int{8}
 }
 
 func (m *BundleChromeAFDORequest) XXX_Unmarshal(b []byte) error {
@@ -331,7 +582,7 @@ func (m *PinnedGuestImageUriRequest) Reset()         { *m = PinnedGuestImageUriR
 func (m *PinnedGuestImageUriRequest) String() string { return proto.CompactTextString(m) }
 func (*PinnedGuestImageUriRequest) ProtoMessage()    {}
 func (*PinnedGuestImageUriRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{5}
+	return fileDescriptor_62a7d4c8524262a7, []int{9}
 }
 
 func (m *PinnedGuestImageUriRequest) XXX_Unmarshal(b []byte) error {
@@ -379,7 +630,7 @@ func (m *PinnedGuestImageUriResponse) Reset()         { *m = PinnedGuestImageUri
 func (m *PinnedGuestImageUriResponse) String() string { return proto.CompactTextString(m) }
 func (*PinnedGuestImageUriResponse) ProtoMessage()    {}
 func (*PinnedGuestImageUriResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{6}
+	return fileDescriptor_62a7d4c8524262a7, []int{10}
 }
 
 func (m *PinnedGuestImageUriResponse) XXX_Unmarshal(b []byte) error {
@@ -423,7 +674,7 @@ func (m *PinnedGuestImageUriResponse_PinnedGuestImage) String() string {
 }
 func (*PinnedGuestImageUriResponse_PinnedGuestImage) ProtoMessage() {}
 func (*PinnedGuestImageUriResponse_PinnedGuestImage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_62a7d4c8524262a7, []int{6, 0}
+	return fileDescriptor_62a7d4c8524262a7, []int{10, 0}
 }
 
 func (m *PinnedGuestImageUriResponse_PinnedGuestImage) XXX_Unmarshal(b []byte) error {
@@ -459,7 +710,12 @@ func (m *PinnedGuestImageUriResponse_PinnedGuestImage) GetUri() string {
 }
 
 func init() {
+	proto.RegisterEnum("chromite.api.PrepareForBuildResponse_BuildRelevance", PrepareForBuildResponse_BuildRelevance_name, PrepareForBuildResponse_BuildRelevance_value)
 	proto.RegisterType((*Artifact)(nil), "chromite.api.Artifact")
+	proto.RegisterType((*PrepareForBuildRequest)(nil), "chromite.api.PrepareForBuildRequest")
+	proto.RegisterType((*PrepareForBuildResponse)(nil), "chromite.api.PrepareForBuildResponse")
+	proto.RegisterType((*BundleArtifactsRequest)(nil), "chromite.api.BundleArtifactsRequest")
+	proto.RegisterType((*BundleArtifactsResponse)(nil), "chromite.api.BundleArtifactsResponse")
 	proto.RegisterType((*BundleRequest)(nil), "chromite.api.BundleRequest")
 	proto.RegisterType((*BundleResponse)(nil), "chromite.api.BundleResponse")
 	proto.RegisterType((*BundleVmFilesRequest)(nil), "chromite.api.BundleVmFilesRequest")
@@ -472,54 +728,68 @@ func init() {
 func init() { proto.RegisterFile("chromite/api/artifacts.proto", fileDescriptor_62a7d4c8524262a7) }
 
 var fileDescriptor_62a7d4c8524262a7 = []byte{
-	// 737 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x56, 0xdf, 0x6e, 0xd3, 0x3e,
-	0x14, 0x56, 0xda, 0x69, 0xbf, 0xf5, 0xac, 0xdd, 0xaf, 0x98, 0x3f, 0x2b, 0xd9, 0x86, 0xa6, 0x48,
-	0x48, 0x85, 0x8b, 0x46, 0x2a, 0x08, 0xa1, 0x5d, 0xd1, 0xfd, 0xe9, 0x84, 0x18, 0xda, 0x48, 0x3b,
-	0x84, 0x76, 0x53, 0x79, 0xad, 0xdb, 0x5a, 0x6a, 0x62, 0x63, 0x3b, 0x83, 0xbe, 0x1b, 0x17, 0x88,
-	0x1b, 0x1e, 0x80, 0x47, 0xe0, 0x9a, 0x77, 0x40, 0xb1, 0x93, 0xb6, 0xe9, 0x2a, 0x36, 0x96, 0x89,
-	0xbb, 0xf8, 0x7c, 0x27, 0xdf, 0x39, 0xfe, 0xfc, 0xf9, 0x24, 0xb0, 0xd9, 0x1d, 0x0a, 0xe6, 0x53,
-	0x45, 0x5c, 0xcc, 0xa9, 0x8b, 0x85, 0xa2, 0x7d, 0xdc, 0x55, 0xb2, 0xc6, 0x05, 0x53, 0x0c, 0x15,
-	0x13, 0xb4, 0x86, 0x39, 0xb5, 0xd3, 0xb9, 0xe7, 0x21, 0x1d, 0xf5, 0x3a, 0x98, 0x53, 0x93, 0x6b,
-	0xdb, 0x29, 0x54, 0x8e, 0xa5, 0x60, 0x4c, 0xc5, 0xd8, 0xba, 0xc1, 0x42, 0x9f, 0x49, 0xb7, 0xcb,
-	0x7c, 0x9f, 0x05, 0x06, 0x70, 0x1e, 0xc1, 0x4a, 0x23, 0xae, 0x89, 0x10, 0x2c, 0x71, 0xac, 0x86,
-	0x15, 0x6b, 0xdb, 0xaa, 0x16, 0x3c, 0xfd, 0xec, 0x7c, 0xb7, 0xa0, 0xb4, 0x1b, 0x06, 0xbd, 0x11,
-	0xf1, 0xc8, 0xc7, 0x90, 0x48, 0x85, 0x76, 0xa0, 0x68, 0x2a, 0x2b, 0x2c, 0x06, 0x44, 0xe9, 0xec,
-	0xd5, 0xfa, 0x7a, 0x6d, 0x5a, 0xa1, 0xb6, 0x1b, 0xe1, 0x6d, 0x0d, 0x7b, 0xab, 0xe7, 0xd3, 0x05,
-	0xda, 0x02, 0x60, 0xa1, 0xe2, 0xa1, 0xea, 0xf4, 0xa8, 0xa8, 0xe4, 0x74, 0x9d, 0x82, 0x89, 0xec,
-	0x53, 0x81, 0x9e, 0xc2, 0x72, 0xc4, 0xc2, 0x54, 0x25, 0xaf, 0x49, 0xd1, 0x2c, 0xe9, 0x9e, 0x46,
-	0xbc, 0x38, 0x03, 0xb9, 0xf0, 0x5f, 0xbc, 0xc5, 0xca, 0x92, 0x4e, 0xbe, 0x5f, 0x9b, 0xd5, 0xaa,
-	0xd6, 0x32, 0xa0, 0x97, 0x64, 0x39, 0x4d, 0x58, 0x4b, 0x36, 0x22, 0x39, 0x0b, 0x24, 0x41, 0xcf,
-	0xa1, 0x30, 0xd1, 0xbb, 0x62, 0x6d, 0xe7, 0xab, 0xab, 0xf5, 0x07, 0x69, 0x92, 0x44, 0x1a, 0x6f,
-	0x9a, 0xe8, 0x7c, 0xb1, 0xe0, 0x9e, 0x21, 0x7a, 0xef, 0x37, 0xe9, 0x88, 0xc8, 0x44, 0x98, 0x69,
-	0xf7, 0xd6, 0xdf, 0x74, 0x9f, 0xbb, 0x4e, 0xf7, 0xa8, 0x0a, 0x65, 0x45, 0xa4, 0xea, 0x08, 0x22,
-	0xc3, 0x91, 0x92, 0x5a, 0xbf, 0xbc, 0xd6, 0x6f, 0x2d, 0x8a, 0x7b, 0x26, 0x1c, 0x89, 0x98, 0xd6,
-	0x78, 0x69, 0x4e, 0x63, 0xe7, 0xa7, 0x05, 0xeb, 0xa6, 0xfd, 0xa8, 0x25, 0x9f, 0x34, 0x9a, 0xfb,
-	0xc7, 0x37, 0xd9, 0xc1, 0xbc, 0x0d, 0x72, 0x37, 0xb6, 0x41, 0x7e, 0xde, 0x06, 0x0d, 0x28, 0x25,
-	0x72, 0x77, 0xd4, 0x98, 0x13, 0xbd, 0x89, 0xb5, 0xfa, 0xe6, 0x2c, 0x77, 0xd4, 0x76, 0x72, 0x3a,
-	0xed, 0x31, 0x27, 0x5e, 0x11, 0xcf, 0xac, 0x9c, 0x31, 0xd8, 0x27, 0x34, 0x08, 0x48, 0xef, 0x30,
-	0xda, 0xd8, 0x6b, 0x1f, 0x0f, 0xc8, 0xa9, 0xa0, 0xff, 0xe2, 0xa4, 0x9c, 0xaf, 0x16, 0x6c, 0x2c,
-	0xac, 0x1d, 0xbb, 0xae, 0x03, 0x25, 0xae, 0xe1, 0x0e, 0x8d, 0xa0, 0xc4, 0x79, 0x3b, 0x69, 0xda,
-	0x3f, 0x30, 0x5c, 0xc2, 0xbc, 0xa2, 0x21, 0xd4, 0x0b, 0x69, 0xbf, 0x82, 0xf2, 0x7c, 0x06, 0xb2,
-	0x61, 0xa5, 0x4f, 0x47, 0x24, 0xc0, 0x3e, 0x89, 0xaf, 0xf7, 0x64, 0x8d, 0xca, 0x90, 0x0f, 0x05,
-	0x8d, 0x6f, 0x63, 0xf4, 0x58, 0xff, 0x51, 0x80, 0x72, 0x22, 0xae, 0x6c, 0x11, 0x71, 0x41, 0xbb,
-	0x04, 0x9d, 0xc0, 0x5d, 0xe3, 0x9b, 0x46, 0xa8, 0x58, 0xe4, 0x39, 0x6d, 0x7e, 0xb4, 0x91, 0xee,
-	0x3b, 0x35, 0x2b, 0xec, 0xcd, 0xc5, 0x60, 0xac, 0xc4, 0xbb, 0xe4, 0x22, 0x19, 0x27, 0x1e, 0xb7,
-	0xf6, 0x58, 0xd0, 0xa7, 0x83, 0x2c, 0x94, 0x6f, 0xa1, 0x6c, 0x22, 0x07, 0xda, 0x6f, 0x47, 0x6c,
-	0x90, 0xa9, 0xc3, 0x37, 0xc9, 0xcc, 0x68, 0x52, 0xe1, 0x7f, 0xc2, 0x82, 0x64, 0x21, 0x9b, 0x08,
-	0xa8, 0x8f, 0xa4, 0x21, 0xba, 0x43, 0x7a, 0x41, 0x6e, 0xa7, 0x3d, 0xcd, 0x78, 0x46, 0x79, 0x16,
-	0xb2, 0x1e, 0x6c, 0xc5, 0xe7, 0xdb, 0xdc, 0x3f, 0x3e, 0x24, 0x01, 0x11, 0x58, 0x51, 0x16, 0x4c,
-	0x7c, 0x80, 0x1e, 0x2f, 0x7a, 0xfd, 0xd2, 0x10, 0xb9, 0xa2, 0x4a, 0x3b, 0x99, 0x3e, 0xf3, 0x16,
-	0xcd, 0x24, 0xc4, 0x07, 0xd8, 0x30, 0x91, 0x16, 0xf5, 0xf9, 0xa4, 0xa9, 0x49, 0xe7, 0x19, 0x98,
-	0x8f, 0xe0, 0x7f, 0x13, 0x69, 0xe3, 0x5b, 0x70, 0xfc, 0x29, 0x54, 0x62, 0x36, 0x22, 0xd5, 0x29,
-	0xef, 0x61, 0x45, 0x4e, 0xf0, 0x78, 0xc4, 0x70, 0x2f, 0xe3, 0x45, 0x2a, 0xa5, 0xbe, 0x48, 0xc8,
-	0x59, 0x94, 0x9e, 0xfe, 0x5c, 0x5d, 0xbd, 0xef, 0x83, 0xcf, 0x9c, 0x09, 0xb5, 0xc7, 0x89, 0x47,
-	0xa2, 0x87, 0x2c, 0x0d, 0x72, 0x78, 0xd8, 0x24, 0xaa, 0x3b, 0x5c, 0x30, 0xd5, 0x24, 0xaa, 0x5e,
-	0x63, 0xf2, 0x99, 0x22, 0x4f, 0xae, 0x3d, 0x23, 0xed, 0x3b, 0xdf, 0x7e, 0xd9, 0xa5, 0x99, 0xef,
-	0x7b, 0x39, 0xb7, 0xfb, 0xf2, 0xec, 0xc5, 0x80, 0x4d, 0x26, 0x7d, 0x8d, 0x89, 0x81, 0x3b, 0xf3,
-	0x57, 0x44, 0x83, 0xbe, 0xc0, 0xae, 0xfe, 0x29, 0x72, 0x07, 0xcc, 0x9d, 0xfd, 0x97, 0x3a, 0x5f,
-	0xd6, 0xe1, 0x67, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x05, 0xaa, 0x8b, 0x68, 0xac, 0x09, 0x00,
-	0x00,
+	// 964 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x57, 0xdd, 0x6e, 0xe3, 0xc4,
+	0x17, 0xff, 0x3b, 0xa9, 0xba, 0xcd, 0x49, 0x93, 0xfa, 0x3f, 0x2c, 0x6d, 0x48, 0xbb, 0xab, 0x95,
+	0x05, 0x28, 0x70, 0x91, 0x48, 0xa1, 0x42, 0x68, 0xaf, 0x68, 0xf3, 0xb1, 0x8a, 0xb6, 0x24, 0xc1,
+	0x49, 0x00, 0xad, 0x04, 0xd1, 0x34, 0x9e, 0xa4, 0x23, 0xc5, 0x9e, 0x61, 0x3c, 0x2e, 0xe4, 0x39,
+	0x78, 0x1d, 0x2e, 0x10, 0x5c, 0xf0, 0x0c, 0x5c, 0x73, 0x8d, 0xc4, 0x23, 0x20, 0xcf, 0xd8, 0xa9,
+	0xed, 0xa6, 0x6a, 0xd9, 0xac, 0x56, 0xe2, 0xce, 0x33, 0xe7, 0xcc, 0xef, 0x9c, 0xf3, 0x3b, 0x1f,
+	0xe3, 0x81, 0x93, 0xd9, 0x95, 0x60, 0x2e, 0x95, 0xa4, 0x81, 0x39, 0x6d, 0x60, 0x21, 0xe9, 0x1c,
+	0xcf, 0xa4, 0x5f, 0xe7, 0x82, 0x49, 0x86, 0xf6, 0x63, 0x69, 0x1d, 0x73, 0x5a, 0x4d, 0xeb, 0x5e,
+	0x06, 0x74, 0xe9, 0x4c, 0x31, 0xa7, 0x5a, 0xb7, 0x5a, 0x4d, 0x49, 0xfd, 0x95, 0x2f, 0x18, 0x93,
+	0x91, 0xec, 0x48, 0xcb, 0x02, 0x97, 0xf9, 0x8d, 0x19, 0x73, 0x5d, 0xe6, 0x69, 0x81, 0xf5, 0x14,
+	0xf6, 0xce, 0x22, 0x9b, 0x08, 0xc1, 0x0e, 0xc7, 0xf2, 0xaa, 0x62, 0x3c, 0x33, 0x6a, 0x05, 0x5b,
+	0x7d, 0x5b, 0x7f, 0x1b, 0x70, 0x38, 0x14, 0x84, 0x63, 0x41, 0xba, 0x4c, 0x9c, 0x87, 0x26, 0x6d,
+	0xf2, 0x7d, 0x40, 0x7c, 0x89, 0x3e, 0x86, 0xdd, 0x10, 0x95, 0x49, 0x75, 0xa0, 0xd8, 0x44, 0xf5,
+	0x1b, 0x23, 0xf5, 0x96, 0x92, 0xd8, 0x91, 0x06, 0x6a, 0xc0, 0xa3, 0xc8, 0xa1, 0x4a, 0x4e, 0x29,
+	0xbf, 0x5b, 0x4f, 0x46, 0x56, 0x1f, 0x69, 0xa1, 0x1d, 0x6b, 0xa1, 0x16, 0x94, 0x62, 0x2e, 0xa6,
+	0xd4, 0x9b, 0xb3, 0x4a, 0x5e, 0x1d, 0x7b, 0x9a, 0xb4, 0x11, 0x3b, 0xee, 0x9f, 0xaf, 0x46, 0x44,
+	0x5c, 0xd3, 0x19, 0xb1, 0xf7, 0xe3, 0x43, 0x3d, 0x6f, 0xce, 0xd0, 0x29, 0x1c, 0xce, 0x99, 0x98,
+	0x11, 0x67, 0xaa, 0xb9, 0x12, 0x64, 0x49, 0xae, 0xb1, 0x37, 0x23, 0x95, 0x9d, 0x67, 0x46, 0x6d,
+	0xcf, 0x7e, 0xac, 0xa5, 0x51, 0x54, 0x91, 0xcc, 0xfa, 0xcd, 0x80, 0xa3, 0x5b, 0x21, 0xfb, 0x9c,
+	0x79, 0x3e, 0x41, 0xdf, 0xc2, 0x41, 0x16, 0x2a, 0x0c, 0xbe, 0xdc, 0x3c, 0x4d, 0xc7, 0x73, 0xc7,
+	0xf9, 0x7a, 0xda, 0x94, 0x5d, 0xbe, 0x4c, 0x9b, 0xee, 0x41, 0x39, 0xad, 0x81, 0x0e, 0xa0, 0x38,
+	0xe9, 0x8f, 0x86, 0x9d, 0x56, 0xaf, 0xdb, 0xeb, 0xb4, 0xcd, 0xff, 0x21, 0x80, 0xdd, 0x7e, 0xa7,
+	0xd3, 0xee, 0xb4, 0x4d, 0x03, 0x15, 0xe1, 0xd1, 0xa4, 0xff, 0xb2, 0x3f, 0xf8, 0xba, 0x6f, 0xe6,
+	0x50, 0x09, 0x0a, 0xc3, 0x41, 0xaf, 0x3f, 0xbe, 0xe8, 0x8c, 0x46, 0x66, 0xde, 0xfa, 0xc3, 0x80,
+	0xc3, 0xf3, 0xc0, 0x73, 0x96, 0x64, 0x4d, 0xd3, 0x7f, 0x27, 0x71, 0x4f, 0x00, 0x58, 0x20, 0x79,
+	0x20, 0xa7, 0x0e, 0x15, 0x2a, 0x59, 0x05, 0xbb, 0xa0, 0x77, 0xda, 0x54, 0x58, 0x53, 0x38, 0xba,
+	0x15, 0x5a, 0x94, 0xa0, 0x36, 0x14, 0xd6, 0x3d, 0x14, 0x85, 0xf7, 0x61, 0xd2, 0xf4, 0x84, 0x2f,
+	0x19, 0x76, 0x88, 0xb3, 0xc1, 0x85, 0x9b, 0x83, 0xd6, 0xef, 0x06, 0x94, 0xb4, 0x85, 0x98, 0xb3,
+	0xe7, 0xb0, 0xaf, 0x13, 0x2f, 0xb1, 0x58, 0x90, 0x98, 0xb9, 0xa3, 0x24, 0xb4, 0xca, 0xdc, 0x58,
+	0x89, 0xed, 0xe2, 0xe5, 0xcd, 0x22, 0x13, 0x4d, 0x2e, 0x13, 0x4d, 0x22, 0x1d, 0xf9, 0x7f, 0x93,
+	0x8e, 0x9d, 0x87, 0xa4, 0xc3, 0xea, 0x86, 0x15, 0xa5, 0x03, 0x89, 0x18, 0x3a, 0x4d, 0x33, 0x94,
+	0xaf, 0x15, 0x9b, 0x87, 0x69, 0x90, 0x98, 0x9b, 0x24, 0x23, 0x3f, 0x1b, 0xf0, 0x58, 0x03, 0x7d,
+	0xe5, 0x76, 0xe9, 0x92, 0xbc, 0x9d, 0x62, 0xaa, 0x81, 0x29, 0x89, 0x2f, 0xa7, 0x82, 0xf8, 0xc1,
+	0x52, 0xfa, 0x8a, 0xbf, 0xbc, 0xe2, 0xaf, 0x1c, 0xee, 0xdb, 0x7a, 0x3b, 0x24, 0xf1, 0x9e, 0x8a,
+	0xf9, 0xd3, 0x88, 0x4b, 0x26, 0x74, 0xc9, 0x25, 0x67, 0xdd, 0xf6, 0xe0, 0x75, 0x22, 0xc8, 0x96,
+	0x41, 0xee, 0xb5, 0xcb, 0x20, 0x9f, 0x2d, 0x83, 0xb3, 0x44, 0xe3, 0xc8, 0x15, 0xd7, 0x33, 0xaa,
+	0xdc, 0x3c, 0x49, 0x35, 0x4e, 0xb7, 0x3d, 0x88, 0xb3, 0x33, 0x5e, 0xf1, 0x44, 0xdb, 0x84, 0x2b,
+	0x6b, 0x05, 0xd5, 0x21, 0xf5, 0x3c, 0xe2, 0xbc, 0x08, 0x03, 0xeb, 0xb9, 0x78, 0x41, 0x26, 0x82,
+	0xbe, 0x8d, 0x4c, 0x59, 0xbf, 0x18, 0x70, 0xbc, 0xd1, 0x76, 0x54, 0x75, 0x53, 0x28, 0x71, 0x25,
+	0x9e, 0xd2, 0x50, 0x14, 0x57, 0xde, 0xf3, 0xcc, 0xd8, 0xbc, 0x1b, 0xe1, 0x96, 0xcc, 0xde, 0xd7,
+	0x80, 0x6a, 0xe1, 0x57, 0x3f, 0x07, 0x33, 0xab, 0x81, 0xaa, 0xb0, 0x37, 0xa7, 0x4b, 0xe2, 0x61,
+	0x97, 0x44, 0x97, 0xda, 0x7a, 0x8d, 0x4c, 0xc8, 0x07, 0x82, 0x46, 0xdd, 0x18, 0x7e, 0x36, 0x7f,
+	0x2a, 0x82, 0xb9, 0x1e, 0x0b, 0xd1, 0x50, 0x40, 0xdf, 0xc1, 0x41, 0x66, 0x96, 0xa3, 0xf7, 0xef,
+	0x19, 0xf5, 0x8a, 0xed, 0xea, 0x07, 0x0f, 0xba, 0x10, 0x42, 0xfc, 0xcc, 0x28, 0xcb, 0xe2, 0x6f,
+	0x1e, 0xe2, 0x59, 0xfc, 0xbb, 0xe6, 0x21, 0x87, 0xf7, 0xba, 0x44, 0xce, 0xae, 0x36, 0x30, 0xeb,
+	0xa3, 0xda, 0x03, 0xd8, 0xd7, 0xd6, 0x3e, 0x7a, 0x70, 0x9e, 0xd0, 0x10, 0xde, 0x89, 0x9c, 0x09,
+	0x24, 0x0b, 0xbb, 0x54, 0x8d, 0x0b, 0x74, 0xbc, 0xc9, 0xdf, 0x18, 0xfe, 0x64, 0xb3, 0x30, 0x42,
+	0xfc, 0x32, 0x1e, 0x3d, 0xba, 0x77, 0x07, 0xa3, 0x16, 0xf3, 0xe6, 0x74, 0xb1, 0x0d, 0xe4, 0x17,
+	0x60, 0xea, 0x9d, 0x8e, 0xea, 0xd0, 0x0b, 0xb6, 0xd8, 0xca, 0xc3, 0x97, 0xf1, 0x94, 0xed, 0x52,
+	0xe1, 0xfe, 0x80, 0x05, 0xd9, 0x06, 0x6c, 0x4d, 0xa0, 0xa2, 0xf6, 0x4c, 0xcc, 0xae, 0xe8, 0x35,
+	0x79, 0x33, 0xee, 0x29, 0xc4, 0x57, 0x94, 0x6f, 0x03, 0xe6, 0xc0, 0x93, 0x28, 0xbf, 0xdd, 0xf6,
+	0xe0, 0x05, 0xf1, 0x88, 0xc0, 0x92, 0x32, 0xef, 0xa6, 0x7e, 0x37, 0x56, 0xe6, 0xad, 0xb1, 0x7b,
+	0x8f, 0x95, 0x71, 0x3c, 0xaf, 0xb3, 0xa5, 0xb6, 0x15, 0x11, 0xdf, 0xc0, 0xb1, 0xde, 0x19, 0x51,
+	0x97, 0xaf, 0x9d, 0x5a, 0x7b, 0xbe, 0x05, 0xf2, 0x45, 0xdc, 0xc7, 0x63, 0xfc, 0x06, 0x2a, 0x7e,
+	0x02, 0x95, 0x08, 0x8d, 0xf8, 0x72, 0xc2, 0x1d, 0x2c, 0xc9, 0x10, 0xaf, 0xc2, 0x3f, 0x97, 0x2d,
+	0x1b, 0xa9, 0x94, 0xba, 0xc3, 0x91, 0xb5, 0x49, 0x3d, 0x7d, 0xc1, 0xdf, 0x1f, 0x77, 0xe7, 0x47,
+	0xce, 0x84, 0x6c, 0x71, 0x62, 0x93, 0xf0, 0x63, 0x0b, 0x07, 0xab, 0xff, 0xff, 0xf5, 0xaf, 0x6a,
+	0x29, 0xf1, 0x7f, 0x62, 0xe6, 0xce, 0x3f, 0x7b, 0xf5, 0xe9, 0x82, 0xad, 0x6f, 0xaa, 0x3a, 0x13,
+	0x8b, 0x46, 0xe2, 0x2d, 0x43, 0xbd, 0xb9, 0xc0, 0x0d, 0xf5, 0x94, 0x69, 0x2c, 0x58, 0x23, 0xf9,
+	0x02, 0xba, 0xdc, 0x55, 0xdb, 0x9f, 0xfc, 0x13, 0x00, 0x00, 0xff, 0xff, 0x3a, 0x26, 0x47, 0xc1,
+	0x62, 0x0d, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -534,36 +804,53 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ArtifactsServiceClient interface {
+	// Prepare to build artifacts.
+	PrepareForBuild(ctx context.Context, in *PrepareForBuildRequest, opts ...grpc.CallOption) (*PrepareForBuildResponse, error)
+	// Bundle artifacts for build.
+	BundleArtifacts(ctx context.Context, in *BundleArtifactsRequest, opts ...grpc.CallOption) (*BundleArtifactsResponse, error)
+	// Fetch the pinned guest image locations.
+	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create the ChromeOS Config JSON payload.
 	BundleChromeOSConfig(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with ebuild logs.
 	BundleEbuildLogs(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with unsigned firmware images.
 	BundleFirmware(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar.xz archive for each image that has been created.
 	BundleImageArchives(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Generate zip containing all built images for the target.
 	BundleImageZip(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
 	// ToolchainService.Bundle{ArtifactType}()
 	// Create Chrome Benchmark AFDO builder artifacts.
 	BundleAFDOGenerationArtifacts(ctx context.Context, in *BundleChromeAFDORequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with all guest images test bundles.
 	BundlePinnedGuestImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create the simple chrome artifacts.
 	BundleSimpleChromeArtifacts(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with all files needed for Tast HW testing.
 	BundleTastFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Generate minimal update payloads to be used in HW testing.
 	BundleTestUpdatePayloads(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(ctx context.Context, in *BundleVmFilesRequest, opts ...grpc.CallOption) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Generate a CPE report to a file.
 	ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// Fetch the pinned guest image locations.
-	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
 }
 
 type artifactsServiceClient struct {
@@ -572,6 +859,33 @@ type artifactsServiceClient struct {
 
 func NewArtifactsServiceClient(cc *grpc.ClientConn) ArtifactsServiceClient {
 	return &artifactsServiceClient{cc}
+}
+
+func (c *artifactsServiceClient) PrepareForBuild(ctx context.Context, in *PrepareForBuildRequest, opts ...grpc.CallOption) (*PrepareForBuildResponse, error) {
+	out := new(PrepareForBuildResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/PrepareForBuild", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) BundleArtifacts(ctx context.Context, in *BundleArtifactsRequest, opts ...grpc.CallOption) (*BundleArtifactsResponse, error) {
+	out := new(BundleArtifactsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleArtifacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error) {
+	out := new(PinnedGuestImageUriResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *artifactsServiceClient) BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
@@ -691,53 +1005,70 @@ func (c *artifactsServiceClient) ExportCpeReport(ctx context.Context, in *Bundle
 	return out, nil
 }
 
-func (c *artifactsServiceClient) FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error) {
-	out := new(PinnedGuestImageUriResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ArtifactsServiceServer is the server API for ArtifactsService service.
 type ArtifactsServiceServer interface {
+	// Prepare to build artifacts.
+	PrepareForBuild(context.Context, *PrepareForBuildRequest) (*PrepareForBuildResponse, error)
+	// Bundle artifacts for build.
+	BundleArtifacts(context.Context, *BundleArtifactsRequest) (*BundleArtifactsResponse, error)
+	// Fetch the pinned guest image locations.
+	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create the ChromeOS Config JSON payload.
 	BundleChromeOSConfig(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with ebuild logs.
 	BundleEbuildLogs(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with unsigned firmware images.
 	BundleFirmware(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar.xz archive for each image that has been created.
 	BundleImageArchives(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Generate zip containing all built images for the target.
 	BundleImageZip(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
 	// ToolchainService.Bundle{ArtifactType}()
 	// Create Chrome Benchmark AFDO builder artifacts.
 	BundleAFDOGenerationArtifacts(context.Context, *BundleChromeAFDORequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with all guest images test bundles.
 	BundlePinnedGuestImages(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create the simple chrome artifacts.
 	BundleSimpleChromeArtifacts(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with all files needed for Tast HW testing.
 	BundleTastFiles(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Generate minimal update payloads to be used in HW testing.
 	BundleTestUpdatePayloads(context.Context, *BundleRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(context.Context, *BundleVmFilesRequest) (*BundleResponse, error)
+	// TODO(crbug/1034529): DEPRECATED use BundleArtifacts
 	// Generate a CPE report to a file.
 	ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error)
-	// Fetch the pinned guest image locations.
-	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
 }
 
 // UnimplementedArtifactsServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedArtifactsServiceServer struct {
 }
 
+func (*UnimplementedArtifactsServiceServer) PrepareForBuild(ctx context.Context, req *PrepareForBuildRequest) (*PrepareForBuildResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareForBuild not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) BundleArtifacts(ctx context.Context, req *BundleArtifactsRequest) (*BundleArtifactsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BundleArtifacts not implemented")
+}
+func (*UnimplementedArtifactsServiceServer) FetchPinnedGuestImageUris(ctx context.Context, req *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchPinnedGuestImageUris not implemented")
+}
 func (*UnimplementedArtifactsServiceServer) BundleAutotestFiles(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleAutotestFiles not implemented")
 }
@@ -777,12 +1108,63 @@ func (*UnimplementedArtifactsServiceServer) BundleVmFiles(ctx context.Context, r
 func (*UnimplementedArtifactsServiceServer) ExportCpeReport(ctx context.Context, req *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExportCpeReport not implemented")
 }
-func (*UnimplementedArtifactsServiceServer) FetchPinnedGuestImageUris(ctx context.Context, req *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FetchPinnedGuestImageUris not implemented")
-}
 
 func RegisterArtifactsServiceServer(s *grpc.Server, srv ArtifactsServiceServer) {
 	s.RegisterService(&_ArtifactsService_serviceDesc, srv)
+}
+
+func _ArtifactsService_PrepareForBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrepareForBuildRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).PrepareForBuild(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/PrepareForBuild",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).PrepareForBuild(ctx, req.(*PrepareForBuildRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_BundleArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BundleArtifactsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).BundleArtifacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/BundleArtifacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).BundleArtifacts(ctx, req.(*BundleArtifactsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_FetchPinnedGuestImageUris_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PinnedGuestImageUriRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, req.(*PinnedGuestImageUriRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ArtifactsService_BundleAutotestFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1019,28 +1401,22 @@ func _ArtifactsService_ExportCpeReport_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactsService_FetchPinnedGuestImageUris_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PinnedGuestImageUriRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, req.(*PinnedGuestImageUriRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _ArtifactsService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chromite.api.ArtifactsService",
 	HandlerType: (*ArtifactsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "PrepareForBuild",
+			Handler:    _ArtifactsService_PrepareForBuild_Handler,
+		},
+		{
+			MethodName: "BundleArtifacts",
+			Handler:    _ArtifactsService_BundleArtifacts_Handler,
+		},
+		{
+			MethodName: "FetchPinnedGuestImageUris",
+			Handler:    _ArtifactsService_FetchPinnedGuestImageUris_Handler,
+		},
 		{
 			MethodName: "BundleAutotestFiles",
 			Handler:    _ArtifactsService_BundleAutotestFiles_Handler,
@@ -1092,10 +1468,6 @@ var _ArtifactsService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExportCpeReport",
 			Handler:    _ArtifactsService_ExportCpeReport_Handler,
-		},
-		{
-			MethodName: "FetchPinnedGuestImageUris",
-			Handler:    _ArtifactsService_FetchPinnedGuestImageUris_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
