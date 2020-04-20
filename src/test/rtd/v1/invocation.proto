@@ -8,12 +8,7 @@ package test.rtd.v1;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/rtd/v1;rtd";
 
-import "lab/peripherals.proto";
 import "test/rtd/v1/progress.proto";
-
-// From chromiumos/config repo.
-import "chromiumos/config/api/hardware_topology.proto";
-import "chromiumos/config/api/topology.proto";
 
 // Input to a Remote Test Driver invocation.
 //
@@ -41,21 +36,13 @@ message Invocation {
 // Contains all configuration data required to interact with a single device
 // under test during a test invocation.
 message DUT {
-  // Peripherals information about the lab deployment of the device.
-  lab.Peripherals peripherals = 1;
-
-  // The relationship between topology and features is described at
-  // https://chromium.googlesource.com/chromiumos/config/+/master/proto/api/hardware_topology.md
-  chromiumos.config.api.HardwareTopology hardware_topology = 2;
-  chromiumos.config.api.HardwareFeatures hardware_features = 3;
-
   // Name for the DUT for using Test Lab Services to interact with the
   // device and its peripherals.
   //
   // The RTD MUST pass this to Test Lab Service RPCs that act on a particular
   // DUT. See the tls.OpenDutPortRequest message for an example of where
   // this is used.
-  string tls_dut_name = 4;
+  string tls_dut_name = 1;
 }
 
 // Request for execution of a single test.metadata.Test
