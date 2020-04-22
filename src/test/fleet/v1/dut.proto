@@ -8,23 +8,24 @@ package test.fleet.v1;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/fleet/v1;fleet";
 
-// From chromiumos/config repo.
-import "chromiumos/config/api/test/dut/v1/dut.proto";
-
 // Fleet DeviceUnderTest is referenced in test plan specifications.
 // See test/plan/v1/plan.proto
 message DeviceUnderTest {
+  // `setup` was initially added to allow test plans to select DeviceUnderTests
+  // via constraints on the how the devices are setup in the fleet. This feature
+  // was dropped in the initial revisions of the API until a valid use-case for
+  // such a feature is demonstrated. Test metadata can still specify required
+  // deployment setup for particular tests (e.g., presence of an  external
+  // camera for tests that exercise an external camera).
+  reserved 2;
+  reserved "setup";
+
   // Name identifying the device in the fleet.
   //
   // MUST be valid resource name per https://aip.dev/122.
   //
   // Pattern: duts/{dut}
   string name = 1;
-
-  // The setup of the device in the fleet.
-  // Contains information about the manual modifications and peripherals
-  // attached during deployement of the device to the fleet.
-  chromiumos.config.api.test.dut.v1.DeviceUnderTest setup = 2;
 
   // Configuration of scheduler options that apply to tasks that can execute on
   // this DUT.
