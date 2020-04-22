@@ -256,31 +256,45 @@ message ArtifactProfileInfo {
   }
 }
 
+// Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
+// BundleArtifacts endpoints to dispatch the appropriate service routines to
+// prepare or bundle as a batch.
 message ArtifactsByService {
+  // TODO(crbug/1034529): Drop this message.
+  // Artifacts handled within the ArtifactsService endpoints directly.
   message Legacy {
-    // TODO(crbug/1034529): Drop this message.
     // Legacy artifacts, handled in cros_artifacts.  DO NOT ADD TO THIS.
     enum ArtifactType {
       UNSPECIFIED = 0;
       // Indicates wanting a zip file of everything in the image directory.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Image
       IMAGE_ZIP = 1;
       // Indicates wanting update payloads.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Test
       TEST_UPDATE_PAYLOAD = 2;
       // Indicates wanting the autotest tarballs.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Test
       AUTOTEST_FILES = 3;
       // Indicates wanting a tarball containing private TAST test bundles.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Test
       TAST_FILES = 4;
       // Indicates wanting a tarball containing guest images and test bundles.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Test
       PINNED_GUEST_IMAGES = 5;
       // Indicates wanting an archive of firmware images built from source.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Package
       FIRMWARE = 6;
       // Indicates wanting a tarball of the Ebuilds logs.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
       EBUILD_LOGS = 7;
       // Indicates wanting an archive of the ChromeOS Config.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
       CHROMEOS_CONFIG = 8;
       // Indicates wanting the CPE report.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Package
       CPE_REPORT = 9;
-      // Indicates wanting a tar.xz archive for each image that has been created.
+      // Indicates wanting a tar.xz archive for each image created.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Image
       IMAGE_ARCHIVES = 10;
 
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
@@ -292,7 +306,7 @@ message ArtifactsByService {
     message ArtifactInfo {
       // The ArtifactType.  One or more types to which the rest of the fields
       // apply.
-      repeated ArtifactType artifact_type = 1;
+      repeated ArtifactType artifact_types = 1;
 
       // GS location in which to upload artifacts ("gs://" is prepended).
       // Several fields can be logically specified:
@@ -304,6 +318,11 @@ message ArtifactsByService {
       //       underscores turned into hyphens.
       //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
       //   %(artifact_name)s: The name of the artifact being published.
+      //
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
       repeated string gs_locations = 2;
 
       // Profile information needed by the artifact handler.
@@ -318,7 +337,7 @@ message ArtifactsByService {
   Legacy legacy = 1;
 
   message Toolchain {
-    // Artifacts handled by ToolchainService.
+    // Artifacts which the ArtifactsService endpoints pass to ToolchainService.
     enum ArtifactType {
       UNSPECIFIED = 0;
 
@@ -365,7 +384,50 @@ message ArtifactsByService {
     message ArtifactInfo {
       // The ArtifactType.  One or more types to which the rest of the fields
       // apply.
-      repeated ArtifactType artifact_type = 1;
+      repeated ArtifactType artifact_types = 1;
+
+      // GS location in which to upload artifacts ("gs://" is prepended).
+      // Several fields can be logically specified:
+      //   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+      //   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+      //   %(build_id)s: Buildbucket job ID.
+      //   %(target)s: build target name.
+      //   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+      //       underscores turned into hyphens.
+      // specifying those here.  Examples include AFDO artifacts and release
+      //   %(artifact_name)s: The name of the artifact being published.
+      //
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
+      repeated string gs_locations = 2;
+    }
+    // Input artifact information
+    repeated ArtifactInfo input_artifacts = 1;
+
+    // Output artifact information
+    repeated ArtifactInfo output_artifacts = 2;
+  }
+  Toolchain toolchain = 2;
+
+  message Image {
+    // Artifacts which the ArtifactsService endpoints pass to ImageService.
+    enum ArtifactType {
+      UNSPECIFIED = 0;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 1 to 23;
+    }
+    // Information about one or more artifacts.  This should match the rest of
+    // the ArtifactInfo definitions in ArtifactsByService, other than having
+    // it's own (service-specific) definition for ArtifactType.
+    message ArtifactInfo {
+      // The ArtifactType.  One or more types to which the rest of the fields
+      // apply.
+      repeated ArtifactType artifact_types = 1;
 
       // GS location in which to upload artifacts ("gs://" is prepended).
       // Several fields can be logically specified:
@@ -378,13 +440,11 @@ message ArtifactsByService {
       //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
       //   %(artifact_name)s: The name of the artifact being published.
       //
-      // At least one location must be specified.  (This will typically be
-      // 'chromeos-image-archive/%(gs_path)s' to match the behavior of
-      // 'artifacts_gs_location'.
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
       repeated string gs_locations = 2;
-
-      // Profile information needed by the artifact handler, if any.
-      ArtifactProfileInfo profile_info = 3;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -392,12 +452,147 @@ message ArtifactsByService {
     // Output artifact information
     repeated ArtifactInfo output_artifacts = 2;
   }
-  Toolchain toolchain = 2;
+  Image image = 3;
+
+  message Package {
+    // Artifacts which the ArtifactsService endpoints pass to PackageService.
+    enum ArtifactType {
+      UNSPECIFIED = 0;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 1 to 23;
+    }
+    // Information about one or more artifacts.  This should match the rest of
+    // the ArtifactInfo definitions in ArtifactsByService, other than having
+    // it's own (service-specific) definition for ArtifactType.
+    message ArtifactInfo {
+      // The ArtifactType.  One or more types to which the rest of the fields
+      // apply.
+      repeated ArtifactType artifact_types = 1;
+
+      // GS location in which to upload artifacts ("gs://" is prepended).
+      // Several fields can be logically specified:
+      //   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+      //   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+      //   %(build_id)s: Buildbucket job ID.
+      //   %(target)s: build target name.
+      //   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+      //       underscores turned into hyphens.
+      //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+      //   %(artifact_name)s: The name of the artifact being published.
+      //
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
+      repeated string gs_locations = 2;
+    }
+    // Input artifact information
+    repeated ArtifactInfo input_artifacts = 1;
+
+    // Output artifact information
+    repeated ArtifactInfo output_artifacts = 2;
+  }
+  Package package = 4;
+
+  message Sysroot {
+    // Artifacts which the ArtifactsService endpoints pass to SysrootService.
+    enum ArtifactType {
+      UNSPECIFIED = 0;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 1 to 23;
+    }
+    // Information about one or more artifacts.  This should match the rest of
+    // the ArtifactInfo definitions in ArtifactsByService, other than having
+    // it's own (service-specific) definition for ArtifactType.
+    message ArtifactInfo {
+      // The ArtifactType.  One or more types to which the rest of the fields
+      // apply.
+      repeated ArtifactType artifact_types = 1;
+
+      // GS location in which to upload artifacts ("gs://" is prepended).
+      // Several fields can be logically specified:
+      //   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+      //   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+      //   %(build_id)s: Buildbucket job ID.
+      //   %(target)s: build target name.
+      //   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+      //       underscores turned into hyphens.
+      //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+      //   %(artifact_name)s: The name of the artifact being published.
+      //
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
+      repeated string gs_locations = 2;
+    }
+    // Input artifact information
+    repeated ArtifactInfo input_artifacts = 1;
+
+    // Output artifact information
+    repeated ArtifactInfo output_artifacts = 2;
+  }
+  Sysroot sysroot = 5;
+
+  message Test {
+    // Artifacts which the ArtifactsService endpoints pass to TestService.
+    enum ArtifactType {
+      UNSPECIFIED = 0;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 1 to 23;
+    }
+    // Information about one or more artifacts.  This should match the rest of
+    // the ArtifactInfo definitions in ArtifactsByService, other than having
+    // it's own (service-specific) definition for ArtifactType.
+    message ArtifactInfo {
+      // The ArtifactType.  One or more types to which the rest of the fields
+      // apply.
+      repeated ArtifactType artifact_types = 1;
+
+      // GS location in which to upload artifacts ("gs://" is prepended).
+      // Several fields can be logically specified:
+      //   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+      //   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+      //   %(build_id)s: Buildbucket job ID.
+      //   %(target)s: build target name.
+      //   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+      //       underscores turned into hyphens.
+      //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+      //   %(artifact_name)s: The name of the artifact being published.
+      //
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
+      repeated string gs_locations = 2;
+    }
+    // Input artifact information
+    repeated ArtifactInfo input_artifacts = 1;
+
+    // Output artifact information
+    repeated ArtifactInfo output_artifacts = 2;
+  }
+  Test test = 6;
+
+  // Profile information needed by the artifact handler, if any.
+  ArtifactProfileInfo profile_info = 7;
 }
 
+// Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
+// BundleArtifacts endpoints Response messages.
 message UploadedArtifactsByService {
-  // TODO(crbug/1034529): Drop this UploadedArtifactsByService.Legacy.
-  // Legacy artifacts, handled by ArtifactsService.
+  // Legacy artifacts, handled directly ArtifactsService.
+  // Artifacts handled within the ArtifactsService endpoints directly.
+  // TODO(crbug/1034529): Drop this message.
   message Legacy {
     message ArtifactPaths {
       // The ArtifactType.
@@ -421,4 +616,52 @@ message UploadedArtifactsByService {
     repeated ArtifactPaths artifacts = 1;
   }
   Toolchain toolchain = 2;
+
+  message Image {
+    message ArtifactPaths {
+      // The ArtifactType.
+      ArtifactsByService.Image.ArtifactType artifact_type = 1;
+
+      // Absolute path to the artifact file.
+      repeated string paths = 2;
+    }
+    repeated ArtifactPaths artifacts = 1;
+  }
+  Image image = 3;
+
+  message Package {
+    message ArtifactPaths {
+      // The ArtifactType.
+      ArtifactsByService.Package.ArtifactType artifact_type = 1;
+
+      // Absolute path to the artifact file.
+      repeated string paths = 2;
+    }
+    repeated ArtifactPaths artifacts = 1;
+  }
+  Package package = 4;
+
+  message Sysroot {
+    message ArtifactPaths {
+      // The ArtifactType.
+      ArtifactsByService.Sysroot.ArtifactType artifact_type = 1;
+
+      // Absolute path to the artifact file.
+      repeated string paths = 2;
+    }
+    repeated ArtifactPaths artifacts = 1;
+  }
+  Sysroot sysroot = 5;
+
+  message Test {
+    message ArtifactPaths {
+      // The ArtifactType.
+      ArtifactsByService.Test.ArtifactType artifact_type = 1;
+
+      // Absolute path to the artifact file.
+      repeated string paths = 2;
+    }
+    repeated ArtifactPaths artifacts = 1;
+  }
+  Test test = 6;
 }

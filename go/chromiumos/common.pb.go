@@ -218,31 +218,40 @@ func (Path_Location) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_fa0b57c3d7d4c63b, []int{6, 0}
 }
 
-// TODO(crbug/1034529): Drop this message.
 // Legacy artifacts, handled in cros_artifacts.  DO NOT ADD TO THIS.
 type ArtifactsByService_Legacy_ArtifactType int32
 
 const (
 	ArtifactsByService_Legacy_UNSPECIFIED ArtifactsByService_Legacy_ArtifactType = 0
 	// Indicates wanting a zip file of everything in the image directory.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Image
 	ArtifactsByService_Legacy_IMAGE_ZIP ArtifactsByService_Legacy_ArtifactType = 1
 	// Indicates wanting update payloads.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_TEST_UPDATE_PAYLOAD ArtifactsByService_Legacy_ArtifactType = 2
 	// Indicates wanting the autotest tarballs.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_AUTOTEST_FILES ArtifactsByService_Legacy_ArtifactType = 3
 	// Indicates wanting a tarball containing private TAST test bundles.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_TAST_FILES ArtifactsByService_Legacy_ArtifactType = 4
 	// Indicates wanting a tarball containing guest images and test bundles.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_PINNED_GUEST_IMAGES ArtifactsByService_Legacy_ArtifactType = 5
 	// Indicates wanting an archive of firmware images built from source.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Package
 	ArtifactsByService_Legacy_FIRMWARE ArtifactsByService_Legacy_ArtifactType = 6
 	// Indicates wanting a tarball of the Ebuilds logs.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
 	ArtifactsByService_Legacy_EBUILD_LOGS ArtifactsByService_Legacy_ArtifactType = 7
 	// Indicates wanting an archive of the ChromeOS Config.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
 	ArtifactsByService_Legacy_CHROMEOS_CONFIG ArtifactsByService_Legacy_ArtifactType = 8
 	// Indicates wanting the CPE report.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Package
 	ArtifactsByService_Legacy_CPE_REPORT ArtifactsByService_Legacy_ArtifactType = 9
-	// Indicates wanting a tar.xz archive for each image that has been created.
+	// Indicates wanting a tar.xz archive for each image created.
+	// TODO(crbug/1034529): moves to ArtifactsByService.Image
 	ArtifactsByService_Legacy_IMAGE_ARCHIVES ArtifactsByService_Legacy_ArtifactType = 10
 )
 
@@ -282,7 +291,7 @@ func (ArtifactsByService_Legacy_ArtifactType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 0, 0}
 }
 
-// Artifacts handled by ToolchainService.
+// Artifacts which the ArtifactsService endpoints pass to ToolchainService.
 type ArtifactsByService_Toolchain_ArtifactType int32
 
 const (
@@ -356,6 +365,98 @@ func (x ArtifactsByService_Toolchain_ArtifactType) String() string {
 
 func (ArtifactsByService_Toolchain_ArtifactType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 1, 0}
+}
+
+// Artifacts which the ArtifactsService endpoints pass to ImageService.
+type ArtifactsByService_Image_ArtifactType int32
+
+const (
+	ArtifactsByService_Image_UNSPECIFIED ArtifactsByService_Image_ArtifactType = 0
+)
+
+var ArtifactsByService_Image_ArtifactType_name = map[int32]string{
+	0: "UNSPECIFIED",
+}
+
+var ArtifactsByService_Image_ArtifactType_value = map[string]int32{
+	"UNSPECIFIED": 0,
+}
+
+func (x ArtifactsByService_Image_ArtifactType) String() string {
+	return proto.EnumName(ArtifactsByService_Image_ArtifactType_name, int32(x))
+}
+
+func (ArtifactsByService_Image_ArtifactType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 2, 0}
+}
+
+// Artifacts which the ArtifactsService endpoints pass to PackageService.
+type ArtifactsByService_Package_ArtifactType int32
+
+const (
+	ArtifactsByService_Package_UNSPECIFIED ArtifactsByService_Package_ArtifactType = 0
+)
+
+var ArtifactsByService_Package_ArtifactType_name = map[int32]string{
+	0: "UNSPECIFIED",
+}
+
+var ArtifactsByService_Package_ArtifactType_value = map[string]int32{
+	"UNSPECIFIED": 0,
+}
+
+func (x ArtifactsByService_Package_ArtifactType) String() string {
+	return proto.EnumName(ArtifactsByService_Package_ArtifactType_name, int32(x))
+}
+
+func (ArtifactsByService_Package_ArtifactType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 3, 0}
+}
+
+// Artifacts which the ArtifactsService endpoints pass to SysrootService.
+type ArtifactsByService_Sysroot_ArtifactType int32
+
+const (
+	ArtifactsByService_Sysroot_UNSPECIFIED ArtifactsByService_Sysroot_ArtifactType = 0
+)
+
+var ArtifactsByService_Sysroot_ArtifactType_name = map[int32]string{
+	0: "UNSPECIFIED",
+}
+
+var ArtifactsByService_Sysroot_ArtifactType_value = map[string]int32{
+	"UNSPECIFIED": 0,
+}
+
+func (x ArtifactsByService_Sysroot_ArtifactType) String() string {
+	return proto.EnumName(ArtifactsByService_Sysroot_ArtifactType_name, int32(x))
+}
+
+func (ArtifactsByService_Sysroot_ArtifactType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 4, 0}
+}
+
+// Artifacts which the ArtifactsService endpoints pass to TestService.
+type ArtifactsByService_Test_ArtifactType int32
+
+const (
+	ArtifactsByService_Test_UNSPECIFIED ArtifactsByService_Test_ArtifactType = 0
+)
+
+var ArtifactsByService_Test_ArtifactType_name = map[int32]string{
+	0: "UNSPECIFIED",
+}
+
+var ArtifactsByService_Test_ArtifactType_value = map[string]int32{
+	"UNSPECIFIED": 0,
+}
+
+func (x ArtifactsByService_Test_ArtifactType) String() string {
+	return proto.EnumName(ArtifactsByService_Test_ArtifactType_name, int32(x))
+}
+
+func (ArtifactsByService_Test_ArtifactType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 5, 0}
 }
 
 // BuildTarget encapsulates a number of related arguments. At the moment, the
@@ -1373,12 +1474,21 @@ func (*ArtifactProfileInfo) XXX_OneofWrappers() []interface{} {
 	}
 }
 
+// Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
+// BundleArtifacts endpoints to dispatch the appropriate service routines to
+// prepare or bundle as a batch.
 type ArtifactsByService struct {
-	Legacy               *ArtifactsByService_Legacy    `protobuf:"bytes,1,opt,name=legacy,proto3" json:"legacy,omitempty"`
-	Toolchain            *ArtifactsByService_Toolchain `protobuf:"bytes,2,opt,name=toolchain,proto3" json:"toolchain,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                      `json:"-"`
-	XXX_unrecognized     []byte                        `json:"-"`
-	XXX_sizecache        int32                         `json:"-"`
+	Legacy    *ArtifactsByService_Legacy    `protobuf:"bytes,1,opt,name=legacy,proto3" json:"legacy,omitempty"`
+	Toolchain *ArtifactsByService_Toolchain `protobuf:"bytes,2,opt,name=toolchain,proto3" json:"toolchain,omitempty"`
+	Image     *ArtifactsByService_Image     `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	Package   *ArtifactsByService_Package   `protobuf:"bytes,4,opt,name=package,proto3" json:"package,omitempty"`
+	Sysroot   *ArtifactsByService_Sysroot   `protobuf:"bytes,5,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
+	Test      *ArtifactsByService_Test      `protobuf:"bytes,6,opt,name=test,proto3" json:"test,omitempty"`
+	// Profile information needed by the artifact handler, if any.
+	ProfileInfo          *ArtifactProfileInfo `protobuf:"bytes,7,opt,name=profile_info,json=profileInfo,proto3" json:"profile_info,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *ArtifactsByService) Reset()         { *m = ArtifactsByService{} }
@@ -1420,6 +1530,43 @@ func (m *ArtifactsByService) GetToolchain() *ArtifactsByService_Toolchain {
 	return nil
 }
 
+func (m *ArtifactsByService) GetImage() *ArtifactsByService_Image {
+	if m != nil {
+		return m.Image
+	}
+	return nil
+}
+
+func (m *ArtifactsByService) GetPackage() *ArtifactsByService_Package {
+	if m != nil {
+		return m.Package
+	}
+	return nil
+}
+
+func (m *ArtifactsByService) GetSysroot() *ArtifactsByService_Sysroot {
+	if m != nil {
+		return m.Sysroot
+	}
+	return nil
+}
+
+func (m *ArtifactsByService) GetTest() *ArtifactsByService_Test {
+	if m != nil {
+		return m.Test
+	}
+	return nil
+}
+
+func (m *ArtifactsByService) GetProfileInfo() *ArtifactProfileInfo {
+	if m != nil {
+		return m.ProfileInfo
+	}
+	return nil
+}
+
+// TODO(crbug/1034529): Drop this message.
+// Artifacts handled within the ArtifactsService endpoints directly.
 type ArtifactsByService_Legacy struct {
 	// Input artifact information
 	InputArtifacts []*ArtifactsByService_Legacy_ArtifactInfo `protobuf:"bytes,1,rep,name=input_artifacts,json=inputArtifacts,proto3" json:"input_artifacts,omitempty"`
@@ -1473,7 +1620,7 @@ func (m *ArtifactsByService_Legacy) GetOutputArtifacts() []*ArtifactsByService_L
 type ArtifactsByService_Legacy_ArtifactInfo struct {
 	// The ArtifactType.  One or more types to which the rest of the fields
 	// apply.
-	ArtifactType []ArtifactsByService_Legacy_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_type,json=artifactType,proto3,enum=chromiumos.ArtifactsByService_Legacy_ArtifactType" json:"artifact_type,omitempty"`
+	ArtifactTypes []ArtifactsByService_Legacy_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.ArtifactsByService_Legacy_ArtifactType" json:"artifact_types,omitempty"`
 	// GS location in which to upload artifacts ("gs://" is prepended).
 	// Several fields can be logically specified:
 	//   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
@@ -1484,6 +1631,11 @@ type ArtifactsByService_Legacy_ArtifactInfo struct {
 	//       underscores turned into hyphens.
 	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
 	//   %(artifact_name)s: The name of the artifact being published.
+	//
+	// BuilderConfig.Artifacts.artifacts_gs_location is used for all
+	// artifacts.  Artifact can be published to additional locations by
+	// specifying those here.  Examples: include AFDO artifacts and Release
+	// images.
 	GsLocations []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
 	// Profile information needed by the artifact handler.
 	ProfileInfo          *ArtifactProfileInfo `protobuf:"bytes,3,opt,name=profile_info,json=profileInfo,proto3" json:"profile_info,omitempty"`
@@ -1519,9 +1671,9 @@ func (m *ArtifactsByService_Legacy_ArtifactInfo) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ArtifactsByService_Legacy_ArtifactInfo proto.InternalMessageInfo
 
-func (m *ArtifactsByService_Legacy_ArtifactInfo) GetArtifactType() []ArtifactsByService_Legacy_ArtifactType {
+func (m *ArtifactsByService_Legacy_ArtifactInfo) GetArtifactTypes() []ArtifactsByService_Legacy_ArtifactType {
 	if m != nil {
-		return m.ArtifactType
+		return m.ArtifactTypes
 	}
 	return nil
 }
@@ -1595,7 +1747,7 @@ func (m *ArtifactsByService_Toolchain) GetOutputArtifacts() []*ArtifactsByServic
 type ArtifactsByService_Toolchain_ArtifactInfo struct {
 	// The ArtifactType.  One or more types to which the rest of the fields
 	// apply.
-	ArtifactType []ArtifactsByService_Toolchain_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_type,json=artifactType,proto3,enum=chromiumos.ArtifactsByService_Toolchain_ArtifactType" json:"artifact_type,omitempty"`
+	ArtifactTypes []ArtifactsByService_Toolchain_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.ArtifactsByService_Toolchain_ArtifactType" json:"artifact_types,omitempty"`
 	// GS location in which to upload artifacts ("gs://" is prepended).
 	// Several fields can be logically specified:
 	//   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
@@ -1604,18 +1756,17 @@ type ArtifactsByService_Toolchain_ArtifactInfo struct {
 	//   %(target)s: build target name.
 	//   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
 	//       underscores turned into hyphens.
-	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+	// specifying those here.  Examples include AFDO artifacts and release
 	//   %(artifact_name)s: The name of the artifact being published.
 	//
-	// At least one location must be specified.  (This will typically be
-	// 'chromeos-image-archive/%(gs_path)s' to match the behavior of
-	// 'artifacts_gs_location'.
-	GsLocations []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
-	// Profile information needed by the artifact handler, if any.
-	ProfileInfo          *ArtifactProfileInfo `protobuf:"bytes,3,opt,name=profile_info,json=profileInfo,proto3" json:"profile_info,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	// BuilderConfig.Artifacts.artifacts_gs_location is used for all
+	// artifacts.  Artifact can be published to additional locations by
+	// specifying those here.  Examples: include AFDO artifacts and Release
+	// images.
+	GsLocations          []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ArtifactsByService_Toolchain_ArtifactInfo) Reset() {
@@ -1645,9 +1796,9 @@ func (m *ArtifactsByService_Toolchain_ArtifactInfo) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ArtifactsByService_Toolchain_ArtifactInfo proto.InternalMessageInfo
 
-func (m *ArtifactsByService_Toolchain_ArtifactInfo) GetArtifactType() []ArtifactsByService_Toolchain_ArtifactType {
+func (m *ArtifactsByService_Toolchain_ArtifactInfo) GetArtifactTypes() []ArtifactsByService_Toolchain_ArtifactType {
 	if m != nil {
-		return m.ArtifactType
+		return m.ArtifactTypes
 	}
 	return nil
 }
@@ -1659,16 +1810,483 @@ func (m *ArtifactsByService_Toolchain_ArtifactInfo) GetGsLocations() []string {
 	return nil
 }
 
-func (m *ArtifactsByService_Toolchain_ArtifactInfo) GetProfileInfo() *ArtifactProfileInfo {
+type ArtifactsByService_Image struct {
+	// Input artifact information
+	InputArtifacts []*ArtifactsByService_Image_ArtifactInfo `protobuf:"bytes,1,rep,name=input_artifacts,json=inputArtifacts,proto3" json:"input_artifacts,omitempty"`
+	// Output artifact information
+	OutputArtifacts      []*ArtifactsByService_Image_ArtifactInfo `protobuf:"bytes,2,rep,name=output_artifacts,json=outputArtifacts,proto3" json:"output_artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                 `json:"-"`
+	XXX_unrecognized     []byte                                   `json:"-"`
+	XXX_sizecache        int32                                    `json:"-"`
+}
+
+func (m *ArtifactsByService_Image) Reset()         { *m = ArtifactsByService_Image{} }
+func (m *ArtifactsByService_Image) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Image) ProtoMessage()    {}
+func (*ArtifactsByService_Image) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 2}
+}
+
+func (m *ArtifactsByService_Image) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Image.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Image) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Image.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Image) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Image.Merge(m, src)
+}
+func (m *ArtifactsByService_Image) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Image.Size(m)
+}
+func (m *ArtifactsByService_Image) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Image.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Image proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Image) GetInputArtifacts() []*ArtifactsByService_Image_ArtifactInfo {
 	if m != nil {
-		return m.ProfileInfo
+		return m.InputArtifacts
 	}
 	return nil
 }
 
+func (m *ArtifactsByService_Image) GetOutputArtifacts() []*ArtifactsByService_Image_ArtifactInfo {
+	if m != nil {
+		return m.OutputArtifacts
+	}
+	return nil
+}
+
+// Information about one or more artifacts.  This should match the rest of
+// the ArtifactInfo definitions in ArtifactsByService, other than having
+// it's own (service-specific) definition for ArtifactType.
+type ArtifactsByService_Image_ArtifactInfo struct {
+	// The ArtifactType.  One or more types to which the rest of the fields
+	// apply.
+	ArtifactTypes []ArtifactsByService_Image_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.ArtifactsByService_Image_ArtifactType" json:"artifact_types,omitempty"`
+	// GS location in which to upload artifacts ("gs://" is prepended).
+	// Several fields can be logically specified:
+	//   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+	//   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+	//   %(build_id)s: Buildbucket job ID.
+	//   %(target)s: build target name.
+	//   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+	//       underscores turned into hyphens.
+	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+	//   %(artifact_name)s: The name of the artifact being published.
+	//
+	// BuilderConfig.Artifacts.artifacts_gs_location is used for all
+	// artifacts.  Artifact can be published to additional locations by
+	// specifying those here.  Examples: include AFDO artifacts and Release
+	// images.
+	GsLocations          []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ArtifactsByService_Image_ArtifactInfo) Reset()         { *m = ArtifactsByService_Image_ArtifactInfo{} }
+func (m *ArtifactsByService_Image_ArtifactInfo) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Image_ArtifactInfo) ProtoMessage()    {}
+func (*ArtifactsByService_Image_ArtifactInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 2, 0}
+}
+
+func (m *ArtifactsByService_Image_ArtifactInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Image_ArtifactInfo.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Image_ArtifactInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Image_ArtifactInfo.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Image_ArtifactInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Image_ArtifactInfo.Merge(m, src)
+}
+func (m *ArtifactsByService_Image_ArtifactInfo) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Image_ArtifactInfo.Size(m)
+}
+func (m *ArtifactsByService_Image_ArtifactInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Image_ArtifactInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Image_ArtifactInfo proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Image_ArtifactInfo) GetArtifactTypes() []ArtifactsByService_Image_ArtifactType {
+	if m != nil {
+		return m.ArtifactTypes
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Image_ArtifactInfo) GetGsLocations() []string {
+	if m != nil {
+		return m.GsLocations
+	}
+	return nil
+}
+
+type ArtifactsByService_Package struct {
+	// Input artifact information
+	InputArtifacts []*ArtifactsByService_Package_ArtifactInfo `protobuf:"bytes,1,rep,name=input_artifacts,json=inputArtifacts,proto3" json:"input_artifacts,omitempty"`
+	// Output artifact information
+	OutputArtifacts      []*ArtifactsByService_Package_ArtifactInfo `protobuf:"bytes,2,rep,name=output_artifacts,json=outputArtifacts,proto3" json:"output_artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                   `json:"-"`
+	XXX_unrecognized     []byte                                     `json:"-"`
+	XXX_sizecache        int32                                      `json:"-"`
+}
+
+func (m *ArtifactsByService_Package) Reset()         { *m = ArtifactsByService_Package{} }
+func (m *ArtifactsByService_Package) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Package) ProtoMessage()    {}
+func (*ArtifactsByService_Package) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 3}
+}
+
+func (m *ArtifactsByService_Package) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Package.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Package) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Package.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Package) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Package.Merge(m, src)
+}
+func (m *ArtifactsByService_Package) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Package.Size(m)
+}
+func (m *ArtifactsByService_Package) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Package.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Package proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Package) GetInputArtifacts() []*ArtifactsByService_Package_ArtifactInfo {
+	if m != nil {
+		return m.InputArtifacts
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Package) GetOutputArtifacts() []*ArtifactsByService_Package_ArtifactInfo {
+	if m != nil {
+		return m.OutputArtifacts
+	}
+	return nil
+}
+
+// Information about one or more artifacts.  This should match the rest of
+// the ArtifactInfo definitions in ArtifactsByService, other than having
+// it's own (service-specific) definition for ArtifactType.
+type ArtifactsByService_Package_ArtifactInfo struct {
+	// The ArtifactType.  One or more types to which the rest of the fields
+	// apply.
+	ArtifactTypes []ArtifactsByService_Package_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.ArtifactsByService_Package_ArtifactType" json:"artifact_types,omitempty"`
+	// GS location in which to upload artifacts ("gs://" is prepended).
+	// Several fields can be logically specified:
+	//   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+	//   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+	//   %(build_id)s: Buildbucket job ID.
+	//   %(target)s: build target name.
+	//   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+	//       underscores turned into hyphens.
+	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+	//   %(artifact_name)s: The name of the artifact being published.
+	//
+	// BuilderConfig.Artifacts.artifacts_gs_location is used for all
+	// artifacts.  Artifact can be published to additional locations by
+	// specifying those here.  Examples: include AFDO artifacts and Release
+	// images.
+	GsLocations          []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ArtifactsByService_Package_ArtifactInfo) Reset() {
+	*m = ArtifactsByService_Package_ArtifactInfo{}
+}
+func (m *ArtifactsByService_Package_ArtifactInfo) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Package_ArtifactInfo) ProtoMessage()    {}
+func (*ArtifactsByService_Package_ArtifactInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 3, 0}
+}
+
+func (m *ArtifactsByService_Package_ArtifactInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Package_ArtifactInfo.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Package_ArtifactInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Package_ArtifactInfo.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Package_ArtifactInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Package_ArtifactInfo.Merge(m, src)
+}
+func (m *ArtifactsByService_Package_ArtifactInfo) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Package_ArtifactInfo.Size(m)
+}
+func (m *ArtifactsByService_Package_ArtifactInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Package_ArtifactInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Package_ArtifactInfo proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Package_ArtifactInfo) GetArtifactTypes() []ArtifactsByService_Package_ArtifactType {
+	if m != nil {
+		return m.ArtifactTypes
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Package_ArtifactInfo) GetGsLocations() []string {
+	if m != nil {
+		return m.GsLocations
+	}
+	return nil
+}
+
+type ArtifactsByService_Sysroot struct {
+	// Input artifact information
+	InputArtifacts []*ArtifactsByService_Sysroot_ArtifactInfo `protobuf:"bytes,1,rep,name=input_artifacts,json=inputArtifacts,proto3" json:"input_artifacts,omitempty"`
+	// Output artifact information
+	OutputArtifacts      []*ArtifactsByService_Sysroot_ArtifactInfo `protobuf:"bytes,2,rep,name=output_artifacts,json=outputArtifacts,proto3" json:"output_artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                   `json:"-"`
+	XXX_unrecognized     []byte                                     `json:"-"`
+	XXX_sizecache        int32                                      `json:"-"`
+}
+
+func (m *ArtifactsByService_Sysroot) Reset()         { *m = ArtifactsByService_Sysroot{} }
+func (m *ArtifactsByService_Sysroot) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Sysroot) ProtoMessage()    {}
+func (*ArtifactsByService_Sysroot) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 4}
+}
+
+func (m *ArtifactsByService_Sysroot) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Sysroot.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Sysroot) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Sysroot.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Sysroot) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Sysroot.Merge(m, src)
+}
+func (m *ArtifactsByService_Sysroot) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Sysroot.Size(m)
+}
+func (m *ArtifactsByService_Sysroot) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Sysroot.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Sysroot proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Sysroot) GetInputArtifacts() []*ArtifactsByService_Sysroot_ArtifactInfo {
+	if m != nil {
+		return m.InputArtifacts
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Sysroot) GetOutputArtifacts() []*ArtifactsByService_Sysroot_ArtifactInfo {
+	if m != nil {
+		return m.OutputArtifacts
+	}
+	return nil
+}
+
+// Information about one or more artifacts.  This should match the rest of
+// the ArtifactInfo definitions in ArtifactsByService, other than having
+// it's own (service-specific) definition for ArtifactType.
+type ArtifactsByService_Sysroot_ArtifactInfo struct {
+	// The ArtifactType.  One or more types to which the rest of the fields
+	// apply.
+	ArtifactTypes []ArtifactsByService_Sysroot_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.ArtifactsByService_Sysroot_ArtifactType" json:"artifact_types,omitempty"`
+	// GS location in which to upload artifacts ("gs://" is prepended).
+	// Several fields can be logically specified:
+	//   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+	//   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+	//   %(build_id)s: Buildbucket job ID.
+	//   %(target)s: build target name.
+	//   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+	//       underscores turned into hyphens.
+	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+	//   %(artifact_name)s: The name of the artifact being published.
+	//
+	// BuilderConfig.Artifacts.artifacts_gs_location is used for all
+	// artifacts.  Artifact can be published to additional locations by
+	// specifying those here.  Examples: include AFDO artifacts and Release
+	// images.
+	GsLocations          []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) Reset() {
+	*m = ArtifactsByService_Sysroot_ArtifactInfo{}
+}
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Sysroot_ArtifactInfo) ProtoMessage()    {}
+func (*ArtifactsByService_Sysroot_ArtifactInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 4, 0}
+}
+
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Sysroot_ArtifactInfo.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Sysroot_ArtifactInfo.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Sysroot_ArtifactInfo.Merge(m, src)
+}
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Sysroot_ArtifactInfo.Size(m)
+}
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Sysroot_ArtifactInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Sysroot_ArtifactInfo proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) GetArtifactTypes() []ArtifactsByService_Sysroot_ArtifactType {
+	if m != nil {
+		return m.ArtifactTypes
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Sysroot_ArtifactInfo) GetGsLocations() []string {
+	if m != nil {
+		return m.GsLocations
+	}
+	return nil
+}
+
+type ArtifactsByService_Test struct {
+	// Input artifact information
+	InputArtifacts []*ArtifactsByService_Test_ArtifactInfo `protobuf:"bytes,1,rep,name=input_artifacts,json=inputArtifacts,proto3" json:"input_artifacts,omitempty"`
+	// Output artifact information
+	OutputArtifacts      []*ArtifactsByService_Test_ArtifactInfo `protobuf:"bytes,2,rep,name=output_artifacts,json=outputArtifacts,proto3" json:"output_artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                `json:"-"`
+	XXX_unrecognized     []byte                                  `json:"-"`
+	XXX_sizecache        int32                                   `json:"-"`
+}
+
+func (m *ArtifactsByService_Test) Reset()         { *m = ArtifactsByService_Test{} }
+func (m *ArtifactsByService_Test) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Test) ProtoMessage()    {}
+func (*ArtifactsByService_Test) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 5}
+}
+
+func (m *ArtifactsByService_Test) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Test.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Test) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Test.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Test) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Test.Merge(m, src)
+}
+func (m *ArtifactsByService_Test) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Test.Size(m)
+}
+func (m *ArtifactsByService_Test) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Test.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Test proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Test) GetInputArtifacts() []*ArtifactsByService_Test_ArtifactInfo {
+	if m != nil {
+		return m.InputArtifacts
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Test) GetOutputArtifacts() []*ArtifactsByService_Test_ArtifactInfo {
+	if m != nil {
+		return m.OutputArtifacts
+	}
+	return nil
+}
+
+// Information about one or more artifacts.  This should match the rest of
+// the ArtifactInfo definitions in ArtifactsByService, other than having
+// it's own (service-specific) definition for ArtifactType.
+type ArtifactsByService_Test_ArtifactInfo struct {
+	// The ArtifactType.  One or more types to which the rest of the fields
+	// apply.
+	ArtifactTypes []ArtifactsByService_Test_ArtifactType `protobuf:"varint,1,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.ArtifactsByService_Test_ArtifactType" json:"artifact_types,omitempty"`
+	// GS location in which to upload artifacts ("gs://" is prepended).
+	// Several fields can be logically specified:
+	//   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+	//   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+	//   %(build_id)s: Buildbucket job ID.
+	//   %(target)s: build target name.
+	//   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+	//       underscores turned into hyphens.
+	//   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+	//   %(artifact_name)s: The name of the artifact being published.
+	//
+	// BuilderConfig.Artifacts.artifacts_gs_location is used for all
+	// artifacts.  Artifact can be published to additional locations by
+	// specifying those here.  Examples: include AFDO artifacts and Release
+	// images.
+	GsLocations          []string `protobuf:"bytes,2,rep,name=gs_locations,json=gsLocations,proto3" json:"gs_locations,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ArtifactsByService_Test_ArtifactInfo) Reset()         { *m = ArtifactsByService_Test_ArtifactInfo{} }
+func (m *ArtifactsByService_Test_ArtifactInfo) String() string { return proto.CompactTextString(m) }
+func (*ArtifactsByService_Test_ArtifactInfo) ProtoMessage()    {}
+func (*ArtifactsByService_Test_ArtifactInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{16, 5, 0}
+}
+
+func (m *ArtifactsByService_Test_ArtifactInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ArtifactsByService_Test_ArtifactInfo.Unmarshal(m, b)
+}
+func (m *ArtifactsByService_Test_ArtifactInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ArtifactsByService_Test_ArtifactInfo.Marshal(b, m, deterministic)
+}
+func (m *ArtifactsByService_Test_ArtifactInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ArtifactsByService_Test_ArtifactInfo.Merge(m, src)
+}
+func (m *ArtifactsByService_Test_ArtifactInfo) XXX_Size() int {
+	return xxx_messageInfo_ArtifactsByService_Test_ArtifactInfo.Size(m)
+}
+func (m *ArtifactsByService_Test_ArtifactInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_ArtifactsByService_Test_ArtifactInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ArtifactsByService_Test_ArtifactInfo proto.InternalMessageInfo
+
+func (m *ArtifactsByService_Test_ArtifactInfo) GetArtifactTypes() []ArtifactsByService_Test_ArtifactType {
+	if m != nil {
+		return m.ArtifactTypes
+	}
+	return nil
+}
+
+func (m *ArtifactsByService_Test_ArtifactInfo) GetGsLocations() []string {
+	if m != nil {
+		return m.GsLocations
+	}
+	return nil
+}
+
+// Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
+// BundleArtifacts endpoints Response messages.
 type UploadedArtifactsByService struct {
 	Legacy               *UploadedArtifactsByService_Legacy    `protobuf:"bytes,1,opt,name=legacy,proto3" json:"legacy,omitempty"`
 	Toolchain            *UploadedArtifactsByService_Toolchain `protobuf:"bytes,2,opt,name=toolchain,proto3" json:"toolchain,omitempty"`
+	Image                *UploadedArtifactsByService_Image     `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	Package              *UploadedArtifactsByService_Package   `protobuf:"bytes,4,opt,name=package,proto3" json:"package,omitempty"`
+	Sysroot              *UploadedArtifactsByService_Sysroot   `protobuf:"bytes,5,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
+	Test                 *UploadedArtifactsByService_Test      `protobuf:"bytes,6,opt,name=test,proto3" json:"test,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
 	XXX_unrecognized     []byte                                `json:"-"`
 	XXX_sizecache        int32                                 `json:"-"`
@@ -1713,8 +2331,37 @@ func (m *UploadedArtifactsByService) GetToolchain() *UploadedArtifactsByService_
 	return nil
 }
 
-// TODO(crbug/1034529): Drop this UploadedArtifactsByService.Legacy.
-// Legacy artifacts, handled by ArtifactsService.
+func (m *UploadedArtifactsByService) GetImage() *UploadedArtifactsByService_Image {
+	if m != nil {
+		return m.Image
+	}
+	return nil
+}
+
+func (m *UploadedArtifactsByService) GetPackage() *UploadedArtifactsByService_Package {
+	if m != nil {
+		return m.Package
+	}
+	return nil
+}
+
+func (m *UploadedArtifactsByService) GetSysroot() *UploadedArtifactsByService_Sysroot {
+	if m != nil {
+		return m.Sysroot
+	}
+	return nil
+}
+
+func (m *UploadedArtifactsByService) GetTest() *UploadedArtifactsByService_Test {
+	if m != nil {
+		return m.Test
+	}
+	return nil
+}
+
+// Legacy artifacts, handled directly ArtifactsService.
+// Artifacts handled within the ArtifactsService endpoints directly.
+// TODO(crbug/1034529): Drop this message.
 type UploadedArtifactsByService_Legacy struct {
 	Artifacts            []*UploadedArtifactsByService_Legacy_ArtifactPaths `protobuf:"bytes,1,rep,name=artifacts,proto3" json:"artifacts,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                                           `json:"-"`
@@ -1899,6 +2546,374 @@ func (m *UploadedArtifactsByService_Toolchain_ArtifactPaths) GetPaths() []string
 	return nil
 }
 
+type UploadedArtifactsByService_Image struct {
+	Artifacts            []*UploadedArtifactsByService_Image_ArtifactPaths `protobuf:"bytes,1,rep,name=artifacts,proto3" json:"artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                          `json:"-"`
+	XXX_unrecognized     []byte                                            `json:"-"`
+	XXX_sizecache        int32                                             `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Image) Reset()         { *m = UploadedArtifactsByService_Image{} }
+func (m *UploadedArtifactsByService_Image) String() string { return proto.CompactTextString(m) }
+func (*UploadedArtifactsByService_Image) ProtoMessage()    {}
+func (*UploadedArtifactsByService_Image) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 2}
+}
+
+func (m *UploadedArtifactsByService_Image) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Image.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Image) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Image.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Image) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Image.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Image) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Image.Size(m)
+}
+func (m *UploadedArtifactsByService_Image) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Image.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Image proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Image) GetArtifacts() []*UploadedArtifactsByService_Image_ArtifactPaths {
+	if m != nil {
+		return m.Artifacts
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Image_ArtifactPaths struct {
+	// The ArtifactType.
+	ArtifactType ArtifactsByService_Image_ArtifactType `protobuf:"varint,1,opt,name=artifact_type,json=artifactType,proto3,enum=chromiumos.ArtifactsByService_Image_ArtifactType" json:"artifact_type,omitempty"`
+	// Absolute path to the artifact file.
+	Paths                []string `protobuf:"bytes,2,rep,name=paths,proto3" json:"paths,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) Reset() {
+	*m = UploadedArtifactsByService_Image_ArtifactPaths{}
+}
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UploadedArtifactsByService_Image_ArtifactPaths) ProtoMessage() {}
+func (*UploadedArtifactsByService_Image_ArtifactPaths) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 2, 0}
+}
+
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Image_ArtifactPaths.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Image_ArtifactPaths.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Image_ArtifactPaths.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Image_ArtifactPaths.Size(m)
+}
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Image_ArtifactPaths.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Image_ArtifactPaths proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) GetArtifactType() ArtifactsByService_Image_ArtifactType {
+	if m != nil {
+		return m.ArtifactType
+	}
+	return ArtifactsByService_Image_UNSPECIFIED
+}
+
+func (m *UploadedArtifactsByService_Image_ArtifactPaths) GetPaths() []string {
+	if m != nil {
+		return m.Paths
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Package struct {
+	Artifacts            []*UploadedArtifactsByService_Package_ArtifactPaths `protobuf:"bytes,1,rep,name=artifacts,proto3" json:"artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                            `json:"-"`
+	XXX_unrecognized     []byte                                              `json:"-"`
+	XXX_sizecache        int32                                               `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Package) Reset()         { *m = UploadedArtifactsByService_Package{} }
+func (m *UploadedArtifactsByService_Package) String() string { return proto.CompactTextString(m) }
+func (*UploadedArtifactsByService_Package) ProtoMessage()    {}
+func (*UploadedArtifactsByService_Package) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 3}
+}
+
+func (m *UploadedArtifactsByService_Package) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Package.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Package) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Package.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Package) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Package.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Package) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Package.Size(m)
+}
+func (m *UploadedArtifactsByService_Package) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Package.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Package proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Package) GetArtifacts() []*UploadedArtifactsByService_Package_ArtifactPaths {
+	if m != nil {
+		return m.Artifacts
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Package_ArtifactPaths struct {
+	// The ArtifactType.
+	ArtifactType ArtifactsByService_Package_ArtifactType `protobuf:"varint,1,opt,name=artifact_type,json=artifactType,proto3,enum=chromiumos.ArtifactsByService_Package_ArtifactType" json:"artifact_type,omitempty"`
+	// Absolute path to the artifact file.
+	Paths                []string `protobuf:"bytes,2,rep,name=paths,proto3" json:"paths,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) Reset() {
+	*m = UploadedArtifactsByService_Package_ArtifactPaths{}
+}
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UploadedArtifactsByService_Package_ArtifactPaths) ProtoMessage() {}
+func (*UploadedArtifactsByService_Package_ArtifactPaths) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 3, 0}
+}
+
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Package_ArtifactPaths.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Package_ArtifactPaths.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Package_ArtifactPaths.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Package_ArtifactPaths.Size(m)
+}
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Package_ArtifactPaths.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Package_ArtifactPaths proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) GetArtifactType() ArtifactsByService_Package_ArtifactType {
+	if m != nil {
+		return m.ArtifactType
+	}
+	return ArtifactsByService_Package_UNSPECIFIED
+}
+
+func (m *UploadedArtifactsByService_Package_ArtifactPaths) GetPaths() []string {
+	if m != nil {
+		return m.Paths
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Sysroot struct {
+	Artifacts            []*UploadedArtifactsByService_Sysroot_ArtifactPaths `protobuf:"bytes,1,rep,name=artifacts,proto3" json:"artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                            `json:"-"`
+	XXX_unrecognized     []byte                                              `json:"-"`
+	XXX_sizecache        int32                                               `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Sysroot) Reset()         { *m = UploadedArtifactsByService_Sysroot{} }
+func (m *UploadedArtifactsByService_Sysroot) String() string { return proto.CompactTextString(m) }
+func (*UploadedArtifactsByService_Sysroot) ProtoMessage()    {}
+func (*UploadedArtifactsByService_Sysroot) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 4}
+}
+
+func (m *UploadedArtifactsByService_Sysroot) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Sysroot.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Sysroot) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Sysroot.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Sysroot) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Sysroot.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Sysroot) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Sysroot.Size(m)
+}
+func (m *UploadedArtifactsByService_Sysroot) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Sysroot.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Sysroot proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Sysroot) GetArtifacts() []*UploadedArtifactsByService_Sysroot_ArtifactPaths {
+	if m != nil {
+		return m.Artifacts
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Sysroot_ArtifactPaths struct {
+	// The ArtifactType.
+	ArtifactType ArtifactsByService_Sysroot_ArtifactType `protobuf:"varint,1,opt,name=artifact_type,json=artifactType,proto3,enum=chromiumos.ArtifactsByService_Sysroot_ArtifactType" json:"artifact_type,omitempty"`
+	// Absolute path to the artifact file.
+	Paths                []string `protobuf:"bytes,2,rep,name=paths,proto3" json:"paths,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) Reset() {
+	*m = UploadedArtifactsByService_Sysroot_ArtifactPaths{}
+}
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UploadedArtifactsByService_Sysroot_ArtifactPaths) ProtoMessage() {}
+func (*UploadedArtifactsByService_Sysroot_ArtifactPaths) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 4, 0}
+}
+
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Sysroot_ArtifactPaths.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Sysroot_ArtifactPaths.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Sysroot_ArtifactPaths.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Sysroot_ArtifactPaths.Size(m)
+}
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Sysroot_ArtifactPaths.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Sysroot_ArtifactPaths proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) GetArtifactType() ArtifactsByService_Sysroot_ArtifactType {
+	if m != nil {
+		return m.ArtifactType
+	}
+	return ArtifactsByService_Sysroot_UNSPECIFIED
+}
+
+func (m *UploadedArtifactsByService_Sysroot_ArtifactPaths) GetPaths() []string {
+	if m != nil {
+		return m.Paths
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Test struct {
+	Artifacts            []*UploadedArtifactsByService_Test_ArtifactPaths `protobuf:"bytes,1,rep,name=artifacts,proto3" json:"artifacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                         `json:"-"`
+	XXX_unrecognized     []byte                                           `json:"-"`
+	XXX_sizecache        int32                                            `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Test) Reset()         { *m = UploadedArtifactsByService_Test{} }
+func (m *UploadedArtifactsByService_Test) String() string { return proto.CompactTextString(m) }
+func (*UploadedArtifactsByService_Test) ProtoMessage()    {}
+func (*UploadedArtifactsByService_Test) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 5}
+}
+
+func (m *UploadedArtifactsByService_Test) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Test.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Test) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Test.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Test) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Test.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Test) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Test.Size(m)
+}
+func (m *UploadedArtifactsByService_Test) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Test.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Test proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Test) GetArtifacts() []*UploadedArtifactsByService_Test_ArtifactPaths {
+	if m != nil {
+		return m.Artifacts
+	}
+	return nil
+}
+
+type UploadedArtifactsByService_Test_ArtifactPaths struct {
+	// The ArtifactType.
+	ArtifactType ArtifactsByService_Test_ArtifactType `protobuf:"varint,1,opt,name=artifact_type,json=artifactType,proto3,enum=chromiumos.ArtifactsByService_Test_ArtifactType" json:"artifact_type,omitempty"`
+	// Absolute path to the artifact file.
+	Paths                []string `protobuf:"bytes,2,rep,name=paths,proto3" json:"paths,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) Reset() {
+	*m = UploadedArtifactsByService_Test_ArtifactPaths{}
+}
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UploadedArtifactsByService_Test_ArtifactPaths) ProtoMessage() {}
+func (*UploadedArtifactsByService_Test_ArtifactPaths) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa0b57c3d7d4c63b, []int{17, 5, 0}
+}
+
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadedArtifactsByService_Test_ArtifactPaths.Unmarshal(m, b)
+}
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadedArtifactsByService_Test_ArtifactPaths.Marshal(b, m, deterministic)
+}
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadedArtifactsByService_Test_ArtifactPaths.Merge(m, src)
+}
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) XXX_Size() int {
+	return xxx_messageInfo_UploadedArtifactsByService_Test_ArtifactPaths.Size(m)
+}
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadedArtifactsByService_Test_ArtifactPaths.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadedArtifactsByService_Test_ArtifactPaths proto.InternalMessageInfo
+
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) GetArtifactType() ArtifactsByService_Test_ArtifactType {
+	if m != nil {
+		return m.ArtifactType
+	}
+	return ArtifactsByService_Test_UNSPECIFIED
+}
+
+func (m *UploadedArtifactsByService_Test_ArtifactPaths) GetPaths() []string {
+	if m != nil {
+		return m.Paths
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterEnum("chromiumos.ImageType", ImageType_name, ImageType_value)
 	proto.RegisterEnum("chromiumos.Channel", Channel_name, Channel_value)
@@ -1907,6 +2922,10 @@ func init() {
 	proto.RegisterEnum("chromiumos.Path_Location", Path_Location_name, Path_Location_value)
 	proto.RegisterEnum("chromiumos.ArtifactsByService_Legacy_ArtifactType", ArtifactsByService_Legacy_ArtifactType_name, ArtifactsByService_Legacy_ArtifactType_value)
 	proto.RegisterEnum("chromiumos.ArtifactsByService_Toolchain_ArtifactType", ArtifactsByService_Toolchain_ArtifactType_name, ArtifactsByService_Toolchain_ArtifactType_value)
+	proto.RegisterEnum("chromiumos.ArtifactsByService_Image_ArtifactType", ArtifactsByService_Image_ArtifactType_name, ArtifactsByService_Image_ArtifactType_value)
+	proto.RegisterEnum("chromiumos.ArtifactsByService_Package_ArtifactType", ArtifactsByService_Package_ArtifactType_name, ArtifactsByService_Package_ArtifactType_value)
+	proto.RegisterEnum("chromiumos.ArtifactsByService_Sysroot_ArtifactType", ArtifactsByService_Sysroot_ArtifactType_name, ArtifactsByService_Sysroot_ArtifactType_value)
+	proto.RegisterEnum("chromiumos.ArtifactsByService_Test_ArtifactType", ArtifactsByService_Test_ArtifactType_name, ArtifactsByService_Test_ArtifactType_value)
 	proto.RegisterType((*BuildTarget)(nil), "chromiumos.BuildTarget")
 	proto.RegisterType((*Chroot)(nil), "chromiumos.Chroot")
 	proto.RegisterType((*Chroot_ChrootEnv)(nil), "chromiumos.Chroot.ChrootEnv")
@@ -1929,133 +2948,174 @@ func init() {
 	proto.RegisterType((*ArtifactsByService_Legacy_ArtifactInfo)(nil), "chromiumos.ArtifactsByService.Legacy.ArtifactInfo")
 	proto.RegisterType((*ArtifactsByService_Toolchain)(nil), "chromiumos.ArtifactsByService.Toolchain")
 	proto.RegisterType((*ArtifactsByService_Toolchain_ArtifactInfo)(nil), "chromiumos.ArtifactsByService.Toolchain.ArtifactInfo")
+	proto.RegisterType((*ArtifactsByService_Image)(nil), "chromiumos.ArtifactsByService.Image")
+	proto.RegisterType((*ArtifactsByService_Image_ArtifactInfo)(nil), "chromiumos.ArtifactsByService.Image.ArtifactInfo")
+	proto.RegisterType((*ArtifactsByService_Package)(nil), "chromiumos.ArtifactsByService.Package")
+	proto.RegisterType((*ArtifactsByService_Package_ArtifactInfo)(nil), "chromiumos.ArtifactsByService.Package.ArtifactInfo")
+	proto.RegisterType((*ArtifactsByService_Sysroot)(nil), "chromiumos.ArtifactsByService.Sysroot")
+	proto.RegisterType((*ArtifactsByService_Sysroot_ArtifactInfo)(nil), "chromiumos.ArtifactsByService.Sysroot.ArtifactInfo")
+	proto.RegisterType((*ArtifactsByService_Test)(nil), "chromiumos.ArtifactsByService.Test")
+	proto.RegisterType((*ArtifactsByService_Test_ArtifactInfo)(nil), "chromiumos.ArtifactsByService.Test.ArtifactInfo")
 	proto.RegisterType((*UploadedArtifactsByService)(nil), "chromiumos.UploadedArtifactsByService")
 	proto.RegisterType((*UploadedArtifactsByService_Legacy)(nil), "chromiumos.UploadedArtifactsByService.Legacy")
 	proto.RegisterType((*UploadedArtifactsByService_Legacy_ArtifactPaths)(nil), "chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths")
 	proto.RegisterType((*UploadedArtifactsByService_Toolchain)(nil), "chromiumos.UploadedArtifactsByService.Toolchain")
 	proto.RegisterType((*UploadedArtifactsByService_Toolchain_ArtifactPaths)(nil), "chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths")
+	proto.RegisterType((*UploadedArtifactsByService_Image)(nil), "chromiumos.UploadedArtifactsByService.Image")
+	proto.RegisterType((*UploadedArtifactsByService_Image_ArtifactPaths)(nil), "chromiumos.UploadedArtifactsByService.Image.ArtifactPaths")
+	proto.RegisterType((*UploadedArtifactsByService_Package)(nil), "chromiumos.UploadedArtifactsByService.Package")
+	proto.RegisterType((*UploadedArtifactsByService_Package_ArtifactPaths)(nil), "chromiumos.UploadedArtifactsByService.Package.ArtifactPaths")
+	proto.RegisterType((*UploadedArtifactsByService_Sysroot)(nil), "chromiumos.UploadedArtifactsByService.Sysroot")
+	proto.RegisterType((*UploadedArtifactsByService_Sysroot_ArtifactPaths)(nil), "chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths")
+	proto.RegisterType((*UploadedArtifactsByService_Test)(nil), "chromiumos.UploadedArtifactsByService.Test")
+	proto.RegisterType((*UploadedArtifactsByService_Test_ArtifactPaths)(nil), "chromiumos.UploadedArtifactsByService.Test.ArtifactPaths")
 }
 
 func init() { proto.RegisterFile("chromiumos/common.proto", fileDescriptor_fa0b57c3d7d4c63b) }
 
 var fileDescriptor_fa0b57c3d7d4c63b = []byte{
-	// 1877 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x58, 0xcb, 0x6f, 0xe3, 0xc6,
-	0x19, 0x5f, 0x4a, 0x5a, 0x3d, 0x3e, 0x3d, 0xcc, 0xcc, 0x3e, 0xac, 0x75, 0xe3, 0xc4, 0x4b, 0x6f,
-	0x10, 0x67, 0xd1, 0xda, 0x0b, 0x37, 0xdb, 0x1e, 0xfa, 0x00, 0x28, 0x8a, 0x92, 0x99, 0xc8, 0x14,
-	0x31, 0x92, 0xbc, 0xf0, 0xf6, 0xc1, 0x32, 0xd4, 0x88, 0x62, 0x42, 0x71, 0x04, 0x92, 0xde, 0xc0,
-	0x29, 0x50, 0xa0, 0xa7, 0xa2, 0xd7, 0x1e, 0x0a, 0xf4, 0xff, 0xe8, 0xb9, 0xb7, 0x5e, 0x0b, 0xf4,
-	0x5f, 0x68, 0xcf, 0x3d, 0xf6, 0xd2, 0x43, 0x51, 0xcc, 0xf0, 0x21, 0xca, 0x96, 0xeb, 0x75, 0x90,
-	0xa2, 0x27, 0xcf, 0xf7, 0x7d, 0xbf, 0xf9, 0x5e, 0xf3, 0x3d, 0x44, 0xc3, 0xb6, 0x3d, 0x0f, 0xe8,
-	0xc2, 0xbd, 0x58, 0xd0, 0xf0, 0xc8, 0xa6, 0x8b, 0x05, 0xf5, 0x0f, 0x97, 0x01, 0x8d, 0x28, 0x82,
-	0x95, 0x40, 0x7a, 0x0a, 0xf5, 0xce, 0x85, 0xeb, 0x4d, 0xc7, 0x56, 0xe0, 0x90, 0x08, 0x21, 0x28,
-	0xf9, 0xd6, 0x82, 0xb4, 0x85, 0x3d, 0xe1, 0xa0, 0x86, 0xf9, 0x59, 0xfa, 0xb7, 0x00, 0x65, 0x65,
-	0x1e, 0x50, 0xca, 0xc5, 0x4b, 0x2b, 0x9a, 0xa7, 0x62, 0x76, 0x46, 0xdf, 0x82, 0x9a, 0x6d, 0xd9,
-	0x73, 0x62, 0x4e, 0xdd, 0xa0, 0x5d, 0xe0, 0x82, 0x2a, 0x67, 0x74, 0xdd, 0x00, 0x1d, 0x42, 0x91,
-	0xf8, 0x6f, 0xda, 0xc5, 0x3d, 0xe1, 0xa0, 0x7e, 0xfc, 0xee, 0xe1, 0xca, 0xf0, 0x61, 0xac, 0x31,
-	0xf9, 0xa3, 0xfa, 0x6f, 0x30, 0x03, 0xa2, 0x5d, 0x88, 0x9d, 0x8b, 0xb5, 0x95, 0xb8, 0xb6, 0x5a,
-	0xcc, 0xe9, 0xba, 0xc1, 0x8e, 0x0f, 0xb5, 0xec, 0x02, 0x7a, 0x01, 0xb5, 0x8b, 0x90, 0x98, 0x33,
-	0xcf, 0x72, 0xc2, 0xb6, 0xb0, 0x57, 0x3c, 0xa8, 0x1f, 0x3f, 0xc8, 0x5b, 0x98, 0x84, 0xa4, 0xe7,
-	0x59, 0x0e, 0xae, 0x5e, 0xc4, 0x87, 0x10, 0x1d, 0x41, 0x75, 0x46, 0xac, 0xe8, 0x22, 0x20, 0x61,
-	0xbb, 0x70, 0xfd, 0x42, 0x2f, 0x96, 0xe1, 0x0c, 0xf4, 0x49, 0xa9, 0x7a, 0x5f, 0x2c, 0x4b, 0xfb,
-	0x50, 0x49, 0x44, 0xa8, 0x0d, 0x95, 0x44, 0x98, 0xe4, 0x20, 0x25, 0xa5, 0xdf, 0x17, 0x01, 0xfa,
-	0x74, 0x61, 0x29, 0xd4, 0x9f, 0xb9, 0x0e, 0x7a, 0x02, 0x55, 0x87, 0x2e, 0x2c, 0x1e, 0x46, 0x82,
-	0x64, 0x34, 0xcb, 0xc9, 0x01, 0x88, 0x5c, 0x64, 0x7b, 0x2e, 0xf1, 0x23, 0xf3, 0xf3, 0x90, 0xfa,
-	0x49, 0xde, 0x5a, 0x8c, 0xaf, 0x70, 0xf6, 0x27, 0x21, 0xf5, 0xd1, 0x73, 0x78, 0x27, 0x8e, 0x9d,
-	0x86, 0x66, 0xa6, 0xad, 0xc8, 0xa1, 0x5b, 0xa9, 0xa0, 0x9f, 0x68, 0x3d, 0x81, 0x26, 0x87, 0x58,
-	0xcb, 0x65, 0x40, 0x2d, 0x7b, 0xce, 0x93, 0xd7, 0x3a, 0xde, 0xcf, 0x07, 0xb8, 0xf2, 0x8f, 0x1f,
-	0xe5, 0x04, 0x8a, 0x1b, 0x4e, 0x8e, 0x42, 0x87, 0x50, 0xf1, 0xa8, 0xc3, 0x6d, 0xdd, 0xe7, 0xef,
-	0xf6, 0x28, 0xaf, 0x63, 0x74, 0xe9, 0xdb, 0x64, 0xda, 0x75, 0x03, 0x5c, 0xf6, 0xa8, 0xc3, 0x2c,
-	0xef, 0x02, 0x84, 0x91, 0x15, 0x85, 0xe6, 0xcc, 0xf5, 0x48, 0xbb, 0x1c, 0xbf, 0x19, 0xe7, 0xf4,
-	0x5c, 0x8f, 0xa0, 0x7d, 0x68, 0xda, 0xf4, 0xc2, 0x8f, 0x48, 0xf0, 0x55, 0x8c, 0xa8, 0x70, 0x44,
-	0x23, 0x65, 0x32, 0x90, 0x74, 0x0e, 0x8d, 0xbc, 0x47, 0x68, 0x17, 0x9e, 0xf4, 0x87, 0xa7, 0xb2,
-	0x29, 0x1b, 0x06, 0x1e, 0xca, 0xca, 0x89, 0x39, 0xd1, 0x47, 0x86, 0xaa, 0x68, 0x3d, 0x4d, 0xed,
-	0x8a, 0xf7, 0x50, 0x1d, 0x2a, 0x5d, 0xb5, 0x27, 0x4f, 0x06, 0x63, 0x51, 0x40, 0x0d, 0xa8, 0xe2,
-	0x8e, 0x6a, 0x1a, 0x78, 0xd8, 0x15, 0x0b, 0x68, 0x0b, 0xea, 0x8c, 0x1a, 0x8d, 0xe5, 0xbe, 0xa6,
-	0xf7, 0xc5, 0xa2, 0xb4, 0x84, 0x26, 0x57, 0x1d, 0x44, 0xee, 0xcc, 0xb2, 0xa3, 0xf0, 0x8a, 0xbf,
-	0xc2, 0xad, 0xfe, 0x16, 0xae, 0xfb, 0xcb, 0x8a, 0x9e, 0xe5, 0x88, 0xc9, 0xc3, 0x76, 0x71, 0xaf,
-	0xc8, 0x8a, 0xde, 0xa3, 0x0e, 0x93, 0x85, 0xd2, 0x0c, 0xea, 0x86, 0x65, 0x7f, 0x61, 0x39, 0x44,
-	0xf3, 0x67, 0x14, 0x3d, 0x85, 0xc6, 0x32, 0x26, 0xcd, 0x5c, 0x6f, 0xd5, 0x13, 0x9e, 0x6e, 0x2d,
-	0x08, 0xda, 0x81, 0xaa, 0x6d, 0x45, 0xc4, 0xa1, 0xc1, 0xe5, 0xaa, 0x85, 0x62, 0x9a, 0x95, 0xdc,
-	0x1b, 0x12, 0x84, 0x2e, 0xf5, 0x93, 0xa7, 0x4f, 0x49, 0xe9, 0x37, 0x02, 0x94, 0x0c, 0xd6, 0x82,
-	0x9b, 0xda, 0xf2, 0x25, 0x54, 0x3d, 0x6a, 0x5b, 0x91, 0x9b, 0x54, 0x57, 0xeb, 0xf8, 0x49, 0xfe,
-	0x19, 0xd9, 0xbd, 0xc3, 0x41, 0x02, 0xc0, 0x19, 0x54, 0xfa, 0x18, 0xaa, 0x29, 0x97, 0xa5, 0x52,
-	0x1f, 0x9a, 0x83, 0xa1, 0x22, 0x8f, 0xb5, 0xa1, 0x2e, 0xde, 0x43, 0x00, 0x65, 0x4d, 0x1f, 0x69,
-	0x5d, 0x55, 0x14, 0xd8, 0x13, 0x0c, 0x27, 0x63, 0x4e, 0x14, 0xa4, 0x63, 0x00, 0x4c, 0xc2, 0x0b,
-	0x2f, 0xe2, 0xee, 0x3c, 0xcb, 0xb9, 0x53, 0x3f, 0x16, 0xaf, 0x9a, 0x8d, 0x1d, 0x94, 0x76, 0xa1,
-	0x96, 0xd5, 0x12, 0x12, 0xa1, 0xb8, 0xea, 0x14, 0x76, 0x94, 0x96, 0xd0, 0xe8, 0x93, 0x20, 0x70,
-	0x23, 0x65, 0x6e, 0xf9, 0x0e, 0x61, 0x31, 0xce, 0x69, 0x18, 0xa5, 0x31, 0xb2, 0x33, 0x4b, 0xcd,
-	0x32, 0xa0, 0x9f, 0x13, 0x3b, 0x4a, 0xb2, 0x96, 0x92, 0xe8, 0x31, 0x94, 0x6d, 0x7e, 0x8f, 0xe7,
-	0xac, 0x88, 0x13, 0x8a, 0x25, 0x7a, 0x69, 0x45, 0xf6, 0x3c, 0x24, 0x11, 0x6f, 0x90, 0x22, 0xce,
-	0x68, 0xe9, 0x97, 0xd0, 0xec, 0xbb, 0x11, 0x7b, 0x41, 0x85, 0x2e, 0x16, 0x6e, 0x74, 0x47, 0x93,
-	0x2d, 0x28, 0xb8, 0xd3, 0xe4, 0x89, 0x0a, 0xee, 0x94, 0x85, 0x14, 0x90, 0x59, 0x32, 0xc3, 0xd8,
-	0x91, 0x1b, 0xa7, 0xa1, 0xcb, 0x9f, 0x84, 0x75, 0x56, 0x13, 0x67, 0xb4, 0xb4, 0x0b, 0x95, 0x64,
-	0x5e, 0x31, 0xb3, 0x6c, 0xa6, 0xa5, 0x66, 0xd9, 0x59, 0xfa, 0x3e, 0x80, 0xc1, 0x66, 0x77, 0xe7,
-	0x32, 0x22, 0x21, 0xfa, 0x08, 0xc4, 0x90, 0x04, 0xae, 0xe5, 0xb9, 0x5f, 0x91, 0xa9, 0xc9, 0x87,
-	0x3a, 0x47, 0x37, 0xf0, 0xd6, 0x8a, 0xcf, 0xf1, 0xd2, 0xef, 0x04, 0xd8, 0x35, 0x02, 0xb2, 0xb4,
-	0x02, 0xd2, 0xa3, 0x01, 0x1f, 0xf5, 0xf2, 0x74, 0xca, 0x6d, 0x5a, 0x9e, 0x1c, 0x38, 0x21, 0x3a,
-	0x04, 0x94, 0x8c, 0x5c, 0xfb, 0xcb, 0x25, 0x53, 0xb6, 0x6a, 0x8b, 0x93, 0x7b, 0x58, 0x8c, 0x65,
-	0xca, 0x97, 0x4b, 0x23, 0x96, 0xa0, 0x0f, 0xa1, 0xf5, 0x05, 0x09, 0x7c, 0xe2, 0x99, 0x69, 0x59,
-	0x16, 0x12, 0x6c, 0x33, 0xe6, 0x9f, 0xc5, 0xec, 0x4e, 0x1b, 0x1e, 0x2f, 0x63, 0xcb, 0xe6, 0x8c,
-	0x06, 0xe6, 0x67, 0xcc, 0xb6, 0x69, 0x05, 0x4e, 0x28, 0x59, 0x50, 0x97, 0x67, 0x53, 0x8a, 0x89,
-	0x47, 0xac, 0x90, 0xa0, 0x6f, 0xdf, 0xec, 0xc1, 0x06, 0xfb, 0xcf, 0xa0, 0xe5, 0x2e, 0x58, 0x33,
-	0xc5, 0x0a, 0xdd, 0x29, 0xb7, 0x5f, 0xc4, 0x0d, 0xce, 0xe5, 0x11, 0x6a, 0x53, 0xe9, 0xcf, 0x02,
-	0x3c, 0x48, 0x5b, 0x3e, 0xb9, 0xc9, 0x9b, 0xf1, 0x7f, 0x15, 0x2d, 0xfa, 0x21, 0x34, 0xac, 0xd9,
-	0x94, 0x9a, 0x41, 0x1c, 0x54, 0xb2, 0xf2, 0xb6, 0xf3, 0xc5, 0x9f, 0x8b, 0xf9, 0xe4, 0x1e, 0xae,
-	0x5b, 0x2b, 0xb2, 0xb3, 0x0d, 0x8f, 0xac, 0xc4, 0xdb, 0xd4, 0x29, 0xd3, 0xf5, 0x67, 0x54, 0xfa,
-	0x63, 0x13, 0x50, 0x36, 0xba, 0x3a, 0x97, 0x23, 0x12, 0xbc, 0x71, 0x6d, 0x82, 0x7e, 0x04, 0x65,
-	0x8f, 0x38, 0x96, 0x7d, 0x99, 0x34, 0xd9, 0x07, 0x6b, 0x76, 0xae, 0xe1, 0x0f, 0x07, 0x1c, 0x8c,
-	0x93, 0x4b, 0xa8, 0x07, 0xb5, 0x88, 0x52, 0xcf, 0x9e, 0x5b, 0x6e, 0x1c, 0x50, 0xfd, 0xf8, 0xe0,
-	0x16, 0x0d, 0xe3, 0x14, 0x8f, 0x57, 0x57, 0x77, 0xfe, 0x55, 0x82, 0x72, 0xac, 0x1a, 0xfd, 0x04,
-	0xb6, 0x5c, 0x7f, 0x79, 0x11, 0x99, 0x69, 0x1c, 0xe9, 0x4e, 0x3e, 0x7e, 0x2b, 0xd7, 0x32, 0x09,
-	0x7b, 0x25, 0xdc, 0xe2, 0xaa, 0x56, 0x23, 0xfb, 0x67, 0x20, 0xd2, 0x8b, 0x68, 0x5d, 0x7b, 0xe1,
-	0x6b, 0x6b, 0xdf, 0x8a, 0x75, 0x65, 0xe8, 0x9d, 0xbf, 0x08, 0xd0, 0xc8, 0x23, 0xd0, 0x2b, 0x68,
-	0x66, 0xcf, 0x11, 0x5d, 0x2e, 0x09, 0x0f, 0xa5, 0x75, 0x57, 0x63, 0xe3, 0xcb, 0x25, 0xc1, 0x0d,
-	0x2b, 0x47, 0xb1, 0x5d, 0xe0, 0x84, 0x66, 0x3a, 0x6d, 0xe3, 0x20, 0x6a, 0xb8, 0xee, 0x84, 0xe9,
-	0xd0, 0x0d, 0x51, 0x07, 0x1a, 0xf9, 0x0a, 0x48, 0x0a, 0xe9, 0xfd, 0x4d, 0xa6, 0x73, 0x85, 0x8d,
-	0xeb, 0xcb, 0x15, 0x21, 0xfd, 0x2d, 0x17, 0x10, 0xb7, 0xbb, 0x05, 0xf5, 0xf5, 0x0d, 0xda, 0x84,
-	0x9a, 0x76, 0x2a, 0xf7, 0x55, 0xf3, 0xb5, 0x66, 0x88, 0x02, 0xda, 0x86, 0x07, 0x63, 0x75, 0x34,
-	0x36, 0x27, 0x46, 0x57, 0x1e, 0xab, 0xa6, 0x21, 0x9f, 0x0f, 0x86, 0x32, 0x5b, 0xa7, 0x08, 0x5a,
-	0xf2, 0x64, 0x3c, 0xe4, 0xc2, 0x9e, 0x36, 0x50, 0x47, 0x62, 0x11, 0xb5, 0x00, 0xc6, 0x72, 0x46,
-	0x97, 0xd8, 0x65, 0x43, 0xd3, 0x75, 0xb5, 0x6b, 0xf6, 0x27, 0x0c, 0xc7, 0x15, 0x8f, 0xc4, 0xfb,
-	0x6c, 0x33, 0xf7, 0x34, 0x7c, 0xfa, 0x4a, 0xc6, 0xaa, 0x58, 0x66, 0x3e, 0xa8, 0x9d, 0x89, 0x36,
-	0xe8, 0x9a, 0x83, 0x61, 0x7f, 0x24, 0x56, 0xd0, 0x03, 0xd8, 0x52, 0x4e, 0xf0, 0xf0, 0x54, 0x1d,
-	0x8e, 0x4c, 0x65, 0xa8, 0xf7, 0xb4, 0xbe, 0x58, 0x65, 0xca, 0x15, 0x43, 0x35, 0xb1, 0x6a, 0x0c,
-	0xf1, 0x58, 0xac, 0x31, 0x07, 0x62, 0x47, 0x65, 0xac, 0x9c, 0x68, 0x67, 0xea, 0x48, 0x04, 0xa9,
-	0x54, 0xad, 0x8b, 0xdb, 0x3b, 0x7f, 0xa8, 0x40, 0x2d, 0xab, 0x4a, 0xf4, 0xf3, 0x9b, 0xea, 0xef,
-	0xe5, 0xdb, 0x16, 0xf6, 0x7f, 0x2f, 0xc1, 0x5f, 0xdc, 0x58, 0x82, 0x5f, 0xd3, 0xc0, 0xb5, 0x2a,
-	0xfc, 0xeb, 0xd5, 0x2a, 0x7c, 0xbd, 0xb9, 0x0a, 0xef, 0x6e, 0xef, 0xff, 0x57, 0x88, 0xff, 0x2c,
-	0xde, 0x56, 0x88, 0xcf, 0x60, 0x6f, 0xa2, 0x9f, 0xa9, 0x98, 0xd3, 0x66, 0x5c, 0x0f, 0xe6, 0x60,
-	0x70, 0x76, 0x6a, 0x0e, 0x71, 0x57, 0xc5, 0xac, 0xc6, 0xc4, 0x3a, 0x92, 0xe0, 0xbd, 0x5b, 0x30,
-	0x0d, 0xf4, 0x1e, 0xec, 0x24, 0x22, 0x65, 0x20, 0xeb, 0x7d, 0xf3, 0x95, 0x8c, 0x75, 0x4d, 0xef,
-	0x8f, 0x78, 0x9d, 0x8a, 0x4d, 0xf4, 0x2e, 0xb4, 0x73, 0x96, 0xf8, 0x75, 0xa3, 0x3f, 0x8c, 0xa5,
-	0x2d, 0xf4, 0x11, 0x7c, 0x70, 0xdd, 0x8f, 0x8e, 0xaa, 0x2b, 0x27, 0xa7, 0x32, 0xfe, 0xd4, 0x94,
-	0x7b, 0xdd, 0x04, 0xba, 0x85, 0x3e, 0x84, 0xfd, 0xb7, 0x01, 0x8a, 0xe8, 0x29, 0xec, 0x66, 0xc0,
-	0x4f, 0x55, 0xac, 0xab, 0x03, 0x53, 0x79, 0x65, 0xe4, 0x20, 0xef, 0xa0, 0x7d, 0x78, 0x3f, 0x67,
-	0x76, 0x23, 0x08, 0x5d, 0x01, 0xa5, 0x41, 0xae, 0x81, 0x1e, 0xac, 0x19, 0xdb, 0x08, 0x79, 0xc8,
-	0x32, 0x94, 0x41, 0xb0, 0x3a, 0x50, 0xe5, 0x91, 0x9a, 0x93, 0x3f, 0xba, 0x2d, 0x07, 0x86, 0x8a,
-	0x7b, 0x31, 0xf4, 0x31, 0xeb, 0xf9, 0x44, 0xde, 0x55, 0x3b, 0x93, 0xbe, 0xd9, 0xd1, 0x74, 0x19,
-	0x9f, 0x8b, 0xdb, 0x52, 0xa9, 0x2a, 0x88, 0x20, 0xfd, 0xf6, 0x3e, 0xec, 0x4c, 0x96, 0x1e, 0xb5,
-	0xa6, 0x64, 0xba, 0x61, 0x7d, 0xa9, 0x57, 0xd6, 0xd7, 0x77, 0xd6, 0xbe, 0xdb, 0x6e, 0xbc, 0x77,
-	0x75, 0x8d, 0xe9, 0xd7, 0xd7, 0xd8, 0x8b, 0xb7, 0xd4, 0xb4, 0x71, 0x9d, 0xfd, 0x5d, 0xc8, 0xd6,
-	0xd9, 0x39, 0xd4, 0xae, 0x0e, 0x92, 0x1f, 0xdc, 0xc9, 0xc9, 0x55, 0x6f, 0x58, 0xd1, 0x3c, 0xc4,
-	0x2b, 0x6d, 0x3b, 0xbf, 0x82, 0xe6, 0x9a, 0x6c, 0xd3, 0xb6, 0x11, 0xbe, 0x91, 0x6d, 0xf3, 0x10,
-	0xee, 0xb3, 0x9f, 0xda, 0x69, 0x77, 0xc7, 0xc4, 0xce, 0x3f, 0x84, 0xfc, 0xdc, 0xfc, 0xe9, 0xf5,
-	0x40, 0x7f, 0x7c, 0xd7, 0x1c, 0xde, 0x1c, 0xeb, 0xaf, 0x85, 0xab, 0xc1, 0xbe, 0xde, 0x1c, 0xec,
-	0x37, 0x32, 0xd4, 0x36, 0xc6, 0xfb, 0xfc, 0x4f, 0x02, 0xd4, 0x34, 0xf6, 0xdb, 0x90, 0x63, 0xda,
-	0xf0, 0x30, 0xde, 0x27, 0xe3, 0x73, 0x43, 0x35, 0x27, 0x7a, 0x57, 0xed, 0x69, 0x3a, 0x9f, 0x44,
-	0x55, 0x28, 0x75, 0xe4, 0x11, 0xfb, 0xb6, 0xa9, 0x40, 0xb1, 0xab, 0x9e, 0x89, 0x05, 0xc6, 0x62,
-	0x9b, 0x4f, 0x2c, 0xb2, 0xcf, 0x1d, 0x26, 0x34, 0xcf, 0x4e, 0xc5, 0x12, 0x23, 0xf8, 0x42, 0x3c,
-	0x3b, 0x8d, 0x97, 0x1c, 0x56, 0x95, 0xe1, 0x99, 0x8a, 0xcf, 0xc5, 0x32, 0x13, 0xf5, 0x64, 0x65,
-	0x3c, 0xc4, 0xe7, 0x62, 0x65, 0x6d, 0xff, 0x55, 0xd1, 0x3b, 0xd0, 0x54, 0xf0, 0xcb, 0x17, 0x66,
-	0xc6, 0xaa, 0x31, 0x16, 0xd7, 0x1a, 0xef, 0xcd, 0xb3, 0x53, 0x11, 0x18, 0x8b, 0xeb, 0xce, 0x58,
-	0xf5, 0xe7, 0x0b, 0xa8, 0xb0, 0x8f, 0x20, 0x9f, 0x78, 0x71, 0xdb, 0xc9, 0x3a, 0x1b, 0x12, 0xeb,
-	0x63, 0x14, 0x41, 0x2b, 0x15, 0x8c, 0xc6, 0x72, 0x67, 0xc0, 0xc2, 0x10, 0xa1, 0x91, 0xf2, 0x3a,
-	0xea, 0x58, 0x8e, 0x3f, 0x8e, 0x53, 0x0e, 0x0b, 0xb0, 0x98, 0xbf, 0xa6, 0xc8, 0xbc, 0x83, 0x4b,
-	0xcf, 0x67, 0x20, 0xb2, 0xa1, 0xb0, 0x36, 0xb6, 0x9b, 0x50, 0xd3, 0x87, 0x7a, 0x9c, 0xb4, 0xf8,
-	0xd7, 0xc3, 0x6a, 0xf2, 0x0a, 0x4c, 0xcb, 0xfa, 0x00, 0x8c, 0x4d, 0x25, 0xd3, 0x8c, 0x33, 0x8a,
-	0xb1, 0x6d, 0x3e, 0x31, 0x38, 0xa3, 0xd4, 0xf9, 0xde, 0xeb, 0x8f, 0x1d, 0x9a, 0x3d, 0xfb, 0x21,
-	0x0d, 0x9c, 0xa3, 0xdc, 0x7f, 0xac, 0x5c, 0x7f, 0x16, 0x58, 0x47, 0xfc, 0xdb, 0xe6, 0xc8, 0xa1,
-	0x39, 0xc9, 0x67, 0x65, 0xce, 0xfc, 0xee, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff, 0x20, 0x21, 0xc3,
-	0xc1, 0xe0, 0x12, 0x00, 0x00,
+	// 2273 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x59, 0xcd, 0x8f, 0x23, 0x47,
+	0x15, 0xdf, 0xb6, 0x3d, 0xfe, 0x78, 0xfe, 0x98, 0xde, 0xda, 0x8f, 0xf1, 0x3a, 0x99, 0x64, 0xb7,
+	0x77, 0x97, 0x6c, 0x96, 0x30, 0xb3, 0x4c, 0xb2, 0x44, 0x84, 0xf0, 0xd1, 0x6e, 0xb7, 0x3d, 0x4e,
+	0x3c, 0x6d, 0xab, 0x6c, 0xcf, 0xec, 0x4c, 0x96, 0x34, 0x1d, 0xbb, 0x6c, 0x77, 0x62, 0xbb, 0xad,
+	0xee, 0x9e, 0x8d, 0x26, 0x7c, 0x89, 0x13, 0x12, 0x08, 0x21, 0x71, 0xe0, 0xce, 0x5f, 0xc1, 0x8d,
+	0x1b, 0x77, 0x6e, 0x9c, 0x90, 0x10, 0x48, 0xdc, 0xb8, 0x20, 0xc1, 0x09, 0x45, 0xa8, 0xaa, 0xba,
+	0xed, 0xf6, 0xd7, 0x8e, 0x6d, 0x34, 0x27, 0x77, 0xbd, 0xf7, 0xea, 0xbd, 0xfa, 0xbd, 0x8f, 0xaa,
+	0x7a, 0x65, 0xd8, 0x69, 0xf5, 0x6c, 0x6b, 0x60, 0x9e, 0x0f, 0x2c, 0x67, 0xbf, 0x65, 0x0d, 0x06,
+	0xd6, 0x70, 0x6f, 0x64, 0x5b, 0xae, 0x85, 0x60, 0xc2, 0x90, 0xee, 0x41, 0x32, 0x7f, 0x6e, 0xf6,
+	0xdb, 0x0d, 0xc3, 0xee, 0x12, 0x17, 0x21, 0x88, 0x0c, 0x8d, 0x01, 0xc9, 0x0a, 0x77, 0x85, 0x47,
+	0x09, 0xcc, 0xbe, 0xa5, 0x2f, 0x05, 0x88, 0x2a, 0x3d, 0xdb, 0xb2, 0x18, 0x7b, 0x64, 0xb8, 0x3d,
+	0x9f, 0x4d, 0xbf, 0xd1, 0x2b, 0x90, 0x68, 0x19, 0xad, 0x1e, 0xd1, 0xdb, 0xa6, 0x9d, 0x0d, 0x31,
+	0x46, 0x9c, 0x11, 0x0a, 0xa6, 0x8d, 0xf6, 0x20, 0x4c, 0x86, 0x2f, 0xb2, 0xe1, 0xbb, 0xc2, 0xa3,
+	0xe4, 0xc1, 0xab, 0x7b, 0x13, 0xc3, 0x7b, 0x5c, 0xa3, 0xf7, 0xa3, 0x0e, 0x5f, 0x60, 0x2a, 0x88,
+	0x76, 0x81, 0x2f, 0x8e, 0x6b, 0x8b, 0x30, 0x6d, 0x09, 0x4e, 0x29, 0x98, 0x76, 0x6e, 0x08, 0x89,
+	0xf1, 0x04, 0xf4, 0x04, 0x12, 0xe7, 0x0e, 0xd1, 0x3b, 0x7d, 0xa3, 0xeb, 0x64, 0x85, 0xbb, 0xe1,
+	0x47, 0xc9, 0x83, 0x1b, 0x41, 0x0b, 0x4d, 0x87, 0x14, 0xfb, 0x46, 0x17, 0xc7, 0xcf, 0xf9, 0x87,
+	0x83, 0xf6, 0x21, 0xde, 0x21, 0x86, 0x7b, 0x6e, 0x13, 0x27, 0x1b, 0x9a, 0x9f, 0x50, 0xe4, 0x3c,
+	0x3c, 0x16, 0xfa, 0x20, 0x12, 0xdf, 0x12, 0xa3, 0xd2, 0x7d, 0x88, 0x79, 0x2c, 0x94, 0x85, 0x98,
+	0xc7, 0xf4, 0x7c, 0xe0, 0x0f, 0xa5, 0xdf, 0x86, 0x01, 0x4a, 0xd6, 0xc0, 0x50, 0xac, 0x61, 0xc7,
+	0xec, 0xa2, 0x3b, 0x10, 0xef, 0x5a, 0x03, 0x83, 0xc1, 0xf0, 0x24, 0xe9, 0x98, 0xfa, 0xe4, 0x11,
+	0x88, 0x8c, 0xd5, 0xea, 0x9b, 0x64, 0xe8, 0xea, 0x9f, 0x3a, 0xd6, 0xd0, 0xf3, 0x5b, 0x86, 0xd2,
+	0x15, 0x46, 0xfe, 0xc0, 0xb1, 0x86, 0xe8, 0x31, 0x5c, 0xe7, 0xd8, 0x2d, 0x47, 0x1f, 0x6b, 0x0b,
+	0x33, 0xd1, 0x6d, 0x9f, 0x51, 0xf2, 0xb4, 0x1e, 0x42, 0x9a, 0x89, 0x18, 0xa3, 0x91, 0x6d, 0x19,
+	0xad, 0x1e, 0x73, 0x5e, 0xe6, 0xe0, 0x7e, 0x10, 0xe0, 0x64, 0x7d, 0xec, 0x53, 0xf6, 0x44, 0x71,
+	0xaa, 0x1b, 0x18, 0xa1, 0x3d, 0x88, 0xf5, 0xad, 0x2e, 0xb3, 0xb5, 0xc5, 0xe2, 0x76, 0x2b, 0xa8,
+	0xa3, 0x7e, 0x31, 0x6c, 0x91, 0x76, 0xc1, 0xb4, 0x71, 0xb4, 0x6f, 0x75, 0xa9, 0xe5, 0x5d, 0x00,
+	0xc7, 0x35, 0x5c, 0x47, 0xef, 0x98, 0x7d, 0x92, 0x8d, 0xf2, 0x98, 0x31, 0x4a, 0xd1, 0xec, 0x13,
+	0x74, 0x1f, 0xd2, 0x2d, 0xeb, 0x7c, 0xe8, 0x12, 0xfb, 0x0b, 0x2e, 0x11, 0x63, 0x12, 0x29, 0x9f,
+	0x48, 0x85, 0xa4, 0x53, 0x48, 0x05, 0x57, 0x84, 0x76, 0xe1, 0x4e, 0xa9, 0x7a, 0x24, 0xeb, 0x72,
+	0xad, 0x86, 0xab, 0xb2, 0x72, 0xa8, 0x37, 0xb5, 0x7a, 0x4d, 0x55, 0xca, 0xc5, 0xb2, 0x5a, 0x10,
+	0xaf, 0xa1, 0x24, 0xc4, 0x0a, 0x6a, 0x51, 0x6e, 0x56, 0x1a, 0xa2, 0x80, 0x52, 0x10, 0xc7, 0x79,
+	0x55, 0xaf, 0xe1, 0x6a, 0x41, 0x0c, 0xa1, 0x6d, 0x48, 0xd2, 0x51, 0xbd, 0x21, 0x97, 0xca, 0x5a,
+	0x49, 0x0c, 0x4b, 0x23, 0x48, 0x33, 0xd5, 0xb6, 0x6b, 0x76, 0x8c, 0x96, 0xeb, 0xcc, 0xac, 0x57,
+	0xb8, 0x74, 0xbd, 0xa1, 0xf9, 0xf5, 0xd2, 0xa4, 0xa7, 0x3e, 0xa2, 0x7c, 0x27, 0x1b, 0xbe, 0x1b,
+	0xa6, 0x49, 0xdf, 0xb7, 0xba, 0x94, 0xe7, 0x48, 0x1d, 0x48, 0xd6, 0x8c, 0xd6, 0x67, 0x46, 0x97,
+	0x94, 0x87, 0x1d, 0x0b, 0xdd, 0x83, 0xd4, 0x88, 0x0f, 0xf5, 0x40, 0x6d, 0x25, 0x3d, 0x9a, 0x66,
+	0x0c, 0x08, 0xca, 0x41, 0xbc, 0x65, 0xb8, 0xa4, 0x6b, 0xd9, 0x17, 0x93, 0x12, 0xe2, 0x63, 0x9a,
+	0x72, 0x2f, 0x88, 0xed, 0x98, 0xd6, 0xd0, 0x0b, 0xbd, 0x3f, 0x94, 0x7e, 0x2e, 0x40, 0xa4, 0x46,
+	0x4b, 0x70, 0x51, 0x59, 0x3e, 0x85, 0x78, 0xdf, 0x6a, 0x19, 0xae, 0xe9, 0x65, 0x57, 0xe6, 0xe0,
+	0x4e, 0x30, 0x8c, 0x74, 0xde, 0x5e, 0xc5, 0x13, 0xc0, 0x63, 0x51, 0xe9, 0x1d, 0x88, 0xfb, 0x54,
+	0xea, 0x4a, 0xad, 0xaa, 0x57, 0xaa, 0x8a, 0xdc, 0x28, 0x57, 0x35, 0xf1, 0x1a, 0x02, 0x88, 0x96,
+	0xb5, 0x7a, 0xb9, 0xa0, 0x8a, 0x02, 0x0d, 0x41, 0xb5, 0xd9, 0x60, 0x83, 0x90, 0x74, 0x00, 0x80,
+	0x89, 0x73, 0xde, 0x77, 0xd9, 0x72, 0x1e, 0x04, 0x96, 0x93, 0x3c, 0x10, 0x67, 0xcd, 0xf2, 0x05,
+	0x4a, 0xbb, 0x90, 0x18, 0xe7, 0x12, 0x12, 0x21, 0x3c, 0xa9, 0x14, 0xfa, 0x29, 0x8d, 0x20, 0x55,
+	0x22, 0xb6, 0x6d, 0xba, 0x4a, 0xcf, 0x18, 0x76, 0x09, 0xc5, 0xd8, 0xb3, 0x1c, 0xd7, 0xc7, 0x48,
+	0xbf, 0xa9, 0x6b, 0x46, 0xb6, 0xf5, 0x29, 0x69, 0xb9, 0x9e, 0xd7, 0xfc, 0x21, 0xba, 0x0d, 0xd1,
+	0x16, 0x9b, 0xc7, 0x7c, 0x16, 0xc6, 0xde, 0x88, 0x3a, 0x7a, 0x64, 0xb8, 0xad, 0x9e, 0x43, 0x5c,
+	0x56, 0x20, 0x61, 0x3c, 0x1e, 0x4b, 0x3f, 0x84, 0x74, 0xc9, 0x74, 0x69, 0x04, 0x15, 0x6b, 0x30,
+	0x30, 0xdd, 0x35, 0x4d, 0x66, 0x20, 0x64, 0xb6, 0xbd, 0x10, 0x85, 0xcc, 0x36, 0x85, 0x64, 0x93,
+	0x8e, 0xb7, 0x87, 0xd1, 0x4f, 0x66, 0xdc, 0x72, 0x4c, 0x16, 0x12, 0x5a, 0x59, 0x69, 0x3c, 0x1e,
+	0x4b, 0xbb, 0x10, 0xf3, 0xf6, 0x2b, 0x6a, 0x96, 0xee, 0x69, 0xbe, 0x59, 0xfa, 0x2d, 0xbd, 0x0b,
+	0x50, 0xa3, 0x7b, 0x77, 0xfe, 0xc2, 0x25, 0x0e, 0x7a, 0x13, 0x44, 0x87, 0xd8, 0xa6, 0xd1, 0x37,
+	0xbf, 0x20, 0x6d, 0x9d, 0x6d, 0xea, 0x4c, 0x3a, 0x85, 0xb7, 0x27, 0x74, 0x26, 0x2f, 0xfd, 0x46,
+	0x80, 0xdd, 0x9a, 0x4d, 0x46, 0x86, 0x4d, 0x8a, 0x96, 0xcd, 0xb6, 0x7a, 0xb9, 0xdd, 0x66, 0x36,
+	0x8d, 0xbe, 0x6c, 0x77, 0x1d, 0xb4, 0x07, 0xc8, 0xdb, 0x72, 0x5b, 0x9f, 0x8f, 0xa8, 0xb2, 0x49,
+	0x59, 0x1c, 0x5e, 0xc3, 0x22, 0xe7, 0x29, 0x9f, 0x8f, 0x6a, 0x9c, 0x83, 0xde, 0x80, 0xcc, 0x67,
+	0xc4, 0x1e, 0x92, 0xbe, 0xee, 0xa7, 0x65, 0xc8, 0x93, 0x4d, 0x73, 0xfa, 0x31, 0x27, 0xe7, 0xb3,
+	0x70, 0x7b, 0xc4, 0x2d, 0xeb, 0x1d, 0xcb, 0xd6, 0x3f, 0xa1, 0xb6, 0x75, 0xc3, 0xee, 0x3a, 0x92,
+	0x01, 0x49, 0xb9, 0xd3, 0xb6, 0x30, 0xe9, 0x13, 0xc3, 0x21, 0xe8, 0xad, 0xe5, 0x2b, 0x58, 0x60,
+	0xff, 0x01, 0x64, 0xcc, 0x01, 0x2d, 0x26, 0xae, 0xd0, 0x6c, 0x33, 0xfb, 0x61, 0x9c, 0x62, 0x54,
+	0x86, 0xb0, 0xdc, 0x96, 0xfe, 0x28, 0xc0, 0x0d, 0xbf, 0xe4, 0xbd, 0x99, 0xac, 0x18, 0xaf, 0x0a,
+	0x2d, 0x7a, 0x1f, 0x52, 0x46, 0xa7, 0x6d, 0xe9, 0x36, 0x07, 0xe5, 0x1d, 0x79, 0x3b, 0xc1, 0xe4,
+	0x0f, 0x60, 0x3e, 0xbc, 0x86, 0x93, 0xc6, 0x64, 0x98, 0xdf, 0x81, 0x5b, 0x86, 0xb7, 0x5a, 0x7f,
+	0x51, 0xba, 0x39, 0xec, 0x58, 0xd2, 0xef, 0x5e, 0x01, 0x34, 0xde, 0xba, 0xf2, 0x17, 0x75, 0x62,
+	0xbf, 0x30, 0x5b, 0x04, 0x7d, 0x1b, 0xa2, 0x7d, 0xd2, 0x35, 0x5a, 0x17, 0x5e, 0x91, 0x3d, 0x9c,
+	0xb2, 0x33, 0x27, 0xbf, 0x57, 0x61, 0xc2, 0xd8, 0x9b, 0x84, 0x8a, 0x90, 0x70, 0x2d, 0xab, 0xdf,
+	0xea, 0x19, 0x26, 0x07, 0x94, 0x3c, 0x78, 0x74, 0x89, 0x86, 0x86, 0x2f, 0x8f, 0x27, 0x53, 0xd1,
+	0x7b, 0xb0, 0xc5, 0xbc, 0xee, 0xa1, 0x7d, 0x70, 0x89, 0x8e, 0x32, 0x95, 0xc5, 0x7c, 0x0a, 0xfa,
+	0x1e, 0xc4, 0xbc, 0x2d, 0x90, 0xd5, 0x48, 0xf2, 0xe0, 0x2b, 0x97, 0xcc, 0xf6, 0xf6, 0x54, 0xec,
+	0x4f, 0xa3, 0x1a, 0x9c, 0x0b, 0x87, 0x5e, 0x07, 0xbc, 0x83, 0xea, 0x32, 0x0d, 0x75, 0x2e, 0x8d,
+	0xfd, 0x69, 0xe8, 0x5d, 0x88, 0xb8, 0xc4, 0x71, 0xd9, 0xa1, 0x95, 0x9c, 0x3e, 0x2b, 0x17, 0xb9,
+	0x80, 0x38, 0x2e, 0x66, 0x13, 0x50, 0x1e, 0x52, 0xc1, 0x30, 0xb1, 0x33, 0x2d, 0x79, 0xf0, 0xfa,
+	0x22, 0x05, 0x81, 0xec, 0xc3, 0xc9, 0xd1, 0x64, 0x90, 0xfb, 0x6f, 0x04, 0xa2, 0x3c, 0x2e, 0xe8,
+	0x23, 0xd8, 0x36, 0x87, 0xa3, 0x73, 0x57, 0xf7, 0x93, 0xc0, 0xbf, 0xd0, 0x1c, 0xac, 0x14, 0xd7,
+	0x31, 0x87, 0x19, 0xc9, 0x30, 0x55, 0x93, 0xf3, 0xee, 0xfb, 0x20, 0x5a, 0xe7, 0xee, 0xb4, 0xf6,
+	0xd0, 0xc6, 0xda, 0xb7, 0xb9, 0xae, 0xb1, 0x74, 0xee, 0x4f, 0x02, 0xa4, 0x82, 0x12, 0xe8, 0x14,
+	0x32, 0xe3, 0x5c, 0x76, 0x2f, 0x46, 0x84, 0x63, 0xc9, 0xac, 0x6b, 0xad, 0x71, 0x31, 0x22, 0x38,
+	0x6d, 0x04, 0x46, 0x0e, 0x3d, 0x4a, 0xbb, 0x8e, 0xee, 0x1f, 0x56, 0x1c, 0x46, 0x02, 0x27, 0xbb,
+	0x8e, 0x7f, 0x66, 0x39, 0x73, 0x91, 0x09, 0xaf, 0x1f, 0x19, 0xe9, 0x6f, 0x01, 0x48, 0xd4, 0x30,
+	0x3d, 0x09, 0xa7, 0x2f, 0x20, 0x69, 0x48, 0x94, 0x8f, 0xe4, 0x92, 0xaa, 0x9f, 0x95, 0x6b, 0xa2,
+	0x80, 0x76, 0xe0, 0x46, 0x43, 0xad, 0x37, 0xf4, 0x66, 0xad, 0x20, 0x37, 0x54, 0xbd, 0x26, 0x9f,
+	0x56, 0xaa, 0x32, 0xbd, 0x8d, 0x20, 0xc8, 0xc8, 0xcd, 0x46, 0x95, 0x31, 0x8b, 0xe5, 0x8a, 0x5a,
+	0x17, 0xc3, 0x28, 0x03, 0xd0, 0x90, 0xc7, 0xe3, 0x08, 0x9d, 0x5c, 0x2b, 0x6b, 0x9a, 0x5a, 0xd0,
+	0x4b, 0x4d, 0x2a, 0xc7, 0x14, 0xd7, 0xc5, 0x2d, 0x7a, 0xb1, 0x29, 0x96, 0xf1, 0xd1, 0x89, 0x8c,
+	0x55, 0x31, 0x4a, 0xd7, 0xa0, 0xe6, 0x9b, 0xe5, 0x4a, 0x41, 0xaf, 0x54, 0x4b, 0x75, 0x31, 0x86,
+	0x6e, 0xc0, 0xb6, 0x72, 0x88, 0xab, 0x47, 0x6a, 0xb5, 0xae, 0x2b, 0x55, 0xad, 0x58, 0x2e, 0x89,
+	0x71, 0xaa, 0x5c, 0xa9, 0xa9, 0x3a, 0x56, 0x6b, 0x55, 0xdc, 0x10, 0x13, 0x74, 0x01, 0x7c, 0xa1,
+	0x32, 0x56, 0x0e, 0xcb, 0xc7, 0x6a, 0x5d, 0x04, 0x29, 0x12, 0x4f, 0x8a, 0x3b, 0xb9, 0x3f, 0x47,
+	0x21, 0x31, 0x2e, 0x6a, 0xf4, 0xf1, 0xb2, 0x0c, 0x7c, 0xba, 0xea, 0xbe, 0xf0, 0xf2, 0x24, 0xfc,
+	0xc1, 0xd2, 0x24, 0xdc, 0xd0, 0xc0, 0x5c, 0x1e, 0xfe, 0x7a, 0x36, 0x0f, 0x9f, 0x2f, 0xc9, 0xc3,
+	0xf5, 0x0d, 0x6e, 0x96, 0x8a, 0xd2, 0xbf, 0xc3, 0x97, 0xa5, 0xd1, 0x03, 0xb8, 0xdb, 0xd4, 0x8e,
+	0x55, 0xcc, 0xc6, 0x3a, 0x8f, 0xa6, 0x5e, 0xa9, 0x1c, 0x1f, 0xe9, 0x55, 0x5c, 0x50, 0x31, 0xcd,
+	0x10, 0x31, 0x89, 0x24, 0x78, 0xed, 0x12, 0x99, 0x14, 0x7a, 0x0d, 0x72, 0x1e, 0x4b, 0xa9, 0xc8,
+	0x5a, 0x49, 0x3f, 0x91, 0xb1, 0x56, 0xd6, 0x4a, 0x75, 0x96, 0x65, 0x62, 0x1a, 0xbd, 0x0a, 0xd9,
+	0x80, 0x25, 0x36, 0xbd, 0x56, 0xaa, 0x72, 0x6e, 0x06, 0xbd, 0x09, 0x0f, 0xe7, 0xd7, 0x91, 0x57,
+	0x35, 0xe5, 0xf0, 0x48, 0xc6, 0x1f, 0xea, 0x72, 0xb1, 0xe0, 0x89, 0x6e, 0xa3, 0x37, 0xe0, 0xfe,
+	0x2a, 0x82, 0x22, 0xba, 0x07, 0xbb, 0x63, 0xc1, 0x0f, 0x55, 0xac, 0xa9, 0x15, 0x5d, 0x39, 0xa9,
+	0x05, 0x44, 0xae, 0xa3, 0xfb, 0xf0, 0x7a, 0xc0, 0xec, 0x42, 0x21, 0x34, 0x23, 0xe4, 0x83, 0x9c,
+	0x12, 0xba, 0x31, 0x65, 0x6c, 0xa1, 0xc8, 0x4d, 0xea, 0xa1, 0xb1, 0x08, 0x56, 0x2b, 0xaa, 0x5c,
+	0x57, 0x03, 0xfc, 0x5b, 0x97, 0xf9, 0xa0, 0xa6, 0xe2, 0x22, 0x17, 0xbd, 0x4d, 0x2b, 0xd6, 0xe3,
+	0x17, 0xd4, 0x7c, 0xb3, 0xa4, 0xe7, 0xcb, 0x9a, 0x8c, 0x4f, 0xc5, 0x1d, 0x29, 0x12, 0x17, 0x44,
+	0xc8, 0xfd, 0x27, 0x04, 0x5b, 0xec, 0xa8, 0x43, 0x67, 0xcb, 0xaa, 0xea, 0xeb, 0xab, 0x9c, 0x94,
+	0x2f, 0xaf, 0xa8, 0xe7, 0x4b, 0x2b, 0x6a, 0x03, 0xe5, 0x73, 0xd5, 0xf4, 0xcb, 0xd9, 0x6a, 0x7a,
+	0xb6, 0xa4, 0x9a, 0xd6, 0x33, 0xb6, 0x61, 0x25, 0x3d, 0xbc, 0xa4, 0x90, 0x98, 0xe3, 0x77, 0x72,
+	0x5f, 0x86, 0x20, 0xe6, 0xdd, 0x12, 0xd0, 0xf3, 0x65, 0xae, 0x7f, 0x7b, 0xb5, 0x6b, 0xc6, 0xcb,
+	0x9d, 0xff, 0xf1, 0x52, 0xe7, 0x6f, 0xa4, 0x7e, 0xce, 0xfd, 0xbf, 0x9a, 0x75, 0xff, 0xd9, 0x12,
+	0xf7, 0xaf, 0x6b, 0xee, 0xea, 0x03, 0xe0, 0x5d, 0xb2, 0x36, 0x0f, 0x80, 0xa7, 0xe0, 0xaa, 0x02,
+	0xb0, 0x50, 0xfd, 0xd5, 0x05, 0x60, 0xd6, 0xdc, 0xd5, 0x06, 0xe0, 0x5f, 0x21, 0x88, 0xd0, 0x6b,
+	0x2a, 0x3a, 0x5d, 0xe6, 0xfd, 0x27, 0x2b, 0x5c, 0x72, 0x5f, 0xee, 0xfa, 0x8f, 0x96, 0xba, 0x7e,
+	0x7d, 0xdd, 0x73, 0x7e, 0xff, 0xc5, 0xac, 0xdf, 0x4f, 0x96, 0xf8, 0x7d, 0x2d, 0x5b, 0x57, 0xea,
+	0x74, 0xe9, 0xf7, 0x19, 0xc8, 0x35, 0x47, 0x7d, 0xcb, 0x68, 0x93, 0xf6, 0x82, 0x5e, 0x4d, 0x9d,
+	0xe9, 0xd5, 0xbe, 0x36, 0xf5, 0x48, 0xb9, 0x74, 0xde, 0x6c, 0xcf, 0xa6, 0xcd, 0xf7, 0x6c, 0x4f,
+	0x56, 0xd4, 0xb4, 0xb0, 0x77, 0xcb, 0x4f, 0xf7, 0x6e, 0x6f, 0xad, 0xa8, 0x6b, 0xaa, 0x87, 0x3b,
+	0x9c, 0xed, 0xe1, 0xf6, 0x56, 0xd4, 0x32, 0xd7, 0xcb, 0x1d, 0xce, 0xf6, 0x72, 0xab, 0x6a, 0x9a,
+	0xeb, 0xe9, 0xbe, 0x3b, 0xd5, 0xd3, 0x7d, 0x75, 0x55, 0x17, 0x8d, 0x7b, 0xbb, 0xdc, 0xdf, 0x85,
+	0x71, 0x5f, 0x76, 0x0a, 0x89, 0xd9, 0xfa, 0xf9, 0xd6, 0x5a, 0xd1, 0x9b, 0xf4, 0x1a, 0x86, 0xdb,
+	0x73, 0xf0, 0x44, 0x5b, 0xee, 0x27, 0x90, 0x9e, 0xe2, 0xa1, 0x13, 0x48, 0x4f, 0x25, 0x3a, 0xcb,
+	0x96, 0xcd, 0xba, 0xa6, 0x54, 0x30, 0xd3, 0xd1, 0x4d, 0xd8, 0x1a, 0x51, 0x0b, 0x5e, 0x86, 0xf3,
+	0x41, 0xee, 0x9f, 0x42, 0xf0, 0xfa, 0xff, 0x7c, 0x1e, 0xe8, 0x77, 0xd6, 0x4d, 0xae, 0xe5, 0x58,
+	0x7f, 0x26, 0xcc, 0x82, 0x3d, 0x5b, 0x0c, 0x76, 0xc3, 0xab, 0xf9, 0x2a, 0x78, 0xff, 0x2a, 0xf8,
+	0x97, 0xb2, 0x67, 0xf3, 0x58, 0xdf, 0x5b, 0x27, 0xf9, 0x97, 0xe3, 0xfc, 0xf1, 0x2c, 0xcc, 0xe3,
+	0xc5, 0x30, 0x37, 0xb8, 0x33, 0xad, 0x02, 0xf1, 0x1f, 0xc2, 0xe4, 0xfa, 0x73, 0x36, 0x0f, 0xf2,
+	0xfd, 0xf5, 0x6a, 0x73, 0x39, 0xcc, 0x9f, 0xce, 0xc2, 0x7c, 0xb6, 0x18, 0xe6, 0x46, 0x77, 0x93,
+	0x55, 0x81, 0xfa, 0xd7, 0x8c, 0xff, 0x03, 0xe8, 0xec, 0xd1, 0x7c, 0x65, 0x40, 0x17, 0xde, 0x01,
+	0x56, 0x01, 0xfa, 0x17, 0xc1, 0x3b, 0xce, 0x4f, 0xe6, 0x51, 0x7e, 0x73, 0x8d, 0x9d, 0x6d, 0x39,
+	0xc4, 0x1f, 0xcd, 0x42, 0x6c, 0x2e, 0x86, 0xb8, 0xfe, 0x71, 0xbb, 0x02, 0xbe, 0xc7, 0x7f, 0x10,
+	0x20, 0xc1, 0x92, 0x9d, 0xc9, 0x64, 0xe1, 0x26, 0x7f, 0xab, 0x68, 0x9c, 0xd6, 0x54, 0xbd, 0xa9,
+	0x15, 0xd4, 0x62, 0x59, 0x63, 0x7d, 0x72, 0x1c, 0x22, 0x79, 0xb9, 0xae, 0x8a, 0x02, 0x8a, 0x41,
+	0xb8, 0xa0, 0x1e, 0x8b, 0x21, 0x4a, 0x6a, 0xa8, 0xf5, 0x86, 0x18, 0x46, 0x49, 0x88, 0x51, 0xa6,
+	0x7e, 0x7c, 0x24, 0x46, 0xe8, 0x80, 0x3d, 0xb6, 0x1c, 0x1f, 0xf1, 0x07, 0x14, 0xac, 0x2a, 0xd5,
+	0x63, 0x15, 0x9f, 0x8a, 0x51, 0xca, 0x2a, 0xca, 0x4a, 0xa3, 0x8a, 0x4f, 0xc5, 0xd8, 0xd4, 0xdb,
+	0x4a, 0x1c, 0x5d, 0x87, 0xb4, 0x82, 0x9f, 0x3e, 0xd1, 0xc7, 0xa4, 0x04, 0x25, 0x31, 0xad, 0xfc,
+	0x4d, 0xe6, 0xf8, 0x48, 0x04, 0x4a, 0x62, 0xba, 0xc7, 0xa4, 0xe4, 0xe3, 0x01, 0xc4, 0x94, 0x9e,
+	0x31, 0x1c, 0x92, 0x3e, 0x6f, 0x0a, 0x65, 0x8d, 0xb6, 0xb0, 0xd3, 0x4d, 0x3e, 0x82, 0x8c, 0xcf,
+	0xa8, 0x37, 0xe4, 0x7c, 0x85, 0xc2, 0x10, 0x21, 0xe5, 0xd3, 0xf2, 0x6a, 0x43, 0xe6, 0xff, 0x5b,
+	0xf9, 0x14, 0x0a, 0x30, 0x1c, 0x9c, 0xa6, 0xc8, 0xac, 0xbf, 0x8c, 0x3c, 0xee, 0x80, 0x48, 0x5b,
+	0xd6, 0xa9, 0x4b, 0x49, 0x1a, 0x12, 0x5a, 0x55, 0xe3, 0x4e, 0xe3, 0x2f, 0x53, 0x93, 0x77, 0x01,
+	0x81, 0x6a, 0x99, 0x6e, 0xcf, 0xb9, 0x29, 0xaf, 0xd7, 0x66, 0x84, 0x30, 0xb7, 0xcd, 0xfa, 0x59,
+	0x46, 0x88, 0xe4, 0xbf, 0x71, 0xf6, 0x4e, 0xd7, 0x1a, 0x47, 0x7c, 0xcf, 0xb2, 0xbb, 0xfb, 0x81,
+	0x3f, 0x93, 0xcd, 0x61, 0xc7, 0x36, 0xf6, 0xd9, 0xdf, 0x0e, 0xfb, 0x5d, 0x2b, 0xc0, 0xf9, 0x24,
+	0xca, 0x88, 0x6f, 0xff, 0x2f, 0x00, 0x00, 0xff, 0xff, 0x1f, 0xa0, 0x0a, 0xac, 0x7b, 0x1e, 0x00,
+	0x00,
 }

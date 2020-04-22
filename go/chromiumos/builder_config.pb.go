@@ -823,8 +823,7 @@ type BuilderConfig_Artifacts struct {
 	ArtifactTypes []BuilderConfig_Artifacts_ArtifactTypes `protobuf:"varint,2,rep,packed,name=artifact_types,json=artifactTypes,proto3,enum=chromiumos.BuilderConfig_Artifacts_ArtifactTypes" json:"artifact_types,omitempty"`
 	// Google storage bucket to upload prebuilts to.
 	PrebuiltsGsBucket string `protobuf:"bytes,3,opt,name=prebuilts_gs_bucket,json=prebuiltsGsBucket,proto3" json:"prebuilts_gs_bucket,omitempty"`
-	// Google storage bucket to upload artifacts to.
-	// TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+	// Google storage bucket to upload all artifacts to.
 	ArtifactsGsBucket string `protobuf:"bytes,4,opt,name=artifacts_gs_bucket,json=artifactsGsBucket,proto3" json:"artifacts_gs_bucket,omitempty"`
 	// There may be more than one set of publishing instructions.
 	PublishArtifacts []*BuilderConfig_Artifacts_PublishInfo `protobuf:"bytes,5,rep,name=publish_artifacts,json=publishArtifacts,proto3" json:"publish_artifacts,omitempty"`

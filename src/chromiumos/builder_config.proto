@@ -237,8 +237,7 @@ message BuilderConfig {
     // Google storage bucket to upload prebuilts to.
     string prebuilts_gs_bucket = 3;
 
-    // Google storage bucket to upload artifacts to.
-    // TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+    // Google storage bucket to upload all artifacts to.
     string artifacts_gs_bucket = 4;
 
     // TODO(crbug/1034529): DEPRECATED: see artifacts_info.
