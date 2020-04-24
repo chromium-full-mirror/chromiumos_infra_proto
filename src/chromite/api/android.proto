@@ -22,7 +22,8 @@ message MarkStableRequest {
   // Force set the android build id that will be used.
   string android_version = 5;
   // Android GTS branch to copy artifacts from.
-  string android_gts_build_branch = 6;
+  // Deprecated.
+  string android_gts_build_branch = 6 [deprecated = true];
   // The set of relevant build targets. Used to clean old version and for a
   // emerge-able sanity check for the new version.
   // Recommended.
