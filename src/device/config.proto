@@ -191,6 +191,7 @@ message Config {
     OEM_HP = 4;
     OEM_LENOVO = 5;
     OEM_ASUS = 6;
+    OEM_NEC = 7;
   }
 
   // OEM for device
