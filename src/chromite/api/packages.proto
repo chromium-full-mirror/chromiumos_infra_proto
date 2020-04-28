@@ -87,6 +87,60 @@ message GetTargetVersionsResponse {
   string platform_version = 7;
 }
 
+// The associated method can be run after InstallPackages.
+message GetBuilderMetadataRequest {
+  // The chroot path.
+  // Required if not in the default location.
+  chromiumos.Chroot chroot = 1;
+
+  // The build target to examine.
+  // Required.
+  chromiumos.BuildTarget build_target = 2;
+}
+
+
+message GetBuilderMetadataResponse {
+
+  message ModelMetadata {
+    // Name of model, such as "astronaut", "babymega", etc.
+    string model_name = 1;
+    // EC firmware version, such as "coral_v1.1.7292-04956f5df".
+    string ec_firmware_version = 2;
+    // Firmware key id, such as "CORALG"
+    string firmware_key_id = 3;
+    // Main readonly firmware version, such as "Google_Coral.10068.82.0".
+    string main_readonly_firmware_version = 4;
+    // Main readwrite firmware version, such as "Google_Coral.10068.82.0".
+    string main_readwrite_firmware_version = 5;
+  }
+
+  message BuildTargetMetadata {
+    // Name of build_target, such as auron_paine, coral, etc.
+    string build_target = 1;
+    // Name of android container branch, such as "git_pi-arc".
+    string android_container_branch = 2;
+    // Name of android container target, such as "cheets".
+    string android_container_target = 3;
+    // Name of android container version, such as "6387315".
+    string android_container_version = 4;
+    // Whether or not arc-use is enabled.
+    bool arc_use_set = 5;
+    // EC firmware version.
+    string ec_firmware_version = 6;
+    // Fingerprints.
+    repeated string fingerprints = 7;
+    // Kernel version, such as  "4.14.176-r1088".
+    string kernel_version = 8;
+    // Main firmware version, such as "Google_Auron_paine.6301.58.98.
+    string main_firmware_version = 9;
+  }
+
+  // Metadata for build targets.
+  repeated BuildTargetMetadata build_target_metadata = 1;
+  // Metadata for models.
+  repeated ModelMetadata model_metadata = 2;
+}
+
 // This can easily be generalized to a HasPrebuilt method if necessary, but
 // currently we have no use case for anything but Chrome, and making this
 // specifically for Chrome simplifies the calling code significantly.
@@ -221,6 +275,11 @@ service PackageService {
   // metadata.json).
   rpc GetTargetVersions(GetTargetVersionsRequest)
     returns (GetTargetVersionsResponse);
+
+  // Return the various metabuilder fields for a release builder.
+  // This can be run after InstallPackages.
+  rpc GetBuilderMetadata(GetBuilderMetadataRequest)
+    returns (GetBuilderMetadataResponse);
 
   // Check if there is an available chrome prebuilt for the most recent
   // version of chrome.
