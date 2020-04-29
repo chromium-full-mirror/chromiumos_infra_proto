@@ -218,7 +218,7 @@ func (Path_Location) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_fa0b57c3d7d4c63b, []int{6, 0}
 }
 
-// Does this artifact require a build?
+// DEPRECTATED: Does this artifact require a build?
 type PrepareForBuildResponse_BuildRelevance int32
 
 const (
@@ -1276,8 +1276,8 @@ func (m *ProtoBytes) GetSerializedProto() []byte {
 	return nil
 }
 
-// TODO(crbug/1019868): Consider migrating
-// chromite.api.toolchain.PrepareForToolchainBuildRequest as well.
+// TODO(crbug/1034529): Remove this after migrating users to
+// chromite.api.artifacts.PrepareForBuildResponse.
 type PrepareForBuildResponse struct {
 	BuildRelevance       PrepareForBuildResponse_BuildRelevance `protobuf:"varint,1,opt,name=build_relevance,json=buildRelevance,proto3,enum=chromiumos.PrepareForBuildResponse_BuildRelevance" json:"build_relevance,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                               `json:"-"`

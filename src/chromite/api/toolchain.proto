@@ -46,7 +46,9 @@ message PrepareForToolchainBuildRequest {
 // TODO(crbug/1019868): Migrate to using chromiumos.PrepareForBuildResponse.
 message PrepareForToolchainBuildResponse {
   // Does this artifact require a build?
-  enum BuildRelevance {
+  // TODO(crbug/1034529): Once the users of this enum have moved to using
+  // artifacts.PrepareForBuildResponse.${NAME}, remove this enum.
+  enum OldBuildRelevance {
     UNSPECIFIED = 0;
     // Build is necessary to generate artifacts.
     NEEDED = 1;
@@ -56,7 +58,8 @@ message PrepareForToolchainBuildResponse {
     // Artifacts are already generated.  The build is pointless.
     POINTLESS = 3;
   }
-  BuildRelevance build_relevance = 1;
+  // See artifacts.proto in this directory.
+  PrepareForBuildResponse.BuildRelevance build_relevance = 1;
 }
 
 message BundleToolchainRequest {

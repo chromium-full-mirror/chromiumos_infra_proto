@@ -196,10 +196,10 @@ message ProtoBytes {
   bytes serialized_proto = 1;
 }
 
-// TODO(crbug/1019868): Consider migrating
-// chromite.api.toolchain.PrepareForToolchainBuildRequest as well.
+// TODO(crbug/1034529): Remove this after migrating users to
+// chromite.api.artifacts.PrepareForBuildResponse.
 message PrepareForBuildResponse {
-  // Does this artifact require a build?
+  // DEPRECTATED: Does this artifact require a build?
   enum BuildRelevance {
     UNSPECIFIED = 0;
     // Build is necessary to generate artifacts.
