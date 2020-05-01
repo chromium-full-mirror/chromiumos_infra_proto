@@ -258,6 +258,9 @@ message BuilderConfig {
       //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
       //   %(artifact_name)s: The name of the artifact being published.
       string publish_gs_location = 3;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // There may be more than one set of publishing instructions.
     repeated PublishInfo publish_artifacts = 5;

@@ -325,8 +325,10 @@ message ArtifactsByService {
       // images.
       repeated string gs_locations = 2;
 
-      // Profile information needed by the artifact handler.
-      ArtifactProfileInfo profile_info = 3;
+      reserved 3;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -402,6 +404,9 @@ message ArtifactsByService {
       // specifying those here.  Examples: include AFDO artifacts and Release
       // images.
       repeated string gs_locations = 2;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -445,6 +450,9 @@ message ArtifactsByService {
       // specifying those here.  Examples: include AFDO artifacts and Release
       // images.
       repeated string gs_locations = 2;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -488,6 +496,9 @@ message ArtifactsByService {
       // specifying those here.  Examples: include AFDO artifacts and Release
       // images.
       repeated string gs_locations = 2;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -531,6 +542,9 @@ message ArtifactsByService {
       // specifying those here.  Examples: include AFDO artifacts and Release
       // images.
       repeated string gs_locations = 2;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -574,6 +588,9 @@ message ArtifactsByService {
       // specifying those here.  Examples: include AFDO artifacts and Release
       // images.
       repeated string gs_locations = 2;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
