@@ -215,6 +215,14 @@ message Request {
       // them via skylab_swarming_worker.
       // TODO(crbug/1033287): remove when migration is complete.
       bool use_test_runner = 1;
+
+      // If true, test tasks will perform synchronous offload of the contents
+      // of $SYNCHRONOUS_OFFLOAD_DIR to a GS bucket. This requires
+      // use_test_runner to also be set to true: if use_test_runner is set to
+      // false and enable_synchronous_offload is set to true, the build will
+      // fail validation.
+      // If false, such offload will be skipped.
+      bool enable_synchronous_offload = 2;
     }
 
     Migrations migrations = 12;
