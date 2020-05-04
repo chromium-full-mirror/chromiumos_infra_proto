@@ -14,6 +14,8 @@ message BotType {
   string bot_size = 1;
   // The number of cores per bot. Will be used to limit quota usage.
   int32 cores_per_bot = 2;
+  // Estimated hourly cost.
+  float hourly_cost = 3;
 }
 
 // Defines Swarming dimensions associated with a bot group.
@@ -135,6 +137,9 @@ message ScalingAction {
     int32 bots_requested = 3;
   }
   repeated RegionalAction regional_actions = 5;
+  // Estimated savings based on current run.
+  // Based on current number of bots compared against the max.
+  float estimated_savings = 6;
 }
 
 // All the actions that will be executed by RoboCrop.
