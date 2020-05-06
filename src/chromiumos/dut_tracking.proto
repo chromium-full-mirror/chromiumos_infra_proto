@@ -12,7 +12,7 @@ import "chromiumos/bot_scaling.proto";
 
 // Defines the modes of monitoring to execute on swarming.
 enum MonitoringMode {
-  UNKNOWN = 0;
+  DEFAULT_TRACKING = 0;
   // Track Task and Bot count.
   TASK_BOT_COUNT = 1;
   // Maximum pending time of the tasks.
