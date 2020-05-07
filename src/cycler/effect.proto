@@ -36,5 +36,17 @@ message DuplicateEffectConfiguration {
 }
 
 // Change the storage class of an object in place.
-message ChillEffectConfiguration {}
+message ChillEffectConfiguration {
 
+  // The existing storage classes.
+  enum EnumStorageClass {
+    UNKNOWN = 0;
+    STANDARD = 1;
+    NEARLINE = 2;
+    COLDLINE = 3;
+    ARCHIVE = 4;
+  }
+
+  // The desired destination storage class.
+  EnumStorageClass to_storage_class = 1;
+}
