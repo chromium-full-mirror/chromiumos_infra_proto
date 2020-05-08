@@ -13,7 +13,7 @@ import "lab/servo.proto";
 
 // This proto defines setup labels in lab config of a DUT.
 
-// Peripherals of device. Next Tag: 13
+// Peripherals of device. Next Tag: 14
 message Peripherals {
   Servo servo = 1;
   Chameleon chameleon = 2;
@@ -34,6 +34,8 @@ message Peripherals {
   repeated Cable cable = 11;
   // Incompatible upgraded type from bool camerabox=9.
   Camerabox camerabox_info = 12;
+  // Indicate if device is connected to a smart usb hub, detected in AdminRepair task.
+  bool smart_usbhub = 13;
 }
 
 // Remote power management info.
