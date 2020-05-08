@@ -142,8 +142,19 @@ message ScalingAction {
   float estimated_savings = 6;
 }
 
+// ResourceUsage based on the current resources assigned.
+message ResourceUsage {
+  // Number of VMs allocated across all bot groups.
+  int32 vms = 1;
+  // Number of CPUs allocated across all bot groups.
+  float cpus = 2;
+  // Amount of memory in GB allocated across all bot groups.
+  float memory_gb = 3;
+}
+
 // All the actions that will be executed by RoboCrop.
 message RoboCropAction {
   // List of an action per bot group scaled by RoboCrop.
   repeated ScalingAction scaling_actions = 1;
+  ResourceUsage resource_usage = 2;
 }
