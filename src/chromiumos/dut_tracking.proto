@@ -33,6 +33,8 @@ message TrackingPolicy {
   repeated MonitoringMode modes = 3;
   // Number of hours to lookback for Swarming stats.
   sint32 lookback_hours = 4;
+  // Dimensions that are only needed to query tasks.
+  repeated chromiumos.SwarmingDimension task_dimensions = 5;
 }
 
 // Defines a root message.
