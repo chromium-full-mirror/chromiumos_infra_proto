@@ -421,6 +421,10 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
+      // TODO(crbug/1034529): once an IMAGE_ZIP value is added here, please
+      // update the build planner (in chromiumos/infra/go), where it says
+      // "use the new output artifacts IMAGE_ZIP"
+
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
