@@ -5,6 +5,7 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
 
@@ -13,11 +14,16 @@ import "chromiumos/common.proto";
 // Message contains data about the portage dependency graph and the packages'
 // dependency source paths.
 message DepGraph {
-  // The board whose dependency graph is being created for.
+  // TODO(crbug/1081828): drop when no longer used.  Use sysroot instead.
+  // The board whose dependency graph this is.
   chromiumos.BuildTarget build_target = 1;
   // List of packages in the dependency graph and their infos, which include
   // dependency packages and the source paths.
   repeated PackageDepInfo package_deps = 2;
+
+  // The sysroot whose dependency graph is being created.  If no sysroot is
+  // being used, may be unspecified.
+  Sysroot sysroot = 3;
 }
 
 // Message describing a package and its dependencies.
@@ -37,13 +43,17 @@ message SourcePath {
   string path = 1;
 }
 
-
 // Message for creating dependency graph json map.
 // Example Json:
 // {"build_target":{"name":"board"},"output_file":"/tmp/depgraph.json"}
 message GetBuildDependencyGraphRequest {
-  // Required.
-  // The board whose dependency graph is being created.
+  // The sysroot whose dependency graph is being created.  If no sysroot is
+  // being used, may be unspecified.
+  Sysroot sysroot = 4;
+  // TODO(crbug/1081828): drop when no longer used.
+  // DEPRECATED: Use sysroot instead.
+  // The board whose dependency graph is being created.  If both sysroot and
+  // build_target are given, sysroot is used.
   chromiumos.BuildTarget build_target = 1;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 2;
