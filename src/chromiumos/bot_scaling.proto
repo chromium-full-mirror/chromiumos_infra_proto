@@ -16,6 +16,8 @@ message BotType {
   int32 cores_per_bot = 2;
   // Estimated hourly cost.
   float hourly_cost = 3;
+  // Amount of memory in GB allocated to bot.
+  float memory_gb = 4;
 }
 
 // Defines Swarming dimensions associated with a bot group.
