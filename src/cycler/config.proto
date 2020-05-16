@@ -89,6 +89,8 @@ message PolicyEffectConfiguration {
     ChillEffectConfiguration chill = 3;
     // Duplicate the object to another location (same bucket or another).
     DuplicateEffectConfiguration duplicate = 4;
+    // Delete the object.
+    DeleteEffectConfiguration delete = 7;
   }
 
   // Common configuration values.

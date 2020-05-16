@@ -50,3 +50,6 @@ message ChillEffectConfiguration {
   // The desired destination storage class.
   EnumStorageClass to_storage_class = 1;
 }
+
+// Delete the objects that match the configuration.
+message DeleteEffectConfiguration { }
