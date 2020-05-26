@@ -5,6 +5,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/binhost.proto";
 import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
 
@@ -161,6 +162,32 @@ message HasChromePrebuiltResponse {
   bool has_prebuilt = 1;
 }
 
+message NeedsChromeSourceRequest {
+  // The request that will be passed to InstallPackages.
+  InstallPackagesRequest install_request = 1;
+}
+
+message NeedsChromeSourceResponse {
+  // Whethere Chrome source is needed.
+  bool needs_chrome_source = 1;
+  enum Reason {
+    UNSPECIFIED = 0;
+    // There is no Chrome prebuilt available.
+    NO_PREBUILT = 1;
+    // The builder is compiling from source.
+    COMPILE_SOURCE = 2;
+    // There is a local uprev of Chrome.
+    LOCAL_UPREV = 3;
+    // A follower package lacks prebuilts.
+    FOLLOWER_LACKS_PREBUILT = 4;
+  };
+  // Reasons for needing Chrome source.
+  repeated Reason reasons = 2;
+
+  // Packages causing the need for source.
+  repeated chromiumos.PackageInfo packages = 3;
+}
+
 // The generic version of HasChromePrebuilt.
 message HasPrebuiltRequest {
   // The chroot where the operations will be executed.
@@ -258,6 +285,11 @@ service PackageService {
 
   // Check if the build target has chrome in its depgraph.
   rpc BuildsChrome(BuildsChromeRequest) returns (BuildsChromeResponse);
+
+  // Check whether the Chrome source tree is needed.  Does not compile nor
+  // install any packages.
+  rpc NeedsChromeSource(NeedsChromeSourceRequest)
+    returns (NeedsChromeSourceResponse);
 
   // Find the best (highest) available version of the requested package.
   // This must be run after the chroot is set up (for chroot package lookup) or
