@@ -22,6 +22,3 @@ xixuan@chromium.org
 
 # Infra team
 shapiroc@chromium.org
-
-# Allow anyone to update the generated go bindings.
-per-file go/*=*
