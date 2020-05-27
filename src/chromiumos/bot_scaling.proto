@@ -154,9 +154,18 @@ message ResourceUsage {
   float memory_gb = 3;
 }
 
+// ResourceUsage for each region that bots are deployed.
+message RegionalResourceUsage {
+  // Region of the bot sub-group.
+  string region = 1;
+  // ResourceUsage message type
+  ResourceUsage resource_usage = 2;
+}
+
 // All the actions that will be executed by RoboCrop.
 message RoboCropAction {
   // List of an action per bot group scaled by RoboCrop.
   repeated ScalingAction scaling_actions = 1;
   ResourceUsage resource_usage = 2;
+  repeated RegionalResourceUsage regional_resource_usage = 3;
 }
