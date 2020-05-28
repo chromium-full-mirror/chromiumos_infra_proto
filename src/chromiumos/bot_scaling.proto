@@ -154,18 +154,23 @@ message ResourceUsage {
   float memory_gb = 3;
 }
 
-// ResourceUsage for each region that bots are deployed.
-message RegionalResourceUsage {
+// Resource utilization based on regional assignment.
+message ResourceUtilization {
   // Region of the bot sub-group.
   string region = 1;
-  // ResourceUsage message type
-  ResourceUsage resource_usage = 2;
+  // Number of VMs allocated across all bot groups.
+  int32 vms = 2;
+  // Number of CPUs allocated across all bot groups.
+  float cpus = 3;
+  // Amount of memory in GB allocated across all bot groups.
+  float memory_gb = 4;
 }
 
 // All the actions that will be executed by RoboCrop.
 message RoboCropAction {
   // List of an action per bot group scaled by RoboCrop.
   repeated ScalingAction scaling_actions = 1;
+  // To be phased out for ResourceUtilization message type.
   ResourceUsage resource_usage = 2;
-  repeated RegionalResourceUsage regional_resource_usage = 3;
+  repeated ResourceUtilization resource_utilization = 3;
 }
