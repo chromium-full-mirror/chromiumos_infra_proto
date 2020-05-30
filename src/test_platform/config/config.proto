@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package test_platform.config;
 
+import "test_platform/migration/test_runner/config.proto";
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/config";
 
 // Config defined configuration parameters of cros_test_platform.
@@ -75,4 +77,6 @@ message Config {
     Versioning versioning = 7;
 
     TestRunner test_runner = 8;
+
+    test_platform.migration.test_runner.Config test_runner_migration = 9;
 }
