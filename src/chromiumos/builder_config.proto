@@ -365,6 +365,14 @@ message BuilderConfig {
     message BuildImages {
       // Image types to build.
       repeated ImageType image_types = 1;
+
+      // Whether to disable rootfs verification.
+      bool disable_rootfs_verification = 2;
+
+      // Custom disk layout to use. Note that large images can damage the lab,
+      // so don't use such images for hw testing.
+      // e.g. 4gb-rootfs
+      string disk_layout = 3;
     }
     BuildImages build_images = 15;
   }
