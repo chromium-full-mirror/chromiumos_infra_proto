@@ -136,10 +136,10 @@ type Unit struct {
 	//   where {plan} is the parent Plan of this Unit.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Selects tests to include in this test plan unit.
-	TestCondition *TestCondition `protobuf:"bytes,2,opt,name=test_condition,json=testCondition,proto3" json:"test_condition,omitempty"`
+	TestConstraint *TestConstraint `protobuf:"bytes,2,opt,name=test_constraint,json=testConstraint,proto3" json:"test_constraint,omitempty"`
 	// Selects the set of Devices Under Test that satisfy the coverage
 	// requirements of this test plan unit.
-	DutCoverageCondition *DUTCoverageCondition `protobuf:"bytes,3,opt,name=dut_coverage_condition,json=dutCoverageCondition,proto3" json:"dut_coverage_condition,omitempty"`
+	DutCoverageConstraint *DUTCoverageConstraint `protobuf:"bytes,3,opt,name=dut_coverage_constraint,json=dutCoverageConstraint,proto3" json:"dut_coverage_constraint,omitempty"`
 	// Chrome OS platform software covered by this test plan.
 	//
 	// Test Platform requests may optionally include a reference to platform
@@ -192,16 +192,16 @@ func (m *Unit) GetName() string {
 	return ""
 }
 
-func (m *Unit) GetTestCondition() *TestCondition {
+func (m *Unit) GetTestConstraint() *TestConstraint {
 	if m != nil {
-		return m.TestCondition
+		return m.TestConstraint
 	}
 	return nil
 }
 
-func (m *Unit) GetDutCoverageCondition() *DUTCoverageCondition {
+func (m *Unit) GetDutCoverageConstraint() *DUTCoverageConstraint {
 	if m != nil {
-		return m.DutCoverageCondition
+		return m.DutCoverageConstraint
 	}
 	return nil
 }
@@ -214,82 +214,78 @@ func (m *Unit) GetCodeCoverage() *CodeCoverage {
 }
 
 // Selects the test.metadata.Test to include in a test plan unit.
-type TestCondition struct {
-	// A Common Expression Language (CEL) expression to specify test conditions.
+type TestConstraint struct {
+	// A Common Expression Language (CEL) expression to specify set of tests that
+	// are included in a test plan unit.
+	//
+	// Test Platform MUST effectively evaluate `expression` with the following
+	// declarations in scope for every test and include the test for which
+	// `expression` evaluates to true in the test plan unit.
+	//
+	// - Constant: `test` of type TestConstraint.Test defined below,
+	//   populated with metadata for a particular test.
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	// Test Platform MUST interpret `expression` in the scope of
-	// `test.plan.TestCondition.Scope` defined below.
+	//
+	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
 	//
 	// ## Examples
 	//
 	// Typical instructive examples of expressions are:
 	//
 	// - Tauto dummy tests
-	//     "suite:dummy" in scope.attributes
+	//     "suite:dummy" in test.attributes
 	// - Tast's crosbolt tests
-	//     !("disabled" in scope.attributes)
-	//     && "group:crosbolt" in scope.attributes
-	//     && "crosbolt_perbuild" in scope.attributes
+	//     !("disabled" in test.attributes)
+	//     && "group:crosbolt" in test.attributes
+	//     && "crosbolt_perbuild" in test.attributes
 	// - network Tauto tests, selected by name
-	//     scope.test.startsWith("network_")
+	//     test.name.startsWith("network_")
 	//
 	// ## CEL support
 	//
 	// All standard CEL syntax, macros and functions MUST be supported.
-	//
-	// ### Evaluation context
-	//
-	// In general, a CEL expression must be evaluated in some context that
-	// provides the basic bindings for name resolution.
-	//
-	// In this case, `expression` MUST be evaluated in a context that contains
-	//
-	// - A variable 'scope' of type TestCondition.Scope. This variable contains
-	//   the information about a particular Test being tested for
-	//   inclusion in the test plan unit via `expression`.
-	// - Protobuf definitions in this git project (i.e., rooted at infra/proto/).
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *TestCondition) Reset()         { *m = TestCondition{} }
-func (m *TestCondition) String() string { return proto.CompactTextString(m) }
-func (*TestCondition) ProtoMessage()    {}
-func (*TestCondition) Descriptor() ([]byte, []int) {
+func (m *TestConstraint) Reset()         { *m = TestConstraint{} }
+func (m *TestConstraint) String() string { return proto.CompactTextString(m) }
+func (*TestConstraint) ProtoMessage()    {}
+func (*TestConstraint) Descriptor() ([]byte, []int) {
 	return fileDescriptor_1a74b4d4119f628f, []int{3}
 }
 
-func (m *TestCondition) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TestCondition.Unmarshal(m, b)
+func (m *TestConstraint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TestConstraint.Unmarshal(m, b)
 }
-func (m *TestCondition) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TestCondition.Marshal(b, m, deterministic)
+func (m *TestConstraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TestConstraint.Marshal(b, m, deterministic)
 }
-func (m *TestCondition) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TestCondition.Merge(m, src)
+func (m *TestConstraint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TestConstraint.Merge(m, src)
 }
-func (m *TestCondition) XXX_Size() int {
-	return xxx_messageInfo_TestCondition.Size(m)
+func (m *TestConstraint) XXX_Size() int {
+	return xxx_messageInfo_TestConstraint.Size(m)
 }
-func (m *TestCondition) XXX_DiscardUnknown() {
-	xxx_messageInfo_TestCondition.DiscardUnknown(m)
+func (m *TestConstraint) XXX_DiscardUnknown() {
+	xxx_messageInfo_TestConstraint.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_TestCondition proto.InternalMessageInfo
+var xxx_messageInfo_TestConstraint proto.InternalMessageInfo
 
-func (m *TestCondition) GetExpression() string {
+func (m *TestConstraint) GetExpression() string {
 	if m != nil {
 		return m.Expression
 	}
 	return ""
 }
 
-type TestCondition_Scope struct {
+type TestConstraint_Test struct {
 	// Name of the test as specified in test.metadata.Test.name
-	Test string `protobuf:"bytes,1,opt,name=test,proto3" json:"test,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// The test attribute name as specified in the test.metadata.Attribute.name
 	//
 	// attributes are populated from test.metadata.Test.attributes.
@@ -299,39 +295,39 @@ type TestCondition_Scope struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *TestCondition_Scope) Reset()         { *m = TestCondition_Scope{} }
-func (m *TestCondition_Scope) String() string { return proto.CompactTextString(m) }
-func (*TestCondition_Scope) ProtoMessage()    {}
-func (*TestCondition_Scope) Descriptor() ([]byte, []int) {
+func (m *TestConstraint_Test) Reset()         { *m = TestConstraint_Test{} }
+func (m *TestConstraint_Test) String() string { return proto.CompactTextString(m) }
+func (*TestConstraint_Test) ProtoMessage()    {}
+func (*TestConstraint_Test) Descriptor() ([]byte, []int) {
 	return fileDescriptor_1a74b4d4119f628f, []int{3, 0}
 }
 
-func (m *TestCondition_Scope) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TestCondition_Scope.Unmarshal(m, b)
+func (m *TestConstraint_Test) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TestConstraint_Test.Unmarshal(m, b)
 }
-func (m *TestCondition_Scope) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TestCondition_Scope.Marshal(b, m, deterministic)
+func (m *TestConstraint_Test) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TestConstraint_Test.Marshal(b, m, deterministic)
 }
-func (m *TestCondition_Scope) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TestCondition_Scope.Merge(m, src)
+func (m *TestConstraint_Test) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TestConstraint_Test.Merge(m, src)
 }
-func (m *TestCondition_Scope) XXX_Size() int {
-	return xxx_messageInfo_TestCondition_Scope.Size(m)
+func (m *TestConstraint_Test) XXX_Size() int {
+	return xxx_messageInfo_TestConstraint_Test.Size(m)
 }
-func (m *TestCondition_Scope) XXX_DiscardUnknown() {
-	xxx_messageInfo_TestCondition_Scope.DiscardUnknown(m)
+func (m *TestConstraint_Test) XXX_DiscardUnknown() {
+	xxx_messageInfo_TestConstraint_Test.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_TestCondition_Scope proto.InternalMessageInfo
+var xxx_messageInfo_TestConstraint_Test proto.InternalMessageInfo
 
-func (m *TestCondition_Scope) GetTest() string {
+func (m *TestConstraint_Test) GetName() string {
 	if m != nil {
-		return m.Test
+		return m.Name
 	}
 	return ""
 }
 
-func (m *TestCondition_Scope) GetAttributes() []string {
+func (m *TestConstraint_Test) GetAttributes() []string {
 	if m != nil {
 		return m.Attributes
 	}
@@ -339,20 +335,26 @@ func (m *TestCondition_Scope) GetAttributes() []string {
 }
 
 // Selects sets of Devices Under Test to run the tests on in a test plan unit.
-type DUTCoverageCondition struct {
+type DUTCoverageConstraint struct {
 	// A Common Expression Language (CEL) expression to specify set of DUTs that
-	// provide the necessary coverage.
+	// provide the necessary coverage. `expression` MUST evaluate to a boolean
+	// value in the evaluation context described below.
 	//
-	// Test Platform MUST interpret `expression` in the scope of the
-	// protobuf message DUTCoverageCondition.Scope defined below. In summary, the
-	// expression allows selection of a set of Devices Under Test that provide the
-	// necessary coverage - Test Platform will determine a set of devices that
-	// satisfies `expression` and execute the tests in the plan on all selected
-	// devices.
-	// - Platform may freely choose the exact set of devices used if `expression`
-	//   is satisfiable by more than one set.
-	// - Different tests in the plan may be executed on different sets of devices,
-	//   as long as they all satisfy `expression` individually.
+	// Test Platform MUST support scheduling test requests on a set of Devices
+	// Under Test that satisfy some constraints on their Chrome OS configuration.
+	//
+	// Test Platform MUST effectively evaluate `expression` with the following
+	// declarations in scope for each possible subset of Devices Under Test and
+	// ensure that the test is scheduled on a set of Devices Under Test for which
+	// `expression` evaluates to true.
+	//
+	// - Constant: `duts` of type repeated DUTConfigConstraint.DUT defined below,
+	//   each entry in `duts` set to the Chrome OS configuration payload of a
+	//   particular Device Under Test.
+	// - Types: Protobuf messages from `chromiumos.config.api.*`
+	//   - Additionally available with the short-hand `api.*`
+	// - Types: Protobuf messages from `test.fleet.v1.*`
+	//   - Additionally available with the short-hand `fleet.*`
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
 	// This API only supports a sub-set of the CEL features as described here.
@@ -372,7 +374,7 @@ type DUTCoverageCondition struct {
 	//        duts.all(dut, dut.id.model_id.value = 'nautilus') && size(duts) == 1
 	//    - Run each test on one DUT with a stylus.
 	//        (duts.all(dut, dut.hardware_features.stylus
-	//                       == dut.hardware_features.PRESENT))
+	//                       == api.HardwareFeatures.Present.PRESENT))
 	//         && size(duts) == 1)
 	//  - Fanout (not yet supported): In addition to constraints, the
 	//    plan may want to ensure coverage across some device features.
@@ -381,9 +383,9 @@ type DUTCoverageCondition struct {
 	//    - Run each test on one x86 and ARM DUT with a specific camera.
 	//        (duts.all(dut, dut.hardware_toplogy.camera.id != "gomoe")
 	//         && duts.exist(dut,
-	//                       dut.cpu = dut.Config.Architecture.X86)
+	//                       dut.cpu = api.Component.Soc.Architecture.X86)
 	//         && duts.exist(dut,
-	//                       dut.cpu = dut.Config.Architecture.ARM))
+	//                       dut.cpu = api.Component.Soc.Architecture.ARM))
 	//      Note that this expression does not have a clause for size(duts). Thus
 	//      Test Platform may satisfy this expression by running the test on more
 	//      than two DUTs. This behaviour can be unexpected, especially if the
@@ -400,26 +402,18 @@ type DUTCoverageCondition struct {
 	//
 	// ## CEL support
 	//
+	// The full CEL spec can be found at https://github.com/google/cel-spec.
+	//
 	// Current support for `expression` evaluation is very restricted due to
-	// limitations in the scheduling platform used by Test Platform. Specifying
-	// the conditions in CEL will allow gradual lifting of support restrictions.
+	// limitations in the scheduling infrastructure used by Test Platform.
 	//
 	// As this API matures, features will be added to the scheduling
 	// infrastructure of Test Platform and restrictions here will be lifted based
-	// on requirements collected from test plan authors. See milestones in
-	// go/cros-f20-plan for expected feature iterations.
+	// on requirements collected from test authors. See milestones in
+	// go/cros-f20-plan for expected feature iterations. Test Lab Environments
+	// SHOULD validate the expression and reject use of unsupported features.
 	//
-	// ### Evaluation context
-	//
-	// In general, a CEL expression must be evaluated in some context that
-	// provides the basic bindings for name resolution.
-	//
-	// In this case, `expression` MUST be evaluated in a context that contains
-	//
-	// - A variable 'scope' of type DUTCoverageCondition.Scope. This variable
-	//   contains the information about the set of Devices Under Test being
-	//   tested for acceptance via `expression`.
-	// - Protobuf definitions in this git project (i.e., rooted at infra/proto/)
+	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
 	//
 	// ### Syntax
 	//
@@ -449,7 +443,7 @@ type DUTCoverageCondition struct {
 	// Supported macros: has(), e.all()
 	// Unsupported macros: e.exists(), e.exists_one(), e.map(), e.filter()
 	//
-	// ### Standard Functions
+	// ### Standard functions
 	//
 	// See full list of standard definitions at
 	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#standard-definitions
@@ -458,9 +452,8 @@ type DUTCoverageCondition struct {
 	//
 	// - Supported operators: !_, -_, _!=_, _&&_, _=_, _[_]
 	//   - All other operators are not supported.
-	// - All other standard functions are not supported. In particular take note:
-	//   - size() is not supported, *except in the mandatory top-level size(duts)
-	//     expression*.
+	// - All other standard functions are not supported. In particular:
+	//   - size() is not supported.
 	//   - string functions like endsWith() and contains() are not supported.
 	//   - type conversions like int() and string() are not supported.
 	//   - reflection with type(), null_type() and dyn() is not supported.
@@ -470,134 +463,86 @@ type DUTCoverageCondition struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DUTCoverageCondition) Reset()         { *m = DUTCoverageCondition{} }
-func (m *DUTCoverageCondition) String() string { return proto.CompactTextString(m) }
-func (*DUTCoverageCondition) ProtoMessage()    {}
-func (*DUTCoverageCondition) Descriptor() ([]byte, []int) {
+func (m *DUTCoverageConstraint) Reset()         { *m = DUTCoverageConstraint{} }
+func (m *DUTCoverageConstraint) String() string { return proto.CompactTextString(m) }
+func (*DUTCoverageConstraint) ProtoMessage()    {}
+func (*DUTCoverageConstraint) Descriptor() ([]byte, []int) {
 	return fileDescriptor_1a74b4d4119f628f, []int{4}
 }
 
-func (m *DUTCoverageCondition) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DUTCoverageCondition.Unmarshal(m, b)
+func (m *DUTCoverageConstraint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DUTCoverageConstraint.Unmarshal(m, b)
 }
-func (m *DUTCoverageCondition) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DUTCoverageCondition.Marshal(b, m, deterministic)
+func (m *DUTCoverageConstraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DUTCoverageConstraint.Marshal(b, m, deterministic)
 }
-func (m *DUTCoverageCondition) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DUTCoverageCondition.Merge(m, src)
+func (m *DUTCoverageConstraint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DUTCoverageConstraint.Merge(m, src)
 }
-func (m *DUTCoverageCondition) XXX_Size() int {
-	return xxx_messageInfo_DUTCoverageCondition.Size(m)
+func (m *DUTCoverageConstraint) XXX_Size() int {
+	return xxx_messageInfo_DUTCoverageConstraint.Size(m)
 }
-func (m *DUTCoverageCondition) XXX_DiscardUnknown() {
-	xxx_messageInfo_DUTCoverageCondition.DiscardUnknown(m)
+func (m *DUTCoverageConstraint) XXX_DiscardUnknown() {
+	xxx_messageInfo_DUTCoverageConstraint.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DUTCoverageCondition proto.InternalMessageInfo
+var xxx_messageInfo_DUTCoverageConstraint proto.InternalMessageInfo
 
-func (m *DUTCoverageCondition) GetExpression() string {
+func (m *DUTCoverageConstraint) GetExpression() string {
 	if m != nil {
 		return m.Expression
 	}
 	return ""
 }
 
-// `expression` above is interpreted in the scope of the following message.
-// The scope contains the features for a set of Devices Under Test that will
-// be used to satisfy the plan.
-type DUTCoverageCondition_Scope struct {
-	// Set of Devices Under Test to be used to satisfy the test plan unit.
-	Duts                 []*DUTCoverageCondition_Scope_DUT `protobuf:"bytes,1,rep,name=duts,proto3" json:"duts,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                          `json:"-"`
-	XXX_unrecognized     []byte                            `json:"-"`
-	XXX_sizecache        int32                             `json:"-"`
-}
-
-func (m *DUTCoverageCondition_Scope) Reset()         { *m = DUTCoverageCondition_Scope{} }
-func (m *DUTCoverageCondition_Scope) String() string { return proto.CompactTextString(m) }
-func (*DUTCoverageCondition_Scope) ProtoMessage()    {}
-func (*DUTCoverageCondition_Scope) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a74b4d4119f628f, []int{4, 0}
-}
-
-func (m *DUTCoverageCondition_Scope) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DUTCoverageCondition_Scope.Unmarshal(m, b)
-}
-func (m *DUTCoverageCondition_Scope) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DUTCoverageCondition_Scope.Marshal(b, m, deterministic)
-}
-func (m *DUTCoverageCondition_Scope) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DUTCoverageCondition_Scope.Merge(m, src)
-}
-func (m *DUTCoverageCondition_Scope) XXX_Size() int {
-	return xxx_messageInfo_DUTCoverageCondition_Scope.Size(m)
-}
-func (m *DUTCoverageCondition_Scope) XXX_DiscardUnknown() {
-	xxx_messageInfo_DUTCoverageCondition_Scope.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DUTCoverageCondition_Scope proto.InternalMessageInfo
-
-func (m *DUTCoverageCondition_Scope) GetDuts() []*DUTCoverageCondition_Scope_DUT {
-	if m != nil {
-		return m.Duts
-	}
-	return nil
-}
-
-// Device Under Test features relevant for test plan conditions.
-type DUTCoverageCondition_Scope_DUT struct {
+// The evaluation context for `expression` MUST include the Chrome OS
+// configuration payload for a set of Devices Under Test as a typed
+// constant of the following type.
+//
+//   repeated DUT duts = 1;
+//
+type DUTCoverageConstraint_DUT struct {
 	// Configuration information about the lab deployment of the device.
-	FleetDut *v1.DeviceUnderTest `protobuf:"bytes,1,opt,name=fleet_dut,json=fleetDut,proto3" json:"fleet_dut,omitempty"`
-	// The relationship between topology and features is described at
-	// https://chromium.googlesource.com/chromiumos/config/+/master/proto/api/hardware_topology.md
-	HardwareTopology     *api.HardwareTopology `protobuf:"bytes,2,opt,name=hardware_topology,json=hardwareTopology,proto3" json:"hardware_topology,omitempty"`
-	HardwareFeatures     *api.HardwareFeatures `protobuf:"bytes,3,opt,name=hardware_features,json=hardwareFeatures,proto3" json:"hardware_features,omitempty"`
+	FleetDut             *v1.DeviceUnderTest   `protobuf:"bytes,1,opt,name=fleet_dut,json=fleetDut,proto3" json:"fleet_dut,omitempty"`
+	HardwareFeatures     *api.HardwareFeatures `protobuf:"bytes,2,opt,name=hardware_features,json=hardwareFeatures,proto3" json:"hardware_features,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *DUTCoverageCondition_Scope_DUT) Reset()         { *m = DUTCoverageCondition_Scope_DUT{} }
-func (m *DUTCoverageCondition_Scope_DUT) String() string { return proto.CompactTextString(m) }
-func (*DUTCoverageCondition_Scope_DUT) ProtoMessage()    {}
-func (*DUTCoverageCondition_Scope_DUT) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a74b4d4119f628f, []int{4, 0, 0}
+func (m *DUTCoverageConstraint_DUT) Reset()         { *m = DUTCoverageConstraint_DUT{} }
+func (m *DUTCoverageConstraint_DUT) String() string { return proto.CompactTextString(m) }
+func (*DUTCoverageConstraint_DUT) ProtoMessage()    {}
+func (*DUTCoverageConstraint_DUT) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a74b4d4119f628f, []int{4, 0}
 }
 
-func (m *DUTCoverageCondition_Scope_DUT) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DUTCoverageCondition_Scope_DUT.Unmarshal(m, b)
+func (m *DUTCoverageConstraint_DUT) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DUTCoverageConstraint_DUT.Unmarshal(m, b)
 }
-func (m *DUTCoverageCondition_Scope_DUT) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DUTCoverageCondition_Scope_DUT.Marshal(b, m, deterministic)
+func (m *DUTCoverageConstraint_DUT) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DUTCoverageConstraint_DUT.Marshal(b, m, deterministic)
 }
-func (m *DUTCoverageCondition_Scope_DUT) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DUTCoverageCondition_Scope_DUT.Merge(m, src)
+func (m *DUTCoverageConstraint_DUT) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DUTCoverageConstraint_DUT.Merge(m, src)
 }
-func (m *DUTCoverageCondition_Scope_DUT) XXX_Size() int {
-	return xxx_messageInfo_DUTCoverageCondition_Scope_DUT.Size(m)
+func (m *DUTCoverageConstraint_DUT) XXX_Size() int {
+	return xxx_messageInfo_DUTCoverageConstraint_DUT.Size(m)
 }
-func (m *DUTCoverageCondition_Scope_DUT) XXX_DiscardUnknown() {
-	xxx_messageInfo_DUTCoverageCondition_Scope_DUT.DiscardUnknown(m)
+func (m *DUTCoverageConstraint_DUT) XXX_DiscardUnknown() {
+	xxx_messageInfo_DUTCoverageConstraint_DUT.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DUTCoverageCondition_Scope_DUT proto.InternalMessageInfo
+var xxx_messageInfo_DUTCoverageConstraint_DUT proto.InternalMessageInfo
 
-func (m *DUTCoverageCondition_Scope_DUT) GetFleetDut() *v1.DeviceUnderTest {
+func (m *DUTCoverageConstraint_DUT) GetFleetDut() *v1.DeviceUnderTest {
 	if m != nil {
 		return m.FleetDut
 	}
 	return nil
 }
 
-func (m *DUTCoverageCondition_Scope_DUT) GetHardwareTopology() *api.HardwareTopology {
-	if m != nil {
-		return m.HardwareTopology
-	}
-	return nil
-}
-
-func (m *DUTCoverageCondition_Scope_DUT) GetHardwareFeatures() *api.HardwareFeatures {
+func (m *DUTCoverageConstraint_DUT) GetHardwareFeatures() *api.HardwareFeatures {
 	if m != nil {
 		return m.HardwareFeatures
 	}
@@ -606,41 +551,41 @@ func (m *DUTCoverageCondition_Scope_DUT) GetHardwareFeatures() *api.HardwareFeat
 
 // Specifies platforms software covered by a test plan unit.
 type CodeCoverage struct {
-	// A Common Expression Language (CEL) expression to specify code coverage.
+	// A Common Expression Language (CEL) expression to specify Chrome OS platform
+	// sources covered by a test plan unit.
+	//
+	// Test Platform may optionally support skipping test plan units that are not
+	// applicable for incoming changes to Chrome OS. If this feature is supported,
+	// and if a non-empty blamelist is available, Test Platform MUST effectively
+	// evaluate `expression` with the following declarations in scope for the
+	// blamelist only include the test plan unit if the `expression` evaluates to
+	// true.
+	//
+	// - Constant: `blamelist` of type CodeCoverage.Blamelist defined below,
+	//   populated with blamelist attached to the request, if blamelist is
+	//   non-empty.
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	// Test Platform MUST interpret `expression` in the scope of
-	// `test.plan.CodeCoverageCondition.Scope` defined below.
+	//
+	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
 	//
 	// ## Examples
 	//
 	// Typical instructive examples of expressions are:
 	//
-	// - Need to cover chromite changes
-	//     scope.src_paths.exists(p, p.startsWith("chromite"))
-	// - Need to cover chromite and autotest changes
-	//     scope.src_paths.exists(p, [
+	// - Only include test plan unit if there are changes to chromite
+	//     blamelist.repo_paths.exists(p, p.startsWith("chromite"))
+	// - Only include test plan unit if there are changes to chromite or autotest
+	//     blamelist.repo_paths.exists(p, [
 	//         "src/third_party/autotest/files",
 	//         "chromite"
 	//       ].exists(s, p.startsWith(s)))
-	// - Need to not cover changes to private overlays
-	//     scope.src_paths.all(p, !p.contains("private-overlays"))
+	// - Do not include test plan unit if there are changes to private overlays
+	//     blamelist.repo_paths.all(p, !p.contains("private-overlays"))
 	//
 	// ## CEL support
 	//
 	// All standard CEL syntax, macros and functions MUST be supported.
-	//
-	// ### Evaluation context
-	//
-	// In general, a CEL expression must be evaluated in some context that
-	// provides the basic bindings for name resolution.
-	//
-	// In this case, `expression` MUST be evaluated in a context that contains
-	//
-	// - A variable 'scope' of type CodeCoverage.Scope. This variable contains
-	//   the information about what platform software changes are intended to be
-	//   tested by this test plan unit.
-	// - Protobuf definitions in this git project (i.e., rooted at infra/proto/).
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -679,46 +624,45 @@ func (m *CodeCoverage) GetExpression() string {
 	return ""
 }
 
-type CodeCoverage_Scope struct {
-	// Covered paths (usually directories) in a typical checkout of the Chrome
+type CodeCoverage_Blamelist struct {
+	// Changed paths (usually directories) in a typical checkout of the Chrome
 	// OS source tree.
 	//
-	// Paths are relative to `repo` root. e.g., changes to the network manager
-	// are covered by `src/platform2/shill`.
-	SrcPaths             []string `protobuf:"bytes,1,rep,name=src_paths,json=srcPaths,proto3" json:"src_paths,omitempty"`
+	// Paths are relative to `repo` root. e.g., `src/platform2/shill`.
+	RepoPaths            []string `protobuf:"bytes,1,rep,name=repo_paths,json=repoPaths,proto3" json:"repo_paths,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CodeCoverage_Scope) Reset()         { *m = CodeCoverage_Scope{} }
-func (m *CodeCoverage_Scope) String() string { return proto.CompactTextString(m) }
-func (*CodeCoverage_Scope) ProtoMessage()    {}
-func (*CodeCoverage_Scope) Descriptor() ([]byte, []int) {
+func (m *CodeCoverage_Blamelist) Reset()         { *m = CodeCoverage_Blamelist{} }
+func (m *CodeCoverage_Blamelist) String() string { return proto.CompactTextString(m) }
+func (*CodeCoverage_Blamelist) ProtoMessage()    {}
+func (*CodeCoverage_Blamelist) Descriptor() ([]byte, []int) {
 	return fileDescriptor_1a74b4d4119f628f, []int{5, 0}
 }
 
-func (m *CodeCoverage_Scope) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CodeCoverage_Scope.Unmarshal(m, b)
+func (m *CodeCoverage_Blamelist) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CodeCoverage_Blamelist.Unmarshal(m, b)
 }
-func (m *CodeCoverage_Scope) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CodeCoverage_Scope.Marshal(b, m, deterministic)
+func (m *CodeCoverage_Blamelist) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CodeCoverage_Blamelist.Marshal(b, m, deterministic)
 }
-func (m *CodeCoverage_Scope) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CodeCoverage_Scope.Merge(m, src)
+func (m *CodeCoverage_Blamelist) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CodeCoverage_Blamelist.Merge(m, src)
 }
-func (m *CodeCoverage_Scope) XXX_Size() int {
-	return xxx_messageInfo_CodeCoverage_Scope.Size(m)
+func (m *CodeCoverage_Blamelist) XXX_Size() int {
+	return xxx_messageInfo_CodeCoverage_Blamelist.Size(m)
 }
-func (m *CodeCoverage_Scope) XXX_DiscardUnknown() {
-	xxx_messageInfo_CodeCoverage_Scope.DiscardUnknown(m)
+func (m *CodeCoverage_Blamelist) XXX_DiscardUnknown() {
+	xxx_messageInfo_CodeCoverage_Blamelist.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CodeCoverage_Scope proto.InternalMessageInfo
+var xxx_messageInfo_CodeCoverage_Blamelist proto.InternalMessageInfo
 
-func (m *CodeCoverage_Scope) GetSrcPaths() []string {
+func (m *CodeCoverage_Blamelist) GetRepoPaths() []string {
 	if m != nil {
-		return m.SrcPaths
+		return m.RepoPaths
 	}
 	return nil
 }
@@ -727,51 +671,47 @@ func init() {
 	proto.RegisterType((*Specification)(nil), "test.plan.v1.Specification")
 	proto.RegisterType((*Plan)(nil), "test.plan.v1.Plan")
 	proto.RegisterType((*Unit)(nil), "test.plan.v1.Unit")
-	proto.RegisterType((*TestCondition)(nil), "test.plan.v1.TestCondition")
-	proto.RegisterType((*TestCondition_Scope)(nil), "test.plan.v1.TestCondition.Scope")
-	proto.RegisterType((*DUTCoverageCondition)(nil), "test.plan.v1.DUTCoverageCondition")
-	proto.RegisterType((*DUTCoverageCondition_Scope)(nil), "test.plan.v1.DUTCoverageCondition.Scope")
-	proto.RegisterType((*DUTCoverageCondition_Scope_DUT)(nil), "test.plan.v1.DUTCoverageCondition.Scope.DUT")
+	proto.RegisterType((*TestConstraint)(nil), "test.plan.v1.TestConstraint")
+	proto.RegisterType((*TestConstraint_Test)(nil), "test.plan.v1.TestConstraint.Test")
+	proto.RegisterType((*DUTCoverageConstraint)(nil), "test.plan.v1.DUTCoverageConstraint")
+	proto.RegisterType((*DUTCoverageConstraint_DUT)(nil), "test.plan.v1.DUTCoverageConstraint.DUT")
 	proto.RegisterType((*CodeCoverage)(nil), "test.plan.v1.CodeCoverage")
-	proto.RegisterType((*CodeCoverage_Scope)(nil), "test.plan.v1.CodeCoverage.Scope")
+	proto.RegisterType((*CodeCoverage_Blamelist)(nil), "test.plan.v1.CodeCoverage.Blamelist")
 }
 
 func init() { proto.RegisterFile("test/plan/v1/plan.proto", fileDescriptor_1a74b4d4119f628f) }
 
 var fileDescriptor_1a74b4d4119f628f = []byte{
-	// 534 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x94, 0x4f, 0x6b, 0xdb, 0x4c,
-	0x10, 0xc6, 0x91, 0xed, 0xbc, 0xc4, 0x63, 0xfb, 0xa5, 0x15, 0xa1, 0x35, 0x0e, 0x04, 0x23, 0x02,
-	0xf5, 0xa1, 0x95, 0x88, 0x7b, 0x2a, 0xa6, 0xb4, 0xc4, 0xa6, 0xf4, 0x18, 0x14, 0x19, 0x4a, 0x2f,
-	0x66, 0xb3, 0x1a, 0xcb, 0x0b, 0xb6, 0x56, 0xec, 0x1f, 0xb7, 0xfd, 0x6a, 0xfd, 0x50, 0xbd, 0xf4,
-	0xd4, 0x5b, 0xd9, 0x5d, 0x29, 0x96, 0x1a, 0x83, 0x4f, 0xd2, 0xcc, 0x3c, 0xf3, 0xdb, 0xd1, 0xc3,
-	0xac, 0xe0, 0xa5, 0x42, 0xa9, 0xa2, 0x62, 0x4b, 0xf2, 0x68, 0x7f, 0x63, 0x9f, 0x61, 0x21, 0xb8,
-	0xe2, 0x7e, 0xdf, 0x14, 0x42, 0x9b, 0xd8, 0xdf, 0x8c, 0x9c, 0x6c, 0xbd, 0x45, 0x54, 0x46, 0x97,
-	0x6a, 0xe5, 0x64, 0xa3, 0x37, 0x74, 0x23, 0xf8, 0x8e, 0xe9, 0x1d, 0x97, 0x11, 0xe5, 0xf9, 0x9a,
-	0x65, 0x11, 0x29, 0x58, 0xb4, 0x21, 0x22, 0xfd, 0x46, 0x04, 0xae, 0x14, 0x2f, 0xf8, 0x96, 0x67,
-	0x3f, 0x4a, 0xf9, 0xf5, 0x71, 0x79, 0x53, 0x15, 0xbc, 0x83, 0xc1, 0x7d, 0x81, 0x94, 0xad, 0x19,
-	0x25, 0x8a, 0xf1, 0xdc, 0x9f, 0xc0, 0x99, 0x99, 0x44, 0x0e, 0xbd, 0x71, 0x7b, 0xd2, 0x9b, 0xfa,
-	0x61, 0x7d, 0xb8, 0xf0, 0x6e, 0x4b, 0xf2, 0xd8, 0x09, 0x82, 0x05, 0x74, 0x4c, 0xe8, 0xfb, 0xd0,
-	0xc9, 0xc9, 0x0e, 0x87, 0xde, 0xd8, 0x9b, 0x74, 0x63, 0xfb, 0x6e, 0x28, 0x3a, 0x67, 0x4a, 0x0e,
-	0x5b, 0xc7, 0x28, 0xcb, 0x9c, 0xa9, 0xd8, 0x09, 0x82, 0x3f, 0x1e, 0x74, 0x4c, 0x7c, 0x14, 0x73,
-	0x0b, 0xff, 0x9b, 0xc6, 0x15, 0xe5, 0x79, 0xca, 0xcc, 0x78, 0xc3, 0xd6, 0xd8, 0x9b, 0xf4, 0xa6,
-	0x97, 0x4d, 0x5e, 0x82, 0x52, 0xcd, 0x2b, 0x49, 0x3c, 0x50, 0xf5, 0xd0, 0xff, 0x02, 0x2f, 0x52,
-	0x6d, 0x10, 0x7b, 0x14, 0x24, 0xc3, 0x1a, 0xab, 0x6d, 0x59, 0x41, 0x93, 0xb5, 0x58, 0x26, 0xf3,
-	0x52, 0x7a, 0x40, 0x5e, 0xa4, 0x5a, 0x3d, 0xc9, 0xfa, 0x1f, 0x60, 0x40, 0x79, 0x8a, 0x8f, 0xe8,
-	0x61, 0xc7, 0x02, 0x47, 0x4d, 0xe0, 0x9c, 0xa7, 0x58, 0xf5, 0xc6, 0x7d, 0x5a, 0x8b, 0x82, 0x2d,
-	0x0c, 0x1a, 0xa3, 0xfb, 0x57, 0x00, 0xf8, 0xbd, 0x10, 0x28, 0xa5, 0x99, 0xcf, 0x39, 0x51, 0xcb,
-	0x8c, 0x66, 0x70, 0x76, 0x4f, 0x79, 0x81, 0xc6, 0x2c, 0x73, 0x48, 0x65, 0x96, 0x79, 0x37, 0xcd,
-	0x44, 0x29, 0xc1, 0x1e, 0xb4, 0x42, 0x67, 0x7c, 0x37, 0xae, 0x65, 0x82, 0xdf, 0x2d, 0xb8, 0x38,
-	0xf6, 0x75, 0x27, 0x4f, 0xfd, 0xd9, 0xaa, 0x8e, 0xfd, 0x08, 0x9d, 0x54, 0xab, 0x6a, 0x37, 0x5e,
-	0x9f, 0x76, 0x2e, 0xb4, 0x7d, 0xa6, 0x14, 0xdb, 0xce, 0xd1, 0x2f, 0x0f, 0xda, 0x8b, 0x65, 0xe2,
-	0xcf, 0xa0, 0x6b, 0x57, 0x7c, 0x95, 0x6a, 0xf7, 0x15, 0xbd, 0xe9, 0x95, 0xc3, 0xd9, 0xb4, 0xe5,
-	0xe1, 0x9e, 0x51, 0x5c, 0xe6, 0x29, 0x0a, 0xe3, 0x52, 0x7c, 0x6e, 0x2b, 0x0b, 0xad, 0xfc, 0x04,
-	0x9e, 0x3f, 0xd9, 0xfa, 0x72, 0x33, 0x5e, 0x85, 0x87, 0xb5, 0x0f, 0xdd, 0xda, 0x87, 0xa4, 0x60,
-	0xe1, 0xe7, 0x52, 0x9f, 0x94, 0xf2, 0xf8, 0xd9, 0xe6, 0x9f, 0x4c, 0x83, 0xba, 0x46, 0xa2, 0xb4,
-	0x40, 0x59, 0xee, 0xc8, 0x29, 0xea, 0xa7, 0x52, 0x7e, 0xa0, 0x56, 0x99, 0x20, 0x81, 0x7e, 0x7d,
-	0x03, 0x4e, 0x9a, 0x7d, 0x5d, 0x79, 0x7d, 0x09, 0x5d, 0x29, 0xe8, 0xaa, 0x20, 0x6a, 0xe3, 0x0c,
-	0xef, 0xc6, 0xe7, 0x52, 0xd0, 0x3b, 0x13, 0xdf, 0xbe, 0xff, 0x3a, 0xcb, 0xf8, 0xe3, 0x50, 0x21,
-	0x17, 0x59, 0x54, 0xbb, 0xee, 0x2c, 0x5f, 0x0b, 0x12, 0xd9, 0x0b, 0x1e, 0x65, 0x3c, 0xaa, 0xff,
-	0x77, 0x66, 0xe6, 0xf9, 0xf0, 0x9f, 0xad, 0xbd, 0xfd, 0x1b, 0x00, 0x00, 0xff, 0xff, 0x44, 0xcd,
-	0x31, 0x59, 0x93, 0x04, 0x00, 0x00,
+	// 490 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x93, 0x51, 0x8b, 0xd3, 0x40,
+	0x10, 0xc7, 0xc9, 0x35, 0x8a, 0x99, 0xf6, 0x4e, 0x5d, 0x38, 0x2e, 0x14, 0x2d, 0x25, 0x0a, 0x16,
+	0x1f, 0x12, 0xae, 0x3e, 0x69, 0x11, 0xe1, 0x5a, 0xc5, 0xc7, 0x23, 0xb6, 0x2f, 0xe7, 0x43, 0xd9,
+	0x4b, 0x26, 0xe9, 0x42, 0xba, 0x1b, 0x36, 0x93, 0xaa, 0xdf, 0xc4, 0xcf, 0xe5, 0x17, 0x52, 0x76,
+	0x53, 0x6b, 0xe2, 0x15, 0xee, 0x29, 0x99, 0xff, 0xfe, 0xf7, 0xb7, 0x33, 0xc3, 0x0c, 0x5c, 0x10,
+	0x56, 0x14, 0x95, 0x05, 0x97, 0xd1, 0xee, 0xd2, 0x7e, 0xc3, 0x52, 0x2b, 0x52, 0x6c, 0x60, 0x0e,
+	0x42, 0x2b, 0xec, 0x2e, 0x87, 0x8d, 0x2d, 0x2b, 0x10, 0xc9, 0xf8, 0xd2, 0x9a, 0x1a, 0xdb, 0xf0,
+	0x65, 0xb2, 0xd1, 0x6a, 0x2b, 0xea, 0xad, 0xaa, 0xa2, 0x44, 0xc9, 0x4c, 0xe4, 0x11, 0x2f, 0x45,
+	0x44, 0xaa, 0x54, 0x85, 0xca, 0x7f, 0x34, 0xae, 0xe0, 0x2d, 0x9c, 0x7e, 0x29, 0x31, 0x11, 0x99,
+	0x48, 0x38, 0x09, 0x25, 0xd9, 0x04, 0x1e, 0x18, 0x74, 0xe5, 0x3b, 0xe3, 0xde, 0xa4, 0x3f, 0x65,
+	0x61, 0xfb, 0xb5, 0xf0, 0xba, 0xe0, 0x32, 0x6e, 0x0c, 0xc1, 0x02, 0x5c, 0x13, 0x32, 0x06, 0xae,
+	0xe4, 0x5b, 0xf4, 0x9d, 0xb1, 0x33, 0xf1, 0x62, 0xfb, 0x6f, 0x28, 0xb5, 0x14, 0x54, 0xf9, 0x27,
+	0xc7, 0x28, 0x2b, 0x29, 0x28, 0x6e, 0x0c, 0xc1, 0x6f, 0x07, 0x5c, 0x13, 0x1f, 0xc5, 0x7c, 0x84,
+	0xc7, 0xe6, 0xe2, 0x3a, 0x51, 0xb2, 0x22, 0xcd, 0x85, 0x24, 0xff, 0x64, 0xec, 0x4c, 0xfa, 0xd3,
+	0x67, 0x5d, 0xe0, 0x12, 0x2b, 0x9a, 0x1f, 0x3c, 0xf1, 0x19, 0x75, 0x62, 0xf6, 0x15, 0x2e, 0xd2,
+	0xda, 0x50, 0x76, 0xa8, 0x79, 0x8e, 0x6d, 0x5c, 0xcf, 0xe2, 0x5e, 0x74, 0x71, 0x8b, 0xd5, 0x72,
+	0xbe, 0xf7, 0xb6, 0xa8, 0xe7, 0x69, 0x4d, 0x77, 0x65, 0xf6, 0x01, 0x4e, 0x13, 0x95, 0xe2, 0x81,
+	0xee, 0xbb, 0x16, 0x39, 0xec, 0x22, 0xe7, 0x2a, 0xc5, 0xbf, 0x97, 0xe3, 0x41, 0xd2, 0x8a, 0x82,
+	0x02, 0xce, 0xba, 0xf9, 0xb3, 0x11, 0x00, 0x7e, 0x2f, 0x35, 0x56, 0x95, 0x50, 0x72, 0xdf, 0x90,
+	0x96, 0x32, 0x7c, 0x07, 0xae, 0xb9, 0x71, 0xb4, 0x65, 0x23, 0x00, 0x4e, 0xa4, 0xc5, 0x6d, 0x4d,
+	0xd8, 0xb4, 0xdf, 0x8b, 0x5b, 0x4a, 0xf0, 0xcb, 0x81, 0xf3, 0xa3, 0xf5, 0xdd, 0xfb, 0xea, 0x4f,
+	0x07, 0x7a, 0x8b, 0xd5, 0x92, 0xcd, 0xc0, 0xb3, 0xe3, 0xb6, 0x4e, 0x6b, 0xb2, 0xb6, 0xfe, 0x74,
+	0xd4, 0x14, 0x6b, 0x65, 0xdb, 0x40, 0xdc, 0x89, 0x04, 0x57, 0x32, 0x45, 0x6d, 0x12, 0x8d, 0x1f,
+	0xd9, 0x93, 0x45, 0x4d, 0x6c, 0x09, 0x4f, 0x37, 0x5c, 0xa7, 0xdf, 0xb8, 0xc6, 0x75, 0x86, 0x9c,
+	0x6a, 0x6d, 0xb3, 0x34, 0x90, 0x57, 0xe1, 0xbf, 0x89, 0x0d, 0x9b, 0x89, 0x0d, 0x79, 0x29, 0xc2,
+	0xcf, 0x7b, 0xff, 0xa7, 0xbd, 0x3d, 0x7e, 0xb2, 0xf9, 0x4f, 0x09, 0x6e, 0x60, 0xd0, 0x6e, 0xf0,
+	0xbd, 0xa5, 0xbc, 0x06, 0xef, 0xaa, 0xe0, 0x5b, 0x2c, 0x44, 0x45, 0xec, 0x39, 0x80, 0xc6, 0x52,
+	0xad, 0x4b, 0x4e, 0x9b, 0x66, 0xec, 0xbd, 0xd8, 0x33, 0xca, 0xb5, 0x11, 0xae, 0xde, 0xdf, 0xcc,
+	0x72, 0x75, 0x48, 0x2d, 0x54, 0x3a, 0x8f, 0x5a, 0x9b, 0x25, 0x64, 0xa6, 0x79, 0x64, 0x77, 0x29,
+	0xca, 0x55, 0xd4, 0xde, 0xd9, 0x99, 0xf9, 0xde, 0x3e, 0xb4, 0x67, 0x6f, 0xfe, 0x04, 0x00, 0x00,
+	0xff, 0xff, 0x64, 0xbf, 0xac, 0x8a, 0xcf, 0x03, 0x00, 0x00,
 }
