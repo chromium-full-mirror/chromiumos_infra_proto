@@ -164,13 +164,15 @@ message ResourceUtilization {
   float cpus = 3;
   // Amount of memory in GB allocated across all bot groups.
   float memory_gb = 4;
+  // Amount of disk in GB allocated across all bot groups.
+  float disk_gb = 5;
+  // NUmber of CPUs that could be allocated based on max values.
+  float max_cpus = 6;
 }
 
 // All the actions that will be executed by RoboCrop.
 message RoboCropAction {
   // List of an action per bot group scaled by RoboCrop.
   repeated ScalingAction scaling_actions = 1;
-  // To be phased out for ResourceUtilization message type.
-  ResourceUsage resource_usage = 2;
-  repeated ResourceUtilization resource_utilization = 3;
+  repeated ResourceUtilization resource_utilization = 2;
 }
