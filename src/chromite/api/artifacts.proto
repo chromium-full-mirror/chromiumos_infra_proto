@@ -207,4 +207,31 @@ service ArtifactsService {
   // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Generate a CPE report to a file.
   rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
+
+  // Generate all Remote Test Driver metadata.
+  //
+  // Response consists of one or more metadata files. Each file must contain a
+  // single binary encoded chromiumos.config.api.test.metadata.v1.Specification
+  // protobuf payload.
+  // Schema defined at
+  // https://chromium.googlesource.com/chromiumos/config/+/refs/heads/master/proto/chromiumos/config/api/test/metadata/v1/metadata.proto
+  //
+  // These artifacts partially replace chromiumos.ArtifactsByService.Test
+  // artifacts. See also, GenerateRemoteTestDriverImages()
+  //
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  rpc GenerateRemoteTestDriverSpecification(BundleRequest)
+    returns (BundleResponse);
+
+  // Generate all Remote Test Driver container images.
+  //
+  // Response consists of one or more Docker container images.
+  // The images are identified by their Docker image digest. The filenames of
+  // the created artifacts are ignored.
+  //
+  // These artifacts partially replace chromiumos.ArtifactsByService.Test
+  // artifacts. See also, GenerateRemoteTestDriverSpecification()
+  //
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  rpc GenerateRemoteTestDriverImages(BundleRequest) returns (BundleResponse);
 }
