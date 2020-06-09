@@ -22,6 +22,54 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Exclusion_Type int32
+
+const (
+	// Do not use.
+	Exclusion_TYPE_UNSPECIFIED Exclusion_Type = 0
+	// There are no active plans to remove these exclusions becuase it is
+	// prohibitive to fix the issue or business needs do not justify the effort
+	// to fix the issue.
+	//
+	// Each PERMANENT exclusion MUST include references that point to a business
+	// justification for its addition.
+	Exclusion_PERMANENT Exclusion_Type = 1
+	// Use for excluding new tests from running on devices where the test has
+	// not yet been stabilized. The intention is to support incremental rollout
+	// of new tests.
+	//
+	// These exclsusion are temporary. These exclusions SHOULD be routinely
+	// audited and resolved or promoted to PERMANENT exclusions.
+	Exclusion_TEMPORARY_NEW_TEST Exclusion_Type = 2
+	// Use for excluding broken / flakey tests while a fix is being worked on.
+	//
+	// These exclsusion are temporary. These exclusions SHOULD be routinely
+	// audited and resolved or promoted to PERMANENT exclusions.
+	Exclusion_TEMPORARY_PENDING_FIX Exclusion_Type = 3
+)
+
+var Exclusion_Type_name = map[int32]string{
+	0: "TYPE_UNSPECIFIED",
+	1: "PERMANENT",
+	2: "TEMPORARY_NEW_TEST",
+	3: "TEMPORARY_PENDING_FIX",
+}
+
+var Exclusion_Type_value = map[string]int32{
+	"TYPE_UNSPECIFIED":      0,
+	"PERMANENT":             1,
+	"TEMPORARY_NEW_TEST":    2,
+	"TEMPORARY_PENDING_FIX": 3,
+}
+
+func (x Exclusion_Type) String() string {
+	return proto.EnumName(Exclusion_Type_name, int32(x))
+}
+
+func (Exclusion_Type) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_1a74b4d4119f628f, []int{5, 0}
+}
+
 // A set of known test plans.
 //
 // In practice, a complete specification of all known plans may consist of
@@ -136,9 +184,13 @@ type Unit struct {
 	//   where {plan} is the parent Plan of this Unit.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Selects tests to include in this test plan unit.
+	//
+	// See also: exclusions.
 	TestConstraint *TestConstraint `protobuf:"bytes,2,opt,name=test_constraint,json=testConstraint,proto3" json:"test_constraint,omitempty"`
 	// Selects the set of Devices Under Test that satisfy the coverage
 	// requirements of this test plan unit.
+	//
+	// See also: exclusions.
 	DutCoverageConstraint *DUTCoverageConstraint `protobuf:"bytes,3,opt,name=dut_coverage_constraint,json=dutCoverageConstraint,proto3" json:"dut_coverage_constraint,omitempty"`
 	// Chrome OS platform software covered by this test plan.
 	//
@@ -154,10 +206,24 @@ type Unit struct {
 	// For a test plan unit with no `code_coverage` specified, Test Platform MUST
 	// assume coverage of all platform software (i.e., this test plan unit MUST
 	// never be skipped for code coverage considerations).
-	CodeCoverage         *CodeCoverage `protobuf:"bytes,4,opt,name=code_coverage,json=codeCoverage,proto3" json:"code_coverage,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	CodeCoverage *CodeCoverage `protobuf:"bytes,4,opt,name=code_coverage,json=codeCoverage,proto3" json:"code_coverage,omitempty"`
+	// A list of criteria for (test, Device Under Test) pairs that MUST be
+	// excluded from this test plan.
+	//
+	// Exclusions are used to record exceptions to the test plan specification for
+	// devices that are known to cause test failures for some temporary or
+	// permanent reasons. The test_constraint and dut_coverage_constraint fields
+	// together specify the _intent_ of the test plan unit. The exclusions further
+	// restrict what Devices Under Test can be used to satisfy the test plan unit
+	// due to practical considerations.
+	//
+	// Each exclusion SHOULD correspond to a different business reason.
+	// Conceptually, fixing a known issue should result in an exclusion being
+	// removed.
+	Exclusions           []*Exclusion `protobuf:"bytes,5,rep,name=exclusions,proto3" json:"exclusions,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
 func (m *Unit) Reset()         { *m = Unit{} }
@@ -209,6 +275,13 @@ func (m *Unit) GetDutCoverageConstraint() *DUTCoverageConstraint {
 func (m *Unit) GetCodeCoverage() *CodeCoverage {
 	if m != nil {
 		return m.CodeCoverage
+	}
+	return nil
+}
+
+func (m *Unit) GetExclusions() []*Exclusion {
+	if m != nil {
+		return m.Exclusions
 	}
 	return nil
 }
@@ -549,6 +622,256 @@ func (m *DUTCoverageConstraint_DUT) GetHardwareFeatures() *api.HardwareFeatures 
 	return nil
 }
 
+// Exlclusion is used to record exceptions to the test plan
+// specification for devices that are known to cause test failures for some
+// temporary or permanent reasons.
+type Exclusion struct {
+	// Required.
+	Type Exclusion_Type `protobuf:"varint,1,opt,name=type,proto3,enum=test.plan.v1.Exclusion_Type" json:"type,omitempty"`
+	// The tests this exclusion applies to, within a test plan unit.
+	//
+	// Tests selected by this condition that are not in the test plan unit are
+	// ignored. e.g., simply selecting all tests via the test_constraint will
+	// apply this exclusion to all tests in the test plan unit.
+	TestConstraint *TestConstraint `protobuf:"bytes,2,opt,name=test_constraint,json=testConstraint,proto3" json:"test_constraint,omitempty"`
+	// Constraints to exclude particular Device Under Test from being considered
+	// to satisfy the test plan.
+	//
+	// Effectively, the negation of the constraint is added to the dut_constraints
+	// for each selected test.
+	DutConstraint *DUTExclusionConstraint `protobuf:"bytes,3,opt,name=dut_constraint,json=dutConstraint,proto3" json:"dut_constraint,omitempty"`
+	// External references useful for archeology for this exclusion.
+	//
+	// PERMANENT exclusions MUST add references for the decision to make the
+	// exclusion PERMANENT.
+	//
+	// References should be links with more context behind the decision.
+	// Suggested forms:
+	// * Monorail bug: https://bugs.chromium.org/p/chromium/issues/detail?id=XXX
+	// * Buganizer bug: https://b.corp.google.com/issues/XXX
+	References           []string `protobuf:"bytes,4,rep,name=references,proto3" json:"references,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Exclusion) Reset()         { *m = Exclusion{} }
+func (m *Exclusion) String() string { return proto.CompactTextString(m) }
+func (*Exclusion) ProtoMessage()    {}
+func (*Exclusion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a74b4d4119f628f, []int{5}
+}
+
+func (m *Exclusion) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Exclusion.Unmarshal(m, b)
+}
+func (m *Exclusion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Exclusion.Marshal(b, m, deterministic)
+}
+func (m *Exclusion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Exclusion.Merge(m, src)
+}
+func (m *Exclusion) XXX_Size() int {
+	return xxx_messageInfo_Exclusion.Size(m)
+}
+func (m *Exclusion) XXX_DiscardUnknown() {
+	xxx_messageInfo_Exclusion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Exclusion proto.InternalMessageInfo
+
+func (m *Exclusion) GetType() Exclusion_Type {
+	if m != nil {
+		return m.Type
+	}
+	return Exclusion_TYPE_UNSPECIFIED
+}
+
+func (m *Exclusion) GetTestConstraint() *TestConstraint {
+	if m != nil {
+		return m.TestConstraint
+	}
+	return nil
+}
+
+func (m *Exclusion) GetDutConstraint() *DUTExclusionConstraint {
+	if m != nil {
+		return m.DutConstraint
+	}
+	return nil
+}
+
+func (m *Exclusion) GetReferences() []string {
+	if m != nil {
+		return m.References
+	}
+	return nil
+}
+
+// Conditions to be met for the Chrome OS configuration of a Device Under
+// Test for it to be excluded from consideration to satisfy a test plan unit.
+type DUTExclusionConstraint struct {
+	// A Common Expression Language (CEL) expression to specify constraints on a
+	// Device Under Test's Chrome OS configuration payload. `expression` MUST
+	// evaluate to a boolean value in the evaluation context described below.
+	//
+	// Test Lab Environments may optionally support excluding specific Devices
+	// Under Test from being considered for a test plan unit.
+	// When supported, the Test Lab Environment MUST effectively evaluate
+	// `expression` with the following declarations in scope for each available
+	// Device Under Test and ensure that the test is *not* scheduled on a Device
+	// Under Test for which `expression` evaluates to true.
+	//
+	// - Constant: `dut` of type DUTConfigConstraint.DUT defined below, set to the
+	//   Chrome OS configuration payload of a particular Device Under Test.
+	// - Types: Protobuf messages from `chromiumos.config.api.*`
+	//   - Additionally available with the short-hand `api.*`
+	//
+	// ## Examples
+	//
+	// Typical examples of expressions are:
+	//
+	// - Must not run on a device with a given screen size:
+	//     dut.hardware_features.screen.milliinch.value == 14000
+	// - TODO: Add model / build target example.
+	//
+	// ## CEL support
+	//
+	// The full CEL spec can be found at https://github.com/google/cel-spec.
+	//
+	// Current support for `expression` evaluation is very restricted due to
+	// limitations in the scheduling infrastructure used by Test Platform.
+	//
+	// As this API matures, features will be added to the scheduling
+	// infrastructure of Test Platform and restrictions here will be lifted based
+	// on requirements collected from test authors. See milestones in
+	// go/cros-f20-plan for expected feature iterations. Test Lab Environments
+	// SHOULD validate the expression and reject use of unsupported features.
+	//
+	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
+	//
+	// ### Syntax
+	//
+	// See full syntax definition at
+	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#syntax
+	//
+	// CEL standard syntax allows expressions that evaluate to errors (e.g.,
+	// syntax allows negation of lists, which has no semantics in CEL).
+	// Thus, this spec does not attempt to restrict the syntax, but specifies what
+	// operations are unsupported to aid metadata producers. Ultimately, the
+	// reference metadata validator is the authority on what expressions are
+	// allowed.
+	//
+	// Unsupported standard CEL semantics:
+	//   - Binary arithmetic operations
+	//     e.g.: +, *, /, % ...
+	//   - Relational Operators beyond (in)equality are not supported.
+	//     e.g.: (>, <, >=, <= ...)
+	//   - Logical OR in expressions is not supported.
+	//     e.g.: (a || b), !(a && b) ...
+	//
+	// ### Macros
+	//
+	// See full macro definition at
+	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#macros
+	//
+	// Supported macros: has(), e.all()
+	// Unsupported macros: e.exists(), e.exists_one(), e.map(), e.filter()
+	//
+	// ### Standard functions
+	//
+	// See full list of standard definitions at
+	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#standard-definitions
+	//
+	// Most standard functions are not supported.
+	//
+	// - Supported operators: !_, -_, _!=_, _&&_, _=_, _[_]
+	//   - All other operators are not supported.
+	// - All other standard functions are not supported. In particular:
+	//   - size() is not supported.
+	//   - string functions like endsWith() and contains() are not supported.
+	//   - type conversions like int() and string() are not supported.
+	//   - reflection with type(), null_type() and dyn() is not supported.
+	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DUTExclusionConstraint) Reset()         { *m = DUTExclusionConstraint{} }
+func (m *DUTExclusionConstraint) String() string { return proto.CompactTextString(m) }
+func (*DUTExclusionConstraint) ProtoMessage()    {}
+func (*DUTExclusionConstraint) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a74b4d4119f628f, []int{6}
+}
+
+func (m *DUTExclusionConstraint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DUTExclusionConstraint.Unmarshal(m, b)
+}
+func (m *DUTExclusionConstraint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DUTExclusionConstraint.Marshal(b, m, deterministic)
+}
+func (m *DUTExclusionConstraint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DUTExclusionConstraint.Merge(m, src)
+}
+func (m *DUTExclusionConstraint) XXX_Size() int {
+	return xxx_messageInfo_DUTExclusionConstraint.Size(m)
+}
+func (m *DUTExclusionConstraint) XXX_DiscardUnknown() {
+	xxx_messageInfo_DUTExclusionConstraint.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DUTExclusionConstraint proto.InternalMessageInfo
+
+func (m *DUTExclusionConstraint) GetExpression() string {
+	if m != nil {
+		return m.Expression
+	}
+	return ""
+}
+
+// The evaluation context for `expression` MUST include the Chrome OS
+// configuration payload for a particular Device Under Test as a typed
+// constant of the following type.
+type DUTExclusionConstraint_DUT struct {
+	HardwareFeatures     *api.HardwareFeatures `protobuf:"bytes,1,opt,name=hardware_features,json=hardwareFeatures,proto3" json:"hardware_features,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *DUTExclusionConstraint_DUT) Reset()         { *m = DUTExclusionConstraint_DUT{} }
+func (m *DUTExclusionConstraint_DUT) String() string { return proto.CompactTextString(m) }
+func (*DUTExclusionConstraint_DUT) ProtoMessage()    {}
+func (*DUTExclusionConstraint_DUT) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a74b4d4119f628f, []int{6, 0}
+}
+
+func (m *DUTExclusionConstraint_DUT) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DUTExclusionConstraint_DUT.Unmarshal(m, b)
+}
+func (m *DUTExclusionConstraint_DUT) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DUTExclusionConstraint_DUT.Marshal(b, m, deterministic)
+}
+func (m *DUTExclusionConstraint_DUT) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DUTExclusionConstraint_DUT.Merge(m, src)
+}
+func (m *DUTExclusionConstraint_DUT) XXX_Size() int {
+	return xxx_messageInfo_DUTExclusionConstraint_DUT.Size(m)
+}
+func (m *DUTExclusionConstraint_DUT) XXX_DiscardUnknown() {
+	xxx_messageInfo_DUTExclusionConstraint_DUT.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DUTExclusionConstraint_DUT proto.InternalMessageInfo
+
+func (m *DUTExclusionConstraint_DUT) GetHardwareFeatures() *api.HardwareFeatures {
+	if m != nil {
+		return m.HardwareFeatures
+	}
+	return nil
+}
+
 // Specifies platforms software covered by a test plan unit.
 type CodeCoverage struct {
 	// A Common Expression Language (CEL) expression to specify Chrome OS platform
@@ -596,7 +919,7 @@ func (m *CodeCoverage) Reset()         { *m = CodeCoverage{} }
 func (m *CodeCoverage) String() string { return proto.CompactTextString(m) }
 func (*CodeCoverage) ProtoMessage()    {}
 func (*CodeCoverage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a74b4d4119f628f, []int{5}
+	return fileDescriptor_1a74b4d4119f628f, []int{7}
 }
 
 func (m *CodeCoverage) XXX_Unmarshal(b []byte) error {
@@ -639,7 +962,7 @@ func (m *CodeCoverage_Blamelist) Reset()         { *m = CodeCoverage_Blamelist{}
 func (m *CodeCoverage_Blamelist) String() string { return proto.CompactTextString(m) }
 func (*CodeCoverage_Blamelist) ProtoMessage()    {}
 func (*CodeCoverage_Blamelist) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a74b4d4119f628f, []int{5, 0}
+	return fileDescriptor_1a74b4d4119f628f, []int{7, 0}
 }
 
 func (m *CodeCoverage_Blamelist) XXX_Unmarshal(b []byte) error {
@@ -668,6 +991,7 @@ func (m *CodeCoverage_Blamelist) GetRepoPaths() []string {
 }
 
 func init() {
+	proto.RegisterEnum("test.plan.v1.Exclusion_Type", Exclusion_Type_name, Exclusion_Type_value)
 	proto.RegisterType((*Specification)(nil), "test.plan.v1.Specification")
 	proto.RegisterType((*Plan)(nil), "test.plan.v1.Plan")
 	proto.RegisterType((*Unit)(nil), "test.plan.v1.Unit")
@@ -675,6 +999,9 @@ func init() {
 	proto.RegisterType((*TestConstraint_Test)(nil), "test.plan.v1.TestConstraint.Test")
 	proto.RegisterType((*DUTCoverageConstraint)(nil), "test.plan.v1.DUTCoverageConstraint")
 	proto.RegisterType((*DUTCoverageConstraint_DUT)(nil), "test.plan.v1.DUTCoverageConstraint.DUT")
+	proto.RegisterType((*Exclusion)(nil), "test.plan.v1.Exclusion")
+	proto.RegisterType((*DUTExclusionConstraint)(nil), "test.plan.v1.DUTExclusionConstraint")
+	proto.RegisterType((*DUTExclusionConstraint_DUT)(nil), "test.plan.v1.DUTExclusionConstraint.DUT")
 	proto.RegisterType((*CodeCoverage)(nil), "test.plan.v1.CodeCoverage")
 	proto.RegisterType((*CodeCoverage_Blamelist)(nil), "test.plan.v1.CodeCoverage.Blamelist")
 }
@@ -682,36 +1009,48 @@ func init() {
 func init() { proto.RegisterFile("test/plan/v1/plan.proto", fileDescriptor_1a74b4d4119f628f) }
 
 var fileDescriptor_1a74b4d4119f628f = []byte{
-	// 490 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x93, 0x51, 0x8b, 0xd3, 0x40,
-	0x10, 0xc7, 0xc9, 0x35, 0x8a, 0x99, 0xf6, 0x4e, 0x5d, 0x38, 0x2e, 0x14, 0x2d, 0x25, 0x0a, 0x16,
-	0x1f, 0x12, 0xae, 0x3e, 0x69, 0x11, 0xe1, 0x5a, 0xc5, 0xc7, 0x23, 0xb6, 0x2f, 0xe7, 0x43, 0xd9,
-	0x4b, 0x26, 0xe9, 0x42, 0xba, 0x1b, 0x36, 0x93, 0xaa, 0xdf, 0xc4, 0xcf, 0xe5, 0x17, 0x52, 0x76,
-	0x53, 0x6b, 0xe2, 0x15, 0xee, 0x29, 0x99, 0xff, 0xfe, 0xf7, 0xb7, 0x33, 0xc3, 0x0c, 0x5c, 0x10,
-	0x56, 0x14, 0x95, 0x05, 0x97, 0xd1, 0xee, 0xd2, 0x7e, 0xc3, 0x52, 0x2b, 0x52, 0x6c, 0x60, 0x0e,
-	0x42, 0x2b, 0xec, 0x2e, 0x87, 0x8d, 0x2d, 0x2b, 0x10, 0xc9, 0xf8, 0xd2, 0x9a, 0x1a, 0xdb, 0xf0,
-	0x65, 0xb2, 0xd1, 0x6a, 0x2b, 0xea, 0xad, 0xaa, 0xa2, 0x44, 0xc9, 0x4c, 0xe4, 0x11, 0x2f, 0x45,
-	0x44, 0xaa, 0x54, 0x85, 0xca, 0x7f, 0x34, 0xae, 0xe0, 0x2d, 0x9c, 0x7e, 0x29, 0x31, 0x11, 0x99,
-	0x48, 0x38, 0x09, 0x25, 0xd9, 0x04, 0x1e, 0x18, 0x74, 0xe5, 0x3b, 0xe3, 0xde, 0xa4, 0x3f, 0x65,
-	0x61, 0xfb, 0xb5, 0xf0, 0xba, 0xe0, 0x32, 0x6e, 0x0c, 0xc1, 0x02, 0x5c, 0x13, 0x32, 0x06, 0xae,
-	0xe4, 0x5b, 0xf4, 0x9d, 0xb1, 0x33, 0xf1, 0x62, 0xfb, 0x6f, 0x28, 0xb5, 0x14, 0x54, 0xf9, 0x27,
-	0xc7, 0x28, 0x2b, 0x29, 0x28, 0x6e, 0x0c, 0xc1, 0x6f, 0x07, 0x5c, 0x13, 0x1f, 0xc5, 0x7c, 0x84,
-	0xc7, 0xe6, 0xe2, 0x3a, 0x51, 0xb2, 0x22, 0xcd, 0x85, 0x24, 0xff, 0x64, 0xec, 0x4c, 0xfa, 0xd3,
-	0x67, 0x5d, 0xe0, 0x12, 0x2b, 0x9a, 0x1f, 0x3c, 0xf1, 0x19, 0x75, 0x62, 0xf6, 0x15, 0x2e, 0xd2,
-	0xda, 0x50, 0x76, 0xa8, 0x79, 0x8e, 0x6d, 0x5c, 0xcf, 0xe2, 0x5e, 0x74, 0x71, 0x8b, 0xd5, 0x72,
-	0xbe, 0xf7, 0xb6, 0xa8, 0xe7, 0x69, 0x4d, 0x77, 0x65, 0xf6, 0x01, 0x4e, 0x13, 0x95, 0xe2, 0x81,
-	0xee, 0xbb, 0x16, 0x39, 0xec, 0x22, 0xe7, 0x2a, 0xc5, 0xbf, 0x97, 0xe3, 0x41, 0xd2, 0x8a, 0x82,
-	0x02, 0xce, 0xba, 0xf9, 0xb3, 0x11, 0x00, 0x7e, 0x2f, 0x35, 0x56, 0x95, 0x50, 0x72, 0xdf, 0x90,
-	0x96, 0x32, 0x7c, 0x07, 0xae, 0xb9, 0x71, 0xb4, 0x65, 0x23, 0x00, 0x4e, 0xa4, 0xc5, 0x6d, 0x4d,
-	0xd8, 0xb4, 0xdf, 0x8b, 0x5b, 0x4a, 0xf0, 0xcb, 0x81, 0xf3, 0xa3, 0xf5, 0xdd, 0xfb, 0xea, 0x4f,
-	0x07, 0x7a, 0x8b, 0xd5, 0x92, 0xcd, 0xc0, 0xb3, 0xe3, 0xb6, 0x4e, 0x6b, 0xb2, 0xb6, 0xfe, 0x74,
-	0xd4, 0x14, 0x6b, 0x65, 0xdb, 0x40, 0xdc, 0x89, 0x04, 0x57, 0x32, 0x45, 0x6d, 0x12, 0x8d, 0x1f,
-	0xd9, 0x93, 0x45, 0x4d, 0x6c, 0x09, 0x4f, 0x37, 0x5c, 0xa7, 0xdf, 0xb8, 0xc6, 0x75, 0x86, 0x9c,
-	0x6a, 0x6d, 0xb3, 0x34, 0x90, 0x57, 0xe1, 0xbf, 0x89, 0x0d, 0x9b, 0x89, 0x0d, 0x79, 0x29, 0xc2,
-	0xcf, 0x7b, 0xff, 0xa7, 0xbd, 0x3d, 0x7e, 0xb2, 0xf9, 0x4f, 0x09, 0x6e, 0x60, 0xd0, 0x6e, 0xf0,
-	0xbd, 0xa5, 0xbc, 0x06, 0xef, 0xaa, 0xe0, 0x5b, 0x2c, 0x44, 0x45, 0xec, 0x39, 0x80, 0xc6, 0x52,
-	0xad, 0x4b, 0x4e, 0x9b, 0x66, 0xec, 0xbd, 0xd8, 0x33, 0xca, 0xb5, 0x11, 0xae, 0xde, 0xdf, 0xcc,
-	0x72, 0x75, 0x48, 0x2d, 0x54, 0x3a, 0x8f, 0x5a, 0x9b, 0x25, 0x64, 0xa6, 0x79, 0x64, 0x77, 0x29,
-	0xca, 0x55, 0xd4, 0xde, 0xd9, 0x99, 0xf9, 0xde, 0x3e, 0xb4, 0x67, 0x6f, 0xfe, 0x04, 0x00, 0x00,
-	0xff, 0xff, 0x64, 0xbf, 0xac, 0x8a, 0xcf, 0x03, 0x00, 0x00,
+	// 680 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xd1, 0x6e, 0xd3, 0x3c,
+	0x18, 0xfd, 0xd3, 0x66, 0xbf, 0xfe, 0x7c, 0x5b, 0xfb, 0x17, 0x8b, 0x6d, 0xa5, 0x82, 0x69, 0x0a,
+	0x93, 0xa8, 0xb8, 0x48, 0xd8, 0xb8, 0x40, 0x30, 0x21, 0xb4, 0xb5, 0x19, 0x54, 0x68, 0x25, 0xca,
+	0x52, 0xc1, 0x36, 0x89, 0xc8, 0x4b, 0xdc, 0xd6, 0x52, 0x1a, 0x47, 0x8e, 0x53, 0xd8, 0x83, 0x20,
+	0xf1, 0x28, 0xbc, 0x06, 0x3c, 0x11, 0xb2, 0xd3, 0x75, 0xe9, 0x56, 0x69, 0x17, 0x70, 0x95, 0xfa,
+	0xf8, 0xf8, 0xf8, 0xf3, 0xf9, 0x4e, 0x3f, 0xd8, 0x14, 0x24, 0x13, 0x76, 0x1a, 0xe3, 0xc4, 0x9e,
+	0xee, 0xaa, 0xaf, 0x95, 0x72, 0x26, 0x18, 0x5a, 0x93, 0x1b, 0x96, 0x02, 0xa6, 0xbb, 0xad, 0x82,
+	0x36, 0x8c, 0x09, 0x11, 0x92, 0x17, 0xe5, 0xa2, 0xa0, 0xb5, 0x76, 0xc2, 0x31, 0x67, 0x13, 0x9a,
+	0x4f, 0x58, 0x66, 0x87, 0x2c, 0x19, 0xd2, 0x91, 0x8d, 0x53, 0x6a, 0x0b, 0x96, 0xb2, 0x98, 0x8d,
+	0x2e, 0x0b, 0x96, 0xf9, 0x12, 0x6a, 0x27, 0x29, 0x09, 0xe9, 0x90, 0x86, 0x58, 0x50, 0x96, 0xa0,
+	0x36, 0xac, 0x48, 0xe9, 0xac, 0xa9, 0x6d, 0x57, 0xdb, 0xab, 0x7b, 0xc8, 0x2a, 0xdf, 0x66, 0xb9,
+	0x31, 0x4e, 0xbc, 0x82, 0x60, 0x76, 0x41, 0x97, 0x4b, 0x84, 0x40, 0x4f, 0xf0, 0x84, 0x34, 0xb5,
+	0x6d, 0xad, 0x6d, 0x78, 0xea, 0xb7, 0x54, 0xc9, 0x13, 0x2a, 0xb2, 0x66, 0x65, 0x99, 0xca, 0x20,
+	0xa1, 0xc2, 0x2b, 0x08, 0xe6, 0x8f, 0x0a, 0xe8, 0x72, 0xbd, 0x54, 0xc6, 0x81, 0xff, 0xe5, 0xc1,
+	0x20, 0x64, 0x49, 0x26, 0x38, 0xa6, 0x89, 0x68, 0x56, 0xb6, 0xb5, 0xf6, 0xea, 0xde, 0xc3, 0x45,
+	0x41, 0x9f, 0x64, 0xa2, 0x33, 0xe7, 0x78, 0x75, 0xb1, 0xb0, 0x46, 0xe7, 0xb0, 0x19, 0xe5, 0x52,
+	0x65, 0x4a, 0x38, 0x1e, 0x91, 0xb2, 0x5c, 0x55, 0xc9, 0x3d, 0x5e, 0x94, 0xeb, 0x0e, 0xfc, 0xce,
+	0x8c, 0x5b, 0x52, 0x5d, 0x8f, 0x72, 0x71, 0x1b, 0x46, 0x6f, 0xa0, 0x16, 0xb2, 0x88, 0xcc, 0xd5,
+	0x9b, 0xba, 0x92, 0x6c, 0x2d, 0x4a, 0x76, 0x58, 0x44, 0xae, 0x0e, 0x7b, 0x6b, 0x61, 0x69, 0x85,
+	0x5e, 0x00, 0x90, 0xaf, 0x61, 0x9c, 0x67, 0x94, 0x25, 0x59, 0x73, 0x45, 0x19, 0xb6, 0xb9, 0x78,
+	0xda, 0xb9, 0xda, 0xf7, 0x4a, 0x54, 0x33, 0x86, 0xfa, 0xe2, 0xc3, 0xd1, 0x96, 0x94, 0x4a, 0x39,
+	0xc9, 0x24, 0x61, 0xe6, 0x64, 0x09, 0x69, 0xbd, 0x02, 0x5d, 0x9e, 0x58, 0xea, 0xf5, 0x16, 0x00,
+	0x16, 0x82, 0xd3, 0x8b, 0x5c, 0x90, 0xa2, 0x6f, 0x86, 0x57, 0x42, 0xcc, 0x5f, 0x1a, 0xac, 0x2f,
+	0x35, 0xe6, 0xce, 0x5b, 0xbf, 0x6b, 0x50, 0xed, 0x0e, 0x7c, 0xb4, 0x0f, 0x86, 0xca, 0x69, 0x10,
+	0xe5, 0x42, 0xd1, 0x56, 0xf7, 0xb6, 0x8a, 0x77, 0x2a, 0x58, 0x39, 0x4f, 0xa6, 0x34, 0x24, 0x83,
+	0x24, 0x22, 0x5c, 0x16, 0xea, 0xfd, 0xa7, 0x76, 0xba, 0xb9, 0x40, 0x3e, 0xdc, 0x1b, 0x63, 0x1e,
+	0x7d, 0xc1, 0x9c, 0x04, 0x43, 0x82, 0x45, 0xce, 0x55, 0x95, 0x52, 0xe4, 0x89, 0x75, 0x1d, 0x75,
+	0xab, 0x88, 0xba, 0x85, 0x53, 0x6a, 0xbd, 0x9b, 0xf1, 0x8f, 0x66, 0x74, 0xaf, 0x31, 0xbe, 0x81,
+	0x98, 0x3f, 0x2b, 0x60, 0xcc, 0xcd, 0x45, 0xcf, 0x40, 0x17, 0x97, 0x69, 0x61, 0x4b, 0xfd, 0x66,
+	0xc6, 0xe6, 0x34, 0xcb, 0xbf, 0x4c, 0x89, 0xa7, 0x98, 0x7f, 0x2b, 0xa0, 0xef, 0xa1, 0x5e, 0x04,
+	0xf4, 0x46, 0x2e, 0x77, 0x6e, 0xe5, 0x72, 0x5e, 0x45, 0x49, 0xad, 0xa6, 0x82, 0x59, 0x6e, 0x07,
+	0x27, 0x43, 0xc2, 0x49, 0x12, 0x92, 0xac, 0xa9, 0x17, 0x8d, 0xbc, 0x46, 0xcc, 0xcf, 0xa0, 0xcb,
+	0x17, 0xa0, 0xfb, 0xd0, 0xf0, 0x4f, 0x5d, 0x27, 0x18, 0xf4, 0x4f, 0x5c, 0xa7, 0xd3, 0x3b, 0xea,
+	0x39, 0xdd, 0xc6, 0x3f, 0xa8, 0x06, 0x86, 0xeb, 0x78, 0xc7, 0x07, 0x7d, 0xa7, 0xef, 0x37, 0x34,
+	0xb4, 0x01, 0xc8, 0x77, 0x8e, 0xdd, 0x0f, 0xde, 0x81, 0x77, 0x1a, 0xf4, 0x9d, 0x8f, 0x81, 0xef,
+	0x9c, 0xf8, 0x8d, 0x0a, 0x7a, 0x00, 0xeb, 0xd7, 0xb8, 0xeb, 0xf4, 0xbb, 0xbd, 0xfe, 0xdb, 0xe0,
+	0xa8, 0xf7, 0xa9, 0x51, 0x35, 0xbf, 0x69, 0xb0, 0xb1, 0xbc, 0xd2, 0x3b, 0x93, 0x72, 0x5e, 0x04,
+	0x65, 0x69, 0xaf, 0xb5, 0x3f, 0xed, 0xf5, 0x19, 0xac, 0x95, 0xff, 0x85, 0x77, 0x16, 0xf3, 0x14,
+	0x8c, 0xc3, 0x18, 0x4f, 0x48, 0x4c, 0x33, 0x81, 0x1e, 0x49, 0x53, 0x53, 0x16, 0xa4, 0x58, 0x8c,
+	0x8b, 0xd9, 0x68, 0x78, 0x86, 0x44, 0x5c, 0x09, 0x1c, 0xbe, 0x3e, 0xdb, 0x1f, 0xb1, 0x79, 0x69,
+	0x16, 0xe3, 0x23, 0xbb, 0x34, 0x7e, 0x69, 0x32, 0xe4, 0xd8, 0x56, 0x03, 0xd7, 0x1e, 0x31, 0xbb,
+	0x3c, 0xd8, 0xf7, 0xe5, 0xf7, 0xe2, 0x5f, 0xb5, 0xf7, 0xfc, 0x77, 0x00, 0x00, 0x00, 0xff, 0xff,
+	0xc2, 0x50, 0x5b, 0x65, 0xf4, 0x05, 0x00, 0x00,
 }
