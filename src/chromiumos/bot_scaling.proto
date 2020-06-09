@@ -13,7 +13,7 @@ message BotType {
   // The string bot "shirt size" to be requested for the group.
   string bot_size = 1;
   // The number of cores per bot. Will be used to limit quota usage.
-  int32 cores_per_bot = 2;
+  float cores_per_bot = 2;
   // Estimated hourly cost.
   float hourly_cost = 3;
   // Amount of memory in GB allocated to bot.
