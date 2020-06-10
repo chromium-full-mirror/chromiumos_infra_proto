@@ -35,6 +35,8 @@ message TrackingPolicy {
   sint32 lookback_hours = 4;
   // Dimensions that are only needed to query tasks.
   repeated chromiumos.SwarmingDimension task_dimensions = 5;
+  // Swarming instance name:  chromeos-swarming.appspot.com
+  string swarming_instance = 6;
 }
 
 // Defines a root message.
