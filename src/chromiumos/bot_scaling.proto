@@ -97,6 +97,8 @@ message BotPolicy {
 
   // Set the scaling approach for the bot group being monitored.
   BotScalingMode scaling_mode = 8;
+  // Swarming instance name:  chromeos-swarming.appspot.com
+  string swarming_instance = 9;
 }
 
 // Configures the root message.
@@ -142,16 +144,6 @@ message ScalingAction {
   // Estimated savings based on current run.
   // Based on current number of bots compared against the max.
   float estimated_savings = 6;
-}
-
-// ResourceUsage based on the current resources assigned.
-message ResourceUsage {
-  // Number of VMs allocated across all bot groups.
-  int32 vms = 1;
-  // Number of CPUs allocated across all bot groups.
-  float cpus = 2;
-  // Amount of memory in GB allocated across all bot groups.
-  float memory_gb = 3;
 }
 
 // Resource utilization based on regional assignment.
