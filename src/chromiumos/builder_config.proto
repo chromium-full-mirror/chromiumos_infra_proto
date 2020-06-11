@@ -234,6 +234,9 @@ message BuilderConfig {
 
       // Indicates toolchain logs for the compiler warnings for werror monitor
       TOOLCHAIN_WARNING_LOGS = 24;
+
+      // Indicates a prod Chrome AFDO profile for Android/Linux.
+      CHROME_AFDO_PROFILE_FOR_ANDROID_LINUX = 25;
     }
     repeated ArtifactTypes artifact_types = 2;
 

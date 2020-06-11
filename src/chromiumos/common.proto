@@ -382,6 +382,9 @@ message ArtifactsByService {
 
       // Indicates toolchain logs for the compiler warnings for werror monitor
       TOOLCHAIN_WARNING_LOGS = 24;
+
+      // Indicates a prod Chrome AFDO profile for Android/Linux.
+      CHROME_AFDO_PROFILE_FOR_ANDROID_LINUX = 25;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
