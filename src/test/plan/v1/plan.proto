@@ -309,6 +309,41 @@ message Exclusion {
   // Required.
   Type type = 1;
 
+  enum Action {
+    // Specify no action.
+    //
+    // The Test Lab Environment may choose any of the available actions based
+    // on internal heuristics.
+    //
+    // The default Action is a good default if none of the considersations for
+    // the specific actions below apply.
+    ACTION_UNSPECIFIED = 0;
+
+    // Do not schedule the selected Tests on specified Devices Under Test.
+    //
+    // It is especially useful to set this Action for permanent exceptions as it
+    // is definitely not useful to run the Tests at all in those cases.
+    DO_NOT_SCHEDULE = 1;
+
+    // Schedule the Test on Devices Under Test as required by the test plan
+    // unit, but mark the results for selected tests on the specified Devices
+    // Under Test as non-critical. Results marked non-critical are intended to
+    // be ignored by result consumers (e.g, presubmit system should consider the
+    // result irrelevant for validatting a Chrome OS build).
+    //
+    // This action does not guarantee that results for the selected (Test,
+    // Device Under Test) pairs are always available because that depends no how
+    // the test plan Unit is interpreted overall. When this action is set, the
+    // Test Lab Environment SHOULD NOT make any special effort to include /
+    // exclude the selected (Test, Device Under Test) pairs.
+    //
+    // It is useful to set this Action for temporary exclusions where the
+    // results generated from test execution can be uesd to root cause and fix
+    // the underlying issues.
+    MARK_NON_CRITICAL = 2;
+  }
+  Action action = 5;
+
   // The tests this exclusion applies to, within a test plan unit.
   //
   // Tests selected by this condition that are not in the test plan unit are
