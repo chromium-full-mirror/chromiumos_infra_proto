@@ -237,6 +237,9 @@ message BuilderConfig {
 
       // Indicates a prod Chrome AFDO profile for Android/Linux.
       CHROME_AFDO_PROFILE_FOR_ANDROID_LINUX = 25;
+
+      // Indicates diagnoses for Clang crashes
+      CLANG_CRASH_DIAGNOSES = 26;
     }
     repeated ArtifactTypes artifact_types = 2;
 

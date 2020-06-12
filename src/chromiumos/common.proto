@@ -385,6 +385,9 @@ message ArtifactsByService {
 
       // Indicates a prod Chrome AFDO profile for Android/Linux.
       CHROME_AFDO_PROFILE_FOR_ANDROID_LINUX = 25;
+
+      // Indicates diagnoses for Clang crashes
+      CLANG_CRASH_DIAGNOSES = 26;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
