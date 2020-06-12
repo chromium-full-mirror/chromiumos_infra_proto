@@ -1,0 +1,43 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.result_flow;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/result_flow";
+
+import "google/protobuf/timestamp.proto";
+
+// PublishRequest defines the input of `result_flow publish`.
+message PublishRequest {
+    int64 build_id = 1;
+    int64 parent_build_id = 2;
+    // Hard deadline for execution.
+    //
+    // Publish command should abort beyond this deadline.
+    google.protobuf.Timestamp deadline = 3;
+}
+
+// PublishRequest defines the output of `result_flow publish`.
+message PublishResponse {
+    // Values should be consistent with https://aip.dev/216
+    enum State {
+      // Should not be used.
+      STATE_UNSPECIFIED = 0;
+      // Successfully published the build ID to Pub/Sub.
+      SUCCEEDED = 1;
+      // Failed to publish the build ID.
+      FAILED = 2;
+      // Publish has hit the predefined timeout.
+      TIMED_OUT = 3;
+      // The publish command was aborted externally.
+      ABORTED = 4;
+    }
+
+    // `result_flow publish` exits with exit code 0 unless there is an
+    // infrastructure failure. When the exit code is 0, `state` indicates the
+    // best known state of the publish execution (see comments on State enum).
+    State state = 1;
+  }
