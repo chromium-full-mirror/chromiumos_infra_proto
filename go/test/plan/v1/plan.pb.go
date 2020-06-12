@@ -229,6 +229,9 @@ func (m *Plan) GetUnits() []*Unit {
 }
 
 // Specifies a particular set of tests to be run to meet specific conditions.
+//
+// TODO(pprabhu): Add a full example showcasing test_constraints,
+// dut_coverage_consraints and exclusions together.
 type Unit struct {
 	// A globally unique test plan unit name.
 	//
@@ -368,10 +371,6 @@ type TestConstraint struct {
 	//     && "crosbolt_perbuild" in test.attributes
 	// - network Tauto tests, selected by name
 	//     test.name.startsWith("network_")
-	//
-	// ## CEL support
-	//
-	// All standard CEL syntax, macros and functions MUST be supported.
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -484,9 +483,6 @@ type DUTCoverageConstraint struct {
 	//   - Additionally available with the short-hand `fleet.*`
 	//
 	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	// This API only supports a sub-set of the CEL features as described here.
-	// Test Platform MUST validate the expression and reject use of unsupported
-	// features.
 	//
 	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
 	//
@@ -494,17 +490,13 @@ type DUTCoverageConstraint struct {
 	//
 	// Typical instructive examples of expressions are:
 	//
-	// - Constraints: All pre-F20 plans only specify constraints on what devices
-	//   may be used, e.g.:
-	//    - Run each test on one DUT with model 'nautilus'.
-	//        TODO(pprabhu, shapiroc): Need a way to specify model for migration.
-	//        duts.all(dut, dut.id.model_id.value = 'nautilus') && size(duts) == 1
+	// - Constraints:
 	//    - Run each test on one DUT with a stylus.
 	//        (duts.all(dut, dut.hardware_features.stylus
 	//                       == api.HardwareFeatures.Present.PRESENT))
 	//         && size(duts) == 1)
-	//  - Fanout (not yet supported): In addition to constraints, the
-	//    plan may want to ensure coverage across some device features.
+	//  - Fanout: In addition to constraints, the plan may want to ensure coverage
+	//    across some device features.
 	//    TODO(pprabhu) This is an instructive example. We can't say what arch
 	//    yet.
 	//    - Run each test on one x86 and ARM DUT with a specific camera.
@@ -520,70 +512,6 @@ type DUTCoverageConstraint struct {
 	//      devices, even though it passed on other devices in the set such that
 	//      the expression was satsifed by the passing subset. Selection of a
 	//      minimal set of devices to run the plan is best effort.
-	//
-	// Currently, only single-DUT constraints are supported by the Test Platform.
-	// i.e., `expression` MUST be of the form:
-	//   duts.all(DUT_SELECTOR) && size(duts) == 1
-	// where DUT_SELECTOR is an expression that does not refer to `duts`.
-	// This restriction will be lifted as this API matures.
-	//
-	// ## CEL support
-	//
-	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	//
-	// Current support for `expression` evaluation is very restricted due to
-	// limitations in the scheduling infrastructure used by Test Platform.
-	//
-	// As this API matures, features will be added to the scheduling
-	// infrastructure of Test Platform and restrictions here will be lifted based
-	// on requirements collected from test authors. See milestones in
-	// go/cros-f20-plan for expected feature iterations. Test Lab Environments
-	// SHOULD validate the expression and reject use of unsupported features.
-	//
-	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
-	//
-	// ### Syntax
-	//
-	// See full syntax definition at
-	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#syntax
-	//
-	// CEL standard syntax allows expressions that evaluate to errors (e.g.,
-	// syntax allows negation of lists, which has no semantics in CEL).
-	// Thus, this spec does not attempt to restrict the syntax, but specifies what
-	// operations are unsupported to aid metadata producers. Ultimately, the
-	// reference metadata validator is the authority on what expressions are
-	// allowed.
-	//
-	// Unsupported standard CEL semantics:
-	//   - Binary arithmetic operations
-	//     e.g.: +, *, /, % ...
-	//   - Relational Operators beyond (in)equality are not supported.
-	//     e.g.: (>, <, >=, <= ...)
-	//   - Logical OR in expressions is not supported.
-	//     e.g.: (a || b), !(a && b) ...
-	//
-	// ### Macros
-	//
-	// See full macro definition at
-	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#macros
-	//
-	// Supported macros: has(), e.all()
-	// Unsupported macros: e.exists(), e.exists_one(), e.map(), e.filter()
-	//
-	// ### Standard functions
-	//
-	// See full list of standard definitions at
-	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#standard-definitions
-	//
-	// Most standard functions are not supported.
-	//
-	// - Supported operators: !_, -_, _!=_, _&&_, _=_, _[_]
-	//   - All other operators are not supported.
-	// - All other standard functions are not supported. In particular:
-	//   - size() is not supported.
-	//   - string functions like endsWith() and contains() are not supported.
-	//   - type conversions like int() and string() are not supported.
-	//   - reflection with type(), null_type() and dyn() is not supported.
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -789,6 +717,10 @@ type DUTExclusionConstraint struct {
 	// - Types: Protobuf messages from `chromiumos.config.api.*`
 	//   - Additionally available with the short-hand `api.*`
 	//
+	// The full CEL spec can be found at https://github.com/google/cel-spec.
+	//
+	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
+	//
 	// ## Examples
 	//
 	// Typical examples of expressions are:
@@ -796,64 +728,6 @@ type DUTExclusionConstraint struct {
 	// - Must not run on a device with a given screen size:
 	//     dut.hardware_features.screen.milliinch.value == 14000
 	// - TODO: Add model / build target example.
-	//
-	// ## CEL support
-	//
-	// The full CEL spec can be found at https://github.com/google/cel-spec.
-	//
-	// Current support for `expression` evaluation is very restricted due to
-	// limitations in the scheduling infrastructure used by Test Platform.
-	//
-	// As this API matures, features will be added to the scheduling
-	// infrastructure of Test Platform and restrictions here will be lifted based
-	// on requirements collected from test authors. See milestones in
-	// go/cros-f20-plan for expected feature iterations. Test Lab Environments
-	// SHOULD validate the expression and reject use of unsupported features.
-	//
-	// TODO(crbug.com/1051689) Add reference to the metadata validator package.
-	//
-	// ### Syntax
-	//
-	// See full syntax definition at
-	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#syntax
-	//
-	// CEL standard syntax allows expressions that evaluate to errors (e.g.,
-	// syntax allows negation of lists, which has no semantics in CEL).
-	// Thus, this spec does not attempt to restrict the syntax, but specifies what
-	// operations are unsupported to aid metadata producers. Ultimately, the
-	// reference metadata validator is the authority on what expressions are
-	// allowed.
-	//
-	// Unsupported standard CEL semantics:
-	//   - Binary arithmetic operations
-	//     e.g.: +, *, /, % ...
-	//   - Relational Operators beyond (in)equality are not supported.
-	//     e.g.: (>, <, >=, <= ...)
-	//   - Logical OR in expressions is not supported.
-	//     e.g.: (a || b), !(a && b) ...
-	//
-	// ### Macros
-	//
-	// See full macro definition at
-	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#macros
-	//
-	// Supported macros: has(), e.all()
-	// Unsupported macros: e.exists(), e.exists_one(), e.map(), e.filter()
-	//
-	// ### Standard functions
-	//
-	// See full list of standard definitions at
-	// https://github.com/google/cel-spec/blob/master/doc/langdef.md#standard-definitions
-	//
-	// Most standard functions are not supported.
-	//
-	// - Supported operators: !_, -_, _!=_, _&&_, _=_, _[_]
-	//   - All other operators are not supported.
-	// - All other standard functions are not supported. In particular:
-	//   - size() is not supported.
-	//   - string functions like endsWith() and contains() are not supported.
-	//   - type conversions like int() and string() are not supported.
-	//   - reflection with type(), null_type() and dyn() is not supported.
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -967,10 +841,6 @@ type CodeCoverage struct {
 	//       ].exists(s, p.startsWith(s)))
 	// - Do not include test plan unit if there are changes to private overlays
 	//     blamelist.repo_paths.all(p, !p.contains("private-overlays"))
-	//
-	// ## CEL support
-	//
-	// All standard CEL syntax, macros and functions MUST be supported.
 	Expression           string   `protobuf:"bytes,1,opt,name=expression,proto3" json:"expression,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
