@@ -43,9 +43,16 @@ message Target {
 	BigqueryConfig bq = 1;
 }
 
-// Environment defines the configuration parameters common to
-//  the result_flow's subcommands.
-message Environment {
-    Source source = 1;
-    Target target = 2;
+// Values should be consistent with https://aip.dev/216
+enum State {
+  // Should not be used.
+  STATE_UNSPECIFIED = 0;
+  // Successfully executed the command.
+  SUCCEEDED = 1;
+  // Encountered failure during the run.
+  FAILED = 2;
+  // The command has hit the predefined deadline.
+  TIMED_OUT = 3;
+  // The command was aborted externally.
+  ABORTED = 4;
 }
