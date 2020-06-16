@@ -14,17 +14,21 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/ana
 // status.
 message TestPlanRun {
   // A unique name to identify this test plan run, format
-  // "testPlanRuns/{testPlanRun}", where {} is a UUID,
-  // e.g. "testPlanRuns/8df26977-469d-4a85-a0e8-b1f42ca4a888"
+  // "testPlanRuns/CTP_BUILD_ID/REQ_KEY", where REQ_KEY is the CTP
+  // request’s key in the multiple-request,
+  // e.g. "testPlanRuns/8879199769272202448/octopus_ampton"
   // Required field.
   string uid = 1;
 
+  // CTP build ID.
+  int64 build_id = 2;
+
   // Suite name. If the test plan is running an autotest suite,
   // this field is the autotest suite name, e.g. wifi_interop.
-  string suite = 2;
+  string suite = 3;
 
   // Human friendly url to access this run.
-  string execution_url = 3;
+  string execution_url = 4;
 
   // The dut_pool in which the test plan ran, e.g. "DUT_POOL_QUOTA" or
   // "wificell".
@@ -33,26 +37,24 @@ message TestPlanRun {
   // Note that legacy pools "suites", "bvt" and "pcq" have been integrated
   // into "DUT_POOL_QUOTA" and legacy pool "cts" has been renamed to
   // "DUT_POOL_CTS".
-  string dut_pool = 4;
+  string dut_pool = 5;
 
   // The build target, a.k.a board name, e.g. "hatch", "octopus".
-  string build_target = 5;
+  string build_target = 6;
 
   // CrOS build version, e.g. "R84/13091.0.0".
-  string chromeos_build = 6;
+  string chromeos_build = 7;
 
-  Status status = 7;
+  Status status = 8;
 
   // Event timestamp of test plan run, e.g. start time, end time.
-  Timeline timeline = 8;
+  Timeline timeline = 9;
 }
 
 // TestRun contains Skylab task level information.
 message TestRun {
-  // A unique name for this test run, format "testRuns/{testRun}",
-  // where {} is a UUID.
-  // Required field.
-  string uid = 1;
+  // Test runner build ID.
+  int64 build_id = 1;
 
   // The name of the Skylab task corresponding to the test run, e.g.
   // "tast.critical-chrome".
@@ -92,7 +94,8 @@ message TestRun {
 // TestCaseResult describes the result of an individual test case.
 message TestCaseResult {
   // A unique name for this test case run,
-  // format "testCaseResults/{testCaseResult}" where {} is a UUID.
+  // format "testCaseResults/TEST_RUNNER_BUILD_ID/TEST_CASE_NAME", e.g.
+  // "testCaseResults/8879199769272202448/provision_AutoUpdate.double".
   // Required field.
   string uid = 1;
 
@@ -100,8 +103,8 @@ message TestCaseResult {
   // e.g. "provision_AutoUpdate.double".
   string display_name = 2;
 
-  // The TestRun.uid of the parent test run.
-  string parent_uid = 3;
+  // The TestRun.build_id of the parent test run.
+  string parent_build_id = 3;
 
   Verdict verdict = 4;
 
