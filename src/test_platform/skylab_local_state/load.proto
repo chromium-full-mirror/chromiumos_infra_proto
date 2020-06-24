@@ -22,6 +22,9 @@ message LoadRequest {
 
   // Swarming run ID. Used in the results directory name.
   string run_id = 4;
+
+  // DUT ID, used in the name of the DUT state cache file.
+  string dut_id = 5;
 }
 
 // LoadResponse defines the output of `skylab_local_state load`.
