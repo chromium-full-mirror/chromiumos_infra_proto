@@ -68,6 +68,12 @@ message Config {
         Buildbucket buildbucket = 1;
     }
 
+    // PubSub defines the configuration parameters for PubSub topic.
+    message PubSub {
+       string project = 1;
+       string topic = 2;
+    }
+
     Swarming skylab_swarming = 1;
 
     Isolate skylab_isolate = 3;
@@ -79,4 +85,8 @@ message Config {
     TestRunner test_runner = 8;
 
     test_platform.migration.test_runner.Config test_runner_migration = 9;
+
+    // The PubSub topic, to which CTP sends build ID when the build starts
+    // and ends.
+    PubSub pubsub = 10;
 }
