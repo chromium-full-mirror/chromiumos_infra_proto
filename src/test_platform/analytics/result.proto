@@ -104,7 +104,7 @@ message TestCaseResult {
   string display_name = 2;
 
   // The TestRun.build_id of the parent test run.
-  string parent_build_id = 3;
+  int64 parent_build_id = 3;
 
   Verdict verdict = 4;
 
