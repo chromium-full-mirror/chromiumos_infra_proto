@@ -28,6 +28,9 @@ message BuildTargetUnitTestRequest {
   Flags flags = 4;
   // Skipped packages.
   repeated chromiumos.PackageInfo package_blacklist = 5;
+  // Packages to be tested.
+  // Defaults to all testable packages when none are given.
+  repeated chromiumos.PackageInfo packages = 6;
 }
 
 message BuildTargetUnitTestResponse {
