@@ -15,5 +15,8 @@ message Config {
 
   // Autotest directory on the drone, e.g. "/usr/local/autotest".
   string autotest_dir = 2;
+
+  // Inventory V2 service host, e.g. cros-lab-inventory.appspot.com.
+  string cros_inventory_service = 3;
 }
 

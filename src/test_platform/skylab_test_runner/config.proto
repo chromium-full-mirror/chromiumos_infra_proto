@@ -15,6 +15,9 @@ message Config {
     message Lab {
       // Admin service host, e.g. foo.appspot.com.
       string admin_service = 1;
+
+      // Inventory V2 service host, e.g. cros-lab-inventory.appspot.com.
+      string cros_inventory_service = 2;
     }
 
     // Harness defines configuration parameters related to the test harness
