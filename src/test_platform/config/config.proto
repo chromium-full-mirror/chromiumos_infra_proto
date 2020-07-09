@@ -62,16 +62,18 @@ message Config {
         string builder = 4;
     }
 
+    // PubSub defines the configuration parameters for PubSub topic.
+    message PubSub {
+        string project = 1;
+        string topic = 2;
+    }
+
     // TestRunner defines configuration parameters related to the test_runner
     // recipe.
     message TestRunner {
         Buildbucket buildbucket = 1;
-    }
-
-    // PubSub defines the configuration parameters for PubSub topic.
-    message PubSub {
-       string project = 1;
-       string topic = 2;
+        // The PubSub topic to which Buildbucket sends the update of test runner build.
+        PubSub pubsub = 2;
     }
 
     Swarming skylab_swarming = 1;
