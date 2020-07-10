@@ -288,8 +288,10 @@ service PackageService {
 
   // Check whether the Chrome source tree is needed.  Does not compile nor
   // install any packages.
-  rpc NeedsChromeSource(NeedsChromeSourceRequest)
-    returns (NeedsChromeSourceResponse);
+  // TODO(crbug/1086714): Uncomment this when the endpoint actually exists.
+  // See https://ci.chromium.org/b/8875124107016783184
+  //rpc NeedsChromeSource(NeedsChromeSourceRequest)
+  //  returns (NeedsChromeSourceResponse);
 
   // Find the best (highest) available version of the requested package.
   // This must be run after the chroot is set up (for chroot package lookup) or
