@@ -48,6 +48,10 @@ message HwTestCfg {
     // 'caroline-arcnext'.
     string skylab_board = 11;
 
+    // Key that further specifies the device to test on in Skylab.
+    // e.g. for skylab_board 'octopus', may require skylab_model 'ampton'
+    string skylab_model = 15;
+
     HwTestSuiteType hw_test_suite_type = 13;
 
     // The swarming pool in which to run the test suite, e.g. DUT_POOL_QUOTA.
