@@ -14,7 +14,6 @@ import "google/protobuf/wrappers.proto";
 
 // Configuration used by a builder during execution.
 message BuilderConfig {
-
   // Used to control running of special steps.
   enum RunSpec {
     RUN_SPEC_UNSPECIFIED = 0;
@@ -195,7 +194,8 @@ message BuilderConfig {
       CHROMEOS_CONFIG = 8;
       // Indicates wanting the CPE report.
       CPE_REPORT = 9;
-      // Indicates wanting a tar.xz archive for each image that has been created.
+      // Indicates wanting a tar.xz archive for each image that has been
+      // created.
       IMAGE_ARCHIVES = 10;
 
       // Artifacts used by the toolchain.
@@ -393,6 +393,10 @@ message BuilderConfig {
 
     // Whether to assume the sysroot is empty.
     bool empty_sysroot = 6;
+
+    // Packages to be tested.
+    // Defaults to all testable packages when none are given.
+    repeated PackageInfo packages = 7;
   }
   UnitTests unit_tests = 7;
 }
