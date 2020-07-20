@@ -10,35 +10,43 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/sky
 
 // Config defines configuration parameters of skylab_test_runner.
 message Config {
-    // Lab defines configuration parameters related to the lab and the lab
-    // platform services.
-    message Lab {
-      // Admin service host, e.g. foo.appspot.com.
-      string admin_service = 1;
+  // Lab defines configuration parameters related to the lab and the lab
+  // platform services.
+  message Lab {
+    // Admin service host, e.g. foo.appspot.com.
+    string admin_service = 1;
 
-      // Inventory V2 service host, e.g. cros-lab-inventory.appspot.com.
-      string cros_inventory_service = 2;
-    }
-
-    // Harness defines configuration parameters related to the test harness
-    // (autotest, tast, etc).
-    message Harness {
-      // Autotest directory inside the drone container,
-      // e.g. "/usr/local/autotest".
-      string autotest_dir = 1;
-
-      // Subdirectory, as relative path from the autotest results directory,
-      // to use for synchronous offloads
-      string synch_offload_subdir = 2;
-    }
-
-    // Output defines parameters around how the task will deliver output to
-    // the callers, e.g. Google Storage bucket.
-    message Output {
-      string gs_root_dir = 1;
-    }
-
-    Lab lab = 1;
-    Harness harness = 2;
-    Output output = 3;
+    // Inventory V2 service host, e.g. cros-lab-inventory.appspot.com.
+    string cros_inventory_service = 2;
   }
+
+  // Harness defines configuration parameters related to the test harness
+  // (autotest, tast, etc).
+  message Harness {
+    // Autotest directory inside the drone container,
+    // e.g. "/usr/local/autotest".
+    string autotest_dir = 1;
+
+    // Subdirectory, as relative path from the autotest results directory,
+    // to use for synchronous offloads
+    string synch_offload_subdir = 2;
+
+    // The name of the base lxc image used for Server Side Packaging (SSP).
+    //
+    // autoserv fetches the base image from a hard-coded path on Google
+    // Storage: gs://abci-ssp/autotest-containers/{name}.tar.xz
+    //
+    // See go/ctp-ssp for an overview of SSP.
+    string ssp_base_image_name = 3;
+  }
+
+  // Output defines parameters around how the task will deliver output to
+  // the callers, e.g. Google Storage bucket.
+  message Output {
+    string gs_root_dir = 1;
+  }
+
+  Lab lab = 1;
+  Harness harness = 2;
+  Output output = 3;
+}
