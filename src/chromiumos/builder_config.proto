@@ -42,6 +42,8 @@ message BuilderConfig {
       TOOLCHAIN = 3;
       // Informational build.
       INFORMATIONAL = 4;
+      // Release build.
+      RELEASE = 5;
     }
     Type type = 3;
   }
