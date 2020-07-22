@@ -1,0 +1,44 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package client;
+
+import "client/client_id.proto";
+
+// Client concept represents an end-user infra service that users interact with
+// directly. e.g: CQ, Release testing.
+// ClientId proto and companion protos are used for two purposes:
+//   1) Coordinate configs across different internal sub services to achieve a
+//      certain property that's required by the end-user infra service.
+//   2) Provide useful analytics of how the sub-services operate to fullfill
+//      requests from the end-user infra services.
+//
+//
+//
+//                             /
+//    ---------------    1:N  / -----------
+//    |   Client    | <---------| Profile |  // Use for coordinate
+//    ---------------         \ -----------  // behavioral configs
+//          ^                  \             // of internal sub serivces
+//          | 1:N
+//      ____|______
+//     /    |      \
+//       ---------     // Use for tracking/analytics
+//       |Request|     // of how a request is fullfiled
+//       ---------     // by internal sub services
+//
+// To encapsulate the concepts of Profiles & Requests within each Client, we
+// design ProfileId & RequestId protos that are shareable between Client and
+// infra sub services as simple as possible
+// (mostly contain joinable id keys).
+// This allows different Client implementation to define arbitrarily
+// complex Profile & Request types without worrying about leaking those
+// complexity to sub services.
+//
+message Client {
+  string name = 1;
+  client.ClientId id = 2;
+}

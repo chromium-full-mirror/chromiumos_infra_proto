@@ -7,6 +7,8 @@ syntax = "proto3";
 package test_platform;
 
 import "chromite/api/test_metadata.proto";
+import "client/request_id.proto";
+import "client/profile_id.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
 
@@ -274,4 +276,6 @@ message Request {
   }
 
   TestPlan test_plan = 5;
+  client.RequestId client_request_id = 6;
+  client.ProfileId client_profile_id = 7;
 }

@@ -1,0 +1,19 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package client;
+
+import "client/client_id.proto";
+
+// Id of a client profile. See comment in client/client.proto for
+// more details.
+message ProfileId {
+  // Required.
+  string id = 1;
+
+  // Required.
+  client.ClientId client_id = 2;
+}
