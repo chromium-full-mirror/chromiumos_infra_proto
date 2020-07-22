@@ -144,6 +144,12 @@ message ScalingAction {
   // Estimated savings based on current run.
   // Based on current number of bots compared against the max.
   float estimated_savings = 6;
+  // Minimum number of bots to keep alive for bot group.
+  // Repeated for display/reporting purposes
+  int32 bot_min = 7;
+  // Hard limit on the maximum number of bots that can be requested.
+  // Repeated for display/reporting purposes
+  int32 bot_max = 8;
 }
 
 // Resource utilization based on regional assignment.
