@@ -8,6 +8,8 @@ package client;
 
 import "client/client_id.proto";
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+
 // Client concept represents an end-user infra service that users interact with
 // directly. e.g: CQ, Release testing.
 // ClientId proto and companion protos are used for two purposes:

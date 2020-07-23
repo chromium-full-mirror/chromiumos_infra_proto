@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package client;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+
 message ClientId {
   string id = 1;
 }

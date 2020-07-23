@@ -4,12 +4,12 @@
 package test_platform
 
 import (
-	client "client"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	api "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+	client "go.chromium.org/chromiumos/infra/proto/go/client"
 	math "math"
 )
 
