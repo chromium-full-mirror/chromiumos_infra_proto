@@ -38,6 +38,9 @@ message Config {
     //
     // See go/ctp-ssp for an overview of SSP.
     string ssp_base_image_name = 3;
+
+    // The maximum duration for prejobs (e.g. provisioning).
+    int64 prejob_deadline_seconds = 4;
   }
 
   // Output defines parameters around how the task will deliver output to
