@@ -11,6 +11,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test/plan/v1;plan
 import "test/fleet/v1/dut.proto";
 
 // From chromiumos/config repo.
+import "chromiumos/config/api/design_config_id.proto";
 import "chromiumos/config/api/topology.proto";
 
 // A set of known test plans.
@@ -202,6 +203,7 @@ message DUTCoverageConstraint {
     // Configuration information about the lab deployment of the device.
     test.fleet.v1.DeviceUnderTest fleet_dut = 1;
     chromiumos.config.api.HardwareFeatures hardware_features = 2;
+    chromiumos.config.api.DesignConfigId design_config_id = 3;
   }
 }
 
@@ -335,7 +337,7 @@ message DUTExclusionConstraint {
   // constant of the following type.
   message DUT {
     chromiumos.config.api.HardwareFeatures hardware_features = 1;
-    // TODO(pprabhu, shapiroc) Add a way to target model and build_target here.
+    chromiumos.config.api.DesignConfigId design_config_id = 2;
   }
 }
 
