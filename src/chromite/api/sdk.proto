@@ -109,6 +109,14 @@ message RestoreSnapshotRequest {
 
 message RestoreSnapshotResponse {}
 
+message UnmountPathRequest {
+  // Path to unmount.
+  chromiumos.Path path = 1;
+}
+
+message UnmountPathResponse {
+}
+
 // SDK operations.
 service SdkService {
   // The service options (see build_api.proto).
@@ -141,4 +149,8 @@ service SdkService {
 
   // Restore a chroot to a snapshot.
   rpc RestoreSnapshot(RestoreSnapshotRequest) returns (RestoreSnapshotResponse);
+
+  // Unmount a filesystem path and any submounts under it.
+  rpc UnmountPath(UnmountPathRequest)
+      returns (UnmountPathResponse);
 }
