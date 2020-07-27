@@ -16,6 +16,8 @@ message BuildTargetUnitTestRequest {
     bool empty_sysroot = 1;
     // Whether a toolchain change has occurred.
     bool toolchain_changed = 2;
+    // Whether to produce code coverage data.
+    bool code_coverage = 3;
    }
 
   // The build target being tested.
