@@ -97,6 +97,26 @@ message PackageInfo {
   string version = 3;
 }
 
+// Message describing a package index (binhost) file.
+message PackageIndexInfo {
+  // The snapshot SHA
+  string snapshot_sha = 1;
+
+  // The snapshot number.  Higher is newer.
+  int32 snapshot_number = 2;
+
+  // The build target.
+  BuildTarget build_target = 3;
+
+  // The full URI of the package index file.
+  string location = 4;
+
+  // TODO(crbug/1088059): Add status of the prebuilts:
+  // - Passed HW Tests?
+  // - Marked stable?
+  // Etc
+}
+
 // A message to clarify inside/outside chroot paths.
 message Path {
   // Location enum; whether the resource is inside or outside of the chroot.

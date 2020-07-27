@@ -43,6 +43,8 @@ message SysrootCreateRequest {
   Profile profile = 3;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 4;
+  // Package index files available for use.
+  repeated chromiumos.PackageIndexInfo package_indexes = 5;
 }
 
 // Create response.
