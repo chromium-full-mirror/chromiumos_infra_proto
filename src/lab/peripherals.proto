@@ -71,13 +71,15 @@ message Cable {
   CableType type = 1;
 }
 
-// Next Tag: 3
+// Next Tag: 4
 message Audio {
   // Indicate if the DUT is housed in an audio box to record / replay audio
   // for audio testing.
   bool audio_box = 1;
   // Indicate if the DUT is connected to Atrus speakermic
   bool atrus = 2;
+  // Indicate if the DUT is connected to chameleon through static audio cable
+  bool audio_cable = 3;
 }
 
 // Next Tag: 4
