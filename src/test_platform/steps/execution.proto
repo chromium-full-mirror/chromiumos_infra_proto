@@ -96,6 +96,11 @@ message ExecuteResponse {
         // Location, as URL, at which to place low-latency, high-importance
         // log data which fails the task if not offloaded properly.
         string synchronous_log_data_url = 10;
+
+        // Any rejected task dimensions from the task execution request,
+        // stored as key-value pairs. This field is only populated if the
+        // task was rejected by Swarming due to a lack of matching bot.
+        map<string, string> rejected_task_dimensions = 11;
     }
 
     // TODO(crbug.com/1020326) Deprecate and delete this in favor of
