@@ -76,6 +76,7 @@ func (m *Sysroot) GetBuildTarget() *chromiumos.BuildTarget {
 }
 
 // Information about the sysroot's profile.
+// TODO(crbug/1088059): Finish migrating this to chromiumos.Profile.
 type Profile struct {
 	// The name of the profile.
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`

@@ -16,6 +16,7 @@ message Sysroot {
 }
 
 // Information about the sysroot's profile.
+// TODO(crbug/1088059): Finish migrating this to chromiumos.Profile.
 message Profile {
   // The name of the profile.
   string name = 1;

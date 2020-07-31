@@ -97,6 +97,12 @@ message PackageInfo {
   string version = 3;
 }
 
+// Information about the sysroot's profile.
+message Profile {
+  // The name of the profile.
+  string name = 1;
+}
+
 // Message describing a package index (binhost) file.
 message PackageIndexInfo {
   // The snapshot SHA
@@ -110,6 +116,9 @@ message PackageIndexInfo {
 
   // The full URI of the package index file.
   string location = 4;
+
+  // The sysroot profile.
+  Profile profile = 5;
 
   // TODO(crbug/1088059): Add status of the prebuilts:
   // - Passed HW Tests?
