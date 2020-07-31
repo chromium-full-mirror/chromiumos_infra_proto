@@ -110,6 +110,14 @@ message BuilderConfig {
 
     // Indicates whether the target is a unibuild.
     bool unibuild = 6;
+
+    // Indicates which manifest a builder should sync to.
+    enum Manifest {
+      MANIFEST_UNSPECIFIED = 0;
+      PUBLIC = 1;
+      PRIVATE = 2;
+    }
+    Manifest manifest = 7;
   }
   General general = 2;
 
