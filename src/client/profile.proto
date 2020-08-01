@@ -1,0 +1,114 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package client;
+
+import "client/profile_id.proto";
+import "google/protobuf/duration.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+
+// Profile to coordinate behavioral configs of internal sub services e.g. test platform
+// Next Tag: 4
+message Profile {
+  string name = 1;
+  client.ProfileId id = 2;
+  TestPlatformProfile test_platform_profile = 3;
+}
+
+// TestPlatformProfile configures aspects of the test platform behaviour per-request.
+// Configure the scheduling priorities in the test platform, retry behavior, timeout characteristics
+// and alerting thresholds throughout the test platform stack.
+// Next Tag: 5
+message TestPlatformProfile {
+  SchedulerProfile scheduler = 1;
+  RetryProfile retry = 2;
+  TimeoutProfile timeout = 3;
+  MonitoringProfile monitoring = 4;
+}
+
+// SchedulerProfile controls the test platform scheduling behaviour.
+// Next Tag: 5
+message SchedulerProfile {
+
+  // ManagedPool enumerates the different lab platform-managed pools.
+  // Devices in these pools are automatically managed by lab platform
+  // systems and can not be arbitrarily assigned to pools by users.
+  //
+  // Managed pool implementations are specific to test platform's scheduling
+  // backends.
+  // For Skylab, see
+  // https://chromium.googlesource.com/infra/infra/+/5566668428c6b286702bf440d9dfd0be7bca1d84/go/src/infra/libs/skylab/inventory/device.proto#173
+  // For autotest, see
+  // https://chromium.googlesource.com/chromiumos/third_party/autotest/+/7436c2b6e6bd32ed1f1bd08cf8e0feb40cfe7b89/server/constants.py#18
+  enum ManagedPool {
+    MANAGED_POOL_UNSPECIFIED = 0;
+    MANAGED_POOL_CQ = 1;
+    MANAGED_POOL_BVT = 2;
+    MANAGED_POOL_SUITES = 3;
+    MANAGED_POOL_CTS = 4;
+    MANAGED_POOL_CTS_PERBUILD = 5;
+    MANAGED_POOL_CONTINUOUS = 6;
+    MANAGED_POOL_ARC_PRESUBMIT = 7;
+    MANAGED_POOL_QUOTA = 8;
+  }
+
+  oneof pool {
+    // Managed pool of devices to run tests in.
+    ManagedPool managed_pool = 1;
+
+    // Unmanaged pool of devices to run tests in.
+    // Must not be a managed pool.
+    string unmanaged_pool = 2;
+  }
+
+  // Priority corresponding to a swarming task priority.
+  // If specified, it should be in the range [50,255].
+  // It will be used for any swarming tasks created by this run.
+  //
+  // Note that the scheduler behavior with a given priority depends on
+  // other factors, such as pool. In particular, if requests are run in
+  // a quotascheduler-controlled pool, then this priority will be ignored,
+  // as priority will be determined by quota account balances.
+  uint32 priority = 3;
+
+  // Quota account for both managed and unamanged pools.
+  // It should be used if the request is scheduled on a pool
+  // managed by QuotaScheduler. See go/qs-enabled-pools for details.
+  // If set for requests on no QuotaScheduler pools,
+  // it will be ignored and the request will default to running at
+  // the lowest priority.
+  string quota_account = 4;
+}
+
+// RetryPrfoile defines parameters that affect how failed tests within
+// a request are retried.
+message RetryProfile {
+  // Whether to allow test retries.
+  bool allow = 1;
+
+  // Maximum number of retries of tests within this invocation to allow.
+  // 0 = unlimited.
+  uint32 max = 2;
+}
+
+// TimeoutProfile defines parameters related to timeouts.
+message TimeoutProfile {
+  // Maximum duration for the entire request to be handled.
+  google.protobuf.Duration maximum_duration = 1;
+}
+
+// MonitoringProfile controls the alerting and monitoring of requests
+// associated with the profile throughout the test infrastructure
+// stack.
+message MonitoringProfile {
+  TestPlatformAlertingThresholds test_platform_alerting_thresholds = 1;
+}
+
+// TestPlatformAlertingThresholds capture alerting thresholds for test platform.
+message TestPlatformAlertingThresholds {
+  // TODO: TBD
+}
