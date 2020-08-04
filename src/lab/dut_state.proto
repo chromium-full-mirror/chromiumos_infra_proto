@@ -53,7 +53,7 @@ message DutState {
   HardwareState servo_usb_state = 9;
 }
 
-// Next Tag: 13
+// Next Tag: 14
 enum PeripheralState {
   // Please keep for all unknown states.
   UNKNOWN = 0;
@@ -73,6 +73,8 @@ enum PeripheralState {
   NEED_REPLACEMENT = 7;
 
   // Servo specific states.
+  // cr50 console missing or unresponsive.
+  CR50_CONSOLE_MISSING = 13;
   // Servod daemon cannot start on servo-host because cr50 testlab not enabled.
   CCD_TESTLAB_ISSUE = 8;
   // Servod daemon cannot start on servo-host.
