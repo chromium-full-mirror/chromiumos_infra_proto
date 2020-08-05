@@ -186,4 +186,7 @@ message ExecutionTask {
   }
   // Request sent time in UTC.
   google.protobuf.Timestamp request_sent = 4;
+  // The CTP request tag for grouping several ScheduleJobs into
+  // a multiple CTP request.
+  string request_tag = 5;
 }
