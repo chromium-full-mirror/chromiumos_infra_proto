@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -8,8 +8,9 @@ package lab;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
-// NEXT TAG: 6
+// NEXT TAG: 8
 message Servo {
+  reserved 6;
   // Servo-specific configs
   string servo_hostname = 2;
   int32 servo_port = 3;
@@ -17,4 +18,14 @@ message Servo {
   // Based on https://docs.google.com/document/d/1TPp7yp-uwFUh5xOnBLI4jPYtYD7IcdyQ1dgqFqtcJEU/edit?ts=5d8eafb7#heading=h.csdfk1i6g0l
   // servo_type will contain different setup of servos. So string is recommended than enum.
   string servo_type = 5;
+  ServoSetupType servo_setup = 7;
+}
+
+// Servo Setup Type describes the capabilities of servos.
+// Next Tag : 3
+enum ServoSetupType {
+    SERVO_SETUP_REGULAR = 0;
+    SERVO_SETUP_DUAL_V4 = 1;
+    // SERVO_SETUP_INVALID explicitly marks errors in servo setup.
+    SERVO_SETUP_INVALID = 2;
 }
