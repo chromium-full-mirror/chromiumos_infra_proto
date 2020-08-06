@@ -126,6 +126,8 @@ message InstallPackagesRequest {
   repeated chromiumos.UseFlag use_flags = 5;
   // Goma Config.
   chromiumos.GomaConfig goma_config = 6;
+  // Package index files available for use.
+  repeated chromiumos.PackageIndexInfo package_indexes = 7;
 }
 
 message InstallPackagesResponse {
