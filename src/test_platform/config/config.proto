@@ -72,7 +72,7 @@ message Config {
     // recipe.
     message TestRunner {
         Buildbucket buildbucket = 1;
-        // The PubSub topic to which Buildbucket sends the update of test runner build.
+        // Result flow topic: Publish a message for each build status update
         PubSub pubsub = 2;
     }
 
@@ -88,7 +88,7 @@ message Config {
 
     test_platform.migration.test_runner.Config test_runner_migration = 9;
 
-    // The PubSub topic, to which CTP sends build ID when the build starts
-    // and ends.
+    // Result flow topic: CTP publishes a message with build ID, once
+    // at build start and again at build end
     PubSub pubsub = 10;
 }

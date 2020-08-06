@@ -29,8 +29,8 @@ type Config struct {
 	Versioning          *Config_Versioning   `protobuf:"bytes,7,opt,name=versioning,proto3" json:"versioning,omitempty"`
 	TestRunner          *Config_TestRunner   `protobuf:"bytes,8,opt,name=test_runner,json=testRunner,proto3" json:"test_runner,omitempty"`
 	TestRunnerMigration *test_runner.Config  `protobuf:"bytes,9,opt,name=test_runner_migration,json=testRunnerMigration,proto3" json:"test_runner_migration,omitempty"`
-	// The PubSub topic, to which CTP sends build ID when the build starts
-	// and ends.
+	// Result flow topic: CTP publishes a message with build ID, once
+	// at build start and again at build end
 	Pubsub               *Config_PubSub `protobuf:"bytes,10,opt,name=pubsub,proto3" json:"pubsub,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
 	XXX_unrecognized     []byte         `json:"-"`
@@ -455,7 +455,7 @@ func (m *Config_PubSub) GetTopic() string {
 // recipe.
 type Config_TestRunner struct {
 	Buildbucket *Config_Buildbucket `protobuf:"bytes,1,opt,name=buildbucket,proto3" json:"buildbucket,omitempty"`
-	// The PubSub topic to which Buildbucket sends the update of test runner build.
+	// Result flow topic: Publish a message for each build status update
 	Pubsub               *Config_PubSub `protobuf:"bytes,2,opt,name=pubsub,proto3" json:"pubsub,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
 	XXX_unrecognized     []byte         `json:"-"`

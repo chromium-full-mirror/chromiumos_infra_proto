@@ -881,7 +881,13 @@ func (m *Request_Params_Legacy) GetAutotestSuite() string {
 // Notification defines parameters for the request to use to notify callers
 // of its test's status updates.
 type Request_Params_Notification struct {
-	// Pubsub topic to broadcast status updates to
+	// TODO(crbug.com/1113875): Swarming only allows 1 pubsub topic. We
+	// should create a common pubsub topic for all subscribers and replace
+	// this field with a map<string, string> that allows users to attach
+	// arbitrary attributes to the pubsub message.
+	// This will require API support from Swarming and/or BuildBucket.
+	//
+	// Pubsub topic to broadcast status updates to, for external listeners
 	PubsubTopic          string   `protobuf:"bytes,1,opt,name=pubsub_topic,json=pubsubTopic,proto3" json:"pubsub_topic,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
