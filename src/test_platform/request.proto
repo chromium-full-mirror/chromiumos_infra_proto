@@ -231,6 +231,11 @@ message Request {
       // fail validation.
       // If false, such offload will be skipped.
       bool enable_synchronous_offload = 2;
+
+      // Turn on synchronous offloads even if there is no pubsub topic set.
+      // Not intended as a long-term change, but useful for testing synchronous
+      // offloads during rollout.
+      bool notificationless_offload = 3;
     }
 
     Migrations migrations = 12;
