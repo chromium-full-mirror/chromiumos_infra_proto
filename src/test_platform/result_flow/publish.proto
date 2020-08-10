@@ -23,6 +23,12 @@ message PublishRequest {
     //
     // Publish command should abort beyond this deadline.
     google.protobuf.Timestamp deadline = 5;
+    // True if subscribers should fetch the build's final status from
+    // Buildbucket. The message may be earlier than the build's completion. If
+    // the Buildbucket's response does not contain its final status, subscribers
+    // should retry. Otherwise, subscribers should expect an intermediate status
+    // of the build.
+    bool should_poll_for_completion = 6;
 }
 
 // PublishRequest defines the output of `result_flow publish`.
