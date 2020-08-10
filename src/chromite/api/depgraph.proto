@@ -78,6 +78,25 @@ message GetToolchainPathsResponse {
   repeated SourcePath paths = 1;
 }
 
+// Message for getting a list of a board's package dependencies.
+message ListRequest {
+  // The sysroot for the board whose packages dependencies are being calculated.
+  Sysroot sysroot = 1;
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 2;
+  // List of paths to consider when retrieving the board's package dependencies.
+  // If empty / None returns all package dependencies.
+  repeated SourcePath src_paths = 3;
+  // List of packages for which to get dependencies. If none are specified the
+  // standard list of packages is used.
+  repeated chromiumos.PackageInfo packages = 4;
+}
+
+// Response for getting a list of package dependencies.
+message ListResponse {
+  repeated chromiumos.PackageInfo package_deps = 1;
+}
+
 // Service to create a variety of package dependency graphs.
 service DependencyService {
   // The module implementing the service.
@@ -93,4 +112,7 @@ service DependencyService {
   // Get the list of source paths that are relevant to the toolchain
   rpc GetToolchainPaths(GetToolchainPathsRequest)
     returns (GetToolchainPathsResponse);
+
+  // Get the list of package dependencies.
+  rpc List(ListRequest) returns (ListResponse);
 }
