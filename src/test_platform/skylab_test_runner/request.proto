@@ -70,4 +70,9 @@ message Request {
   // All prejob or test execution should abort beyond this deadline.
   // Clean up actions may execute beyond the deadline.
   google.protobuf.Timestamp deadline = 3;
+
+  // The UID of the individual CTP request which kicked off this test run.
+  // Note that distinct requests inside a multi-request CTP build will have
+  // different UIDs.
+  string parent_request_uid = 4;
 }
