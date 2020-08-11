@@ -1,0 +1,33 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+
+// WARNING: DO NOT USE these protos outside of suite scheduler. This is
+// only intended to help the transition to starlark configs. It will
+// be deprecated once the new replacement is in place.
+syntax = "proto3";
+
+package testplans;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
+
+
+// Defines a board, its variants and its models.
+message Board {
+    // Name of the board. Eg: eve.
+    string name = 1;
+
+    // List of variants assiciated with the board.
+    // This should only be the suffixes. Eg: ['-kernelnext'].
+    repeated string variants = 2;
+
+    // List of models of the boards to test on.
+    repeated string models = 3;
+}
+
+// Aims to reflect data in lab_config.ini.
+message LabConfig {
+    // List of board definitions.
+    repeated Board boards = 1;
+}
