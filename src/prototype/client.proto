@@ -4,11 +4,11 @@
 
 syntax = "proto3";
 
-package client;
+package prototype;
 
-import "client/client_id.proto";
+import "prototype/client_id.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
 // Client concept represents an end-user infra service that users interact with
 // directly. e.g: CQ, Release testing.
@@ -42,5 +42,5 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
 //
 message Client {
   string name = 1;
-  client.ClientId id = 2;
+  ClientId id = 2;
 }

@@ -4,9 +4,9 @@
 
 syntax = "proto3";
 
-package client;
+package prototype;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
 message ClientId {
   string id = 1;

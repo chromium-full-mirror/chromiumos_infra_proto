@@ -4,18 +4,18 @@
 
 syntax = "proto3";
 
-package client;
+package prototype;
 
-import "client/client_id.proto";
+import "prototype/client_id.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-// Id of a client profile. See comment in client/client.proto for
+// Id of a client profile. See comment in client.proto for
 // more details.
 message ProfileId {
   // Required.
   string id = 1;
 
   // Required.
-  client.ClientId client_id = 2;
+  ClientId client_id = 2;
 }

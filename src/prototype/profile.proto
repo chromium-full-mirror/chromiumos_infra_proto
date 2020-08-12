@@ -4,25 +4,25 @@
 
 syntax = "proto3";
 
-package client;
+package prototype;
 
-import "client/profile_id.proto";
+import "prototype/profile_id.proto";
 import "google/protobuf/duration.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/client";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-// Profile to coordinate behavioral configs of internal sub services e.g. test platform
-// Next Tag: 4
+// Profile to coordinate behavioral configs of internal sub services e.g. test
+// platform Next Tag: 4
 message Profile {
   string name = 1;
-  client.ProfileId id = 2;
+  ProfileId id = 2;
   TestPlatformProfile test_platform_profile = 3;
 }
 
-// TestPlatformProfile configures aspects of the test platform behaviour per-request.
-// Configure the scheduling priorities in the test platform, retry behavior, timeout characteristics
-// and alerting thresholds throughout the test platform stack.
-// Next Tag: 5
+// TestPlatformProfile configures aspects of the test platform behaviour
+// per-request. Configure the scheduling priorities in the test platform, retry
+// behavior, timeout characteristics and alerting thresholds throughout the test
+// platform stack. Next Tag: 5
 message TestPlatformProfile {
   SchedulerProfile scheduler = 1;
   RetryProfile retry = 2;
@@ -33,7 +33,6 @@ message TestPlatformProfile {
 // SchedulerProfile controls the test platform scheduling behaviour.
 // Next Tag: 5
 message SchedulerProfile {
-
   // ManagedPool enumerates the different lab platform-managed pools.
   // Devices in these pools are automatically managed by lab platform
   // systems and can not be arbitrarily assigned to pools by users.

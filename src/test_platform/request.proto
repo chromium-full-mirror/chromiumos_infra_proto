@@ -7,8 +7,6 @@ syntax = "proto3";
 package test_platform;
 
 import "chromite/api/test_metadata.proto";
-import "client/request_id.proto";
-import "client/profile_id.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
 
@@ -67,10 +65,12 @@ message Request {
         // ChromeOS build name, e.g. "reef-release/R77-12345.0.0"
         string chromeos_build = 3;
 
-        // Readonly firmware build name, e.g. "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
+        // Readonly firmware build name, e.g.
+        // "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
         string ro_firmware_build = 4;
 
-        // Read-write firmware build name, e.g. "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
+        // Read-write firmware build name, e.g.
+        // "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
         string rw_firmware_build = 5;
       }
     }
@@ -111,8 +111,9 @@ message Request {
         // Must not be a managed pool.
         string unmanaged_pool = 2;
 
-        // TODO(crbug/1059076): Remove this field after the migration is done. Use
-        // qs_account to specify quota account for both managed and unmanaged pools.
+        // TODO(crbug/1059076): Remove this field after the migration is done.
+        // Use qs_account to specify quota account for both managed and
+        // unmanaged pools.
         string quota_account = 3 [deprecated = true];
       }
 
@@ -126,12 +127,12 @@ message Request {
       // as priority will be determined by quota account balances.
       int64 priority = 4;
 
-     // It is an error to set both qs_account and priority at the same time.
-     // qs_account should be used if the request is scheduled on a pool
-     // managed by QuotaScheduler. See go/qs-enabled-pools for details.
-     // If qs_account is set for requests on no QuotaScheduler pools,
-     // it will be ignored and the request will default to running at
-     // the lowest priority.
+      // It is an error to set both qs_account and priority at the same time.
+      // qs_account should be used if the request is scheduled on a pool
+      // managed by QuotaScheduler. See go/qs-enabled-pools for details.
+      // If qs_account is set for requests on no QuotaScheduler pools,
+      // it will be ignored and the request will default to running at
+      // the lowest priority.
       string qs_account = 5;
     }
 
@@ -179,7 +180,7 @@ message Request {
     message Decorations {
       // AutotestKeyvals are (key, value) pairs that will be added to all
       // autotest tasks run.
-      map <string, string> autotest_keyvals = 1;
+      map<string, string> autotest_keyvals = 1;
 
       // Tags are swarming tags that will be applied to all swarming tasks
       // launched.
@@ -275,7 +276,7 @@ message Request {
       chromite.api.AutotestTest test = 1;
       string test_args = 2;
       string display_name = 3;
-      map <string, string> result_keyvals = 4;
+      map<string, string> result_keyvals = 4;
     }
     repeated AutotestInvocation autotest_invocations = 2;
   }
@@ -287,6 +288,5 @@ message Request {
   }
 
   TestPlan test_plan = 5;
-  client.RequestId client_request_id = 6;
-  client.ProfileId client_profile_id = 7;
+  reserved 6, 7;
 }
