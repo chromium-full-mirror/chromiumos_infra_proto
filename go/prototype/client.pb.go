@@ -33,22 +33,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 //                             /
 //    ---------------    1:N  / -----------
 //    |   Client    | <---------| Profile |  // Use for coordinate
-//    ---------------         \ -----------  // behavioral configs
-//          ^                  \             // of internal sub serivces
-//          | 1:N
-//      ____|______
-//     /    |      \
-//       ---------     // Use for tracking/analytics
-//       |Request|     // of how a request is fullfiled
-//       ---------     // by internal sub services
-//
-// To encapsulate the concepts of Profiles & Requests within each Client, we
-// design ProfileId & RequestId protos that are shareable between Client and
-// infra sub services as simple as possible
-// (mostly contain joinable id keys).
-// This allows different Client implementation to define arbitrarily
-// complex Profile & Request types without worrying about leaking those
-// complexity to sub services.
+//    ---------------           -----------  // behavioral configs
 //
 type Client struct {
 	Name                 string    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`

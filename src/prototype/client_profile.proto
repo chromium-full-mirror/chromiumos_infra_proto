@@ -6,16 +6,16 @@ syntax = "proto3";
 
 package prototype;
 
-import "prototype/profile_id.proto";
+import "prototype/client_profile_id.proto";
 import "google/protobuf/duration.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
 // Profile to coordinate behavioral configs of internal sub services e.g. test
 // platform Next Tag: 4
-message Profile {
+message ClientProfile {
   string name = 1;
-  ProfileId id = 2;
+  ClientProfileId id = 2;
   TestPlatformProfile test_platform_profile = 3;
 }
 

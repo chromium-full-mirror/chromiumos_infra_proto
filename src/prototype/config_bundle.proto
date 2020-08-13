@@ -6,16 +6,12 @@ syntax = "proto3";
 
 package prototype;
 
-import "prototype/client_id.proto";
-
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-// Id of a client profile. See comment in client.proto for
-// more details.
-message ProfileId {
-  // Required.
-  string id = 1;
+import "prototype/client.proto";
+import "prototype/client_profile.proto";
 
-  // Required.
-  ClientId client_id = 2;
+message ConfigBundle {
+  repeated Client clients = 1;
+  repeated ClientProfile client_profiles = 2;
 }

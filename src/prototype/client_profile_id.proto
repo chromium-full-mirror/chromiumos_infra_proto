@@ -10,9 +10,9 @@ import "prototype/client_id.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
-// Id of a client request. See comment in client.proto for
+// Id of a client profile. See comment in client.proto for
 // more details.
-message RequestId {
+message ClientProfileId {
   // Required.
   string id = 1;
 
