@@ -33,54 +33,38 @@ message TestPlatformProfile {
 // SchedulerProfile controls the test platform scheduling behaviour.
 // Next Tag: 5
 message SchedulerProfile {
-  // ManagedPool enumerates the different lab platform-managed pools.
-  // Devices in these pools are automatically managed by lab platform
-  // systems and can not be arbitrarily assigned to pools by users.
+  // The task scheduling pools this device may be used for.
   //
-  // Managed pool implementations are specific to test platform's scheduling
-  // backends.
-  // For Skylab, see
-  // https://chromium.googlesource.com/infra/infra/+/5566668428c6b286702bf440d9dfd0be7bca1d84/go/src/infra/libs/skylab/inventory/device.proto#173
-  // For autotest, see
-  // https://chromium.googlesource.com/chromiumos/third_party/autotest/+/7436c2b6e6bd32ed1f1bd08cf8e0feb40cfe7b89/server/constants.py#18
-  enum ManagedPool {
-    MANAGED_POOL_UNSPECIFIED = 0;
-    MANAGED_POOL_CQ = 1;
-    MANAGED_POOL_BVT = 2;
-    MANAGED_POOL_SUITES = 3;
-    MANAGED_POOL_CTS = 4;
-    MANAGED_POOL_CTS_PERBUILD = 5;
-    MANAGED_POOL_CONTINUOUS = 6;
-    MANAGED_POOL_ARC_PRESUBMIT = 7;
-    MANAGED_POOL_QUOTA = 8;
+  // Historical note: The concept of managed pools (e.g.: DUT_POOL_CQ) was used
+  // for automatic balancing of healthy devices in critical pools. Due to
+  // merging of critical pools into a common scheduler pool, this auto-balancing
+  // service is no longer required.
+  //
+  // Old enum values are now serialized to the JSON encoding of those enums
+  // (e.g. "DUT_POOL_QUOTA").
+  // See lab/device.proto:DeviceUnderTest::DutPool.
+  repeated string pools = 1;
+
+  oneof qos_channel {
+    // Priority corresponding to a swarming task priority.
+    // If specified, it should be in the range [50,255].
+    // It will be used for any swarming tasks created by this run.
+    //
+    // Note that the scheduler behavior with a given priority depends on
+    // other factors, such as pool. In particular, if requests are run in
+    // a quotascheduler-controlled pool, then this priority will be ignored,
+    // as priority will be determined by quota account balances.
+    uint32 priority = 2;
+
+    // Quota account for both managed and unamanged pools.
+    // It should be used if the request is scheduled on a pool
+    // managed by QuotaScheduler. See go/qs-enabled-pools for details.
+    // If set for requests on no QuotaScheduler pools,
+    // it will be ignored and the request will default to running at
+    // the lowest priority.
+    string quota_account = 3;
   }
 
-  oneof pool {
-    // Managed pool of devices to run tests in.
-    ManagedPool managed_pool = 1;
-
-    // Unmanaged pool of devices to run tests in.
-    // Must not be a managed pool.
-    string unmanaged_pool = 2;
-  }
-
-  // Priority corresponding to a swarming task priority.
-  // If specified, it should be in the range [50,255].
-  // It will be used for any swarming tasks created by this run.
-  //
-  // Note that the scheduler behavior with a given priority depends on
-  // other factors, such as pool. In particular, if requests are run in
-  // a quotascheduler-controlled pool, then this priority will be ignored,
-  // as priority will be determined by quota account balances.
-  uint32 priority = 3;
-
-  // Quota account for both managed and unamanged pools.
-  // It should be used if the request is scheduled on a pool
-  // managed by QuotaScheduler. See go/qs-enabled-pools for details.
-  // If set for requests on no QuotaScheduler pools,
-  // it will be ignored and the request will default to running at
-  // the lowest priority.
-  string quota_account = 4;
 }
 
 // RetryPrfoile defines parameters that affect how failed tests within
