@@ -53,7 +53,7 @@ message DutState {
   HardwareState servo_usb_state = 9;
 }
 
-// Next Tag: 14
+// Next Tag: 15
 enum PeripheralState {
   // Please keep for all unknown states.
   UNKNOWN = 0;
@@ -85,6 +85,8 @@ enum PeripheralState {
   BAD_RIBBON_CABLE = 11;
   // the EC on the DUT has issue.
   EC_BROKEN = 12;
+  // Servo is not connected to the DUT.
+  DUT_NOT_CONNECTED = 14;
 }
 
 // Next Tag: 4
