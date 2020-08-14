@@ -49,7 +49,19 @@ message Config {
     string gs_root_dir = 1;
   }
 
+  // PubSub defines the configuration parameters for PubSub topic.
+  message PubSub {
+    string project = 1;
+    string topic = 2;
+  }
+
   Lab lab = 1;
   Harness harness = 2;
   Output output = 3;
+
+  // Result flow topic: test_runner publishes messages to this topic at the
+  // start and the end of the build.
+  // The messages in this topic should be ACKed only by the result_flow
+  // pipeline.
+  PubSub result_flow_pubsub = 4;
 }
