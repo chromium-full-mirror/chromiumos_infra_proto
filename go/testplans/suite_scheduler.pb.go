@@ -20,6 +20,115 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// Branches that can be targeted.
+type Branch int32
+
+const (
+	Branch_BRANCH_UNSPECIFIED Branch = 0
+	// Canary Branch or ToT.
+	Branch_CANARY Branch = 1
+	// Dev Branch or ToT-1.
+	Branch_DEV Branch = 2
+	// Beta Branch or ToT-2.
+	Branch_BETA Branch = 3
+	// Stable Branch or ToT-3.
+	Branch_STABLE Branch = 4
+)
+
+var Branch_name = map[int32]string{
+	0: "BRANCH_UNSPECIFIED",
+	1: "CANARY",
+	2: "DEV",
+	3: "BETA",
+	4: "STABLE",
+}
+
+var Branch_value = map[string]int32{
+	"BRANCH_UNSPECIFIED": 0,
+	"CANARY":             1,
+	"DEV":                2,
+	"BETA":               3,
+	"STABLE":             4,
+}
+
+func (x Branch) String() string {
+	return proto.EnumName(Branch_name, int32(x))
+}
+
+func (Branch) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{0}
+}
+
+// Whether to use firmware from ToT or firmware branch.
+type SchedulerConfig_FirmwareBranch int32
+
+const (
+	SchedulerConfig_UNSPECIFIED SchedulerConfig_FirmwareBranch = 0
+	// ToT branch.
+	SchedulerConfig_CROS SchedulerConfig_FirmwareBranch = 1
+	// Firmware branch.
+	SchedulerConfig_FIRMWARE SchedulerConfig_FirmwareBranch = 2
+)
+
+var SchedulerConfig_FirmwareBranch_name = map[int32]string{
+	0: "UNSPECIFIED",
+	1: "CROS",
+	2: "FIRMWARE",
+}
+
+var SchedulerConfig_FirmwareBranch_value = map[string]int32{
+	"UNSPECIFIED": 0,
+	"CROS":        1,
+	"FIRMWARE":    2,
+}
+
+func (x SchedulerConfig_FirmwareBranch) String() string {
+	return proto.EnumName(SchedulerConfig_FirmwareBranch_name, int32(x))
+}
+
+func (SchedulerConfig_FirmwareBranch) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 0}
+}
+
+// LaunchProfile defines how often the suite is launched.
+type SchedulerConfig_LaunchCriteria_LaunchProfile int32
+
+const (
+	SchedulerConfig_LaunchCriteria_UNSPECIFIED SchedulerConfig_LaunchCriteria_LaunchProfile = 0
+	// Run on every new release build of the boards/variants targeted.
+	SchedulerConfig_LaunchCriteria_NEW_BUILD SchedulerConfig_LaunchCriteria_LaunchProfile = 1
+	// Run once a day at the specified hour. Used to be "NIGHTLY".
+	SchedulerConfig_LaunchCriteria_DAILY SchedulerConfig_LaunchCriteria_LaunchProfile = 2
+	// Run once a week at the specified time.
+	SchedulerConfig_LaunchCriteria_WEEKLY SchedulerConfig_LaunchCriteria_LaunchProfile = 3
+	// NOT SUPPORTED. Will be supported in the redesign.
+	SchedulerConfig_LaunchCriteria_CRON_BASED SchedulerConfig_LaunchCriteria_LaunchProfile = 4
+)
+
+var SchedulerConfig_LaunchCriteria_LaunchProfile_name = map[int32]string{
+	0: "UNSPECIFIED",
+	1: "NEW_BUILD",
+	2: "DAILY",
+	3: "WEEKLY",
+	4: "CRON_BASED",
+}
+
+var SchedulerConfig_LaunchCriteria_LaunchProfile_value = map[string]int32{
+	"UNSPECIFIED": 0,
+	"NEW_BUILD":   1,
+	"DAILY":       2,
+	"WEEKLY":      3,
+	"CRON_BASED":  4,
+}
+
+func (x SchedulerConfig_LaunchCriteria_LaunchProfile) String() string {
+	return proto.EnumName(SchedulerConfig_LaunchCriteria_LaunchProfile_name, int32(x))
+}
+
+func (SchedulerConfig_LaunchCriteria_LaunchProfile) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 1, 0}
+}
+
 // Defines a board, its variants and its models.
 type Board struct {
 	// Name of the board. Eg: eve.
@@ -121,26 +230,673 @@ func (m *LabConfig) GetBoards() []*Board {
 	return nil
 }
 
+// Specify a Board and Variant pair.
+type BoardVariant struct {
+	Board                string   `protobuf:"bytes,1,opt,name=board,proto3" json:"board,omitempty"`
+	Variant              string   `protobuf:"bytes,2,opt,name=variant,proto3" json:"variant,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *BoardVariant) Reset()         { *m = BoardVariant{} }
+func (m *BoardVariant) String() string { return proto.CompactTextString(m) }
+func (*BoardVariant) ProtoMessage()    {}
+func (*BoardVariant) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{2}
+}
+
+func (m *BoardVariant) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BoardVariant.Unmarshal(m, b)
+}
+func (m *BoardVariant) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BoardVariant.Marshal(b, m, deterministic)
+}
+func (m *BoardVariant) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BoardVariant.Merge(m, src)
+}
+func (m *BoardVariant) XXX_Size() int {
+	return xxx_messageInfo_BoardVariant.Size(m)
+}
+func (m *BoardVariant) XXX_DiscardUnknown() {
+	xxx_messageInfo_BoardVariant.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BoardVariant proto.InternalMessageInfo
+
+func (m *BoardVariant) GetBoard() string {
+	if m != nil {
+		return m.Board
+	}
+	return ""
+}
+
+func (m *BoardVariant) GetVariant() string {
+	if m != nil {
+		return m.Variant
+	}
+	return ""
+}
+
+// Most fields are the same as suite_scheduler.ini just better organized.
+// The entries will be used to generate a suite_scheduler.ini in starlark scripts.
+type SchedulerConfig struct {
+	// Name of the config. Needs to be unique.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Name of the suite to run.
+	Suite          string                          `protobuf:"bytes,2,opt,name=suite,proto3" json:"suite,omitempty"`
+	Contacts       []*SchedulerConfig_Contact      `protobuf:"bytes,3,rep,name=contacts,proto3" json:"contacts,omitempty"`
+	LaunchCriteria *SchedulerConfig_LaunchCriteria `protobuf:"bytes,4,opt,name=launch_criteria,json=launchCriteria,proto3" json:"launch_criteria,omitempty"`
+	// Branches to target.
+	Branches             []Branch                       `protobuf:"varint,5,rep,packed,name=branches,proto3,enum=testplans.Branch" json:"branches,omitempty"`
+	TargetOptions        *SchedulerConfig_TargetOptions `protobuf:"bytes,6,opt,name=target_options,json=targetOptions,proto3" json:"target_options,omitempty"`
+	PoolOptions          *SchedulerConfig_PoolOptions   `protobuf:"bytes,7,opt,name=pool_options,json=poolOptions,proto3" json:"pool_options,omitempty"`
+	FirmwareRoBuildSpec  SchedulerConfig_FirmwareBranch `protobuf:"varint,8,opt,name=firmware_ro_build_spec,json=firmwareRoBuildSpec,proto3,enum=testplans.SchedulerConfig_FirmwareBranch" json:"firmware_ro_build_spec,omitempty"`
+	RunOptions           *SchedulerConfig_RunOptions    `protobuf:"bytes,9,opt,name=run_options,json=runOptions,proto3" json:"run_options,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                       `json:"-"`
+	XXX_unrecognized     []byte                         `json:"-"`
+	XXX_sizecache        int32                          `json:"-"`
+}
+
+func (m *SchedulerConfig) Reset()         { *m = SchedulerConfig{} }
+func (m *SchedulerConfig) String() string { return proto.CompactTextString(m) }
+func (*SchedulerConfig) ProtoMessage()    {}
+func (*SchedulerConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3}
+}
+
+func (m *SchedulerConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig.Unmarshal(m, b)
+}
+func (m *SchedulerConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig.Merge(m, src)
+}
+func (m *SchedulerConfig) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig.Size(m)
+}
+func (m *SchedulerConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig proto.InternalMessageInfo
+
+func (m *SchedulerConfig) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *SchedulerConfig) GetSuite() string {
+	if m != nil {
+		return m.Suite
+	}
+	return ""
+}
+
+func (m *SchedulerConfig) GetContacts() []*SchedulerConfig_Contact {
+	if m != nil {
+		return m.Contacts
+	}
+	return nil
+}
+
+func (m *SchedulerConfig) GetLaunchCriteria() *SchedulerConfig_LaunchCriteria {
+	if m != nil {
+		return m.LaunchCriteria
+	}
+	return nil
+}
+
+func (m *SchedulerConfig) GetBranches() []Branch {
+	if m != nil {
+		return m.Branches
+	}
+	return nil
+}
+
+func (m *SchedulerConfig) GetTargetOptions() *SchedulerConfig_TargetOptions {
+	if m != nil {
+		return m.TargetOptions
+	}
+	return nil
+}
+
+func (m *SchedulerConfig) GetPoolOptions() *SchedulerConfig_PoolOptions {
+	if m != nil {
+		return m.PoolOptions
+	}
+	return nil
+}
+
+func (m *SchedulerConfig) GetFirmwareRoBuildSpec() SchedulerConfig_FirmwareBranch {
+	if m != nil {
+		return m.FirmwareRoBuildSpec
+	}
+	return SchedulerConfig_UNSPECIFIED
+}
+
+func (m *SchedulerConfig) GetRunOptions() *SchedulerConfig_RunOptions {
+	if m != nil {
+		return m.RunOptions
+	}
+	return nil
+}
+
+// Contact emails will one day be paged in case of problems with the config.
+type SchedulerConfig_Contact struct {
+	Email                string   `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchedulerConfig_Contact) Reset()         { *m = SchedulerConfig_Contact{} }
+func (m *SchedulerConfig_Contact) String() string { return proto.CompactTextString(m) }
+func (*SchedulerConfig_Contact) ProtoMessage()    {}
+func (*SchedulerConfig_Contact) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 0}
+}
+
+func (m *SchedulerConfig_Contact) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig_Contact.Unmarshal(m, b)
+}
+func (m *SchedulerConfig_Contact) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig_Contact.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig_Contact) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig_Contact.Merge(m, src)
+}
+func (m *SchedulerConfig_Contact) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig_Contact.Size(m)
+}
+func (m *SchedulerConfig_Contact) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig_Contact.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig_Contact proto.InternalMessageInfo
+
+func (m *SchedulerConfig_Contact) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+// LaunchCriteria specifies when the suite should be launched.
+type SchedulerConfig_LaunchCriteria struct {
+	LaunchProfile SchedulerConfig_LaunchCriteria_LaunchProfile `protobuf:"varint,1,opt,name=launch_profile,json=launchProfile,proto3,enum=testplans.SchedulerConfig_LaunchCriteria_LaunchProfile" json:"launch_profile,omitempty"`
+	// Hour at which to run. Needs to be specified for nightly and weekly profiles.
+	// Has to be [0, 23].
+	Hour int32 `protobuf:"varint,2,opt,name=hour,proto3" json:"hour,omitempty"`
+	// Day on which to run. Needs to be specified for weekly profile.
+	// Has to be [0, 6].
+	Day int32 `protobuf:"varint,3,opt,name=day,proto3" json:"day,omitempty"`
+	// NOT SUPPORTED. Cron compatible schedule eg: "* * 1,3,5 * *".
+	CronSchedule         string   `protobuf:"bytes,4,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchedulerConfig_LaunchCriteria) Reset()         { *m = SchedulerConfig_LaunchCriteria{} }
+func (m *SchedulerConfig_LaunchCriteria) String() string { return proto.CompactTextString(m) }
+func (*SchedulerConfig_LaunchCriteria) ProtoMessage()    {}
+func (*SchedulerConfig_LaunchCriteria) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 1}
+}
+
+func (m *SchedulerConfig_LaunchCriteria) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig_LaunchCriteria.Unmarshal(m, b)
+}
+func (m *SchedulerConfig_LaunchCriteria) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig_LaunchCriteria.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig_LaunchCriteria) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig_LaunchCriteria.Merge(m, src)
+}
+func (m *SchedulerConfig_LaunchCriteria) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig_LaunchCriteria.Size(m)
+}
+func (m *SchedulerConfig_LaunchCriteria) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig_LaunchCriteria.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig_LaunchCriteria proto.InternalMessageInfo
+
+func (m *SchedulerConfig_LaunchCriteria) GetLaunchProfile() SchedulerConfig_LaunchCriteria_LaunchProfile {
+	if m != nil {
+		return m.LaunchProfile
+	}
+	return SchedulerConfig_LaunchCriteria_UNSPECIFIED
+}
+
+func (m *SchedulerConfig_LaunchCriteria) GetHour() int32 {
+	if m != nil {
+		return m.Hour
+	}
+	return 0
+}
+
+func (m *SchedulerConfig_LaunchCriteria) GetDay() int32 {
+	if m != nil {
+		return m.Day
+	}
+	return 0
+}
+
+func (m *SchedulerConfig_LaunchCriteria) GetCronSchedule() string {
+	if m != nil {
+		return m.CronSchedule
+	}
+	return ""
+}
+
+// Set of boards, variants and models to target.
+type SchedulerConfig_TargetOptions struct {
+	// Use at the most one among the two fields below. If boards_list is empty,
+	// all boards are targeted. exclude_boards will exclude those boards from
+	// the all boards list.
+	BoardsList    []string `protobuf:"bytes,1,rep,name=boards_list,json=boardsList,proto3" json:"boards_list,omitempty"`
+	ExcludeBoards []string `protobuf:"bytes,2,rep,name=exclude_boards,json=excludeBoards,proto3" json:"exclude_boards,omitempty"`
+	// Use at the most one among the two fields below. If variants_list is empty,
+	// all variants are targeted. exclude_variants will exclude those variants
+	// from the all variants list.
+	VariantsList    []*BoardVariant `protobuf:"bytes,3,rep,name=variants_list,json=variantsList,proto3" json:"variants_list,omitempty"`
+	ExcludeVariants []*BoardVariant `protobuf:"bytes,4,rep,name=exclude_variants,json=excludeVariants,proto3" json:"exclude_variants,omitempty"`
+	// There's two ways of specifying models. If all of these fields are empty,
+	// all possible models are targeted.
+	// Models to be targeted can be listed explicitly in models_list.
+	ModelsList []string `protobuf:"bytes,5,rep,name=models_list,json=modelsList,proto3" json:"models_list,omitempty"`
+	// OR start with the complete list and exclude some specific models.
+	// any_model only tests the suite on a single model.
+	AnyModel             bool     `protobuf:"varint,6,opt,name=any_model,json=anyModel,proto3" json:"any_model,omitempty"`
+	ExcludeModels        []string `protobuf:"bytes,7,rep,name=exclude_models,json=excludeModels,proto3" json:"exclude_models,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchedulerConfig_TargetOptions) Reset()         { *m = SchedulerConfig_TargetOptions{} }
+func (m *SchedulerConfig_TargetOptions) String() string { return proto.CompactTextString(m) }
+func (*SchedulerConfig_TargetOptions) ProtoMessage()    {}
+func (*SchedulerConfig_TargetOptions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 2}
+}
+
+func (m *SchedulerConfig_TargetOptions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig_TargetOptions.Unmarshal(m, b)
+}
+func (m *SchedulerConfig_TargetOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig_TargetOptions.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig_TargetOptions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig_TargetOptions.Merge(m, src)
+}
+func (m *SchedulerConfig_TargetOptions) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig_TargetOptions.Size(m)
+}
+func (m *SchedulerConfig_TargetOptions) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig_TargetOptions.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig_TargetOptions proto.InternalMessageInfo
+
+func (m *SchedulerConfig_TargetOptions) GetBoardsList() []string {
+	if m != nil {
+		return m.BoardsList
+	}
+	return nil
+}
+
+func (m *SchedulerConfig_TargetOptions) GetExcludeBoards() []string {
+	if m != nil {
+		return m.ExcludeBoards
+	}
+	return nil
+}
+
+func (m *SchedulerConfig_TargetOptions) GetVariantsList() []*BoardVariant {
+	if m != nil {
+		return m.VariantsList
+	}
+	return nil
+}
+
+func (m *SchedulerConfig_TargetOptions) GetExcludeVariants() []*BoardVariant {
+	if m != nil {
+		return m.ExcludeVariants
+	}
+	return nil
+}
+
+func (m *SchedulerConfig_TargetOptions) GetModelsList() []string {
+	if m != nil {
+		return m.ModelsList
+	}
+	return nil
+}
+
+func (m *SchedulerConfig_TargetOptions) GetAnyModel() bool {
+	if m != nil {
+		return m.AnyModel
+	}
+	return false
+}
+
+func (m *SchedulerConfig_TargetOptions) GetExcludeModels() []string {
+	if m != nil {
+		return m.ExcludeModels
+	}
+	return nil
+}
+
+// Aggregate of options related to DUT pool.
+type SchedulerConfig_PoolOptions struct {
+	// Quota Scheduler account to use.
+	QsAccount string `protobuf:"bytes,1,opt,name=qs_account,json=qsAccount,proto3" json:"qs_account,omitempty"`
+	// Pool to schedule on.
+	Pool string `protobuf:"bytes,2,opt,name=pool,proto3" json:"pool,omitempty"`
+	// Integer priority to assign. Only used by CTS. Quota scheduler takes care of
+	// priorities for the rest. Has to be [20, 255].
+	Priority             int32    `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchedulerConfig_PoolOptions) Reset()         { *m = SchedulerConfig_PoolOptions{} }
+func (m *SchedulerConfig_PoolOptions) String() string { return proto.CompactTextString(m) }
+func (*SchedulerConfig_PoolOptions) ProtoMessage()    {}
+func (*SchedulerConfig_PoolOptions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 3}
+}
+
+func (m *SchedulerConfig_PoolOptions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig_PoolOptions.Unmarshal(m, b)
+}
+func (m *SchedulerConfig_PoolOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig_PoolOptions.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig_PoolOptions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig_PoolOptions.Merge(m, src)
+}
+func (m *SchedulerConfig_PoolOptions) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig_PoolOptions.Size(m)
+}
+func (m *SchedulerConfig_PoolOptions) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig_PoolOptions.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig_PoolOptions proto.InternalMessageInfo
+
+func (m *SchedulerConfig_PoolOptions) GetQsAccount() string {
+	if m != nil {
+		return m.QsAccount
+	}
+	return ""
+}
+
+func (m *SchedulerConfig_PoolOptions) GetPool() string {
+	if m != nil {
+		return m.Pool
+	}
+	return ""
+}
+
+func (m *SchedulerConfig_PoolOptions) GetPriority() int32 {
+	if m != nil {
+		return m.Priority
+	}
+	return 0
+}
+
+// Execution related options.
+type SchedulerConfig_RunOptions struct {
+	// Whether to retry if the task fails.
+	Retry      bool                                            `protobuf:"varint,1,opt,name=retry,proto3" json:"retry,omitempty"`
+	Dimensions []*SchedulerConfig_RunOptions_SwarmingDimension `protobuf:"bytes,2,rep,name=dimensions,proto3" json:"dimensions,omitempty"`
+	// Timeout of the task.
+	TimeoutMins int32 `protobuf:"varint,3,opt,name=timeout_mins,json=timeoutMins,proto3" json:"timeout_mins,omitempty"`
+	// If sanity HW test passed, launch this test. Irrespective of the release build's
+	// final status.
+	OnlySanityTestRequired bool     `protobuf:"varint,4,opt,name=only_sanity_test_required,json=onlySanityTestRequired,proto3" json:"only_sanity_test_required,omitempty"`
+	XXX_NoUnkeyedLiteral   struct{} `json:"-"`
+	XXX_unrecognized       []byte   `json:"-"`
+	XXX_sizecache          int32    `json:"-"`
+}
+
+func (m *SchedulerConfig_RunOptions) Reset()         { *m = SchedulerConfig_RunOptions{} }
+func (m *SchedulerConfig_RunOptions) String() string { return proto.CompactTextString(m) }
+func (*SchedulerConfig_RunOptions) ProtoMessage()    {}
+func (*SchedulerConfig_RunOptions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 4}
+}
+
+func (m *SchedulerConfig_RunOptions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig_RunOptions.Unmarshal(m, b)
+}
+func (m *SchedulerConfig_RunOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig_RunOptions.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig_RunOptions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig_RunOptions.Merge(m, src)
+}
+func (m *SchedulerConfig_RunOptions) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig_RunOptions.Size(m)
+}
+func (m *SchedulerConfig_RunOptions) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig_RunOptions.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig_RunOptions proto.InternalMessageInfo
+
+func (m *SchedulerConfig_RunOptions) GetRetry() bool {
+	if m != nil {
+		return m.Retry
+	}
+	return false
+}
+
+func (m *SchedulerConfig_RunOptions) GetDimensions() []*SchedulerConfig_RunOptions_SwarmingDimension {
+	if m != nil {
+		return m.Dimensions
+	}
+	return nil
+}
+
+func (m *SchedulerConfig_RunOptions) GetTimeoutMins() int32 {
+	if m != nil {
+		return m.TimeoutMins
+	}
+	return 0
+}
+
+func (m *SchedulerConfig_RunOptions) GetOnlySanityTestRequired() bool {
+	if m != nil {
+		return m.OnlySanityTestRequired
+	}
+	return false
+}
+
+// A list of extra labels/dimensions to attach.
+// Extra Swarming Dimensions that can be specified.
+type SchedulerConfig_RunOptions_SwarmingDimension struct {
+	Key                  string   `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) Reset() {
+	*m = SchedulerConfig_RunOptions_SwarmingDimension{}
+}
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) String() string {
+	return proto.CompactTextString(m)
+}
+func (*SchedulerConfig_RunOptions_SwarmingDimension) ProtoMessage() {}
+func (*SchedulerConfig_RunOptions_SwarmingDimension) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{3, 4, 0}
+}
+
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerConfig_RunOptions_SwarmingDimension.Unmarshal(m, b)
+}
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerConfig_RunOptions_SwarmingDimension.Marshal(b, m, deterministic)
+}
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerConfig_RunOptions_SwarmingDimension.Merge(m, src)
+}
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) XXX_Size() int {
+	return xxx_messageInfo_SchedulerConfig_RunOptions_SwarmingDimension.Size(m)
+}
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerConfig_RunOptions_SwarmingDimension.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerConfig_RunOptions_SwarmingDimension proto.InternalMessageInfo
+
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) GetKey() string {
+	if m != nil {
+		return m.Key
+	}
+	return ""
+}
+
+func (m *SchedulerConfig_RunOptions_SwarmingDimension) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
+// A proto to contain all the configs.
+type SchedulerCfg struct {
+	Configs              []*SchedulerConfig `protobuf:"bytes,1,rep,name=configs,proto3" json:"configs,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
+}
+
+func (m *SchedulerCfg) Reset()         { *m = SchedulerCfg{} }
+func (m *SchedulerCfg) String() string { return proto.CompactTextString(m) }
+func (*SchedulerCfg) ProtoMessage()    {}
+func (*SchedulerCfg) Descriptor() ([]byte, []int) {
+	return fileDescriptor_905bf28b41c26c54, []int{4}
+}
+
+func (m *SchedulerCfg) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchedulerCfg.Unmarshal(m, b)
+}
+func (m *SchedulerCfg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchedulerCfg.Marshal(b, m, deterministic)
+}
+func (m *SchedulerCfg) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchedulerCfg.Merge(m, src)
+}
+func (m *SchedulerCfg) XXX_Size() int {
+	return xxx_messageInfo_SchedulerCfg.Size(m)
+}
+func (m *SchedulerCfg) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchedulerCfg.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchedulerCfg proto.InternalMessageInfo
+
+func (m *SchedulerCfg) GetConfigs() []*SchedulerConfig {
+	if m != nil {
+		return m.Configs
+	}
+	return nil
+}
+
 func init() {
+	proto.RegisterEnum("testplans.Branch", Branch_name, Branch_value)
+	proto.RegisterEnum("testplans.SchedulerConfig_FirmwareBranch", SchedulerConfig_FirmwareBranch_name, SchedulerConfig_FirmwareBranch_value)
+	proto.RegisterEnum("testplans.SchedulerConfig_LaunchCriteria_LaunchProfile", SchedulerConfig_LaunchCriteria_LaunchProfile_name, SchedulerConfig_LaunchCriteria_LaunchProfile_value)
 	proto.RegisterType((*Board)(nil), "testplans.Board")
 	proto.RegisterType((*LabConfig)(nil), "testplans.LabConfig")
+	proto.RegisterType((*BoardVariant)(nil), "testplans.BoardVariant")
+	proto.RegisterType((*SchedulerConfig)(nil), "testplans.SchedulerConfig")
+	proto.RegisterType((*SchedulerConfig_Contact)(nil), "testplans.SchedulerConfig.Contact")
+	proto.RegisterType((*SchedulerConfig_LaunchCriteria)(nil), "testplans.SchedulerConfig.LaunchCriteria")
+	proto.RegisterType((*SchedulerConfig_TargetOptions)(nil), "testplans.SchedulerConfig.TargetOptions")
+	proto.RegisterType((*SchedulerConfig_PoolOptions)(nil), "testplans.SchedulerConfig.PoolOptions")
+	proto.RegisterType((*SchedulerConfig_RunOptions)(nil), "testplans.SchedulerConfig.RunOptions")
+	proto.RegisterType((*SchedulerConfig_RunOptions_SwarmingDimension)(nil), "testplans.SchedulerConfig.RunOptions.SwarmingDimension")
+	proto.RegisterType((*SchedulerCfg)(nil), "testplans.SchedulerCfg")
 }
 
 func init() { proto.RegisterFile("testplans/suite_scheduler.proto", fileDescriptor_905bf28b41c26c54) }
 
 var fileDescriptor_905bf28b41c26c54 = []byte{
-	// 199 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x3c, 0x8e, 0x31, 0x4b, 0xc6, 0x30,
-	0x10, 0x86, 0xa9, 0xd5, 0x62, 0xe2, 0x22, 0x19, 0x24, 0xb8, 0x58, 0xbe, 0x29, 0x53, 0x02, 0x7e,
-	0xf4, 0x0f, 0xd4, 0x55, 0x10, 0x3a, 0xba, 0x48, 0xda, 0xa6, 0x69, 0xa0, 0xc9, 0x95, 0x5c, 0xea,
-	0xef, 0x17, 0x43, 0xbf, 0x6c, 0xf7, 0xdc, 0x7b, 0xbc, 0xcf, 0xd1, 0xb7, 0x64, 0x30, 0xed, 0x9b,
-	0x0e, 0xa8, 0xf0, 0x70, 0xc9, 0xfc, 0xe0, 0xb4, 0x9a, 0xf9, 0xd8, 0x4c, 0x94, 0x7b, 0x84, 0x04,
-	0x8c, 0x94, 0x83, 0xcb, 0x17, 0x7d, 0xe8, 0x41, 0xc7, 0x99, 0x31, 0x7a, 0x1f, 0xb4, 0x37, 0xbc,
-	0x6a, 0x2b, 0x41, 0x86, 0x3c, 0xb3, 0x57, 0xfa, 0xf8, 0xab, 0xa3, 0xd3, 0x21, 0x21, 0xbf, 0x6b,
-	0x6b, 0x41, 0x86, 0xc2, 0xec, 0x85, 0x36, 0x1e, 0x66, 0xb3, 0x21, 0xaf, 0x73, 0x72, 0xd2, 0xa5,
-	0xa3, 0xe4, 0x53, 0x8f, 0x1f, 0x10, 0x16, 0x67, 0x99, 0xa0, 0xcd, 0xf8, 0xdf, 0x8e, 0xbc, 0x6a,
-	0x6b, 0xf1, 0xf4, 0xfe, 0x2c, 0x8b, 0x59, 0x66, 0xed, 0x70, 0xe6, 0x7d, 0xf7, 0x7d, 0xb5, 0x20,
-	0xa7, 0x35, 0x82, 0x77, 0x87, 0x97, 0x10, 0xad, 0xba, 0x01, 0xa0, 0x72, 0x61, 0x89, 0x5a, 0xe5,
-	0xe7, 0x95, 0x05, 0x55, 0x4a, 0xc6, 0x26, 0xef, 0xae, 0x7f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xe3,
-	0x82, 0x42, 0x4d, 0xf3, 0x00, 0x00, 0x00,
+	// 1001 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x55, 0xfb, 0x6a, 0x1b, 0x47,
+	0x17, 0xff, 0x74, 0xd7, 0x1e, 0x5d, 0xbc, 0x99, 0x2f, 0xb8, 0x5b, 0x95, 0x62, 0x55, 0x25, 0x45,
+	0x2d, 0x54, 0x02, 0xa7, 0x21, 0x84, 0x96, 0x80, 0x6e, 0xa6, 0x22, 0x8a, 0x6d, 0x46, 0x8e, 0x8d,
+	0x4b, 0xc9, 0x32, 0x5e, 0x8d, 0xe5, 0xa1, 0xab, 0x19, 0x79, 0x66, 0x36, 0xa9, 0x9e, 0xa3, 0xd0,
+	0xc7, 0xe9, 0x13, 0xf5, 0x21, 0xca, 0xce, 0xce, 0xae, 0xa5, 0xa4, 0x15, 0xf9, 0x6f, 0x7e, 0xe7,
+	0xf2, 0x3b, 0x97, 0x3d, 0xe7, 0x2c, 0x1c, 0x69, 0xaa, 0xf4, 0x3a, 0x24, 0x5c, 0xf5, 0x55, 0xc4,
+	0x34, 0xf5, 0x55, 0x70, 0x47, 0x17, 0x51, 0x48, 0x65, 0x6f, 0x2d, 0x85, 0x16, 0xc8, 0xc9, 0x0c,
+	0x3a, 0x67, 0x50, 0x1a, 0x0a, 0x22, 0x17, 0x08, 0x41, 0x91, 0x93, 0x15, 0xf5, 0x72, 0xed, 0x5c,
+	0xd7, 0xc1, 0xe6, 0x8d, 0x5a, 0x50, 0x7d, 0x47, 0x24, 0x23, 0x5c, 0x2b, 0x2f, 0xdf, 0x2e, 0x74,
+	0x1d, 0x9c, 0x61, 0x74, 0x08, 0xe5, 0x95, 0x58, 0xd0, 0x50, 0x79, 0x05, 0xa3, 0xb1, 0xa8, 0xf3,
+	0x0c, 0x9c, 0x19, 0xb9, 0x19, 0x09, 0x7e, 0xcb, 0x96, 0xa8, 0x0b, 0xe5, 0x9b, 0x98, 0x5d, 0x79,
+	0xb9, 0x76, 0xa1, 0x5b, 0x3b, 0x76, 0x7b, 0x59, 0xe4, 0x9e, 0x09, 0x8b, 0xad, 0xbe, 0xf3, 0x12,
+	0xea, 0x46, 0x70, 0x99, 0xf0, 0xa3, 0xc7, 0x50, 0x32, 0x1a, 0x9b, 0x4f, 0x02, 0x90, 0x07, 0x15,
+	0x9b, 0x80, 0x97, 0x37, 0xf2, 0x14, 0x76, 0xfe, 0xae, 0xc3, 0xc1, 0x3c, 0x2d, 0xd3, 0x46, 0xff,
+	0xb7, 0x92, 0x1e, 0x43, 0xc9, 0xf4, 0xc4, 0xfa, 0x27, 0x00, 0xbd, 0x84, 0x6a, 0x20, 0xb8, 0x26,
+	0x81, 0x4e, 0xca, 0xa9, 0x1d, 0x77, 0xb6, 0x32, 0xfd, 0x80, 0xb7, 0x37, 0x4a, 0x4c, 0x71, 0xe6,
+	0x83, 0x30, 0x1c, 0x84, 0x24, 0xe2, 0xc1, 0x9d, 0x1f, 0x48, 0xa6, 0xa9, 0x64, 0xc4, 0x2b, 0xb6,
+	0x73, 0xdd, 0xda, 0xf1, 0xb7, 0x7b, 0x68, 0x66, 0xc6, 0x63, 0x64, 0x1d, 0x70, 0x33, 0xdc, 0xc1,
+	0xe8, 0x7b, 0xa8, 0xde, 0x48, 0xc2, 0x83, 0x3b, 0xaa, 0xbc, 0x52, 0xbb, 0xd0, 0x6d, 0x1e, 0x3f,
+	0xda, 0xee, 0x9e, 0x51, 0xe1, 0xcc, 0x04, 0x9d, 0x41, 0x53, 0x13, 0xb9, 0xa4, 0xda, 0x17, 0x6b,
+	0xcd, 0x04, 0x57, 0x5e, 0xd9, 0x64, 0xd0, 0xdd, 0x93, 0xc1, 0x85, 0x71, 0x38, 0x4b, 0xec, 0x71,
+	0x43, 0x6f, 0x43, 0x34, 0x85, 0xfa, 0x5a, 0x88, 0x30, 0xa3, 0xab, 0x18, 0xba, 0x6f, 0xf6, 0xd0,
+	0x9d, 0x0b, 0x11, 0xa6, 0x64, 0xb5, 0xf5, 0x03, 0x40, 0x6f, 0xe1, 0xf0, 0x96, 0xc9, 0xd5, 0x7b,
+	0x22, 0xa9, 0x2f, 0x85, 0x7f, 0x13, 0xb1, 0x70, 0xe1, 0xab, 0x35, 0x0d, 0xbc, 0x6a, 0x3b, 0xd7,
+	0x6d, 0xee, 0xed, 0xd2, 0x89, 0x75, 0xb4, 0x05, 0xff, 0x3f, 0x25, 0xc2, 0x62, 0x18, 0xd3, 0xcc,
+	0xd7, 0x34, 0x40, 0x27, 0x50, 0x93, 0x11, 0xcf, 0x32, 0x75, 0x4c, 0xa6, 0x4f, 0xf6, 0x90, 0xe2,
+	0x88, 0xa7, 0x89, 0x82, 0xcc, 0xde, 0xad, 0x23, 0xa8, 0xd8, 0x6f, 0x1b, 0xcf, 0x09, 0x5d, 0x11,
+	0x16, 0xa6, 0xf3, 0x67, 0x40, 0xeb, 0x8f, 0x3c, 0x34, 0x77, 0x3f, 0x1b, 0x7a, 0x0b, 0xf6, 0xc3,
+	0xf9, 0x6b, 0x29, 0x6e, 0x59, 0x98, 0x8c, 0x5b, 0xf3, 0xf8, 0xf9, 0x27, 0x7f, 0x79, 0x0b, 0xcf,
+	0x13, 0x77, 0xdc, 0x08, 0xb7, 0x61, 0x3c, 0xc4, 0x77, 0x22, 0x92, 0x66, 0x5e, 0x4b, 0xd8, 0xbc,
+	0x91, 0x0b, 0x85, 0x05, 0xd9, 0x78, 0x05, 0x23, 0x8a, 0x9f, 0xe8, 0x6b, 0x68, 0x04, 0x52, 0xf0,
+	0x6c, 0xd3, 0xcd, 0xf8, 0x39, 0xb8, 0x1e, 0x0b, 0xd3, 0xe8, 0x9d, 0x4b, 0x68, 0xec, 0x84, 0x42,
+	0x07, 0x50, 0x7b, 0x73, 0x3a, 0x3f, 0x9f, 0x8c, 0xa6, 0x27, 0xd3, 0xc9, 0xd8, 0xfd, 0x1f, 0x6a,
+	0x80, 0x73, 0x3a, 0xb9, 0xf2, 0x87, 0x6f, 0xa6, 0xb3, 0xb1, 0x9b, 0x43, 0x0e, 0x94, 0xc6, 0x83,
+	0xe9, 0xec, 0xda, 0xcd, 0x23, 0x80, 0xf2, 0xd5, 0x64, 0xf2, 0x6a, 0x76, 0xed, 0x16, 0x50, 0x13,
+	0x60, 0x84, 0xcf, 0x4e, 0xfd, 0xe1, 0x60, 0x3e, 0x19, 0xbb, 0xc5, 0xd6, 0x5f, 0x79, 0x68, 0xec,
+	0x8c, 0x12, 0x3a, 0x82, 0x5a, 0xb2, 0xd7, 0x7e, 0xc8, 0x94, 0x36, 0xcb, 0xef, 0x60, 0x48, 0x44,
+	0x33, 0xa6, 0x34, 0x7a, 0x02, 0x4d, 0xfa, 0x7b, 0x10, 0x46, 0x0b, 0xea, 0xdb, 0x03, 0x91, 0xdc,
+	0x97, 0x86, 0x95, 0x9a, 0x5b, 0xa0, 0xd0, 0x4f, 0xd0, 0x48, 0x0f, 0x4e, 0xc2, 0x94, 0x2c, 0xe7,
+	0x67, 0x1f, 0x9e, 0x11, 0x7b, 0x35, 0x70, 0x3d, 0xb5, 0x36, 0x41, 0x86, 0xe0, 0xa6, 0x41, 0xb2,
+	0x33, 0x56, 0xdc, 0x4f, 0x70, 0x60, 0x1d, 0x2e, 0xd3, 0x33, 0x77, 0x04, 0xb5, 0xe4, 0xb0, 0x25,
+	0xf1, 0x4b, 0x49, 0x25, 0x89, 0xc8, 0x04, 0xf9, 0x02, 0x1c, 0xc2, 0x37, 0xbe, 0x91, 0x98, 0x95,
+	0xab, 0xe2, 0x2a, 0xe1, 0x9b, 0xd7, 0x31, 0xde, 0x2e, 0xd3, 0x1e, 0xcb, 0xca, 0x4e, 0x99, 0xc6,
+	0x4a, 0xb5, 0x7e, 0x85, 0xda, 0xd6, 0xee, 0xa0, 0x2f, 0x01, 0xee, 0x95, 0x4f, 0x82, 0x40, 0x44,
+	0x5c, 0xdb, 0x01, 0x74, 0xee, 0xd5, 0x20, 0x11, 0xc4, 0x13, 0x11, 0x2f, 0x97, 0xbd, 0x60, 0xe6,
+	0x1d, 0x5f, 0xea, 0xb5, 0x64, 0x42, 0x32, 0x9d, 0x8e, 0x45, 0x86, 0x5b, 0x7f, 0xe6, 0x01, 0x1e,
+	0x06, 0x3e, 0x9e, 0x6c, 0x49, 0xb5, 0xdc, 0x18, 0xe2, 0x2a, 0x4e, 0x00, 0xba, 0x02, 0x58, 0xb0,
+	0x15, 0xe5, 0xca, 0x6c, 0x50, 0xde, 0x74, 0xe9, 0xf9, 0x27, 0x6d, 0x50, 0x6f, 0xfe, 0x9e, 0xc8,
+	0x15, 0xe3, 0xcb, 0x71, 0xea, 0x8f, 0xb7, 0xa8, 0xd0, 0x57, 0x50, 0xd7, 0x6c, 0x45, 0x45, 0xa4,
+	0xfd, 0x15, 0xe3, 0xca, 0x66, 0x57, 0xb3, 0xb2, 0xd7, 0x8c, 0x2b, 0xf4, 0x02, 0x3e, 0x17, 0x3c,
+	0xdc, 0xf8, 0x8a, 0x70, 0xa6, 0x37, 0x7e, 0x1c, 0xd4, 0x97, 0xf4, 0x3e, 0x62, 0x92, 0x2e, 0xcc,
+	0x20, 0x57, 0xf1, 0x61, 0x6c, 0x30, 0x37, 0xfa, 0x0b, 0xaa, 0x34, 0xb6, 0xda, 0xd6, 0x8f, 0xf0,
+	0xe8, 0xa3, 0xf0, 0xf1, 0x7a, 0xfc, 0x46, 0x37, 0xb6, 0x71, 0xf1, 0x33, 0xae, 0xf9, 0x1d, 0x09,
+	0xa3, 0xec, 0xea, 0x1b, 0xd0, 0x79, 0x01, 0xcd, 0xdd, 0xeb, 0xf2, 0xf1, 0x42, 0x54, 0xa1, 0x38,
+	0xc2, 0x67, 0x73, 0x37, 0x87, 0xea, 0x50, 0x3d, 0x99, 0xe2, 0xd7, 0x57, 0x03, 0x3c, 0x71, 0xf3,
+	0x9d, 0x31, 0xd4, 0x1f, 0x3a, 0x72, 0xbb, 0x44, 0x3f, 0x40, 0x25, 0x30, 0x8d, 0x49, 0xff, 0x74,
+	0xad, 0xff, 0xee, 0x1d, 0x4e, 0x4d, 0xbf, 0x7b, 0x05, 0x65, 0x1b, 0xf8, 0x10, 0xd0, 0x10, 0x0f,
+	0x4e, 0x47, 0x3f, 0xfb, 0xbb, 0xf1, 0x01, 0xca, 0xa3, 0xc1, 0xe9, 0x00, 0x5f, 0xbb, 0x39, 0x54,
+	0x81, 0xc2, 0x78, 0x72, 0xe9, 0xe6, 0xe3, 0xa4, 0x86, 0x93, 0x8b, 0x81, 0x5b, 0x88, 0xd5, 0xf3,
+	0x8b, 0xc1, 0x70, 0x36, 0x71, 0x8b, 0xc3, 0x67, 0xbf, 0x3c, 0x5d, 0x8a, 0x5e, 0x70, 0x27, 0xc5,
+	0x8a, 0x45, 0xab, 0x9e, 0x90, 0xcb, 0x7e, 0x0a, 0x84, 0xea, 0x33, 0x7e, 0x2b, 0x49, 0xdf, 0xfc,
+	0xfe, 0xfb, 0x4b, 0xd1, 0xcf, 0x92, 0xbb, 0x29, 0x1b, 0xd9, 0xd3, 0x7f, 0x02, 0x00, 0x00, 0xff,
+	0xff, 0x12, 0xe4, 0x7a, 0x39, 0x35, 0x08, 0x00, 0x00,
 }
