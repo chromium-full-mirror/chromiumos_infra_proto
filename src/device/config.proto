@@ -13,7 +13,7 @@ import "device/config_id.proto";
 // These are the distinct configs combinations that will constitue a ChromeOS
 // device.
 
-// Next tag: 21
+// Next tag: 22
 message Config {
 
   // Required. Unique ID of the device config.
@@ -222,6 +222,16 @@ message Config {
     ARM64 = 4;
   }
   Architecture cpu = 20;
+
+  // Indicate the type of EC present on a device.
+  // Next tag: 3
+  enum EC {
+    EC_UNSPECIFIED = 0;
+    EC_CHROME = 1;
+    EC_WILCO = 2;
+  }
+  // If an EC is not specified, one can assume the device has no EC.
+  EC ec = 21;
 }
 
 // Message contains all ChromeOS device configs.
