@@ -18,6 +18,9 @@ message Config {
 
     // Inventory V2 service host, e.g. cros-lab-inventory.appspot.com.
     string cros_inventory_service = 2;
+
+    // Unified Fleet System service host, e.g. ufs.api.cr.dev.
+    string cros_ufs_service = 3;
   }
 
   // Harness defines configuration parameters related to the test harness
