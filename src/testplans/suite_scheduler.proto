@@ -103,7 +103,9 @@ message SchedulerConfig {
         repeated string boards_list = 1;
         repeated string exclude_boards = 2;
 
-        // Use at the most one among the two fields below. If variants_list is empty,
+        // To specify variants, either all variants can be skipped.
+        bool skip_variants = 8;
+        // OR use at the most one among the two fields below. If variants_list is empty,
         // all variants are targeted. exclude_variants will exclude those variants
         // from the all variants list.
         repeated BoardVariant variants_list = 3;
