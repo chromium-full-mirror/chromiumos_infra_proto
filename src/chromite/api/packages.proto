@@ -168,8 +168,10 @@ message NeedsChromeSourceRequest {
 }
 
 message NeedsChromeSourceResponse {
-  // Whethere Chrome source is needed.
+  // Whether Chrome source is needed.
   bool needs_chrome_source = 1;
+
+  // Reasons for needing Chrome source.
   enum Reason {
     UNSPECIFIED = 0;
     // There is no Chrome prebuilt available.
@@ -181,11 +183,13 @@ message NeedsChromeSourceResponse {
     // A follower package lacks prebuilts.
     FOLLOWER_LACKS_PREBUILT = 4;
   };
-  // Reasons for needing Chrome source.
   repeated Reason reasons = 2;
 
   // Packages causing the need for source.
   repeated chromiumos.PackageInfo packages = 3;
+
+  // Whether or not it builds Chrome.  See BuildsChrome().
+  bool builds_chrome = 4;
 }
 
 // The generic version of HasChromePrebuilt.
