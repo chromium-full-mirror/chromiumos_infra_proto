@@ -69,6 +69,11 @@ message GetTargetVersionsRequest {
   // The build target to examine.
   // Required.
   chromiumos.BuildTarget build_target = 2;
+
+  // Optional packages to generate the depgraph for, such as
+  // 'virtual/target-fuzzers'.  This is passed in based on the informational
+  // builder type, see chromite/config/chromeos_config.py for examples.
+  repeated chromiumos.PackageInfo packages = 3;
 }
 
 message GetTargetVersionsResponse {
