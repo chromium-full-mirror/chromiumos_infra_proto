@@ -47,8 +47,25 @@ message TestPlanRun {
 
   Status status = 8;
 
-  // Event timestamp of test plan run, e.g. start time, end time.
-  Timeline timeline = 9;
+  // Use create_time/start_time/end_time below.
+  // Timestamp inside a struct can not be used to
+  // partition a Bigquery table.
+  Timeline timeline = 9 [deprecated = true];
+
+  // Time the CTP build was requested.
+  //
+  // Current CTP implementation does not report a single CTP request's timeline
+  // Thus, we use the CTP build's timeline to preent a Test Plan Run's lifecycle.
+  //
+  // BigQuery: Table partitioned on this field.
+  google.protobuf.Timestamp create_time = 10;
+
+  // Time the CTP build began to execute in a bot.
+  google.protobuf.Timestamp start_time = 11;
+
+  // Time the CTP build completed, unset if the task was
+  // stopped unexpectedly before its completion.
+  google.protobuf.Timestamp end_time = 12;
 }
 
 // TestRun contains Skylab task level information.
@@ -75,8 +92,10 @@ message TestRun {
   // the test plan request did not specify a model to run.
   string model = 5;
 
-  // Event timestamp of test run, e.g. start time, end time.
-  Timeline timeline = 6;
+  // Use create_time/start_time/end_time below.
+  // Timestamp inside a struct can not be used to
+  // partition a Bigquery table.
+  Timeline timeline = 6 [deprecated = true];
 
   Status status = 7;
 
@@ -89,6 +108,18 @@ message TestRun {
     Verdict verdict = 1;
   }
   Prejob prejob = 10;
+
+  // Time the test runner build was requested.
+  //
+  // TestRun's Bigquery table partitions on this field.
+  google.protobuf.Timestamp create_time = 11;
+
+  // Time the test runner build began to execute in a bot.
+  google.protobuf.Timestamp start_time = 12;
+
+  // Time the test runner build completed, unset if the task was
+  // stopped unexpectedly before its completion.
+  google.protobuf.Timestamp end_time = 13;
 }
 
 // TestCaseResult describes the result of an individual test case.
@@ -113,6 +144,12 @@ message TestCaseResult {
   // parseable. There's no guarantee that a given root cause will always
   // resolve to the same summary.
   string human_readable_summary = 5;
+
+  // Time this test case was generated, which equals its test run's
+  // end_time.
+  //
+  // TestCaseResult's Bigquery table partitions on this field.
+  google.protobuf.Timestamp create_time = 6;
 }
 
 // The timeline of a task.
