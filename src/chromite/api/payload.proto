@@ -48,12 +48,11 @@ message UnsignedImage {
 
   // The most recent branch corresponding to the version; "R19" etc.
   string milestone = 3;
-
 }
 
 
 // Request payload generation to be done with a source and target image.
-message PayloadGenerationRequest {
+message GenerationRequest {
 
   // Source image properties, must be either full_update or the same type as
   // the included tgt_image_oneof. full_update indicates the lack of a source.
@@ -87,7 +86,7 @@ message PayloadGenerationRequest {
 }
 
 // Result of a payload generation.
-message PayloadGenerationResult {
+message GenerationResponse {
   // Whether we've completed successfully.
   bool success = 1;
 }
@@ -96,7 +95,7 @@ message PayloadGenerationResult {
 service PayloadService {
   option (service_options) = {
     module: "payload",
-    service_chroot_assert: OUTSIDE,
+    service_chroot_assert: INSIDE,
   };
-  rpc GeneratePayload(PayloadGenerationRequest) returns (PayloadGenerationResult);
+  rpc GeneratePayload(GenerationRequest) returns (GenerationResponse);
 }

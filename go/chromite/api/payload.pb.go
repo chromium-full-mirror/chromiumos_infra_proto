@@ -213,21 +213,21 @@ func (m *UnsignedImage) GetMilestone() string {
 }
 
 // Request payload generation to be done with a source and target image.
-type PayloadGenerationRequest struct {
+type GenerationRequest struct {
 	// Source image properties, must be either full_update or the same type as
 	// the included tgt_image_oneof. full_update indicates the lack of a source.
 	//
 	// Types that are valid to be assigned to SrcImageOneof:
-	//	*PayloadGenerationRequest_FullUpdate
-	//	*PayloadGenerationRequest_SrcSignedImage
-	//	*PayloadGenerationRequest_SrcUnsignedImage
-	SrcImageOneof isPayloadGenerationRequest_SrcImageOneof `protobuf_oneof:"src_image_oneof"`
+	//	*GenerationRequest_FullUpdate
+	//	*GenerationRequest_SrcSignedImage
+	//	*GenerationRequest_SrcUnsignedImage
+	SrcImageOneof isGenerationRequest_SrcImageOneof `protobuf_oneof:"src_image_oneof"`
 	// Target image properties.
 	//
 	// Types that are valid to be assigned to TgtImageOneof:
-	//	*PayloadGenerationRequest_TgtSignedImage
-	//	*PayloadGenerationRequest_TgtUnsignedImage
-	TgtImageOneof isPayloadGenerationRequest_TgtImageOneof `protobuf_oneof:"tgt_image_oneof"`
+	//	*GenerationRequest_TgtSignedImage
+	//	*GenerationRequest_TgtUnsignedImage
+	TgtImageOneof isGenerationRequest_TgtImageOneof `protobuf_oneof:"tgt_image_oneof"`
 	// The destination bucket (defaults to "chromeos-releases").
 	Bucket string `protobuf:"bytes,6,opt,name=bucket,proto3" json:"bucket,omitempty"`
 	// Should we run verification?
@@ -241,140 +241,140 @@ type PayloadGenerationRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *PayloadGenerationRequest) Reset()         { *m = PayloadGenerationRequest{} }
-func (m *PayloadGenerationRequest) String() string { return proto.CompactTextString(m) }
-func (*PayloadGenerationRequest) ProtoMessage()    {}
-func (*PayloadGenerationRequest) Descriptor() ([]byte, []int) {
+func (m *GenerationRequest) Reset()         { *m = GenerationRequest{} }
+func (m *GenerationRequest) String() string { return proto.CompactTextString(m) }
+func (*GenerationRequest) ProtoMessage()    {}
+func (*GenerationRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0ecdf1e4e8bef7a4, []int{3}
 }
 
-func (m *PayloadGenerationRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PayloadGenerationRequest.Unmarshal(m, b)
+func (m *GenerationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GenerationRequest.Unmarshal(m, b)
 }
-func (m *PayloadGenerationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PayloadGenerationRequest.Marshal(b, m, deterministic)
+func (m *GenerationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GenerationRequest.Marshal(b, m, deterministic)
 }
-func (m *PayloadGenerationRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PayloadGenerationRequest.Merge(m, src)
+func (m *GenerationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GenerationRequest.Merge(m, src)
 }
-func (m *PayloadGenerationRequest) XXX_Size() int {
-	return xxx_messageInfo_PayloadGenerationRequest.Size(m)
+func (m *GenerationRequest) XXX_Size() int {
+	return xxx_messageInfo_GenerationRequest.Size(m)
 }
-func (m *PayloadGenerationRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_PayloadGenerationRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PayloadGenerationRequest proto.InternalMessageInfo
-
-type isPayloadGenerationRequest_SrcImageOneof interface {
-	isPayloadGenerationRequest_SrcImageOneof()
+func (m *GenerationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GenerationRequest.DiscardUnknown(m)
 }
 
-type PayloadGenerationRequest_FullUpdate struct {
+var xxx_messageInfo_GenerationRequest proto.InternalMessageInfo
+
+type isGenerationRequest_SrcImageOneof interface {
+	isGenerationRequest_SrcImageOneof()
+}
+
+type GenerationRequest_FullUpdate struct {
 	FullUpdate bool `protobuf:"varint,1,opt,name=full_update,json=fullUpdate,proto3,oneof"`
 }
 
-type PayloadGenerationRequest_SrcSignedImage struct {
+type GenerationRequest_SrcSignedImage struct {
 	SrcSignedImage *SignedImage `protobuf:"bytes,2,opt,name=src_signed_image,json=srcSignedImage,proto3,oneof"`
 }
 
-type PayloadGenerationRequest_SrcUnsignedImage struct {
+type GenerationRequest_SrcUnsignedImage struct {
 	SrcUnsignedImage *UnsignedImage `protobuf:"bytes,3,opt,name=src_unsigned_image,json=srcUnsignedImage,proto3,oneof"`
 }
 
-func (*PayloadGenerationRequest_FullUpdate) isPayloadGenerationRequest_SrcImageOneof() {}
+func (*GenerationRequest_FullUpdate) isGenerationRequest_SrcImageOneof() {}
 
-func (*PayloadGenerationRequest_SrcSignedImage) isPayloadGenerationRequest_SrcImageOneof() {}
+func (*GenerationRequest_SrcSignedImage) isGenerationRequest_SrcImageOneof() {}
 
-func (*PayloadGenerationRequest_SrcUnsignedImage) isPayloadGenerationRequest_SrcImageOneof() {}
+func (*GenerationRequest_SrcUnsignedImage) isGenerationRequest_SrcImageOneof() {}
 
-func (m *PayloadGenerationRequest) GetSrcImageOneof() isPayloadGenerationRequest_SrcImageOneof {
+func (m *GenerationRequest) GetSrcImageOneof() isGenerationRequest_SrcImageOneof {
 	if m != nil {
 		return m.SrcImageOneof
 	}
 	return nil
 }
 
-func (m *PayloadGenerationRequest) GetFullUpdate() bool {
-	if x, ok := m.GetSrcImageOneof().(*PayloadGenerationRequest_FullUpdate); ok {
+func (m *GenerationRequest) GetFullUpdate() bool {
+	if x, ok := m.GetSrcImageOneof().(*GenerationRequest_FullUpdate); ok {
 		return x.FullUpdate
 	}
 	return false
 }
 
-func (m *PayloadGenerationRequest) GetSrcSignedImage() *SignedImage {
-	if x, ok := m.GetSrcImageOneof().(*PayloadGenerationRequest_SrcSignedImage); ok {
+func (m *GenerationRequest) GetSrcSignedImage() *SignedImage {
+	if x, ok := m.GetSrcImageOneof().(*GenerationRequest_SrcSignedImage); ok {
 		return x.SrcSignedImage
 	}
 	return nil
 }
 
-func (m *PayloadGenerationRequest) GetSrcUnsignedImage() *UnsignedImage {
-	if x, ok := m.GetSrcImageOneof().(*PayloadGenerationRequest_SrcUnsignedImage); ok {
+func (m *GenerationRequest) GetSrcUnsignedImage() *UnsignedImage {
+	if x, ok := m.GetSrcImageOneof().(*GenerationRequest_SrcUnsignedImage); ok {
 		return x.SrcUnsignedImage
 	}
 	return nil
 }
 
-type isPayloadGenerationRequest_TgtImageOneof interface {
-	isPayloadGenerationRequest_TgtImageOneof()
+type isGenerationRequest_TgtImageOneof interface {
+	isGenerationRequest_TgtImageOneof()
 }
 
-type PayloadGenerationRequest_TgtSignedImage struct {
+type GenerationRequest_TgtSignedImage struct {
 	TgtSignedImage *SignedImage `protobuf:"bytes,4,opt,name=tgt_signed_image,json=tgtSignedImage,proto3,oneof"`
 }
 
-type PayloadGenerationRequest_TgtUnsignedImage struct {
+type GenerationRequest_TgtUnsignedImage struct {
 	TgtUnsignedImage *UnsignedImage `protobuf:"bytes,5,opt,name=tgt_unsigned_image,json=tgtUnsignedImage,proto3,oneof"`
 }
 
-func (*PayloadGenerationRequest_TgtSignedImage) isPayloadGenerationRequest_TgtImageOneof() {}
+func (*GenerationRequest_TgtSignedImage) isGenerationRequest_TgtImageOneof() {}
 
-func (*PayloadGenerationRequest_TgtUnsignedImage) isPayloadGenerationRequest_TgtImageOneof() {}
+func (*GenerationRequest_TgtUnsignedImage) isGenerationRequest_TgtImageOneof() {}
 
-func (m *PayloadGenerationRequest) GetTgtImageOneof() isPayloadGenerationRequest_TgtImageOneof {
+func (m *GenerationRequest) GetTgtImageOneof() isGenerationRequest_TgtImageOneof {
 	if m != nil {
 		return m.TgtImageOneof
 	}
 	return nil
 }
 
-func (m *PayloadGenerationRequest) GetTgtSignedImage() *SignedImage {
-	if x, ok := m.GetTgtImageOneof().(*PayloadGenerationRequest_TgtSignedImage); ok {
+func (m *GenerationRequest) GetTgtSignedImage() *SignedImage {
+	if x, ok := m.GetTgtImageOneof().(*GenerationRequest_TgtSignedImage); ok {
 		return x.TgtSignedImage
 	}
 	return nil
 }
 
-func (m *PayloadGenerationRequest) GetTgtUnsignedImage() *UnsignedImage {
-	if x, ok := m.GetTgtImageOneof().(*PayloadGenerationRequest_TgtUnsignedImage); ok {
+func (m *GenerationRequest) GetTgtUnsignedImage() *UnsignedImage {
+	if x, ok := m.GetTgtImageOneof().(*GenerationRequest_TgtUnsignedImage); ok {
 		return x.TgtUnsignedImage
 	}
 	return nil
 }
 
-func (m *PayloadGenerationRequest) GetBucket() string {
+func (m *GenerationRequest) GetBucket() string {
 	if m != nil {
 		return m.Bucket
 	}
 	return ""
 }
 
-func (m *PayloadGenerationRequest) GetVerify() bool {
+func (m *GenerationRequest) GetVerify() bool {
 	if m != nil {
 		return m.Verify
 	}
 	return false
 }
 
-func (m *PayloadGenerationRequest) GetKeyset() string {
+func (m *GenerationRequest) GetKeyset() string {
 	if m != nil {
 		return m.Keyset
 	}
 	return ""
 }
 
-func (m *PayloadGenerationRequest) GetDryrun() bool {
+func (m *GenerationRequest) GetDryrun() bool {
 	if m != nil {
 		return m.Dryrun
 	}
@@ -382,18 +382,18 @@ func (m *PayloadGenerationRequest) GetDryrun() bool {
 }
 
 // XXX_OneofWrappers is for the internal use of the proto package.
-func (*PayloadGenerationRequest) XXX_OneofWrappers() []interface{} {
+func (*GenerationRequest) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
-		(*PayloadGenerationRequest_FullUpdate)(nil),
-		(*PayloadGenerationRequest_SrcSignedImage)(nil),
-		(*PayloadGenerationRequest_SrcUnsignedImage)(nil),
-		(*PayloadGenerationRequest_TgtSignedImage)(nil),
-		(*PayloadGenerationRequest_TgtUnsignedImage)(nil),
+		(*GenerationRequest_FullUpdate)(nil),
+		(*GenerationRequest_SrcSignedImage)(nil),
+		(*GenerationRequest_SrcUnsignedImage)(nil),
+		(*GenerationRequest_TgtSignedImage)(nil),
+		(*GenerationRequest_TgtUnsignedImage)(nil),
 	}
 }
 
 // Result of a payload generation.
-type PayloadGenerationResult struct {
+type GenerationResponse struct {
 	// Whether we've completed successfully.
 	Success              bool     `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -401,32 +401,32 @@ type PayloadGenerationResult struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *PayloadGenerationResult) Reset()         { *m = PayloadGenerationResult{} }
-func (m *PayloadGenerationResult) String() string { return proto.CompactTextString(m) }
-func (*PayloadGenerationResult) ProtoMessage()    {}
-func (*PayloadGenerationResult) Descriptor() ([]byte, []int) {
+func (m *GenerationResponse) Reset()         { *m = GenerationResponse{} }
+func (m *GenerationResponse) String() string { return proto.CompactTextString(m) }
+func (*GenerationResponse) ProtoMessage()    {}
+func (*GenerationResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0ecdf1e4e8bef7a4, []int{4}
 }
 
-func (m *PayloadGenerationResult) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PayloadGenerationResult.Unmarshal(m, b)
+func (m *GenerationResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GenerationResponse.Unmarshal(m, b)
 }
-func (m *PayloadGenerationResult) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PayloadGenerationResult.Marshal(b, m, deterministic)
+func (m *GenerationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GenerationResponse.Marshal(b, m, deterministic)
 }
-func (m *PayloadGenerationResult) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PayloadGenerationResult.Merge(m, src)
+func (m *GenerationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GenerationResponse.Merge(m, src)
 }
-func (m *PayloadGenerationResult) XXX_Size() int {
-	return xxx_messageInfo_PayloadGenerationResult.Size(m)
+func (m *GenerationResponse) XXX_Size() int {
+	return xxx_messageInfo_GenerationResponse.Size(m)
 }
-func (m *PayloadGenerationResult) XXX_DiscardUnknown() {
-	xxx_messageInfo_PayloadGenerationResult.DiscardUnknown(m)
+func (m *GenerationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GenerationResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_PayloadGenerationResult proto.InternalMessageInfo
+var xxx_messageInfo_GenerationResponse proto.InternalMessageInfo
 
-func (m *PayloadGenerationResult) GetSuccess() bool {
+func (m *GenerationResponse) GetSuccess() bool {
 	if m != nil {
 		return m.Success
 	}
@@ -437,50 +437,49 @@ func init() {
 	proto.RegisterType((*Build)(nil), "chromite.api.Build")
 	proto.RegisterType((*SignedImage)(nil), "chromite.api.SignedImage")
 	proto.RegisterType((*UnsignedImage)(nil), "chromite.api.UnsignedImage")
-	proto.RegisterType((*PayloadGenerationRequest)(nil), "chromite.api.PayloadGenerationRequest")
-	proto.RegisterType((*PayloadGenerationResult)(nil), "chromite.api.PayloadGenerationResult")
+	proto.RegisterType((*GenerationRequest)(nil), "chromite.api.GenerationRequest")
+	proto.RegisterType((*GenerationResponse)(nil), "chromite.api.GenerationResponse")
 }
 
 func init() { proto.RegisterFile("chromite/api/payload.proto", fileDescriptor_0ecdf1e4e8bef7a4) }
 
 var fileDescriptor_0ecdf1e4e8bef7a4 = []byte{
-	// 565 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x94, 0xc1, 0x6e, 0xd3, 0x4c,
-	0x10, 0xc7, 0xeb, 0xa6, 0x4d, 0x9b, 0x71, 0xbf, 0x34, 0xdf, 0x22, 0x5a, 0x63, 0x7a, 0x28, 0x91,
-	0x40, 0xe5, 0x62, 0x4b, 0x29, 0x42, 0x88, 0x63, 0xa5, 0x8a, 0x22, 0x2e, 0x68, 0xdb, 0x5e, 0xb8,
-	0x04, 0xc7, 0x99, 0xb8, 0xab, 0xda, 0xbb, 0x66, 0x77, 0x5d, 0xc9, 0x37, 0x24, 0xee, 0xf0, 0x4e,
-	0xbc, 0x0e, 0xe2, 0x1d, 0xd0, 0xee, 0x3a, 0xc4, 0xae, 0x40, 0xb9, 0x71, 0xf3, 0xcc, 0xfc, 0x67,
-	0xf6, 0xb7, 0xb3, 0xe3, 0x81, 0x30, 0xbd, 0x91, 0xa2, 0x60, 0x1a, 0xe3, 0xa4, 0x64, 0x71, 0x99,
-	0xd4, 0xb9, 0x48, 0xe6, 0x51, 0x29, 0x85, 0x16, 0x64, 0x6f, 0x19, 0x8b, 0x92, 0x92, 0x85, 0x47,
-	0x1d, 0xe5, 0xac, 0x62, 0xf9, 0x7c, 0x9a, 0x94, 0xcc, 0x69, 0xc3, 0x43, 0x17, 0xad, 0x0a, 0xa1,
-	0xe2, 0x54, 0x14, 0x85, 0xe0, 0x2e, 0x30, 0xfe, 0xe6, 0xc1, 0xf6, 0x99, 0x11, 0x93, 0xd7, 0xb0,
-	0xe7, 0xb2, 0x74, 0x22, 0x33, 0xd4, 0x81, 0x77, 0xec, 0x9d, 0xf8, 0x93, 0xc3, 0x68, 0x95, 0x19,
-	0x59, 0xe1, 0x95, 0x0d, 0x53, 0x7f, 0xb6, 0x32, 0x48, 0x00, 0x3b, 0x77, 0x28, 0x15, 0x13, 0x3c,
-	0xd8, 0x3c, 0xf6, 0x4e, 0x06, 0x74, 0x69, 0x92, 0x03, 0xe8, 0xcf, 0xaa, 0xf4, 0x16, 0x75, 0xd0,
-	0xb3, 0x81, 0xc6, 0x32, 0x19, 0xe9, 0x4d, 0xc2, 0x39, 0xe6, 0xc1, 0x96, 0xcb, 0x68, 0xcc, 0xf1,
-	0x67, 0x0f, 0xfc, 0x4b, 0x96, 0x71, 0x9c, 0xbf, 0x2d, 0x92, 0x0c, 0xc9, 0x73, 0xd8, 0xb6, 0x47,
-	0x35, 0x40, 0x0f, 0xa2, 0xf6, 0xb5, 0x1d, 0x12, 0x75, 0x0a, 0xf2, 0x02, 0x80, 0x99, 0x9c, 0xa9,
-	0xae, 0x4b, 0xb4, 0x24, 0xc3, 0xc9, 0xc3, 0xf6, 0x05, 0x6c, 0xc5, 0xab, 0xba, 0x44, 0x3a, 0x60,
-	0xcb, 0x4f, 0x32, 0x82, 0xde, 0x2d, 0xd6, 0x0d, 0x9f, 0xf9, 0x1c, 0x7f, 0xf5, 0xe0, 0xbf, 0x6b,
-	0xae, 0xfe, 0x25, 0xc4, 0x11, 0x0c, 0x0a, 0x96, 0xa3, 0xd2, 0x82, 0x63, 0x83, 0xb2, 0x72, 0x8c,
-	0x7f, 0xf4, 0x20, 0x78, 0xef, 0x1e, 0xff, 0x0d, 0x72, 0x94, 0x89, 0x66, 0x82, 0x53, 0xfc, 0x54,
-	0xa1, 0xd2, 0xe4, 0x09, 0xf8, 0x8b, 0x2a, 0xcf, 0xa7, 0x55, 0x39, 0x4f, 0x34, 0x5a, 0xc2, 0xdd,
-	0x8b, 0x0d, 0x0a, 0xc6, 0x79, 0x6d, 0x7d, 0xe4, 0x1c, 0x46, 0x4a, 0xa6, 0x53, 0x77, 0xa3, 0xa9,
-	0x3d, 0xd5, 0x92, 0xf9, 0x93, 0x47, 0xdd, 0x9b, 0xb4, 0x1a, 0x7f, 0xb1, 0x41, 0x87, 0x4a, 0xa6,
-	0xed, 0xa7, 0x78, 0x07, 0xc4, 0x94, 0xa9, 0x78, 0xa7, 0x50, 0xcf, 0x16, 0x7a, 0xdc, 0x2d, 0xd4,
-	0x69, 0xdf, 0xc5, 0x06, 0x35, 0xe7, 0x77, 0x5b, 0x7a, 0x0e, 0x23, 0x9d, 0xe9, 0x2e, 0xd3, 0xd6,
-	0x3a, 0x26, 0x8f, 0x0e, 0x75, 0xa6, 0xef, 0x31, 0x99, 0x32, 0xf7, 0x98, 0xb6, 0xd7, 0x33, 0x79,
-	0xd4, 0x9c, 0xdf, 0x65, 0x5a, 0x4d, 0x6b, 0xbf, 0x33, 0xad, 0x07, 0xd0, 0xbf, 0x43, 0xc9, 0x16,
-	0x75, 0xb0, 0x63, 0xba, 0x4b, 0x1b, 0xcb, 0xf8, 0x6f, 0xb1, 0x56, 0xa8, 0x83, 0x5d, 0xa7, 0x77,
-	0x96, 0xf1, 0xcf, 0x65, 0x2d, 0x2b, 0x1e, 0x0c, 0x9c, 0xde, 0x59, 0x67, 0xff, 0xc3, 0xbe, 0x69,
-	0xa0, 0x9b, 0x0f, 0xc1, 0x51, 0x2c, 0x8c, 0xcb, 0xf0, 0xb7, 0x5c, 0xe3, 0x53, 0x38, 0xfc, 0xc3,
-	0x63, 0xab, 0x2a, 0xb7, 0xbf, 0x8d, 0xaa, 0xd2, 0x14, 0x95, 0x72, 0xef, 0x4c, 0x97, 0xe6, 0xe4,
-	0x8b, 0x07, 0xc3, 0x26, 0xeb, 0x12, 0xe5, 0x1d, 0x4b, 0x91, 0x7c, 0x84, 0xfd, 0xa6, 0x00, 0x36,
-	0x11, 0xf2, 0xac, 0xdb, 0x91, 0xbf, 0xcd, 0x54, 0xf8, 0x74, 0xad, 0xce, 0xe0, 0x84, 0xfb, 0xdf,
-	0x7f, 0x86, 0x3e, 0xec, 0x34, 0x7b, 0x69, 0xb4, 0x79, 0xf6, 0xea, 0xc3, 0xcb, 0x4c, 0xfc, 0x1e,
-	0xf6, 0x48, 0xc8, 0x2c, 0x6e, 0x6d, 0x1e, 0xc6, 0x17, 0x32, 0x89, 0xed, 0xe2, 0x89, 0x33, 0x11,
-	0xb7, 0x37, 0xd6, 0xac, 0x6f, 0xdd, 0xa7, 0xbf, 0x02, 0x00, 0x00, 0xff, 0xff, 0x8f, 0x7d, 0x3a,
-	0x4a, 0xf2, 0x04, 0x00, 0x00,
+	// 560 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x94, 0xc1, 0x6e, 0xd3, 0x40,
+	0x10, 0x86, 0x6b, 0xd2, 0xa6, 0xcd, 0xb8, 0xa4, 0xe9, 0x22, 0x5a, 0x63, 0x2a, 0x51, 0x72, 0x2a,
+	0x17, 0x5b, 0x0a, 0x08, 0x21, 0x8e, 0x95, 0x2a, 0x8a, 0xb8, 0xa0, 0x6d, 0x7b, 0xe1, 0x12, 0x39,
+	0xce, 0xc4, 0x5d, 0xc5, 0xde, 0x35, 0xbb, 0xeb, 0x20, 0xdf, 0x78, 0x02, 0x78, 0x27, 0x9e, 0x85,
+	0x2b, 0xef, 0x80, 0x76, 0xd7, 0x21, 0x76, 0x11, 0xea, 0x8d, 0x9b, 0x67, 0xe6, 0x9f, 0xd9, 0x6f,
+	0x67, 0xc7, 0x03, 0x61, 0x7a, 0x2b, 0x45, 0xc1, 0x34, 0xc6, 0x49, 0xc9, 0xe2, 0x32, 0xa9, 0x73,
+	0x91, 0xcc, 0xa3, 0x52, 0x0a, 0x2d, 0xc8, 0xfe, 0x3a, 0x16, 0x25, 0x25, 0x0b, 0x4f, 0x3a, 0xca,
+	0x59, 0xc5, 0xf2, 0xf9, 0x34, 0x29, 0x99, 0xd3, 0x86, 0xc7, 0x2e, 0x5a, 0x15, 0x42, 0xc5, 0xa9,
+	0x28, 0x0a, 0xc1, 0x5d, 0x60, 0xfc, 0xdd, 0x83, 0x9d, 0x73, 0x23, 0x26, 0x6f, 0x61, 0xdf, 0x65,
+	0xe9, 0x44, 0x66, 0xa8, 0x03, 0xef, 0xd4, 0x3b, 0xf3, 0x27, 0xc7, 0xd1, 0x26, 0x33, 0xb2, 0xc2,
+	0x6b, 0x1b, 0xa6, 0xfe, 0x6c, 0x63, 0x90, 0x00, 0x76, 0x57, 0x28, 0x15, 0x13, 0x3c, 0x78, 0x70,
+	0xea, 0x9d, 0x0d, 0xe8, 0xda, 0x24, 0x47, 0xd0, 0x9f, 0x55, 0xe9, 0x12, 0x75, 0xd0, 0xb3, 0x81,
+	0xc6, 0x32, 0x19, 0xe9, 0x6d, 0xc2, 0x39, 0xe6, 0xc1, 0xb6, 0xcb, 0x68, 0xcc, 0xf1, 0x57, 0x0f,
+	0xfc, 0x2b, 0x96, 0x71, 0x9c, 0xbf, 0x2f, 0x92, 0x0c, 0xc9, 0x0b, 0xd8, 0xb1, 0x47, 0x35, 0x40,
+	0x8f, 0xa2, 0xf6, 0xb5, 0x1d, 0x12, 0x75, 0x0a, 0xf2, 0x0a, 0x80, 0x99, 0x9c, 0xa9, 0xae, 0x4b,
+	0xb4, 0x24, 0xc3, 0xc9, 0xe3, 0xf6, 0x05, 0x6c, 0xc5, 0xeb, 0xba, 0x44, 0x3a, 0x60, 0xeb, 0x4f,
+	0x32, 0x82, 0xde, 0x12, 0xeb, 0x86, 0xcf, 0x7c, 0x8e, 0xbf, 0x79, 0xf0, 0xf0, 0x86, 0xab, 0xff,
+	0x09, 0x71, 0x02, 0x83, 0x82, 0xe5, 0xa8, 0xb4, 0xe0, 0xd8, 0xa0, 0x6c, 0x1c, 0xe3, 0x9f, 0x3d,
+	0x38, 0x7c, 0x87, 0x1c, 0x65, 0xa2, 0x99, 0xe0, 0x14, 0x3f, 0x57, 0xa8, 0x34, 0x79, 0x0e, 0xfe,
+	0xa2, 0xca, 0xf3, 0x69, 0x55, 0xce, 0x13, 0x8d, 0x16, 0x6d, 0xef, 0x72, 0x8b, 0x82, 0x71, 0xde,
+	0x58, 0x1f, 0xb9, 0x80, 0x91, 0x92, 0xe9, 0xd4, 0x5d, 0x65, 0x6a, 0x8f, 0xb3, 0x48, 0xfe, 0xe4,
+	0x49, 0xf7, 0x0a, 0xad, 0x8e, 0x5f, 0x6e, 0xd1, 0xa1, 0x92, 0x69, 0xfb, 0x0d, 0x3e, 0x00, 0x31,
+	0x65, 0x2a, 0xde, 0x29, 0xd4, 0xb3, 0x85, 0x9e, 0x76, 0x0b, 0x75, 0xfa, 0x76, 0xb9, 0x45, 0xcd,
+	0xf9, 0xdd, 0x5e, 0x5e, 0xc0, 0x48, 0x67, 0xba, 0xcb, 0xb4, 0x7d, 0x1f, 0x93, 0x47, 0x87, 0x3a,
+	0xd3, 0x77, 0x98, 0x4c, 0x99, 0x3b, 0x4c, 0x3b, 0xf7, 0x33, 0x79, 0xd4, 0x9c, 0xdf, 0x65, 0xda,
+	0x8c, 0x69, 0xbf, 0x33, 0xa6, 0x47, 0xd0, 0x5f, 0xa1, 0x64, 0x8b, 0x3a, 0xd8, 0x35, 0xdd, 0xa5,
+	0x8d, 0x65, 0xfc, 0x4b, 0xac, 0x15, 0xea, 0x60, 0xcf, 0xe9, 0x9d, 0x65, 0xfc, 0x73, 0x59, 0xcb,
+	0x8a, 0x07, 0x03, 0xa7, 0x77, 0xd6, 0xf9, 0x21, 0x1c, 0x98, 0x06, 0xba, 0xc1, 0x10, 0x1c, 0xc5,
+	0xc2, 0xb8, 0x0c, 0x7f, 0xcb, 0x35, 0x8e, 0x80, 0xb4, 0x5f, 0x59, 0x95, 0x82, 0x2b, 0x34, 0xbf,
+	0x8a, 0xaa, 0xd2, 0x14, 0x95, 0x72, 0x4f, 0x4c, 0xd7, 0xe6, 0xe4, 0x0b, 0x0c, 0x3f, 0xba, 0x95,
+	0x70, 0x85, 0x72, 0xc5, 0x52, 0x24, 0xd7, 0x70, 0xd0, 0x54, 0xc0, 0x26, 0x42, 0x9e, 0x75, 0x7b,
+	0xf1, 0xd7, 0x18, 0x85, 0xa7, 0xff, 0x16, 0x38, 0x82, 0xf0, 0xe0, 0xc7, 0xaf, 0xd0, 0x87, 0xdd,
+	0x66, 0xfd, 0x8c, 0xbc, 0xf3, 0x37, 0x9f, 0x5e, 0x67, 0xe2, 0xcf, 0x4c, 0x47, 0x42, 0x66, 0x71,
+	0x6b, 0xc1, 0x30, 0xbe, 0x90, 0x49, 0x6c, 0xf7, 0x4b, 0x9c, 0x89, 0xb8, 0xbd, 0x98, 0x66, 0x7d,
+	0xeb, 0x7e, 0xf9, 0x3b, 0x00, 0x00, 0xff, 0xff, 0xc3, 0xb3, 0x83, 0xad, 0xd9, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -495,7 +494,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PayloadServiceClient interface {
-	GeneratePayload(ctx context.Context, in *PayloadGenerationRequest, opts ...grpc.CallOption) (*PayloadGenerationResult, error)
+	GeneratePayload(ctx context.Context, in *GenerationRequest, opts ...grpc.CallOption) (*GenerationResponse, error)
 }
 
 type payloadServiceClient struct {
@@ -506,8 +505,8 @@ func NewPayloadServiceClient(cc *grpc.ClientConn) PayloadServiceClient {
 	return &payloadServiceClient{cc}
 }
 
-func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *PayloadGenerationRequest, opts ...grpc.CallOption) (*PayloadGenerationResult, error) {
-	out := new(PayloadGenerationResult)
+func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *GenerationRequest, opts ...grpc.CallOption) (*GenerationResponse, error) {
+	out := new(GenerationResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.PayloadService/GeneratePayload", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -517,14 +516,14 @@ func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *PayloadG
 
 // PayloadServiceServer is the server API for PayloadService service.
 type PayloadServiceServer interface {
-	GeneratePayload(context.Context, *PayloadGenerationRequest) (*PayloadGenerationResult, error)
+	GeneratePayload(context.Context, *GenerationRequest) (*GenerationResponse, error)
 }
 
 // UnimplementedPayloadServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedPayloadServiceServer struct {
 }
 
-func (*UnimplementedPayloadServiceServer) GeneratePayload(ctx context.Context, req *PayloadGenerationRequest) (*PayloadGenerationResult, error) {
+func (*UnimplementedPayloadServiceServer) GeneratePayload(ctx context.Context, req *GenerationRequest) (*GenerationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GeneratePayload not implemented")
 }
 
@@ -533,7 +532,7 @@ func RegisterPayloadServiceServer(s *grpc.Server, srv PayloadServiceServer) {
 }
 
 func _PayloadService_GeneratePayload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PayloadGenerationRequest)
+	in := new(GenerationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -545,7 +544,7 @@ func _PayloadService_GeneratePayload_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/chromite.api.PayloadService/GeneratePayload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PayloadServiceServer).GeneratePayload(ctx, req.(*PayloadGenerationRequest))
+		return srv.(PayloadServiceServer).GeneratePayload(ctx, req.(*GenerationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
