@@ -135,14 +135,20 @@ message BuilderConfig {
 
       enum CollectHandling {
         COLLECT_HANDLING_UNSPECIFIED = 0;
-        // Indicates the result should be collected. Currently also indicates
-        // that should the orchestrator terminate before this child finishes
-        // the child will be killed.
+        // Indicates the result should be collected PRIOR to updating the
+        // 'build' manifest ref, and planning / running HW tests.
+        // This also indicates that should the orchestrator terminate before
+        // this child finishes the child will be terminated.
         COLLECT = 1;
         // Indicates the result should not be collected. Currently also
         // indicates that should the orchestrator terminate before this child
         // finishes this child is allowed to continue.
         NO_COLLECT = 2;
+        // Indicates the result should be collected AFTER HW tests are complete.
+        // The result is not relevant to the 'build' manifest ref being
+        // published.
+        // Otherwise no different than COLLECT above.
+        COLLECT_AFTER_HW_TEST = 3;
       }
       CollectHandling collect_handling = 2;
     }
