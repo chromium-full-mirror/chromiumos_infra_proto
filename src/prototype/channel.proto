@@ -15,7 +15,6 @@ message Channel {
     DEV = 2;
     BETA = 3;
     STABLE = 4;
-    LTS = 5;
   }
   Type type = 1;
 }
