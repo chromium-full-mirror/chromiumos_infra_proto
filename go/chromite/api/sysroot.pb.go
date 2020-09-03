@@ -565,8 +565,10 @@ type InstallPackagesRequest struct {
 	Sysroot *Sysroot `protobuf:"bytes,1,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
 	// The install packages flags.
 	Flags *InstallPackagesRequest_Flags `protobuf:"bytes,2,opt,name=flags,proto3" json:"flags,omitempty"`
-	// A list of specific packages to install. Will generate the list of packages
-	// for the build target if none are specified.
+	// Optional.
+	// A list of specific package atoms to install. Will generate
+	// the list of packages for the build target if none are
+	// specified. The version of the packages is ignored if provided.
 	Packages []*chromiumos.PackageInfo `protobuf:"bytes,3,rep,name=packages,proto3" json:"packages,omitempty"`
 	// The chroot to use to execute the endpoint.
 	Chroot *chromiumos.Chroot `protobuf:"bytes,4,opt,name=chroot,proto3" json:"chroot,omitempty"`

@@ -117,8 +117,10 @@ message InstallPackagesRequest {
   Sysroot sysroot = 1;
   // The install packages flags.
   Flags flags = 2;
-  // A list of specific packages to install. Will generate the list of packages
-  // for the build target if none are specified.
+  // Optional.
+  // A list of specific package atoms to install. Will generate
+  // the list of packages for the build target if none are
+  // specified. The version of the packages is ignored if provided.
   repeated chromiumos.PackageInfo packages = 3;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 4;
