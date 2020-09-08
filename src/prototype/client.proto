@@ -20,8 +20,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 //
 //
 //
-//                             /
-//    ---------------    1:N  / -----------
+//
+//    ---------------    1:N    -----------
 //    |   Client    | <---------| Profile |  // Use for coordinate
 //    ---------------           -----------  // behavioral configs
 //

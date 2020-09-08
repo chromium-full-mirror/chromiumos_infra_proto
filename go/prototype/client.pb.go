@@ -30,8 +30,8 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 //
 //
 //
-//                             /
-//    ---------------    1:N  / -----------
+//
+//    ---------------    1:N    -----------
 //    |   Client    | <---------| Profile |  // Use for coordinate
 //    ---------------           -----------  // behavioral configs
 //
