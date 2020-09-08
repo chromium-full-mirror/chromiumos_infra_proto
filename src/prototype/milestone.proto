@@ -6,6 +6,7 @@ syntax = "proto3";
 
 package prototype;
 
+import "prototype/builder_config.proto";
 import "prototype/channel.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
@@ -37,4 +38,7 @@ message Milestone {
 
   // Defines the overall timeline for channel releases of the given milestone.
   repeated ChannelPlan channel_plan = 4;
+
+  // Defines the builds that run for the given milestone.
+  repeated BuilderConfig builder_configs = 5;
 }
