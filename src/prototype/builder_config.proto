@@ -17,5 +17,5 @@ message BuilderConfig {
   bool critical = 1;
 
   // Defines the build target for this builder config.
-  repeated chromiumos.config.prototype.BuildTarget build_targets = 2;
+  chromiumos.config.prototype.BuildTarget build_target = 2;
 }
