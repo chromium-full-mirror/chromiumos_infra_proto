@@ -18,6 +18,8 @@ message BuildTargetUnitTestRequest {
     bool toolchain_changed = 2;
     // Whether to produce code coverage data.
     bool code_coverage = 3;
+    // Whether to allow no testable packages to be found.
+    bool testable_packages_optional = 4;
    }
 
   // The build target being tested.
