@@ -93,7 +93,7 @@ message Result {
 
   Prejob prejob = 2;
 
-  test_platform.common.TaskLogData log_data = 3 [deprecated = true];
+  test_platform.common.TaskLogData log_data = 3;
 
   // StateUpdate contains Skylab state changes that resulted from the test run.
   // It is consumed by `skylab_local_state save`.
