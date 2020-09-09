@@ -1,10 +1,22 @@
-# Primary owner teams
-include chromiumos/chromite:/OWNERS.build
-include chromiumos/chromite:/OWNERS.ci
-include chromiumos/chromite:/OWNERS.testplatform
+# Build team
+cjmcdonald@chromium.org
+lamontjones@chromium.org
+saklein@chromium.org
+vapier@chromium.org
+
+# CI team
+andrewlamb@chromium.org
+dburger@chromium.org
+dhanyaganesh@chromium.org
+jclinton@chromium.org
+mikenichols@chromium.org
+seanabraham@chromium.org
+
+# Test team
+ayatane@chromium.org
+pprabhu@chromium.org
 
 # Chrome Fleet team
-ayatane@chromium.org
 xixuan@chromium.org
 
 # Infra team
