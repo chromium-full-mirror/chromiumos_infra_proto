@@ -1,23 +1,41 @@
-# Build team
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# This file can't use "include" directives, since they are not supported
+# by an autoroller that uses this repo. e.g. http://shortn/_R8egPrYex7
+# See https://crbug.com/1108077
+
+# https://chromium.googlesource.com/chromiumos/chromite/+/master/OWNERS.build
 cjmcdonald@chromium.org
-lamontjones@chromium.org
+mmortensen@google.com
 saklein@chromium.org
+sbelmon@google.com
 vapier@chromium.org
 
-# CI team
+# https://chromium.googlesource.com/chromiumos/chromite/+/master/OWNERS.ci
 andrewlamb@chromium.org
+ctmcnamara@chromium.org
 dburger@chromium.org
 dhanyaganesh@chromium.org
-jclinton@chromium.org
+engeg@google.com
+lamontjones@chromium.org
 mikenichols@chromium.org
+navil@google.com
+seanabraham@chromium.org
+smcallis@google.com
+
+# https://chromium.googlesource.com/chromiumos/chromite/+/master/OWNERS.testplatform
+brigitr@google.com
+dhanyaganesh@chromium.org
+jaredloucks@google.com
+nednguyen@chromium.org
+pprabhu@chromium.org
 seanabraham@chromium.org
 
-# Test team
+# Fleet team
 ayatane@chromium.org
-pprabhu@chromium.org
-
-# Chrome Fleet team
 xixuan@chromium.org
 
-# Infra team
+# Infra leads
 shapiroc@chromium.org
