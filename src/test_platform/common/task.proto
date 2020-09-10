@@ -13,4 +13,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/com
 message TaskLogData {
     // gs_url is the full google storage URL at which a task's logs are stored.
     string gs_url = 1;
+
+    // stainless_url is the full URL to the stainless logs viewer for archived
+    // logs.
+    string stainless_url = 2;
 }

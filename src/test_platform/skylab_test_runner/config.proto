@@ -49,7 +49,15 @@ message Config {
   // Output defines parameters around how the task will deliver output to
   // the callers, e.g. Google Storage bucket.
   message Output {
+    // A Google Storage path to upload a specified subset of log-data
+    // synchronously.
+    // This synchronous upload mechanism is obviated by log_data_gs_dir.
     string gs_root_dir = 1;
+
+    // A Google Storage path prefix to upload all log-data to synchronously.
+    // Reflected in the test_platform.skylab_test_runner.Result.log_data
+    // returned by the task.
+    string log_data_gs_root = 2;
   }
 
   // PubSub defines the configuration parameters for PubSub topic.
