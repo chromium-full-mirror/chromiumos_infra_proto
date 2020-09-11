@@ -25,6 +25,16 @@ message BuilderConfig {
     RUN_EXIT = 3;
   }
 
+  // A rule describing which subset of dependencies should be used.
+  // When used in combination with a list of packages, the intersection of the
+  // two sets will be used.
+  enum Dependencies {
+    // Use all dependencies.
+    ALL_DEPENDENCIES = 0;
+    // Only use dependencies affected by the changes applied to the build.
+    CL_AFFECTED_DEPENDENCIES = 1;
+  }
+
   // Unique identifier of the builder configuration.
   message Id {
     // The name of the configuration such as "arm-generic-postsubmit".
@@ -380,6 +390,9 @@ message BuilderConfig {
       // Certain builders (e.g., clang-tidy-toolchain) need to build Chrome with
       // goma disabled.
       bool disable_goma = 4;
+
+      // Set of package dependencies to install.
+      Dependencies dependencies = 5;
     }
     reserved 14;
     InstallPackages install_packages = 16;
@@ -413,6 +426,9 @@ message BuilderConfig {
     // Packages to be tested.
     // Defaults to all testable packages when none are given.
     repeated PackageInfo packages = 7;
+
+    // Set of package dependencies to test.
+    Dependencies dependencies = 8;
   }
   UnitTests unit_tests = 7;
 }
