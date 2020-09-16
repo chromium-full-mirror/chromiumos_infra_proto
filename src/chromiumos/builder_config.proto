@@ -29,10 +29,11 @@ message BuilderConfig {
   // When used in combination with a list of packages, the intersection of the
   // two sets will be used.
   enum Dependencies {
+    DEPENDENCIES_UNSPECIFIED = 0;
     // Use all dependencies.
-    ALL_DEPENDENCIES = 0;
+    ALL_DEPENDENCIES = 1;
     // Only use dependencies affected by the changes applied to the build.
-    CL_AFFECTED_DEPENDENCIES = 1;
+    CL_AFFECTED_DEPENDENCIES = 2;
   }
 
   // Unique identifier of the builder configuration.
