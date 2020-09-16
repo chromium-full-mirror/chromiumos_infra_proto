@@ -29,6 +29,9 @@ message DesignProject {
   // Define factory build config needed for manufacturing verification.
   FactoryConfig factory_config = 7;
 
+  // Defines signing config unique to the given design project.
+  SigningConfig signing_config = 8;
+
   message FirmwareConfig {
     // Defines the firmware branch that will be maintained for the project.
     string firmware_branch = 1;
@@ -49,5 +52,15 @@ message DesignProject {
     //
     // project_key should be 'MILKYWAY'. The matching is case-insensitive.
     string hwid_project_key = 2;
+  }
+
+  message SigningConfig {
+    // Key names have taken historically followed many different patterns.
+    // To support all of the cases, this defines an explicit mapping between the
+    // supported brands and corresponding keys present in the respective
+    // keysets.
+    // Going forward, this could be standardized, removing the need for the
+    // explict mapping, but this will be required for the foreseeable future.
+    map<string, string> brand_id_to_key = 1;
   }
 }
