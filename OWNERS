@@ -39,3 +39,6 @@ xixuan@chromium.org
 
 # Infra leads
 shapiroc@chromium.org
+
+# Service accounts, for rolling dependencies.
+recipe-mega-autoroller@chops-service-accounts.iam.gserviceaccount.com
