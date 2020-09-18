@@ -10,6 +10,11 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "testplans/common.proto";
 
+// A list of test groups.
+message TestGroups {
+  repeated string name = 1;
+}
+
 // Testing restrictions to apply to a source tree.
 message TestRestriction {
   // Whether to disable hardware test suites.
@@ -28,6 +33,10 @@ message TestRestriction {
     // if they're suites that wouldn't be run by default.
     // This is a key into target_test_requirements.
     string cq_also_test_group = 8;
+
+    // A list of groups of test suites. For each group, CQ will test one
+    // of the test suites in that group. See http://go/cq-oneof
+    TestGroups cq_oneof_test_groups = 9;
   }
 
   reserved 4, 6;
