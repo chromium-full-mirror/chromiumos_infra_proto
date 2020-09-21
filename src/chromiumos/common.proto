@@ -329,7 +329,11 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 11 to 23;
+      reserved 11 to 26;
+
+      // Indicates wanting a tarball containing fingerprint MCU test binaries.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Test
+      FPMCU_UNITTESTS = 27;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -417,6 +421,11 @@ message ArtifactsByService {
 
       // Indicates diagnoses for Clang crashes
       CLANG_CRASH_DIAGNOSES = 26;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 27;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -466,7 +475,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 23;
+      reserved 1 to 27;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -512,7 +521,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 23;
+      reserved 1 to 27;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -558,7 +567,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 23;
+      reserved 1 to 27;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -604,7 +613,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 23;
+      reserved 1 to 27;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
