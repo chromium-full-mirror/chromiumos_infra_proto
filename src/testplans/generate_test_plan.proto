@@ -36,12 +36,10 @@ message GenerateTestPlanRequest {
 // The final test plan.
 message GenerateTestPlanResponse {
   repeated HwTestUnit hw_test_units = 3;
-  repeated MoblabVmTestUnit moblab_vm_test_units = 4;
-  repeated TastVmTestUnit tast_vm_test_units = 5;
   repeated VmTestUnit vm_test_units = 6;
   repeated TastVmTestUnit direct_tast_vm_test_units = 7;
 
-  reserved 2;
+  reserved 2, 4, 5;
 }
 
 // The files that should be tested in a test plan.
@@ -74,11 +72,6 @@ message TestUnitCommon {
 message HwTestUnit {
   TestUnitCommon common = 1;
   HwTestCfg hw_test_cfg = 2;
-}
-
-message MoblabVmTestUnit {
-  TestUnitCommon common = 1;
-  MoblabVmTestCfg moblab_vm_test_cfg = 2;
 }
 
 message TastVmTestUnit {

@@ -63,19 +63,6 @@ message HwTestCfg {
   repeated HwTest hw_test = 1;
 }
 
-message MoblabVmTestCfg {
-  message MoblabTest {
-    TestSuiteCommon common = 3;
-
-    // Test type to be run.
-    string test_type = 1;
-
-    reserved 2;
-  }
-
-  repeated MoblabTest moblab_test = 1;
-}
-
 message TastVmTestCfg {
   message TastTestExpr {
     // A single tast test expression. See https://goo.gl/UPNEgT
@@ -132,12 +119,10 @@ message PerTargetTestRequirements {
 
   // These configure what testing is needed for these BuildCriteria.
   HwTestCfg hw_test_cfg = 3;
-  MoblabVmTestCfg moblab_vm_test_cfg = 4;
   VmTestCfg vm_test_cfg = 5;
-  TastVmTestCfg tast_vm_test_cfg = 6;
   TastVmTestCfg direct_tast_vm_test_cfg = 7;
 
-  reserved 2;
+  reserved 2, 4, 6;
 }
 
 // A listing of all testing that should be done for all CrOS builds.
