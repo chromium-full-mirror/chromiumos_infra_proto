@@ -14,6 +14,12 @@ message NestedPath {
   chromiumos.Path path = 1;
 }
 
+message MultiFieldMessage {
+  int32 id = 1;
+  string name = 2;
+  bool flag = 3;
+}
+
 // Simple input message.
 message TestRequestMessage {
   string id = 1;
@@ -30,6 +36,8 @@ message TestRequestMessage {
   // For SyncedDir syncing tests.
   chromiumos.SyncedDir synced_dir = 9;
   repeated chromiumos.SyncedDir synced_dirs = 10;
+  // Repeated message with multiple fields.
+  repeated MultiFieldMessage messages = 11;
 }
 
 // Simple output message.
