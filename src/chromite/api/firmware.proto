@@ -1,0 +1,127 @@
+syntax = "proto3";
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+
+// Protos for executing firmware builder functionality.
+
+// List of known location that firmware can be built from
+enum FwLocation {
+  FW_LOCATION_UNKNOWN = 0;
+  PLATFORM_EC = 1; // platform/ec/firmware_builder.py
+  PLATFORM_ZEPHYR = 2; // platform/zephyr-chrome/firmware_builder.py
+}
+
+// Metrics collected on every successful firmware build
+message FwBuildMetric {
+  // Lowercase name of the firmware target built. E.g. phaser
+  string target_name = 1;
+
+  // Lowercase name of the platform the firmware target belongs to. May be
+  // blank. E.g. octopus
+  string platform_name = 2;
+
+  // List of firmware sections and their free and total sizes in bytes
+  repeated FwSection fw_section = 3;
+
+  message FwSection {
+    // Region as described in FMAP or linker script.
+    // E.g. EC_RO, EC_RW, EC_NVRAM, RO_BSS, RW_BSS, SHARED_MEM
+    FwRegion region = 1;
+
+    enum FwRegion {
+      FW_REGION_UNKNOWN = 0;
+      EC_RO = 1;  // The entire section protected by write protect
+      EC_RW = 2;  // Also RW_A for EFS1 systems
+      EC_RO_BSS = 3;
+      EC_RW_BSS = 4;
+      EC_SHARED_MEM = 5;
+    }
+
+    // The number of bytes used in this section
+    uint32 used = 2;
+
+    // The total number of bytes available in this section
+    uint32 total = 3;
+  }
+
+  // Version number components: "major.minor.tiny".
+  message Version {
+    uint32 major = 1;
+    uint32 minor = 2;
+    uint32 tiny = 3;
+  }
+
+  // Optional information related to a specific target type
+  oneof image_type {
+    ZephyrTarget zephyr = 4;
+  }
+
+  // Zephyr-base firmware target related build metrics
+  message ZephyrTarget {
+    // The version of the Zephyr kernel used during build
+    Version kernel_version = 1;
+  }
+}
+
+// A list of FW metrics collected on every successful firmware build
+// Implementation note, this is a separate message since it serves as the
+// serialization base between the build_api end point and the entry point
+// in the firmware_builder.py
+message FwBuildMetricList {
+  repeated FwBuildMetric value = 1;
+}
+
+// Metrics collect on successful firmware unit test runs
+message FwTestMetric {
+  // Name of firmware test
+  string name = 1;
+}
+
+// A list of FW metrics collected on every successful firmware unit test.
+// Implementation note, this is a separate message since it serves as the
+// serialization base between the build_api end point and the entry point
+// in the firmware_builder.py
+message FwTestMetricList {
+  repeated FwTestMetric value = 1;
+}
+
+message BuildAllTotFirmwareRequest {
+  // Location of firmware to build call into firmware_builder.py entry point.
+  // The `build` subcommand will be called
+  FwLocation firmware_location = 1;
+}
+
+message BuildAllTotFirmwareResponse {
+  // Metrics collected on every successful firmware build
+  FwBuildMetricList metrics = 1;
+}
+
+message TestAllTotFirmwareRequest {
+  // Location of firmware to build call into firmware_builder.py entry point.
+  // The `test` subcommand will be called
+  FwLocation firmware_location = 1;
+}
+
+message TestAllTotFirmwareResponse {
+  // Metrics collect on successfuly firmware unit test runs
+  FwTestMetricList metrics = 1;
+}
+
+// The Firmware service.
+service FirmwareService {
+  option (service_options) = {
+    module: "firmware",
+    service_chroot_assert: INSIDE,
+  };
+
+  // Builds all of the firmware targets on ToT at specified location
+  rpc BuildAllTotFirmware(BuildAllTotFirmwareRequest)
+      returns (BuildAllTotFirmwareResponse);
+
+  // Runs all of the firmware tests on ToT at specified location
+  rpc TestAllTotFirmware(TestAllTotFirmwareRequest)
+      returns (TestAllTotFirmwareResponse);
+}
