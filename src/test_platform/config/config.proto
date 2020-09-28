@@ -72,8 +72,16 @@ message Config {
     // recipe.
     message TestRunner {
         Buildbucket buildbucket = 1;
-        // Result flow topic: Publish a message for each build status update
-        PubSub pubsub = 2;
+
+        // TODO(crbug.com/1132489) Delete once builders stop using this.
+        PubSub pubsub = 2 [deprecated = true];
+
+        // go/ctp-result-flow: Trigger result flow processing of test runner
+        // results.
+        PubSub result_flow_channel = 3;
+
+        // go/buildbucket-pubsub: Buildbucket status updates for child builds.
+        PubSub bb_status_update_channel = 4;
     }
 
     Swarming skylab_swarming = 1;
@@ -88,7 +96,10 @@ message Config {
 
     test_platform.migration.test_runner.Config test_runner_migration = 9;
 
-    // Result flow topic: CTP publishes a message with build ID, once
+    // TODO(crbug.com/1132489) Delete once builders stop using this.
+    PubSub pubsub = 10 [deprecated = true];
+
+    // go/ctp-result-flow: CTP publishes a message with build ID, once
     // at build start and again at build end
-    PubSub pubsub = 10;
+    PubSub result_flow_channel = 11;
 }
