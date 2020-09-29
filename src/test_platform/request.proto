@@ -16,6 +16,10 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 // set of tests, suite of tests, or test plan on a set of devices (eventually
 // also: virtual devices) in the ChromeOS Test Lab.
 message Request {
+  // See: crbug.com/1132489
+  reserved "notifications";
+  reserved 11;
+
   // Params defines parameters that apply to an entire Request.
   //
   // NEXT_TAG: 11
@@ -199,21 +203,6 @@ message Request {
     }
 
     Legacy legacy = 10;
-
-    // Notification defines parameters for the request to use to notify callers
-    // of its test's status updates.
-    message Notification {
-      // TODO(crbug.com/1113875): Swarming only allows 1 pubsub topic. We
-      // should create a common pubsub topic for all subscribers and replace
-      // this field with a map<string, string> that allows users to attach
-      // arbitrary attributes to the pubsub message.
-      // This will require API support from Swarming and/or BuildBucket.
-      //
-      // Pubsub topic to broadcast status updates to, for external listeners
-      string pubsub_topic = 1;
-    }
-
-    Notification notification = 11;
 
     // Migrations defines parameters that facilitate gradual migrations between
     // different implementations of downstream components.
