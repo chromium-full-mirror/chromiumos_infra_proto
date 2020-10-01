@@ -52,46 +52,6 @@ message AdditiveRule {
   TestGroups add_one_suite_from_each_group = 2;
 }
 
-// Testing restrictions to apply to a source tree.
-message TestRestriction {
-  // Whether to disable hardware test suites.
-  bool disable_hw_tests = 1;
-  // Whether to disable virtual machine test suites.
-  bool disable_vm_tests = 3;
-  // Whether to disable non-Tast-based test suites.
-  bool disable_non_tast_tests = 5;
-
-  oneof CqTestWhen {
-    // Indicates a set of test suites to run, to the exclusion of all others.
-    // This is a key into target_test_requirements.
-    string cq_only_test_group = 7;
-
-    // Indicates a set of test suites that should also be run, especially
-    // if they're suites that wouldn't be run by default.
-    // This is a key into target_test_requirements.
-    string cq_also_test_group = 8;
-
-    // A list of groups of test suites. For each group, CQ will test one
-    // of the test suites in that group. See http://go/cq-oneof
-    TestGroups cq_oneof_test_groups = 9;
-  }
-
-
-
-  reserved 4, 6;
-}
-
-// A set of test restrictions for a source tree.
-message SourceTreeTestRestriction {
-  // A file pattern, representing a segment of Chrome OS code.
-  FilePattern file_pattern = 3;
-
-  // The test restrictions to apply to the source tree.
-  TestRestriction test_restriction = 2;
-
-  reserved 1;
-}
-
 // A set of test subtractions and additions to perform for a source tree.
 // See http://go/cq-source-config for documentation.
 message SourceTestRules {
@@ -110,10 +70,8 @@ message SourceTestRules {
 // Configures test restrictions for all relevant source trees.
 // This is the root message.
 message SourceTreeTestCfg {
-  // (Source tree, test restriction) pairs.
-  // Will be removed soon in favor of source_test_rules.
-  repeated SourceTreeTestRestriction source_tree_test_restriction = 1;
-
   // Rules for how to test changes to specified source trees in the codebase.
   repeated SourceTestRules source_test_rules = 2;
+
+  reserved 1;
 }
