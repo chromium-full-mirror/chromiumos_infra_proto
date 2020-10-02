@@ -208,6 +208,10 @@ service ArtifactsService {
   // Generate a CPE report to a file.
   rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // Create a tar archive with fingerprint MCU on-device unittest binaries.
+  rpc BundleFpmcuUnittests(BundleRequest) returns (BundleResponse);
+
   // Generate all Remote Test Driver metadata.
   //
   // Response consists of one or more metadata files. Each file must contain a
