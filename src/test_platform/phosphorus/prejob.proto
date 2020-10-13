@@ -31,6 +31,14 @@ message PrejobRequest {
   //
   // All prejob execution should abort beyond this deadline.
   google.protobuf.Timestamp deadline = 6;
+
+  // If set, use the Provision TLS API for the prejob.
+  // See go/cros-prover go/cros-tls
+  //
+  // crbug.com/1137444: This is a transitional argument. Once go/cros-prover
+  // migration is complete, all prejobs will use the TLS API and this argument
+  // will be dropped.
+  bool use_tls = 7;
 }
 
 // PrejobResponse defines the output of `phosphorus prejob`.
