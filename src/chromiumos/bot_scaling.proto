@@ -99,6 +99,8 @@ message BotPolicy {
   BotScalingMode scaling_mode = 8;
   // Swarming instance name:  chromeos-swarming.appspot.com
   string swarming_instance = 9;
+  // Application namespace within Swarming instance.
+  string application = 10;
 }
 
 // Configures the root message.
@@ -150,6 +152,8 @@ message ScalingAction {
   // Hard limit on the maximum number of bots that can be requested.
   // Repeated for display/reporting purposes
   int32 bot_max = 8;
+  // Application namespace within Swarming instance.
+  string application = 9;
 }
 
 // Resource utilization based on regional assignment.
@@ -166,6 +170,8 @@ message ResourceUtilization {
   float disk_gb = 5;
   // NUmber of CPUs that could be allocated based on max values.
   float max_cpus = 6;
+  // Application namespace to associate resources.
+  string application = 7;
 }
 
 // All the actions that will be executed by RoboCrop.
