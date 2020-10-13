@@ -87,4 +87,7 @@ message Request {
   // The buildbucket ID of the CTP build that sent this test_runner request.
   int64 parent_build_id = 5;
 
+  // Set of Tests to run. The string is a UUID provided by the client
+  // and used to identify each test result in the response.
+  map<string, Test> tests = 6;
 }

@@ -105,5 +105,9 @@ message Result {
   StateUpdate state_update = 4;
 
   AsyncResults async_results = 5;
+
+  // Set of test results. The string is a UUID used to identify each test, and
+  // comes from the client.
+  map<string, Autotest> autotest_results = 6;
 }
 
