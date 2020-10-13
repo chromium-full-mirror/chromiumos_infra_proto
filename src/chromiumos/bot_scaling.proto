@@ -177,7 +177,7 @@ message ResourceUtilization {
 message ApplicationUtilization {
   // Application namespace to associate resources.
   string application = 1;
-  ResourceUtilization resource_utilization = 2;
+  repeated ResourceUtilization resource_utilization = 2;
 }
 
 // All the actions that will be executed by RoboCrop.
