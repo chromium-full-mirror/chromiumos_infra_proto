@@ -39,8 +39,17 @@ message TaskEnvironment {
   string ssp_base_image_name = 4;
 }
 
+// Knobs specific to the step that uploads log-data to Google Storage.
+message LogDataUploadStep{
+  // Controls the maximum number of files that may be uploaded concurrently.
+  // If unset, a hard-coded constant is used to limit concurrency (i.e., there
+  // is no way to request unlimited concurrent uploads).
+  int32 max_concurrent_uploads = 1;
+}
+
 // Config defines configuration parameters common to phosphorus subcommands.
 message Config {
   BotEnvironment bot = 1;
   TaskEnvironment task = 2;
+  LogDataUploadStep log_data_upload_step = 3;
 }
