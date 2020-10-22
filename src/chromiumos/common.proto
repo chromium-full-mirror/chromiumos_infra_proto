@@ -220,6 +220,16 @@ enum Channel {
   CHANNEL_CANARY = 4;
 }
 
+// The available delta types.
+enum DeltaType {
+  DELTA_UNKNOWN = 0;
+  NO_DELTA = 1;
+  FSI = 2;
+  MILESTONE = 3;
+  OMAHA = 4;
+  STEPPING_STONE = 5;
+}
+
 // A wrapper around a serialized protocol buffer.
 message ProtoBytes {
   bytes serialized_proto = 1;
