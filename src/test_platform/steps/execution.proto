@@ -103,17 +103,14 @@ message ExecuteResponse {
         map<string, string> rejected_task_dimensions = 11;
     }
 
-    // TODO(crbug.com/1020326) Deprecate and delete this in favor of
-    // consolidated_results.
-    repeated TaskResult task_results = 1;
+    // Use consolidated_results instead.
+    repeated TaskResult task_results = 1 [deprecated  = true];
 
     message ConsolidatedResult {
       // result for each attempt of the corresponding enumeration.
       repeated TaskResult attempts = 1;
     }
 
-    // Note: Autotest backend does not (and can not) set consolidated_results.
-    // See crbug.com/1020326
     repeated ConsolidatedResult consolidated_results = 3;
 
     // State encodes the state of the overall execution, including the ultimate
