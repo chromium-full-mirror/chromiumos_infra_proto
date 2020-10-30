@@ -344,6 +344,9 @@ message ArtifactsByService {
       // Indicates wanting a tarball containing fingerprint MCU test binaries.
       // TODO(crbug/1034529): moves to ArtifactsByService.Test
       FPMCU_UNITTESTS = 27;
+      // Indicates wanting a test image tarball suitable for importing into GCE.
+      // TODO(crbug/1034529): moves to ArtifactsByService.Image
+      GCE_TARBALL = 28;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {

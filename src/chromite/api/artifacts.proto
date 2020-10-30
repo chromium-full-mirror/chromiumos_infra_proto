@@ -218,6 +218,10 @@ service ArtifactsService {
   // Create a tar archive with fingerprint MCU on-device unittest binaries.
   rpc BundleFpmcuUnittests(BundleRequest) returns (BundleResponse);
 
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // Create a tarball from the test image suitable for importing into GCE.
+  rpc BundleGceTarball(BundleRequest) returns (BundleResponse);
+
   // Generate all Remote Test Driver metadata.
   //
   // Response consists of one or more metadata files. Each file must contain a
