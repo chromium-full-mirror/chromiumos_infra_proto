@@ -211,6 +211,7 @@ enum ImageType {
   BASE_GUEST_VM = 10;
   TEST_GUEST_VM = 11;
   DLC = 12;
+  GSC_FIRMWARE = 13;
 }
 
 // The various channels that we release through.
