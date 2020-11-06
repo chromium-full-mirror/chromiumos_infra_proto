@@ -4,6 +4,7 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
+import "chromiumos/common.proto";
 
 // Protos for executing firmware builder functionality.
 
@@ -92,6 +93,10 @@ message BuildAllTotFirmwareRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
   // The `build` subcommand will be called
   FwLocation firmware_location = 1;
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
 }
 
 message BuildAllTotFirmwareResponse {
@@ -103,6 +108,10 @@ message TestAllTotFirmwareRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
   // The `test` subcommand will be called
   FwLocation firmware_location = 1;
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
 }
 
 message TestAllTotFirmwareResponse {
