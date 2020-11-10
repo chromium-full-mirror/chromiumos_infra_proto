@@ -23,6 +23,20 @@ message Build {
   string channel = 4;
 }
 
+// Define a DLC image archived.
+message DLCImage {
+  // An instance of Build that defines the build artifacts directory.
+  Build build = 1;
+
+  // The name of the DLC (e.g. 'terminal-dlc').
+  string dlc_id = 2;
+
+  // The name of the DLC package (e.g. 'package').
+  string dlc_package = 3;
+
+  // The name of the DLC image (e.g. 'dlc.img').
+  string dlc_image = 4;
+}
 
 // Define a signed ChromeOS image archived.
 message SignedImage {
@@ -60,12 +74,14 @@ message GenerationRequest {
     bool full_update = 1;
     SignedImage src_signed_image = 2;
     UnsignedImage src_unsigned_image = 3;
+    DLCImage src_dlc_image = 10;
   }
 
   // Target image properties.
   oneof tgt_image_oneof {
     SignedImage tgt_signed_image = 4;
     UnsignedImage tgt_unsigned_image = 5;
+    DLCImage tgt_dlc_image = 11;
   }
 
   // TODO(engeg@): We could override the output build artifacts location via
@@ -78,7 +94,8 @@ message GenerationRequest {
   // Should we run verification?
   bool verify = 7;
 
-  // The keyset to sign with (e.g. "coral-mp-v16"), if empty do not sign.
+  // The keyset to sign with (e.g. "coral-mp-v16"), if empty do not sign,
+  // and may be ignored for certain request types (e.g. dlc).
   string keyset = 8;
 
   // Do not sign images or upload artifacts.
