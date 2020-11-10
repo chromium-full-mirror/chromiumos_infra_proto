@@ -25,6 +25,9 @@ message LoadRequest {
 
   // DUT ID, used in the name of the DUT state cache file.
   string dut_id = 5;
+
+  // Test ID, used in the results directory name
+  string test_id = 6;
 }
 
 // LoadResponse defines the output of `skylab_local_state load`.
