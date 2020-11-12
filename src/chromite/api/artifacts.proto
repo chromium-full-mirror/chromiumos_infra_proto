@@ -150,7 +150,9 @@ service ArtifactsService {
     returns (PinnedGuestImageUriResponse);
 
   //
-  // EVERYTHING THAT FOLLOWS THIS LINE IS DEPRECATED.
+  // Everything that follows this line is planned to be deprecated
+  // as part of a BuildAPI refactoring detailed in crbug/1034529.
+  // Until that bug is closed, these endpoints are still used.
   //
 
   // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
@@ -160,6 +162,10 @@ service ArtifactsService {
   // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create the ChromeOS Config JSON payload.
   rpc BundleChromeOSConfig(BundleRequest) returns (BundleResponse);
+
+  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // Create a tar archive of debug symbols.
+  rpc BundleDebugSymbols(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
   // Create a tar archive with ebuild logs.
