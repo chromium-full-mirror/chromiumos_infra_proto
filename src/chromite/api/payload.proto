@@ -107,10 +107,12 @@ message GenerationResponse {
   // Whether we've completed successfully.
   bool success = 1;
 
-  // If successful we may have uploaded an artifact to google storage. This will
-  // have a random bit included, but is otherwise deterministic with the input
-  // properties. Return it so we can find the artifact.
-  string unique_id = 2;
+  // If successful we may have a local artifact available. Generally this takes
+  // the form of '/tmp/ioadwjoawjd/delta.bin'.
+  string local_path = 2;
+
+  // If successful we may have uploaded an artifact to google storage.
+  string remote_uri = 3;
 }
 
 // The image service definition.
