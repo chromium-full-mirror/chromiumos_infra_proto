@@ -36,3 +36,11 @@ find go -name '*.pb.go' -exec rm '{}' \;
 find src -name '*.proto' -exec \
      protoc -Isrc -I"${work_dir}/${cros_config_subdir}" \
      --go_out=paths=source_relative,plugins=grpc:go '{}' \;
+
+chromite_root="$(readlink -f "$(dirname "$0")/../..")"
+chromite_api_compiler="${chromite_root}/api/compile_build_api_proto"
+if [[ -x "${chromite_api_compiler}" ]]; then
+  echo "Running chromite compiler"
+  "${chromite_api_compiler}"
+  echo "Don't forget to upload changes generated in ${chromite_root}, if any"
+fi
