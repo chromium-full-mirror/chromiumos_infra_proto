@@ -209,6 +209,7 @@ enum ImageType {
   CR50_FIRMWARE = 9;
   BASE_GUEST_VM = 10;
   TEST_GUEST_VM = 11;
+  DLC = 12;
 }
 
 // The various channels that we release through.
