@@ -270,6 +270,9 @@ message BuilderConfig {
 
       // Indicates wanting a tarball containing fingerprint MCU test binaries.
       FPMCU_UNITTESTS = 27;
+
+      // Indicates wanting a test image tarball suitable for importing into GCE.
+      GCE_TARBALL = 28;
     }
     repeated ArtifactTypes artifact_types = 2;
 
