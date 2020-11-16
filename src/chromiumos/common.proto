@@ -60,6 +60,7 @@ message GomaConfig {
     DEFAULT = 1;
     RBE_PROD = 2;
     RBE_STAGING = 3;
+    RBE_CHROMEOS = 4;
   }
   GomaApproach goma_approach = 4;
 
