@@ -11,9 +11,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab_platform";
 // DutState defines the structure of the file used to cache variable DUT
 // information on the drone.
 message DutState {
-  // DUT health description, e.g. "ready", "needs_repair" etc.
-  string state = 1;
-
   // OS and/or fw versions installed on the DUT, e.g.
   // {"cros-version":"terra-release/R75-12105.108.0"}.
   // Used to construct variable bot dimensions.
