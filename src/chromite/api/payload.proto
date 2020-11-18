@@ -36,6 +36,9 @@ message DLCImage {
 
   // The name of the DLC image (e.g. 'dlc.img').
   string dlc_image = 4;
+
+  // The type of the image. Currently, always 'DLC'.
+  chromiumos.ImageType image_type = 5;
 }
 
 // Define a signed ChromeOS image archived.
