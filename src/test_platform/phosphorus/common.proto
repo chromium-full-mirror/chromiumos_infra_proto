@@ -17,10 +17,6 @@ message BotEnvironment {
 
 // TaskEnvironment defines task-specific parameters used by phosphorus.
 message TaskEnvironment {
-  // Path to the client offload directory relative to the results directory
-  //  Intended for log-data which is needed synchronously with high reliability
-  string synchronous_offload_dir = 1;
-
   // Absolute path to the results directory for a given run. Include results of
   //  both tests and non-test tasks like provision
   string results_dir = 2;
@@ -37,6 +33,9 @@ message TaskEnvironment {
   //
   // See go/ctp-ssp for an overview of SSP.
   string ssp_base_image_name = 4;
+
+  reserved 1;
+  reserved "synchronous_offload_dir";
 }
 
 // Knobs specific to the step that uploads log-data to Google Storage.

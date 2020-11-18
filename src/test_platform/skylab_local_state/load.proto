@@ -9,13 +9,10 @@ package test_platform.skylab_local_state;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_local_state";
 
 import "test_platform/skylab_local_state/common.proto";
-import "test_platform/skylab_test_runner/result.proto";
 
 // LoadRequest defines the input of `skylab_local_state load`.
 message LoadRequest {
   Config config = 1;
-
-  string results_dir = 2 [deprecated=true];
 
   // DUT hostname.
   string dut_name = 3;
@@ -28,6 +25,9 @@ message LoadRequest {
 
   // Test ID, used in the results directory name
   string test_id = 6;
+
+  reserved 2;
+  reserved "results_dir";
 }
 
 // LoadResponse defines the output of `skylab_local_state load`.
@@ -39,10 +39,6 @@ message LoadResponse {
   // The path to the newly created directory containing the host info file.
   string results_dir = 2;
 
-  // Paths to future results archives.
-  // These paths depend on the path of the local results directory, so they
-  // become well-defined the moment the local directory is created.
-  // `skylab_local_state load` does not perform the offload to the locations,
-  // the offload happens asynchronously after the task finishes.
-  test_platform.skylab_test_runner.AsyncResults async_results = 3;
+  reserved 3;
+  reserved "async_results";
 }
