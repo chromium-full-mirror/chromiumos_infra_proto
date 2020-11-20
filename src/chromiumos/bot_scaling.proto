@@ -93,6 +93,9 @@ message BotPolicy {
     // Scale up or down bots by the demand on the bot group.
     // For use on smaller bot groups that are susceptible to smaller increases.
     DEMAND = 2;
+    // Scale down bots by the step size associated with bot group.
+    // Scale up bots by the demand on the bot group.
+    STEPPED_DECREASE = 3;
   }
 
   // Set the scaling approach for the bot group being monitored.
