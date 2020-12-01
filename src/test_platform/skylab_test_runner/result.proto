@@ -44,8 +44,8 @@ message Result {
     // task. True otherwise (e.g. the task was aborted early).
     bool incomplete = 2;
 
-    // Google Storage URL at which to place results
-    string synchronous_log_data_url = 3;
+    reserved 3;
+    reserved "synchronous_log_data_url";
   }
 
   // Which test harness was used.
