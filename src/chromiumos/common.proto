@@ -198,6 +198,10 @@ message UseFlag {
 // These correspond to support types in lib/constants.py such
 // as IMAGE_TYPE_BASE, IMAGE_TYPE_RECOVERY, and so on.
 enum ImageType {
+  option allow_alias = true;
+
+  // Do not continue to use (or add to) these, use aliased enums below.
+  // TODO(crbug.com/1154747): Deprecate non-prefixed enums (carefully considering branches).
   IMAGE_TYPE_UNDEFINED = 0;
   BASE = 1;
   DEV = 2;
@@ -212,6 +216,23 @@ enum ImageType {
   TEST_GUEST_VM = 11;
   DLC = 12;
   GSC_FIRMWARE = 13;
+
+  // Use these.
+  IMAGE_TYPE_BASE = 1;
+  IMAGE_TYPE_DEV = 2;
+  IMAGE_TYPE_TEST = 3;
+  IMAGE_TYPE_BASE_VM = 4;
+  IMAGE_TYPE_TEST_VM = 5;
+  IMAGE_TYPE_RECOVERY = 6;
+  IMAGE_TYPE_FACTORY = 7;
+  IMAGE_TYPE_FIRMWARE = 8;
+  IMAGE_TYPE_CR50_FIRMWARE = 9;
+  IMAGE_TYPE_BASE_GUEST_VM = 10;
+  IMAGE_TYPE_TEST_GUEST_VM = 11;
+  IMAGE_TYPE_DLC = 12;
+  IMAGE_TYPE_GSC_FIRMWARE = 13;
+  IMAGE_TYPE_ACCESSORY_USBPD = 14;
+  IMAGE_TYPE_ACCESSORY_RWSIG = 15;
 }
 
 // The various channels that we release through.
