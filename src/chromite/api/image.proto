@@ -5,6 +5,7 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
 
@@ -80,6 +81,34 @@ message TestImageResult {
   bool success = 1;
 }
 
+// Request artifacts to be pushed from the archive bucket to the release bucket,
+// using chromite/scripts/pushimage.py.
+message PushImageRequest {
+  // The chroot used to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+
+  // Whether or not this push image request is a dry run.
+  bool dryrun = 2;
+
+  // GS path of source artifacts to push to the release bucket.
+  string gs_image_dir = 3;
+
+  // Sysroot (board) to generate symbols for.
+  chromite.api.Sysroot sysroot = 4;
+
+  // Board profile in use (e.g. "asan").
+  // If set, the pushimage script will look for artifacts with this profile
+  // in their name.
+  chromiumos.Profile profile = 5;
+
+  // If set, only sign specified image types.
+  repeated chromiumos.ImageType sign_types = 6;
+}
+
+// Response from pushimage script.
+message PushImageResponse {
+}
+
 // The image service.
 service ImageService {
   option (service_options) = {
@@ -111,4 +140,18 @@ service ImageService {
   //  "result": {"directory": "/tmp/image_test_results"}
   // }
   rpc SignerTest(TestImageRequest) returns (TestImageResult);
+
+  // Execute PushImage for a script.
+  // Example json:
+  // {
+  //   "dryrun": true,
+  //   "gs_image_dir": "gs://chromeos-image-archive/atlas-release/R89-13604.0.0",
+  //   "sysroot": {
+  //       "build_target": {
+  //           "name": "atlas"
+  //       }
+  //   },
+  //   "sign_types": [1, 6]
+  // }
+  rpc PushImage(PushImageRequest) returns (PushImageResponse);
 }
