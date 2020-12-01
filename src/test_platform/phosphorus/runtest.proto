@@ -42,22 +42,13 @@ message RunTestRequest {
     Autotest autotest = 3;
   }
 
-  // remote test drive-agnostic environment variables and similar parameters
-  message Environment {
-    reserved 1; // formerly isolated output dir
-
-    // Directory in Google Storage (bucket or subdirectory) in which
-    // synchronous log-data will be offloaded. Reused across tasks.
-    // ex. "gs://chromeos-autotest-results/sync-offloads-testing"
-    string gs_root_dir = 2;
-  }
-
-  Environment environment = 4;
-
   // Hard deadline for execution.
   //
   // All test execution should abort beyond this deadline.
   google.protobuf.Timestamp deadline = 5;
+
+  reserved 4;
+  reserved "environment";
 }
 
 // RunTestResponse defines the output of `phosphorus runtest`.
