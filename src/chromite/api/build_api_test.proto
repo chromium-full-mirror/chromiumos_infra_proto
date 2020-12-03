@@ -14,10 +14,18 @@ message NestedPath {
   chromiumos.Path path = 1;
 }
 
+enum TestEnum {
+  TEST_ENUM_UNSPECIFIED = 0;
+  TEST_ENUM_FOO = 1;
+  TEST_ENUM_BAR = 2;
+  TEST_ENUM_BAZ = 3;
+}
+
 message MultiFieldMessage {
   int32 id = 1;
   string name = 2;
   bool flag = 3;
+  TestEnum test_enum = 4;
 }
 
 // Simple input message.
@@ -38,6 +46,10 @@ message TestRequestMessage {
   repeated chromiumos.SyncedDir synced_dirs = 10;
   // Repeated message with multiple fields.
   repeated MultiFieldMessage messages = 11;
+  TestEnum test_enum = 12;
+  repeated TestEnum test_enums = 13;
+  int32 number = 14;
+  repeated int32 numbers = 15;
 }
 
 // Simple output message.
