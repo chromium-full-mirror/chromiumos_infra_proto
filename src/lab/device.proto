@@ -10,6 +10,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
 import "device/config_id.proto";
 import "lab/chromeos_device_id.proto";
+import "lab/license.proto";
 import "lab/peripherals.proto";
 import "lab/servo.proto";
 import "manufacturing/config_id.proto";
@@ -30,7 +31,7 @@ message ChromeOSDevice {
   };
 }
 
-// Next Tag: 5
+// Next Tag: 6
 message DeviceUnderTest{
   string hostname = 1;
   Peripherals peripherals = 2;
@@ -53,6 +54,8 @@ message DeviceUnderTest{
   repeated DUTPool critical_pools = 3;
 
   repeated string pools = 4;
+
+  repeated License licenses = 5;
 }
 
 // Next Tag: 5
