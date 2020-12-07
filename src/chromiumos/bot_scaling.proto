@@ -112,6 +112,33 @@ message BotPolicyCfg {
   repeated BotPolicy bot_policies = 1;
 }
 
+// Reduced version of BotPolicy meant for output properties
+message ReducedBotPolicy {
+  // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
+  string bot_group = 1;
+
+  // The type of bot to be requested.
+  BotType bot_type = 2;
+
+  // Specifies mode for a bot policy
+  enum Mode {
+    UNKNOWN_MODE = 0;
+    // Collect stats only for a bot group.
+    MONITORED = 1;
+    // Generate configuration updates for bot group.
+    CONFIGURED = 2;
+  }
+
+  // Set whether a bot group should be configured or only monitored.
+  Mode policy_mode = 3;
+}
+
+// Configures the root message.
+message ReducedBotPolicyCfg {
+  // All bot policies in reduced form.
+  repeated ReducedBotPolicy bot_policies = 1;
+}
+
 // Scaling Action that resulted because of bot demand.
 message ScalingAction {
   // Bot group modified by the action. Should be the same as BotPolicy.
