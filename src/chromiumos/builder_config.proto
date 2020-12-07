@@ -273,6 +273,9 @@ message BuilderConfig {
 
       // Indicates wanting a test image tarball suitable for importing into GCE.
       GCE_TARBALL = 28;
+
+      // Indicates Rusage logs from Compiler Invocations
+      COMPILER_RUSAGE_LOG = 29;
     }
     repeated ArtifactTypes artifact_types = 2;
 

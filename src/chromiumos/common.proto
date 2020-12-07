@@ -477,6 +477,9 @@ message ArtifactsByService {
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 27 to 28;
+
+      // Indicates Rusage logs from Compiler Invocations
+      COMPILER_RUSAGE_LOG = 29;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
