@@ -37,13 +37,21 @@ message FetchCrashesRequest {
 message CrashSummary {
   // Name of the crashing executable.
   string exec_name = 1;
+
   // If uploads were on, URL at which this crash can be found.
   string upload_url = 2;
+
   // Name of the integration test that was running when this crash happened, if
   // any.
   string in_progress_integration_test = 3;
+
   // Crash signature (may not be populated for all crash types).
   string sig = 4;
+
+  // Base part of crash filename in out dir. All files associated with the crash
+  // will start with this string.
+  // (e.g. chrome.20201202.130102.12345.4567)
+  string filename_base = 5;
 }
 
 // FetchCrashesResponse defines the output of `phosphorus fetch-crashes`.
@@ -52,17 +60,13 @@ message FetchCrashesResponse {
   enum State {
     // Should not be used.
     STATE_UNSPECIFIED = 0;
-    // The prejob succeeded.
-    //
-    // Some prejob failures may not be detectable during execution. These
-    // failures will be detected when parsing results off the prejob logs in a
-    // later step of test_runner.
+    // FetchCrashes succeeded.
     SUCCEEDED = 1;
-    // The prejob failed.
+    // FetchCrashes failed.
     FAILED = 2;
-    // The prejob hit the requested timeout.
+    // FetchCrashes hit the requested timeout.
     TIMED_OUT = 3;
-    // The prejob was aborted externally.
+    // FetchCrashes was aborted externally.
     ABORTED = 4;
   }
 
@@ -73,4 +77,10 @@ message FetchCrashesResponse {
 
   // Details on the uploaded crashes.
   repeated CrashSummary crashes = 2;
+
+  // Names of crashes that are present only in RTD output
+  repeated string crashes_rtd_only = 4;
+
+  // Names of crashes that are present only in FetchCrashes output
+  repeated string crashes_tls_only = 5;
 }
