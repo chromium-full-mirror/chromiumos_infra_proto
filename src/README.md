@@ -25,6 +25,10 @@ This folder contains more widely shared proto files.
 
 This folder contains definitions of the cros_test_platform API, as well as internal protos used for communication between cros_test_platform components.
 
+## uprev
+
+This folder contains protos used for communication between uprev recipes and their components.
+
 ## device
 
 ## testplans
