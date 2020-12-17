@@ -13,6 +13,7 @@ enum FwLocation {
   FW_LOCATION_UNKNOWN = 0;
   PLATFORM_EC = 1; // platform/ec/firmware_builder.py
   PLATFORM_ZEPHYR = 2; // platform/zephyr-chrome/firmware_builder.py
+  PLATFORM_TI50 = 3; // platform/ti50/common/firmware_builder.py
 }
 
 // Metrics collected on every successful firmware build
