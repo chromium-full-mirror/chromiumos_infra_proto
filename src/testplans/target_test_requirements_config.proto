@@ -10,6 +10,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "google/protobuf/wrappers.proto";
 
+import "lab/license.proto";
+
 message TestSuiteCommon {
   // Human-readable consistent name for a build target, test type pair.
   string display_name = 1;
@@ -56,6 +58,9 @@ message HwTestCfg {
 
     // The swarming pool in which to run the test suite, e.g. DUT_POOL_QUOTA.
     string pool = 14;
+
+    // The licenses required for the DUT the test will run on.
+    repeated lab.LicenseType licenses = 16;
 
     reserved 2 to 10;
   }
