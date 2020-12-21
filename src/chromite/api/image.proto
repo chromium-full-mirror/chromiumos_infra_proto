@@ -103,6 +103,10 @@ message PushImageRequest {
 
   // If set, only sign specified image types.
   repeated chromiumos.ImageType sign_types = 6;
+
+  // Destination bucket for push image operations.
+  // If not set, 'gs://chromeos-releases' will be used.
+  string dest_bucket = 7;
 }
 
 // Response from pushimage script.
