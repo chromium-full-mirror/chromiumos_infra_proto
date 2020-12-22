@@ -1,3 +1,4 @@
 .cipd_bin
 /descpb.bin
 /recipes/.recipe_deps
+.idea/
