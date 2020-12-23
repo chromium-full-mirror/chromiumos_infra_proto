@@ -16,10 +16,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 // set of tests, suite of tests, or test plan on a set of devices (eventually
 // also: virtual devices) in the ChromeOS Test Lab.
 message Request {
-  // See: crbug.com/1132489
-  reserved "notifications";
-  reserved 11;
-
   // Params defines parameters that apply to an entire Request.
   //
   // NEXT_TAG: 11
@@ -28,13 +24,7 @@ message Request {
     // of the devices to run tests on.
     message HardwareAttributes {
       // Model is the model to run tests against.
-      //
-      // TODO(akeshet): Re-use device protos instead of defining this
-      // independently.
       string model = 1;
-
-      // TODO(akeshet): Add other schedulable characteristics, based on shared
-      // hardware config protos.
     }
 
     HardwareAttributes hardware_attributes = 1;
@@ -43,9 +33,6 @@ message Request {
     // associated with a device, though not immutable or hardware-bound.
     message SoftwareAttributes {
       chromiumos.BuildTarget build_target = 2;
-
-      // TODO(akeshet): add other attributes such as CTS version,
-      // kernel version(?), etc.
     }
 
     SoftwareAttributes software_attributes = 2;
@@ -85,16 +72,10 @@ message Request {
     // request are prioritized relative to other requests, and how capacity for
     // them is allocated.
     message Scheduling {
-      // ManagedPool enumerates the different lab platform-managed pools.
-      // Devices in these pools are automatically managed by lab platform
-      // systems and can not be arbitrarily assigned to pools by users.
+      // ManagedPool enumerates certain large pools of DUTs in the lab.
       //
-      // Managed pool implementations are specific to test platform's scheduling
-      // backends.
-      // For Skylab, see
-      // https://chromium.googlesource.com/infra/infra/+/5566668428c6b286702bf440d9dfd0be7bca1d84/go/src/infra/libs/skylab/inventory/device.proto#173
-      // For autotest, see
-      // https://chromium.googlesource.com/chromiumos/third_party/autotest/+/7436c2b6e6bd32ed1f1bd08cf8e0feb40cfe7b89/server/constants.py#18
+      // The distinction between managed / unmanaged pools (below) is historic
+      // and no longer relevant.
       enum ManagedPool {
         MANAGED_POOL_UNSPECIFIED = 0;
         MANAGED_POOL_CQ = 1;
@@ -229,6 +210,9 @@ message Request {
     }
 
     Migrations migrations = 12;
+
+    reserved "notifications";
+    reserved 11;
   }
 
   Params params = 1;
