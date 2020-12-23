@@ -95,11 +95,6 @@ message Request {
         // Unmanaged pool of devices to run tests in.
         // Must not be a managed pool.
         string unmanaged_pool = 2;
-
-        // TODO(crbug/1059076): Remove this field after the migration is done.
-        // Use qs_account to specify quota account for both managed and
-        // unmanaged pools.
-        string quota_account = 3 [deprecated = true];
       }
 
       // Priority corresponds to a swarming task priority; if specified, it
