@@ -170,17 +170,6 @@ message Request {
 
     Decorations decorations = 8;
 
-    // Legacy encodes arguments that relate to migration from legacy backend
-    // (autotest); support for these arguments will be phased out.
-    message Legacy {
-      // If autotest_suite is defined, then if the autotest backend is selected
-      // for running this request, the entire enumeration will be ignored, and
-      // replaced by a single invocation of this named autotest suite.
-      string autotest_suite = 1;
-    }
-
-    Legacy legacy = 10;
-
     // Migrations defines parameters that facilitate gradual migrations between
     // different implementations of downstream components.
     message Migrations {
@@ -212,6 +201,8 @@ message Request {
 
     reserved "notifications";
     reserved 11;
+    reserved "legacy";
+    reserved 10;
   }
 
   Params params = 1;
