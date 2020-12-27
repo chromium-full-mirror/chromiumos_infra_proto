@@ -174,21 +174,12 @@ message Request {
     // Migrations defines parameters that facilitate gradual migrations between
     // different implementations of downstream components.
     message Migrations {
-      // If true, test tasks will perform synchronous offload of the contents
-      // of $SYNCHRONOUS_OFFLOAD_DIR to a GS bucket. This requires
-      // use_test_runner to also be set to true: if use_test_runner is set to
-      // false and enable_synchronous_offload is set to true, the build will
-      // fail validation.
-      // If false, such offload will be skipped.
-      bool enable_synchronous_offload = 2;
-
-      // Turn on synchronous offloads even if there is no pubsub topic set.
-      // Not intended as a long-term change, but useful for testing synchronous
-      // offloads during rollout.
-      bool notificationless_offload = 3;
-
       reserved "use_test_runner";
       reserved 1;
+      reserved "enable_synchronous_offload";
+      reserved 2;
+      reserved "notificationless_offload";
+      reserved 3;
     }
 
     Migrations migrations = 12;
