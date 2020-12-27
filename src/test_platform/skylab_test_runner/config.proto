@@ -76,4 +76,5 @@ message Config {
   PubSub result_flow_pubsub = 4;
 
   test_platform.phosphorus.LogDataUploadStep log_data_upload_step = 5;
+  test_platform.phosphorus.FetchCrashesStep fetch_crashes_step = 6;
 }

@@ -1,0 +1,18 @@
+// Copyright 2020 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.execution;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/execution";
+
+// Uniformly applied parameters for all test executions in a test platform
+// request.
+message Param {
+    // If set, crash reports generated during test execution are uploaded to a
+    // builder-determined crash server (e.g. http://crash or
+    // http://crash-staging)
+    bool upload_crashes = 1;
+}

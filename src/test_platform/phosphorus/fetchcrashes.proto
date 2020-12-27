@@ -29,7 +29,7 @@ message FetchCrashesRequest {
 
   // If set, upload crashes to http://crash-staging instead of http://crash.
   // Useful for testing.
-  bool use_staging = 5;
+  bool use_staging = 5 [deprecated = true];
 }
 
 // CrashSummary defines details of crashes that will be easily accessible to

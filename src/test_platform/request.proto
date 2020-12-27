@@ -9,6 +9,7 @@ package test_platform;
 import "chromite/api/test_metadata.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
+import "test_platform/execution/param.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 
@@ -205,6 +206,9 @@ message Request {
     }
 
     Migrations migrations = 12;
+
+    // Uniformly applied parameters for all test executions in this request.
+    test_platform.execution.Param execution_param = 13;
 
     reserved "notifications";
     reserved 11;

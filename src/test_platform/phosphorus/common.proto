@@ -46,9 +46,20 @@ message LogDataUploadStep{
   int32 max_concurrent_uploads = 1;
 }
 
+message FetchCrashesStep {
+  // URL of the crash server where crashes can be uploaded.
+  // e.g.: https://clients2.google.com/cr/report
+  string crash_server_report_url = 1;
+
+  // URL of the crash server where pre-uploaded crashes can be viewed.
+  // e.g.: https://crash.corp.google.com
+  string crash_server_view_url = 2;
+}
+
 // Config defines configuration parameters common to phosphorus subcommands.
 message Config {
   BotEnvironment bot = 1;
   TaskEnvironment task = 2;
   LogDataUploadStep log_data_upload_step = 3;
+  FetchCrashesStep fetch_crashes_step = 4;
 }

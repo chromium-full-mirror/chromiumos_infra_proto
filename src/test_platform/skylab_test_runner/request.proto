@@ -9,6 +9,7 @@ package test_platform.skylab_test_runner;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
 import "google/protobuf/timestamp.proto";
+import "test_platform/execution/param.proto";
 import "test_platform/request.proto";
 
 // Request represents a request for running an individual test via the
@@ -90,4 +91,8 @@ message Request {
   // Set of Tests to run. The string is a UUID provided by the client
   // and used to identify each test result in the response.
   map<string, Test> tests = 6;
+
+  // Uniformly applied parameters for all test executions in the parent test
+  // platform request.
+  test_platform.execution.Param execution_param = 7;
 }
