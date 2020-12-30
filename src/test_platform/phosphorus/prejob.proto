@@ -10,6 +10,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/pho
 
 import "google/protobuf/timestamp.proto";
 import "test_platform/phosphorus/common.proto";
+import "test_platform/request.proto";
 
 // PrejobRequest defines the input of `phosphorus prejob`.
 message PrejobRequest {
@@ -17,11 +18,17 @@ message PrejobRequest {
 
   string dut_hostname = 2;
 
+  // TODO(crbug.com/1162347): Delete this post-migration.
   map<string,string> provisionable_labels = 3 [deprecated = true];
 
   // What needs to be installed onto the DUT at the end of prejob, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
-  map<string,string> desired_provisionable_labels = 4;
+  // TODO(crbug.com/1162347): Delete this post-migration.
+  map<string,string> desired_provisionable_labels = 4 [deprecated = true];
+
+  // What needs to be installed onto the DUT at the end of prejob, as specified
+  // in the cros_test_platform request.
+  repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 8;
 
   // What is installed on the DUT before the prejob, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".

@@ -18,11 +18,14 @@ message Request {
   // Prejob defines parameters that affect the steps before the actual test
   // (e.g. provision).
   message Prejob {
-    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 1 [deprecated = true];
+    // What needs to be installed onto the DUT at the end of prejob, as specified
+    // in the cros_test_platform request.
+    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 1;
 
     // Mutable software prerequisites. Are installed before running the test if
     // necessary. E.g. {"cros-version" : "reef-release/R77-12345.0.0"}
-    map<string, string> provisionable_labels = 2;
+    // TODO(crbug.com/1162347): Delete this post-migration.
+    map<string, string> provisionable_labels = 2 [deprecated = true];
 
     // If set, use the Provision TLS API for the prejob.
     // See go/cros-prover go/cros-tls
