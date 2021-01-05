@@ -6,7 +6,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
-import "chromiumos/config/api/test/metadata/v1/metadata.proto";
+// TODO(https://crbug.com/1151028): fix dependency for chromite protoc
+// import "chromiumos/config/api/test/metadata/v1/metadata.proto";
 
 message AssembleRequest {
   // The chroot used to execute the endpoint.
@@ -27,7 +28,8 @@ message RemoteTestDriver {
   // submit` can be invoked in the directory.
   chromiumos.Path build_context = 1;
   // Metadata about the RTD.
-  repeated chromiumos.config.api.test.metadata.v1.Specification specifications = 2;
+  // TODO(https://crbug.com/1151028): fix dependency for chromite protoc
+  // repeated chromiumos.config.api.test.metadata.v1.Specification specifications = 2;
 }
 
 service RemoteTestDriverService {
