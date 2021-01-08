@@ -164,6 +164,9 @@ message SchedulerConfig {
         bool only_sanity_test_required = 4;
     }
     RunOptions run_options = 9;
+
+    // Name of the config, used for analytics. Does not have to be unique.
+    string analytics_name = 10;
 }
 
 // A proto to contain all the configs.
