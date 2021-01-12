@@ -76,6 +76,50 @@ message BundleToolchainResponse {
   repeated ArtifactInfo artifacts_info = 2;
 }
 
+message GetUpdatedFilesRequest {
+  // We need the artifact info from BundleResponse and the profile info
+  // as the input of the request.
+  message UploadedArtifacts {
+    ArtifactInfo artifact_info = 1;
+    chromiumos.ArtifactProfileInfo profile_info = 2;
+  }
+  repeated UploadedArtifacts uploaded_artifacts = 1;
+}
+
+message GetUpdatedFilesResponse {
+  message UpdatedFile {
+    // The path to the (uncommitted) file.
+    string path = 1;
+  }
+  repeated UpdatedFile updated_files = 1;
+
+  // The commit message to use.
+  string commit_message = 2;
+
+  // The Cq-Depend footer is used by LUCI (and Chrome OS Recipes) to operate
+  // on interdependent changes at various steps.
+  message CqDependFooter {
+    // The gerrit change(s) we depend on.
+    repeated chromiumos.GerritChange gerrit_change = 1;
+  }
+
+  // The Cq-Cl-Tag footer is used by cq-orchestrator to choose quota pools.
+  message CqClTagFooter {
+    // The Cq-Cl-Tag value.
+    string tag = 1;
+  }
+
+  message CommitFooter {
+    oneof footer {
+      CqDependFooter cq_depend = 1;
+      CqClTagFooter cq_cl_tag = 2;
+    }
+  }
+
+  // Any footers to use.  Formatted to the current standard by Recipes.
+  repeated CommitFooter commit_footer = 3;
+}
+
 // TODO(crbug.com/1020615): Drop this once this is live in production and all of
 // the users have migrated to using BuilderConfig.Artifacts.ArtifactType
 // Meanwhile, keep this in sync with chromiumos/builder_config.proto.
@@ -145,4 +189,7 @@ service ToolchainService {
   // Bundle toolchain artifacts.
   rpc BundleArtifacts(BundleToolchainRequest)
     returns (BundleToolchainResponse);
+
+  rpc GetUpdatedFiles(GetUpdatedFilesRequest)
+    returns (GetUpdatedFilesResponse);
 }
