@@ -311,7 +311,7 @@ const (
 	// this option implies the builder will never run.
 	BuilderConfig_General_RunWhen_ONLY_RUN_ON_FILE_MATCH BuilderConfig_General_RunWhen_Mode = 2
 	// Do not run the builder if all files in the input gerrit_changes
-	// match any file_attern speicifed below. If file_patterns is empty,
+	// match any file_pattern speicifed below. If file_patterns is empty,
 	// this option implies the builder will always run.
 	BuilderConfig_General_RunWhen_NO_RUN_ON_FILE_MATCH BuilderConfig_General_RunWhen_Mode = 3
 )
