@@ -30,14 +30,21 @@ message SwarmingDimension {
   repeated string values = 3;
 }
 
+// Specifies mode for a bot policy
+enum Mode {
+  UNKNOWN_MODE = 0;
+  // Collect stats only for a bot group.
+  MONITORED = 1;
+  // Generate configuration updates for bot group.
+  CONFIGURED = 2;
+}
+
 // Bot Policy to apply to a bot group.
 message BotPolicy {
   // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
   string bot_group = 1;
-
   // The type of bot to be requested.
   BotType bot_type = 2;
-
   // Scaling restriction specifies the limits on how the group can be
   // expanded or reduced.
   message ScalingRestriction {
@@ -79,12 +86,10 @@ message BotPolicy {
     // Generate configuration updates for bot group.
     CONFIGURED = 2;
   }
-
   // Set whether a bot group should be configured or only monitored.
   Mode policy_mode = 6;
   // Number of hours to lookback for Swarming stats.
   sint32 lookback_hours = 7;
-
   // Specifies mode for a bot scaling
   enum BotScalingMode {
     UNKNOWN_SCALING_MODE = 0;
@@ -97,7 +102,6 @@ message BotPolicy {
     // Scale up bots by the demand on the bot group.
     STEPPED_DECREASE = 3;
   }
-
   // Set the scaling approach for the bot group being monitored.
   BotScalingMode scaling_mode = 8;
   // Swarming instance name:  chromeos-swarming.appspot.com
@@ -116,10 +120,8 @@ message BotPolicyCfg {
 message ReducedBotPolicy {
   // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
   string bot_group = 1;
-
   // The type of bot to be requested.
   BotType bot_type = 2;
-
   // Specifies mode for a bot policy
   enum Mode {
     UNKNOWN_MODE = 0;
@@ -128,7 +130,6 @@ message ReducedBotPolicy {
     // Generate configuration updates for bot group.
     CONFIGURED = 2;
   }
-
   // Set whether a bot group should be configured or only monitored.
   Mode policy_mode = 3;
 }
@@ -143,10 +144,8 @@ message ReducedBotPolicyCfg {
 message ScalingAction {
   // Bot group modified by the action. Should be the same as BotPolicy.
   string bot_group = 1;
-
   // The type of bot requested. Should be the same as BotPolicy.
   BotType bot_type = 2;
-
   // Specifies if there has been a change since the last iteration.
   enum Actionable {
     UNSPECIFIED = 0;
@@ -155,14 +154,11 @@ message ScalingAction {
     // There is no change since last time.
     NO = 2;
   }
-
   // Whether there has been a change in the number of bots requested
   // for this bot group. See step_size for more info.
   Actionable actionable = 3;
-
   // Total number of bots requested for the group.
   int32 bots_requested = 4;
-
   // How the bot requests are distributed between regions & prefixes.
   message RegionalAction {
     // Region of the bot sub-group.
