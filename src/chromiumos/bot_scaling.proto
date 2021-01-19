@@ -30,15 +30,6 @@ message SwarmingDimension {
   repeated string values = 3;
 }
 
-// Specifies mode for a bot policy
-enum Mode {
-  UNKNOWN_MODE = 0;
-  // Collect stats only for a bot group.
-  MONITORED = 1;
-  // Generate configuration updates for bot group.
-  CONFIGURED = 2;
-}
-
 // Bot Policy to apply to a bot group.
 message BotPolicy {
   // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
@@ -122,16 +113,8 @@ message ReducedBotPolicy {
   string bot_group = 1;
   // The type of bot to be requested.
   BotType bot_type = 2;
-  // Specifies mode for a bot policy
-  enum Mode {
-    UNKNOWN_MODE = 0;
-    // Collect stats only for a bot group.
-    MONITORED = 1;
-    // Generate configuration updates for bot group.
-    CONFIGURED = 2;
-  }
   // Set whether a bot group should be configured or only monitored.
-  Mode policy_mode = 3;
+  BotPolicy.Mode policy_mode = 3;
 }
 
 // Configures the root message.
