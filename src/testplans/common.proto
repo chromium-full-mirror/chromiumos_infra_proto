@@ -23,4 +23,14 @@ message FilePattern {
   // **/*.md to match any .md file
   // src/somefile.java to match a specific file
   string pattern = 1;
+
+  // Bash patterns that exclude files in the chromiumos checkout from a match.
+  //
+  // A file in the chromiumos checkout is considered a match iff:
+  // 1. It matches pattern.
+  // 2. It doesn't match any of exclude_patterns.
+  //
+  // The matching rules of exclude_patterns are the same as patterns, e.g.
+  // globstar is allowed.
+  repeated string exclude_patterns = 2;
 }
