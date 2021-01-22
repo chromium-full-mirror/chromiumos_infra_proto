@@ -799,7 +799,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Legacy.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -811,7 +811,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Toolchain.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -823,7 +823,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Image.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -835,7 +835,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Package.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -847,7 +847,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Sysroot.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -859,7 +859,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Test.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -871,7 +871,7 @@ message UploadedArtifactsByService {
       ArtifactsByService.Firmware.ArtifactType artifact_type = 1;
 
       // Absolute path to the artifact file.
-      repeated string paths = 2;
+      repeated Path paths = 2;
     }
     repeated ArtifactPaths artifacts = 1;
   }
