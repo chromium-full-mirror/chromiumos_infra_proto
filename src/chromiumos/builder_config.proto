@@ -276,6 +276,12 @@ message BuilderConfig {
 
       // Indicates Rusage logs from Compiler Invocations
       COMPILER_RUSAGE_LOG = 29;
+
+      // FirmwareService: Firmware artifacts in a tarball.
+      FIRMWARE_TARBALL = 30;
+
+      // FirmwareService: Metadata about the firmware.
+      FIRMWARE_TARBALL_INFO = 31;
     }
     repeated ArtifactTypes artifact_types = 2;
 

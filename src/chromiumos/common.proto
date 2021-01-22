@@ -383,6 +383,8 @@ message ArtifactsByService {
       // Indicates wanting a test image tarball suitable for importing into GCE.
       // TODO(crbug/1034529): moves to ArtifactsByService.Image
       GCE_TARBALL = 28;
+
+      reserved 29 to 31;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -481,6 +483,11 @@ message ArtifactsByService {
 
       // Indicates Rusage logs from Compiler Invocations
       COMPILER_RUSAGE_LOG = 29;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 30 to 31;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -533,7 +540,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 28;
+      reserved 1 to 31;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -582,7 +589,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 28;
+      reserved 1 to 31;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -631,7 +638,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 28;
+      reserved 1 to 31;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -680,7 +687,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 28;
+      reserved 1 to 31;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -723,6 +730,61 @@ message ArtifactsByService {
 
   // Profile information needed by the artifact handler, if any.
   ArtifactProfileInfo profile_info = 7;
+
+  message Firmware {
+    // Artifacts which the ArtifactsService endpoints pass to FirmwareService.
+    enum ArtifactType {
+      UNSPECIFIED = 0;
+
+      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // namespace for all services.  We must reserve numbers until that is
+      // gone.
+      reserved 1 to 29;
+
+      // Firmware artifacts in a tarball.
+      FIRMWARE_TARBALL = 30;
+
+      // Metadata about the firmware.
+      FIRMWARE_TARBALL_INFO = 31;
+    }
+    // Information about one or more artifacts.  This should match the rest of
+    // the ArtifactInfo definitions in ArtifactsByService, other than having
+    // it's own (service-specific) definition for ArtifactType.
+    message ArtifactInfo {
+      // The ArtifactType.  One or more types to which the rest of the fields
+      // apply.
+      repeated ArtifactType artifact_types = 1;
+
+      // GS location in which to upload artifacts ("gs://" is prepended).
+      // Several fields can be logically specified:
+      //   %(kind)s: BuilderConfig.Id.Type with underscores turned into hyphens.
+      //   %(version)s: Chromeos version (e.g., R81-12813.0.0)
+      //   %(build_id)s: Buildbucket job ID.
+      //   %(target)s: build target name.
+      //   %(builder_name)s: The builder name (e.g. octopus-cq), lowercase with
+      //       underscores turned into hyphens.
+      //   %(gs_path)s: "%(builder_name)s/%(version)s-%(build_id)s".
+      //   %(artifact_name)s: The name of the artifact being published.
+      //
+      // BuilderConfig.Artifacts.artifacts_gs_location is used for all
+      // artifacts.  Artifact can be published to additional locations by
+      // specifying those here.  Examples: include AFDO artifacts and Release
+      // images.
+      repeated string gs_locations = 2;
+
+      // Any acl to apply, such as "public-read".
+      string acl_name = 4;
+
+      // When to publish the artifact.
+      PublishCondition publish_condition = 5;
+    }
+    // Input artifact information
+    repeated ArtifactInfo input_artifacts = 1;
+
+    // Output artifact information
+    repeated ArtifactInfo output_artifacts = 2;
+  }
+  Firmware firmware = 8;
 }
 
 // Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
@@ -802,4 +864,16 @@ message UploadedArtifactsByService {
     repeated ArtifactPaths artifacts = 1;
   }
   Test test = 6;
+
+  message Firmware {
+    message ArtifactPaths {
+      // The ArtifactType.
+      ArtifactsByService.Firmware.ArtifactType artifact_type = 1;
+
+      // Absolute path to the artifact file.
+      repeated string paths = 2;
+    }
+    repeated ArtifactPaths artifacts = 1;
+  }
+  Firmware firmware = 7;
 }

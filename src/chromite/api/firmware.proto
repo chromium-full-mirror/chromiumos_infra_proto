@@ -120,6 +120,27 @@ message TestAllTotFirmwareResponse {
   FwTestMetricList metrics = 1;
 }
 
+message BundleFirmwareArtifactsRequest {
+  // Location of firmware to build call into firmware_builder.py entry point.
+  // The `build` subcommand will be called
+  FwLocation firmware_location = 1;
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
+
+  // The output directory in which to place the bundled artifacts.
+  chromiumos.ResultPath result_path = 3;
+
+  // The artifact types requested
+  chromiumos.ArtifactsByService.Firmware artifacts = 4;
+}
+
+message BundleFirmwareArtifactsResponse {
+  // The artifacts that were bundled.
+  chromiumos.UploadedArtifactsByService.Firmware artifacts = 1;
+}
+
 // The Firmware service.
 service FirmwareService {
   option (service_options) = {
@@ -134,4 +155,8 @@ service FirmwareService {
   // Runs all of the firmware tests on ToT at specified location
   rpc TestAllTotFirmware(TestAllTotFirmwareRequest)
       returns (TestAllTotFirmwareResponse);
+
+  // Bundles any firmware images and other artifacts.
+  rpc BundleFirmwareArtifacts(BundleFirmwareArtifactsRequest)
+      returns (BundleFirmwareArtifactsResponse);
 }
