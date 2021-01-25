@@ -4,6 +4,8 @@ package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 
+import "prototype/milestone.proto";
+
 // Common message definitions.
 
 // BuildTarget encapsulates a number of related arguments. At the moment, the
@@ -192,6 +194,21 @@ message GitilesCommit {
 message UseFlag {
   // The use flag.
   string flag = 1;
+}
+
+// Message for defining a release builder.
+// Used to generate release_builders.star.
+message ReleaseBuilder {
+  // The release milestone. Needs to have "branch_name" filled out.
+  prototype.Milestone milestone = 1;
+  // Schedule to use for release builder.
+  // e.g. "0 5 * * *"
+  string build_schedule = 2;
+}
+message ReleaseBuilders {
+  // Release builders to generate _define_release blocks for
+  // in release_builders.star.
+  repeated ReleaseBuilder builders = 1;
 }
 
 // The types of images that can be built.
