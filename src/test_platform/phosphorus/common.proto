@@ -38,6 +38,32 @@ message TaskEnvironment {
   reserved "synchronous_offload_dir";
 }
 
+// Knobs specific to the step that runs tasks to prepare the DUT for test.
+message PrejobStep{
+  ProvisionDutExperiment provision_dut_experiment = 1;
+}
+
+message ProvisionDutExperiment {
+  // Global flag to control this experiment.
+  bool enabled = 1;
+
+  message CrosVersionSelector {
+    // Selects prejob requests by the cros-version of the OS image to install on
+    // the DUT.
+    //
+    // e.g., a value of "reef-release" would select "reef-release/R87.1282.0.0"
+    // etc.
+    repeated string prefixes = 1;
+  }
+
+  oneof cros_version_selector {
+    // Only use ProvisionDut TLS API for the selected requests.
+    CrosVersionSelector cros_version_allow_list = 2;
+    // Use ProvisionDut TLS API for all requests *except* the ones selected.
+    CrosVersionSelector cros_version_disallow_list = 3;
+  }
+}
+
 // Knobs specific to the step that uploads log-data to Google Storage.
 message LogDataUploadStep{
   // Controls the maximum number of files that may be uploaded concurrently.
@@ -62,4 +88,5 @@ message Config {
   TaskEnvironment task = 2;
   LogDataUploadStep log_data_upload_step = 3;
   FetchCrashesStep fetch_crashes_step = 4;
+  PrejobStep prejob_step = 5;
 }
