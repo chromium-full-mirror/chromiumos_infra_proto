@@ -200,16 +200,16 @@ message UseFlag {
 // Message for defining a release builder.
 // Used to generate release_builders.star.
 message ReleaseBuilder {
+  message Date {
+    // Format: YYYY-MM-DD (ISO 8601)
+    // E.g. 2020-02-10
+    string value = 1;
+  }
+
   // The release milestone. Needs to have "branch_name" filled out.
   // TODO(b/177487002): cannot include prototype.Milestone at this time.
   //prototype.Milestone milestone = 1;
   message Milestone {
-    message Date {
-      // Format: YYYY-MM-DD (ISO 8601)
-      // E.g. 2020-02-10
-      string value = 1;
-    }
-
     // E.g. 86
     int32 number = 1;
 
@@ -227,7 +227,13 @@ message ReleaseBuilder {
   // Schedule to use for release builder.
   // e.g. "0 5 * * *"
   string build_schedule = 2;
+
+  // Expiration date of builder.
+  // A builder with an expiration date set (that has not yet occurred)
+  // will not be pruned as a stale milestone by automatic release config management.
+  Date expiration_date = 3;
 }
+
 message ReleaseBuilders {
   // Release builders to generate _define_release blocks for
   // in release_builders.star.
