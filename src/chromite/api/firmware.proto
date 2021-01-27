@@ -8,6 +8,7 @@ import "chromiumos/common.proto";
 
 // Protos for executing firmware builder functionality.
 
+// TODO(b/177907747): Drop this once the migration is complete.
 // List of known location that firmware can be built from
 enum FwLocation {
   FW_LOCATION_UNKNOWN = 0;
@@ -90,6 +91,7 @@ message FwTestMetricList {
   repeated FwTestMetric value = 1;
 }
 
+// TODO(b/177907747): Drop this once the migration is complete.
 message BuildAllTotFirmwareRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
   // The `build` subcommand will be called
@@ -100,11 +102,13 @@ message BuildAllTotFirmwareRequest {
   chromiumos.Chroot chroot = 2;
 }
 
+// TODO(b/177907747): Drop this once the migration is complete.
 message BuildAllTotFirmwareResponse {
   // Metrics collected on every successful firmware build
   FwBuildMetricList metrics = 1;
 }
 
+// TODO(b/177907747): Drop this once the migration is complete.
 message TestAllTotFirmwareRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
   // The `test` subcommand will be called
@@ -115,7 +119,38 @@ message TestAllTotFirmwareRequest {
   chromiumos.Chroot chroot = 2;
 }
 
+// TODO(b/177907747): Drop this once the migration is complete.
 message TestAllTotFirmwareResponse {
+  // Metrics collect on successfuly firmware unit test runs
+  FwTestMetricList metrics = 1;
+}
+
+message BuildAllFirmwareRequest {
+  // Location of firmware to build call into firmware_builder.py entry point.
+  // The `build` subcommand will be called
+  chromiumos.FwLocation firmware_location = 1;
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
+}
+
+message BuildAllFirmwareResponse {
+  // Metrics collected on every successful firmware build
+  FwBuildMetricList metrics = 1;
+}
+
+message TestAllFirmwareRequest {
+  // Location of firmware to build call into firmware_builder.py entry point.
+  // The `test` subcommand will be called
+  chromiumos.FwLocation firmware_location = 1;
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
+}
+
+message TestAllFirmwareResponse {
   // Metrics collect on successfuly firmware unit test runs
   FwTestMetricList metrics = 1;
 }
@@ -123,7 +158,7 @@ message TestAllTotFirmwareResponse {
 message BundleFirmwareArtifactsRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
   // The `build` subcommand will be called
-  FwLocation firmware_location = 1;
+  chromiumos.FwLocation firmware_location = 1;
 
   // The chroot where the operations will be executed.
   // Required.
@@ -148,13 +183,23 @@ service FirmwareService {
     service_chroot_assert: INSIDE,
   };
 
+  // TODO(b/177907747): Drop this once the migration is complete.
   // Builds all of the firmware targets on ToT at specified location
   rpc BuildAllTotFirmware(BuildAllTotFirmwareRequest)
       returns (BuildAllTotFirmwareResponse);
 
+  // TODO(b/177907747): Drop this once the migration is complete.
   // Runs all of the firmware tests on ToT at specified location
   rpc TestAllTotFirmware(TestAllTotFirmwareRequest)
       returns (TestAllTotFirmwareResponse);
+
+  // Builds all of the firmware targets at specified location
+  rpc BuildAllFirmware(BuildAllFirmwareRequest)
+      returns (BuildAllFirmwareResponse);
+
+  // Runs all of the firmware tests at specified location
+  rpc TestAllFirmware(TestAllFirmwareRequest)
+      returns (TestAllFirmwareResponse);
 
   // Bundles any firmware images and other artifacts.
   rpc BundleFirmwareArtifacts(BundleFirmwareArtifactsRequest)

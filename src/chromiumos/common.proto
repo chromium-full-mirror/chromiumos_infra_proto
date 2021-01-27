@@ -277,6 +277,15 @@ message ProtoBytes {
   bytes serialized_proto = 1;
 }
 
+// List of known location that firmware can be built from
+enum FwLocation {
+  FW_LOCATION_UNKNOWN = 0;
+  PLATFORM_EC = 1; // platform/ec/firmware_builder.py
+  PLATFORM_ZEPHYR = 2; // platform/zephyr-chrome/firmware_builder.py
+  PLATFORM_TI50 = 3; // platform/ti50/common/firmware_builder.py
+}
+
+
 // TODO(crbug.com/1020615): Drop this from chromite/api/toolchain.proto (and
 // here) once usage has migrated to BuilderConfig.Artifacts.ArtifactType.
 // Meanwhile, keep this in sync with chromite/api/toolchain.proto.  The various

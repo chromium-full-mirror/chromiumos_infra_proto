@@ -129,6 +129,9 @@ message BuilderConfig {
       PRIVATE = 2;
     }
     Manifest manifest = 7;
+
+    // The Firmware Location, passed to FirmwareService calls.
+    FwLocation firmware_location = 8;
   }
   General general = 2;
 
