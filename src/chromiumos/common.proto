@@ -4,7 +4,8 @@ package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 
-import "prototype/milestone.proto";
+// TODO(b/177487002): cannot include prototype.milestone at this time.
+//import "prototype/milestone.proto";
 
 // Common message definitions.
 
@@ -200,7 +201,15 @@ message UseFlag {
 // Used to generate release_builders.star.
 message ReleaseBuilder {
   // The release milestone. Needs to have "branch_name" filled out.
-  prototype.Milestone milestone = 1;
+  // TODO(b/177487002): cannot include prototype.Milestone at this time.
+  //prototype.Milestone milestone = 1;
+  message Milestone {
+    string branch_name = 3;
+  }
+  oneof milestone_message {
+    Milestone milestone = 1;
+  }
+
   // Schedule to use for release builder.
   // e.g. "0 5 * * *"
   string build_schedule = 2;
