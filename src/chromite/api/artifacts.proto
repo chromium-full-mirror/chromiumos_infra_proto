@@ -165,8 +165,8 @@ service ArtifactsService {
   // Prepare to build artifacts.
   rpc PrepareForBuild(PrepareForBuildRequest) returns (PrepareForBuildResponse);
 
-  // Bundle artifacts for build.
-  rpc BundleArtifacts(BundleArtifactsRequest) returns (BundleArtifactsResponse);
+  // Get artifacts for build.
+  rpc Get(GetRequest) returns (GetResponse);
 
   // Fetch the pinned guest image locations.
   rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
@@ -178,70 +178,70 @@ service ArtifactsService {
   // Until that bug is closed, these endpoints are still used.
   //
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with all files needed for Autotest HW testing.
   rpc BundleAutotestFiles(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create the ChromeOS Config JSON payload.
   rpc BundleChromeOSConfig(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive of debug symbols.
   rpc BundleDebugSymbols(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with ebuild logs.
   rpc BundleEbuildLogs(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with unsigned firmware images.
   rpc BundleFirmware(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar.xz archive for each image that has been created.
   rpc BundleImageArchives(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Generate zip containing all built images for the target.
   rpc BundleImageZip(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // DEPRECATED for recipes: crbug/1019868: This are being replaced by
   // ToolchainService.Bundle{ArtifactType}()
   // Create Chrome Benchmark AFDO builder artifacts.
   rpc BundleAFDOGenerationArtifacts(BundleChromeAFDORequest)
     returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with all guest images test bundles.
   rpc BundlePinnedGuestImages(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create the simple chrome artifacts.
   rpc BundleSimpleChromeArtifacts(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with all files needed for Tast HW testing.
   rpc BundleTastFiles(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Generate minimal update payloads to be used in HW testing.
   rpc BundleTestUpdatePayloads(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with VM memory and disk images.
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Generate a CPE report to a file.
   rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with fingerprint MCU on-device unittest binaries.
   rpc BundleFpmcuUnittests(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tarball from the test image suitable for importing into GCE.
   rpc BundleGceTarball(BundleRequest) returns (BundleResponse);
 
@@ -256,7 +256,7 @@ service ArtifactsService {
   // These artifacts partially replace chromiumos.ArtifactsByService.Test
   // artifacts. See also, GenerateRemoteTestDriverImages()
   //
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   rpc GenerateRemoteTestDriverSpecification(BundleRequest)
     returns (BundleResponse);
 
@@ -269,6 +269,6 @@ service ArtifactsService {
   // These artifacts partially replace chromiumos.ArtifactsByService.Test
   // artifacts. See also, GenerateRemoteTestDriverSpecification()
   //
-  // TODO(crbug/1034529): DEPRECATED use BundleArtifacts
+  // TODO(crbug/1034529): DEPRECATED use Get
   rpc GenerateRemoteTestDriverImages(BundleRequest) returns (BundleResponse);
 }
