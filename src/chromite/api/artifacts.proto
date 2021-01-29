@@ -42,6 +42,25 @@ message PrepareForBuildResponse {
   BuildRelevance build_relevance = 1;
 }
 
+message GetRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+
+  // The sysroot where the files live.
+  Sysroot sysroot = 2;
+
+  // Artifact information.
+  chromiumos.ArtifactsByService artifact_info = 3;
+
+  // Result path for artifacts.
+  chromiumos.ResultPath result_path = 4;
+}
+
+message GetResponse {
+  // The artifacts that were bundled.
+  chromiumos.UploadedArtifactsByService artifacts = 1;
+}
+
 message BundleArtifactsRequest {
   // The chroot where the sysroot lives.
   chromiumos.Chroot chroot = 1;
