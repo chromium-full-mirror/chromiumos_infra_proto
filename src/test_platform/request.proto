@@ -64,6 +64,12 @@ message Request {
         // Read-write firmware build name, e.g.
         // "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
         string rw_firmware_build = 5;
+
+        // Google Cloud Storage path for obtaining LaCrOS images.
+        //
+        // Unlike chromeos/ro_firmware/rw_firmware, this is full Google Cloud
+        // Storage path (e.g. gs://shiny-lacros/builds/M56/for-pupr/1.2.3.4).
+        string lacros_gcs_path = 6;
       }
     }
 
