@@ -832,6 +832,9 @@ message ArtifactsByService {
 
       // When to publish the artifact.
       PublishCondition publish_condition = 5;
+
+      // The firmware location.
+      FwLocation location = 6;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -927,6 +930,9 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // The firmware location.
+      FwLocation location = 3;
     }
     repeated ArtifactPaths artifacts = 1;
   }
