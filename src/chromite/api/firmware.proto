@@ -156,9 +156,7 @@ message TestAllFirmwareResponse {
 }
 
 message BundleFirmwareArtifactsRequest {
-  // Location of firmware to build call into firmware_builder.py entry point.
-  // The `build` subcommand will be called
-  chromiumos.FwLocation firmware_location = 1;
+  reserved 1;
 
   // The chroot where the operations will be executed.
   // Required.
@@ -167,7 +165,8 @@ message BundleFirmwareArtifactsRequest {
   // The output directory in which to place the bundled artifacts.
   chromiumos.ResultPath result_path = 3;
 
-  // The artifact types requested
+  // The artifact types requested.  The firmware_location is found in
+  // artifacts.output_artifacts[].location.
   chromiumos.ArtifactsByService.Firmware artifacts = 4;
 }
 
