@@ -165,6 +165,10 @@ service ArtifactsService {
   // Prepare to build artifacts.
   rpc PrepareForBuild(PrepareForBuildRequest) returns (PrepareForBuildResponse);
 
+  // Bundle artifacts for build.
+  // TODO(crbug/1034529): DEPRECATED and BROKEN use Get
+  rpc BundleArtifacts(BundleArtifactsRequest) returns (BundleArtifactsResponse);
+
   // Get artifacts for build.
   rpc Get(GetRequest) returns (GetResponse);
 
