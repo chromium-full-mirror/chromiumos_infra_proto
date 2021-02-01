@@ -285,6 +285,9 @@ message BuilderConfig {
 
       // FirmwareService: Metadata about the firmware.
       FIRMWARE_TARBALL_INFO = 31;
+
+      // ArtifactsService: BundleDebugSymbols
+      DEBUG_SYMBOLS = 32;
     }
     repeated ArtifactTypes artifact_types = 2;
 

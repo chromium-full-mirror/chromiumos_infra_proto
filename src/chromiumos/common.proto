@@ -442,6 +442,10 @@ message ArtifactsByService {
       GCE_TARBALL = 28;
 
       reserved 29 to 31;
+
+      // Indicates wanting the Bundled debug symbol files.
+      // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
+      DEBUG_SYMBOLS = 32;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -546,7 +550,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 30 to 31;
+      reserved 30 to 32;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -599,7 +603,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 31;
+      reserved 1 to 32;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -648,7 +652,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 31;
+      reserved 1 to 32;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -697,7 +701,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 31;
+      reserved 1 to 32;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -746,7 +750,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 31;
+      reserved 1 to 32;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -805,6 +809,8 @@ message ArtifactsByService {
 
       // Metadata about the firmware.
       FIRMWARE_TARBALL_INFO = 31;
+
+      reserved 32;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
