@@ -70,6 +70,7 @@ message BundleToolchainRequest {
 
 // Response describing which bundles were dumped to the given output directory.
 message BundleToolchainResponse {
+  // In R80 and earlier, artifacts_info had a different type.
   reserved 1;
 
   // The artifacts that added to the output directory.
@@ -160,7 +161,8 @@ service ToolchainService {
   };
 
   // DEPRECATED for recipes: used only by legacy toolchain builders.
-  // See also crbug/1019868.
+  // See also crbug/1019868.  R87 is the last release branch that supports the
+  // legacy toolchain builders.
   // Update Chrome ebuild with most recent unvetted orderfile
   rpc UpdateEbuildWithAFDOArtifacts(VerifyAFDOArtifactsRequest)
     returns (VerifyAFDOArtifactsResponse) {
@@ -170,7 +172,8 @@ service ToolchainService {
   }
 
   // DEPRECATED for recipes: used only by legacy toolchain builders.
-  // See also crbug/1019868.
+  // See also crbug/1019868.  R87 is the last release branch that supports the
+  // legacy toolchain builders.
   // Copy the orderfile from unvetted GS bucket to vetted bucket.
   rpc UploadVettedAFDOArtifacts(VerifyAFDOArtifactsRequest)
     returns (VerifyAFDOArtifactsResponse) {

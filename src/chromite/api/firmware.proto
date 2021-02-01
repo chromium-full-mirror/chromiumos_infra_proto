@@ -156,7 +156,11 @@ message TestAllFirmwareResponse {
 }
 
 message BundleFirmwareArtifactsRequest {
-  reserved 1;
+  // firmware_location was moved to artifacts.output_artifacts[].location before
+  // chromite started processing it.  We could potentially reuse this number if
+  // we want.
+  // reserved 1;
+  // reserved "firmware_location";
 
   // The chroot where the operations will be executed.
   // Required.

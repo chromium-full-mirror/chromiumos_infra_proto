@@ -69,7 +69,9 @@ type BuildTargetUnitTestRequest struct {
 	// Skipped packages.
 	// Deprecated in favor of package_blocklist.
 	// Left in place for compatibility for now.
-	// TODO: Change to reserved after 2021-06-01 and recipes have been updated.
+	// TODO(crbug/1126855): Change to reserved after branches R87 and earlier are
+	// no longer supported, and recipes have stopped setting the field.
+	// Last used in R87.  Remove no earlier than 2021-06-01.
 	PackageBlacklist []*chromiumos.PackageInfo `protobuf:"bytes,5,rep,name=package_blacklist,json=packageBlacklist,proto3" json:"package_blacklist,omitempty"`
 	// Packages to be tested.
 	// Defaults to all testable packages when none are given.

@@ -194,7 +194,8 @@ type GetBuildDependencyGraphRequest struct {
 	// The sysroot whose dependency graph is being created.  If no sysroot is
 	// being used, may be unspecified.
 	Sysroot *Sysroot `protobuf:"bytes,4,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
-	// TODO(crbug/1081828): drop when no longer used.
+	// TODO(crbug/1081828): drop when all supported release branches are no longer
+	// using this.
 	// DEPRECATED: Use sysroot instead.
 	// The board whose dependency graph is being created.  If both sysroot and
 	// build_target are given, sysroot is used.

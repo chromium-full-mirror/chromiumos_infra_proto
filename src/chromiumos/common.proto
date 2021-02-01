@@ -22,7 +22,9 @@ message BuildTarget {
 // Chroot is used to define how to enter a chroot.
 message Chroot {
   // Deprecated fields.
+  // R80 was the last release branch to use 'goma'.
   reserved 5;
+  reserved "goma";
 
   message ChrootEnv {
     // USE flags to set.
@@ -464,7 +466,9 @@ message ArtifactsByService {
       // images.
       repeated string gs_locations = 2;
 
+      // R83 was the last release branch to use profile_info.
       reserved 3;
+      reserved "profile_info";
 
       // Any acl to apply, such as "public-read".
       string acl_name = 4;

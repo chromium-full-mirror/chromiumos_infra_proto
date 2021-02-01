@@ -921,11 +921,13 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ToolchainServiceClient interface {
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.
+	// See also crbug/1019868.  R87 is the last release branch that supports the
+	// legacy toolchain builders.
 	// Update Chrome ebuild with most recent unvetted orderfile
 	UpdateEbuildWithAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.
+	// See also crbug/1019868.  R87 is the last release branch that supports the
+	// legacy toolchain builders.
 	// Copy the orderfile from unvetted GS bucket to vetted bucket.
 	UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
 	// Prepare to build toolchain artifacts.  This will be called twice:
@@ -994,11 +996,13 @@ func (c *toolchainServiceClient) GetUpdatedFiles(ctx context.Context, in *GetUpd
 // ToolchainServiceServer is the server API for ToolchainService service.
 type ToolchainServiceServer interface {
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.
+	// See also crbug/1019868.  R87 is the last release branch that supports the
+	// legacy toolchain builders.
 	// Update Chrome ebuild with most recent unvetted orderfile
 	UpdateEbuildWithAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.
+	// See also crbug/1019868.  R87 is the last release branch that supports the
+	// legacy toolchain builders.
 	// Copy the orderfile from unvetted GS bucket to vetted bucket.
 	UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
 	// Prepare to build toolchain artifacts.  This will be called twice:
