@@ -35,7 +35,8 @@ find go -name '*.pb.go' -exec rm '{}' \;
 # https://github.com/golang/protobuf/issues/39
 find src -name '*.proto' -exec \
      protoc -Isrc -I"${work_dir}/${cros_config_subdir}" \
-     --go_out=paths=source_relative,plugins=grpc:go '{}' \;
+     --go_out=go/ --go_opt=paths=source_relative \
+     --go-grpc_out=go/ --go-grpc_opt=paths=source_relative '{}' \;
 
 chromite_root="$(readlink -f "$(dirname "$0")/../..")"
 chromite_api_compiler="${chromite_root}/api/compile_build_api_proto"

@@ -11,8 +11,8 @@
 
 # Versions of packages to get from CIPD.
 readonly CIPD_PROTOC_VERSION='v3.6.1'
-readonly CIPD_PROTOC_GEN_GO_VERSION='v1.3.2'
 
+GOBIN="${script_dir}/.go_bin"
 readonly cipd_root="${script_dir}/.cipd_bin"
 cipd ensure \
      -log-level warning \
@@ -20,8 +20,12 @@ cipd ensure \
      -ensure-file - \
      <<ENSURE_FILE
 infra/tools/protoc/\${platform} protobuf_version:${CIPD_PROTOC_VERSION}
-chromiumos/infra/tools/protoc-gen-go version:${CIPD_PROTOC_GEN_GO_VERSION}
 infra/3pp/tools/go/\${platform} latest
 ENSURE_FILE
+# TODO(https://crbug.com/1174238): this should use versioned CIPD packages for
+# these programs, but we need 3pp-build packages before that can work.
+go install google.golang.org/protobuf/cmd/protoc-gen-go
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 PATH="${cipd_root}:${PATH}"
 PATH="${cipd_root}/bin:${PATH}"
+PATH="${GOBIN}:${PATH}"
