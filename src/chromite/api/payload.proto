@@ -124,5 +124,7 @@ service PayloadService {
     module: "payload",
     service_chroot_assert: INSIDE,
   };
+
+  // Added in R79.
   rpc GeneratePayload(GenerationRequest) returns (GenerationResponse);
 }

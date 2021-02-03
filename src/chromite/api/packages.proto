@@ -19,7 +19,7 @@ message BuildsChromeRequest {
   // The build target we are checking for.
   chromiumos.BuildTarget build_target = 2;
   // List of packages to be installed by the builder. If none are specified the
-  // standard list of packages is used.
+  // standard list of packages is used.  Added in R79.
   repeated chromiumos.PackageInfo packages = 3;
 }
 
@@ -32,12 +32,12 @@ message GetBestVisibleRequest {
   // An atom to pass to portageq, e.g. 'chromeos-chrome'.
   string atom = 1;
 
-  // The chroot path.
+  // The chroot path.  Added in R78.
   // Required if not in the default location.
   chromiumos.Chroot chroot = 2;
 
   // The build target to examine. Checks the chroot when not provided.
-  // Required when examining a build target.
+  // Required when examining a build target.  Added in R78.
   chromiumos.BuildTarget build_target = 3;
 }
 
@@ -292,7 +292,7 @@ service PackageService {
     service_chroot_assert: INSIDE,
   };
 
-  // Check if the build target has chrome in its depgraph.
+  // Check if the build target has chrome in its depgraph.  Added in R79.
   rpc BuildsChrome(BuildsChromeRequest) returns (BuildsChromeResponse);
 
   // Check whether the Chrome source tree is needed.  Does not compile nor
@@ -305,38 +305,40 @@ service PackageService {
   // Find the best (highest) available version of the requested package.
   // This must be run after the chroot is set up (for chroot package lookup) or
   // after the sysroot is created (for build target package lookup).
+  // Added in R79.
   rpc GetBestVisible(GetBestVisibleRequest) returns (GetBestVisibleResponse);
 
   // Like GetBestVisible, but returns only the chrome version. The chrome
   // package version is something like 78.9.0.123_rc-r1, where the chrome
   // version itself is just 78.9.0.123. This case does not have a spec in
   // Portage, so it cannot be directly fetched by GetBestVisible.
+  // Added in R79.
   rpc GetChromeVersion(GetChromeVersionRequest)
     returns (GetChromeVersionResponse);
 
   // Return the various build version fields that can be stored (e.g. in
-  // metadata.json).
+  // metadata.json).  Added in R79.
   rpc GetTargetVersions(GetTargetVersionsRequest)
     returns (GetTargetVersionsResponse);
 
   // Return the various metabuilder fields for a release builder.
-  // This can be run after InstallPackages.
+  // This can be run after InstallPackages. Added in R84.
   rpc GetBuilderMetadata(GetBuilderMetadataRequest)
     returns (GetBuilderMetadataResponse);
 
   // Check if there is an available chrome prebuilt for the most recent
-  // version of chrome.
+  // version of chrome.  Added in R79.
   rpc HasChromePrebuilt(HasChromePrebuiltRequest)
     returns (HasChromePrebuiltResponse);
 
   // Check if there is an available prebuilt for the most recent version of the
-  // package.
+  // package.  Added in R83.
   rpc HasPrebuilt(HasPrebuiltRequest) returns (HasPrebuiltResponse);
 
   // The generic uprev process -- performs uprevs for all packages in the
   // public and/or private overlays for the build target(s) specified.
   // This handles all cros_workon packages except those that have a separate
-  // uprev process.
+  // uprev process.  Added in R79.
   rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse) {
     option (method_options) = {
       method_chroot_assert: OUTSIDE,
@@ -347,6 +349,7 @@ service PackageService {
   // This endpoint iterates over a list of git refs that represent versions
   // and searches for a new version, updating and upreving the package ebuild
   // if such a version is found. The exact behavior depends on the package.
+  // Added in R79.
   rpc UprevVersionedPackage(UprevVersionedPackageRequest)
     returns (UprevVersionedPackageResponse) {
     option (method_options) = {

@@ -22,14 +22,14 @@ const (
 )
 
 // TODO(b/177907747): Drop this once the migration is complete.
-// List of known location that firmware can be built from
+// List of known location that firmware can be built from.
 type FwLocation int32
 
 const (
 	FwLocation_FW_LOCATION_UNKNOWN FwLocation = 0
 	FwLocation_PLATFORM_EC         FwLocation = 1 // platform/ec/firmware_builder.py
 	FwLocation_PLATFORM_ZEPHYR     FwLocation = 2 // platform/zephyr-chrome/firmware_builder.py
-	FwLocation_PLATFORM_TI50       FwLocation = 3 // platform/ti50/common/firmware_builder.py
+	FwLocation_PLATFORM_TI50       FwLocation = 3 // platform/ti50/common/firmware_builder.py.  Added in R90.
 )
 
 // Enum value maps for FwLocation.
@@ -79,8 +79,8 @@ type FwBuildMetric_FwSection_FwRegion int32
 
 const (
 	FwBuildMetric_FwSection_FW_REGION_UNKNOWN FwBuildMetric_FwSection_FwRegion = 0
-	FwBuildMetric_FwSection_EC_RO             FwBuildMetric_FwSection_FwRegion = 1 // The entire section protected by write protect
-	FwBuildMetric_FwSection_EC_RW             FwBuildMetric_FwSection_FwRegion = 2 // Also RW_A for EFS1 systems
+	FwBuildMetric_FwSection_EC_RO             FwBuildMetric_FwSection_FwRegion = 1 // The entire section protected by write protect.
+	FwBuildMetric_FwSection_EC_RW             FwBuildMetric_FwSection_FwRegion = 2 // Also RW_A for EFS1 systems.
 	FwBuildMetric_FwSection_EC_RO_BSS         FwBuildMetric_FwSection_FwRegion = 3
 	FwBuildMetric_FwSection_EC_RW_BSS         FwBuildMetric_FwSection_FwRegion = 4
 	FwBuildMetric_FwSection_EC_SHARED_MEM     FwBuildMetric_FwSection_FwRegion = 5
@@ -133,20 +133,20 @@ func (FwBuildMetric_FwSection_FwRegion) EnumDescriptor() ([]byte, []int) {
 	return file_chromite_api_firmware_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
-// Metrics collected on every successful firmware build
+// Metrics collected on every successful firmware build.
 type FwBuildMetric struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Lowercase name of the firmware target built. E.g. phaser
+	// Lowercase name of the firmware target built. E.g. phaser.
 	TargetName string `protobuf:"bytes,1,opt,name=target_name,json=targetName,proto3" json:"target_name,omitempty"`
 	// Lowercase name of the platform the firmware target belongs to. May be
-	// blank. E.g. octopus
+	// blank. E.g. octopus.
 	PlatformName string `protobuf:"bytes,2,opt,name=platform_name,json=platformName,proto3" json:"platform_name,omitempty"`
-	// List of firmware sections and their free and total sizes in bytes
+	// List of firmware sections and their free and total sizes in bytes.
 	FwSection []*FwBuildMetric_FwSection `protobuf:"bytes,3,rep,name=fw_section,json=fwSection,proto3" json:"fw_section,omitempty"`
-	// Optional information related to a specific target type
+	// Optional information related to a specific target type.
 	//
 	// Types that are assignable to ImageType:
 	//	*FwBuildMetric_Zephyr
@@ -233,7 +233,7 @@ func (*FwBuildMetric_Zephyr) isFwBuildMetric_ImageType() {}
 // A list of FW metrics collected on every successful firmware build
 // Implementation note, this is a separate message since it serves as the
 // serialization base between the build_api end point and the entry point
-// in the firmware_builder.py
+// in the firmware_builder.py.
 type FwBuildMetricList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -281,13 +281,13 @@ func (x *FwBuildMetricList) GetValue() []*FwBuildMetric {
 	return nil
 }
 
-// Metrics collect on successful firmware unit test runs
+// Metrics collect on successful firmware unit test runs.
 type FwTestMetric struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Name of firmware test
+	// Name of firmware test.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
 
@@ -333,7 +333,7 @@ func (x *FwTestMetric) GetName() string {
 // A list of FW metrics collected on every successful firmware unit test.
 // Implementation note, this is a separate message since it serves as the
 // serialization base between the build_api end point and the entry point
-// in the firmware_builder.py
+// in the firmware_builder.py.
 type FwTestMetricList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -388,7 +388,7 @@ type BuildAllTotFirmwareRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Location of firmware to build call into firmware_builder.py entry point.
-	// The `build` subcommand will be called
+	// The `build` subcommand will be called.
 	FirmwareLocation FwLocation `protobuf:"varint,1,opt,name=firmware_location,json=firmwareLocation,proto3,enum=chromite.api.FwLocation" json:"firmware_location,omitempty"`
 	// The chroot where the operations will be executed.
 	// Required.
@@ -935,11 +935,11 @@ type FwBuildMetric_FwSection struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Region as described in FMAP or linker script.
-	// E.g. EC_RO, EC_RW, EC_NVRAM, RO_BSS, RW_BSS, SHARED_MEM
+	// E.g. EC_RO, EC_RW, EC_NVRAM, RO_BSS, RW_BSS, SHARED_MEM.
 	Region FwBuildMetric_FwSection_FwRegion `protobuf:"varint,1,opt,name=region,proto3,enum=chromite.api.FwBuildMetric_FwSection_FwRegion" json:"region,omitempty"`
-	// The number of bytes used in this section
+	// The number of bytes used in this section.
 	Used uint32 `protobuf:"varint,2,opt,name=used,proto3" json:"used,omitempty"`
-	// The total number of bytes available in this section
+	// The total number of bytes available in this section.
 	Total uint32 `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty"`
 }
 
@@ -1060,13 +1060,13 @@ func (x *FwBuildMetric_Version) GetTiny() uint32 {
 	return 0
 }
 
-// Zephyr-base firmware target related build metrics
+// Zephyr-base firmware target related build metrics.
 type FwBuildMetric_ZephyrTarget struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The version of the Zephyr kernel used during build
+	// The version of the Zephyr kernel used during build.
 	KernelVersion *FwBuildMetric_Version `protobuf:"bytes,1,opt,name=kernel_version,json=kernelVersion,proto3" json:"kernel_version,omitempty"`
 }
 

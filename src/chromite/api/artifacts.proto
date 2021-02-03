@@ -163,12 +163,13 @@ service ArtifactsService {
   };
 
   // Prepare to build artifacts.
+  // TODO(crbug/1034529): This is broken because it was never added to chromite.
   rpc PrepareForBuild(PrepareForBuildRequest) returns (PrepareForBuildResponse);
 
-  // Get artifacts for build.
+  // Get artifacts for build. Added in R90.
   rpc Get(GetRequest) returns (GetResponse);
 
-  // Fetch the pinned guest image locations.
+  // Fetch the pinned guest image locations.  Added in R77.
   rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
     returns (PinnedGuestImageUriResponse);
 
@@ -183,11 +184,11 @@ service ArtifactsService {
   rpc BundleAutotestFiles(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
-  // Create the ChromeOS Config JSON payload.
+  // Create the ChromeOS Config JSON payload.  Added in R78.
   rpc BundleChromeOSConfig(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
-  // Create a tar archive of debug symbols.
+  // Create a tar archive of debug symbols.  Added in R90.
   rpc BundleDebugSymbols(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
@@ -200,6 +201,7 @@ service ArtifactsService {
 
   // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar.xz archive for each image that has been created.
+  // Added in R79.
   rpc BundleImageArchives(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
@@ -209,7 +211,7 @@ service ArtifactsService {
   // TODO(crbug/1034529): DEPRECATED use Get
   // DEPRECATED for recipes: crbug/1019868: This are being replaced by
   // ToolchainService.Bundle{ArtifactType}()
-  // Create Chrome Benchmark AFDO builder artifacts.
+  // Create Chrome Benchmark AFDO builder artifacts.  Added in R78.
   rpc BundleAFDOGenerationArtifacts(BundleChromeAFDORequest)
     returns (BundleResponse);
 
@@ -234,18 +236,20 @@ service ArtifactsService {
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
-  // Generate a CPE report to a file.
+  // Generate a CPE report to a file.  Added in R78.
   rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tar archive with fingerprint MCU on-device unittest binaries.
+  // Added in R88.
   rpc BundleFpmcuUnittests(BundleRequest) returns (BundleResponse);
 
   // TODO(crbug/1034529): DEPRECATED use Get
   // Create a tarball from the test image suitable for importing into GCE.
+  // Added in R89.
   rpc BundleGceTarball(BundleRequest) returns (BundleResponse);
 
-  // Generate all Remote Test Driver metadata.
+  // Generate all Remote Test Driver metadata.  Added in R85.
   //
   // Response consists of one or more metadata files. Each file must contain a
   // single binary encoded chromiumos.config.api.test.metadata.v1.Specification
@@ -260,7 +264,7 @@ service ArtifactsService {
   rpc GenerateRemoteTestDriverSpecification(BundleRequest)
     returns (BundleResponse);
 
-  // Generate all Remote Test Driver container images.
+  // Generate all Remote Test Driver container images.  Added in R85.
   //
   // Response consists of one or more Docker container images.
   // The images are identified by their Docker image digest. The filenames of

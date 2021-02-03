@@ -143,7 +143,7 @@ type SysrootCreateRequest struct {
 	Profile *Profile `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
 	// The chroot to use to execute the endpoint.
 	Chroot *chromiumos.Chroot `protobuf:"bytes,4,opt,name=chroot,proto3" json:"chroot,omitempty"`
-	// Package index files available for use.
+	// Package index files available for use.  Added in R86.
 	PackageIndexes []*chromiumos.PackageIndexInfo `protobuf:"bytes,5,rep,name=package_indexes,json=packageIndexes,proto3" json:"package_indexes,omitempty"`
 }
 

@@ -32,7 +32,7 @@ type ImageServiceClient interface {
 	//  "result": {"directory": "/tmp/image_test_results"}
 	// }
 	Test(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error)
-	// Execute SignerTest for an image.
+	// Execute SignerTest for an image.  Added in R78.
 	// Example json:
 	// {
 	//  "build_target": {"name": "reef"},
@@ -40,7 +40,7 @@ type ImageServiceClient interface {
 	//  "result": {"directory": "/tmp/image_test_results"}
 	// }
 	SignerTest(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error)
-	// Execute PushImage for a script.
+	// Execute PushImage for a script.  Added in R89.
 	// Example json:
 	// {
 	//   "dryrun": true,
@@ -117,7 +117,7 @@ type ImageServiceServer interface {
 	//  "result": {"directory": "/tmp/image_test_results"}
 	// }
 	Test(context.Context, *TestImageRequest) (*TestImageResult, error)
-	// Execute SignerTest for an image.
+	// Execute SignerTest for an image.  Added in R78.
 	// Example json:
 	// {
 	//  "build_target": {"name": "reef"},
@@ -125,7 +125,7 @@ type ImageServiceServer interface {
 	//  "result": {"directory": "/tmp/image_test_results"}
 	// }
 	SignerTest(context.Context, *TestImageRequest) (*TestImageResult, error)
-	// Execute PushImage for a script.
+	// Execute PushImage for a script.  Added in R89.
 	// Example json:
 	// {
 	//   "dryrun": true,

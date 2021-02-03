@@ -19,16 +19,16 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FirmwareServiceClient interface {
 	// TODO(b/177907747): Drop this once the migration is complete.
-	// Builds all of the firmware targets on ToT at specified location
+	// Builds all of the firmware targets on ToT at specified location.
 	BuildAllTotFirmware(ctx context.Context, in *BuildAllTotFirmwareRequest, opts ...grpc.CallOption) (*BuildAllTotFirmwareResponse, error)
 	// TODO(b/177907747): Drop this once the migration is complete.
-	// Runs all of the firmware tests on ToT at specified location
+	// Runs all of the firmware tests on ToT at specified location.
 	TestAllTotFirmware(ctx context.Context, in *TestAllTotFirmwareRequest, opts ...grpc.CallOption) (*TestAllTotFirmwareResponse, error)
-	// Builds all of the firmware targets at specified location
+	// Builds all of the firmware targets at specified location. Added in R90.
 	BuildAllFirmware(ctx context.Context, in *BuildAllFirmwareRequest, opts ...grpc.CallOption) (*BuildAllFirmwareResponse, error)
-	// Runs all of the firmware tests at specified location
+	// Runs all of the firmware tests at specified location. Added in R90.
 	TestAllFirmware(ctx context.Context, in *TestAllFirmwareRequest, opts ...grpc.CallOption) (*TestAllFirmwareResponse, error)
-	// Bundles any firmware images and other artifacts.
+	// Bundles any firmware images and other artifacts. Added in R90.
 	BundleFirmwareArtifacts(ctx context.Context, in *BundleFirmwareArtifactsRequest, opts ...grpc.CallOption) (*BundleFirmwareArtifactsResponse, error)
 }
 
@@ -90,16 +90,16 @@ func (c *firmwareServiceClient) BundleFirmwareArtifacts(ctx context.Context, in 
 // for forward compatibility
 type FirmwareServiceServer interface {
 	// TODO(b/177907747): Drop this once the migration is complete.
-	// Builds all of the firmware targets on ToT at specified location
+	// Builds all of the firmware targets on ToT at specified location.
 	BuildAllTotFirmware(context.Context, *BuildAllTotFirmwareRequest) (*BuildAllTotFirmwareResponse, error)
 	// TODO(b/177907747): Drop this once the migration is complete.
-	// Runs all of the firmware tests on ToT at specified location
+	// Runs all of the firmware tests on ToT at specified location.
 	TestAllTotFirmware(context.Context, *TestAllTotFirmwareRequest) (*TestAllTotFirmwareResponse, error)
-	// Builds all of the firmware targets at specified location
+	// Builds all of the firmware targets at specified location. Added in R90.
 	BuildAllFirmware(context.Context, *BuildAllFirmwareRequest) (*BuildAllFirmwareResponse, error)
-	// Runs all of the firmware tests at specified location
+	// Runs all of the firmware tests at specified location. Added in R90.
 	TestAllFirmware(context.Context, *TestAllFirmwareRequest) (*TestAllFirmwareResponse, error)
-	// Bundles any firmware images and other artifacts.
+	// Bundles any firmware images and other artifacts. Added in R90.
 	BundleFirmwareArtifacts(context.Context, *BundleFirmwareArtifactsRequest) (*BundleFirmwareArtifactsResponse, error)
 	mustEmbedUnimplementedFirmwareServiceServer()
 }

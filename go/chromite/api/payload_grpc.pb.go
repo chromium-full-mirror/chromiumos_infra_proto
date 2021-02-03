@@ -18,6 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PayloadServiceClient interface {
+	// Added in R79.
 	GeneratePayload(ctx context.Context, in *GenerationRequest, opts ...grpc.CallOption) (*GenerationResponse, error)
 }
 
@@ -42,6 +43,7 @@ func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *Generati
 // All implementations must embed UnimplementedPayloadServiceServer
 // for forward compatibility
 type PayloadServiceServer interface {
+	// Added in R79.
 	GeneratePayload(context.Context, *GenerationRequest) (*GenerationResponse, error)
 	mustEmbedUnimplementedPayloadServiceServer()
 }

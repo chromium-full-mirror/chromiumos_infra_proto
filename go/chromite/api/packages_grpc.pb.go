@@ -18,38 +18,41 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PackageServiceClient interface {
-	// Check if the build target has chrome in its depgraph.
+	// Check if the build target has chrome in its depgraph.  Added in R79.
 	BuildsChrome(ctx context.Context, in *BuildsChromeRequest, opts ...grpc.CallOption) (*BuildsChromeResponse, error)
 	// Find the best (highest) available version of the requested package.
 	// This must be run after the chroot is set up (for chroot package lookup) or
 	// after the sysroot is created (for build target package lookup).
+	// Added in R79.
 	GetBestVisible(ctx context.Context, in *GetBestVisibleRequest, opts ...grpc.CallOption) (*GetBestVisibleResponse, error)
 	// Like GetBestVisible, but returns only the chrome version. The chrome
 	// package version is something like 78.9.0.123_rc-r1, where the chrome
 	// version itself is just 78.9.0.123. This case does not have a spec in
 	// Portage, so it cannot be directly fetched by GetBestVisible.
+	// Added in R79.
 	GetChromeVersion(ctx context.Context, in *GetChromeVersionRequest, opts ...grpc.CallOption) (*GetChromeVersionResponse, error)
 	// Return the various build version fields that can be stored (e.g. in
-	// metadata.json).
+	// metadata.json).  Added in R79.
 	GetTargetVersions(ctx context.Context, in *GetTargetVersionsRequest, opts ...grpc.CallOption) (*GetTargetVersionsResponse, error)
 	// Return the various metabuilder fields for a release builder.
-	// This can be run after InstallPackages.
+	// This can be run after InstallPackages. Added in R84.
 	GetBuilderMetadata(ctx context.Context, in *GetBuilderMetadataRequest, opts ...grpc.CallOption) (*GetBuilderMetadataResponse, error)
 	// Check if there is an available chrome prebuilt for the most recent
-	// version of chrome.
+	// version of chrome.  Added in R79.
 	HasChromePrebuilt(ctx context.Context, in *HasChromePrebuiltRequest, opts ...grpc.CallOption) (*HasChromePrebuiltResponse, error)
 	// Check if there is an available prebuilt for the most recent version of the
-	// package.
+	// package.  Added in R83.
 	HasPrebuilt(ctx context.Context, in *HasPrebuiltRequest, opts ...grpc.CallOption) (*HasPrebuiltResponse, error)
 	// The generic uprev process -- performs uprevs for all packages in the
 	// public and/or private overlays for the build target(s) specified.
 	// This handles all cros_workon packages except those that have a separate
-	// uprev process.
+	// uprev process.  Added in R79.
 	Uprev(ctx context.Context, in *UprevPackagesRequest, opts ...grpc.CallOption) (*UprevPackagesResponse, error)
 	// Uprev a package that is externally versioned (e.g. Chrome).
 	// This endpoint iterates over a list of git refs that represent versions
 	// and searches for a new version, updating and upreving the package ebuild
 	// if such a version is found. The exact behavior depends on the package.
+	// Added in R79.
 	UprevVersionedPackage(ctx context.Context, in *UprevVersionedPackageRequest, opts ...grpc.CallOption) (*UprevVersionedPackageResponse, error)
 }
 
@@ -146,38 +149,41 @@ func (c *packageServiceClient) UprevVersionedPackage(ctx context.Context, in *Up
 // All implementations must embed UnimplementedPackageServiceServer
 // for forward compatibility
 type PackageServiceServer interface {
-	// Check if the build target has chrome in its depgraph.
+	// Check if the build target has chrome in its depgraph.  Added in R79.
 	BuildsChrome(context.Context, *BuildsChromeRequest) (*BuildsChromeResponse, error)
 	// Find the best (highest) available version of the requested package.
 	// This must be run after the chroot is set up (for chroot package lookup) or
 	// after the sysroot is created (for build target package lookup).
+	// Added in R79.
 	GetBestVisible(context.Context, *GetBestVisibleRequest) (*GetBestVisibleResponse, error)
 	// Like GetBestVisible, but returns only the chrome version. The chrome
 	// package version is something like 78.9.0.123_rc-r1, where the chrome
 	// version itself is just 78.9.0.123. This case does not have a spec in
 	// Portage, so it cannot be directly fetched by GetBestVisible.
+	// Added in R79.
 	GetChromeVersion(context.Context, *GetChromeVersionRequest) (*GetChromeVersionResponse, error)
 	// Return the various build version fields that can be stored (e.g. in
-	// metadata.json).
+	// metadata.json).  Added in R79.
 	GetTargetVersions(context.Context, *GetTargetVersionsRequest) (*GetTargetVersionsResponse, error)
 	// Return the various metabuilder fields for a release builder.
-	// This can be run after InstallPackages.
+	// This can be run after InstallPackages. Added in R84.
 	GetBuilderMetadata(context.Context, *GetBuilderMetadataRequest) (*GetBuilderMetadataResponse, error)
 	// Check if there is an available chrome prebuilt for the most recent
-	// version of chrome.
+	// version of chrome.  Added in R79.
 	HasChromePrebuilt(context.Context, *HasChromePrebuiltRequest) (*HasChromePrebuiltResponse, error)
 	// Check if there is an available prebuilt for the most recent version of the
-	// package.
+	// package.  Added in R83.
 	HasPrebuilt(context.Context, *HasPrebuiltRequest) (*HasPrebuiltResponse, error)
 	// The generic uprev process -- performs uprevs for all packages in the
 	// public and/or private overlays for the build target(s) specified.
 	// This handles all cros_workon packages except those that have a separate
-	// uprev process.
+	// uprev process.  Added in R79.
 	Uprev(context.Context, *UprevPackagesRequest) (*UprevPackagesResponse, error)
 	// Uprev a package that is externally versioned (e.g. Chrome).
 	// This endpoint iterates over a list of git refs that represent versions
 	// and searches for a new version, updating and upreving the package ebuild
 	// if such a version is found. The exact behavior depends on the package.
+	// Added in R79.
 	UprevVersionedPackage(context.Context, *UprevVersionedPackageRequest) (*UprevVersionedPackageResponse, error)
 	mustEmbedUnimplementedPackageServiceServer()
 }

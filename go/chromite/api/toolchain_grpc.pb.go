@@ -21,20 +21,21 @@ type ToolchainServiceClient interface {
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
 	// See also crbug/1019868.  R87 is the last release branch that supports the
 	// legacy toolchain builders.
-	// Update Chrome ebuild with most recent unvetted orderfile
+	// Update Chrome ebuild with most recent unvetted orderfile.  Added in R78.
 	UpdateEbuildWithAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
 	// See also crbug/1019868.  R87 is the last release branch that supports the
 	// legacy toolchain builders.
-	// Copy the orderfile from unvetted GS bucket to vetted bucket.
+	// Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
 	UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
 	// again at the start of the 'install packages' step, if the build gets that
-	// far.
+	// far.  Added in R80.
 	PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error)
-	// Bundle toolchain artifacts.
+	// Bundle toolchain artifacts.  Added in R80.
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
+	// Added in R90.
 	GetUpdatedFiles(ctx context.Context, in *GetUpdatedFilesRequest, opts ...grpc.CallOption) (*GetUpdatedFilesResponse, error)
 }
 
@@ -98,20 +99,21 @@ type ToolchainServiceServer interface {
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
 	// See also crbug/1019868.  R87 is the last release branch that supports the
 	// legacy toolchain builders.
-	// Update Chrome ebuild with most recent unvetted orderfile
+	// Update Chrome ebuild with most recent unvetted orderfile.  Added in R78.
 	UpdateEbuildWithAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
 	// DEPRECATED for recipes: used only by legacy toolchain builders.
 	// See also crbug/1019868.  R87 is the last release branch that supports the
 	// legacy toolchain builders.
-	// Copy the orderfile from unvetted GS bucket to vetted bucket.
+	// Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
 	UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
 	// again at the start of the 'install packages' step, if the build gets that
-	// far.
+	// far.  Added in R80.
 	PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error)
-	// Bundle toolchain artifacts.
+	// Bundle toolchain artifacts.  Added in R80.
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
+	// Added in R90.
 	GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error)
 	mustEmbedUnimplementedToolchainServiceServer()
 }

@@ -128,13 +128,13 @@ service SdkService {
   // Create method, supports replacing an existing chroot.
   rpc Create(CreateRequest) returns (CreateResponse);
 
-  // Delete a chroot.
+  // Delete a chroot. Added in R79.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
 
-  // Clean up unneeded files from the chroot.
+  // Clean up unneeded files from the chroot. Added in R81.
   rpc Clean(CleanRequest) returns (CleanResponse);
 
-  // Unmount a chroot.
+  // Unmount a chroot. Added in R81.
   rpc Unmount(UnmountRequest) returns (UnmountResponse);
 
   // Update the chroot.
@@ -144,13 +144,13 @@ service SdkService {
     };
   }
 
-  // Create a chroot snapshot.
+  // Create a chroot snapshot. Added in R83.
   rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse);
 
-  // Restore a chroot to a snapshot.
+  // Restore a chroot to a snapshot. Added in R83.
   rpc RestoreSnapshot(RestoreSnapshotRequest) returns (RestoreSnapshotResponse);
 
-  // Unmount a filesystem path and any submounts under it.
+  // Unmount a filesystem path and any submounts under it.  Added in R86.
   rpc UnmountPath(UnmountPathRequest)
       returns (UnmountPathResponse);
 }

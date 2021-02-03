@@ -95,7 +95,7 @@ type BuildsChromeRequest struct {
 	// The build target we are checking for.
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,2,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
 	// List of packages to be installed by the builder. If none are specified the
-	// standard list of packages is used.
+	// standard list of packages is used.  Added in R79.
 	Packages []*chromiumos.PackageInfo `protobuf:"bytes,3,rep,name=packages,proto3" json:"packages,omitempty"`
 }
 
@@ -207,11 +207,11 @@ type GetBestVisibleRequest struct {
 
 	// An atom to pass to portageq, e.g. 'chromeos-chrome'.
 	Atom string `protobuf:"bytes,1,opt,name=atom,proto3" json:"atom,omitempty"`
-	// The chroot path.
+	// The chroot path.  Added in R78.
 	// Required if not in the default location.
 	Chroot *chromiumos.Chroot `protobuf:"bytes,2,opt,name=chroot,proto3" json:"chroot,omitempty"`
 	// The build target to examine. Checks the chroot when not provided.
-	// Required when examining a build target.
+	// Required when examining a build target.  Added in R78.
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,3,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
 }
 

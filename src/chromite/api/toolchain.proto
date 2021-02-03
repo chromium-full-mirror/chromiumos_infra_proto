@@ -3,6 +3,8 @@ package chromite.api;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
+// Added in R77.
+
 import "chromite/api/artifacts.proto";
 import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
@@ -163,7 +165,7 @@ service ToolchainService {
   // DEPRECATED for recipes: used only by legacy toolchain builders.
   // See also crbug/1019868.  R87 is the last release branch that supports the
   // legacy toolchain builders.
-  // Update Chrome ebuild with most recent unvetted orderfile
+  // Update Chrome ebuild with most recent unvetted orderfile.  Added in R78.
   rpc UpdateEbuildWithAFDOArtifacts(VerifyAFDOArtifactsRequest)
     returns (VerifyAFDOArtifactsResponse) {
     option (method_options) = {
@@ -174,7 +176,7 @@ service ToolchainService {
   // DEPRECATED for recipes: used only by legacy toolchain builders.
   // See also crbug/1019868.  R87 is the last release branch that supports the
   // legacy toolchain builders.
-  // Copy the orderfile from unvetted GS bucket to vetted bucket.
+  // Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
   rpc UploadVettedAFDOArtifacts(VerifyAFDOArtifactsRequest)
     returns (VerifyAFDOArtifactsResponse) {
     option (method_options) = {
@@ -185,14 +187,15 @@ service ToolchainService {
   // Prepare to build toolchain artifacts.  This will be called twice:
   // Once with chroot and sysroot = None, before the chroot is created, and
   // again at the start of the 'install packages' step, if the build gets that
-  // far.
+  // far.  Added in R80.
   rpc PrepareForBuild(PrepareForToolchainBuildRequest)
     returns (PrepareForToolchainBuildResponse);
 
-  // Bundle toolchain artifacts.
+  // Bundle toolchain artifacts.  Added in R80.
   rpc BundleArtifacts(BundleToolchainRequest)
     returns (BundleToolchainResponse);
 
+  // Added in R90.
   rpc GetUpdatedFiles(GetUpdatedFilesRequest)
     returns (GetUpdatedFilesResponse);
 }

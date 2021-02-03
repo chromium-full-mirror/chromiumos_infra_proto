@@ -18,6 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MethodServiceClient interface {
+	// Added in R77.
 	Get(ctx context.Context, in *MethodGetRequest, opts ...grpc.CallOption) (*MethodGetResponse, error)
 }
 
@@ -42,6 +43,7 @@ func (c *methodServiceClient) Get(ctx context.Context, in *MethodGetRequest, opt
 // All implementations must embed UnimplementedMethodServiceServer
 // for forward compatibility
 type MethodServiceServer interface {
+	// Added in R77.
 	Get(context.Context, *MethodGetRequest) (*MethodGetResponse, error)
 	mustEmbedUnimplementedMethodServiceServer()
 }
@@ -104,6 +106,7 @@ var MethodService_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VersionServiceClient interface {
+	// Added in R77.
 	Get(ctx context.Context, in *VersionGetRequest, opts ...grpc.CallOption) (*VersionGetResponse, error)
 }
 
@@ -128,6 +131,7 @@ func (c *versionServiceClient) Get(ctx context.Context, in *VersionGetRequest, o
 // All implementations must embed UnimplementedVersionServiceServer
 // for forward compatibility
 type VersionServiceServer interface {
+	// Added in R77.
 	Get(context.Context, *VersionGetRequest) (*VersionGetResponse, error)
 	mustEmbedUnimplementedVersionServiceServer()
 }

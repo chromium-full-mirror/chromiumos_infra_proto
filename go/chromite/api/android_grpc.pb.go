@@ -21,7 +21,7 @@ type AndroidServiceClient interface {
 	// The MarkStable method uprevs Android, verifies the newly revved package
 	// can be emerged, and returns the new package info.
 	MarkStable(ctx context.Context, in *MarkStableRequest, opts ...grpc.CallOption) (*MarkStableResponse, error)
-	// Unpin the Android package version.
+	// Unpin the Android package version.  Added in R76.
 	UnpinVersion(ctx context.Context, in *UnpinVersionRequest, opts ...grpc.CallOption) (*UnpinVersionResponse, error)
 }
 
@@ -58,7 +58,7 @@ type AndroidServiceServer interface {
 	// The MarkStable method uprevs Android, verifies the newly revved package
 	// can be emerged, and returns the new package info.
 	MarkStable(context.Context, *MarkStableRequest) (*MarkStableResponse, error)
-	// Unpin the Android package version.
+	// Unpin the Android package version.  Added in R76.
 	UnpinVersion(context.Context, *UnpinVersionRequest) (*UnpinVersionResponse, error)
 	mustEmbedUnimplementedAndroidServiceServer()
 }

@@ -35,7 +35,7 @@ type DepGraph struct {
 	// dependency packages and the source paths.
 	PackageDeps []*PackageDepInfo `protobuf:"bytes,2,rep,name=package_deps,json=packageDeps,proto3" json:"package_deps,omitempty"`
 	// The sysroot whose dependency graph is being created.  If no sysroot is
-	// being used, may be unspecified.
+	// being used, may be unspecified.  Added in R85.
 	Sysroot *Sysroot `protobuf:"bytes,3,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
 }
 
@@ -216,7 +216,7 @@ type GetBuildDependencyGraphRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The sysroot whose dependency graph is being created.  If no sysroot is
-	// being used, may be unspecified.
+	// being used, may be unspecified.  Added in R85.
 	Sysroot *Sysroot `protobuf:"bytes,4,opt,name=sysroot,proto3" json:"sysroot,omitempty"`
 	// TODO(crbug/1081828): drop when all supported release branches are no longer
 	// using this.
@@ -224,10 +224,10 @@ type GetBuildDependencyGraphRequest struct {
 	// The board whose dependency graph is being created.  If both sysroot and
 	// build_target are given, sysroot is used.
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,1,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
-	// The chroot to use to execute the endpoint.
+	// The chroot to use to execute the endpoint.  Added in R80.
 	Chroot *chromiumos.Chroot `protobuf:"bytes,2,opt,name=chroot,proto3" json:"chroot,omitempty"`
 	// List of packages for which to create the dependency graph. If none are
-	// specified the standard list of packages is used.
+	// specified the standard list of packages is used.  Added in R81.
 	Packages []*chromiumos.PackageInfo `protobuf:"bytes,3,rep,name=packages,proto3" json:"packages,omitempty"`
 }
 
@@ -297,7 +297,8 @@ type GetBuildDependencyGraphResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DepGraph    *DepGraph `protobuf:"bytes,1,opt,name=dep_graph,json=depGraph,proto3" json:"dep_graph,omitempty"`
+	DepGraph *DepGraph `protobuf:"bytes,1,opt,name=dep_graph,json=depGraph,proto3" json:"dep_graph,omitempty"`
+	// Added in R80.
 	SdkDepGraph *DepGraph `protobuf:"bytes,2,opt,name=sdk_dep_graph,json=sdkDepGraph,proto3" json:"sdk_dep_graph,omitempty"`
 }
 

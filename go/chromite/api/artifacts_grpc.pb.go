@@ -19,19 +19,20 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArtifactsServiceClient interface {
 	// Prepare to build artifacts.
+	// TODO(crbug/1034529): This is broken because it was never added to chromite.
 	PrepareForBuild(ctx context.Context, in *PrepareForBuildRequest, opts ...grpc.CallOption) (*PrepareForBuildResponse, error)
-	// Get artifacts for build.
+	// Get artifacts for build. Added in R90.
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	// Fetch the pinned guest image locations.
+	// Fetch the pinned guest image locations.  Added in R77.
 	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// Create the ChromeOS Config JSON payload.
+	// Create the ChromeOS Config JSON payload.  Added in R78.
 	BundleChromeOSConfig(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// Create a tar archive of debug symbols.
+	// Create a tar archive of debug symbols.  Added in R90.
 	BundleDebugSymbols(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with ebuild logs.
@@ -41,6 +42,7 @@ type ArtifactsServiceClient interface {
 	BundleFirmware(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar.xz archive for each image that has been created.
+	// Added in R79.
 	BundleImageArchives(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Generate zip containing all built images for the target.
@@ -48,7 +50,7 @@ type ArtifactsServiceClient interface {
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
 	// ToolchainService.Bundle{ArtifactType}()
-	// Create Chrome Benchmark AFDO builder artifacts.
+	// Create Chrome Benchmark AFDO builder artifacts.  Added in R78.
 	BundleAFDOGenerationArtifacts(ctx context.Context, in *BundleChromeAFDORequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all guest images test bundles.
@@ -66,15 +68,17 @@ type ArtifactsServiceClient interface {
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(ctx context.Context, in *BundleVmFilesRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// Generate a CPE report to a file.
+	// Generate a CPE report to a file.  Added in R78.
 	ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with fingerprint MCU on-device unittest binaries.
+	// Added in R88.
 	BundleFpmcuUnittests(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tarball from the test image suitable for importing into GCE.
+	// Added in R89.
 	BundleGceTarball(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// Generate all Remote Test Driver metadata.
+	// Generate all Remote Test Driver metadata.  Added in R85.
 	//
 	// Response consists of one or more metadata files. Each file must contain a
 	// single binary encoded chromiumos.config.api.test.metadata.v1.Specification
@@ -87,7 +91,7 @@ type ArtifactsServiceClient interface {
 	//
 	// TODO(crbug/1034529): DEPRECATED use Get
 	GenerateRemoteTestDriverSpecification(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// Generate all Remote Test Driver container images.
+	// Generate all Remote Test Driver container images.  Added in R85.
 	//
 	// Response consists of one or more Docker container images.
 	// The images are identified by their Docker image digest. The filenames of
@@ -302,19 +306,20 @@ func (c *artifactsServiceClient) GenerateRemoteTestDriverImages(ctx context.Cont
 // for forward compatibility
 type ArtifactsServiceServer interface {
 	// Prepare to build artifacts.
+	// TODO(crbug/1034529): This is broken because it was never added to chromite.
 	PrepareForBuild(context.Context, *PrepareForBuildRequest) (*PrepareForBuildResponse, error)
-	// Get artifacts for build.
+	// Get artifacts for build. Added in R90.
 	Get(context.Context, *GetRequest) (*GetResponse, error)
-	// Fetch the pinned guest image locations.
+	// Fetch the pinned guest image locations.  Added in R77.
 	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// Create the ChromeOS Config JSON payload.
+	// Create the ChromeOS Config JSON payload.  Added in R78.
 	BundleChromeOSConfig(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// Create a tar archive of debug symbols.
+	// Create a tar archive of debug symbols.  Added in R90.
 	BundleDebugSymbols(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with ebuild logs.
@@ -324,6 +329,7 @@ type ArtifactsServiceServer interface {
 	BundleFirmware(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar.xz archive for each image that has been created.
+	// Added in R79.
 	BundleImageArchives(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Generate zip containing all built images for the target.
@@ -331,7 +337,7 @@ type ArtifactsServiceServer interface {
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
 	// ToolchainService.Bundle{ArtifactType}()
-	// Create Chrome Benchmark AFDO builder artifacts.
+	// Create Chrome Benchmark AFDO builder artifacts.  Added in R78.
 	BundleAFDOGenerationArtifacts(context.Context, *BundleChromeAFDORequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all guest images test bundles.
@@ -349,15 +355,17 @@ type ArtifactsServiceServer interface {
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(context.Context, *BundleVmFilesRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// Generate a CPE report to a file.
+	// Generate a CPE report to a file.  Added in R78.
 	ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with fingerprint MCU on-device unittest binaries.
+	// Added in R88.
 	BundleFpmcuUnittests(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tarball from the test image suitable for importing into GCE.
+	// Added in R89.
 	BundleGceTarball(context.Context, *BundleRequest) (*BundleResponse, error)
-	// Generate all Remote Test Driver metadata.
+	// Generate all Remote Test Driver metadata.  Added in R85.
 	//
 	// Response consists of one or more metadata files. Each file must contain a
 	// single binary encoded chromiumos.config.api.test.metadata.v1.Specification
@@ -370,7 +378,7 @@ type ArtifactsServiceServer interface {
 	//
 	// TODO(crbug/1034529): DEPRECATED use Get
 	GenerateRemoteTestDriverSpecification(context.Context, *BundleRequest) (*BundleResponse, error)
-	// Generate all Remote Test Driver container images.
+	// Generate all Remote Test Driver container images.  Added in R85.
 	//
 	// Response consists of one or more Docker container images.
 	// The images are identified by their Docker image digest. The filenames of

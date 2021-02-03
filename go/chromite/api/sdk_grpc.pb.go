@@ -20,19 +20,19 @@ const _ = grpc.SupportPackageIsVersion7
 type SdkServiceClient interface {
 	// Create method, supports replacing an existing chroot.
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
-	// Delete a chroot.
+	// Delete a chroot. Added in R79.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	// Clean up unneeded files from the chroot.
+	// Clean up unneeded files from the chroot. Added in R81.
 	Clean(ctx context.Context, in *CleanRequest, opts ...grpc.CallOption) (*CleanResponse, error)
-	// Unmount a chroot.
+	// Unmount a chroot. Added in R81.
 	Unmount(ctx context.Context, in *UnmountRequest, opts ...grpc.CallOption) (*UnmountResponse, error)
 	// Update the chroot.
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
-	// Create a chroot snapshot.
+	// Create a chroot snapshot. Added in R83.
 	CreateSnapshot(ctx context.Context, in *CreateSnapshotRequest, opts ...grpc.CallOption) (*CreateSnapshotResponse, error)
-	// Restore a chroot to a snapshot.
+	// Restore a chroot to a snapshot. Added in R83.
 	RestoreSnapshot(ctx context.Context, in *RestoreSnapshotRequest, opts ...grpc.CallOption) (*RestoreSnapshotResponse, error)
-	// Unmount a filesystem path and any submounts under it.
+	// Unmount a filesystem path and any submounts under it.  Added in R86.
 	UnmountPath(ctx context.Context, in *UnmountPathRequest, opts ...grpc.CallOption) (*UnmountPathResponse, error)
 }
 
@@ -122,19 +122,19 @@ func (c *sdkServiceClient) UnmountPath(ctx context.Context, in *UnmountPathReque
 type SdkServiceServer interface {
 	// Create method, supports replacing an existing chroot.
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
-	// Delete a chroot.
+	// Delete a chroot. Added in R79.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	// Clean up unneeded files from the chroot.
+	// Clean up unneeded files from the chroot. Added in R81.
 	Clean(context.Context, *CleanRequest) (*CleanResponse, error)
-	// Unmount a chroot.
+	// Unmount a chroot. Added in R81.
 	Unmount(context.Context, *UnmountRequest) (*UnmountResponse, error)
 	// Update the chroot.
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
-	// Create a chroot snapshot.
+	// Create a chroot snapshot. Added in R83.
 	CreateSnapshot(context.Context, *CreateSnapshotRequest) (*CreateSnapshotResponse, error)
-	// Restore a chroot to a snapshot.
+	// Restore a chroot to a snapshot. Added in R83.
 	RestoreSnapshot(context.Context, *RestoreSnapshotRequest) (*RestoreSnapshotResponse, error)
-	// Unmount a filesystem path and any submounts under it.
+	// Unmount a filesystem path and any submounts under it.  Added in R86.
 	UnmountPath(context.Context, *UnmountPathRequest) (*UnmountPathResponse, error)
 	mustEmbedUnimplementedSdkServiceServer()
 }

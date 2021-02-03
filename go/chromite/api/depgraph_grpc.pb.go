@@ -20,9 +20,10 @@ const _ = grpc.SupportPackageIsVersion7
 type DependencyServiceClient interface {
 	// Get the build dependency graph.
 	GetBuildDependencyGraph(ctx context.Context, in *GetBuildDependencyGraphRequest, opts ...grpc.CallOption) (*GetBuildDependencyGraphResponse, error)
-	// Get the list of source paths that are relevant to the toolchain
+	// Get the list of source paths that are relevant to the toolchain.
+	// Added in R81.
 	GetToolchainPaths(ctx context.Context, in *GetToolchainPathsRequest, opts ...grpc.CallOption) (*GetToolchainPathsResponse, error)
-	// Get the list of package dependencies.
+	// Get the list of package dependencies.  Added in R87.
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 }
 
@@ -67,9 +68,10 @@ func (c *dependencyServiceClient) List(ctx context.Context, in *ListRequest, opt
 type DependencyServiceServer interface {
 	// Get the build dependency graph.
 	GetBuildDependencyGraph(context.Context, *GetBuildDependencyGraphRequest) (*GetBuildDependencyGraphResponse, error)
-	// Get the list of source paths that are relevant to the toolchain
+	// Get the list of source paths that are relevant to the toolchain.
+	// Added in R81.
 	GetToolchainPaths(context.Context, *GetToolchainPathsRequest) (*GetToolchainPathsResponse, error)
-	// Get the list of package dependencies.
+	// Get the list of package dependencies.  Added in R87.
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	mustEmbedUnimplementedDependencyServiceServer()
 }

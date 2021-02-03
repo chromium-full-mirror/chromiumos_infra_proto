@@ -18,9 +18,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BinhostServiceClient interface {
-	// Get the binhosts for a build target.
+	// Get the binhosts for a build target.  Added in R77.
 	Get(ctx context.Context, in *BinhostGetRequest, opts ...grpc.CallOption) (*BinhostGetResponse, error)
-	// Get the arguments from the private overlay's ACL file.
+	// Get the arguments from the private overlay's ACL file.  Added in R77.
 	GetPrivatePrebuiltAclArgs(ctx context.Context, in *AclArgsRequest, opts ...grpc.CallOption) (*AclArgsResponse, error)
 	// Return a list of files to upload to the binhost. Importantly, this method
 	// assumes that all files, once uploaded, will share the same relative path
@@ -30,11 +30,11 @@ type BinhostServiceClient interface {
 	// Return a list of dev-install files to upload to the binhost. Like
 	// PrepareBinhostUploads, this method assumes that all files, once uploaded,
 	// will share the same relative path on the remote disk as they do on the
-	// remote disk.
+	// remote disk.  Added in R78.
 	PrepareDevInstallBinhostUploads(ctx context.Context, in *PrepareDevInstallBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareDevInstallBinhostUploadsResponse, error)
 	// Update the binhost key for a build targets.
 	SetBinhost(ctx context.Context, in *SetBinhostRequest, opts ...grpc.CallOption) (*SetBinhostResponse, error)
-	// Regenerate the builder cache.
+	// Regenerate the builder cache.  Added in R78.
 	RegenBuildCache(ctx context.Context, in *RegenBuildCacheRequest, opts ...grpc.CallOption) (*RegenBuildCacheResponse, error)
 }
 
@@ -104,9 +104,9 @@ func (c *binhostServiceClient) RegenBuildCache(ctx context.Context, in *RegenBui
 // All implementations must embed UnimplementedBinhostServiceServer
 // for forward compatibility
 type BinhostServiceServer interface {
-	// Get the binhosts for a build target.
+	// Get the binhosts for a build target.  Added in R77.
 	Get(context.Context, *BinhostGetRequest) (*BinhostGetResponse, error)
-	// Get the arguments from the private overlay's ACL file.
+	// Get the arguments from the private overlay's ACL file.  Added in R77.
 	GetPrivatePrebuiltAclArgs(context.Context, *AclArgsRequest) (*AclArgsResponse, error)
 	// Return a list of files to upload to the binhost. Importantly, this method
 	// assumes that all files, once uploaded, will share the same relative path
@@ -116,11 +116,11 @@ type BinhostServiceServer interface {
 	// Return a list of dev-install files to upload to the binhost. Like
 	// PrepareBinhostUploads, this method assumes that all files, once uploaded,
 	// will share the same relative path on the remote disk as they do on the
-	// remote disk.
+	// remote disk.  Added in R78.
 	PrepareDevInstallBinhostUploads(context.Context, *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error)
 	// Update the binhost key for a build targets.
 	SetBinhost(context.Context, *SetBinhostRequest) (*SetBinhostResponse, error)
-	// Regenerate the builder cache.
+	// Regenerate the builder cache.  Added in R78.
 	RegenBuildCache(context.Context, *RegenBuildCacheRequest) (*RegenBuildCacheResponse, error)
 	mustEmbedUnimplementedBinhostServiceServer()
 }

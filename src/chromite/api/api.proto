@@ -46,6 +46,7 @@ service MethodService {
     service_chroot_assert: OUTSIDE,
   };
 
+  // Added in R77.
   rpc Get(MethodGetRequest) returns (MethodGetResponse) {
     option (method_options) = {
       implementation_name: "GetMethods",
@@ -60,6 +61,7 @@ service VersionService {
     service_chroot_assert: OUTSIDE,
   };
 
+  // Added in R77.
   rpc Get(VersionGetRequest) returns (VersionGetResponse) {
     option (method_options) = {
       implementation_name: "GetVersion",

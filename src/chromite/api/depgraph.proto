@@ -22,7 +22,7 @@ message DepGraph {
   repeated PackageDepInfo package_deps = 2;
 
   // The sysroot whose dependency graph is being created.  If no sysroot is
-  // being used, may be unspecified.
+  // being used, may be unspecified.  Added in R85.
   Sysroot sysroot = 3;
 }
 
@@ -48,7 +48,7 @@ message SourcePath {
 // {"build_target":{"name":"board"},"output_file":"/tmp/depgraph.json"}
 message GetBuildDependencyGraphRequest {
   // The sysroot whose dependency graph is being created.  If no sysroot is
-  // being used, may be unspecified.
+  // being used, may be unspecified.  Added in R85.
   Sysroot sysroot = 4;
   // TODO(crbug/1081828): drop when all supported release branches are no longer
   // using this.
@@ -56,16 +56,17 @@ message GetBuildDependencyGraphRequest {
   // The board whose dependency graph is being created.  If both sysroot and
   // build_target are given, sysroot is used.
   chromiumos.BuildTarget build_target = 1;
-  // The chroot to use to execute the endpoint.
+  // The chroot to use to execute the endpoint.  Added in R80.
   chromiumos.Chroot chroot = 2;
   // List of packages for which to create the dependency graph. If none are
-  // specified the standard list of packages is used.
+  // specified the standard list of packages is used.  Added in R81.
   repeated chromiumos.PackageInfo packages = 3;
 }
 
 // Response from creating dependency graph json map.
 message GetBuildDependencyGraphResponse {
   DepGraph dep_graph = 1;
+  // Added in R80.
   DepGraph sdk_dep_graph = 2;
 }
 
@@ -110,10 +111,11 @@ service DependencyService {
   rpc GetBuildDependencyGraph(GetBuildDependencyGraphRequest)
     returns (GetBuildDependencyGraphResponse);
 
-  // Get the list of source paths that are relevant to the toolchain
+  // Get the list of source paths that are relevant to the toolchain.
+  // Added in R81.
   rpc GetToolchainPaths(GetToolchainPathsRequest)
     returns (GetToolchainPathsResponse);
 
-  // Get the list of package dependencies.
+  // Get the list of package dependencies.  Added in R87.
   rpc List(ListRequest) returns (ListResponse);
 }

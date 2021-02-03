@@ -20,13 +20,13 @@ const _ = grpc.SupportPackageIsVersion7
 type SysrootServiceClient interface {
 	// Create the base sysroot structure.
 	Create(ctx context.Context, in *SysrootCreateRequest, opts ...grpc.CallOption) (*SysrootCreateResponse, error)
-	// Generate sysroot archive.
+	// Generate sysroot archive.  Added in R83.
 	GenerateArchive(ctx context.Context, in *SysrootGenerateArchiveRequest, opts ...grpc.CallOption) (*SysrootGenerateArchiveResponse, error)
 	// Install the toolchain into the sysroot.
 	InstallToolchain(ctx context.Context, in *InstallToolchainRequest, opts ...grpc.CallOption) (*InstallToolchainResponse, error)
 	// Install packages into the sysroot. By default will install all packages.
 	InstallPackages(ctx context.Context, in *InstallPackagesRequest, opts ...grpc.CallOption) (*InstallPackagesResponse, error)
-	// Install SimpleChrome sysroot.
+	// Install SimpleChrome sysroot.  Added in R79.
 	CreateSimpleChromeSysroot(ctx context.Context, in *CreateSimpleChromeSysrootRequest, opts ...grpc.CallOption) (*CreateSimpleChromeSysrootResponse, error)
 }
 
@@ -89,13 +89,13 @@ func (c *sysrootServiceClient) CreateSimpleChromeSysroot(ctx context.Context, in
 type SysrootServiceServer interface {
 	// Create the base sysroot structure.
 	Create(context.Context, *SysrootCreateRequest) (*SysrootCreateResponse, error)
-	// Generate sysroot archive.
+	// Generate sysroot archive.  Added in R83.
 	GenerateArchive(context.Context, *SysrootGenerateArchiveRequest) (*SysrootGenerateArchiveResponse, error)
 	// Install the toolchain into the sysroot.
 	InstallToolchain(context.Context, *InstallToolchainRequest) (*InstallToolchainResponse, error)
 	// Install packages into the sysroot. By default will install all packages.
 	InstallPackages(context.Context, *InstallPackagesRequest) (*InstallPackagesResponse, error)
-	// Install SimpleChrome sysroot.
+	// Install SimpleChrome sysroot.  Added in R79.
 	CreateSimpleChromeSysroot(context.Context, *CreateSimpleChromeSysrootRequest) (*CreateSimpleChromeSysrootResponse, error)
 	mustEmbedUnimplementedSysrootServiceServer()
 }

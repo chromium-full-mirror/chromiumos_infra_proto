@@ -44,7 +44,7 @@ message SysrootCreateRequest {
   Profile profile = 3;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 4;
-  // Package index files available for use.
+  // Package index files available for use.  Added in R86.
   repeated chromiumos.PackageIndexInfo package_indexes = 5;
 }
 
@@ -169,7 +169,7 @@ service SysrootService {
   // Create the base sysroot structure.
   rpc Create(SysrootCreateRequest) returns (SysrootCreateResponse);
 
-  // Generate sysroot archive.
+  // Generate sysroot archive.  Added in R83.
   rpc GenerateArchive(SysrootGenerateArchiveRequest)
     returns (SysrootGenerateArchiveResponse);
 
@@ -180,7 +180,7 @@ service SysrootService {
   // Install packages into the sysroot. By default will install all packages.
   rpc InstallPackages(InstallPackagesRequest) returns (InstallPackagesResponse);
 
-  // Install SimpleChrome sysroot.
+  // Install SimpleChrome sysroot.  Added in R79.
   rpc CreateSimpleChromeSysroot(CreateSimpleChromeSysrootRequest)
     returns (CreateSimpleChromeSysrootResponse);
 }

@@ -74,7 +74,7 @@ service AndroidService {
     };
   }
 
-  // Unpin the Android package version.
+  // Unpin the Android package version.  Added in R76.
   rpc UnpinVersion(UnpinVersionRequest)
     returns (UnpinVersionResponse) {
     option (method_options) = {

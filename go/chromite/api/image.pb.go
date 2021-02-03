@@ -210,6 +210,7 @@ type CreateImageResult struct {
 	// Any packages that failed to build. Empty on success.
 	FailedPackages []*chromiumos.PackageInfo `protobuf:"bytes,3,rep,name=failed_packages,json=failedPackages,proto3" json:"failed_packages,omitempty"`
 	// The metric events that occurred during the running of CreateImage.
+	// Added in R79.
 	Events []*chromiumos.MetricEvent `protobuf:"bytes,4,rep,name=events,proto3" json:"events,omitempty"`
 }
 

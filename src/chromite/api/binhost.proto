@@ -203,14 +203,14 @@ service BinhostService {
     service_chroot_assert: OUTSIDE,
   };
 
-  // Get the binhosts for a build target.
+  // Get the binhosts for a build target.  Added in R77.
   rpc Get(BinhostGetRequest) returns (BinhostGetResponse) {
     option (method_options) = {
       implementation_name: "GetBinhosts",
     };
   }
 
-  // Get the arguments from the private overlay's ACL file.
+  // Get the arguments from the private overlay's ACL file.  Added in R77.
   rpc GetPrivatePrebuiltAclArgs(AclArgsRequest) returns (AclArgsResponse);
 
   // Return a list of files to upload to the binhost. Importantly, this method
@@ -223,13 +223,13 @@ service BinhostService {
   // Return a list of dev-install files to upload to the binhost. Like
   // PrepareBinhostUploads, this method assumes that all files, once uploaded,
   // will share the same relative path on the remote disk as they do on the
-  // remote disk.
+  // remote disk.  Added in R78.
   rpc PrepareDevInstallBinhostUploads(PrepareDevInstallBinhostUploadsRequest)
     returns (PrepareDevInstallBinhostUploadsResponse);
 
   // Update the binhost key for a build targets.
   rpc SetBinhost(SetBinhostRequest) returns (SetBinhostResponse);
 
-  // Regenerate the builder cache.
+  // Regenerate the builder cache.  Added in R78.
   rpc RegenBuildCache(RegenBuildCacheRequest) returns (RegenBuildCacheResponse);
 }
