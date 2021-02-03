@@ -301,6 +301,7 @@ enum DeltaType {
   MILESTONE = 3;
   OMAHA = 4;
   STEPPING_STONE = 5;
+  N2N = 6;
 }
 
 // A wrapper around a serialized protocol buffer.
