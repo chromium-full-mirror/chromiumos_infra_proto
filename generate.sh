@@ -15,6 +15,13 @@ readonly work_dir=$(mktemp --tmpdir -d genprotoXXXXXX)
 trap "rm -rf ${work_dir}" EXIT
 echo "Using temporary directory ${work_dir}"
 
+if [[ "$(uname -s)" != "Linux" || "$(uname -m)" != "x86_64" ]]; then
+  echo "Error: currently generate.sh can only run on Linux x86_64 systems."
+  echo "This is because we use checked-in binaries for protoc-gen-go(-grpc)?."
+  echo "This will change soon though. See https://crbug.com/1174238"
+  exit 1
+fi
+
 if [[ -n ${CHROMIUMOS_CONFIG_DIR+x} ]]; then
   echo "CHROMIUMOS_CONFIG_DIR is set: " \
     "Copying sources from ${CHROMIUMOS_CONFIG_DIR}/"
