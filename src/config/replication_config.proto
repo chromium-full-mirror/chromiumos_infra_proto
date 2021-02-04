@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package config;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/config";
+
 import "google/protobuf/field_mask.proto";
 
 // Describes different file types that can be replicated.

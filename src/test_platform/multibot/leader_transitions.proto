@@ -6,6 +6,7 @@ syntax = "proto3";
 
 package test_platform.multibot;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/multibot";
 
 import "test_platform/multibot/common.proto";
 

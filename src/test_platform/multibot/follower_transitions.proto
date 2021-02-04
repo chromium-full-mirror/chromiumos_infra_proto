@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package test_platform.multibot;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/multibot";
+
 import "test_platform/skylab_local_state/multihost.proto";
 
 // FollowerStateChange is sent over the multibot Leader->Follower channel, to

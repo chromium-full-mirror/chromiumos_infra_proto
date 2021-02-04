@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package tast;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/tast";
+
 // A proto representation of tast's TestResult golang / JSON object.
 //
 // Currently this proto is only used for storing tast results for analysis (e.g.

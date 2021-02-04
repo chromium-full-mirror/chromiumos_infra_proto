@@ -1,6 +1,8 @@
 syntax = "proto3";
 package analysis_service;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/analysis_service";
+
 import "chromite/api/artifacts.proto";
 import "chromite/api/binhost.proto";
 import "chromite/api/depgraph.proto";

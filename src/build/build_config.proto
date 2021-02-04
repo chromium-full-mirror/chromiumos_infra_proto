@@ -8,6 +8,8 @@ syntax = "proto3";
 
 package build_config;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/build_config";
+
 // A single ChromeOS Config payload.
 //
 // The generated ChromeOS Config JSON uses "-", which is not valid in a proto
