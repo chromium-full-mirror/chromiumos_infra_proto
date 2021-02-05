@@ -18,9 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArtifactsServiceClient interface {
-	// Prepare to build artifacts.
-	// TODO(crbug/1034529): This is broken because it was never added to chromite.
-	PrepareForBuild(ctx context.Context, in *PrepareForBuildRequest, opts ...grpc.CallOption) (*PrepareForBuildResponse, error)
+	// Perform pre-build setup for artifact builds.  Added in R90.
+	BuildSetup(ctx context.Context, in *BuildSetupRequest, opts ...grpc.CallOption) (*BuildSetupResponse, error)
 	// Get artifacts for build. Added in R90.
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	// Fetch the pinned guest image locations.  Added in R77.
@@ -112,9 +111,9 @@ func NewArtifactsServiceClient(cc grpc.ClientConnInterface) ArtifactsServiceClie
 	return &artifactsServiceClient{cc}
 }
 
-func (c *artifactsServiceClient) PrepareForBuild(ctx context.Context, in *PrepareForBuildRequest, opts ...grpc.CallOption) (*PrepareForBuildResponse, error) {
-	out := new(PrepareForBuildResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/PrepareForBuild", in, out, opts...)
+func (c *artifactsServiceClient) BuildSetup(ctx context.Context, in *BuildSetupRequest, opts ...grpc.CallOption) (*BuildSetupResponse, error) {
+	out := new(BuildSetupResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BuildSetup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -305,9 +304,8 @@ func (c *artifactsServiceClient) GenerateRemoteTestDriverImages(ctx context.Cont
 // All implementations must embed UnimplementedArtifactsServiceServer
 // for forward compatibility
 type ArtifactsServiceServer interface {
-	// Prepare to build artifacts.
-	// TODO(crbug/1034529): This is broken because it was never added to chromite.
-	PrepareForBuild(context.Context, *PrepareForBuildRequest) (*PrepareForBuildResponse, error)
+	// Perform pre-build setup for artifact builds.  Added in R90.
+	BuildSetup(context.Context, *BuildSetupRequest) (*BuildSetupResponse, error)
 	// Get artifacts for build. Added in R90.
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	// Fetch the pinned guest image locations.  Added in R77.
@@ -396,8 +394,8 @@ type ArtifactsServiceServer interface {
 type UnimplementedArtifactsServiceServer struct {
 }
 
-func (UnimplementedArtifactsServiceServer) PrepareForBuild(context.Context, *PrepareForBuildRequest) (*PrepareForBuildResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PrepareForBuild not implemented")
+func (UnimplementedArtifactsServiceServer) BuildSetup(context.Context, *BuildSetupRequest) (*BuildSetupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildSetup not implemented")
 }
 func (UnimplementedArtifactsServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -472,20 +470,20 @@ func RegisterArtifactsServiceServer(s grpc.ServiceRegistrar, srv ArtifactsServic
 	s.RegisterService(&ArtifactsService_ServiceDesc, srv)
 }
 
-func _ArtifactsService_PrepareForBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrepareForBuildRequest)
+func _ArtifactsService_BuildSetup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildSetupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactsServiceServer).PrepareForBuild(ctx, in)
+		return srv.(ArtifactsServiceServer).BuildSetup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/chromite.api.ArtifactsService/PrepareForBuild",
+		FullMethod: "/chromite.api.ArtifactsService/BuildSetup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServiceServer).PrepareForBuild(ctx, req.(*PrepareForBuildRequest))
+		return srv.(ArtifactsServiceServer).BuildSetup(ctx, req.(*BuildSetupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -858,8 +856,8 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ArtifactsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "PrepareForBuild",
-			Handler:    _ArtifactsService_PrepareForBuild_Handler,
+			MethodName: "BuildSetup",
+			Handler:    _ArtifactsService_BuildSetup_Handler,
 		},
 		{
 			MethodName: "Get",

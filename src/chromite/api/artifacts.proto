@@ -194,9 +194,8 @@ service ArtifactsService {
     service_chroot_assert: OUTSIDE,
   };
 
-  // Prepare to build artifacts.
-  // TODO(crbug/1034529): This is broken because it was never added to chromite.
-  rpc PrepareForBuild(PrepareForBuildRequest) returns (PrepareForBuildResponse);
+  // Perform pre-build setup for artifact builds.  Added in R90.
+  rpc BuildSetup(BuildSetupRequest) returns (BuildSetupResponse);
 
   // Get artifacts for build. Added in R90.
   rpc Get(GetRequest) returns (GetResponse);
