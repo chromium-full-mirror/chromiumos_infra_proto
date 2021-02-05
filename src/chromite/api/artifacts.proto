@@ -13,6 +13,9 @@ message Artifact {
   string path = 1;
 }
 
+// TODO(crbug/1034529): PrepareForBuild has never existed in chromite, and is
+// being renamed to BuildSetup.  Remove these messages once recipes has stopped
+// using them.
 message PrepareForBuildRequest {
   // The chroot where the sysroot lives.
   chromiumos.Chroot chroot = 1;
@@ -28,6 +31,35 @@ message PrepareForBuildRequest {
 }
 
 message PrepareForBuildResponse {
+  // Whether this artifact requires a build.
+  enum BuildRelevance {
+    UNSPECIFIED = 0;
+    // Build is necessary to generate artifacts.
+    NEEDED = 1;
+    // Defer to other artifacts.  Used primarily for aggregation of artifact
+    // results.
+    UNKNOWN = 2;
+    // Artifacts are already generated.  The build is pointless.
+    POINTLESS = 3;
+  }
+  BuildRelevance build_relevance = 1;
+}
+
+message BuildSetupRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+
+  // The sysroot where the files live.
+  Sysroot sysroot = 2;
+
+  // Information about the artifacts.
+  chromiumos.ArtifactsByService artifact_info = 3;
+
+  // Whether we will proceed even if the build is POINTLESS.
+  bool forced_build_relevance = 4;
+}
+
+message BuildSetupResponse {
   // Whether this artifact requires a build.
   enum BuildRelevance {
     UNSPECIFIED = 0;
