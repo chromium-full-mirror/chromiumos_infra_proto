@@ -288,6 +288,9 @@ message BuilderConfig {
 
       // ArtifactsService: BundleDebugSymbols
       DEBUG_SYMBOLS = 32;
+
+      // FirmwareService: LCOV code coverage files.
+      FIRMWARE_LCOV = 33;
     }
     repeated ArtifactTypes artifact_types = 2;
 
