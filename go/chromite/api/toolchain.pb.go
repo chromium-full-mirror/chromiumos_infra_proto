@@ -142,6 +142,8 @@ func (x *ArtifactInfo) GetArtifacts() []*Artifact {
 	return nil
 }
 
+// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
+//
 // Prepare the build for artifact building.
 type PrepareForToolchainBuildRequest struct {
 	state         protoimpl.MessageState

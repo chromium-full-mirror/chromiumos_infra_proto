@@ -28,11 +28,13 @@ type ToolchainServiceClient interface {
 	// legacy toolchain builders.
 	// Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
 	UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
+	// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
 	// again at the start of the 'install packages' step, if the build gets that
 	// far.  Added in R80.
 	PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error)
+	// TODO(crbug/1034529): Migrate this to ArtifactsService/Get.
 	// Bundle toolchain artifacts.  Added in R80.
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
 	// Added in R90.
@@ -106,11 +108,13 @@ type ToolchainServiceServer interface {
 	// legacy toolchain builders.
 	// Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
 	UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
+	// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
 	// again at the start of the 'install packages' step, if the build gets that
 	// far.  Added in R80.
 	PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error)
+	// TODO(crbug/1034529): Migrate this to ArtifactsService/Get.
 	// Bundle toolchain artifacts.  Added in R80.
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
 	// Added in R90.
