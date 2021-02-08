@@ -43,6 +43,9 @@ type PackageServiceClient interface {
 	// Check if there is an available prebuilt for the most recent version of the
 	// package.  Added in R83.
 	HasPrebuilt(ctx context.Context, in *HasPrebuiltRequest, opts ...grpc.CallOption) (*HasPrebuiltResponse, error)
+	// Check whether the Chrome source tree is needed.  Does not compile nor
+	// install any packages.
+	NeedsChromeSource(ctx context.Context, in *NeedsChromeSourceRequest, opts ...grpc.CallOption) (*NeedsChromeSourceResponse, error)
 	// The generic uprev process -- performs uprevs for all packages in the
 	// public and/or private overlays for the build target(s) specified.
 	// This handles all cros_workon packages except those that have a separate
@@ -127,6 +130,15 @@ func (c *packageServiceClient) HasPrebuilt(ctx context.Context, in *HasPrebuiltR
 	return out, nil
 }
 
+func (c *packageServiceClient) NeedsChromeSource(ctx context.Context, in *NeedsChromeSourceRequest, opts ...grpc.CallOption) (*NeedsChromeSourceResponse, error) {
+	out := new(NeedsChromeSourceResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/NeedsChromeSource", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *packageServiceClient) Uprev(ctx context.Context, in *UprevPackagesRequest, opts ...grpc.CallOption) (*UprevPackagesResponse, error) {
 	out := new(UprevPackagesResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/Uprev", in, out, opts...)
@@ -174,6 +186,9 @@ type PackageServiceServer interface {
 	// Check if there is an available prebuilt for the most recent version of the
 	// package.  Added in R83.
 	HasPrebuilt(context.Context, *HasPrebuiltRequest) (*HasPrebuiltResponse, error)
+	// Check whether the Chrome source tree is needed.  Does not compile nor
+	// install any packages.
+	NeedsChromeSource(context.Context, *NeedsChromeSourceRequest) (*NeedsChromeSourceResponse, error)
 	// The generic uprev process -- performs uprevs for all packages in the
 	// public and/or private overlays for the build target(s) specified.
 	// This handles all cros_workon packages except those that have a separate
@@ -212,6 +227,9 @@ func (UnimplementedPackageServiceServer) HasChromePrebuilt(context.Context, *Has
 }
 func (UnimplementedPackageServiceServer) HasPrebuilt(context.Context, *HasPrebuiltRequest) (*HasPrebuiltResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HasPrebuilt not implemented")
+}
+func (UnimplementedPackageServiceServer) NeedsChromeSource(context.Context, *NeedsChromeSourceRequest) (*NeedsChromeSourceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NeedsChromeSource not implemented")
 }
 func (UnimplementedPackageServiceServer) Uprev(context.Context, *UprevPackagesRequest) (*UprevPackagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Uprev not implemented")
@@ -358,6 +376,24 @@ func _PackageService_HasPrebuilt_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PackageService_NeedsChromeSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NeedsChromeSourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).NeedsChromeSource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/NeedsChromeSource",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).NeedsChromeSource(ctx, req.(*NeedsChromeSourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PackageService_Uprev_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UprevPackagesRequest)
 	if err := dec(in); err != nil {
@@ -428,6 +464,10 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "HasPrebuilt",
 			Handler:    _PackageService_HasPrebuilt_Handler,
+		},
+		{
+			MethodName: "NeedsChromeSource",
+			Handler:    _PackageService_NeedsChromeSource_Handler,
 		},
 		{
 			MethodName: "Uprev",

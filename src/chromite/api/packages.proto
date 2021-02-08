@@ -295,13 +295,6 @@ service PackageService {
   // Check if the build target has chrome in its depgraph.  Added in R79.
   rpc BuildsChrome(BuildsChromeRequest) returns (BuildsChromeResponse);
 
-  // Check whether the Chrome source tree is needed.  Does not compile nor
-  // install any packages.
-  // TODO(crbug/1086714): Uncomment this when the endpoint actually exists.
-  // See https://ci.chromium.org/b/8875124107016783184
-  //rpc NeedsChromeSource(NeedsChromeSourceRequest)
-  //  returns (NeedsChromeSourceResponse);
-
   // Find the best (highest) available version of the requested package.
   // This must be run after the chroot is set up (for chroot package lookup) or
   // after the sysroot is created (for build target package lookup).
@@ -334,6 +327,11 @@ service PackageService {
   // Check if there is an available prebuilt for the most recent version of the
   // package.  Added in R83.
   rpc HasPrebuilt(HasPrebuiltRequest) returns (HasPrebuiltResponse);
+
+  // Check whether the Chrome source tree is needed.  Does not compile nor
+  // install any packages.
+  rpc NeedsChromeSource(NeedsChromeSourceRequest)
+    returns (NeedsChromeSourceResponse);
 
   // The generic uprev process -- performs uprevs for all packages in the
   // public and/or private overlays for the build target(s) specified.
