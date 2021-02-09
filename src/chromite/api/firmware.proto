@@ -179,6 +179,51 @@ message BundleFirmwareArtifactsResponse {
   chromiumos.UploadedArtifactsByService.Firmware artifacts = 1;
 }
 
+// Contents of a Firmware.FIRMWARE_TARBALL_INFO artifact.
+message FirmwareArtifactInfo {
+  // TODO(crbug/1176305): Use types from
+  // chromiumos/config/api/software/firmware_config.proto
+  message TarballInfo {
+      // The Chrome OS style version
+      string bcs_version = 1;
+
+      // The name of the firmware image used by the firmware updater. Typically
+      // the device name, but can differ when a device may have two or more
+      // different firmware images.
+      string firmware_image_name = 2;
+
+      // The type of a firmware binary.
+      message FirmwareType {
+        enum Type {
+            UNKNOWN = 0;
+            MAIN = 1;
+            EC = 2;
+            PD = 3;
+        }
+      }
+      FirmwareType.Type type = 3;
+
+      // The firmware version from updater.sh --manifest.
+      message Version {
+        int32 major = 1;
+        int32 minor = 2;
+      }
+      Version version = 4;
+  }
+
+  message ObjectInfo {
+    // The name of the file.
+    string file_name = 1;
+
+    oneof firmware_object_info {
+      // Info about Firmware.FIRMWARE_TARBALL.
+      TarballInfo tarball_info = 2;
+    }
+  }
+  repeated ObjectInfo objects = 1;
+}
+
+
 // The Firmware service.  Added in R88.
 service FirmwareService {
   option (service_options) = {
