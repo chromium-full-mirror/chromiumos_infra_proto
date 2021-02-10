@@ -10,9 +10,9 @@ message MarkStableRequest {
   // Required if not default.
   // The chroot where.
   chromiumos.Chroot chroot = 1;
-  // Required.
   // The manifest branch being used.
-  string tracking_branch = 2;
+  // Deprecated since R90.
+  string tracking_branch = 2 [deprecated = true];
   // Required.
   // Portage package name for Android container.
   string package_name = 3;
@@ -28,6 +28,10 @@ message MarkStableRequest {
   // emerge-able sanity check for the new version.
   // Recommended.
   repeated chromiumos.BuildTarget build_targets = 7;
+  // Asks the uprev script to skip commiting changes to git when it's not
+  // required, for example in CQ builders.
+  // Added in R90.
+  bool skip_commit = 8;
 }
 
 enum MarkStableStatusType {
