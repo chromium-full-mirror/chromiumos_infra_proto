@@ -6,7 +6,7 @@ syntax = "proto3";
 
 package prototype;
 
-import "chromiumos/config/api/software/system_image.proto";
+import "chromiumos/build/api/system_image.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/prototype";
 
@@ -16,5 +16,5 @@ message BuilderConfig {
   bool critical = 1;
 
   // Defines the build target for this builder config.
-  chromiumos.config.api.software.SystemImage.BuildTarget build_target = 2;
+  chromiumos.build.api.SystemImage.BuildTarget build_target = 2;
 }
