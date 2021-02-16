@@ -100,6 +100,9 @@ message BuildAllTotFirmwareRequest {
   // The chroot where the operations will be executed.
   // Required.
   chromiumos.Chroot chroot = 2;
+
+  // Whether to pass --code-coverage to firmware_builder.py.
+  bool code_coverage = 3;
 }
 
 // TODO(b/177907747): Drop this once the migration is complete.
@@ -117,6 +120,9 @@ message TestAllTotFirmwareRequest {
   // The chroot where the operations will be executed.
   // Required.
   chromiumos.Chroot chroot = 2;
+
+  // Whether to pass --code-coverage to firmware_builder.py.
+  bool code_coverage = 3;
 }
 
 // TODO(b/177907747): Drop this once the migration is complete.
@@ -133,6 +139,9 @@ message BuildAllFirmwareRequest {
   // The chroot where the operations will be executed.
   // Required.
   chromiumos.Chroot chroot = 2;
+
+  // Whether to pass --code-coverage to firmware_builder.py.
+  bool code_coverage = 3;
 }
 
 message BuildAllFirmwareResponse {
@@ -148,6 +157,9 @@ message TestAllFirmwareRequest {
   // The chroot where the operations will be executed.
   // Required.
   chromiumos.Chroot chroot = 2;
+
+  // Whether to pass --code-coverage to firmware_builder.py.
+  bool code_coverage = 3;
 }
 
 message TestAllFirmwareResponse {
