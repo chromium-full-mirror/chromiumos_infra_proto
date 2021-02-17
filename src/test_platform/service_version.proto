@@ -17,4 +17,5 @@ message ServiceVersion {
   reserved 1;
 
   int64 skylab_tool = 2;
+  int64 crosfleet_tool = 3;
 }
