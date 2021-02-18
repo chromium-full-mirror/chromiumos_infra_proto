@@ -96,7 +96,21 @@ message ExecuteResponse {
         // Any rejected task dimensions from the task execution request,
         // stored as key-value pairs. This field is only populated if the
         // task was rejected by Swarming due to a lack of matching bot.
-        map<string, string> rejected_task_dimensions = 11;
+        // DEPRECATED: use rejected_dimensions instead, as it allows multiple
+        // values for the same key. This will be deleted soon.
+        // TODO(https://crbug.com/11798680)
+        map<string, string> rejected_task_dimensions = 11
+            [deprecated = true];
+
+        message RejectedTaskDimension {
+          string key = 1;
+          string value = 2;
+        }
+
+        // Any rejected task dimensions from the task execution request,
+        // stored as key-value pairs. This field is only populated if the
+        // task was rejected by Swarming due to a lack of matching bot.
+        repeated RejectedTaskDimension rejected_dimensions = 12;
 
         reserved 10;
         reserved "synchronous_log_data_url";
