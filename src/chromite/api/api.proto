@@ -5,6 +5,21 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
 
+// Compile Build API proto endpoint request.
+message CompileProtoRequest {
+
+}
+
+// Compile Build API proto endpoint response.
+message CompileProtoResponse {
+  message ProtoFile {
+    // The proto file's path.
+    string path = 1;
+  }
+
+  // The files that changed.
+  repeated ProtoFile modified_files = 1;
+}
 
 // Request for the method discovery endpoint.
 message MethodGetRequest {
@@ -37,6 +52,17 @@ message VersionGetResponse {
   }
 
   Version version = 1;
+}
+
+
+service ApiService {
+  option (service_options) = {
+    module: "api",
+    service_chroot_assert: OUTSIDE,
+  };
+
+  // Added in R90.
+  rpc CompileProto(CompileProtoRequest) returns (CompileProtoResponse);
 }
 
 // Service to handle retrieving the registered methods in the API.
