@@ -10,6 +10,18 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos/versio
 
 // BumpVersionRequest is the input for the Go-based version_bumper.
 message BumpVersionRequest {
+  // Full path to checkout of chromiumos-overlay repo.
+  string chromiumosOverlayRepo = 1;
+
+  enum VersionComponent {
+    COMPONENT_TYPE_UNSPECIFIED = 0;
+    COMPONENT_TYPE_MILESTONE = 1;
+    COMPONENT_TYPE_BUILD = 2;
+    COMPONENT_TYPE_BRANCH = 3;
+    COMPONENT_TYPE_PATCH = 4;
+  }
+  // Component of the ChromeOS version to bump.
+  VersionComponent componentToBump = 2;
 }
 
 // BumpVersionResponse is the output for the Go-based version_bumper.
