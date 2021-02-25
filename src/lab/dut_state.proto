@@ -12,7 +12,7 @@ import "lab/chromeos_device_id.proto";
 
 // This proto defines status labels in lab config of a DUT.
 
-// Next Tag: 11
+// Next Tag: 12
 message DutState {
   ChromeOSDeviceID id = 1;
   PeripheralState servo = 2;
@@ -48,9 +48,10 @@ message DutState {
   // Detected based on the cr50 RW version that the DUT is running on.
   CR50KeyEnv cr50_key_env = 7;
 
-  // Detected during running admin_audit task.
+  // Detected during running admin tasks.
   HardwareState storage_state = 8;
   HardwareState servo_usb_state = 9;
+  HardwareState battery_state = 11;
   PeripheralState rpm_state = 10;
 }
 
