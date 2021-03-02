@@ -79,6 +79,11 @@ service TestApiService {
       implementation_name: "CorrectName",
     };
   }
+  rpc HiddenMethod(TestRequestMessage) returns (TestResultMessage) {
+    option (method_options) = {
+      method_visibility: LV_HIDDEN,
+    };
+  }
 }
 
 // Inside chroot service.
@@ -122,4 +127,14 @@ service OutsideChrootApiService {
       method_chroot_assert: INSIDE,
     };
   }
+}
+
+service HiddenService {
+  option (service_options) = {
+    module: "build_api_test",
+    service_chroot_assert: OUTSIDE,
+    service_visibility: LV_HIDDEN,
+  };
+
+  rpc HiddenMethod(TestRequestMessage) returns (TestResultMessage);
 }

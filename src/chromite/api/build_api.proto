@@ -14,6 +14,15 @@ enum ChrootAssertion {
   OUTSIDE = 2;
 }
 
+// Allows setting services or endpoints to invisible in the methods listing.
+// Services/endpoints that are hidden can still be called, they just won't
+// appear in MethodService/Get.
+enum ListVisibility {
+  LV_NOT_SPECIFIED = 0;
+  LV_VISIBLE = 1;
+  LV_HIDDEN = 2;
+}
+
 // Custom Service options.
 message BuildApiServiceOptions {
   // The name of the controller module implementing the service.
@@ -21,6 +30,8 @@ message BuildApiServiceOptions {
   // Assert any methods in the service are run inside/outside the chroot when
   // specified, unless overridden by the method config.
   optional ChrootAssertion service_chroot_assert = 2;
+  // Set to LV_INVISIBLE to hide the entire service from the methods listing.
+  optional ListVisibility service_visibility = 3;
 }
 
 // Custom Method options.
@@ -31,6 +42,8 @@ message BuildApiMethodOptions {
   // Assert the method is run inside/outside the chroot when specified,
   // overriding the service config when set.
   optional ChrootAssertion method_chroot_assert = 2;
+  // Set to LV_INVISIBLE to hide the entire service from the methods listing.
+  optional ListVisibility method_visibility = 3;
 }
 
 extend google.protobuf.ServiceOptions {

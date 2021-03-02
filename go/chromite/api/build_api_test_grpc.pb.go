@@ -22,6 +22,7 @@ type TestApiServiceClient interface {
 	InputOutputMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
 	// Method name override.
 	RenamedMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	HiddenMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
 }
 
 type testApiServiceClient struct {
@@ -50,6 +51,15 @@ func (c *testApiServiceClient) RenamedMethod(ctx context.Context, in *TestReques
 	return out, nil
 }
 
+func (c *testApiServiceClient) HiddenMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestApiService/HiddenMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TestApiServiceServer is the server API for TestApiService service.
 // All implementations must embed UnimplementedTestApiServiceServer
 // for forward compatibility
@@ -58,6 +68,7 @@ type TestApiServiceServer interface {
 	InputOutputMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
 	// Method name override.
 	RenamedMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	HiddenMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
 	mustEmbedUnimplementedTestApiServiceServer()
 }
 
@@ -70,6 +81,9 @@ func (UnimplementedTestApiServiceServer) InputOutputMethod(context.Context, *Tes
 }
 func (UnimplementedTestApiServiceServer) RenamedMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenamedMethod not implemented")
+}
+func (UnimplementedTestApiServiceServer) HiddenMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HiddenMethod not implemented")
 }
 func (UnimplementedTestApiServiceServer) mustEmbedUnimplementedTestApiServiceServer() {}
 
@@ -120,6 +134,24 @@ func _TestApiService_RenamedMethod_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TestApiService_HiddenMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestApiServiceServer).HiddenMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestApiService/HiddenMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestApiServiceServer).HiddenMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TestApiService_ServiceDesc is the grpc.ServiceDesc for TestApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +166,10 @@ var TestApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RenamedMethod",
 			Handler:    _TestApiService_RenamedMethod_Handler,
+		},
+		{
+			MethodName: "HiddenMethod",
+			Handler:    _TestApiService_HiddenMethod_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -388,6 +424,92 @@ var OutsideChrootApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "OutsideServiceInsideMethod",
 			Handler:    _OutsideChrootApiService_OutsideServiceInsideMethod_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/build_api_test.proto",
+}
+
+// HiddenServiceClient is the client API for HiddenService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type HiddenServiceClient interface {
+	HiddenMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+}
+
+type hiddenServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewHiddenServiceClient(cc grpc.ClientConnInterface) HiddenServiceClient {
+	return &hiddenServiceClient{cc}
+}
+
+func (c *hiddenServiceClient) HiddenMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.HiddenService/HiddenMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// HiddenServiceServer is the server API for HiddenService service.
+// All implementations must embed UnimplementedHiddenServiceServer
+// for forward compatibility
+type HiddenServiceServer interface {
+	HiddenMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	mustEmbedUnimplementedHiddenServiceServer()
+}
+
+// UnimplementedHiddenServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedHiddenServiceServer struct {
+}
+
+func (UnimplementedHiddenServiceServer) HiddenMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HiddenMethod not implemented")
+}
+func (UnimplementedHiddenServiceServer) mustEmbedUnimplementedHiddenServiceServer() {}
+
+// UnsafeHiddenServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to HiddenServiceServer will
+// result in compilation errors.
+type UnsafeHiddenServiceServer interface {
+	mustEmbedUnimplementedHiddenServiceServer()
+}
+
+func RegisterHiddenServiceServer(s grpc.ServiceRegistrar, srv HiddenServiceServer) {
+	s.RegisterService(&HiddenService_ServiceDesc, srv)
+}
+
+func _HiddenService_HiddenMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HiddenServiceServer).HiddenMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.HiddenService/HiddenMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HiddenServiceServer).HiddenMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// HiddenService_ServiceDesc is the grpc.ServiceDesc for HiddenService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var HiddenService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.HiddenService",
+	HandlerType: (*HiddenServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "HiddenMethod",
+			Handler:    _HiddenService_HiddenMethod_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
