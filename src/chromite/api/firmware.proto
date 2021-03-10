@@ -184,6 +184,9 @@ message BundleFirmwareArtifactsRequest {
   // The artifact types requested.  The firmware_location is found in
   // artifacts.output_artifacts[].location.
   chromiumos.ArtifactsByService.Firmware artifacts = 4;
+
+  // The Chrome OS style version to use in FirmwareArtifactInfo.
+  string bcs_version = 5;
 }
 
 message BundleFirmwareArtifactsResponse {
@@ -196,7 +199,7 @@ message FirmwareArtifactInfo {
   // TODO(crbug/1176305): Use types from
   // chromiumos/config/api/software/firmware_config.proto
   message TarballInfo {
-      // The Chrome OS style version
+      // The Chrome OS style version.
       string bcs_version = 1;
 
       // The name of the firmware image used by the firmware updater. Typically
