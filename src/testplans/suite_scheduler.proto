@@ -162,6 +162,10 @@ message SchedulerConfig {
         // If sanity HW test passed, launch this test. Irrespective of the release build's
         // final status.
         bool only_sanity_test_required = 4;
+        // The options are primary and all, which indicate whether we want to trigger this test
+        // whenever there is a new build for the primary board or only run the test when
+        // every board in a group has a new build.
+        string trigger_type = 5;
     }
     RunOptions run_options = 9;
 
