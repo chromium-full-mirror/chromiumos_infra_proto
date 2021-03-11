@@ -17,6 +17,21 @@ enum FwLocation {
   PLATFORM_TI50 = 3; // platform/ti50/common/firmware_builder.py.  Added in R90.
 }
 
+// Added in R91.
+message BcsVersionInfo {
+  // Chrome OS version string, such as "R91-13844.0.0-45436".
+  string version_string = 1;
+  // Extend with fields that break down the version string.
+  // This should come from chromiumos/common.proto.
+}
+
+// Added in R91.
+message FirmwareVersionInfo {
+  // Firmware version string, such as "atlas_v2.0.923-84a1d7260".
+  string version_string = 1;
+  // Extend with fields that break down the version string.
+}
+
 // Metrics collected on every successful firmware build.
 message FwBuildMetric {
   // Lowercase name of the firmware target built. E.g. phaser.
@@ -186,7 +201,11 @@ message BundleFirmwareArtifactsRequest {
   chromiumos.ArtifactsByService.Firmware artifacts = 4;
 
   // The Chrome OS style version to use in FirmwareArtifactInfo.
-  string bcs_version = 5;
+  // Added and deprecated in R91.
+  string bcs_version = 5 [deprecated = true];
+
+  // BcsVersionInfo to use in (copy into) FirmwareArtifactInfo.TarballInfo.
+  BcsVersionInfo bcs_version_info = 6;
 }
 
 message BundleFirmwareArtifactsResponse {
@@ -200,7 +219,9 @@ message FirmwareArtifactInfo {
   // chromiumos/config/api/software/firmware_config.proto
   message TarballInfo {
       // The Chrome OS style version.
-      string bcs_version = 1;
+      // Use bcs_version_info.version_string instead.
+      // Deprecated since R91.
+      string bcs_version = 1 [deprecated = true];
 
       // The name of the firmware image used by the firmware updater. Typically
       // the device name, but can differ when a device may have two or more
@@ -223,7 +244,12 @@ message FirmwareArtifactInfo {
         int32 major = 1;
         int32 minor = 2;
       }
-      Version version = 4;
+      // Use firmware_version_info instead.
+      // Deprecated since R91.
+      Version version = 4 [deprecated = true];
+
+      // Added in R91.  Required.
+      FirmwareVersionInfo firmware_version_info = 5;
   }
 
   message ObjectInfo {
@@ -236,6 +262,11 @@ message FirmwareArtifactInfo {
     }
   }
   repeated ObjectInfo objects = 1;
+
+  // The value provided by BundleFirmwareArtifactsRequest, this is the version
+  // of Chrome OS used for this build.
+  // Added in R91.
+  BcsVersionInfo bcs_version_info = 2;
 }
 
 
