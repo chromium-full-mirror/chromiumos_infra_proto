@@ -144,6 +144,12 @@ message SchedulerConfig {
     }
     FirmwareBranch firmware_ro_build_spec = 8;
 
+    enum TriggerType {
+      // Trigger test whenever there is a new build for the primary board.
+      PRIMARY = 0;
+      // Trigger test when every board in the group has a new build.
+      ALL = 1;
+    }
     // Execution related options.
     message RunOptions {
         // Whether to retry if the task fails.
@@ -161,11 +167,8 @@ message SchedulerConfig {
         int32 timeout_mins = 3;
         // If sanity HW test passed, launch this test. Irrespective of the release build's
         // final status.
-        bool only_sanity_test_required = 4;
-        // The options are primary and all, which indicate whether we want to trigger this test
-        // whenever there is a new build for the primary board or only run the test when
-        // every board in a group has a new build.
-        string trigger_type = 5;
+        bool only_sanity_test_required = 4; 
+        TriggerType trigger_type = 5;
     }
     RunOptions run_options = 9;
 
