@@ -252,6 +252,11 @@ message FirmwareArtifactInfo {
       FirmwareVersionInfo firmware_version_info = 5;
   }
 
+  message LcovTarballInfo {
+    // Deliberately empty; there isn't any other information I need other
+    // than to know that this is code coverage data in a tarball.
+  }
+
   message ObjectInfo {
     // The name of the file.
     string file_name = 1;
@@ -259,6 +264,9 @@ message FirmwareArtifactInfo {
     oneof firmware_object_info {
       // Info about Firmware.FIRMWARE_TARBALL.
       TarballInfo tarball_info = 2;
+
+      // Info about an LCOV tarball.
+      LcovTarballInfo lcov_info = 3;
     }
   }
   repeated ObjectInfo objects = 1;
