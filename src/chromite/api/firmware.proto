@@ -253,8 +253,14 @@ message FirmwareArtifactInfo {
   }
 
   message LcovTarballInfo {
-    // Deliberately empty; there isn't any other information I need other
-    // than to know that this is code coverage data in a tarball.
+      // The type of LCOV info.
+      message LcovType {
+        enum Type {
+            UNKNOWN = 0;
+            LCOV = 1;
+        }
+      }
+      LcovType.Type type = 1;
   }
 
   message ObjectInfo {
