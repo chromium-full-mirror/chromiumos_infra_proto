@@ -40,8 +40,8 @@ message BuilderConfig {
   message Id {
     // The name of the configuration such as "arm-generic-postsubmit".
     string name = 1;
-    // Branch the configuration applies to such as "release-R73-11647.B".
-    string branch = 2;
+    reserved 2;
+    reserved "branch";
     // Type of build.
     enum Type {
       TYPE_UNSPECIFIED = 0;
