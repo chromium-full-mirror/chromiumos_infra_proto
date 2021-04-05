@@ -18,6 +18,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AndroidServiceClient interface {
+	// Retrieves the latest Android build of a given Android branch.
+	// Added in R91.
+	GetLatestBuild(ctx context.Context, in *GetLatestBuildRequest, opts ...grpc.CallOption) (*GetLatestBuildResponse, error)
 	// The MarkStable method uprevs Android, verifies the newly revved package
 	// can be emerged, and returns the new package info.
 	MarkStable(ctx context.Context, in *MarkStableRequest, opts ...grpc.CallOption) (*MarkStableResponse, error)
@@ -31,6 +34,15 @@ type androidServiceClient struct {
 
 func NewAndroidServiceClient(cc grpc.ClientConnInterface) AndroidServiceClient {
 	return &androidServiceClient{cc}
+}
+
+func (c *androidServiceClient) GetLatestBuild(ctx context.Context, in *GetLatestBuildRequest, opts ...grpc.CallOption) (*GetLatestBuildResponse, error) {
+	out := new(GetLatestBuildResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.AndroidService/GetLatestBuild", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *androidServiceClient) MarkStable(ctx context.Context, in *MarkStableRequest, opts ...grpc.CallOption) (*MarkStableResponse, error) {
@@ -55,6 +67,9 @@ func (c *androidServiceClient) UnpinVersion(ctx context.Context, in *UnpinVersio
 // All implementations must embed UnimplementedAndroidServiceServer
 // for forward compatibility
 type AndroidServiceServer interface {
+	// Retrieves the latest Android build of a given Android branch.
+	// Added in R91.
+	GetLatestBuild(context.Context, *GetLatestBuildRequest) (*GetLatestBuildResponse, error)
 	// The MarkStable method uprevs Android, verifies the newly revved package
 	// can be emerged, and returns the new package info.
 	MarkStable(context.Context, *MarkStableRequest) (*MarkStableResponse, error)
@@ -67,6 +82,9 @@ type AndroidServiceServer interface {
 type UnimplementedAndroidServiceServer struct {
 }
 
+func (UnimplementedAndroidServiceServer) GetLatestBuild(context.Context, *GetLatestBuildRequest) (*GetLatestBuildResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLatestBuild not implemented")
+}
 func (UnimplementedAndroidServiceServer) MarkStable(context.Context, *MarkStableRequest) (*MarkStableResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkStable not implemented")
 }
@@ -84,6 +102,24 @@ type UnsafeAndroidServiceServer interface {
 
 func RegisterAndroidServiceServer(s grpc.ServiceRegistrar, srv AndroidServiceServer) {
 	s.RegisterService(&AndroidService_ServiceDesc, srv)
+}
+
+func _AndroidService_GetLatestBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLatestBuildRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AndroidServiceServer).GetLatestBuild(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.AndroidService/GetLatestBuild",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AndroidServiceServer).GetLatestBuild(ctx, req.(*GetLatestBuildRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AndroidService_MarkStable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -129,6 +165,10 @@ var AndroidService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "chromite.api.AndroidService",
 	HandlerType: (*AndroidServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetLatestBuild",
+			Handler:    _AndroidService_GetLatestBuild_Handler,
+		},
 		{
 			MethodName: "MarkStable",
 			Handler:    _AndroidService_MarkStable_Handler,

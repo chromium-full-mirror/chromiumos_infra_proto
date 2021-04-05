@@ -6,6 +6,20 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
+// Added in R91.
+message GetLatestBuildRequest {
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+  // The Android branch to look for the latest build.
+  string android_build_branch = 2;
+}
+
+// Added in R91.
+message GetLatestBuildResponse {
+  // The latest Android build ID of the requested branch.
+  string android_version = 1;
+}
+
 message MarkStableRequest {
   // Required if not default.
   // The chroot where.
@@ -66,6 +80,10 @@ service AndroidService {
     module: "android",
     service_chroot_assert: INSIDE,
   };
+
+  // Retrieves the latest Android build of a given Android branch.
+  // Added in R91.
+  rpc GetLatestBuild(GetLatestBuildRequest) returns (GetLatestBuildResponse);
 
   // The MarkStable method uprevs Android, verifies the newly revved package
   // can be emerged, and returns the new package info.
