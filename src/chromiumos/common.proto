@@ -293,6 +293,14 @@ enum Channel {
   CHANNEL_CANARY = 4;
 }
 
+// A map of release milestones to their appropriate channels.
+message ReleaseChannels {
+  message ChannelList {
+    repeated Channel channels = 1;
+  }
+  map<int32, ChannelList> release_channels = 1;
+}
+
 // The available delta types.
 enum DeltaType {
   DELTA_UNKNOWN = 0;
