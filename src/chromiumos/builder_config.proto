@@ -291,6 +291,9 @@ message BuilderConfig {
 
       // FirmwareService: LCOV code coverage files.
       FIRMWARE_LCOV = 33;
+
+      // DLC image (squashfs).  Added in R91.
+      DLC_IMAGE = 34;
     }
     repeated ArtifactTypes artifact_types = 2;
 
