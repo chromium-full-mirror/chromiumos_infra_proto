@@ -92,6 +92,8 @@ message ListRequest {
   // List of packages for which to get dependencies. If none are specified the
   // standard list of packages is used.
   repeated chromiumos.PackageInfo packages = 4;
+  // Whether to also include reverse dependencies. False by default.
+  bool include_rev_deps = 5;
 }
 
 // Response for getting a list of package dependencies.
