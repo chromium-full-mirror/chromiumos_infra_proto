@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AndroidServiceClient interface {
 	// Retrieves the latest Android build of a given Android branch.
-	// Added in R91.
+	// Added in R92.
 	GetLatestBuild(ctx context.Context, in *GetLatestBuildRequest, opts ...grpc.CallOption) (*GetLatestBuildResponse, error)
 	// The MarkStable method uprevs Android, verifies the newly revved package
 	// can be emerged, and returns the new package info.
@@ -68,7 +68,7 @@ func (c *androidServiceClient) UnpinVersion(ctx context.Context, in *UnpinVersio
 // for forward compatibility
 type AndroidServiceServer interface {
 	// Retrieves the latest Android build of a given Android branch.
-	// Added in R91.
+	// Added in R92.
 	GetLatestBuild(context.Context, *GetLatestBuildRequest) (*GetLatestBuildResponse, error)
 	// The MarkStable method uprevs Android, verifies the newly revved package
 	// can be emerged, and returns the new package info.
