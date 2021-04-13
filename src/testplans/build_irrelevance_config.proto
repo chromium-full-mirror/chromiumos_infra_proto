@@ -10,10 +10,13 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "testplans/common.proto";
 
-// Configures the skipping of builds for CQ runs when the triggering CLs can't
-// actually affect builds.
+// Configures a list of paths that are either always relevant or irrelevant.
+// Note that forced relevance is evaluated first.
 message BuildIrrelevanceCfg {
-  // File patterns that never affect Chrome OS builds.
   // See documentation in the FilePattern message.
+  //
+  // File patterns that never affect Chrome OS builds.
   repeated FilePattern irrelevant_file_patterns = 3;
+  // File patterns that always affect Chrome OS builds.
+  repeated FilePattern relevant_file_patterns = 4;
 }
