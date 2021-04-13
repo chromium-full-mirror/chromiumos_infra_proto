@@ -48,6 +48,7 @@ message PointlessBuildCheckResponse {
     POINTLESS_BUILD_REASON_UNSPECIFIED = 0;
     IRRELEVANT_TO_DEPS_GRAPH = 1;
     IRRELEVANT_TO_KNOWN_NON_PORTAGE_DIRECTORIES = 2;
+    RELEVANT_TO_KNOWN_NON_PORTAGE_DIRECTORIES = 3;
   }
 
   // If build_is_pointless, this is the reason that the Pointless Build Checker
