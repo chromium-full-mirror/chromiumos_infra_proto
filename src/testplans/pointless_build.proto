@@ -30,9 +30,20 @@ message PointlessBuildCheckRequest {
   // The manifest-internal snapshot commit hash that's being used for the current build.
   // Note that manifest_commit will be soon replaced with gitiles_commit below.
   string manifest_commit = 6;
+
   // Serialized buildbucket GitilesCommit, representing the manifest or
   // manifest-internal commit to which the build is synced.
   ProtoBytes gitiles_commit = 8;
+
+  // In some cases (e.g. when pointless build checker is called for toolchain
+  // update detection) we don't want known non-portage paths to trigger
+  // relevency. A specific case here is that manifest changes force relevancy
+  // but shouldn't force a toolchain update.
+  //
+  // TODO(b/186002205): Improve this such that manifest changes are treated treated via
+  // introspection. We know the paths being changed in the manifest, and we
+  // should be able to surface that.
+  bool ignore_known_non_portage_directories = 10;
 
   reserved 5;
 }
