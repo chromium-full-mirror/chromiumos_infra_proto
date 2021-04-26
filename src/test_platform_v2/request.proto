@@ -1,0 +1,32 @@
+// Copyright 2021 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.v2;
+
+import "chromiumos/test/api/coverage_rule.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform_v2";
+
+
+// A request to ChromeOS Test Platform to run tests on devices in the ChromeOS
+// Test Lab.
+message Request {
+    // CoverageRules that must be satisfied by the request.
+    repeated chromiumos.test.api.CoverageRule coverage_rules = 1;
+
+    // An artifact of the build process required for running tests.
+    message Artifact {
+        // A Google Storage path to the location of the build artifacts to
+        // test.
+        // For example: "gs://chromeos-image-archive/galaxy-cq/R92-13100.0.0"
+        string build_url = 1;
+
+        // ChromeOS version string for the build, e.g. "13100.0.0".
+        string chromeos_version = 2;
+    }
+
+    repeated Artifact artifacts = 2;
+}
