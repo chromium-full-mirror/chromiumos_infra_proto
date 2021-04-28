@@ -142,7 +142,13 @@ message SchedulerConfig {
         // Firmware branch.
         FIRMWARE = 2;
     }
-    FirmwareBranch firmware_ro_build_spec = 8;
+    oneof firmware_ro {
+      FirmwareBranch firmware_ro_build_spec = 8;
+      // Pinned RO firmware path (e.g. coral-firmware/R64-10068.106.0)
+      // Uses firmware_from_source.tar.bz2 from this archive path
+      // instead of pulling from latest firmware-branch or cros-tot build.
+      string firmware_ro_version = 11;
+    }
 
     enum TriggerType {
       TRIGGER_UNSPECIFIED = 0;
