@@ -55,7 +55,7 @@ message DutState {
   PeripheralState rpm_state = 10;
 }
 
-// Next Tag: 21
+// Next Tag: 22
 enum PeripheralState {
   // Please keep for all unknown states.
   UNKNOWN = 0;
@@ -101,6 +101,8 @@ enum PeripheralState {
   SERVOD_PROXY_ISSUE = 19;
   // Issue related to servo-host. Timeout to start servod or issue with detecting devices.
   SERVO_HOST_ISSUE = 20;
+  // Issue related to servo_updater.
+  SERVO_UPDATER_ISSUE = 21;
 }
 
 // The states are using for DUT storage and USB-drive on servo.
