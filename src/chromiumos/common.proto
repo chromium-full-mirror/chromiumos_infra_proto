@@ -246,11 +246,14 @@ message ReleaseBuilders {
 // These correspond to support types in lib/constants.py such
 // as IMAGE_TYPE_BASE, IMAGE_TYPE_RECOVERY, and so on.
 enum ImageType {
-  option allow_alias = true;
+  // Please only use prefixed IMAGE_TYPE values. See: b/187214166
+  // Removed in R92.
+  reserved "BASE", "TEST", "DEV", "BASE_VM", "TEST_VM", "RECOVERY", "FACTORY";
+  reserved "FIRMWARE", "CR50_FIRMWARE", "BASE_GUEST_VM", "TEST_GUEST_VM", "DLC";
+  reserved "GSC_FIRMWARE", "ACCESSORY_USBPD", "ACCESSORY_RWSIG";
 
   IMAGE_TYPE_UNDEFINED = 0;
 
-  // Use these.
   IMAGE_TYPE_BASE = 1;
   IMAGE_TYPE_DEV = 2;
   IMAGE_TYPE_TEST = 3;
@@ -266,22 +269,6 @@ enum ImageType {
   IMAGE_TYPE_GSC_FIRMWARE = 13;
   IMAGE_TYPE_ACCESSORY_USBPD = 14;
   IMAGE_TYPE_ACCESSORY_RWSIG = 15;
-
-  // Do not continue to use (or add to) these, use aliased enums above.
-  // TODO: Deprecate non-prefixed enums (carefully considering branches).
-  BASE = 1;
-  DEV = 2;
-  TEST = 3;
-  BASE_VM = 4;
-  TEST_VM = 5;
-  RECOVERY = 6;
-  FACTORY = 7;
-  FIRMWARE = 8;
-  CR50_FIRMWARE = 9;
-  BASE_GUEST_VM = 10;
-  TEST_GUEST_VM = 11;
-  DLC = 12;
-  GSC_FIRMWARE = 13;
 }
 
 // The various channels that we release through.
