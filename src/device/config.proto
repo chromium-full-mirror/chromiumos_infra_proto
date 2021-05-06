@@ -121,7 +121,7 @@ message Config {
   }
   repeated VideoAcceleration video_acceleration_supports = 10;
 
-  // Next Tag: 37
+  // Next Tag: 38
   enum SOC {
     SOC_UNSPECIFIED = 0;
     // Aka AML-Y
@@ -163,6 +163,7 @@ message Config {
     SOC_MT8192 = 34;
     SOC_ALDER_LAKE = 35;
     SOC_SC7280 = 36;
+    SOC_MT8195 = 37;
   }
 
   SOC soc = 11;
