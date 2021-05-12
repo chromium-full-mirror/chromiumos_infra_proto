@@ -28,6 +28,23 @@ message BuildsChromeResponse {
   bool builds_chrome = 1;
 }
 
+// Added in R92.
+message GetAndroidMetadataRequest {
+  // The build target to examine.
+  // Required.
+  chromiumos.BuildTarget build_target = 1;
+}
+
+// Added in R92.
+message GetAndroidMetadataResponse {
+  // The Android Portage package name e.g. 'android-vm-rvc'.
+  string android_package = 1;
+  // The Android branch e.g. 'git_rvc-arc'
+  string android_branch = 2;
+  // The Android version e.g. '7123456'.
+  string android_version = 3;
+}
+
 message GetBestVisibleRequest {
   // An atom to pass to portageq, e.g. 'chromeos-chrome'.
   string atom = 1;
