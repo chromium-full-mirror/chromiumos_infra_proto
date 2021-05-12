@@ -312,6 +312,11 @@ service PackageService {
   // Check if the build target has chrome in its depgraph.  Added in R79.
   rpc BuildsChrome(BuildsChromeRequest) returns (BuildsChromeResponse);
 
+  // Return Android metadata of the given build target.
+  // Added in R92.
+  rpc GetAndroidMetadata(GetAndroidMetadataRequest)
+      returns (GetAndroidMetadataResponse);
+
   // Find the best (highest) available version of the requested package.
   // This must be run after the chroot is set up (for chroot package lookup) or
   // after the sysroot is created (for build target package lookup).

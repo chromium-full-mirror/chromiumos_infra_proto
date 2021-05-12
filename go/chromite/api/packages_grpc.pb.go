@@ -20,6 +20,9 @@ const _ = grpc.SupportPackageIsVersion7
 type PackageServiceClient interface {
 	// Check if the build target has chrome in its depgraph.  Added in R79.
 	BuildsChrome(ctx context.Context, in *BuildsChromeRequest, opts ...grpc.CallOption) (*BuildsChromeResponse, error)
+	// Return Android metadata of the given build target.
+	// Added in R92.
+	GetAndroidMetadata(ctx context.Context, in *GetAndroidMetadataRequest, opts ...grpc.CallOption) (*GetAndroidMetadataResponse, error)
 	// Find the best (highest) available version of the requested package.
 	// This must be run after the chroot is set up (for chroot package lookup) or
 	// after the sysroot is created (for build target package lookup).
@@ -70,6 +73,15 @@ func NewPackageServiceClient(cc grpc.ClientConnInterface) PackageServiceClient {
 func (c *packageServiceClient) BuildsChrome(ctx context.Context, in *BuildsChromeRequest, opts ...grpc.CallOption) (*BuildsChromeResponse, error) {
 	out := new(BuildsChromeResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/BuildsChrome", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) GetAndroidMetadata(ctx context.Context, in *GetAndroidMetadataRequest, opts ...grpc.CallOption) (*GetAndroidMetadataResponse, error) {
+	out := new(GetAndroidMetadataResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/GetAndroidMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -163,6 +175,9 @@ func (c *packageServiceClient) UprevVersionedPackage(ctx context.Context, in *Up
 type PackageServiceServer interface {
 	// Check if the build target has chrome in its depgraph.  Added in R79.
 	BuildsChrome(context.Context, *BuildsChromeRequest) (*BuildsChromeResponse, error)
+	// Return Android metadata of the given build target.
+	// Added in R92.
+	GetAndroidMetadata(context.Context, *GetAndroidMetadataRequest) (*GetAndroidMetadataResponse, error)
 	// Find the best (highest) available version of the requested package.
 	// This must be run after the chroot is set up (for chroot package lookup) or
 	// after the sysroot is created (for build target package lookup).
@@ -209,6 +224,9 @@ type UnimplementedPackageServiceServer struct {
 
 func (UnimplementedPackageServiceServer) BuildsChrome(context.Context, *BuildsChromeRequest) (*BuildsChromeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildsChrome not implemented")
+}
+func (UnimplementedPackageServiceServer) GetAndroidMetadata(context.Context, *GetAndroidMetadataRequest) (*GetAndroidMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAndroidMetadata not implemented")
 }
 func (UnimplementedPackageServiceServer) GetBestVisible(context.Context, *GetBestVisibleRequest) (*GetBestVisibleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBestVisible not implemented")
@@ -264,6 +282,24 @@ func _PackageService_BuildsChrome_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PackageServiceServer).BuildsChrome(ctx, req.(*BuildsChromeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_GetAndroidMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAndroidMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).GetAndroidMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/GetAndroidMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).GetAndroidMetadata(ctx, req.(*GetAndroidMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -440,6 +476,10 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BuildsChrome",
 			Handler:    _PackageService_BuildsChrome_Handler,
+		},
+		{
+			MethodName: "GetAndroidMetadata",
+			Handler:    _PackageService_GetAndroidMetadata_Handler,
 		},
 		{
 			MethodName: "GetBestVisible",
