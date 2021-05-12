@@ -191,8 +191,8 @@ type MarkStableRequest struct {
 	// Required.
 	// Portage package name for Android container.
 	PackageName string `protobuf:"bytes,3,opt,name=package_name,json=packageName,proto3" json:"package_name,omitempty"`
-	// Required.
 	// Android branch to import from.
+	// Optional since R92.
 	AndroidBuildBranch string `protobuf:"bytes,4,opt,name=android_build_branch,json=androidBuildBranch,proto3" json:"android_build_branch,omitempty"`
 	// Force set the android build id that will be used.
 	AndroidVersion string `protobuf:"bytes,5,opt,name=android_version,json=androidVersion,proto3" json:"android_version,omitempty"`
