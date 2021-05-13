@@ -11,6 +11,10 @@ message GetLatestBuildRequest {
   reserved 1;
   // The Android branch to look for the latest build.
   string android_build_branch = 2;
+  // The Android package to look for the latest build e.g 'android-vm-rvc'.
+  // The default corresponding branch is used. Ignored if android_build_branch
+  // is already specified.
+  string android_package = 3;
 }
 
 // Added in R92.
