@@ -20,6 +20,9 @@ message BuildTargetUnitTestRequest {
     bool code_coverage = 3;
     // Whether to allow no testable packages to be found.
     bool testable_packages_optional = 4;
+    // Whether to filter out any non-cros_workon packages passed in.
+    //Added in R92.
+    bool filter_only_cros_workon = 5;
    }
 
   // The build target being tested.
