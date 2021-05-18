@@ -157,6 +157,33 @@ message VerifyAFDOArtifactsResponse {
 }
 // End of TODO(crbug.com/1020615).
 
+// A diagnostic finding from a Linter.
+message LinterFinding {
+  string message = 1;
+  repeated LinterFindingLocation locations = 2;
+}
+
+// The code location of some linter finding.
+message LinterFindingLocation {
+  string filepath = 1;
+  int32 line_start = 2;
+  int32 line_end = 3;
+}
+
+// Request lints from some packages.
+message LinterRequest {
+  repeated chromiumos.PackageInfo packages = 1;
+
+  Sysroot sysroot = 2;
+  chromiumos.Chroot chroot = 3;
+}
+
+// Linter findings generated when em,erging some package.
+message LinterResponse {
+  repeated LinterFinding findings = 1;
+}
+
+
 // Service for Android/ARC related functionality.
 service ToolchainService {
   option (service_options) = {
