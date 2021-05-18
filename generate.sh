@@ -47,7 +47,9 @@ find src -name '*.proto' -exec \
 
 chromite_root="$(readlink -f "$(dirname "$0")/../..")"
 chromite_api_compiler="${chromite_root}/api/compile_build_api_proto"
-if [[ -x "${chromite_api_compiler}" ]]; then
+if [[ ${USER} = chrome-bot ]]; then
+  echo "Not running chromite compiler"
+elif [[ -x "${chromite_api_compiler}" ]]; then
   echo "Running chromite compiler"
   "${chromite_api_compiler}"
   echo "Don't forget to upload changes generated in ${chromite_root}, if any"
