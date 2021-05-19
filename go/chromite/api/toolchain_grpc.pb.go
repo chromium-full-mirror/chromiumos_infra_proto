@@ -39,6 +39,8 @@ type ToolchainServiceClient interface {
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
 	// Added in R90.
 	GetUpdatedFiles(ctx context.Context, in *GetUpdatedFilesRequest, opts ...grpc.CallOption) (*GetUpdatedFilesResponse, error)
+	// Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
+	GetClippyLints(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error)
 }
 
 type toolchainServiceClient struct {
@@ -94,6 +96,15 @@ func (c *toolchainServiceClient) GetUpdatedFiles(ctx context.Context, in *GetUpd
 	return out, nil
 }
 
+func (c *toolchainServiceClient) GetClippyLints(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error) {
+	out := new(LinterResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/GetClippyLints", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ToolchainServiceServer is the server API for ToolchainService service.
 // All implementations must embed UnimplementedToolchainServiceServer
 // for forward compatibility
@@ -119,6 +130,8 @@ type ToolchainServiceServer interface {
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
 	// Added in R90.
 	GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error)
+	// Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
+	GetClippyLints(context.Context, *LinterRequest) (*LinterResponse, error)
 	mustEmbedUnimplementedToolchainServiceServer()
 }
 
@@ -140,6 +153,9 @@ func (UnimplementedToolchainServiceServer) BundleArtifacts(context.Context, *Bun
 }
 func (UnimplementedToolchainServiceServer) GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUpdatedFiles not implemented")
+}
+func (UnimplementedToolchainServiceServer) GetClippyLints(context.Context, *LinterRequest) (*LinterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClippyLints not implemented")
 }
 func (UnimplementedToolchainServiceServer) mustEmbedUnimplementedToolchainServiceServer() {}
 
@@ -244,6 +260,24 @@ func _ToolchainService_GetUpdatedFiles_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ToolchainService_GetClippyLints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LinterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).GetClippyLints(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/GetClippyLints",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).GetClippyLints(ctx, req.(*LinterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ToolchainService_ServiceDesc is the grpc.ServiceDesc for ToolchainService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -270,6 +304,10 @@ var ToolchainService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUpdatedFiles",
 			Handler:    _ToolchainService_GetUpdatedFiles_Handler,
+		},
+		{
+			MethodName: "GetClippyLints",
+			Handler:    _ToolchainService_GetClippyLints_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -229,4 +229,11 @@ service ToolchainService {
   // Added in R90.
   rpc GetUpdatedFiles(GetUpdatedFilesRequest)
     returns (GetUpdatedFilesResponse);
+
+  // Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
+  rpc GetClippyLints(LinterRequest) returns (LinterResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  };
 }
