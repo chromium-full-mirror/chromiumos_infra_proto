@@ -152,6 +152,9 @@ message CreateSimpleChromeSysrootRequest {
   repeated string use_flags = 2;
   // Target directory for the sysroot tarball.
   chromiumos.ResultPath target_dir = 3;
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 4;
 }
 
 message CreateSimpleChromeSysrootResponse {

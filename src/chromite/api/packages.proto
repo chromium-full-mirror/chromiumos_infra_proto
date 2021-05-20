@@ -33,6 +33,9 @@ message GetAndroidMetadataRequest {
   // The build target to examine.
   // Required.
   chromiumos.BuildTarget build_target = 1;
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
 }
 
 // Added in R92.
@@ -187,6 +190,9 @@ message HasChromePrebuiltResponse {
 message NeedsChromeSourceRequest {
   // The request that will be passed to InstallPackages.
   InstallPackagesRequest install_request = 1;
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 2;
 }
 
 message NeedsChromeSourceResponse {

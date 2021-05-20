@@ -103,6 +103,10 @@ message GenerationRequest {
 
   // Do not sign images or upload artifacts.
   bool dryrun = 9;
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 12;
 }
 
 // Result of a payload generation.
