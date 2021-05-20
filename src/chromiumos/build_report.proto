@@ -1,0 +1,206 @@
+// Copyright 2021 The Chromium OS Authors. All rights reserved.  Use
+// of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Define a schema for reporting build status to downstream consumers.  This is
+// meant to be an enduring, backwards-compatible format (meaning we've adopted
+// an append-only strategy for extending, see go/cros-build-reporting-pipeline
+// for more information)
+
+syntax = "proto3";
+
+package chromiumos;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+
+import "chromiumos/common.proto";
+import "google/protobuf/timestamp.proto";
+
+// from chromiumos/config (ie: src/config)
+import "chromiumos/build/payload/metadata.proto";
+
+message Timeframe {
+    google.protobuf.Timestamp begin = 1;
+    google.protobuf.Timestamp end   = 2;
+}
+
+message BuildReport_Beta {
+    // Id serves as the primary key for the metadata and will be constant even
+    // when sending multiple partial messages.  Oneof to keep open changing the
+    // nature of the key in the future if needed.
+    oneof id {
+        int64 buildbucket_id = 1;
+    }
+
+    BuildType   type   = 2;
+    BuildStatus status = 3;
+    BuildConfig config = 4;
+    StepDetails steps  = 5;
+
+    // Build information from the build API (see go/cros-build-service-metadata).
+    chromiumos.build.payload.BuildMetadata build_info = 6;
+
+    // Artifacts from the build.
+    repeated BuildArtifact artifacts = 7;
+
+    // Optional human-readable annotations, for display only.
+    message Notes {
+        string name        = 1;
+        string description = 2;
+    }
+
+    enum BuildType {
+        BUILD_TYPE_UNDEFINED = 0;
+        BUILD_TYPE_RELEASE   = 1;
+        BUILD_TYPE_FIRMWARE  = 2;
+        BUILD_TYPE_FACTORY   = 3;
+    }
+
+    message BuildStatus {
+        enum Status {
+            UNDEFINED = 0;
+
+            // Kind of status, 100*kind is base for that type of state.
+            KIND_TERMINAL = 1;
+            KIND_RUNNING  = 2;
+
+            // Terminal states, indicate build has finished, no further status.
+            SUCCESS       = 100; // Build succeeded.
+            FAILURE       = 101; // Build failed for reasons related to it's input.
+            INFRA_FAILURE = 102; // Build failed independent of the input.
+            WATCHDOG      = 103; // Build died for unknown reasons (from OOB watchdog).
+            CANCELLED     = 104; // Build explicitly cancelled.
+
+            // Non-terminal states, more updates may be incoming.
+            RUNNING  = 200;
+            WAITING  = 201;
+        }
+
+        Status value = 1;
+        Notes  notes = 2; // Optional human-readable notes on status update.
+    }
+
+    // Information about the build configuration.
+    message BuildConfig {
+        // Board model information.
+        message Model {
+            string name = 1;
+        }
+
+        message Release {
+            int32  milestone = 1; // Release milestone, eg: 91.
+            string build     = 2; // Release build number, eg: 13816.0.0.
+
+            // List of channels for the build.
+            repeated chromiumos.Channel channels = 3;
+        }
+
+        // Information about the branch we're building on
+        message Branch {
+            string name = 1; // eg: release-R90-13816.B
+        }
+
+        Notes   notes   = 1; // Optional human-readable notes.
+        Branch  branch  = 2; // Optional branch information (not present for tip-of-tree).
+        Release release = 3; // Optional information for release builds.
+
+        // List of board models covered by this build ie: expanded list of
+        // unibuild models at the time the build ran, may be empty.
+        repeated Model models = 4;
+    }
+
+    // Artifacts produced by the build.
+    //   These could be source from chromiumos/common.proto but this message is
+    //   intended to be a long-term archival format so it's easier and safer to
+    //   define our own artifact types for reporting.
+    message BuildArtifact {
+        enum Type {
+            UNDEFINED = 0;
+
+            // User can divide enums by 100 to find the 'Kind' of artifact.
+            IMAGE_TYPES           = 1;
+            FIRMWARE_TYPES        = 2;
+            AFDO_TYPES            = 3;
+
+            // Image types
+            RELEASE_IMAGE         = 100;
+            RECOVERY_IMAGE        = 101;
+            DLC_IMAGE             = 102;
+            DEBUG_SYMBOL_IMAGE    = 103;
+            HWQUAL_IMAGE          = 104;
+            TEST_IMAGE            = 105;
+
+            // Firmware types
+            FIRMWARE_TARBALL      = 200;
+            FIRMWARE_TARBALL_INFO = 201;
+            FIRMWARE_LCOV         = 202;
+
+            // AFDO types
+            AFDO_ORDERFILE        = 300;
+            AFDO_BENCHMARK        = 301;
+            AFDO_KERNEL           = 302;
+            AFDO_CHROME           = 303;
+        }
+
+        message URI {
+            oneof uri {
+                string gcs = 1; // Google cloud storage URI (including gs://) for artifact.
+            }
+        }
+
+        Notes  notes  = 1; // Optional human-readable notes for the artifact.
+        Type   type   = 2; // The artifact type.
+        URI    uri    = 3; // URI of the artifact.
+        string sha256 = 4; // SHA256 hash of the artifact.
+
+        // Time of artifact creation.
+        google.protobuf.Timestamp created = 5;
+    }
+
+    // Build statistics
+    message StepDetails {
+        // Steps succeed or fail, no higher granularity given.
+        enum Status {
+            STEP_STATUS_UNDEFINED = 0;
+
+            // Kind of status, 100*kind is base for that type of state.
+            KIND_TERMINAL = 1;
+            KIND_RUNNING  = 2;
+
+            // terminal states
+            STATUS_SUCCESS       = 100; // Step succeeded.
+            STATUS_FAILURE       = 101; // Step failed for reasons related to build input.
+            STATUS_INFRA_FAILURE = 102; // Step failed for reasons unrelated to build input.
+            STATUS_WATCHDOG      = 103; // Step was interrupted when build died.
+            STATUS_CANCELLED     = 104; // Step was interrupted due to explicit cancellation.
+
+            // non-terminal states
+            STEP_STATUS_RUNNING = 200;
+        }
+
+        // Consistent predefined step names, increment by 100 to leave room for
+        // adding sub-steps in the future.
+        enum StepName {
+            STEP_UNDEFINED = 0;
+            STEP_TOTAL = 1;
+            STEP_SYNC  = 100;
+        }
+
+        message StepInfo {
+            // Step order-of-execution relative to other steps in this build.
+            // Needed due to the unordered nature of the map below.
+            int32     order   = 1;
+            Status    status  = 2; // Step status
+            Timeframe runtime = 3; // Step runtime information
+            Notes     notes   = 4; // Optional human-readable information
+        }
+
+        StepName current = 1;
+
+        // This is a map from StepName enums to information about the step.
+        // Protobuffer doesn't allow enums to be used as map keys, so we're
+        // forced to use a string. Keys should be marshalled via the StepName
+        // enum to get their string representation.
+        map<string, StepInfo> info = 2;
+    }
+}
