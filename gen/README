@@ -1,0 +1,8 @@
+# Copyright 2021 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+Contains generated files that need to be version controlled:
+
+golden_descriptors.bin - last known good image  dumped by buf.
+  Used to check for breaking changes in presubmits.

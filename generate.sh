@@ -8,12 +8,39 @@
 
 CROS_CONFIG_REPO="https://chromium.googlesource.com/chromiumos/config"
 
-readonly script_dir="$(dirname "$(realpath -e "${BASH_SOURCE[0]}")")"
-source "${script_dir}/setup_cipd.sh"
+readonly golden_file="gen/golden_descriptors.json"
 
-readonly work_dir=$(mktemp --tmpdir -d genprotoXXXXXX)
-trap "rm -rf ${work_dir}" EXIT
-echo "Using temporary directory ${work_dir}"
+regenerate_golden() {
+    # We want to split --path from the filenames so silence warning.
+    # shellcheck disable=2068
+    buf build --exclude-imports -o -#format=json ${proto_paths[@]} \
+        | jq -S > ${golden_file}
+}
+
+
+allow_breaking=0
+regen_golden=0
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --allow-breaking)
+            allow_breaking=1
+            shift
+            ;;
+        --force-regen-golden)
+            regen_golden=1
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+readonly script_dir="$(dirname "$(realpath -e "${BASH_SOURCE[0]}")")"
+
+# By default we'll use the symlink to src/config.
+config_dir=extern/
+cros_config_subdir=""
 
 if [[ "$(uname -s)" != "Linux" || "$(uname -m)" != "x86_64" ]]; then
   echo "Error: currently generate.sh can only run on Linux x86_64 systems."
@@ -22,28 +49,99 @@ if [[ "$(uname -s)" != "Linux" || "$(uname -m)" != "x86_64" ]]; then
   exit 1
 fi
 
-if [[ -n ${CHROMIUMOS_CONFIG_DIR+x} ]]; then
-  echo "CHROMIUMOS_CONFIG_DIR is set: " \
-    "Copying sources from ${CHROMIUMOS_CONFIG_DIR}/"
-  cp -r "${CHROMIUMOS_CONFIG_DIR}/" "${work_dir}/config"
-else
-  echo "Creating a shallow clone of ${CROS_CONFIG_REPO}"
-  git clone -q --depth=1 --shallow-submodules "${CROS_CONFIG_REPO}" \
-    "${work_dir}/config"
-fi
-readonly cros_config_subdir="config/proto"
-
 cd "${script_dir}"
+source "./setup_cipd.sh"
 
-echo "Generating go bindings..."
+if [[ $regen_golden -eq 1 ]]; then
+  echo "Forcing regenerating of golden proto descriptors."
+  regenerate_golden
+  exit 0
+fi
+
+# If we don't have src/config checked out too, then check out our own copy and
+# stash it in the .generate directory.
+if [ ! -e "extern/chromiumos" ]; then
+    config_dir=./.generate
+    cros_config_subdir="config/proto"
+
+    echo "Creating a shallow clone of ${CROS_CONFIG_REPO}"
+    git clone -q --depth=1 --shallow-submodules "${CROS_CONFIG_REPO}" \
+        ".generate/config"
+
+    trap "rm -rf .generate/*" EXIT
+fi
+
+echo "protoc version: $(protoc --version)"
+echo "buf version:    $(buf --version 2>&1)"
+
+#### protobuffer checks
+mapfile -t proto_files < <(find src -type f -name '*.proto')
+mapfile -t proto_paths < \
+        <(find src -type f -name '*.proto' -exec echo '--path {} ' \;)
+
+echo
+echo "== Checking for breaking protobuffer changes"
+if ! buf breaking --against ${golden_file}; then
+    if [[ $allow_breaking -eq 0 ]]; then
+      (
+          echo
+          cat <<-EOF
+One or more breaking changes detected.  If these are intentional, re-run
+with --allow-breaking to allow the changes.
+EOF
+      ) >&2
+      exit 1
+    else
+      cat <<EOF >&2
+One or more breaking changes, but --allow-breaking specified, continuing.
+EOF
+    fi
+fi
+
+echo "No breaking changes, regenerating '${golden_file}'"
+# We want to split --path from the filenames so supress warning about quotes.
+# shellcheck disable=2068
+buf build --exclude-imports -o -#format=json ${proto_paths[@]} \
+    | jq -S > ${golden_file}
+
+# Check if golden file changed and offer to submit it for the user.
+if ! git diff --quiet "${golden_file}"; then
+  echo
+  read -p "${golden_file} changed, amend last commit to add it? " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git add "${golden_file}"
+    git commit --amend --no-edit
+  else
+    echo "Please commit ${golden_file} manually" >&2
+  fi
+else
+  echo "Clean diff on ${golden_file}, nothing else to do." >&2
+fi
+
+echo
+echo "== Linting protobuffers"
+
+# We want to split --path from the filenames so supress warning about quotes.
+# shellcheck disable=2068
+if ! buf lint ${proto_paths[@]}; then
+  echo "One or more files need cleanup" >&2
+  exit
+else
+  echo "Files are clean"
+fi
+
+echo
+echo "== Generating go bindings..."
 # Clean up existing go bindings.
 find go -name '*.pb.go' -exec rm '{}' \;
 # Go files need to be processed individually until this is fixed:
 # https://github.com/golang/protobuf/issues/39
-find src -name '*.proto' -exec \
-     protoc -Isrc -I"${work_dir}/${cros_config_subdir}" \
-     --go_out=go/ --go_opt=paths=source_relative \
-     --go-grpc_out=go/ --go-grpc_opt=paths=source_relative '{}' \;
+for file in "${proto_files[@]}"; do
+    protoc -Isrc -I"${config_dir}/${cros_config_subdir}" \
+           --go_out=go/ --go_opt=paths=source_relative \
+           --go-grpc_out=go/ --go-grpc_opt=paths=source_relative "${file}";
+done
 
 chromite_root="$(readlink -f "$(dirname "$0")/../..")"
 chromite_api_compiler="${chromite_root}/api/compile_build_api_proto"

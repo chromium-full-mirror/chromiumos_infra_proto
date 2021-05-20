@@ -4,17 +4,13 @@
 
 def _HasLocalChanges(input_api):
   ret = input_api.subprocess.call(
-      ['git', 'diff', '--exit-code'],
-      stdout=input_api.subprocess.PIPE,
-      stderr=input_api.subprocess.PIPE)
+      ['git', 'diff', '--exit-code'])
   return ret != 0
 
 def CheckGenerated(input_api, output_api):
   results = []
   input_api.subprocess.call(
-      ['./generate.sh'],
-      stdout=input_api.subprocess.PIPE,
-      stderr=input_api.subprocess.PIPE)
+      ['./generate.sh'])
   if _HasLocalChanges(input_api):
     msg = ('Running generate.sh produced a diff. Please '
            'run the script, amend your changes, and try again.')

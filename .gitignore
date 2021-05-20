@@ -2,3 +2,4 @@
 /descpb.bin
 /recipes/.recipe_deps
 .idea/
+.generate/

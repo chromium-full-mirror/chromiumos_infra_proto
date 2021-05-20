@@ -19,13 +19,12 @@ cipd ensure \
      -root "${cipd_root}" \
      -ensure-file - \
      <<ENSURE_FILE
+fuchsia/third_party/jq/\${platform} latest
 infra/tools/protoc/\${platform} protobuf_version:${CIPD_PROTOC_VERSION}
 infra/3pp/tools/go/\${platform} latest
+infra/3pp/go/github.com/bufbuild/buf/\${platform} latest
 ENSURE_FILE
-# TODO(https://crbug.com/1174238): this should use versioned CIPD packages for
-# these programs, but we need 3pp-build packages before that can work.
-# go install google.golang.org/protobuf/cmd/protoc-gen-go
-# go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
-PATH="${cipd_root}:${PATH}"
-PATH="${cipd_root}/bin:${PATH}"
+
 PATH="${GOBIN}:${PATH}"
+PATH="${cipd_root}/bin:${PATH}"
+PATH="${cipd_root}:${PATH}"

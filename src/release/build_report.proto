@@ -24,7 +24,7 @@ message Timeframe {
     google.protobuf.Timestamp end   = 2;
 }
 
-message BuildReport_Beta {
+message BuildReportBeta {
     // Id serves as the primary key for the metadata and will be constant even
     // when sending multiple partial messages.  Oneof to keep open changing the
     // nature of the key in the future if needed.
