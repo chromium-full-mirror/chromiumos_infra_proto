@@ -112,6 +112,10 @@ message InstallPackagesRequest {
     bool use_goma = 3;
     // Whether a toolchain change has occurred.
     bool toolchain_changed = 4;
+    // Whether to perform a dryrun in which the list of packages that would have
+    // been installed are calculated but not actually merged.
+    // Added in R93
+    bool dryrun = 5;
   }
 
   // The sysroot into which the packages are being installed.
