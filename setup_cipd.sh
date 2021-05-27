@@ -10,7 +10,7 @@
 #   source "${script_dir}/setup_cipd.sh"
 
 # Versions of packages to get from CIPD.
-readonly CIPD_PROTOC_VERSION='v3.6.1'
+readonly CIPD_PROTOC_VERSION='3.17.1'
 
 GOBIN="${script_dir}/.go_bin"
 readonly cipd_root="${script_dir}/.cipd_bin"
@@ -20,7 +20,7 @@ cipd ensure \
      -ensure-file - \
      <<ENSURE_FILE
 fuchsia/third_party/jq/\${platform} latest
-infra/tools/protoc/\${platform} protobuf_version:${CIPD_PROTOC_VERSION}
+infra/3pp/tools/protoc/\${platform} version:2@${CIPD_PROTOC_VERSION}
 infra/3pp/tools/go/\${platform} latest
 infra/3pp/go/github.com/bufbuild/buf/\${platform} latest
 ENSURE_FILE
