@@ -53,6 +53,7 @@ enum Branch {
 
 // Most fields are the same as suite_scheduler.ini just better organized.
 // The entries will be used to generate a suite_scheduler.ini in starlark scripts.
+// next: 14
 message SchedulerConfig {
     // Name of the config. Needs to be unique.
     string name = 1;
@@ -142,12 +143,21 @@ message SchedulerConfig {
         // Firmware branch.
         FIRMWARE = 2;
     }
+
     oneof firmware_ro {
       FirmwareBranch firmware_ro_build_spec = 8;
       // Pinned RO firmware path (e.g. coral-firmware/R64-10068.106.0)
       // Uses firmware_from_source.tar.bz2 from this archive path
       // instead of pulling from latest firmware-branch or cros-tot build.
       string firmware_ro_version = 11;
+    }
+
+    oneof firmware_rw {
+      FirmwareBranch firmware_rw_build_spec = 12;
+      // Pinned RW firmware path (e.g. coral-firmware/R64-10068.106.0)
+      // Uses firmware_from_source.tar.bz2 from this archive path
+      // instead of pulling from latest firmware-branch or cros-tot build.
+      string firmware_rw_version = 13;
     }
 
     enum TriggerType {

@@ -101,7 +101,8 @@ fi
 echo "No breaking changes, regenerating '${golden_file}'"
 # We want to split --path from the filenames so supress warning about quotes.
 # shellcheck disable=2068
-buf build --exclude-imports -o -#format=json ${proto_paths[@]} \
+buf build --exclude-imports --exclude-source-info \
+    -o -#format=json ${proto_paths[@]}            \
     | jq -S > ${golden_file}
 
 # Check if golden file changed and offer to submit it for the user.
