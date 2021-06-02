@@ -9357,6 +9357,10 @@
                     {
                       "name": "DLC_IMAGE",
                       "number": 34
+                    },
+                    {
+                      "name": "BREAKPAD_DEBUG_SYMBOLS",
+                      "number": 35
                     }
                   ]
                 }

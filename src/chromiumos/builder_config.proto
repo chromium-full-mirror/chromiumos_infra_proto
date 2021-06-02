@@ -294,6 +294,9 @@ message BuilderConfig {
 
       // DLC image (squashfs).  Added in R91.
       DLC_IMAGE = 34;
+
+      // Breakpad debug symbols. Added in R93.
+      BREAKPAD_DEBUG_SYMBOLS = 35;
     }
     repeated ArtifactTypes artifact_types = 2;
 
