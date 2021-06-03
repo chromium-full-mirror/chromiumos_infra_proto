@@ -1520,14 +1520,26 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 34,
+                      "end": 31,
                       "start": 1
+                    },
+                    {
+                      "end": 34,
+                      "start": 33
                     }
                   ],
                   "value": [
                     {
                       "name": "UNSPECIFIED",
                       "number": 0
+                    },
+                    {
+                      "name": "DEBUG_SYMBOLS",
+                      "number": 32
+                    },
+                    {
+                      "name": "BREAKPAD_DEBUG_SYMBOLS",
+                      "number": 35
                     }
                   ]
                 }

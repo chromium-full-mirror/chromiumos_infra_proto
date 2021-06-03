@@ -373,7 +373,7 @@ message ArtifactProfileInfo {
   }
 }
 
-// Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
+// Artifact information. Used by the ArtifactsService.PrepareForBuild and
 // BundleArtifacts endpoints to dispatch the appropriate service routines to
 // prepare or bundle as a batch.
 message ArtifactsByService {
@@ -391,7 +391,7 @@ message ArtifactsByService {
   // TODO(crbug/1034529): Drop this message.
   // Artifacts handled within the ArtifactsService endpoints directly.
   message Legacy {
-    // Legacy artifacts, handled in cros_artifacts.  DO NOT ADD TO THIS.
+    // Legacy artifacts, handled in cros_artifacts. DO NOT ADD TO THIS.
     enum ArtifactType {
       UNSPECIFIED = 0;
       // Indicates wanting a zip file of everything in the image directory.
@@ -702,8 +702,17 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 34;
+      reserved 1 to 31;
+
+      // Debug artifacts in a tarball.
+      DEBUG_SYMBOLS = 32;
+
+      reserved 33 to 34;
+
+      // Breakpad sym files in a tarball.
+      BREAKPAD_DEBUG_SYMBOLS = 35;
     }
+
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
     // it's own (service-specific) definition for ArtifactType.
@@ -861,7 +870,7 @@ message ArtifactsByService {
   Firmware firmware = 8;
 }
 
-// Artifact information. Used bythe  ArtifactsService.PrepareForBuild and
+// Artifact information. Used by the ArtifactsService.PrepareForBuild and
 // BundleArtifacts endpoints Response messages.
 message UploadedArtifactsByService {
   // Legacy artifacts, handled directly ArtifactsService.
