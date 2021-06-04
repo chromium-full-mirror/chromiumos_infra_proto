@@ -14879,6 +14879,828 @@
     },
     {
       "dependency": [
+        "google/protobuf/timestamp.proto",
+        "chromiumos/test/api/dut_attribute.proto",
+        "chromiumos/storage_path.proto",
+        "chromiumos/config/api/mfg_config_id.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "state",
+              "label": "LABEL_OPTIONAL",
+              "name": "state",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab.ManagedDut.ManagedState"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "endTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "end_time",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "note",
+              "label": "LABEL_OPTIONAL",
+              "name": "note",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "leaseOwner",
+              "label": "LABEL_OPTIONAL",
+              "name": "lease_owner",
+              "number": 5,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "HistoryRecord"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "reason",
+              "label": "LABEL_OPTIONAL",
+              "name": "reason",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Lock"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Pool"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ipAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "ip_address",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "NetworkIdentifier",
+          "oneofDecl": [
+            {
+              "name": "identifier"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "ManagedState",
+              "value": [
+                {
+                  "name": "UNKNOWN",
+                  "number": 0
+                },
+                {
+                  "name": "READY",
+                  "number": 1
+                },
+                {
+                  "name": "PROVISION",
+                  "number": 2
+                },
+                {
+                  "name": "VERIFY",
+                  "number": 3
+                },
+                {
+                  "name": "LEASED",
+                  "number": 4
+                },
+                {
+                  "name": "FAILED",
+                  "number": 5
+                },
+                {
+                  "name": "RESET",
+                  "number": 6
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "displayName",
+              "label": "LABEL_OPTIONAL",
+              "name": "display_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tag",
+              "label": "LABEL_OPTIONAL",
+              "name": "tag",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttributeList"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_REPEATED",
+              "name": "pool",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.Pool"
+            },
+            {
+              "jsonName": "peripheral",
+              "label": "LABEL_OPTIONAL",
+              "name": "peripheral",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttributeList"
+            },
+            {
+              "jsonName": "mfgConfigId",
+              "label": "LABEL_OPTIONAL",
+              "name": "mfg_config_id",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.config.api.MfgConfigId"
+            },
+            {
+              "jsonName": "provisionedBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "provisioned_build",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.StoragePath"
+            },
+            {
+              "jsonName": "state",
+              "label": "LABEL_OPTIONAL",
+              "name": "state",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab.ManagedDut.ManagedState"
+            },
+            {
+              "jsonName": "lock",
+              "label": "LABEL_OPTIONAL",
+              "name": "lock",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.Lock"
+            },
+            {
+              "jsonName": "operatorNotes",
+              "label": "LABEL_OPTIONAL",
+              "name": "operator_notes",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "provisionedFirmwareVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "provisioned_firmware_version",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "history",
+              "label": "LABEL_REPEATED",
+              "name": "history",
+              "number": 12,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.HistoryRecord"
+            },
+            {
+              "jsonName": "associatedDut",
+              "label": "LABEL_REPEATED",
+              "name": "associated_dut",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "isAssociatedDut",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_associated_dut",
+              "number": 14,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "ManagedDut"
+        }
+      ],
+      "name": "lab/managed_dut.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/lab"
+      },
+      "package": "lab",
+      "syntax": "proto3"
+    },
+    {
+      "dependency": [
+        "google/protobuf/timestamp.proto",
+        "google/protobuf/field_mask.proto",
+        "google/protobuf/empty.proto",
+        "chromiumos/test/api/dut_attribute.proto",
+        "chromiumos/storage_path.proto",
+        "chromiumos/longrunning/operations.proto",
+        "chromiumos/config/api/mfg_config_id.proto",
+        "lab/managed_dut.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "displayName",
+              "label": "LABEL_OPTIONAL",
+              "name": "display_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CreateManagedDutRequest"
+        },
+        {
+          "name": "CreateManagedDutResponse"
+        },
+        {
+          "name": "CreateMManagedDutMetadata"
+        },
+        {
+          "name": "CreateManagedDutMetadata"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            }
+          ],
+          "name": "DeleteManagedDutRequest"
+        },
+        {
+          "name": "DeleteManagedDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            }
+          ],
+          "name": "ListManagedDutsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            }
+          ],
+          "name": "ListManagedDutsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            }
+          ],
+          "name": "GetManagedDutRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dut",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            }
+          ],
+          "name": "GetManagedDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dut",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            },
+            {
+              "jsonName": "updateMask",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_mask",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.FieldMask"
+            }
+          ],
+          "name": "UpdateManagedDutRequest"
+        },
+        {
+          "name": "UpdateManagedDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttribute"
+            },
+            {
+              "jsonName": "leaseOwner",
+              "label": "LABEL_OPTIONAL",
+              "name": "lease_owner",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "softwarePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "software_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.StoragePath"
+            },
+            {
+              "jsonName": "leaseLengthSecs",
+              "label": "LABEL_OPTIONAL",
+              "name": "lease_length_secs",
+              "number": 4,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "tag",
+              "label": "LABEL_OPTIONAL",
+              "name": "tag",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttributeList"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttributeList"
+            },
+            {
+              "jsonName": "peripheral",
+              "label": "LABEL_OPTIONAL",
+              "name": "peripheral",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttributeList"
+            },
+            {
+              "jsonName": "mfgConfigId",
+              "label": "LABEL_OPTIONAL",
+              "name": "mfg_config_id",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.config.api.MfgConfigId"
+            },
+            {
+              "jsonName": "minDuts",
+              "label": "LABEL_OPTIONAL",
+              "name": "min_duts",
+              "number": 9,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "maxDuts",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_duts",
+              "number": 10,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "numberAssociatedDuts",
+              "label": "LABEL_OPTIONAL",
+              "name": "number_associated_duts",
+              "number": 11,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "LeaseManagedDutRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_REPEATED",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "expiryTimeSecs",
+              "label": "LABEL_OPTIONAL",
+              "name": "expiry_time_secs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            }
+          ],
+          "name": "LeaseManagedDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "force",
+              "label": "LABEL_OPTIONAL",
+              "name": "force",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "forceReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "force_reason",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ReturnManagedDutLeaseRequest"
+        },
+        {
+          "name": "ReturnManagedDutLeaseResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "leaseLengthSecs",
+              "label": "LABEL_OPTIONAL",
+              "name": "lease_length_secs",
+              "number": 3,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "ExtendManagedDutLeaseRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "expiryTimeSecs",
+              "label": "LABEL_OPTIONAL",
+              "name": "expiry_time_secs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            }
+          ],
+          "name": "ExtendManagedDutLeaseResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            }
+          ],
+          "name": "VerifyManagedDutRequest"
+        },
+        {
+          "name": "VerifyManagedDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.NetworkIdentifier"
+            },
+            {
+              "jsonName": "buildPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_path",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.StoragePath"
+            }
+          ],
+          "name": "ProvisionManagedDutRequest"
+        },
+        {
+          "name": "ProvisionManagedDutResponse"
+        }
+      ],
+      "name": "lab/dut_manager.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/lab"
+      },
+      "package": "lab",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".lab.CreateManagedDutRequest",
+              "name": "CreateManagedDut",
+              "options": {
+                "[chromiumos.longrunning.operation_info]": {
+                  "metadataType": "CreateMManagedDutMetadata",
+                  "responseType": "CreateManagedDutResponse"
+                }
+              },
+              "outputType": ".chromiumos.longrunning.Operation"
+            },
+            {
+              "inputType": ".lab.DeleteManagedDutRequest",
+              "name": "DeleteManagedDut",
+              "outputType": ".lab.DeleteManagedDutResponse"
+            },
+            {
+              "inputType": ".lab.ListManagedDutsRequest",
+              "name": "ListManagedDuts",
+              "outputType": ".lab.ListManagedDutsResponse"
+            },
+            {
+              "inputType": ".lab.GetManagedDutRequest",
+              "name": "GetManagedDut",
+              "outputType": ".lab.GetManagedDutResponse"
+            },
+            {
+              "inputType": ".lab.UpdateManagedDutRequest",
+              "name": "UpdateManagedDut",
+              "outputType": ".lab.UpdateManagedDutResponse"
+            },
+            {
+              "inputType": ".lab.LeaseManagedDutRequest",
+              "name": "LeaseManagedDut",
+              "options": {
+                "[chromiumos.longrunning.operation_info]": {
+                  "metadataType": "LeaseManagedDutMetadata",
+                  "responseType": "LeaseManagedDutResponse"
+                }
+              },
+              "outputType": ".chromiumos.longrunning.Operation"
+            },
+            {
+              "inputType": ".lab.ReturnManagedDutLeaseRequest",
+              "name": "ReturnManagedDutLease",
+              "outputType": ".lab.ReturnManagedDutLeaseResponse"
+            },
+            {
+              "inputType": ".lab.ExtendManagedDutLeaseRequest",
+              "name": "ExtendManagedDutLease",
+              "outputType": ".lab.ExtendManagedDutLeaseResponse"
+            },
+            {
+              "inputType": ".lab.ProvisionManagedDutRequest",
+              "name": "ProvisionManagedDut",
+              "outputType": ".lab.ProvisionManagedDutResponse"
+            },
+            {
+              "inputType": ".lab.VerifyManagedDutRequest",
+              "name": "VerifyManagedDut",
+              "outputType": ".lab.VerifyManagedDutResponse"
+            }
+          ],
+          "name": "DutManagerService"
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "dependency": [
+        "google/protobuf/empty.proto",
+        "google/protobuf/field_mask.proto",
+        "lab/managed_dut.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "dut",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            }
+          ],
+          "name": "CreateDutRequest"
+        },
+        {
+          "name": "CreateDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeleteDutRequest"
+        },
+        {
+          "name": "DeleteDutResponse"
+        },
+        {
+          "name": "ListDutRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            }
+          ],
+          "name": "ListDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetDutRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dut",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            }
+          ],
+          "name": "GetDutResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dut",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.ManagedDut"
+            },
+            {
+              "jsonName": "updateMask",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_mask",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.FieldMask"
+            }
+          ],
+          "name": "UpdateDutRequest"
+        },
+        {
+          "name": "UpdateDutResponse"
+        }
+      ],
+      "name": "lab/dut_manager_storage.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/lab"
+      },
+      "package": "lab",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".lab.CreateDutRequest",
+              "name": "CreateDut",
+              "outputType": ".lab.CreateDutResponse"
+            },
+            {
+              "inputType": ".lab.DeleteDutRequest",
+              "name": "DeleteDut",
+              "outputType": ".lab.DeleteDutResponse"
+            },
+            {
+              "inputType": ".lab.ListDutRequest",
+              "name": "ListDut",
+              "outputType": ".lab.ListDutResponse"
+            },
+            {
+              "inputType": ".lab.GetDutRequest",
+              "name": "GetDut",
+              "outputType": ".lab.GetDutResponse"
+            },
+            {
+              "inputType": ".lab.UpdateDutRequest",
+              "name": "UpdateDut",
+              "outputType": ".lab.UpdateDutResponse"
+            }
+          ],
+          "name": "DutManagerStorageService"
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "dependency": [
         "lab/chromeos_device_id.proto"
       ],
       "enumType": [
