@@ -13509,6 +13509,10 @@
                 {
                   "name": "SOC_MT8195",
                   "number": 37
+                },
+                {
+                  "name": "SOC_QCS40X",
+                  "number": 38
                 }
               ]
             },
