@@ -8,15 +8,6 @@ import "chromiumos/common.proto";
 
 // Protos for executing firmware builder functionality.  Added in R88.
 
-// TODO(b/177907747): Drop this once the migration is complete.
-// List of known location that firmware can be built from.
-enum FwLocation {
-  FW_LOCATION_UNKNOWN = 0;
-  PLATFORM_EC = 1; // platform/ec/firmware_builder.py
-  PLATFORM_ZEPHYR = 2; // platform/zephyr-chrome/firmware_builder.py
-  PLATFORM_TI50 = 3; // platform/ti50/common/firmware_builder.py.  Added in R90.
-}
-
 // Added in R91.
 message BcsVersionInfo {
   // Chrome OS version string, such as "R91-13844.0.0-45436".
@@ -96,46 +87,6 @@ message FwTestMetric {
 // in the firmware_builder.py.
 message FwTestMetricList {
   repeated FwTestMetric value = 1;
-}
-
-// TODO(b/177907747): Drop this once the migration is complete.
-message BuildAllTotFirmwareRequest {
-  // Location of firmware to build call into firmware_builder.py entry point.
-  // The `build` subcommand will be called.
-  FwLocation firmware_location = 1;
-
-  // The chroot where the operations will be executed.
-  // Required.
-  chromiumos.Chroot chroot = 2;
-
-  // Whether to pass --code-coverage to firmware_builder.py.
-  bool code_coverage = 3;
-}
-
-// TODO(b/177907747): Drop this once the migration is complete.
-message BuildAllTotFirmwareResponse {
-  // Metrics collected on every successful firmware build
-  FwBuildMetricList metrics = 1;
-}
-
-// TODO(b/177907747): Drop this once the migration is complete.
-message TestAllTotFirmwareRequest {
-  // Location of firmware to build call into firmware_builder.py entry point.
-  // The `test` subcommand will be called
-  FwLocation firmware_location = 1;
-
-  // The chroot where the operations will be executed.
-  // Required.
-  chromiumos.Chroot chroot = 2;
-
-  // Whether to pass --code-coverage to firmware_builder.py.
-  bool code_coverage = 3;
-}
-
-// TODO(b/177907747): Drop this once the migration is complete.
-message TestAllTotFirmwareResponse {
-  // Metrics collect on successfuly firmware unit test runs
-  FwTestMetricList metrics = 1;
 }
 
 message BuildAllFirmwareRequest {
@@ -282,16 +233,6 @@ service FirmwareService {
     module: "firmware",
     service_chroot_assert: INSIDE,
   };
-
-  // TODO(b/177907747): Drop this once the migration is complete.
-  // Builds all of the firmware targets on ToT at specified location.
-  rpc BuildAllTotFirmware(BuildAllTotFirmwareRequest)
-      returns (BuildAllTotFirmwareResponse);
-
-  // TODO(b/177907747): Drop this once the migration is complete.
-  // Runs all of the firmware tests on ToT at specified location.
-  rpc TestAllTotFirmware(TestAllTotFirmwareRequest)
-      returns (TestAllTotFirmwareResponse);
 
   // Builds all of the firmware targets at specified location. Added in R90.
   rpc BuildAllFirmware(BuildAllFirmwareRequest)
