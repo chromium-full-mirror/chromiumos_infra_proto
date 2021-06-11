@@ -47,21 +47,13 @@ message FwBuildMetric {
   message FwSection {
     // Region as described in FMAP or linker script.
     // E.g. EC_RO, EC_RW, EC_NVRAM, RO_BSS, RW_BSS, SHARED_MEM.
-    FwRegion region = 1;
-
-    enum FwRegion {
-      FW_REGION_UNKNOWN = 0;
-      EC_RO = 1;  // The entire section protected by write protect.
-      EC_RW = 2;  // Also RW_A for EFS1 systems.
-      EC_RO_BSS = 3;
-      EC_RW_BSS = 4;
-      EC_SHARED_MEM = 5;
-    }
+    string region = 1;
 
     // The number of bytes used in this section.
     uint32 used = 2;
 
-    // The total number of bytes available in this section.
+    // The total number of bytes available in this section. If this doesn't
+    // apply the value will be zero.
     uint32 total = 3;
   }
 
