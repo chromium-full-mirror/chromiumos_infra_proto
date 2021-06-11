@@ -10,6 +10,44 @@ import "chromiumos/metrics.proto";
 
 // Proto for executing test-related functionality.
 
+message TestServiceContainerBuildResult {
+  message Success {
+    // Full path to the build artifact in the hosted container registry.
+    string registry_path = 1;
+  }
+
+  message Failure {
+    // Debugging details about the error that occurred.
+    string error_message = 1;
+  }
+
+  // Human friendly name of the container built (for debugging/reporting only).
+  string name = 1;
+
+  oneof result {
+    Success success = 2;
+    Failure failure = 3;
+  }
+}
+
+message BuildTestServiceContainersRequest {
+  // The build target the test service containers are being build for.
+  chromiumos.BuildTarget build_target = 1;
+
+  // The chroot containing the sysroot.
+  chromiumos.Chroot chroot = 2;
+
+  // Build version number, which matches the build artifact version
+  // number that will be tested ultimately.
+  string version = 3;
+}
+
+message BuildTestServiceContainersResponse {
+  // List of containers that were attempted to be built and the success/failure
+  // results for each.
+  repeated TestServiceContainerBuildResult results = 1;
+}
+
 message BuildTargetUnitTestRequest {
   message Flags {
     // Assume the sysroot is empty.
@@ -187,6 +225,18 @@ service TestService {
     module: "test",
     service_chroot_assert: INSIDE,
   };
+
+  // Build all of the container micro-services used for testing in various lab
+  // environments.
+  // As part of the build, containers will also be automatically updated to the
+  // hosted container registry gcr.io for using the current chromeos version
+  // being build as the container image tag.
+  rpc BuildTestServiceContainers(BuildTestServiceContainersRequest)
+    returns (BuildTestServiceContainersResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 
   // Run a build target's ebuild unit tests.
   rpc BuildTargetUnitTest(BuildTargetUnitTestRequest)

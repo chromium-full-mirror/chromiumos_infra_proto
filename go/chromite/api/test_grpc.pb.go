@@ -18,6 +18,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TestServiceClient interface {
+	// Build all of the container micro-services used for testing in various lab
+	// environments.
+	// As part of the build, containers will also be automatically updated to the
+	// hosted container registry gcr.io for using the current chromeos version
+	// being build as the container image tag.
+	BuildTestServiceContainers(ctx context.Context, in *BuildTestServiceContainersRequest, opts ...grpc.CallOption) (*BuildTestServiceContainersResponse, error)
 	// Run a build target's ebuild unit tests.
 	BuildTargetUnitTest(ctx context.Context, in *BuildTargetUnitTestRequest, opts ...grpc.CallOption) (*BuildTargetUnitTestResponse, error)
 	// Run the chromite unit tests.
@@ -42,6 +48,15 @@ type testServiceClient struct {
 
 func NewTestServiceClient(cc grpc.ClientConnInterface) TestServiceClient {
 	return &testServiceClient{cc}
+}
+
+func (c *testServiceClient) BuildTestServiceContainers(ctx context.Context, in *BuildTestServiceContainersRequest, opts ...grpc.CallOption) (*BuildTestServiceContainersResponse, error) {
+	out := new(BuildTestServiceContainersResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/BuildTestServiceContainers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *testServiceClient) BuildTargetUnitTest(ctx context.Context, in *BuildTargetUnitTestRequest, opts ...grpc.CallOption) (*BuildTargetUnitTestResponse, error) {
@@ -120,6 +135,12 @@ func (c *testServiceClient) SimpleChromeWorkflowTest(ctx context.Context, in *Si
 // All implementations must embed UnimplementedTestServiceServer
 // for forward compatibility
 type TestServiceServer interface {
+	// Build all of the container micro-services used for testing in various lab
+	// environments.
+	// As part of the build, containers will also be automatically updated to the
+	// hosted container registry gcr.io for using the current chromeos version
+	// being build as the container image tag.
+	BuildTestServiceContainers(context.Context, *BuildTestServiceContainersRequest) (*BuildTestServiceContainersResponse, error)
 	// Run a build target's ebuild unit tests.
 	BuildTargetUnitTest(context.Context, *BuildTargetUnitTestRequest) (*BuildTargetUnitTestResponse, error)
 	// Run the chromite unit tests.
@@ -143,6 +164,9 @@ type TestServiceServer interface {
 type UnimplementedTestServiceServer struct {
 }
 
+func (UnimplementedTestServiceServer) BuildTestServiceContainers(context.Context, *BuildTestServiceContainersRequest) (*BuildTestServiceContainersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildTestServiceContainers not implemented")
+}
 func (UnimplementedTestServiceServer) BuildTargetUnitTest(context.Context, *BuildTargetUnitTestRequest) (*BuildTargetUnitTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildTargetUnitTest not implemented")
 }
@@ -178,6 +202,24 @@ type UnsafeTestServiceServer interface {
 
 func RegisterTestServiceServer(s grpc.ServiceRegistrar, srv TestServiceServer) {
 	s.RegisterService(&TestService_ServiceDesc, srv)
+}
+
+func _TestService_BuildTestServiceContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildTestServiceContainersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).BuildTestServiceContainers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/BuildTestServiceContainers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).BuildTestServiceContainers(ctx, req.(*BuildTestServiceContainersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TestService_BuildTargetUnitTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -331,6 +373,10 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "chromite.api.TestService",
 	HandlerType: (*TestServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "BuildTestServiceContainers",
+			Handler:    _TestService_BuildTestServiceContainers_Handler,
+		},
 		{
 			MethodName: "BuildTargetUnitTest",
 			Handler:    _TestService_BuildTargetUnitTest_Handler,
