@@ -9,8 +9,9 @@ def _HasLocalChanges(input_api):
 
 def CheckGenerated(input_api, output_api):
   results = []
-  input_api.subprocess.call(
-      ['./generate.sh'])
+  if input_api.subprocess.call(['./generate.sh']):
+    results.append(output_api.PresubmitError('Error calling generate.sh'))
+
   if _HasLocalChanges(input_api):
     msg = ('Running generate.sh produced a diff. Please '
            'run the script, amend your changes, and try again.')
