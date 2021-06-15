@@ -18,7 +18,6 @@ import "chromiumos/common.proto";
 import "google/protobuf/timestamp.proto";
 
 // from chromiumos/config (ie: src/config)
-import "chromiumos/build/payload/metadata.proto";
 
 message Timeframe {
     google.protobuf.Timestamp begin = 1;
@@ -37,9 +36,6 @@ message BuildReportBeta {
     BuildStatus status = 3;
     BuildConfig config = 4;
     StepDetails steps  = 5;
-
-    // Build information from the build API (see go/cros-build-service-metadata).
-    chromiumos.build.payload.BuildMetadata build_info = 6;
 
     // Artifacts from the build.
     repeated BuildArtifact artifacts = 7;

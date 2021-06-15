@@ -10859,8 +10859,7 @@
     {
       "dependency": [
         "chromiumos/common.proto",
-        "google/protobuf/timestamp.proto",
-        "chromiumos/build/payload/metadata.proto"
+        "google/protobuf/timestamp.proto"
       ],
       "messageType": [
         {
@@ -10948,14 +10947,6 @@
               "number": 5,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildReportBeta.StepDetails"
-            },
-            {
-              "jsonName": "buildInfo",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_info",
-              "number": 6,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.build.payload.BuildMetadata"
             },
             {
               "jsonName": "artifacts",
