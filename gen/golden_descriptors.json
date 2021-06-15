@@ -7606,29 +7606,6 @@
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
       ],
-      "enumType": [
-        {
-          "name": "FwLocation",
-          "value": [
-            {
-              "name": "FW_LOCATION_UNKNOWN",
-              "number": 0
-            },
-            {
-              "name": "PLATFORM_EC",
-              "number": 1
-            },
-            {
-              "name": "PLATFORM_ZEPHYR",
-              "number": 2
-            },
-            {
-              "name": "PLATFORM_TI50",
-              "number": 3
-            }
-          ]
-        }
-      ],
       "messageType": [
         {
           "field": [
@@ -7691,45 +7668,13 @@
           "name": "FwBuildMetric",
           "nestedType": [
             {
-              "enumType": [
-                {
-                  "name": "FwRegion",
-                  "value": [
-                    {
-                      "name": "FW_REGION_UNKNOWN",
-                      "number": 0
-                    },
-                    {
-                      "name": "EC_RO",
-                      "number": 1
-                    },
-                    {
-                      "name": "EC_RW",
-                      "number": 2
-                    },
-                    {
-                      "name": "EC_RO_BSS",
-                      "number": 3
-                    },
-                    {
-                      "name": "EC_RW_BSS",
-                      "number": 4
-                    },
-                    {
-                      "name": "EC_SHARED_MEM",
-                      "number": 5
-                    }
-                  ]
-                }
-              ],
               "field": [
                 {
                   "jsonName": "region",
                   "label": "LABEL_OPTIONAL",
                   "name": "region",
                   "number": 1,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".chromite.api.FwBuildMetric.FwSection.FwRegion"
+                  "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "used",
@@ -7831,88 +7776,6 @@
             }
           ],
           "name": "FwTestMetricList"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "firmwareLocation",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_location",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromite.api.FwLocation"
-            },
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "codeCoverage",
-              "label": "LABEL_OPTIONAL",
-              "name": "code_coverage",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "BuildAllTotFirmwareRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "metrics",
-              "label": "LABEL_OPTIONAL",
-              "name": "metrics",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwBuildMetricList"
-            }
-          ],
-          "name": "BuildAllTotFirmwareResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "firmwareLocation",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_location",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromite.api.FwLocation"
-            },
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "codeCoverage",
-              "label": "LABEL_OPTIONAL",
-              "name": "code_coverage",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "TestAllTotFirmwareRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "metrics",
-              "label": "LABEL_OPTIONAL",
-              "name": "metrics",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwTestMetricList"
-            }
-          ],
-          "name": "TestAllTotFirmwareResponse"
         },
         {
           "field": [
@@ -8252,16 +8115,6 @@
       "service": [
         {
           "method": [
-            {
-              "inputType": ".chromite.api.BuildAllTotFirmwareRequest",
-              "name": "BuildAllTotFirmware",
-              "outputType": ".chromite.api.BuildAllTotFirmwareResponse"
-            },
-            {
-              "inputType": ".chromite.api.TestAllTotFirmwareRequest",
-              "name": "TestAllTotFirmware",
-              "outputType": ".chromite.api.TestAllTotFirmwareResponse"
-            },
             {
               "inputType": ".chromite.api.BuildAllFirmwareRequest",
               "name": "BuildAllFirmware",

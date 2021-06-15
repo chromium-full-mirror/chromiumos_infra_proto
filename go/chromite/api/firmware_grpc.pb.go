@@ -18,12 +18,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FirmwareServiceClient interface {
-	// TODO(b/177907747): Drop this once the migration is complete.
-	// Builds all of the firmware targets on ToT at specified location.
-	BuildAllTotFirmware(ctx context.Context, in *BuildAllTotFirmwareRequest, opts ...grpc.CallOption) (*BuildAllTotFirmwareResponse, error)
-	// TODO(b/177907747): Drop this once the migration is complete.
-	// Runs all of the firmware tests on ToT at specified location.
-	TestAllTotFirmware(ctx context.Context, in *TestAllTotFirmwareRequest, opts ...grpc.CallOption) (*TestAllTotFirmwareResponse, error)
 	// Builds all of the firmware targets at specified location. Added in R90.
 	BuildAllFirmware(ctx context.Context, in *BuildAllFirmwareRequest, opts ...grpc.CallOption) (*BuildAllFirmwareResponse, error)
 	// Runs all of the firmware tests at specified location. Added in R90.
@@ -38,24 +32,6 @@ type firmwareServiceClient struct {
 
 func NewFirmwareServiceClient(cc grpc.ClientConnInterface) FirmwareServiceClient {
 	return &firmwareServiceClient{cc}
-}
-
-func (c *firmwareServiceClient) BuildAllTotFirmware(ctx context.Context, in *BuildAllTotFirmwareRequest, opts ...grpc.CallOption) (*BuildAllTotFirmwareResponse, error) {
-	out := new(BuildAllTotFirmwareResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.FirmwareService/BuildAllTotFirmware", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *firmwareServiceClient) TestAllTotFirmware(ctx context.Context, in *TestAllTotFirmwareRequest, opts ...grpc.CallOption) (*TestAllTotFirmwareResponse, error) {
-	out := new(TestAllTotFirmwareResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.FirmwareService/TestAllTotFirmware", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *firmwareServiceClient) BuildAllFirmware(ctx context.Context, in *BuildAllFirmwareRequest, opts ...grpc.CallOption) (*BuildAllFirmwareResponse, error) {
@@ -89,12 +65,6 @@ func (c *firmwareServiceClient) BundleFirmwareArtifacts(ctx context.Context, in 
 // All implementations must embed UnimplementedFirmwareServiceServer
 // for forward compatibility
 type FirmwareServiceServer interface {
-	// TODO(b/177907747): Drop this once the migration is complete.
-	// Builds all of the firmware targets on ToT at specified location.
-	BuildAllTotFirmware(context.Context, *BuildAllTotFirmwareRequest) (*BuildAllTotFirmwareResponse, error)
-	// TODO(b/177907747): Drop this once the migration is complete.
-	// Runs all of the firmware tests on ToT at specified location.
-	TestAllTotFirmware(context.Context, *TestAllTotFirmwareRequest) (*TestAllTotFirmwareResponse, error)
 	// Builds all of the firmware targets at specified location. Added in R90.
 	BuildAllFirmware(context.Context, *BuildAllFirmwareRequest) (*BuildAllFirmwareResponse, error)
 	// Runs all of the firmware tests at specified location. Added in R90.
@@ -108,12 +78,6 @@ type FirmwareServiceServer interface {
 type UnimplementedFirmwareServiceServer struct {
 }
 
-func (UnimplementedFirmwareServiceServer) BuildAllTotFirmware(context.Context, *BuildAllTotFirmwareRequest) (*BuildAllTotFirmwareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BuildAllTotFirmware not implemented")
-}
-func (UnimplementedFirmwareServiceServer) TestAllTotFirmware(context.Context, *TestAllTotFirmwareRequest) (*TestAllTotFirmwareResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TestAllTotFirmware not implemented")
-}
 func (UnimplementedFirmwareServiceServer) BuildAllFirmware(context.Context, *BuildAllFirmwareRequest) (*BuildAllFirmwareResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildAllFirmware not implemented")
 }
@@ -134,42 +98,6 @@ type UnsafeFirmwareServiceServer interface {
 
 func RegisterFirmwareServiceServer(s grpc.ServiceRegistrar, srv FirmwareServiceServer) {
 	s.RegisterService(&FirmwareService_ServiceDesc, srv)
-}
-
-func _FirmwareService_BuildAllTotFirmware_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BuildAllTotFirmwareRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FirmwareServiceServer).BuildAllTotFirmware(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.FirmwareService/BuildAllTotFirmware",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FirmwareServiceServer).BuildAllTotFirmware(ctx, req.(*BuildAllTotFirmwareRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _FirmwareService_TestAllTotFirmware_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestAllTotFirmwareRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FirmwareServiceServer).TestAllTotFirmware(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.FirmwareService/TestAllTotFirmware",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FirmwareServiceServer).TestAllTotFirmware(ctx, req.(*TestAllTotFirmwareRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _FirmwareService_BuildAllFirmware_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -233,14 +161,6 @@ var FirmwareService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "chromite.api.FirmwareService",
 	HandlerType: (*FirmwareServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "BuildAllTotFirmware",
-			Handler:    _FirmwareService_BuildAllTotFirmware_Handler,
-		},
-		{
-			MethodName: "TestAllTotFirmware",
-			Handler:    _FirmwareService_TestAllTotFirmware_Handler,
-		},
 		{
 			MethodName: "BuildAllFirmware",
 			Handler:    _FirmwareService_BuildAllFirmware_Handler,
