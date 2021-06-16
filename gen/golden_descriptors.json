@@ -10964,25 +10964,6 @@
           "name": "BuildReportBeta",
           "nestedType": [
             {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "description",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "description",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Notes"
-            },
-            {
               "enumType": [
                 {
                   "name": "Status",
@@ -11038,14 +11019,6 @@
                   "number": 1,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.BuildReportBeta.BuildStatus.Status"
-                },
-                {
-                  "jsonName": "notes",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "notes",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.BuildReportBeta.Notes"
                 }
               ],
               "name": "BuildStatus"
@@ -11053,18 +11026,10 @@
             {
               "field": [
                 {
-                  "jsonName": "notes",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "notes",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.BuildReportBeta.Notes"
-                },
-                {
                   "jsonName": "branch",
                   "label": "LABEL_OPTIONAL",
                   "name": "branch",
-                  "number": 2,
+                  "number": 1,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.BuildConfig.Branch"
                 },
@@ -11072,7 +11037,7 @@
                   "jsonName": "release",
                   "label": "LABEL_OPTIONAL",
                   "name": "release",
-                  "number": 3,
+                  "number": 2,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.BuildConfig.Release"
                 },
@@ -11080,7 +11045,7 @@
                   "jsonName": "models",
                   "label": "LABEL_REPEATED",
                   "name": "models",
-                  "number": 4,
+                  "number": 3,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.BuildConfig.Model"
                 }
@@ -11218,18 +11183,10 @@
               ],
               "field": [
                 {
-                  "jsonName": "notes",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "notes",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.BuildReportBeta.Notes"
-                },
-                {
                   "jsonName": "type",
                   "label": "LABEL_OPTIONAL",
                   "name": "type",
-                  "number": 2,
+                  "number": 1,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.BuildReportBeta.BuildArtifact.Type"
                 },
@@ -11237,7 +11194,7 @@
                   "jsonName": "uri",
                   "label": "LABEL_OPTIONAL",
                   "name": "uri",
-                  "number": 3,
+                  "number": 2,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.BuildArtifact.URI"
                 },
@@ -11245,14 +11202,14 @@
                   "jsonName": "sha256",
                   "label": "LABEL_OPTIONAL",
                   "name": "sha256",
-                  "number": 4,
+                  "number": 3,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "created",
                   "label": "LABEL_OPTIONAL",
                   "name": "created",
-                  "number": 5,
+                  "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".google.protobuf.Timestamp"
                 }
@@ -11384,14 +11341,6 @@
                       "number": 3,
                       "type": "TYPE_MESSAGE",
                       "typeName": ".chromiumos.Timeframe"
-                    },
-                    {
-                      "jsonName": "notes",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "notes",
-                      "number": 4,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".chromiumos.BuildReportBeta.Notes"
                     }
                   ],
                   "name": "StepInfo"

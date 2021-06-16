@@ -43,12 +43,6 @@ message BuildReportBeta {
     // Artifacts from the build.
     repeated BuildArtifact artifacts = 7;
 
-    // Optional human-readable annotations, for display only.
-    message Notes {
-        string name        = 1;
-        string description = 2;
-    }
-
     enum BuildType {
         BUILD_TYPE_UNDEFINED = 0;
         BUILD_TYPE_RELEASE   = 1;
@@ -77,7 +71,6 @@ message BuildReportBeta {
         }
 
         Status value = 1;
-        Notes  notes = 2; // Optional human-readable notes on status update.
     }
 
     // Information about the build configuration.
@@ -100,13 +93,12 @@ message BuildReportBeta {
             string name = 1; // eg: release-R90-13816.B
         }
 
-        Notes   notes   = 1; // Optional human-readable notes.
-        Branch  branch  = 2; // Optional branch information (not present for tip-of-tree).
-        Release release = 3; // Optional information for release builds.
+        Branch  branch  = 1; // Optional branch information (not present for tip-of-tree).
+        Release release = 2; // Optional information for release builds.
 
         // List of board models covered by this build ie: expanded list of
         // unibuild models at the time the build ran, may be empty.
-        repeated Model models = 4;
+        repeated Model models = 3;
     }
 
     // Artifacts produced by the build.
@@ -148,13 +140,12 @@ message BuildReportBeta {
             }
         }
 
-        Notes  notes  = 1; // Optional human-readable notes for the artifact.
-        Type   type   = 2; // The artifact type.
-        URI    uri    = 3; // URI of the artifact.
-        string sha256 = 4; // SHA256 hash of the artifact.
+        Type   type   = 1; // The artifact type.
+        URI    uri    = 2; // URI of the artifact.
+        string sha256 = 3; // SHA256 hash of the artifact.
 
         // Time of artifact creation.
-        google.protobuf.Timestamp created = 5;
+        google.protobuf.Timestamp created = 4;
     }
 
     // Build statistics
@@ -192,7 +183,6 @@ message BuildReportBeta {
             int32     order   = 1;
             Status    status  = 2; // Step status
             Timeframe runtime = 3; // Step runtime information
-            Notes     notes   = 4; // Optional human-readable information
         }
 
         StepName current = 1;
