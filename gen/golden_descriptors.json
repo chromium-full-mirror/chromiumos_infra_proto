@@ -11287,12 +11287,40 @@
                       "number": 0
                     },
                     {
-                      "name": "STEP_TOTAL",
-                      "number": 1
+                      "name": "STEP_OVERALL",
+                      "number": 100
                     },
                     {
                       "name": "STEP_SYNC",
-                      "number": 100
+                      "number": 200
+                    },
+                    {
+                      "name": "STEP_SYNC_CHROME",
+                      "number": 201
+                    },
+                    {
+                      "name": "STEP_SDK",
+                      "number": 300
+                    },
+                    {
+                      "name": "STEP_SDK_INIT",
+                      "number": 301
+                    },
+                    {
+                      "name": "STEP_SDK_UPDATE",
+                      "number": 302
+                    },
+                    {
+                      "name": "STEP_BUILD",
+                      "number": 400
+                    },
+                    {
+                      "name": "STEP_BUILD_SYSROOT",
+                      "number": 401
+                    },
+                    {
+                      "name": "STEP_BUILD_PACKAGES",
+                      "number": 402
                     }
                   ]
                 }

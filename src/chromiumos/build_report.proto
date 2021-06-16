@@ -169,12 +169,23 @@ message BuildReportBeta {
             STEP_STATUS_RUNNING = 200;
         }
 
-        // Consistent predefined step names, increment by 100 to leave room for
-        // adding sub-steps in the future.
+        // Consistent predefined 'logical' step names for consistency and tracking
+        // performance over time. Increment by 100 to leave room for adding
+        // sub-steps in the future.
         enum StepName {
-            STEP_UNDEFINED = 0;
-            STEP_TOTAL = 1;
-            STEP_SYNC  = 100;
+            STEP_UNDEFINED      = 0;
+            STEP_OVERALL        = 100;
+
+            STEP_SYNC           = 200;
+            STEP_SYNC_CHROME    = 201;
+
+            STEP_SDK            = 300;
+            STEP_SDK_INIT       = 301;
+            STEP_SDK_UPDATE     = 302;
+
+            STEP_BUILD          = 400;
+            STEP_BUILD_SYSROOT  = 401;
+            STEP_BUILD_PACKAGES = 402;
         }
 
         message StepInfo {
@@ -189,7 +200,7 @@ message BuildReportBeta {
 
         // This is a map from StepName enums to information about the step.
         // Protobuffer doesn't allow enums to be used as map keys, so we're
-        // forced to use a string. Keys should be marshalled via the StepName
+        // forced to use a string. Keys must be marshalled via the StepName
         // enum to get their string representation.
         map<string, StepInfo> info = 2;
     }
