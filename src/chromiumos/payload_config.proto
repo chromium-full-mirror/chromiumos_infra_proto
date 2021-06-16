@@ -33,6 +33,7 @@ syntax = "proto3";
 package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
 
 message PayloadConfig {
   // This is current configuration for payloads.

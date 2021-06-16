@@ -7,6 +7,7 @@ syntax = "proto3";
 package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
 
 import "chromiumos/builder_config.proto";
 import "chromiumos/common.proto";

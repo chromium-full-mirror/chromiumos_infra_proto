@@ -7,6 +7,7 @@ syntax = "proto3";
 package chromiumos.version_bumper;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos/version_bumper";
+option java_package = "com.google.chrome.crosinfra.proto";
 
 // BumpVersionRequest is the input for the Go-based version_bumper.
 message BumpVersionRequest {

@@ -2107,7 +2107,8 @@
       ],
       "name": "chromiumos/common.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -2150,7 +2151,8 @@
       ],
       "name": "chromiumos/metrics.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -9740,7 +9742,8 @@
       ],
       "name": "chromiumos/builder_config.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -10778,7 +10781,8 @@
       ],
       "name": "chromiumos/bot_scaling.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -10846,7 +10850,8 @@
       ],
       "name": "chromiumos/branch.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -11408,7 +11413,8 @@
       ],
       "name": "chromiumos/build_report.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -11604,7 +11610,8 @@
       ],
       "name": "chromiumos/chromiumdash.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -11703,7 +11710,8 @@
       ],
       "name": "chromiumos/dut_tracking.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -11953,7 +11961,8 @@
       ],
       "name": "chromiumos/ge_config.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -12032,7 +12041,8 @@
       ],
       "name": "chromiumos/generate_build_plan.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -12191,7 +12201,8 @@
       ],
       "name": "chromiumos/payload_config.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -12251,7 +12262,8 @@
       ],
       "name": "chromiumos/repo_cache_state.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -12294,7 +12306,8 @@
       ],
       "name": "chromiumos/sdk_cache_state.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -12421,7 +12434,8 @@
       ],
       "name": "chromiumos/sign_image.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos",
       "syntax": "proto3"
@@ -12490,7 +12504,8 @@
       ],
       "name": "chromiumos/version_bumper/version_bumper.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos/version_bumper"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos/version_bumper",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
       },
       "package": "chromiumos.version_bumper",
       "syntax": "proto3"

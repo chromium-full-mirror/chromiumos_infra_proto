@@ -3,6 +3,7 @@ syntax = "proto3";
 package chromiumos;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
 
 // TODO(b/177487002): cannot include prototype.milestone at this time.
 //import "prototype/milestone.proto";
