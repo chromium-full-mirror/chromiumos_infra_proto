@@ -108,14 +108,7 @@ buf build --exclude-imports --exclude-source-info \
 # Check if golden file changed and offer to submit it for the user.
 if ! git diff --quiet "${golden_file}"; then
   echo
-  read -p "${golden_file} changed, amend last commit to add it? " -n 1 -r
-  echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git add "${golden_file}"
-    git commit --amend --no-edit
-  else
-    echo "Please commit ${golden_file} manually" >&2
-  fi
+  echo "Please commit ${golden_file} with your change"
 else
   echo "Clean diff on ${golden_file}, nothing else to do." >&2
 fi
