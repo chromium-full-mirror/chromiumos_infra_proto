@@ -10993,7 +10993,7 @@
                       "number": 103
                     },
                     {
-                      "name": "CANCELLED",
+                      "name": "CANCELED",
                       "number": 104
                     },
                     {
@@ -11266,11 +11266,11 @@
                       "number": 103
                     },
                     {
-                      "name": "STATUS_CANCELLED",
+                      "name": "STATUS_CANCELED",
                       "number": 104
                     },
                     {
-                      "name": "STEP_STATUS_RUNNING",
+                      "name": "STATUS_RUNNING",
                       "number": 200
                     }
                   ]

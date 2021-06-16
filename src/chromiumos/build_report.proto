@@ -60,7 +60,7 @@ message BuildReportBeta {
             FAILURE       = 101; // Build failed for reasons related to it's input.
             INFRA_FAILURE = 102; // Build failed independent of the input.
             WATCHDOG      = 103; // Build died for unknown reasons (from OOB watchdog).
-            CANCELLED     = 104; // Build explicitly cancelled.
+            CANCELED      = 104; // Build explicitly canceled.
 
             // Non-terminal states, more updates may be incoming.
             RUNNING  = 200;
@@ -160,10 +160,10 @@ message BuildReportBeta {
             STATUS_FAILURE       = 101; // Step failed for reasons related to build input.
             STATUS_INFRA_FAILURE = 102; // Step failed for reasons unrelated to build input.
             STATUS_WATCHDOG      = 103; // Step was interrupted when build died.
-            STATUS_CANCELLED     = 104; // Step was interrupted due to explicit cancellation.
+            STATUS_CANCELED      = 104; // Step was interrupted due to explicit cancelation.
 
             // non-terminal states
-            STEP_STATUS_RUNNING = 200;
+            STATUS_RUNNING       = 200;
         }
 
         // Consistent predefined 'logical' step names for consistency and tracking
