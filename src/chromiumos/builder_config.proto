@@ -298,6 +298,9 @@ message BuilderConfig {
 
       // Breakpad debug symbols. Added in R93.
       BREAKPAD_DEBUG_SYMBOLS = 35;
+
+      // Infra: Build manifest.
+      BUILD_MANIFEST = 36;
     }
     repeated ArtifactTypes artifact_types = 2;
 
