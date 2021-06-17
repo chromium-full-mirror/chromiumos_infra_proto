@@ -11678,6 +11678,14 @@
               "number": 15,
               "type": "TYPE_MESSAGE",
               "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "stableRefreshThird",
+              "label": "LABEL_OPTIONAL",
+              "name": "stable_refresh_third",
+              "number": 16,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
             }
           ],
           "name": "Milestone",

@@ -58,6 +58,7 @@ message Milestone {
     map<string, string> ldaps = 13;
     google.protobuf.Timestamp earliest_beta_ios = 14;
     google.protobuf.Timestamp branch_point = 15;
+    google.protobuf.Timestamp stable_refresh_third = 16;
 }
 
 // A response to fetch_milestone_schedule.
