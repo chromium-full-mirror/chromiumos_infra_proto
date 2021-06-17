@@ -444,7 +444,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
-      reserved 33 to 36;
+      reserved 33 to 37;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -549,7 +549,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 30 to 36;
+      reserved 30 to 37;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -607,7 +607,7 @@ message ArtifactsByService {
       // DLC image (squashfs).  Added in R91.
       DLC_IMAGE = 34;
 
-      reserved 35 to 36;
+      reserved 35 to 37;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -656,7 +656,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 36;
+      reserved 1 to 37;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -715,7 +715,7 @@ message ArtifactsByService {
       // Breakpad sym files in a tarball.
       BREAKPAD_DEBUG_SYMBOLS = 35;
 
-      reserved 36;
+      reserved 36 to 37;
     }
 
     // Information about one or more artifacts.  This should match the rest of
@@ -766,6 +766,8 @@ message ArtifactsByService {
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 36;
+
+      UNIT_TESTS = 37;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -830,7 +832,7 @@ message ArtifactsByService {
       // FirmwareService: LCOV code coverage files.
       FIRMWARE_LCOV = 33;
 
-      reserved 34 to 36;
+      reserved 34 to 37;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -884,6 +886,8 @@ message ArtifactsByService {
       reserved 1 to 35;
 
       BUILD_MANIFEST = 36;
+
+      reserved 37;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
