@@ -301,6 +301,12 @@ message BuilderConfig {
 
       // Infra: Build manifest.
       BUILD_MANIFEST = 36;
+
+      // TestService: unit tests.
+      UNIT_TESTS = 37;
+
+      // ImageService: license_credits.html.
+      LICENSE_CREDITS = 38;
     }
     repeated ArtifactTypes artifact_types = 2;
 

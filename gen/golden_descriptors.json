@@ -1087,7 +1087,7 @@
                       "start": 29
                     },
                     {
-                      "end": 37,
+                      "end": 38,
                       "start": 33
                     }
                   ],
@@ -1231,7 +1231,7 @@
                       "start": 27
                     },
                     {
-                      "end": 37,
+                      "end": 38,
                       "start": 30
                     }
                   ],
@@ -1390,6 +1390,10 @@
                     {
                       "name": "DLC_IMAGE",
                       "number": 34
+                    },
+                    {
+                      "name": "LICENSE_CREDITS",
+                      "number": 38
                     }
                   ]
                 }
@@ -1457,7 +1461,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 37,
+                      "end": 38,
                       "start": 1
                     }
                   ],
@@ -1540,7 +1544,7 @@
                       "start": 33
                     },
                     {
-                      "end": 37,
+                      "end": 38,
                       "start": 36
                     }
                   ],
@@ -1710,7 +1714,7 @@
                       "start": 32
                     },
                     {
-                      "end": 37,
+                      "end": 38,
                       "start": 34
                     }
                   ],
@@ -1809,7 +1813,7 @@
                       "start": 1
                     },
                     {
-                      "end": 37,
+                      "end": 38,
                       "start": 37
                     }
                   ],
@@ -9491,6 +9495,14 @@
                     {
                       "name": "BUILD_MANIFEST",
                       "number": 36
+                    },
+                    {
+                      "name": "UNIT_TESTS",
+                      "number": 37
+                    },
+                    {
+                      "name": "LICENSE_CREDITS",
+                      "number": 38
                     }
                   ]
                 }
