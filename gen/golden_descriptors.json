@@ -16075,6 +16075,22 @@
               "typeName": ".lab.HardwareState"
             },
             {
+              "jsonName": "wifiState",
+              "label": "LABEL_OPTIONAL",
+              "name": "wifi_state",
+              "number": 12,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab.HardwareState"
+            },
+            {
+              "jsonName": "bluetoothState",
+              "label": "LABEL_OPTIONAL",
+              "name": "bluetooth_state",
+              "number": 13,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab.HardwareState"
+            },
+            {
               "jsonName": "rpmState",
               "label": "LABEL_OPTIONAL",
               "name": "rpm_state",
