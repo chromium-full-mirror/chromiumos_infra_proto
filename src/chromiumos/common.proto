@@ -389,6 +389,19 @@ message ArtifactsByService {
     PUBLISH_ALWAYS = 2;
   }
 
+  // How to publish code coverage information for an artifact.
+  message CodeCoverageUploadInfo {
+    // The type of code coverage information the artifact represents.
+    enum CodeCoverageType {
+      //  LCOV Code Coverage is generated.
+      LCOV = 0;
+
+      // LLVM Code Coverage is generated.
+      LLVM = 1;
+    }
+    CodeCoverageType coverage_type = 1;
+  }
+
   // TODO(crbug/1034529): Drop this message.
   // Artifacts handled within the ArtifactsService endpoints directly.
   message Legacy {
@@ -444,7 +457,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
-      reserved 33 to 38;
+      reserved 33 to 39;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -549,7 +562,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 30 to 38;
+      reserved 30 to 39;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -611,6 +624,8 @@ message ArtifactsByService {
 
       // license_credits.html.
       LICENSE_CREDITS = 38;
+
+      reserved 39;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -659,7 +674,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 38;
+      reserved 1 to 39;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -718,7 +733,7 @@ message ArtifactsByService {
       // Breakpad sym files in a tarball.
       BREAKPAD_DEBUG_SYMBOLS = 35;
 
-      reserved 36 to 38;
+      reserved 36 to 39;
     }
 
     // Information about one or more artifacts.  This should match the rest of
@@ -771,6 +786,10 @@ message ArtifactsByService {
       reserved 1 to 36;
 
       UNIT_TESTS = 37;
+
+      reserved 38;
+
+      CODE_COVERAGE_LLVM_JSON = 39;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -802,6 +821,9 @@ message ArtifactsByService {
 
       // When to publish the artifact.
       PublishCondition publish_condition = 5;
+
+      // Optional information related to code coverage.
+      CodeCoverageUploadInfo code_coverage_upload_info = 6;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -835,7 +857,7 @@ message ArtifactsByService {
       // FirmwareService: LCOV code coverage files.
       FIRMWARE_LCOV = 33;
 
-      reserved 34 to 38;
+      reserved 34 to 39;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -870,6 +892,9 @@ message ArtifactsByService {
 
       // The firmware location.
       FwLocation location = 6;
+
+      // Optional information related to code coverage.
+      CodeCoverageUploadInfo code_coverage_upload_info = 7;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -890,7 +915,7 @@ message ArtifactsByService {
 
       BUILD_MANIFEST = 36;
 
-      reserved 37 to 38;
+      reserved 37 to 39;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having

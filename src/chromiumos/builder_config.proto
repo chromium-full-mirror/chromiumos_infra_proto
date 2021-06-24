@@ -307,6 +307,9 @@ message BuilderConfig {
 
       // ImageService: license_credits.html.
       LICENSE_CREDITS = 38;
+
+      // TestService: LLVM JSON Code Coverage.
+      CODE_COVERAGE_LLVM_JSON = 39;
     }
     repeated ArtifactTypes artifact_types = 2;
 

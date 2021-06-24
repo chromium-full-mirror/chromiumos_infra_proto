@@ -1076,6 +1076,34 @@
             {
               "enumType": [
                 {
+                  "name": "CodeCoverageType",
+                  "value": [
+                    {
+                      "name": "LCOV",
+                      "number": 0
+                    },
+                    {
+                      "name": "LLVM",
+                      "number": 1
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "coverageType",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "coverage_type",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.ArtifactsByService.CodeCoverageUploadInfo.CodeCoverageType"
+                }
+              ],
+              "name": "CodeCoverageUploadInfo"
+            },
+            {
+              "enumType": [
+                {
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
@@ -1087,7 +1115,7 @@
                       "start": 29
                     },
                     {
-                      "end": 38,
+                      "end": 39,
                       "start": 33
                     }
                   ],
@@ -1231,7 +1259,7 @@
                       "start": 27
                     },
                     {
-                      "end": 38,
+                      "end": 39,
                       "start": 30
                     }
                   ],
@@ -1380,6 +1408,10 @@
                     {
                       "end": 37,
                       "start": 35
+                    },
+                    {
+                      "end": 39,
+                      "start": 39
                     }
                   ],
                   "value": [
@@ -1461,7 +1493,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 38,
+                      "end": 39,
                       "start": 1
                     }
                   ],
@@ -1544,7 +1576,7 @@
                       "start": 33
                     },
                     {
-                      "end": 38,
+                      "end": 39,
                       "start": 36
                     }
                   ],
@@ -1629,6 +1661,10 @@
                     {
                       "end": 36,
                       "start": 1
+                    },
+                    {
+                      "end": 38,
+                      "start": 38
                     }
                   ],
                   "value": [
@@ -1639,6 +1675,10 @@
                     {
                       "name": "UNIT_TESTS",
                       "number": 37
+                    },
+                    {
+                      "name": "CODE_COVERAGE_LLVM_JSON",
+                      "number": 39
                     }
                   ]
                 }
@@ -1694,6 +1734,14 @@
                       "number": 5,
                       "type": "TYPE_ENUM",
                       "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
+                    },
+                    {
+                      "jsonName": "codeCoverageUploadInfo",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "code_coverage_upload_info",
+                      "number": 6,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromiumos.ArtifactsByService.CodeCoverageUploadInfo"
                     }
                   ],
                   "name": "ArtifactInfo"
@@ -1714,7 +1762,7 @@
                       "start": 32
                     },
                     {
-                      "end": 38,
+                      "end": 39,
                       "start": 34
                     }
                   ],
@@ -1797,6 +1845,14 @@
                       "number": 6,
                       "type": "TYPE_ENUM",
                       "typeName": ".chromiumos.FwLocation"
+                    },
+                    {
+                      "jsonName": "codeCoverageUploadInfo",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "code_coverage_upload_info",
+                      "number": 7,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromiumos.ArtifactsByService.CodeCoverageUploadInfo"
                     }
                   ],
                   "name": "ArtifactInfo"
@@ -1813,7 +1869,7 @@
                       "start": 1
                     },
                     {
-                      "end": 38,
+                      "end": 39,
                       "start": 37
                     }
                   ],
@@ -9503,6 +9559,10 @@
                     {
                       "name": "LICENSE_CREDITS",
                       "number": 38
+                    },
+                    {
+                      "name": "CODE_COVERAGE_LLVM_JSON",
+                      "number": 39
                     }
                   ]
                 }
