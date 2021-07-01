@@ -9964,6 +9964,14 @@
                   "number": 8,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.BuilderConfig.Dependencies"
+                },
+                {
+                  "jsonName": "packageBlocklist",
+                  "label": "LABEL_REPEATED",
+                  "name": "package_blocklist",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.PackageInfo"
                 }
               ],
               "name": "UnitTests"

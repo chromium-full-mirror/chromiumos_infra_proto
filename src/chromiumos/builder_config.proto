@@ -473,6 +473,9 @@ message BuilderConfig {
 
     // Set of package dependencies to test.
     Dependencies dependencies = 8;
+
+    // Skipped packages.
+    repeated PackageInfo package_blocklist = 9;
   }
   UnitTests unit_tests = 7;
 }
