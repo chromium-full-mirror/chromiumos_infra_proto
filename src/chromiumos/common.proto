@@ -393,11 +393,13 @@ message ArtifactsByService {
   message CodeCoverageUploadInfo {
     // The type of code coverage information the artifact represents.
     enum CodeCoverageType {
-      //  LCOV Code Coverage is generated.
-      LCOV = 0;
+      UNSPECIFIED = 0;
 
       // LLVM Code Coverage is generated.
       LLVM = 1;
+
+      // LCOV Code Coverage is generated.
+      LCOV = 2;
     }
     CodeCoverageType coverage_type = 1;
   }
