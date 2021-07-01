@@ -6,6 +6,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/analysis_service";
 import "chromite/api/artifacts.proto";
 import "chromite/api/binhost.proto";
 import "chromite/api/depgraph.proto";
+import "chromite/api/firmware.proto";
 import "chromite/api/image.proto";
 import "chromite/api/packages.proto";
 import "chromite/api/sdk.proto";
@@ -32,7 +33,7 @@ message StepExecutionResult {
 // This proto should only be used by a recipes module to do the wrapping and a
 // layer on the Analysis Server to do the unwrapping.
 //
-// NEXT ID: 55;
+// NEXT ID: 57;
 message AnalysisServiceEvent {
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
@@ -81,6 +82,7 @@ message AnalysisServiceEvent {
     chromite.api.GetBestVisibleRequest get_best_visible_request = 46;
     chromite.api.GetChromeVersionRequest get_chrome_version_request = 48;
     chromite.api.GetBuilderMetadataRequest get_builder_metadata_request = 53;
+    chromite.api.BuildAllFirmwareRequest build_all_firmware_request = 55;
   }
 
   // The response to upload.
@@ -108,5 +110,6 @@ message AnalysisServiceEvent {
     chromite.api.GetBestVisibleResponse get_best_visible_response = 47;
     chromite.api.GetChromeVersionResponse get_chrome_version_response = 49;
     chromite.api.GetBuilderMetadataResponse get_builder_metadata_response = 54;
+    chromite.api.BuildAllFirmwareResponse build_all_firmware_response = 56;
   }
 }

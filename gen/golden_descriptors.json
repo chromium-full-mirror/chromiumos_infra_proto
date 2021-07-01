@@ -4065,6 +4065,547 @@
     {
       "dependency": [
         "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "versionString",
+              "label": "LABEL_OPTIONAL",
+              "name": "version_string",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BcsVersionInfo"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "versionString",
+              "label": "LABEL_OPTIONAL",
+              "name": "version_string",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FirmwareVersionInfo"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "targetName",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "platformName",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "fwSection",
+              "label": "LABEL_REPEATED",
+              "name": "fw_section",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwBuildMetric.FwSection"
+            },
+            {
+              "jsonName": "zephyr",
+              "label": "LABEL_OPTIONAL",
+              "name": "zephyr",
+              "number": 4,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwBuildMetric.ZephyrTarget"
+            }
+          ],
+          "name": "FwBuildMetric",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "region",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "region",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "used",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "used",
+                  "number": 2,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "total",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "total",
+                  "number": 3,
+                  "type": "TYPE_UINT32"
+                }
+              ],
+              "name": "FwSection"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "major",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "major",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "minor",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "minor",
+                  "number": 2,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "tiny",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tiny",
+                  "number": 3,
+                  "type": "TYPE_UINT32"
+                }
+              ],
+              "name": "Version"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "kernelVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "kernel_version",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FwBuildMetric.Version"
+                }
+              ],
+              "name": "ZephyrTarget"
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "image_type"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "value",
+              "label": "LABEL_REPEATED",
+              "name": "value",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwBuildMetric"
+            }
+          ],
+          "name": "FwBuildMetricList"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FwTestMetric"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "value",
+              "label": "LABEL_REPEATED",
+              "name": "value",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwTestMetric"
+            }
+          ],
+          "name": "FwTestMetricList"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "firmwareLocation",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_location",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.FwLocation"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "codeCoverage",
+              "label": "LABEL_OPTIONAL",
+              "name": "code_coverage",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "BuildAllFirmwareRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "metrics",
+              "label": "LABEL_OPTIONAL",
+              "name": "metrics",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwBuildMetricList"
+            }
+          ],
+          "name": "BuildAllFirmwareResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "firmwareLocation",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_location",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.FwLocation"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "codeCoverage",
+              "label": "LABEL_OPTIONAL",
+              "name": "code_coverage",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "TestAllFirmwareRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "metrics",
+              "label": "LABEL_OPTIONAL",
+              "name": "metrics",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwTestMetricList"
+            }
+          ],
+          "name": "TestAllFirmwareResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "artifacts",
+              "label": "LABEL_OPTIONAL",
+              "name": "artifacts",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ArtifactsByService.Firmware"
+            },
+            {
+              "jsonName": "bcsVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "bcs_version",
+              "number": 5,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "bcsVersionInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "bcs_version_info",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.BcsVersionInfo"
+            }
+          ],
+          "name": "BundleFirmwareArtifactsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "artifacts",
+              "label": "LABEL_OPTIONAL",
+              "name": "artifacts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.UploadedArtifactsByService.Firmware"
+            }
+          ],
+          "name": "BundleFirmwareArtifactsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "objects",
+              "label": "LABEL_REPEATED",
+              "name": "objects",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FirmwareArtifactInfo.ObjectInfo"
+            },
+            {
+              "jsonName": "bcsVersionInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "bcs_version_info",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.BcsVersionInfo"
+            }
+          ],
+          "name": "FirmwareArtifactInfo",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "bcsVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bcs_version",
+                  "number": 1,
+                  "options": {
+                    "deprecated": true
+                  },
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "firmwareImageName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "firmware_image_name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 3,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.TarballInfo.FirmwareType.Type"
+                },
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 4,
+                  "options": {
+                    "deprecated": true
+                  },
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.TarballInfo.Version"
+                },
+                {
+                  "jsonName": "firmwareVersionInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "firmware_version_info",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareVersionInfo"
+                }
+              ],
+              "name": "TarballInfo",
+              "nestedType": [
+                {
+                  "enumType": [
+                    {
+                      "name": "Type",
+                      "value": [
+                        {
+                          "name": "UNKNOWN",
+                          "number": 0
+                        },
+                        {
+                          "name": "MAIN",
+                          "number": 1
+                        },
+                        {
+                          "name": "EC",
+                          "number": 2
+                        },
+                        {
+                          "name": "PD",
+                          "number": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "FirmwareType"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "major",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "major",
+                      "number": 1,
+                      "type": "TYPE_INT32"
+                    },
+                    {
+                      "jsonName": "minor",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "minor",
+                      "number": 2,
+                      "type": "TYPE_INT32"
+                    }
+                  ],
+                  "name": "Version"
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.LcovTarballInfo.LcovType.Type"
+                }
+              ],
+              "name": "LcovTarballInfo",
+              "nestedType": [
+                {
+                  "enumType": [
+                    {
+                      "name": "Type",
+                      "value": [
+                        {
+                          "name": "UNKNOWN",
+                          "number": 0
+                        },
+                        {
+                          "name": "LCOV",
+                          "number": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "LcovType"
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "fileName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "file_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "tarballInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tarball_info",
+                  "number": 2,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.TarballInfo"
+                },
+                {
+                  "jsonName": "lcovInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "lcov_info",
+                  "number": 3,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.LcovTarballInfo"
+                }
+              ],
+              "name": "ObjectInfo",
+              "oneofDecl": [
+                {
+                  "name": "firmware_object_info"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "chromite/api/firmware.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.BuildAllFirmwareRequest",
+              "name": "BuildAllFirmware",
+              "outputType": ".chromite.api.BuildAllFirmwareResponse"
+            },
+            {
+              "inputType": ".chromite.api.TestAllFirmwareRequest",
+              "name": "TestAllFirmware",
+              "outputType": ".chromite.api.TestAllFirmwareResponse"
+            },
+            {
+              "inputType": ".chromite.api.BundleFirmwareArtifactsRequest",
+              "name": "BundleFirmwareArtifacts",
+              "outputType": ".chromite.api.BundleFirmwareArtifactsResponse"
+            }
+          ],
+          "name": "FirmwareService",
+          "options": {
+            "[service_options]": {
+              "module": "firmware",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "dependency": [
+        "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
         "chromiumos/common.proto",
         "chromiumos/metrics.proto"
@@ -6098,6 +6639,7 @@
         "chromite/api/artifacts.proto",
         "chromite/api/binhost.proto",
         "chromite/api/depgraph.proto",
+        "chromite/api/firmware.proto",
         "chromite/api/image.proto",
         "chromite/api/packages.proto",
         "chromite/api/sdk.proto",
@@ -6410,6 +6952,15 @@
               "typeName": ".chromite.api.GetBuilderMetadataRequest"
             },
             {
+              "jsonName": "buildAllFirmwareRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_all_firmware_request",
+              "number": 55,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.BuildAllFirmwareRequest"
+            },
+            {
               "jsonName": "installPackagesResponse",
               "label": "LABEL_OPTIONAL",
               "name": "install_packages_response",
@@ -6615,6 +7166,15 @@
               "oneofIndex": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.GetBuilderMetadataResponse"
+            },
+            {
+              "jsonName": "buildAllFirmwareResponse",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_all_firmware_response",
+              "number": 56,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.BuildAllFirmwareResponse"
             }
           ],
           "name": "AnalysisServiceEvent",
@@ -7804,547 +8364,6 @@
               "module": "build_api_test",
               "serviceChrootAssert": "OUTSIDE",
               "serviceVisibility": "LV_HIDDEN"
-            }
-          }
-        }
-      ],
-      "syntax": "proto3"
-    },
-    {
-      "dependency": [
-        "chromite/api/build_api.proto",
-        "chromiumos/common.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "versionString",
-              "label": "LABEL_OPTIONAL",
-              "name": "version_string",
-              "number": 1,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "BcsVersionInfo"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "versionString",
-              "label": "LABEL_OPTIONAL",
-              "name": "version_string",
-              "number": 1,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "FirmwareVersionInfo"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "targetName",
-              "label": "LABEL_OPTIONAL",
-              "name": "target_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "platformName",
-              "label": "LABEL_OPTIONAL",
-              "name": "platform_name",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "fwSection",
-              "label": "LABEL_REPEATED",
-              "name": "fw_section",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwBuildMetric.FwSection"
-            },
-            {
-              "jsonName": "zephyr",
-              "label": "LABEL_OPTIONAL",
-              "name": "zephyr",
-              "number": 4,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwBuildMetric.ZephyrTarget"
-            }
-          ],
-          "name": "FwBuildMetric",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "region",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "region",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "used",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "used",
-                  "number": 2,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "total",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "total",
-                  "number": 3,
-                  "type": "TYPE_UINT32"
-                }
-              ],
-              "name": "FwSection"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "major",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "major",
-                  "number": 1,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "minor",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "minor",
-                  "number": 2,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "tiny",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "tiny",
-                  "number": 3,
-                  "type": "TYPE_UINT32"
-                }
-              ],
-              "name": "Version"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "kernelVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "kernel_version",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.FwBuildMetric.Version"
-                }
-              ],
-              "name": "ZephyrTarget"
-            }
-          ],
-          "oneofDecl": [
-            {
-              "name": "image_type"
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "value",
-              "label": "LABEL_REPEATED",
-              "name": "value",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwBuildMetric"
-            }
-          ],
-          "name": "FwBuildMetricList"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "FwTestMetric"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "value",
-              "label": "LABEL_REPEATED",
-              "name": "value",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwTestMetric"
-            }
-          ],
-          "name": "FwTestMetricList"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "firmwareLocation",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_location",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.FwLocation"
-            },
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "codeCoverage",
-              "label": "LABEL_OPTIONAL",
-              "name": "code_coverage",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "BuildAllFirmwareRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "metrics",
-              "label": "LABEL_OPTIONAL",
-              "name": "metrics",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwBuildMetricList"
-            }
-          ],
-          "name": "BuildAllFirmwareResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "firmwareLocation",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_location",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.FwLocation"
-            },
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "codeCoverage",
-              "label": "LABEL_OPTIONAL",
-              "name": "code_coverage",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "TestAllFirmwareRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "metrics",
-              "label": "LABEL_OPTIONAL",
-              "name": "metrics",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FwTestMetricList"
-            }
-          ],
-          "name": "TestAllFirmwareResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "resultPath",
-              "label": "LABEL_OPTIONAL",
-              "name": "result_path",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ResultPath"
-            },
-            {
-              "jsonName": "artifacts",
-              "label": "LABEL_OPTIONAL",
-              "name": "artifacts",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ArtifactsByService.Firmware"
-            },
-            {
-              "jsonName": "bcsVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "bcs_version",
-              "number": 5,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "bcsVersionInfo",
-              "label": "LABEL_OPTIONAL",
-              "name": "bcs_version_info",
-              "number": 6,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.BcsVersionInfo"
-            }
-          ],
-          "name": "BundleFirmwareArtifactsRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "artifacts",
-              "label": "LABEL_OPTIONAL",
-              "name": "artifacts",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.UploadedArtifactsByService.Firmware"
-            }
-          ],
-          "name": "BundleFirmwareArtifactsResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "objects",
-              "label": "LABEL_REPEATED",
-              "name": "objects",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.FirmwareArtifactInfo.ObjectInfo"
-            },
-            {
-              "jsonName": "bcsVersionInfo",
-              "label": "LABEL_OPTIONAL",
-              "name": "bcs_version_info",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.BcsVersionInfo"
-            }
-          ],
-          "name": "FirmwareArtifactInfo",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "bcsVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "bcs_version",
-                  "number": 1,
-                  "options": {
-                    "deprecated": true
-                  },
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "firmwareImageName",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "firmware_image_name",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "type",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "type",
-                  "number": 3,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".chromite.api.FirmwareArtifactInfo.TarballInfo.FirmwareType.Type"
-                },
-                {
-                  "jsonName": "version",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "version",
-                  "number": 4,
-                  "options": {
-                    "deprecated": true
-                  },
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.FirmwareArtifactInfo.TarballInfo.Version"
-                },
-                {
-                  "jsonName": "firmwareVersionInfo",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "firmware_version_info",
-                  "number": 5,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.FirmwareVersionInfo"
-                }
-              ],
-              "name": "TarballInfo",
-              "nestedType": [
-                {
-                  "enumType": [
-                    {
-                      "name": "Type",
-                      "value": [
-                        {
-                          "name": "UNKNOWN",
-                          "number": 0
-                        },
-                        {
-                          "name": "MAIN",
-                          "number": 1
-                        },
-                        {
-                          "name": "EC",
-                          "number": 2
-                        },
-                        {
-                          "name": "PD",
-                          "number": 3
-                        }
-                      ]
-                    }
-                  ],
-                  "name": "FirmwareType"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "major",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "major",
-                      "number": 1,
-                      "type": "TYPE_INT32"
-                    },
-                    {
-                      "jsonName": "minor",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "minor",
-                      "number": 2,
-                      "type": "TYPE_INT32"
-                    }
-                  ],
-                  "name": "Version"
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "type",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "type",
-                  "number": 1,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".chromite.api.FirmwareArtifactInfo.LcovTarballInfo.LcovType.Type"
-                }
-              ],
-              "name": "LcovTarballInfo",
-              "nestedType": [
-                {
-                  "enumType": [
-                    {
-                      "name": "Type",
-                      "value": [
-                        {
-                          "name": "UNKNOWN",
-                          "number": 0
-                        },
-                        {
-                          "name": "LCOV",
-                          "number": 1
-                        }
-                      ]
-                    }
-                  ],
-                  "name": "LcovType"
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "fileName",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "file_name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "tarballInfo",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "tarball_info",
-                  "number": 2,
-                  "oneofIndex": 0,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.FirmwareArtifactInfo.TarballInfo"
-                },
-                {
-                  "jsonName": "lcovInfo",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "lcov_info",
-                  "number": 3,
-                  "oneofIndex": 0,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.FirmwareArtifactInfo.LcovTarballInfo"
-                }
-              ],
-              "name": "ObjectInfo",
-              "oneofDecl": [
-                {
-                  "name": "firmware_object_info"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "name": "chromite/api/firmware.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
-      },
-      "package": "chromite.api",
-      "service": [
-        {
-          "method": [
-            {
-              "inputType": ".chromite.api.BuildAllFirmwareRequest",
-              "name": "BuildAllFirmware",
-              "outputType": ".chromite.api.BuildAllFirmwareResponse"
-            },
-            {
-              "inputType": ".chromite.api.TestAllFirmwareRequest",
-              "name": "TestAllFirmware",
-              "outputType": ".chromite.api.TestAllFirmwareResponse"
-            },
-            {
-              "inputType": ".chromite.api.BundleFirmwareArtifactsRequest",
-              "name": "BundleFirmwareArtifacts",
-              "outputType": ".chromite.api.BundleFirmwareArtifactsResponse"
-            }
-          ],
-          "name": "FirmwareService",
-          "options": {
-            "[service_options]": {
-              "module": "firmware",
-              "serviceChrootAssert": "INSIDE"
             }
           }
         }
