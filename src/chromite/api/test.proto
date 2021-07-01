@@ -63,6 +63,8 @@ message BuildTargetUnitTestRequest {
     bool filter_only_cros_workon = 5;
    }
 
+   reserved 5;
+
   // The build target being tested.
   chromiumos.BuildTarget build_target = 1;
   // The path where the result tarball should be saved.
@@ -71,13 +73,6 @@ message BuildTargetUnitTestRequest {
   chromiumos.Chroot chroot = 3;
   // The flags.
   Flags flags = 4;
-  // Skipped packages.
-  // Deprecated in favor of package_blocklist.
-  // Left in place for compatibility for now.
-  // TODO(crbug/1126855): Change to reserved after branches R87 and earlier are
-  // no longer supported, and recipes have stopped setting the field.
-  // Last used in R87.  Remove no earlier than 2021-06-01.
-  repeated chromiumos.PackageInfo package_blacklist = 5;
   // Packages to be tested.
   // Defaults to all testable packages when none are given.
   repeated chromiumos.PackageInfo packages = 6;

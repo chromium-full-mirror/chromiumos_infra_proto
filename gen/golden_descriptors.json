@@ -6197,14 +6197,6 @@
               "typeName": ".chromite.api.BuildTargetUnitTestRequest.Flags"
             },
             {
-              "jsonName": "packageBlacklist",
-              "label": "LABEL_REPEATED",
-              "name": "package_blacklist",
-              "number": 5,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.PackageInfo"
-            },
-            {
               "jsonName": "packages",
               "label": "LABEL_REPEATED",
               "name": "packages",
@@ -6262,6 +6254,12 @@
                 }
               ],
               "name": "Flags"
+            }
+          ],
+          "reservedRange": [
+            {
+              "end": 6,
+              "start": 5
             }
           ]
         },
