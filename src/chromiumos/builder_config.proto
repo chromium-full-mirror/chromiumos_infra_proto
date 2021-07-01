@@ -464,8 +464,7 @@ message BuilderConfig {
   Build build = 6;
 
   message UnitTests {
-    // Skipped packages.
-    repeated PackageInfo package_blacklist = 4;
+    reserved 4;
 
     // Controls the running of ebuild tests with possible early exit.
     RunSpec ebuilds_run_spec = 5;

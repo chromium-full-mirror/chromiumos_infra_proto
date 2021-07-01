@@ -9971,14 +9971,6 @@
             {
               "field": [
                 {
-                  "jsonName": "packageBlacklist",
-                  "label": "LABEL_REPEATED",
-                  "name": "package_blacklist",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.PackageInfo"
-                },
-                {
                   "jsonName": "ebuildsRunSpec",
                   "label": "LABEL_OPTIONAL",
                   "name": "ebuilds_run_spec",
@@ -10018,7 +10010,13 @@
                   "typeName": ".chromiumos.PackageInfo"
                 }
               ],
-              "name": "UnitTests"
+              "name": "UnitTests",
+              "reservedRange": [
+                {
+                  "end": 5,
+                  "start": 4
+                }
+              ]
             }
           ]
         },
