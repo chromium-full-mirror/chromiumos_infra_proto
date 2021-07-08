@@ -97,6 +97,7 @@ message SchedulerConfig {
     repeated Branch branches = 5;
 
     // Set of boards, variants and models to target.
+    // next tag: 11
     message TargetOptions {
         // Use at the most one among the two fields below. If boards_list is empty,
         // all boards are targeted. exclude_boards will exclude those boards from
@@ -120,6 +121,22 @@ message SchedulerConfig {
         // any_model only tests the suite on a single model.
         bool any_model = 6;
         repeated string exclude_models = 7;
+
+        // next tag: 3
+        message MultiDutsByBoard {
+            string primary_board = 1;
+            repeated string secondary_boards = 2;
+        }
+        // next tag: 3
+        message MultiDutsbyModel {
+            string primary_model = 1;
+            repeated string secondary_models = 2;
+        }
+        // Option to speicify Mult-DUTs testing board/model, use only one of
+        // below options. When below multi-DUTs options are invoked, boards_list
+        // models_list, variants, and exclude control above will be ignored.
+        repeated MultiDutsByBoard multi_duts_boards_list = 9;
+        repeated MultiDutsbyModel multi_duts_models_list = 10;
     }
     TargetOptions target_options = 6;
 

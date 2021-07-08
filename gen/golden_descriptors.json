@@ -25841,9 +25841,65 @@
                   "name": "exclude_models",
                   "number": 7,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "multiDutsBoardsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "multi_duts_boards_list",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsByBoard"
+                },
+                {
+                  "jsonName": "multiDutsModelsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "multi_duts_models_list",
+                  "number": 10,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsbyModel"
                 }
               ],
-              "name": "TargetOptions"
+              "name": "TargetOptions",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "primaryBoard",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "primary_board",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "secondaryBoards",
+                      "label": "LABEL_REPEATED",
+                      "name": "secondary_boards",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "MultiDutsByBoard"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "primaryModel",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "primary_model",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "secondaryModels",
+                      "label": "LABEL_REPEATED",
+                      "name": "secondary_models",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "MultiDutsbyModel"
+                }
+              ]
             },
             {
               "field": [
