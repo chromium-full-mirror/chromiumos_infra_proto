@@ -459,7 +459,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
-      reserved 33 to 39;
+      reserved 33 to 40;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -564,7 +564,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 30 to 39;
+      reserved 30 to 40;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -627,7 +627,7 @@ message ArtifactsByService {
       // license_credits.html.
       LICENSE_CREDITS = 38;
 
-      reserved 39;
+      reserved 39 to 40;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -676,7 +676,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 39;
+      reserved 1 to 40;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -736,6 +736,9 @@ message ArtifactsByService {
       BREAKPAD_DEBUG_SYMBOLS = 35;
 
       reserved 36 to 39;
+
+      // Simple Chrome Sysroot archive.
+      SIMPLE_CHROME_SYSROOT = 40;
     }
 
     // Information about one or more artifacts.  This should match the rest of
@@ -792,6 +795,8 @@ message ArtifactsByService {
       reserved 38;
 
       CODE_COVERAGE_LLVM_JSON = 39;
+
+      reserved 40;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -859,7 +864,7 @@ message ArtifactsByService {
       // FirmwareService: LCOV code coverage files.
       FIRMWARE_LCOV = 33;
 
-      reserved 34 to 39;
+      reserved 34 to 40;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -917,7 +922,7 @@ message ArtifactsByService {
 
       BUILD_MANIFEST = 36;
 
-      reserved 37 to 39;
+      reserved 37 to 40;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having

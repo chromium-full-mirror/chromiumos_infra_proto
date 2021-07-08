@@ -1119,7 +1119,7 @@
                       "start": 29
                     },
                     {
-                      "end": 39,
+                      "end": 40,
                       "start": 33
                     }
                   ],
@@ -1263,7 +1263,7 @@
                       "start": 27
                     },
                     {
-                      "end": 39,
+                      "end": 40,
                       "start": 30
                     }
                   ],
@@ -1414,7 +1414,7 @@
                       "start": 35
                     },
                     {
-                      "end": 39,
+                      "end": 40,
                       "start": 39
                     }
                   ],
@@ -1497,7 +1497,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 39,
+                      "end": 40,
                       "start": 1
                     }
                   ],
@@ -1596,6 +1596,10 @@
                     {
                       "name": "BREAKPAD_DEBUG_SYMBOLS",
                       "number": 35
+                    },
+                    {
+                      "name": "SIMPLE_CHROME_SYSROOT",
+                      "number": 40
                     }
                   ]
                 }
@@ -1669,6 +1673,10 @@
                     {
                       "end": 38,
                       "start": 38
+                    },
+                    {
+                      "end": 40,
+                      "start": 40
                     }
                   ],
                   "value": [
@@ -1766,7 +1774,7 @@
                       "start": 32
                     },
                     {
-                      "end": 39,
+                      "end": 40,
                       "start": 34
                     }
                   ],
@@ -1873,7 +1881,7 @@
                       "start": 1
                     },
                     {
-                      "end": 39,
+                      "end": 40,
                       "start": 37
                     }
                   ],
@@ -9584,6 +9592,10 @@
                     {
                       "name": "CODE_COVERAGE_LLVM_JSON",
                       "number": 39
+                    },
+                    {
+                      "name": "SIMPLE_CHROME_SYSROOT",
+                      "number": 40
                     }
                   ]
                 }

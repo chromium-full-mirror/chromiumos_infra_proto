@@ -310,6 +310,9 @@ message BuilderConfig {
 
       // TestService: LLVM JSON Code Coverage.
       CODE_COVERAGE_LLVM_JSON = 39;
+
+      // Simple Chrome Sysroot archive.
+      SIMPLE_CHROME_SYSROOT = 40;
     }
     repeated ArtifactTypes artifact_types = 2;
 
