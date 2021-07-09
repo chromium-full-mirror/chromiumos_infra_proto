@@ -2,13 +2,18 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+USE_PYTHON3 = True
+
 def _HasLocalChanges(input_api):
   ret = input_api.subprocess.call(
       ['git', 'diff', '--exit-code'])
   return ret != 0
 
 def CheckGenerated(input_api, output_api):
-  results = []
+  file_filter = lambda x: x.LocalPath() == 'infra/config/recipes.cfg'
+  results = input_api.canned_checks.CheckJsonParses(input_api, output_api,
+                                                    file_filter=file_filter)
+
   if input_api.subprocess.call(['./generate.sh']):
     results.append(output_api.PresubmitError('Error calling generate.sh'))
 
