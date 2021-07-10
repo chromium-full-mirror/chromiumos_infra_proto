@@ -25854,9 +25854,9 @@
                   "jsonName": "multiDutsModelsList",
                   "label": "LABEL_REPEATED",
                   "name": "multi_duts_models_list",
-                  "number": 10,
+                  "number": 11,
                   "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsbyModel"
+                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsByModel"
                 }
               ],
               "name": "TargetOptions",
@@ -25897,7 +25897,13 @@
                       "type": "TYPE_STRING"
                     }
                   ],
-                  "name": "MultiDutsbyModel"
+                  "name": "MultiDutsByModel"
+                }
+              ],
+              "reservedRange": [
+                {
+                  "end": 11,
+                  "start": 10
                 }
               ]
             },

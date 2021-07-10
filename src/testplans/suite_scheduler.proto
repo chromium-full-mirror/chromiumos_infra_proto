@@ -97,7 +97,7 @@ message SchedulerConfig {
     repeated Branch branches = 5;
 
     // Set of boards, variants and models to target.
-    // next tag: 11
+    // next tag: 12
     message TargetOptions {
         // Use at the most one among the two fields below. If boards_list is empty,
         // all boards are targeted. exclude_boards will exclude those boards from
@@ -128,7 +128,7 @@ message SchedulerConfig {
             repeated string secondary_boards = 2;
         }
         // next tag: 3
-        message MultiDutsbyModel {
+        message MultiDutsByModel {
             string primary_model = 1;
             repeated string secondary_models = 2;
         }
@@ -136,7 +136,8 @@ message SchedulerConfig {
         // below options. When below multi-DUTs options are invoked, boards_list
         // models_list, variants, and exclude control above will be ignored.
         repeated MultiDutsByBoard multi_duts_boards_list = 9;
-        repeated MultiDutsbyModel multi_duts_models_list = 10;
+	reserved 10;
+        repeated MultiDutsByModel multi_duts_models_list = 11;
     }
     TargetOptions target_options = 6;
 
