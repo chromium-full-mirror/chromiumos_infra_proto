@@ -3355,16 +3355,6 @@
               "inputType": ".chromite.api.BundleRequest",
               "name": "BundleGceTarball",
               "outputType": ".chromite.api.BundleResponse"
-            },
-            {
-              "inputType": ".chromite.api.BundleRequest",
-              "name": "GenerateRemoteTestDriverSpecification",
-              "outputType": ".chromite.api.BundleResponse"
-            },
-            {
-              "inputType": ".chromite.api.BundleRequest",
-              "name": "GenerateRemoteTestDriverImages",
-              "outputType": ".chromite.api.BundleResponse"
             }
           ],
           "name": "ArtifactsService",

@@ -265,31 +265,4 @@ service ArtifactsService {
   // Create a tarball from the test image suitable for importing into GCE.
   // Added in R89.
   rpc BundleGceTarball(BundleRequest) returns (BundleResponse);
-
-  // Generate all Remote Test Driver metadata.  Added in R85.
-  //
-  // Response consists of one or more metadata files. Each file must contain a
-  // single binary encoded chromiumos.config.api.test.metadata.v1.Specification
-  // protobuf payload.
-  // Schema defined at
-  // https://chromium.googlesource.com/chromiumos/config/+/refs/heads/master/proto/chromiumos/config/api/test/metadata/v1/metadata.proto
-  //
-  // These artifacts partially replace chromiumos.ArtifactsByService.Test
-  // artifacts. See also, GenerateRemoteTestDriverImages()
-  //
-  // TODO(crbug/1034529): DEPRECATED use Get
-  rpc GenerateRemoteTestDriverSpecification(BundleRequest)
-    returns (BundleResponse);
-
-  // Generate all Remote Test Driver container images.  Added in R85.
-  //
-  // Response consists of one or more Docker container images.
-  // The images are identified by their Docker image digest. The filenames of
-  // the created artifacts are ignored.
-  //
-  // These artifacts partially replace chromiumos.ArtifactsByService.Test
-  // artifacts. See also, GenerateRemoteTestDriverSpecification()
-  //
-  // TODO(crbug/1034529): DEPRECATED use Get
-  rpc GenerateRemoteTestDriverImages(BundleRequest) returns (BundleResponse);
 }
