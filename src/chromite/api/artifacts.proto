@@ -13,6 +13,20 @@ message Artifact {
   string path = 1;
 }
 
+// For artifacts that are built via docker and pushed to a Google Cloud Registry
+// (e.g. gcr.io), this provides the contents and instructions needed to perform
+// the docker build itself and push to the respective registry (managed/owned by
+// the CI project (e.g. chromeos-bot).
+message DockerBuild {
+  // Image name that will be set in the GRC
+  string image_name = 1;
+  // Docker file that will be used to perform the build (absolute path)
+  string docker_file_path = 2;
+  // Build context that stores all of the contents to be built in the container
+  // (absolute path)
+  string build_context_path = 3;
+}
+
 // TODO(crbug/1034529): PrepareForBuild has never existed in chromite, and is
 // being renamed to BuildSetup.  PrepareForBuildResponse is still used by
 // ToolchainService.
@@ -124,6 +138,9 @@ message BundleRequest {
 message BundleResponse {
   // The artifacts that added to the output directory.
   repeated Artifact artifacts = 1;
+  // Instructions to complete docker builds with all of the required staged
+  // artifacts for the builds.
+  repeated DockerBuild docker_builds = 2;
 }
 
 // Request describing where to find build artifacts that are taken from a

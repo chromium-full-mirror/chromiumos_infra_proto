@@ -2863,6 +2863,32 @@
           "name": "Artifact"
         },
         {
+          "field": [
+            {
+              "jsonName": "imageName",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dockerFilePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_file_path",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildContextPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_context_path",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DockerBuild"
+        },
+        {
           "enumType": [
             {
               "name": "BuildRelevance",
@@ -3122,6 +3148,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.Artifact"
+            },
+            {
+              "jsonName": "dockerBuilds",
+              "label": "LABEL_REPEATED",
+              "name": "docker_builds",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DockerBuild"
             }
           ],
           "name": "BundleResponse"
