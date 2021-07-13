@@ -19,7 +19,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 11
+  // NEXT_TAG: 15
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -74,6 +74,16 @@ message Request {
     }
 
     repeated SoftwareDependency software_dependencies = 3;
+
+    // SecondaryDevice defines software and hardware characteristics of a
+    // secondary device to run multi-DUTs tests on.
+    message SecondaryDevice {
+      SoftwareAttributes software_attributes = 1;
+      HardwareAttributes hardware_attributes = 2;
+      repeated SoftwareDependency software_dependencies = 3;
+    }
+
+    repeated SecondaryDevice secondary_devices = 14;
 
     // Scheduling defines parameters that affect how the tests in this
     // request are prioritized relative to other requests, and how capacity for

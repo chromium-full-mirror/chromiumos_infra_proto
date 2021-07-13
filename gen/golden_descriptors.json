@@ -19387,6 +19387,14 @@
                   "typeName": ".test_platform.Request.Params.SoftwareDependency"
                 },
                 {
+                  "jsonName": "secondaryDevices",
+                  "label": "LABEL_REPEATED",
+                  "name": "secondary_devices",
+                  "number": 14,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SecondaryDevice"
+                },
+                {
                   "jsonName": "scheduling",
                   "label": "LABEL_OPTIONAL",
                   "name": "scheduling",
@@ -19523,6 +19531,35 @@
                       "name": "dep"
                     }
                   ]
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "softwareAttributes",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "software_attributes",
+                      "number": 1,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.SoftwareAttributes"
+                    },
+                    {
+                      "jsonName": "hardwareAttributes",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "hardware_attributes",
+                      "number": 2,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.HardwareAttributes"
+                    },
+                    {
+                      "jsonName": "softwareDependencies",
+                      "label": "LABEL_REPEATED",
+                      "name": "software_dependencies",
+                      "number": 3,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.SoftwareDependency"
+                    }
+                  ],
+                  "name": "SecondaryDevice"
                 },
                 {
                   "enumType": [
