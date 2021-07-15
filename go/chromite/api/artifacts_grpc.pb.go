@@ -77,30 +77,6 @@ type ArtifactsServiceClient interface {
 	// Create a tarball from the test image suitable for importing into GCE.
 	// Added in R89.
 	BundleGceTarball(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// Generate all Remote Test Driver metadata.  Added in R85.
-	//
-	// Response consists of one or more metadata files. Each file must contain a
-	// single binary encoded chromiumos.config.api.test.metadata.v1.Specification
-	// protobuf payload.
-	// Schema defined at
-	// https://chromium.googlesource.com/chromiumos/config/+/refs/heads/master/proto/chromiumos/config/api/test/metadata/v1/metadata.proto
-	//
-	// These artifacts partially replace chromiumos.ArtifactsByService.Test
-	// artifacts. See also, GenerateRemoteTestDriverImages()
-	//
-	// TODO(crbug/1034529): DEPRECATED use Get
-	GenerateRemoteTestDriverSpecification(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// Generate all Remote Test Driver container images.  Added in R85.
-	//
-	// Response consists of one or more Docker container images.
-	// The images are identified by their Docker image digest. The filenames of
-	// the created artifacts are ignored.
-	//
-	// These artifacts partially replace chromiumos.ArtifactsByService.Test
-	// artifacts. See also, GenerateRemoteTestDriverSpecification()
-	//
-	// TODO(crbug/1034529): DEPRECATED use Get
-	GenerateRemoteTestDriverImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 }
 
 type artifactsServiceClient struct {
@@ -282,24 +258,6 @@ func (c *artifactsServiceClient) BundleGceTarball(ctx context.Context, in *Bundl
 	return out, nil
 }
 
-func (c *artifactsServiceClient) GenerateRemoteTestDriverSpecification(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
-	out := new(BundleResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/GenerateRemoteTestDriverSpecification", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactsServiceClient) GenerateRemoteTestDriverImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
-	out := new(BundleResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/GenerateRemoteTestDriverImages", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ArtifactsServiceServer is the server API for ArtifactsService service.
 // All implementations must embed UnimplementedArtifactsServiceServer
 // for forward compatibility
@@ -363,30 +321,6 @@ type ArtifactsServiceServer interface {
 	// Create a tarball from the test image suitable for importing into GCE.
 	// Added in R89.
 	BundleGceTarball(context.Context, *BundleRequest) (*BundleResponse, error)
-	// Generate all Remote Test Driver metadata.  Added in R85.
-	//
-	// Response consists of one or more metadata files. Each file must contain a
-	// single binary encoded chromiumos.config.api.test.metadata.v1.Specification
-	// protobuf payload.
-	// Schema defined at
-	// https://chromium.googlesource.com/chromiumos/config/+/refs/heads/master/proto/chromiumos/config/api/test/metadata/v1/metadata.proto
-	//
-	// These artifacts partially replace chromiumos.ArtifactsByService.Test
-	// artifacts. See also, GenerateRemoteTestDriverImages()
-	//
-	// TODO(crbug/1034529): DEPRECATED use Get
-	GenerateRemoteTestDriverSpecification(context.Context, *BundleRequest) (*BundleResponse, error)
-	// Generate all Remote Test Driver container images.  Added in R85.
-	//
-	// Response consists of one or more Docker container images.
-	// The images are identified by their Docker image digest. The filenames of
-	// the created artifacts are ignored.
-	//
-	// These artifacts partially replace chromiumos.ArtifactsByService.Test
-	// artifacts. See also, GenerateRemoteTestDriverSpecification()
-	//
-	// TODO(crbug/1034529): DEPRECATED use Get
-	GenerateRemoteTestDriverImages(context.Context, *BundleRequest) (*BundleResponse, error)
 	mustEmbedUnimplementedArtifactsServiceServer()
 }
 
@@ -450,12 +384,6 @@ func (UnimplementedArtifactsServiceServer) BundleFpmcuUnittests(context.Context,
 }
 func (UnimplementedArtifactsServiceServer) BundleGceTarball(context.Context, *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleGceTarball not implemented")
-}
-func (UnimplementedArtifactsServiceServer) GenerateRemoteTestDriverSpecification(context.Context, *BundleRequest) (*BundleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GenerateRemoteTestDriverSpecification not implemented")
-}
-func (UnimplementedArtifactsServiceServer) GenerateRemoteTestDriverImages(context.Context, *BundleRequest) (*BundleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GenerateRemoteTestDriverImages not implemented")
 }
 func (UnimplementedArtifactsServiceServer) mustEmbedUnimplementedArtifactsServiceServer() {}
 
@@ -812,42 +740,6 @@ func _ArtifactsService_BundleGceTarball_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactsService_GenerateRemoteTestDriverSpecification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BundleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServiceServer).GenerateRemoteTestDriverSpecification(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ArtifactsService/GenerateRemoteTestDriverSpecification",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServiceServer).GenerateRemoteTestDriverSpecification(ctx, req.(*BundleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactsService_GenerateRemoteTestDriverImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BundleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServiceServer).GenerateRemoteTestDriverImages(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ArtifactsService/GenerateRemoteTestDriverImages",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServiceServer).GenerateRemoteTestDriverImages(ctx, req.(*BundleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ArtifactsService_ServiceDesc is the grpc.ServiceDesc for ArtifactsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -930,14 +822,6 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BundleGceTarball",
 			Handler:    _ArtifactsService_BundleGceTarball_Handler,
-		},
-		{
-			MethodName: "GenerateRemoteTestDriverSpecification",
-			Handler:    _ArtifactsService_GenerateRemoteTestDriverSpecification_Handler,
-		},
-		{
-			MethodName: "GenerateRemoteTestDriverImages",
-			Handler:    _ArtifactsService_GenerateRemoteTestDriverImages_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
