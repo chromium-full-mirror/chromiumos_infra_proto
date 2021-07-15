@@ -16,10 +16,13 @@ lint:
   ignore_only:
     RPC_REQUEST_STANDARD_NAME:
       - chromite
+      - lab
     RPC_RESPONSE_STANDARD_NAME:
       - chromite
+      - lab
     RPC_REQUEST_RESPONSE_UNIQUE:
       - chromite
+      - lab
     DIRECTORY_SAME_PACKAGE:
       - chromite
     PACKAGE_DEFINED:
