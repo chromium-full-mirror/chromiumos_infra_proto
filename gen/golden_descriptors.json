@@ -1119,7 +1119,7 @@
                       "start": 29
                     },
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 33
                     }
                   ],
@@ -1263,7 +1263,7 @@
                       "start": 27
                     },
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 30
                     }
                   ],
@@ -1414,7 +1414,7 @@
                       "start": 35
                     },
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 39
                     }
                   ],
@@ -1497,7 +1497,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 1
                     }
                   ],
@@ -1600,6 +1600,10 @@
                     {
                       "name": "SIMPLE_CHROME_SYSROOT",
                       "number": 40
+                    },
+                    {
+                      "name": "CHROME_EBUILD_ENV",
+                      "number": 41
                     }
                   ]
                 }
@@ -1675,7 +1679,7 @@
                       "start": 38
                     },
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 40
                     }
                   ],
@@ -1774,7 +1778,7 @@
                       "start": 32
                     },
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 34
                     }
                   ],
@@ -1881,7 +1885,7 @@
                       "start": 1
                     },
                     {
-                      "end": 40,
+                      "end": 41,
                       "start": 37
                     }
                   ],
@@ -9620,6 +9624,10 @@
                     {
                       "name": "SIMPLE_CHROME_SYSROOT",
                       "number": 40
+                    },
+                    {
+                      "name": "CHROME_EBUILD_ENV",
+                      "number": 41
                     }
                   ]
                 }
