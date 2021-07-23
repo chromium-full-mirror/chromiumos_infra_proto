@@ -8739,6 +8739,7 @@
       },
       "dependency": [
         "chromite/api/build_api.proto",
+        "chromite/api/sysroot.proto",
         "chromiumos/common.proto",
         "chromiumos/build/api/system_image.proto"
       ],
@@ -8752,6 +8753,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
             }
           ],
           "name": "SystemImageMetadataRequest"
@@ -8788,8 +8797,7 @@
           "options": {
             "[service_options]": {
               "module": "metadata",
-              "serviceChrootAssert": "INSIDE",
-              "serviceVisibility": "LV_HIDDEN"
+              "serviceChrootAssert": "INSIDE"
             }
           }
         }

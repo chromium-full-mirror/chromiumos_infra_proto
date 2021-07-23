@@ -4,6 +4,7 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/build/api/system_image.proto";
 
@@ -11,6 +12,8 @@ import "chromiumos/build/api/system_image.proto";
 message SystemImageMetadataRequest {
   // Required if not default.
   chromiumos.Chroot chroot = 1;
+  // Required.
+  chromite.api.Sysroot sysroot = 2;
 }
 
 message SystemImageMetadataResponse {
@@ -21,7 +24,6 @@ service MetadataService {
   option (service_options) = {
     module: "metadata",
     service_chroot_assert: INSIDE,
-    service_visibility: LV_HIDDEN,
   };
 
   rpc SystemImageMetadata(SystemImageMetadataRequest)
