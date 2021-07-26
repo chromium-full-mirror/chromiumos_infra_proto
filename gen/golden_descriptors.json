@@ -6093,8 +6093,13 @@
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
+        "chromiumos/build/api/system_image.proto",
         "chromiumos/common.proto",
-        "chromiumos/metrics.proto"
+        "chromiumos/config/payload/flat_config.proto",
+        "chromiumos/metrics.proto",
+        "chromiumos/test/api/coverage_rule.proto",
+        "chromiumos/test/api/dut_attribute.proto",
+        "chromiumos/test/plan/source_test_plan.proto"
       ],
       "messageType": [
         {
@@ -6585,6 +6590,56 @@
         },
         {
           "name": "SimpleChromeWorkflowTestResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "sourceTestPlans",
+              "label": "LABEL_REPEATED",
+              "name": "source_test_plans",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.plan.SourceTestPlan"
+            },
+            {
+              "jsonName": "buildMetadataList",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_metadata_list",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.SystemImage.BuildMetadataList"
+            },
+            {
+              "jsonName": "dutAttributeList",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut_attribute_list",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.DutAttributeList"
+            },
+            {
+              "jsonName": "flatConfigList",
+              "label": "LABEL_OPTIONAL",
+              "name": "flat_config_list",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.config.payload.FlatConfigList"
+            }
+          ],
+          "name": "GetCoverageRulesRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "coverageRules",
+              "label": "LABEL_REPEATED",
+              "name": "coverage_rules",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CoverageRule"
+            }
+          ],
+          "name": "GetCoverageRulesResponse"
         }
       ],
       "name": "chromite/api/test.proto",
@@ -6659,6 +6714,11 @@
                 }
               },
               "outputType": ".chromite.api.SimpleChromeWorkflowTestResponse"
+            },
+            {
+              "inputType": ".chromite.api.GetCoverageRulesRequest",
+              "name": "GetCoverageRules",
+              "outputType": ".chromite.api.GetCoverageRulesResponse"
             }
           ],
           "name": "TestService",

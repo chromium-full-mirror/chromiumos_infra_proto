@@ -40,6 +40,8 @@ type TestServiceClient interface {
 	MoblabVmTest(ctx context.Context, in *MoblabVmTestRequest, opts ...grpc.CallOption) (*MoblabVmTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
 	SimpleChromeWorkflowTest(ctx context.Context, in *SimpleChromeWorkflowTestRequest, opts ...grpc.CallOption) (*SimpleChromeWorkflowTestResponse, error)
+	// Get CoverageRules required by a set of SourceTestPlans.
+	GetCoverageRules(ctx context.Context, in *GetCoverageRulesRequest, opts ...grpc.CallOption) (*GetCoverageRulesResponse, error)
 }
 
 type testServiceClient struct {
@@ -131,6 +133,15 @@ func (c *testServiceClient) SimpleChromeWorkflowTest(ctx context.Context, in *Si
 	return out, nil
 }
 
+func (c *testServiceClient) GetCoverageRules(ctx context.Context, in *GetCoverageRulesRequest, opts ...grpc.CallOption) (*GetCoverageRulesResponse, error) {
+	out := new(GetCoverageRulesResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/GetCoverageRules", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TestServiceServer is the server API for TestService service.
 // All implementations must embed UnimplementedTestServiceServer
 // for forward compatibility
@@ -157,6 +168,8 @@ type TestServiceServer interface {
 	MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
 	SimpleChromeWorkflowTest(context.Context, *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error)
+	// Get CoverageRules required by a set of SourceTestPlans.
+	GetCoverageRules(context.Context, *GetCoverageRulesRequest) (*GetCoverageRulesResponse, error)
 	mustEmbedUnimplementedTestServiceServer()
 }
 
@@ -190,6 +203,9 @@ func (UnimplementedTestServiceServer) MoblabVmTest(context.Context, *MoblabVmTes
 }
 func (UnimplementedTestServiceServer) SimpleChromeWorkflowTest(context.Context, *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SimpleChromeWorkflowTest not implemented")
+}
+func (UnimplementedTestServiceServer) GetCoverageRules(context.Context, *GetCoverageRulesRequest) (*GetCoverageRulesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCoverageRules not implemented")
 }
 func (UnimplementedTestServiceServer) mustEmbedUnimplementedTestServiceServer() {}
 
@@ -366,6 +382,24 @@ func _TestService_SimpleChromeWorkflowTest_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TestService_GetCoverageRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCoverageRulesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).GetCoverageRules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/GetCoverageRules",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).GetCoverageRules(ctx, req.(*GetCoverageRulesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TestService_ServiceDesc is the grpc.ServiceDesc for TestService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -408,6 +442,10 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SimpleChromeWorkflowTest",
 			Handler:    _TestService_SimpleChromeWorkflowTest_Handler,
+		},
+		{
+			MethodName: "GetCoverageRules",
+			Handler:    _TestService_GetCoverageRules_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
