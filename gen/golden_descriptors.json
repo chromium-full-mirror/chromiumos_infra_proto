@@ -1,7 +1,10 @@
 {
-  "bufbuildImageExtension": {},
   "file": [
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/descriptor.proto"
       ],
@@ -125,6 +128,10 @@
       }
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "ImageType",
@@ -2337,6 +2344,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -2381,6 +2392,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto",
@@ -2848,6 +2863,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -3407,6 +3426,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -3849,6 +3872,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -4103,6 +4130,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
@@ -4644,6 +4675,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -4945,6 +4980,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/binhost.proto",
         "chromite/api/build_api.proto",
@@ -5755,6 +5794,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
@@ -6090,6 +6133,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -6733,6 +6780,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/artifacts.proto",
         "chromite/api/binhost.proto",
@@ -7294,6 +7345,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -7651,6 +7706,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
@@ -7874,6 +7933,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto"
       ],
@@ -8051,6 +8114,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "CallType",
@@ -8112,6 +8179,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto",
@@ -8469,6 +8540,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
@@ -8770,6 +8845,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
@@ -8849,6 +8928,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -9073,6 +9156,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/common.proto",
         "google/protobuf/timestamp.proto",
@@ -10103,6 +10190,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/artifacts.proto",
         "chromite/api/build_api.proto",
@@ -10615,6 +10706,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -11142,6 +11237,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "enumType": [
@@ -11211,6 +11310,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/common.proto",
         "google/protobuf/timestamp.proto"
@@ -11765,6 +11868,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
@@ -11970,6 +12077,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/bot_scaling.proto"
       ],
@@ -12070,6 +12181,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "BuilderType",
@@ -12321,6 +12436,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/builder_config.proto",
         "chromiumos/common.proto"
@@ -12401,6 +12520,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -12561,6 +12684,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "enumType": [
@@ -12622,6 +12749,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -12666,6 +12797,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "SignerType",
@@ -12794,6 +12929,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "enumType": [
@@ -12864,6 +13003,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/field_mask.proto"
       ],
@@ -13000,6 +13143,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "name": "NoopEffectConfiguration"
@@ -13094,6 +13241,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "cycler/effect.proto"
       ],
@@ -13320,6 +13471,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -13342,6 +13497,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -13364,6 +13523,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -13386,6 +13549,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -13408,6 +13575,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "device/platform_id.proto",
         "device/model_id.proto",
@@ -13461,6 +13632,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "device/config_id.proto"
       ],
@@ -14127,6 +14302,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "ChameleonType",
@@ -14200,6 +14379,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -14222,6 +14405,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "LicenseType",
@@ -14271,6 +14458,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "ServoSetupType",
@@ -14438,6 +14629,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "lab/chameleon.proto",
         "lab/servo.proto"
@@ -14801,6 +14996,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -14823,6 +15022,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "device/config_id.proto",
         "lab/chromeos_device_id.proto",
@@ -15021,6 +15224,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
@@ -15069,6 +15276,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "chromiumos/test/api/dut_attribute.proto",
@@ -15326,6 +15537,13 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          2
+        ]
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "google/protobuf/field_mask.proto",
@@ -15748,6 +15966,13 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          0
+        ]
+      },
       "dependency": [
         "google/protobuf/empty.proto",
         "google/protobuf/field_mask.proto",
@@ -15891,6 +16116,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "lab/chromeos_device_id.proto"
       ],
@@ -16168,6 +16397,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
@@ -16364,6 +16597,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -16441,6 +16678,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/common.proto",
         "device/model_id.proto"
@@ -16476,6 +16717,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "lab_platform/stable_version_key.proto"
       ],
@@ -16509,6 +16754,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "lab_platform/stable_version_key.proto"
       ],
@@ -16542,6 +16791,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "lab_platform/stable_version_key.proto"
       ],
@@ -16582,6 +16835,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "lab_platform/stable_cros_version.proto",
         "lab_platform/stable_faft_version.proto",
@@ -16626,6 +16883,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "manufacturing/config_id.proto"
       ],
@@ -16780,6 +17041,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -16910,6 +17175,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "project_mgmt/project.proto"
       ],
@@ -16984,6 +17253,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "project_mgmt/program.proto"
       ],
@@ -17010,6 +17283,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/build/api/system_image.proto"
       ],
@@ -17043,6 +17320,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "enumType": [
@@ -17093,6 +17374,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -17115,6 +17400,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "prototype/client_id.proto"
       ],
@@ -17148,6 +17437,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "prototype/client_id.proto"
       ],
@@ -17181,6 +17474,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "prototype/client_profile_id.proto",
         "google/protobuf/duration.proto"
@@ -17341,6 +17638,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "prototype/builder_config.proto",
         "prototype/channel.proto"
@@ -17433,6 +17734,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -17577,6 +17882,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "prototype/client.proto",
         "prototype/client_profile.proto",
@@ -17630,6 +17939,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -17791,6 +18104,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -17813,6 +18130,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test/custom_results/graphics/machine_id.proto"
@@ -17862,6 +18183,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
@@ -17923,6 +18248,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -17945,6 +18274,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -17967,6 +18300,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test/custom_results/graphics/package.proto"
       ],
@@ -17993,6 +18330,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -18015,6 +18356,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test/custom_results/graphics/machine_id.proto",
@@ -18298,6 +18643,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test/custom_results/graphics/package.proto",
@@ -18539,6 +18888,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test/custom_results/graphics/trace_id.proto"
       ],
@@ -18656,6 +19009,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
@@ -18997,6 +19354,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/test_metadata.proto"
       ],
@@ -19023,6 +19384,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -19052,6 +19417,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -19114,6 +19483,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/migration/test_runner/config.proto"
       ],
@@ -19384,6 +19757,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -19406,6 +19783,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/test_metadata.proto",
         "chromiumos/common.proto",
@@ -20043,6 +20424,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/common.proto",
         "test_platform/request.proto"
@@ -20188,6 +20573,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -20249,6 +20638,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test_platform/execution/param.proto",
@@ -20509,6 +20902,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/request.proto",
         "test_platform/skylab_local_state/host_info.proto",
@@ -20625,6 +21022,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/skylab_local_state/host_info.proto"
       ],
@@ -20658,6 +21059,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/skylab_local_state/multihost.proto"
       ],
@@ -20753,6 +21158,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/multibot/common.proto"
       ],
@@ -20842,6 +21251,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -21037,6 +21450,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test_platform/phosphorus/common.proto",
@@ -21233,6 +21650,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/phosphorus/prejob.proto",
         "test_platform/multibot/common.proto",
@@ -21351,6 +21772,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test_platform/phosphorus/common.proto"
@@ -21512,6 +21937,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "test_platform/phosphorus/common.proto"
@@ -21691,6 +22120,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/phosphorus/common.proto"
       ],
@@ -21752,6 +22185,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/phosphorus/common.proto"
       ],
@@ -21778,6 +22215,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "State",
@@ -21948,6 +22389,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/result_flow/common.proto",
         "google/protobuf/timestamp.proto"
@@ -22004,6 +22449,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/result_flow/common.proto",
         "google/protobuf/timestamp.proto"
@@ -22091,6 +22540,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/result_flow/common.proto",
         "google/protobuf/timestamp.proto"
@@ -22155,6 +22608,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -22193,6 +22650,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -22316,6 +22777,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -22359,6 +22824,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/skylab_local_state/common.proto"
       ],
@@ -22475,6 +22944,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -22516,6 +22989,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/skylab_local_state/common.proto"
       ],
@@ -22577,6 +23054,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -22606,6 +23087,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/phosphorus/common.proto"
       ],
@@ -22783,6 +23268,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/common/task.proto"
       ],
@@ -23035,6 +23524,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/skylab_test_runner/config.proto",
         "test_platform/skylab_test_runner/request.proto"
@@ -23082,6 +23575,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -23233,6 +23730,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/test_metadata.proto",
         "test_platform/request.proto"
@@ -23441,6 +23942,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
@@ -23474,6 +23979,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "enumType": [
@@ -23586,6 +24095,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/common/task.proto",
         "test_platform/config/config.proto",
@@ -23943,6 +24456,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/request.proto",
         "test_platform/steps/enumeration.proto",
@@ -24092,6 +24609,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/artifacts.proto",
         "chromiumos/common.proto",
@@ -24606,6 +25127,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/test/api/coverage_rule.proto"
       ],
@@ -24661,6 +25186,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -24703,6 +25232,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -24744,6 +25277,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "testplans/common.proto"
       ],
@@ -24778,6 +25315,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/wrappers.proto",
         "lab/license.proto"
@@ -25133,6 +25674,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromiumos/common.proto",
         "google/protobuf/struct.proto",
@@ -25346,6 +25891,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "testplans/common.proto",
         "google/protobuf/wrappers.proto"
@@ -25467,6 +26016,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "testplans/common.proto"
       ],
@@ -25493,6 +26046,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "testplans/common.proto"
       ],
@@ -25622,6 +26179,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "Branch",
@@ -26171,6 +26732,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/taskstate.proto"
       ],
@@ -26303,6 +26868,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -26325,6 +26894,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto",
         "uprev/build_parallels_image/common.proto"
@@ -26374,6 +26947,10 @@
       "syntax": "proto3"
     },
     {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "uprev/build_parallels_image/common.proto"
       ],
