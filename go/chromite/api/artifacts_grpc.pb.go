@@ -24,6 +24,8 @@ type ArtifactsServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	// Fetch the pinned guest image locations.  Added in R77.
 	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
+	// Fetch the paths for any metadata files.  Added in R94.
+	FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
@@ -108,6 +110,15 @@ func (c *artifactsServiceClient) Get(ctx context.Context, in *GetRequest, opts .
 func (c *artifactsServiceClient) FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error) {
 	out := new(PinnedGuestImageUriResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchPinnedGuestImageUris", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error) {
+	out := new(FetchMetadataResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -268,6 +279,8 @@ type ArtifactsServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	// Fetch the pinned guest image locations.  Added in R77.
 	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
+	// Fetch the paths for any metadata files.  Added in R94.
+	FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error)
@@ -336,6 +349,9 @@ func (UnimplementedArtifactsServiceServer) Get(context.Context, *GetRequest) (*G
 }
 func (UnimplementedArtifactsServiceServer) FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchPinnedGuestImageUris not implemented")
+}
+func (UnimplementedArtifactsServiceServer) FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchMetadata not implemented")
 }
 func (UnimplementedArtifactsServiceServer) BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleAutotestFiles not implemented")
@@ -448,6 +464,24 @@ func _ArtifactsService_FetchPinnedGuestImageUris_Handler(srv interface{}, ctx co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactsServiceServer).FetchPinnedGuestImageUris(ctx, req.(*PinnedGuestImageUriRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_FetchMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FetchMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).FetchMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/FetchMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).FetchMetadata(ctx, req.(*FetchMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -758,6 +792,10 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FetchPinnedGuestImageUris",
 			Handler:    _ArtifactsService_FetchPinnedGuestImageUris_Handler,
+		},
+		{
+			MethodName: "FetchMetadata",
+			Handler:    _ArtifactsService_FetchMetadata_Handler,
 		},
 		{
 			MethodName: "BundleAutotestFiles",

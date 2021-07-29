@@ -3308,6 +3308,47 @@
               "name": "PinnedGuestImage"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            }
+          ],
+          "name": "FetchMetadataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "filepaths",
+              "label": "LABEL_REPEATED",
+              "name": "filepaths",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FetchMetadataResponse"
         }
       ],
       "name": "chromite/api/artifacts.proto",
@@ -3332,6 +3373,11 @@
               "inputType": ".chromite.api.PinnedGuestImageUriRequest",
               "name": "FetchPinnedGuestImageUris",
               "outputType": ".chromite.api.PinnedGuestImageUriResponse"
+            },
+            {
+              "inputType": ".chromite.api.FetchMetadataRequest",
+              "name": "FetchMetadata",
+              "outputType": ".chromite.api.FetchMetadataResponse"
             },
             {
               "inputType": ".chromite.api.BundleRequest",

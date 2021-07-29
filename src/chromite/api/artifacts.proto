@@ -190,6 +190,23 @@ message PinnedGuestImageUriResponse {
   repeated PinnedGuestImage pinned_images = 1;
 }
 
+// Request to fetch metadata files.
+message FetchMetadataRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+  // The sysroot where the files live.
+  // Absolute path within chroot.
+  chromite.api.Sysroot sysroot = 2;
+  // The build target (board) whose metadata to fetch.
+  chromiumos.BuildTarget build_target = 3;
+}
+
+// Response containing the locations of metadata files.
+message FetchMetadataResponse {
+  // The absolute path to each metadata file (based outside the chroot).
+  repeated string filepaths = 1;
+}
+
 // Service for bundling build artifacts and dumping them somewhere on disk.
 service ArtifactsService {
   option (service_options) = {
@@ -206,6 +223,9 @@ service ArtifactsService {
   // Fetch the pinned guest image locations.  Added in R77.
   rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
     returns (PinnedGuestImageUriResponse);
+
+  // Fetch the paths for any metadata files.  Added in R94.
+  rpc FetchMetadata(FetchMetadataRequest) returns (FetchMetadataResponse);
 
   //
   // Everything that follows this line is planned to be deprecated
