@@ -20780,6 +20780,30 @@
                   "name": "use_tls",
                   "number": 3,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "softwareAttributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "software_attributes",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SoftwareAttributes"
+                },
+                {
+                  "jsonName": "hardwareAttributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hardware_attributes",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.HardwareAttributes"
+                },
+                {
+                  "jsonName": "secondaryDevices",
+                  "label": "LABEL_REPEATED",
+                  "name": "secondary_devices",
+                  "number": 6,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SecondaryDevice"
                 }
               ],
               "name": "Prejob",

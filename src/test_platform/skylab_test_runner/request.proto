@@ -34,6 +34,14 @@ message Request {
     // migration is complete, all prejobs will use the TLS API and this argument
     // will be dropped.
     bool use_tls = 3;
+    // In a multi-DUT test scenario, software_attributes and hardware_attributes
+    // can help us determine primary DUT in a DUT topology.
+    test_platform.Request.Params.SoftwareAttributes software_attributes = 4;
+    test_platform.Request.Params.HardwareAttributes hardware_attributes = 5;
+    // Will present in a multi-DUTs test request, it includes necessary metadata
+    // to help us determine DUT topology(primary/secondaries), as well as software
+    // dependencies to run prejob for secondary DUTs.
+    repeated test_platform.Request.Params.SecondaryDevice secondary_devices = 6;
   }
 
   Prejob prejob = 1;
