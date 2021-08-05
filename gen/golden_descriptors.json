@@ -3326,14 +3326,6 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.Sysroot"
-            },
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.BuildTarget"
             }
           ],
           "name": "FetchMetadataRequest"

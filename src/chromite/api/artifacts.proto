@@ -197,8 +197,6 @@ message FetchMetadataRequest {
   // The sysroot where the files live.
   // Absolute path within chroot.
   chromite.api.Sysroot sysroot = 2;
-  // The build target (board) whose metadata to fetch.
-  chromiumos.BuildTarget build_target = 3;
 }
 
 // Response containing the locations of metadata files.
