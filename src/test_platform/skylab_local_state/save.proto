@@ -20,7 +20,7 @@ message SaveRequest {
   // DUT hostname, used in the name of the host info file.
   string dut_name = 3;
 
-  // DUT ID, used in the name of the DUT state cache file.
+  // DUT ID, deprecated in skylab_local_state.
   string dut_id = 4;
 
   // E.g. "needs_repair", "ready" etc.
@@ -28,4 +28,7 @@ message SaveRequest {
 
   // If true, mark results directory as ready for offload.
   bool seal_results_dir = 6;
+
+  // Hostname of peer DUTs in a multi-DUTs task.
+  repeated string peer_duts = 7;
 }

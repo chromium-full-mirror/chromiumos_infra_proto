@@ -22939,6 +22939,13 @@
               "name": "test_id",
               "number": 6,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "multiDutsFlag",
+              "label": "LABEL_OPTIONAL",
+              "name": "multi_duts_flag",
+              "number": 7,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "LoadRequest",
@@ -22951,6 +22958,32 @@
               "start": 2
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Dut"
         },
         {
           "field": [
@@ -22968,6 +23001,14 @@
               "name": "results_dir",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dutTopology",
+              "label": "LABEL_REPEATED",
+              "name": "dut_topology",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_local_state.Dut"
             }
           ],
           "name": "LoadResponse",
@@ -23111,6 +23152,13 @@
               "name": "seal_results_dir",
               "number": 6,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "peerDuts",
+              "label": "LABEL_REPEATED",
+              "name": "peer_duts",
+              "number": 7,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "SaveRequest"
