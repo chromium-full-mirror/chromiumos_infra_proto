@@ -3337,7 +3337,8 @@
               "label": "LABEL_REPEATED",
               "name": "filepaths",
               "number": 1,
-              "type": "TYPE_STRING"
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "FetchMetadataResponse"

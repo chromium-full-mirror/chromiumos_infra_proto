@@ -201,8 +201,8 @@ message FetchMetadataRequest {
 
 // Response containing the locations of metadata files.
 message FetchMetadataResponse {
-  // The absolute path to each metadata file (based outside the chroot).
-  repeated string filepaths = 1;
+  // The absolute path to each metadata file.
+  repeated chromiumos.ResultPath filepaths = 1;
 }
 
 // Service for bundling build artifacts and dumping them somewhere on disk.
