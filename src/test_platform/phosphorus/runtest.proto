@@ -36,6 +36,9 @@ message RunTestRequest {
     // Key:value pairs added to the autoserv command. These are metadata which
     // should not affect code execution.
     map<string,string> keyvals = 5;
+
+    // Hostname of peer DUTs in a multi-DUTs task.
+    repeated string peer_duts = 6;
   }
 
   oneof test {

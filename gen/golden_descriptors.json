@@ -21592,6 +21592,14 @@
               "name": "use_tls",
               "number": 7,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "addtionalTargets",
+              "label": "LABEL_REPEATED",
+              "name": "addtional_targets",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.phosphorus.PrejobRequest.ProvisionTarget"
             }
           ],
           "name": "PrejobRequest",
@@ -21661,6 +21669,26 @@
               "options": {
                 "mapEntry": true
               }
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "dutHostname",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dut_hostname",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "softwareDependencies",
+                  "label": "LABEL_REPEATED",
+                  "name": "software_dependencies",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SoftwareDependency"
+                }
+              ],
+              "name": "ProvisionTarget"
             }
           ]
         },
@@ -22083,6 +22111,13 @@
                   "number": 5,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.phosphorus.RunTestRequest.Autotest.KeyvalsEntry"
+                },
+                {
+                  "jsonName": "peerDuts",
+                  "label": "LABEL_REPEATED",
+                  "name": "peer_duts",
+                  "number": 6,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "Autotest",

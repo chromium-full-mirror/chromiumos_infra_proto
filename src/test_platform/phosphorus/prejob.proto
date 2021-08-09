@@ -46,6 +46,16 @@ message PrejobRequest {
   // migration is complete, all prejobs will use the TLS API and this argument
   // will be dropped.
   bool use_tls = 7;
+
+  // ProvisionTarget defines an addtional provision target and its software dependencies.
+  // Addtional provision target will share other config(e.g. use_tls) from the primary DUT.
+  message ProvisionTarget {
+    string dut_hostname = 1;
+    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 2;
+  }
+
+  // This field provide metadata to provision secondary devices in a multi-DUTs test.
+  repeated ProvisionTarget addtional_targets = 9;
 }
 
 // PrejobResponse defines the output of `phosphorus prejob`.
