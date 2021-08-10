@@ -220,6 +220,9 @@ message SimpleChromeWorkflowTestResponse {
 }
 
 message GetCoverageRulesRequest {
+  // The chroot in which to run commands. Required.
+  chromiumos.Chroot chroot = 5;
+
   // SourceTestPlans for a given CQ run, release build, etc. Required.
   repeated chromiumos.test.plan.SourceTestPlan source_test_plans = 1;
 

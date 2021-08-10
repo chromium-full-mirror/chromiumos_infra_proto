@@ -6680,6 +6680,14 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
               "jsonName": "sourceTestPlans",
               "label": "LABEL_REPEATED",
               "name": "source_test_plans",
