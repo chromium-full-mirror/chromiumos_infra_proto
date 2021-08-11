@@ -6179,12 +6179,9 @@
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
-        "chromiumos/build/api/system_image.proto",
         "chromiumos/common.proto",
-        "chromiumos/config/payload/flat_config.proto",
         "chromiumos/metrics.proto",
         "chromiumos/test/api/coverage_rule.proto",
-        "chromiumos/test/api/dut_attribute.proto",
         "chromiumos/test/plan/source_test_plan.proto"
       ],
       "messageType": [
@@ -6701,7 +6698,7 @@
               "name": "build_metadata_list",
               "number": 2,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.build.api.SystemImage.BuildMetadataList"
+              "typeName": ".chromiumos.Path"
             },
             {
               "jsonName": "dutAttributeList",
@@ -6709,7 +6706,7 @@
               "name": "dut_attribute_list",
               "number": 3,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.DutAttributeList"
+              "typeName": ".chromiumos.Path"
             },
             {
               "jsonName": "flatConfigList",
@@ -6717,7 +6714,7 @@
               "name": "flat_config_list",
               "number": 4,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.config.payload.FlatConfigList"
+              "typeName": ".chromiumos.Path"
             }
           ],
           "name": "GetCoverageRulesRequest"
