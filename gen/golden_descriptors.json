@@ -25305,49 +25305,54 @@
         {
           "field": [
             {
-              "jsonName": "coverageRules",
+              "jsonName": "testSpecs",
               "label": "LABEL_REPEATED",
-              "name": "coverage_rules",
+              "name": "test_specs",
               "number": 1,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.CoverageRule"
-            },
-            {
-              "jsonName": "artifacts",
-              "label": "LABEL_REPEATED",
-              "name": "artifacts",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.v2.Request.Artifact"
+              "typeName": ".test_platform.v2.HWTestRequestBeta.TestSpec"
             }
           ],
-          "name": "Request",
+          "name": "HWTestRequestBeta",
           "nestedType": [
             {
               "field": [
                 {
-                  "jsonName": "buildUrl",
+                  "jsonName": "rules",
                   "label": "LABEL_OPTIONAL",
-                  "name": "build_url",
+                  "name": "rules",
                   "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "chromeosVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "chromeos_version",
-                  "number": 2,
-                  "type": "TYPE_STRING"
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.CoverageRule"
                 }
               ],
-              "name": "Artifact"
+              "name": "TestSpec"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hwTestRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "hw_test_request",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.v2.HWTestRequestBeta"
+            }
+          ],
+          "name": "RequestBeta",
+          "oneofDecl": [
+            {
+              "name": "request"
             }
           ]
         }
       ],
       "name": "test_platform/v2/request.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform_v2"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2"
       },
       "package": "test_platform.v2",
       "syntax": "proto3"

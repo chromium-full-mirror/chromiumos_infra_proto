@@ -8,25 +8,32 @@ package test_platform.v2;
 
 import "chromiumos/test/api/coverage_rule.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform_v2";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2";
 
+message HWTestRequestBeta {
+    message TestSpec {
+        // Tests to run and dut criterion for running them.
+        chromiumos.test.api.CoverageRule rules = 1;
 
-// A request to ChromeOS Test Platform to run tests on devices in the ChromeOS
-// Test Lab.
-message Request {
-    // CoverageRules that must be satisfied by the request.
-    repeated chromiumos.test.api.CoverageRule coverage_rules = 1;
-
-    // An artifact of the build process required for running tests.
-    message Artifact {
-        // A Google Storage path to the location of the build artifacts to
-        // test.
-        // For example: "gs://chromeos-image-archive/galaxy-cq/R92-13100.0.0"
-        string build_url = 1;
-
-        // ChromeOS version string for the build, e.g. "13100.0.0".
-        string chromeos_version = 2;
+        // A coverage rule is meant to match to a schedulable unit.  With
+        // multi-dut support (see go/skylab-multiduts-design), we may actually
+        // specify more than one model to match against a multi-dut unit.
+        //
+        // To support that usage, we need to be able to specify separate
+        // provisioning settings for each of the models we request.  This list
+        // matches 1:1 in-order with the models specified in the coverage rule.
+        //
+        // TODO(smcallis): The actual provisioning message name here is TBD
+        //
+        // repeated ProvisionRequest provision_requests = 2;
     }
 
-    repeated Artifact artifacts = 2;
+    repeated TestSpec test_specs = 1;
+}
+
+message RequestBeta {
+    oneof request {
+        HWTestRequestBeta hw_test_request = 1;
+        // Will add VM test request later
+    }
 }
