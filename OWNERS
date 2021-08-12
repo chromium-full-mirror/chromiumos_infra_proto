@@ -2,36 +2,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-# This file can't use "include" directives, since they are not supported
-# by an autoroller that uses this repo. e.g. http://shortn/_R8egPrYex7
-# See https://crbug.com/1108077
+# Chrome OS Build Team
+file:chromiumos/chromite:main:/OWNERS.build
 
-# https://chromium.googlesource.com/chromiumos/chromite/+/master/OWNERS.build
-cjmcdonald@chromium.org
-mmortensen@google.com
-saklein@chromium.org
-sbelmon@google.com
-vapier@chromium.org
-
-# https://chromium.googlesource.com/chromiumos/chromite/+/master/OWNERS.ci
-andrewlamb@chromium.org
-brigitr@google.com
-ctmcnamara@chromium.org
-dburger@chromium.org
-dhanyaganesh@chromium.org
-engeg@google.com
-jackneus@google.com
-jaredloucks@google.com
-juahurta@google.com
-lamontjones@chromium.org
-mikenichols@chromium.org
-navil@google.com
-seanabraham@chromium.org
-smcallis@google.com
-
-# TODO(engeg@): remove. farewell friends.
-pprabhu@chromium.org
-seanabraham@chromium.org
+# Chrome OS CI Team
+file:chromiumos/chromite:main:/OWNERS.ci
 
 # Fleet team.
 ayatane@chromium.org
