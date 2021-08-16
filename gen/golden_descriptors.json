@@ -20008,6 +20008,14 @@
                       "type": "TYPE_STRING"
                     },
                     {
+                      "jsonName": "chromeosBuildGcsBucket",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "chromeos_build_gcs_bucket",
+                      "number": 7,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
                       "jsonName": "roFirmwareBuild",
                       "label": "LABEL_OPTIONAL",
                       "name": "ro_firmware_build",

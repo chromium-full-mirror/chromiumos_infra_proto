@@ -57,6 +57,9 @@ message Request {
         // ChromeOS build name, e.g. "reef-release/R77-12345.0.0"
         string chromeos_build = 3;
 
+        // The bucket with the build images (default: chromeos-image-archive).
+        string chromeos_build_gcs_bucket = 7;
+
         // Readonly firmware build name, e.g.
         // "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
         string ro_firmware_build = 4;
