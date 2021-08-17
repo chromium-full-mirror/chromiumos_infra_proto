@@ -301,6 +301,9 @@ message UprevPackagesResponse {
 
   // The new version that was uprevved to when an uprev was completed.
   string version = 2;
+
+  // Packages that were uprev'd.
+  repeated chromiumos.PackageInfo packages = 3;
 }
 
 message UprevVersionedPackageResponse {
