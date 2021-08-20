@@ -316,6 +316,9 @@ message BuilderConfig {
 
       // Chrome Ebuild Environment archive.
       CHROME_EBUILD_ENV = 41;
+
+      // HWQual archive.
+      HWQUAL = 42;
     }
     repeated ArtifactTypes artifact_types = 2;
 

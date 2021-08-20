@@ -1126,7 +1126,7 @@
                       "start": 29
                     },
                     {
-                      "end": 41,
+                      "end": 42,
                       "start": 33
                     }
                   ],
@@ -1270,7 +1270,7 @@
                       "start": 27
                     },
                     {
-                      "end": 41,
+                      "end": 42,
                       "start": 30
                     }
                   ],
@@ -1421,7 +1421,7 @@
                       "start": 35
                     },
                     {
-                      "end": 41,
+                      "end": 42,
                       "start": 39
                     }
                   ],
@@ -1504,7 +1504,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 41,
+                      "end": 42,
                       "start": 1
                     }
                   ],
@@ -1702,6 +1702,10 @@
                     {
                       "name": "CODE_COVERAGE_LLVM_JSON",
                       "number": 39
+                    },
+                    {
+                      "name": "HWQUAL",
+                      "number": 42
                     }
                   ]
                 }
@@ -1785,7 +1789,7 @@
                       "start": 32
                     },
                     {
-                      "end": 41,
+                      "end": 42,
                       "start": 34
                     }
                   ],
@@ -1892,7 +1896,7 @@
                       "start": 1
                     },
                     {
-                      "end": 41,
+                      "end": 42,
                       "start": 37
                     }
                   ],
@@ -9827,6 +9831,10 @@
                     {
                       "name": "CHROME_EBUILD_ENV",
                       "number": 41
+                    },
+                    {
+                      "name": "HWQUAL",
+                      "number": 42
                     }
                   ]
                 }

@@ -459,7 +459,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
-      reserved 33 to 41;
+      reserved 33 to 42;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -564,7 +564,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 30 to 41;
+      reserved 30 to 42;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -627,7 +627,7 @@ message ArtifactsByService {
       // license_credits.html.
       LICENSE_CREDITS = 38;
 
-      reserved 39 to 41;
+      reserved 39 to 42;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -676,7 +676,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 41;
+      reserved 1 to 42;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -800,6 +800,9 @@ message ArtifactsByService {
       CODE_COVERAGE_LLVM_JSON = 39;
 
       reserved 40 to 41;
+
+      // HWQual archive.
+      HWQUAL = 42;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -867,7 +870,7 @@ message ArtifactsByService {
       // FirmwareService: LCOV code coverage files.
       FIRMWARE_LCOV = 33;
 
-      reserved 34 to 41;
+      reserved 34 to 42;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -925,7 +928,7 @@ message ArtifactsByService {
 
       BUILD_MANIFEST = 36;
 
-      reserved 37 to 41;
+      reserved 37 to 42;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
