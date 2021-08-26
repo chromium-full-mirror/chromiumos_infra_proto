@@ -24,6 +24,8 @@ fuchsia/third_party/jq/\${platform} latest
 infra/3pp/tools/protoc/\${platform} version:2@${CIPD_PROTOC_VERSION}
 infra/3pp/tools/go/\${platform} latest
 infra/3pp/go/github.com/bufbuild/buf/\${platform} version:2@${CIPD_BUF_VERSION}
+infra/3pp/go/github.com/protocolbuffers/protoc-gen-go/\${platform} protoc
+infra/3pp/go/github.com/grpc/protoc-gen-go-grpc/\${platform} protoc
 ENSURE_FILE
 
 PATH="${GOBIN}:${PATH}"
