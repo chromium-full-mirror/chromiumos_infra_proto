@@ -23176,6 +23176,43 @@
               "typeName": ".test_platform.skylab_local_state.Config"
             },
             {
+              "jsonName": "runId",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RemoveRequest"
+        }
+      ],
+      "name": "test_platform/skylab_local_state/remove.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_local_state"
+      },
+      "package": "test_platform.skylab_local_state",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "test_platform/skylab_local_state/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_local_state.Config"
+            },
+            {
               "jsonName": "resultsDir",
               "label": "LABEL_OPTIONAL",
               "name": "results_dir",
