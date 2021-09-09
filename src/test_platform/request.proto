@@ -185,6 +185,11 @@ message Request {
       // Tags are swarming tags that will be applied to all swarming tasks
       // launched.
       repeated string tags = 2;
+
+      // Additional test_args to be applied to the autotest invocation. This
+      // will not overwrite existing test_args, so it will be possible to have
+      // duplicate values.
+      map<string, string> test_args = 3;
     }
 
     Decorations decorations = 8;

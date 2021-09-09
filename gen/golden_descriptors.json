@@ -20251,6 +20251,14 @@
                       "name": "tags",
                       "number": 2,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "testArgs",
+                      "label": "LABEL_REPEATED",
+                      "name": "test_args",
+                      "number": 3,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.Decorations.TestArgsEntry"
                     }
                   ],
                   "name": "Decorations",
@@ -20273,6 +20281,28 @@
                         }
                       ],
                       "name": "AutotestKeyvalsEntry",
+                      "options": {
+                        "mapEntry": true
+                      }
+                    },
+                    {
+                      "field": [
+                        {
+                          "jsonName": "key",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "key",
+                          "number": 1,
+                          "type": "TYPE_STRING"
+                        },
+                        {
+                          "jsonName": "value",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "value",
+                          "number": 2,
+                          "type": "TYPE_STRING"
+                        }
+                      ],
+                      "name": "TestArgsEntry",
                       "options": {
                         "mapEntry": true
                       }
