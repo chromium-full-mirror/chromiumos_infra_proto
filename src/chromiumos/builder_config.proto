@@ -319,6 +319,9 @@ message BuilderConfig {
 
       // HWQual archive.
       HWQUAL = 42;
+
+      // factory_image.zip archive.
+      FACTORY_IMAGE = 43;
     }
     repeated ArtifactTypes artifact_types = 2;
 

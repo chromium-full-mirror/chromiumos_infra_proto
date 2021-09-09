@@ -1126,7 +1126,7 @@
                       "start": 29
                     },
                     {
-                      "end": 42,
+                      "end": 43,
                       "start": 33
                     }
                   ],
@@ -1270,7 +1270,7 @@
                       "start": 27
                     },
                     {
-                      "end": 42,
+                      "end": 43,
                       "start": 30
                     }
                   ],
@@ -1437,6 +1437,10 @@
                     {
                       "name": "LICENSE_CREDITS",
                       "number": 38
+                    },
+                    {
+                      "name": "FACTORY_IMAGE",
+                      "number": 43
                     }
                   ]
                 }
@@ -1504,7 +1508,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 42,
+                      "end": 43,
                       "start": 1
                     }
                   ],
@@ -1789,7 +1793,7 @@
                       "start": 32
                     },
                     {
-                      "end": 42,
+                      "end": 43,
                       "start": 34
                     }
                   ],
@@ -1896,7 +1900,7 @@
                       "start": 1
                     },
                     {
-                      "end": 42,
+                      "end": 43,
                       "start": 37
                     }
                   ],
@@ -9835,6 +9839,10 @@
                     {
                       "name": "HWQUAL",
                       "number": 42
+                    },
+                    {
+                      "name": "FACTORY_IMAGE",
+                      "number": 43
                     }
                   ]
                 }
