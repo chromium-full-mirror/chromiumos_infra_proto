@@ -39,6 +39,10 @@ message RunTestRequest {
 
     // Hostname of peer DUTs in a multi-DUTs task.
     repeated string peer_duts = 6;
+
+    // The image storage server to fetch the image from.
+    // e.g. gs://chromeos-image-archive or gs://chromeos-releases-test
+    string image_storage_server = 7;
   }
 
   oneof test {
