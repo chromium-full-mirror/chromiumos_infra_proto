@@ -16501,6 +16501,10 @@
             {
               "name": "SERVO_UPDATER_ISSUE",
               "number": 21
+            },
+            {
+              "name": "SERVOD_DUT_CONTROLLER_MISSING",
+              "number": 22
             }
           ]
         },
