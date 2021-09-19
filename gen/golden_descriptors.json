@@ -340,6 +340,25 @@
         {
           "field": [
             {
+              "jsonName": "bucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "bucket",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "path",
+              "label": "LABEL_OPTIONAL",
+              "name": "path",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GcsPath"
+        },
+        {
+          "field": [
+            {
               "jsonName": "path",
               "label": "LABEL_OPTIONAL",
               "name": "path",
@@ -25589,53 +25608,106 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "chromiumos/test/api/coverage_rule.proto"
+        "chromiumos/common.proto",
+        "chromiumos/test/api/coverage_rule.proto",
+        "chromiumos/test/api/provision_state.proto"
       ],
       "messageType": [
         {
           "field": [
             {
-              "jsonName": "testSpecs",
-              "label": "LABEL_REPEATED",
-              "name": "test_specs",
+              "jsonName": "rules",
+              "label": "LABEL_OPTIONAL",
+              "name": "rules",
               "number": 1,
               "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.v2.HWTestRequestBeta.TestSpec"
+              "typeName": ".chromiumos.test.api.CoverageRule"
+            },
+            {
+              "jsonName": "provisionStates",
+              "label": "LABEL_REPEATED",
+              "name": "provision_states",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.ProvisionState"
             }
           ],
-          "name": "HWTestRequestBeta",
-          "nestedType": [
+          "name": "HWTestSpec"
+        },
+        {
+          "field": [
             {
-              "field": [
-                {
-                  "jsonName": "rules",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "rules",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.test.api.CoverageRule"
-                }
-              ],
-              "name": "TestSpec"
+              "jsonName": "buildDirectory",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_directory",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.GcsPath"
+            },
+            {
+              "jsonName": "hwTestSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "hw_test_spec",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.v2.HWTestSpec"
+            }
+          ],
+          "name": "TestSpec",
+          "oneofDecl": [
+            {
+              "name": "spec"
             }
           ]
         },
         {
           "field": [
             {
-              "jsonName": "hwTestRequest",
+              "jsonName": "buildDirectory",
               "label": "LABEL_OPTIONAL",
-              "name": "hw_test_request",
+              "name": "build_directory",
               "number": 1,
-              "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.v2.HWTestRequestBeta"
+              "typeName": ".chromiumos.GcsPath"
+            },
+            {
+              "jsonName": "testSpecs",
+              "label": "LABEL_REPEATED",
+              "name": "test_specs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.v2.TestSpec"
+            },
+            {
+              "jsonName": "schedulerSettings",
+              "label": "LABEL_OPTIONAL",
+              "name": "scheduler_settings",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.v2.Request.SchedulerSettings"
             }
           ],
-          "name": "RequestBeta",
-          "oneofDecl": [
+          "name": "Request",
+          "nestedType": [
             {
-              "name": "request"
+              "field": [
+                {
+                  "jsonName": "pool",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pool",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "qsAccount",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "qs_account",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "SchedulerSettings"
             }
           ]
         }

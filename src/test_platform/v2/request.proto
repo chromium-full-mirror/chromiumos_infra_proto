@@ -6,34 +6,69 @@ syntax = "proto3";
 
 package test_platform.v2;
 
+import "chromiumos/common.proto";
 import "chromiumos/test/api/coverage_rule.proto";
+import "chromiumos/test/api/provision_state.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2";
 
-message HWTestRequestBeta {
-    message TestSpec {
-        // Tests to run and dut criterion for running them.
-        chromiumos.test.api.CoverageRule rules = 1;
-
-        // A coverage rule is meant to match to a schedulable unit.  With
-        // multi-dut support (see go/skylab-multiduts-design), we may actually
-        // specify more than one model to match against a multi-dut unit.
-        //
-        // To support that usage, we need to be able to specify separate
-        // provisioning settings for each of the models we request.  This list
-        // matches 1:1 in-order with the models specified in the coverage rule.
-        //
-        // TODO(smcallis): The actual provisioning message name here is TBD
-        //
-        // repeated ProvisionRequest provision_requests = 2;
-    }
-
-    repeated TestSpec test_specs = 1;
+// A hardware test spec simply pairs testing CoverageRules with information
+// on the required provisioning state.
+//
+// For multi-dut support (see: go/skylab-multiduts-design), we support
+// specifying multiple attr-model and attr-board labels to target compound
+// scheduling units.
+//
+// The user may specify multiple attr-board labels, or multiple attr-model labels,
+// or both.  If both, the number of each attribute must match:
+//
+// valid:
+//   1. [{'attr-board': 'eve'},    {'attr-board': 'eve'}]
+//   2. [{'attr-model': 'drobit'}, {'attr-model': 'dalboz'}]
+//
+//   3. [{'attr-board': 'eve'},    {'attr-board': 'eve'},
+//       {'attr-model': 'drobit'}, {'attr-model': 'dalboz'}]
+//
+// invalid:
+//   4. [{'attr-board': 'eve'}, {'attr-board': 'eve'}, { 'attr-model': 'dalboz'}]
+//
+// The board and model labels are merged to form compound labels for the
+// scheduling backend.  Examples of the compound labels formed from above:
+//   1.  attr-board: eve|eve
+//   2.  attr-model: drobit|dalboz
+//   3.  attr-board: eve|eve
+//       attr-model: drobit|dalboz
+//
+message HWTestSpec {
+  chromiumos.test.api.CoverageRule rules = 1;
+  repeated chromiumos.test.api.ProvisionState provision_states = 2;
 }
 
-message RequestBeta {
-    oneof request {
-        HWTestRequestBeta hw_test_request = 1;
-        // Will add VM test request later
-    }
+
+message TestSpec {
+  // Optionally override build directory path given in Request
+  chromiumos.GcsPath build_directory = 1;
+
+  oneof spec {
+    HWTestSpec hw_test_spec = 2;
+    // VM testing tbd
+  }
+}
+
+
+message Request {
+  // Required, specify the path to a GCS folder containing build artifacts
+  chromiumos.GcsPath build_directory = 1;
+
+  // One or more test specs to execute
+  repeated TestSpec test_specs = 2;
+
+  // Once client profiles are implemented, these details will be subsumed
+  // into a profile, but in the interim we need to able to specify pool and
+  // QuotaScheduler account to use.
+  message SchedulerSettings {
+    string pool = 1;
+    string qs_account = 2;
+  }
+  SchedulerSettings scheduler_settings = 3;
 }

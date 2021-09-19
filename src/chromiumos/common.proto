@@ -20,6 +20,12 @@ message BuildTarget {
   string name = 1;
 }
 
+// Generic GCS path split into bucket name and path within
+message GcsPath {
+    string bucket = 1;
+    string path   = 2;
+}
+
 // Chroot is used to define how to enter a chroot.
 message Chroot {
   // Deprecated fields.
