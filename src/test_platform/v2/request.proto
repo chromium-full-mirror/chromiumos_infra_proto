@@ -15,31 +15,34 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2"
 // A hardware test spec simply pairs testing CoverageRules with information
 // on the required provisioning state.
 //
-// For multi-dut support (see: go/skylab-multiduts-design), we support
-// specifying multiple attr-model and attr-board labels to target compound
-// scheduling units.
-//
-// The user may specify multiple attr-board labels, or multiple attr-model labels,
-// or both.  If both, the number of each attribute must match:
-//
-// valid:
-//   1. [{'attr-board': 'eve'},    {'attr-board': 'eve'}]
-//   2. [{'attr-model': 'drobit'}, {'attr-model': 'dalboz'}]
-//
-//   3. [{'attr-board': 'eve'},    {'attr-board': 'eve'},
-//       {'attr-model': 'drobit'}, {'attr-model': 'dalboz'}]
-//
-// invalid:
-//   4. [{'attr-board': 'eve'}, {'attr-board': 'eve'}, { 'attr-model': 'dalboz'}]
-//
-// The board and model labels are merged to form compound labels for the
-// scheduling backend.  Examples of the compound labels formed from above:
-//   1.  attr-board: eve|eve
-//   2.  attr-model: drobit|dalboz
-//   3.  attr-board: eve|eve
-//       attr-model: drobit|dalboz
-//
 message HWTestSpec {
+  // For multi-dut support (see: go/skylab-multiduts-design), we support
+  // specifying multiple attr-model and attr-board attributes in the CoverageRules
+  // to target compound scheduling units.
+  //
+  // The user may specify multiple attr-board attributes, or multiple attr-model
+  // attributes or both.  If both, the number of each attribute must match:
+  //
+  // valid:
+  //   1. [{'attr-board': 'eve'},    {'attr-board': 'eve'}]
+  //   2. [{'attr-model': 'drobit'}, {'attr-model': 'dalboz'}]
+  //
+  //   3. [{'attr-board': 'eve'},    {'attr-board': 'eve'},
+  //       {'attr-model': 'drobit'}, {'attr-model': 'dalboz'}]
+  //
+  // invalid:
+  //   4. [{'attr-board': 'eve'}, {'attr-board': 'eve'}, { 'attr-model': 'dalboz'}]
+  //
+  // The board and model labels are merged to form compound labels for the
+  // scheduling backend.  For multi-dut support, we have to append a numeric
+  // identifer to satisfy constraints in the scheduling backend.
+  //
+  // Examples of the compound labels formed from above:
+  //   1.  attr-board: eve|eve2
+  //   2.  attr-model: drobit|dalboz
+  //   3.  attr-board: eve|eve2
+  //       attr-model: drobit|dalboz
+  //
   chromiumos.test.api.CoverageRule rules = 1;
   repeated chromiumos.test.api.ProvisionState provision_states = 2;
 }
