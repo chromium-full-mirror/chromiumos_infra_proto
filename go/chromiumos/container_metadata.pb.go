@@ -176,7 +176,7 @@ func (x *ContainerImageInfo) GetTags() []string {
 	return nil
 }
 
-// Map from container name (canonically lowercase) to it's metadata
+// Map from container name (canonically lowercase) to its metadata
 type ContainerImageMap struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

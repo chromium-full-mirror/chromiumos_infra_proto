@@ -7,6 +7,7 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
+import "chromiumos/container_metadata.proto";
 import "chromiumos/test/api/coverage_rule.proto";
 import "chromiumos/test/plan/source_test_plan.proto";
 
@@ -15,7 +16,10 @@ import "chromiumos/test/plan/source_test_plan.proto";
 message TestServiceContainerBuildResult {
   message Success {
     // Full path to the build artifact in the hosted container registry.
-    string registry_path = 1;
+    string registry_path = 1; // deprecated
+
+    // Image about built container
+    chromiumos.ContainerImageInfo image = 2;
   }
 
   message Failure {
@@ -41,7 +45,22 @@ message BuildTestServiceContainersRequest {
 
   // Build version number, which matches the build artifact version
   // number that will be tested ultimately.
+  // NOTE: deprecated, remove once we migrate requests to new tag/label semantics
   string version = 3;
+
+  // Repository to push to
+  chromiumos.GcrRepository repository = 4;
+
+  // Tags to apply to built images.  Note that Docker tags are limited in
+  // what they can contain.  They can contain [A-Za-z0-9_.-], but may not
+  // start with . or -, and are a maximum of 128 characters.
+  repeated string tags = 5;
+
+  // Labels to apply to docker image.  Labels are string key=value pairs which
+  // are added to the image itself.  These are useful for things like eg:
+  // adding the full build URL to the container image for the build that
+  // produced them.
+  map<string, string> labels = 6;
 }
 
 message BuildTestServiceContainersResponse {
