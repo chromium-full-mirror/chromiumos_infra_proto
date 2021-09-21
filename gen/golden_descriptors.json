@@ -25616,9 +25616,9 @@
         {
           "field": [
             {
-              "jsonName": "rules",
+              "jsonName": "coverageRule",
               "label": "LABEL_OPTIONAL",
-              "name": "rules",
+              "name": "coverage_rule",
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.test.api.CoverageRule"

@@ -43,7 +43,7 @@ message HWTestSpec {
   //   3.  attr-board: eve|eve2
   //       attr-model: drobit|dalboz
   //
-  chromiumos.test.api.CoverageRule rules = 1;
+  chromiumos.test.api.CoverageRule coverage_rule = 1;
   repeated chromiumos.test.api.ProvisionState provision_states = 2;
 }
 
