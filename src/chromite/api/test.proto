@@ -7,8 +7,8 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
-import "chromiumos/container_metadata.proto";
 import "chromiumos/test/api/coverage_rule.proto";
+import "chromiumos/build/api/container_metadata.proto";
 import "chromiumos/test/plan/source_test_plan.proto";
 
 // Proto for executing test-related functionality.
@@ -17,9 +17,6 @@ message TestServiceContainerBuildResult {
   message Success {
     // Full path to the build artifact in the hosted container registry.
     string registry_path = 1; // deprecated
-
-    // Image about built container
-    chromiumos.ContainerImageInfo image = 2;
   }
 
   message Failure {
@@ -49,7 +46,7 @@ message BuildTestServiceContainersRequest {
   string version = 3;
 
   // Repository to push to
-  chromiumos.GcrRepository repository = 4;
+  chromiumos.build.api.GcrRepository repository = 4;
 
   // Tags to apply to built images.  Note that Docker tags are limited in
   // what they can contain.  They can contain [A-Za-z0-9_.-], but may not

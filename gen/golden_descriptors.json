@@ -6211,157 +6211,13 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "hostname",
-              "label": "LABEL_OPTIONAL",
-              "name": "hostname",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "project",
-              "label": "LABEL_OPTIONAL",
-              "name": "project",
-              "number": 2,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "GcrRepository"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "repository",
-              "label": "LABEL_OPTIONAL",
-              "name": "repository",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.GcrRepository"
-            },
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "digest",
-              "label": "LABEL_OPTIONAL",
-              "name": "digest",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "tags",
-              "label": "LABEL_REPEATED",
-              "name": "tags",
-              "number": 4,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "ContainerImageInfo"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "images",
-              "label": "LABEL_REPEATED",
-              "name": "images",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ContainerImageMap.ImagesEntry"
-            }
-          ],
-          "name": "ContainerImageMap",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.ContainerImageInfo"
-                }
-              ],
-              "name": "ImagesEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "containers",
-              "label": "LABEL_REPEATED",
-              "name": "containers",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ContainerMetadata.ContainersEntry"
-            }
-          ],
-          "name": "ContainerMetadata",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.ContainerImageMap"
-                }
-              ],
-              "name": "ContainersEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ]
-        }
-      ],
-      "name": "chromiumos/container_metadata.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
-        "javaPackage": "com.google.chrome.crosinfra.proto"
-      },
-      "package": "chromiumos",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
         "chromiumos/common.proto",
         "chromiumos/metrics.proto",
-        "chromiumos/container_metadata.proto",
         "chromiumos/test/api/coverage_rule.proto",
+        "chromiumos/build/api/container_metadata.proto",
         "chromiumos/test/plan/source_test_plan.proto"
       ],
       "messageType": [
@@ -6403,14 +6259,6 @@
                   "name": "registry_path",
                   "number": 1,
                   "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "image",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "image",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.ContainerImageInfo"
                 }
               ],
               "name": "Success"
@@ -6465,7 +6313,7 @@
               "name": "repository",
               "number": 4,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.GcrRepository"
+              "typeName": ".chromiumos.build.api.GcrRepository"
             },
             {
               "jsonName": "tags",
