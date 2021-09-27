@@ -25457,35 +25457,19 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          1,
+          3
+        ]
       },
       "dependency": [
         "chromiumos/common.proto",
         "chromiumos/test/api/coverage_rule.proto",
+        "chromiumos/test/api/plan.proto",
         "chromiumos/test/api/provision_state.proto"
       ],
       "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "coverageRule",
-              "label": "LABEL_OPTIONAL",
-              "name": "coverage_rule",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.CoverageRule"
-            },
-            {
-              "jsonName": "provisionStates",
-              "label": "LABEL_REPEATED",
-              "name": "provision_states",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.ProvisionState"
-            }
-          ],
-          "name": "HWTestSpec"
-        },
         {
           "field": [
             {
@@ -25497,13 +25481,13 @@
               "typeName": ".chromiumos.GcsPath"
             },
             {
-              "jsonName": "hwTestSpec",
+              "jsonName": "hwTestPlan",
               "label": "LABEL_OPTIONAL",
-              "name": "hw_test_spec",
+              "name": "hw_test_plan",
               "number": 2,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.v2.HWTestSpec"
+              "typeName": ".chromiumos.test.api.HWTestPlan"
             }
           ],
           "name": "TestSpec",
