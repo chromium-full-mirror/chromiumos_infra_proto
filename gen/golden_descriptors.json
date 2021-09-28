@@ -12663,6 +12663,62 @@
         {
           "field": [
             {
+              "jsonName": "aggregateMetric",
+              "label": "LABEL_OPTIONAL",
+              "name": "aggregate_metric",
+              "number": 1,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "targetGreenness",
+              "label": "LABEL_REPEATED",
+              "name": "target_greenness",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.AggregateGreenness.Greenness"
+            }
+          ],
+          "name": "AggregateGreenness",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "target",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "target",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "metric",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "metric",
+                  "number": 2,
+                  "type": "TYPE_INT64"
+                }
+              ],
+              "name": "Greenness"
+            }
+          ]
+        }
+      ],
+      "name": "chromiumos/greenness.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "delta",
               "label": "LABEL_REPEATED",
               "name": "delta",

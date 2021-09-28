@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package chromiumos;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
+
+// AggregateGreenness is the expression of greenness of source and infra
+// at a given point in time.
+message AggregateGreenness {
+  // Greenness specific to a target.
+  message Greenness {
+    // The name of the target.
+    string target = 1;
+
+    // Indication of greenness for the target in this run.
+    int64 metric = 2;
+  }
+
+  // Aggregate indication of greenness for all targets in this run.
+  int64 aggregate_metric = 1;
+
+  // List of greenness to target granularity.
+  repeated Greenness target_greenness = 2;
+}
