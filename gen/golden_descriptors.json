@@ -14145,6 +14145,10 @@
                 {
                   "name": "SOC_QCS40X",
                   "number": 38
+                },
+                {
+                  "name": "SOC_METEOR_LAKE",
+                  "number": 39
                 }
               ]
             },
