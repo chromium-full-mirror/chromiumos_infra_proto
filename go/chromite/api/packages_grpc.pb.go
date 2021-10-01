@@ -53,6 +53,10 @@ type PackageServiceClient interface {
 	// Check whether the Chrome source tree is needed.  Does not compile nor
 	// install any packages.
 	NeedsChromeSource(ctx context.Context, in *NeedsChromeSourceRequest, opts ...grpc.CallOption) (*NeedsChromeSourceResponse, error)
+	// Rev bump Chrome.
+	// Revision bumps can change a pacakges revision, but not its version.
+	// e.g. 1.2.3.4_rc-r5 -> 1.2.3.4_rc-r6.
+	RevBumpChrome(ctx context.Context, in *RevBumpChromeRequest, opts ...grpc.CallOption) (*UprevVersionedPackageResponse, error)
 	// The generic uprev process -- performs uprevs for all packages in the
 	// public and/or private overlays for the build target(s) specified.
 	// This handles all cros_workon packages except those that have a separate
@@ -155,6 +159,15 @@ func (c *packageServiceClient) NeedsChromeSource(ctx context.Context, in *NeedsC
 	return out, nil
 }
 
+func (c *packageServiceClient) RevBumpChrome(ctx context.Context, in *RevBumpChromeRequest, opts ...grpc.CallOption) (*UprevVersionedPackageResponse, error) {
+	out := new(UprevVersionedPackageResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/RevBumpChrome", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *packageServiceClient) Uprev(ctx context.Context, in *UprevPackagesRequest, opts ...grpc.CallOption) (*UprevPackagesResponse, error) {
 	out := new(UprevPackagesResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/Uprev", in, out, opts...)
@@ -208,6 +221,10 @@ type PackageServiceServer interface {
 	// Check whether the Chrome source tree is needed.  Does not compile nor
 	// install any packages.
 	NeedsChromeSource(context.Context, *NeedsChromeSourceRequest) (*NeedsChromeSourceResponse, error)
+	// Rev bump Chrome.
+	// Revision bumps can change a pacakges revision, but not its version.
+	// e.g. 1.2.3.4_rc-r5 -> 1.2.3.4_rc-r6.
+	RevBumpChrome(context.Context, *RevBumpChromeRequest) (*UprevVersionedPackageResponse, error)
 	// The generic uprev process -- performs uprevs for all packages in the
 	// public and/or private overlays for the build target(s) specified.
 	// This handles all cros_workon packages except those that have a separate
@@ -252,6 +269,9 @@ func (UnimplementedPackageServiceServer) HasPrebuilt(context.Context, *HasPrebui
 }
 func (UnimplementedPackageServiceServer) NeedsChromeSource(context.Context, *NeedsChromeSourceRequest) (*NeedsChromeSourceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NeedsChromeSource not implemented")
+}
+func (UnimplementedPackageServiceServer) RevBumpChrome(context.Context, *RevBumpChromeRequest) (*UprevVersionedPackageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevBumpChrome not implemented")
 }
 func (UnimplementedPackageServiceServer) Uprev(context.Context, *UprevPackagesRequest) (*UprevPackagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Uprev not implemented")
@@ -434,6 +454,24 @@ func _PackageService_NeedsChromeSource_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PackageService_RevBumpChrome_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevBumpChromeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).RevBumpChrome(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/RevBumpChrome",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).RevBumpChrome(ctx, req.(*RevBumpChromeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PackageService_Uprev_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UprevPackagesRequest)
 	if err := dec(in); err != nil {
@@ -512,6 +550,10 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "NeedsChromeSource",
 			Handler:    _PackageService_NeedsChromeSource_Handler,
+		},
+		{
+			MethodName: "RevBumpChrome",
+			Handler:    _PackageService_RevBumpChrome_Handler,
 		},
 		{
 			MethodName: "Uprev",

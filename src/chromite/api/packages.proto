@@ -247,7 +247,7 @@ message HasPrebuiltResponse {
 
 message UprevPackagesRequest {
   // The chroot path.
-  // Required if not in the default location.
+  // Only required to clean the chroot.
   chromiumos.Chroot chroot = 1;
 
   // The build target(s) whose packages should be uprevved.
@@ -311,6 +311,12 @@ message UprevVersionedPackageResponse {
   repeated UprevPackagesResponse responses = 1;
 }
 
+message RevBumpChromeRequest {
+  // Rev bump chrome and its follower packages, if needed.
+  // Rev bumps can change the revision, but not the version, of a package.
+}
+
+
 // Service for package-centric functionality.
 service PackageService {
   option (service_options) = {
@@ -363,6 +369,16 @@ service PackageService {
   // install any packages.
   rpc NeedsChromeSource(NeedsChromeSourceRequest)
     returns (NeedsChromeSourceResponse);
+
+  // Rev bump Chrome.
+  // Revision bumps can change a pacakges revision, but not its version.
+  // e.g. 1.2.3.4_rc-r5 -> 1.2.3.4_rc-r6.
+  rpc RevBumpChrome(RevBumpChromeRequest)
+    returns (UprevVersionedPackageResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 
   // The generic uprev process -- performs uprevs for all packages in the
   // public and/or private overlays for the build target(s) specified.

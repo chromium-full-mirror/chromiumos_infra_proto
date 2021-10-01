@@ -5796,6 +5796,9 @@
             }
           ],
           "name": "UprevVersionedPackageResponse"
+        },
+        {
+          "name": "RevBumpChromeRequest"
         }
       ],
       "name": "chromite/api/packages.proto",
@@ -5850,6 +5853,16 @@
               "inputType": ".chromite.api.NeedsChromeSourceRequest",
               "name": "NeedsChromeSource",
               "outputType": ".chromite.api.NeedsChromeSourceResponse"
+            },
+            {
+              "inputType": ".chromite.api.RevBumpChromeRequest",
+              "name": "RevBumpChrome",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.UprevVersionedPackageResponse"
             },
             {
               "inputType": ".chromite.api.UprevPackagesRequest",
