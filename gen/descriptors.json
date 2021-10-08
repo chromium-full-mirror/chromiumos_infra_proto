@@ -14217,6 +14217,10 @@
                 {
                   "name": "SOC_CEZANNE",
                   "number": 40
+                },
+                {
+                  "name": "SOC_ALDER_LAKE_N",
+                  "number": 41
                 }
               ]
             },

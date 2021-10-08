@@ -167,6 +167,7 @@ message Config {
     SOC_QCS40X = 38;
     SOC_METEOR_LAKE = 39;
     SOC_CEZANNE = 40;
+    SOC_ALDER_LAKE_N = 41;
   }
 
   SOC soc = 11;
