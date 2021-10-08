@@ -8,7 +8,7 @@
 
 CROS_CONFIG_REPO="https://chromium.googlesource.com/chromiumos/config"
 
-readonly golden_file="gen/golden_descriptors.json"
+readonly golden_file="gen/descriptors.json"
 
 regenerate_golden() {
     # We want to split --path from the filenames so silence warning.
