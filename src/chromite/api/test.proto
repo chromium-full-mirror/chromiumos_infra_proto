@@ -15,6 +15,9 @@ import "chromiumos/test/plan/source_test_plan.proto";
 
 message TestServiceContainerBuildResult {
   message Success {
+    // Metadata about the constructed container image
+    chromiumos.build.api.ContainerImageInfo image_info = 2;
+
     // Full path to the build artifact in the hosted container registry.
     string registry_path = 1; // deprecated
   }

@@ -6254,6 +6254,14 @@
             {
               "field": [
                 {
+                  "jsonName": "imageInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "image_info",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.build.api.ContainerImageInfo"
+                },
+                {
                   "jsonName": "registryPath",
                   "label": "LABEL_OPTIONAL",
                   "name": "registry_path",
