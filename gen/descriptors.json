@@ -14213,6 +14213,10 @@
                 {
                   "name": "SOC_METEOR_LAKE",
                   "number": 39
+                },
+                {
+                  "name": "SOC_CEZANNE",
+                  "number": 40
                 }
               ]
             },

@@ -166,6 +166,7 @@ message Config {
     SOC_MT8195 = 37;
     SOC_QCS40X = 38;
     SOC_METEOR_LAKE = 39;
+    SOC_CEZANNE = 40;
   }
 
   SOC soc = 11;
