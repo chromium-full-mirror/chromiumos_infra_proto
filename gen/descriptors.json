@@ -21826,6 +21826,14 @@
               "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.phosphorus.PrejobRequest.ProvisionTarget"
+            },
+            {
+              "jsonName": "dockerContainerInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_container_info",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.phosphorus.PrejobRequest.DockerContainerInfo"
             }
           ],
           "name": "PrejobRequest",
@@ -21915,6 +21923,32 @@
                 }
               ],
               "name": "ProvisionTarget"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "registry",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "registry",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "project",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "project",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "tag",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tag",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "DockerContainerInfo"
             }
           ]
         },
@@ -22296,6 +22330,13 @@
               "number": 5,
               "type": "TYPE_MESSAGE",
               "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "useDockerContainer",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_docker_container",
+              "number": 6,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunTestRequest",

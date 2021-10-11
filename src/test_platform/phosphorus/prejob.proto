@@ -56,6 +56,15 @@ message PrejobRequest {
 
   // This field provide metadata to provision secondary devices in a multi-DUTs test.
   repeated ProvisionTarget addtional_targets = 9;
+
+  // Docker registry for downloading an F20 test container, if needed.
+  message DockerContainerInfo {
+    string registry = 1;
+    string project = 2;
+    string tag = 3;
+  }
+
+  DockerContainerInfo docker_container_info = 10;
 }
 
 // PrejobResponse defines the output of `phosphorus prejob`.
