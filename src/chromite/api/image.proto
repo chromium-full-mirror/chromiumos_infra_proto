@@ -112,6 +112,9 @@ message PushImageRequest {
   // Whether or not this push image request is for the staging env.
   // This influences things such as which keys are used for signing.
   bool is_staging = 8;
+
+  // If set, overrides which channels to sign for.
+  repeated chromiumos.Channel channels = 9;
 }
 
 // Response from pushimage script.
