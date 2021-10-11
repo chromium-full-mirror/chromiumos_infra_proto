@@ -285,6 +285,9 @@ enum Channel {
   CHANNEL_BETA = 2;
   CHANNEL_DEV = 3;
   CHANNEL_CANARY = 4;
+  // Channel used during prod Rubik rollout. See b/202716782.
+  // To be removed after Rubik is fully rolled out.
+  CHANNEL_RUBIK = 5;
 }
 
 // A map of release milestones to their appropriate channels.

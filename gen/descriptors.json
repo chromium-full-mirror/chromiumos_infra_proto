@@ -241,6 +241,10 @@
             {
               "name": "CHANNEL_CANARY",
               "number": 4
+            },
+            {
+              "name": "CHANNEL_RUBIK",
+              "number": 5
             }
           ]
         },
@@ -4997,6 +5001,14 @@
               "name": "is_staging",
               "number": 8,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "channels",
+              "label": "LABEL_REPEATED",
+              "name": "channels",
+              "number": 9,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.Channel"
             }
           ],
           "name": "PushImageRequest"
