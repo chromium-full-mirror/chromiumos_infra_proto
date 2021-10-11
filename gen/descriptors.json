@@ -25673,7 +25673,7 @@
       ],
       "name": "test_platform/v2/request.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/v1/test_platform"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2;test_platform"
       },
       "package": "test_platform.v2",
       "syntax": "proto3"
