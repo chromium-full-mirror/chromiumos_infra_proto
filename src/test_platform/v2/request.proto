@@ -7,18 +7,16 @@ syntax = "proto3";
 package test_platform.v2;
 
 import "chromiumos/common.proto";
-import "chromiumos/test/api/coverage_rule.proto";
-import "chromiumos/test/api/plan.proto";
-import "chromiumos/test/api/provision_state.proto";
+import "chromiumos/test/api/v1/plan.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/v1/test_platform";
 
 message TestSpec {
   // Optionally override build directory path given in Request
   chromiumos.GcsPath build_directory = 1;
 
   oneof spec {
-    chromiumos.test.api.HWTestPlan hw_test_plan = 2;
+    chromiumos.test.api.v1.HWTestPlan hw_test_plan_v1 = 2;
     // VM testing tbd
   }
 }

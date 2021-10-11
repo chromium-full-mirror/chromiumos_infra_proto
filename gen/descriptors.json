@@ -25545,17 +25545,11 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false,
-        "unusedDependency": [
-          1,
-          3
-        ]
+        "isSyntaxUnspecified": false
       },
       "dependency": [
         "chromiumos/common.proto",
-        "chromiumos/test/api/coverage_rule.proto",
-        "chromiumos/test/api/plan.proto",
-        "chromiumos/test/api/provision_state.proto"
+        "chromiumos/test/api/v1/plan.proto"
       ],
       "messageType": [
         {
@@ -25569,13 +25563,13 @@
               "typeName": ".chromiumos.GcsPath"
             },
             {
-              "jsonName": "hwTestPlan",
+              "jsonName": "hwTestPlanV1",
               "label": "LABEL_OPTIONAL",
-              "name": "hw_test_plan",
+              "name": "hw_test_plan_v1",
               "number": 2,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.HWTestPlan"
+              "typeName": ".chromiumos.test.api.v1.HWTestPlan"
             }
           ],
           "name": "TestSpec",
@@ -25638,7 +25632,7 @@
       ],
       "name": "test_platform/v2/request.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/v2"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/v1/test_platform"
       },
       "package": "test_platform.v2",
       "syntax": "proto3"
