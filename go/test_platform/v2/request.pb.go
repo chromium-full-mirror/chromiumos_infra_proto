@@ -11,7 +11,7 @@
 package test_platform
 
 import (
-	plan "go.chromium.org/chromiumos/config/go/test/api/v1/plan"
+	v1 "go.chromium.org/chromiumos/config/go/test/api/v1"
 	chromiumos "go.chromium.org/chromiumos/infra/proto/go/chromiumos"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -84,7 +84,7 @@ func (m *TestSpec) GetSpec() isTestSpec_Spec {
 	return nil
 }
 
-func (x *TestSpec) GetHwTestPlanV1() *plan.HWTestPlan {
+func (x *TestSpec) GetHwTestPlanV1() *v1.HWTestPlan {
 	if x, ok := x.GetSpec().(*TestSpec_HwTestPlanV1); ok {
 		return x.HwTestPlanV1
 	}
@@ -96,7 +96,7 @@ type isTestSpec_Spec interface {
 }
 
 type TestSpec_HwTestPlanV1 struct {
-	HwTestPlanV1 *plan.HWTestPlan `protobuf:"bytes,2,opt,name=hw_test_plan_v1,json=hwTestPlanV1,proto3,oneof"` // VM testing tbd
+	HwTestPlanV1 *v1.HWTestPlan `protobuf:"bytes,2,opt,name=hw_test_plan_v1,json=hwTestPlanV1,proto3,oneof"` // VM testing tbd
 }
 
 func (*TestSpec_HwTestPlanV1) isTestSpec_Spec() {}
@@ -288,7 +288,7 @@ var file_test_platform_v2_request_proto_goTypes = []interface{}{
 	(*Request)(nil),                   // 1: test_platform.v2.Request
 	(*Request_SchedulerSettings)(nil), // 2: test_platform.v2.Request.SchedulerSettings
 	(*chromiumos.GcsPath)(nil),        // 3: chromiumos.GcsPath
-	(*plan.HWTestPlan)(nil),           // 4: chromiumos.test.api.v1.HWTestPlan
+	(*v1.HWTestPlan)(nil),             // 4: chromiumos.test.api.v1.HWTestPlan
 }
 var file_test_platform_v2_request_proto_depIdxs = []int32{
 	3, // 0: test_platform.v2.TestSpec.build_directory:type_name -> chromiumos.GcsPath
