@@ -299,6 +299,10 @@
             {
               "name": "PLATFORM_TI50",
               "number": 3
+            },
+            {
+              "name": "PLATFORM_CR50",
+              "number": 4
             }
           ]
         },

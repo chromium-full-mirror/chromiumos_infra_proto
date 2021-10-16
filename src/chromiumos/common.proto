@@ -320,6 +320,7 @@ enum FwLocation {
   PLATFORM_EC = 1; // platform/ec/firmware_builder.py
   PLATFORM_ZEPHYR = 2; // platform/zephyr-chrome/firmware_builder.py
   PLATFORM_TI50 = 3; // platform/ti50/common/firmware_builder.py
+  PLATFORM_CR50 = 4; // platform/cr50/firmware_builder.py
 }
 
 
