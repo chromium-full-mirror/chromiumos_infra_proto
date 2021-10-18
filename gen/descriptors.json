@@ -21830,14 +21830,6 @@
               "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.phosphorus.PrejobRequest.ProvisionTarget"
-            },
-            {
-              "jsonName": "dockerContainerInfo",
-              "label": "LABEL_OPTIONAL",
-              "name": "docker_container_info",
-              "number": 10,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.phosphorus.PrejobRequest.DockerContainerInfo"
             }
           ],
           "name": "PrejobRequest",
@@ -21927,32 +21919,6 @@
                 }
               ],
               "name": "ProvisionTarget"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "registry",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "registry",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "project",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "project",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "tag",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "tag",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "DockerContainerInfo"
             }
           ]
         },
@@ -22297,6 +22263,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromiumos/build/api/container_metadata.proto",
         "google/protobuf/timestamp.proto",
         "test_platform/phosphorus/common.proto"
       ],
@@ -22336,11 +22303,12 @@
               "typeName": ".google.protobuf.Timestamp"
             },
             {
-              "jsonName": "useDockerContainer",
+              "jsonName": "containerImageInfo",
               "label": "LABEL_OPTIONAL",
-              "name": "use_docker_container",
+              "name": "container_image_info",
               "number": 6,
-              "type": "TYPE_BOOL"
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerImageInfo"
             }
           ],
           "name": "RunTestRequest",

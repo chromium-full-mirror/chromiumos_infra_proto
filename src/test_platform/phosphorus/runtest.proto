@@ -8,6 +8,7 @@ package test_platform.phosphorus;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/phosphorus";
 
+import "chromiumos/build/api/container_metadata.proto";
 import "google/protobuf/timestamp.proto";
 import "test_platform/phosphorus/common.proto";
 
@@ -54,8 +55,14 @@ message RunTestRequest {
   // All test execution should abort beyond this deadline.
   google.protobuf.Timestamp deadline = 5;
 
-  // Whether to run test through the F20 test container.
-  bool use_docker_container = 6;
+  // If set, a Docker container to use to run autoserv. The container must
+  // contain autoserv under the same path as the host (e.g. 
+  // "/usr/local/autotest/server/autoserv").
+  //
+  // Results will be in the same results dir on the host.
+  //
+  // The container will be pulled if needed.
+  chromiumos.build.api.ContainerImageInfo container_image_info = 6;
 
   reserved 4;
   reserved "environment";
