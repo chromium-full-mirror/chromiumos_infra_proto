@@ -41,6 +41,7 @@ message TaskEnvironment {
 // Knobs specific to the step that runs tasks to prepare the DUT for test.
 message PrejobStep{
   ProvisionDutExperiment provision_dut_experiment = 1;
+  DutTopologyExperiment dut_topology_experiment = 2;
 }
 
 message ProvisionDutExperiment {
@@ -62,6 +63,11 @@ message ProvisionDutExperiment {
     // Use ProvisionDut TLS API for all requests *except* the ones selected.
     CrosVersionSelector cros_version_disallow_list = 3;
   }
+}
+
+message DutTopologyExperiment {
+  // Global flag to control this experiment.
+  bool enabled = 1;
 }
 
 // Knobs specific to the step that uploads log-data to Google Storage.

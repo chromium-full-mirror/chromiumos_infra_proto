@@ -21659,6 +21659,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.phosphorus.ProvisionDutExperiment"
+            },
+            {
+              "jsonName": "dutTopologyExperiment",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut_topology_experiment",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.phosphorus.DutTopologyExperiment"
             }
           ],
           "name": "PrejobStep"
@@ -21711,6 +21719,18 @@
               "name": "cros_version_selector"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "enabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "enabled",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "DutTopologyExperiment"
         },
         {
           "field": [
