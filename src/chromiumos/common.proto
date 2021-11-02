@@ -388,16 +388,6 @@ message ArtifactProfileInfo {
 // BundleArtifacts endpoints to dispatch the appropriate service routines to
 // prepare or bundle as a batch.
 message ArtifactsByService {
-  // When to publish the artifact.
-  enum PublishCondition {
-    PUBLISH_UNSPECIFIED = 0;
-
-    // Publish only for successful builds.  This is the default.
-    PUBLISH_ON_SUCCESS = 1;
-
-    // Publish always.  (Useful for error diagnostics.)
-    PUBLISH_ALWAYS = 2;
-  }
 
   // How to publish code coverage information for an artifact.
   message CodeCoverageUploadInfo {
@@ -501,8 +491,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -604,8 +595,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -670,8 +662,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -719,8 +712,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -785,8 +779,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;
@@ -845,8 +840,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
 
       // Optional information related to code coverage.
       CodeCoverageUploadInfo code_coverage_upload_info = 6;
@@ -913,8 +909,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
 
       // The firmware location.
       FwLocation location = 6;
@@ -971,8 +968,9 @@ message ArtifactsByService {
       // Any acl to apply, such as "public-read".
       string acl_name = 4;
 
-      // When to publish the artifact.
-      PublishCondition publish_condition = 5;
+      // This used to be PublishCondition, which is deprecated as per
+      // b/202987478.
+      reserved 5;
     }
     // Input artifact information
     repeated ArtifactInfo input_artifacts = 1;

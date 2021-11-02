@@ -2,7 +2,14 @@
 
 This folder contains the protobuf source files for the Chromite Build API and Recipes implementations.
 
-## chromite/api
+## Making changes
+
+Before commiting any changes to this repo, make sure to run `generate.sh` one
+directory up.
+
+## Directories:
+
+### chromite/api
 
 This is the core API definitions, including all of the services and most of the messages.
 
@@ -17,26 +24,26 @@ The build_api.proto contains service and method options that define some of the 
 
 These options are all implementation details that should not affect consumers of the endpoints, but are important details for anyone implementing endpoints.
 
-## chromiumos
+### chromiumos
 
 This folder contains more widely shared proto files.
 
-## test_platform
+### test_platform
 
 This folder contains definitions of the cros_test_platform API, as well as internal protos used for communication between cros_test_platform components.
 
-## uprev
+### uprev
 
 This folder contains protos used for communication between uprev recipes and their components.
 
-## device
+### device
 
-## testplans
+### testplans
 
-## cycler
+### cycler
 
 Cycler protos: go/cros-gs-lifecycler
 
-## bot_scaling
+### bot_scaling
 
 RoboCrop protos: go/robocrop

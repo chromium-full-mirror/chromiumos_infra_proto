@@ -1012,25 +1012,6 @@
           ]
         },
         {
-          "enumType": [
-            {
-              "name": "PublishCondition",
-              "value": [
-                {
-                  "name": "PUBLISH_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "PUBLISH_ON_SUCCESS",
-                  "number": 1
-                },
-                {
-                  "name": "PUBLISH_ALWAYS",
-                  "number": 2
-                }
-              ]
-            }
-          ],
           "field": [
             {
               "jsonName": "legacy",
@@ -1260,14 +1241,6 @@
                       "name": "acl_name",
                       "number": 4,
                       "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
                     }
                   ],
                   "name": "ArtifactInfo",
@@ -1278,6 +1251,10 @@
                     {
                       "end": 4,
                       "start": 3
+                    },
+                    {
+                      "end": 6,
+                      "start": 5
                     }
                   ]
                 }
@@ -1420,17 +1397,15 @@
                       "name": "acl_name",
                       "number": 4,
                       "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             },
@@ -1515,17 +1490,15 @@
                       "name": "acl_name",
                       "number": 4,
                       "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             },
@@ -1590,17 +1563,15 @@
                       "name": "acl_name",
                       "number": 4,
                       "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             },
@@ -1689,17 +1660,15 @@
                       "name": "acl_name",
                       "number": 4,
                       "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             },
@@ -1786,14 +1755,6 @@
                       "type": "TYPE_STRING"
                     },
                     {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
-                    },
-                    {
                       "jsonName": "codeCoverageUploadInfo",
                       "label": "LABEL_OPTIONAL",
                       "name": "code_coverage_upload_info",
@@ -1802,7 +1763,13 @@
                       "typeName": ".chromiumos.ArtifactsByService.CodeCoverageUploadInfo"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             },
@@ -1889,14 +1856,6 @@
                       "type": "TYPE_STRING"
                     },
                     {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
-                    },
-                    {
                       "jsonName": "location",
                       "label": "LABEL_OPTIONAL",
                       "name": "location",
@@ -1913,7 +1872,13 @@
                       "typeName": ".chromiumos.ArtifactsByService.CodeCoverageUploadInfo"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             },
@@ -1986,17 +1951,15 @@
                       "name": "acl_name",
                       "number": 4,
                       "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "publishCondition",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "publish_condition",
-                      "number": 5,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".chromiumos.ArtifactsByService.PublishCondition"
                     }
                   ],
-                  "name": "ArtifactInfo"
+                  "name": "ArtifactInfo",
+                  "reservedRange": [
+                    {
+                      "end": 6,
+                      "start": 5
+                    }
+                  ]
                 }
               ]
             }
