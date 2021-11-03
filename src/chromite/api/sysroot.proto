@@ -108,7 +108,7 @@ message InstallPackagesRequest {
 
     // Compile from source (true), or use bin packages (false).
     bool compile_source = 1;
-    // Whether to start goma.
+    // Whether to start goma. Ignored if `use_remoteexec` is true.
     bool use_goma = 3;
     // Whether a toolchain change has occurred.
     bool toolchain_changed = 4;
@@ -116,6 +116,9 @@ message InstallPackagesRequest {
     // been installed are calculated but not actually merged.
     // Added in R93
     bool dryrun = 5;
+    // Whether to use reclient and start reproxy for RBE remote execution.
+    // If this is true `use_goma` will be ignored.
+    bool use_remoteexec = 6;
   }
 
   // The sysroot into which the packages are being installed.

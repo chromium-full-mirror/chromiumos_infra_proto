@@ -443,6 +443,25 @@
           "name": "Feature"
         },
         {
+          "field": [
+            {
+              "jsonName": "reclientDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "reclient_dir",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "reproxyCfgFile",
+              "label": "LABEL_OPTIONAL",
+              "name": "reproxy_cfg_file",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RemoteexecConfig"
+        },
+        {
           "enumType": [
             {
               "name": "GomaApproach",
@@ -2720,6 +2739,13 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "dryrun",
                   "number": 5,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "useRemoteexec",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "use_remoteexec",
+                  "number": 6,
                   "type": "TYPE_BOOL"
                 }
               ],
@@ -10230,6 +10256,13 @@
                       "label": "LABEL_OPTIONAL",
                       "name": "disable_goma",
                       "number": 4,
+                      "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "useRemoteexec",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "use_remoteexec",
+                      "number": 6,
                       "type": "TYPE_BOOL"
                     },
                     {

@@ -445,7 +445,12 @@ message BuilderConfig {
 
       // Certain builders (e.g., clang-tidy-toolchain) need to build Chrome with
       // goma disabled.
+      // This is ignored if `user_remoteexec` is true.
       bool disable_goma = 4;
+
+      // Whether to build chrome with remote execution reclient instead of goma.
+      // `diable_goma` is ignored if this is true.
+      bool use_remoteexec = 6;
 
       // Set of package dependencies to install.
       Dependencies dependencies = 5;

@@ -55,6 +55,13 @@ message Feature {
   string feature = 1;
 }
 
+message RemoteexecConfig {
+  // The location of the re-client binaries needed for remote execution.
+  string reclient_dir = 1;
+  // The config file to pass in to reproxy.
+  string reproxy_cfg_file = 2;
+}
+
 message GomaConfig {
   // The goma install location.
   // Required.
