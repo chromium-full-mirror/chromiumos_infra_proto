@@ -8,6 +8,7 @@ package test_platform.skylab_test_runner;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
+import "chromiumos/build/api/container_metadata.proto";
 import "google/protobuf/timestamp.proto";
 import "test_platform/execution/param.proto";
 import "test_platform/request.proto";
@@ -106,4 +107,11 @@ message Request {
   // Uniformly applied parameters for all test executions in the parent test
   // platform request.
   test_platform.execution.Param execution_param = 7;
+
+  // If set, a Docker container to use to run autoserv. The container must
+  // contain autoserv under the same path as the host (e.g.
+  // "/usr/local/autotest/server/autoserv").
+  //
+  // The container will be pulled if needed.
+  chromiumos.build.api.ContainerImageInfo container_image_info = 8;
 }
