@@ -2761,9 +2761,38 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.GomaArtifacts"
+            },
+            {
+              "jsonName": "failedPackageData",
+              "label": "LABEL_REPEATED",
+              "name": "failed_package_data",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FailedPackageData"
             }
           ],
           "name": "InstallPackagesResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
+            },
+            {
+              "jsonName": "logPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_path",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "FailedPackageData"
         },
         {
           "field": [

@@ -147,6 +147,14 @@ message InstallPackagesResponse {
   // Goma artifacts will only be populated if
   // InstallPackagesRequest.goma_config.log_dir was not empty.
   chromiumos.GomaArtifacts goma_artifacts = 3;
+  // Additional data about the packages that failed to build.
+  repeated FailedPackageData failed_package_data = 4;
+}
+
+message FailedPackageData {
+  chromiumos.PackageInfo name = 1;
+  chromiumos.Path log_path = 2;
+  // Future fields: link to OWNERS file for package would be neat
 }
 
 message CreateSimpleChromeSysrootRequest {

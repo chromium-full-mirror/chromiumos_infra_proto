@@ -627,6 +627,8 @@ type InstallPackagesResponse struct {
 	// Goma artifacts will only be populated if
 	// InstallPackagesRequest.goma_config.log_dir was not empty.
 	GomaArtifacts *chromiumos.GomaArtifacts `protobuf:"bytes,3,opt,name=goma_artifacts,json=gomaArtifacts,proto3" json:"goma_artifacts,omitempty"`
+	// Additional data about the packages that failed to build.
+	FailedPackageData []*FailedPackageData `protobuf:"bytes,4,rep,name=failed_package_data,json=failedPackageData,proto3" json:"failed_package_data,omitempty"`
 }
 
 func (x *InstallPackagesResponse) Reset() {
@@ -682,6 +684,68 @@ func (x *InstallPackagesResponse) GetGomaArtifacts() *chromiumos.GomaArtifacts {
 	return nil
 }
 
+func (x *InstallPackagesResponse) GetFailedPackageData() []*FailedPackageData {
+	if x != nil {
+		return x.FailedPackageData
+	}
+	return nil
+}
+
+type FailedPackageData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name    *chromiumos.PackageInfo `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	LogPath *chromiumos.Path        `protobuf:"bytes,2,opt,name=log_path,json=logPath,proto3" json:"log_path,omitempty"` // Future fields: link to OWNERS file for package would be neat
+}
+
+func (x *FailedPackageData) Reset() {
+	*x = FailedPackageData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_sysroot_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FailedPackageData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FailedPackageData) ProtoMessage() {}
+
+func (x *FailedPackageData) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_sysroot_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FailedPackageData.ProtoReflect.Descriptor instead.
+func (*FailedPackageData) Descriptor() ([]byte, []int) {
+	return file_chromite_api_sysroot_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FailedPackageData) GetName() *chromiumos.PackageInfo {
+	if x != nil {
+		return x.Name
+	}
+	return nil
+}
+
+func (x *FailedPackageData) GetLogPath() *chromiumos.Path {
+	if x != nil {
+		return x.LogPath
+	}
+	return nil
+}
+
 type CreateSimpleChromeSysrootRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -701,7 +765,7 @@ type CreateSimpleChromeSysrootRequest struct {
 func (x *CreateSimpleChromeSysrootRequest) Reset() {
 	*x = CreateSimpleChromeSysrootRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_sysroot_proto_msgTypes[10]
+		mi := &file_chromite_api_sysroot_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -714,7 +778,7 @@ func (x *CreateSimpleChromeSysrootRequest) String() string {
 func (*CreateSimpleChromeSysrootRequest) ProtoMessage() {}
 
 func (x *CreateSimpleChromeSysrootRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_sysroot_proto_msgTypes[10]
+	mi := &file_chromite_api_sysroot_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -727,7 +791,7 @@ func (x *CreateSimpleChromeSysrootRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSimpleChromeSysrootRequest.ProtoReflect.Descriptor instead.
 func (*CreateSimpleChromeSysrootRequest) Descriptor() ([]byte, []int) {
-	return file_chromite_api_sysroot_proto_rawDescGZIP(), []int{10}
+	return file_chromite_api_sysroot_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CreateSimpleChromeSysrootRequest) GetBuildTarget() *chromiumos.BuildTarget {
@@ -770,7 +834,7 @@ type CreateSimpleChromeSysrootResponse struct {
 func (x *CreateSimpleChromeSysrootResponse) Reset() {
 	*x = CreateSimpleChromeSysrootResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_sysroot_proto_msgTypes[11]
+		mi := &file_chromite_api_sysroot_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -783,7 +847,7 @@ func (x *CreateSimpleChromeSysrootResponse) String() string {
 func (*CreateSimpleChromeSysrootResponse) ProtoMessage() {}
 
 func (x *CreateSimpleChromeSysrootResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_sysroot_proto_msgTypes[11]
+	mi := &file_chromite_api_sysroot_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -796,7 +860,7 @@ func (x *CreateSimpleChromeSysrootResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateSimpleChromeSysrootResponse.ProtoReflect.Descriptor instead.
 func (*CreateSimpleChromeSysrootResponse) Descriptor() ([]byte, []int) {
-	return file_chromite_api_sysroot_proto_rawDescGZIP(), []int{11}
+	return file_chromite_api_sysroot_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CreateSimpleChromeSysrootResponse) GetSysrootArchive() *chromiumos.Path {
@@ -825,7 +889,7 @@ type SysrootCreateRequest_Flags struct {
 func (x *SysrootCreateRequest_Flags) Reset() {
 	*x = SysrootCreateRequest_Flags{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_sysroot_proto_msgTypes[12]
+		mi := &file_chromite_api_sysroot_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -838,7 +902,7 @@ func (x *SysrootCreateRequest_Flags) String() string {
 func (*SysrootCreateRequest_Flags) ProtoMessage() {}
 
 func (x *SysrootCreateRequest_Flags) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_sysroot_proto_msgTypes[12]
+	mi := &file_chromite_api_sysroot_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -890,7 +954,7 @@ type InstallToolchainRequest_Flags struct {
 func (x *InstallToolchainRequest_Flags) Reset() {
 	*x = InstallToolchainRequest_Flags{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_sysroot_proto_msgTypes[13]
+		mi := &file_chromite_api_sysroot_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -903,7 +967,7 @@ func (x *InstallToolchainRequest_Flags) String() string {
 func (*InstallToolchainRequest_Flags) ProtoMessage() {}
 
 func (x *InstallToolchainRequest_Flags) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_sysroot_proto_msgTypes[13]
+	mi := &file_chromite_api_sysroot_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -953,7 +1017,7 @@ type InstallPackagesRequest_Flags struct {
 func (x *InstallPackagesRequest_Flags) Reset() {
 	*x = InstallPackagesRequest_Flags{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_sysroot_proto_msgTypes[14]
+		mi := &file_chromite_api_sysroot_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -966,7 +1030,7 @@ func (x *InstallPackagesRequest_Flags) String() string {
 func (*InstallPackagesRequest_Flags) ProtoMessage() {}
 
 func (x *InstallPackagesRequest_Flags) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_sysroot_proto_msgTypes[14]
+	mi := &file_chromite_api_sysroot_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1140,7 +1204,7 @@ var file_chromite_api_sysroot_proto_rawDesc = []byte{
 	0x08, 0x52, 0x10, 0x74, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e,
 	0x67, 0x65, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x72, 0x79, 0x72, 0x75, 0x6e, 0x18, 0x05, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x06, 0x64, 0x72, 0x79, 0x72, 0x75, 0x6e, 0x4a, 0x04, 0x08, 0x02, 0x10,
-	0x03, 0x52, 0x0a, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0xce, 0x01,
+	0x03, 0x52, 0x0a, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x9f, 0x02,
 	0x0a, 0x17, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
 	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x40, 0x0a, 0x0f, 0x66, 0x61, 0x69,
 	0x6c, 0x65, 0x64, 0x5f, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
@@ -1153,7 +1217,19 @@ var file_chromite_api_sysroot_proto_rawDesc = []byte{
 	0x67, 0x6f, 0x6d, 0x61, 0x5f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x18, 0x03,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f,
 	0x73, 0x2e, 0x47, 0x6f, 0x6d, 0x61, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x52,
-	0x0d, 0x67, 0x6f, 0x6d, 0x61, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x22, 0xde,
+	0x0d, 0x67, 0x6f, 0x6d, 0x61, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x12, 0x4f,
+	0x0a, 0x13, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x5f, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
+	0x5f, 0x64, 0x61, 0x74, 0x61, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x61, 0x69, 0x6c, 0x65,
+	0x64, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x44, 0x61, 0x74, 0x61, 0x52, 0x11, 0x66, 0x61,
+	0x69, 0x6c, 0x65, 0x64, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x44, 0x61, 0x74, 0x61, 0x22,
+	0x6d, 0x0a, 0x11, 0x46, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
+	0x44, 0x61, 0x74, 0x61, 0x12, 0x2b, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e,
+	0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x2b, 0x0a, 0x08, 0x6c, 0x6f, 0x67, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73,
+	0x2e, 0x50, 0x61, 0x74, 0x68, 0x52, 0x07, 0x6c, 0x6f, 0x67, 0x50, 0x61, 0x74, 0x68, 0x22, 0xde,
 	0x01, 0x0a, 0x20, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x69, 0x6d, 0x70, 0x6c, 0x65, 0x43,
 	0x68, 0x72, 0x6f, 0x6d, 0x65, 0x53, 0x79, 0x73, 0x72, 0x6f, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x0c, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x74, 0x61, 0x72,
@@ -1227,7 +1303,7 @@ func file_chromite_api_sysroot_proto_rawDescGZIP() []byte {
 	return file_chromite_api_sysroot_proto_rawDescData
 }
 
-var file_chromite_api_sysroot_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_chromite_api_sysroot_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_chromite_api_sysroot_proto_goTypes = []interface{}{
 	(*Sysroot)(nil),                           // 0: chromite.api.Sysroot
 	(*Profile)(nil),                           // 1: chromite.api.Profile
@@ -1239,68 +1315,72 @@ var file_chromite_api_sysroot_proto_goTypes = []interface{}{
 	(*InstallToolchainResponse)(nil),          // 7: chromite.api.InstallToolchainResponse
 	(*InstallPackagesRequest)(nil),            // 8: chromite.api.InstallPackagesRequest
 	(*InstallPackagesResponse)(nil),           // 9: chromite.api.InstallPackagesResponse
-	(*CreateSimpleChromeSysrootRequest)(nil),  // 10: chromite.api.CreateSimpleChromeSysrootRequest
-	(*CreateSimpleChromeSysrootResponse)(nil), // 11: chromite.api.CreateSimpleChromeSysrootResponse
-	(*SysrootCreateRequest_Flags)(nil),        // 12: chromite.api.SysrootCreateRequest.Flags
-	(*InstallToolchainRequest_Flags)(nil),     // 13: chromite.api.InstallToolchainRequest.Flags
-	(*InstallPackagesRequest_Flags)(nil),      // 14: chromite.api.InstallPackagesRequest.Flags
-	(*chromiumos.BuildTarget)(nil),            // 15: chromiumos.BuildTarget
-	(*chromiumos.Chroot)(nil),                 // 16: chromiumos.Chroot
-	(*chromiumos.PackageIndexInfo)(nil),       // 17: chromiumos.PackageIndexInfo
-	(*chromiumos.PackageInfo)(nil),            // 18: chromiumos.PackageInfo
-	(*chromiumos.ResultPath)(nil),             // 19: chromiumos.ResultPath
-	(*chromiumos.Path)(nil),                   // 20: chromiumos.Path
-	(*chromiumos.UseFlag)(nil),                // 21: chromiumos.UseFlag
-	(*chromiumos.GomaConfig)(nil),             // 22: chromiumos.GomaConfig
-	(*chromiumos.MetricEvent)(nil),            // 23: chromiumos.MetricEvent
-	(*chromiumos.GomaArtifacts)(nil),          // 24: chromiumos.GomaArtifacts
+	(*FailedPackageData)(nil),                 // 10: chromite.api.FailedPackageData
+	(*CreateSimpleChromeSysrootRequest)(nil),  // 11: chromite.api.CreateSimpleChromeSysrootRequest
+	(*CreateSimpleChromeSysrootResponse)(nil), // 12: chromite.api.CreateSimpleChromeSysrootResponse
+	(*SysrootCreateRequest_Flags)(nil),        // 13: chromite.api.SysrootCreateRequest.Flags
+	(*InstallToolchainRequest_Flags)(nil),     // 14: chromite.api.InstallToolchainRequest.Flags
+	(*InstallPackagesRequest_Flags)(nil),      // 15: chromite.api.InstallPackagesRequest.Flags
+	(*chromiumos.BuildTarget)(nil),            // 16: chromiumos.BuildTarget
+	(*chromiumos.Chroot)(nil),                 // 17: chromiumos.Chroot
+	(*chromiumos.PackageIndexInfo)(nil),       // 18: chromiumos.PackageIndexInfo
+	(*chromiumos.PackageInfo)(nil),            // 19: chromiumos.PackageInfo
+	(*chromiumos.ResultPath)(nil),             // 20: chromiumos.ResultPath
+	(*chromiumos.Path)(nil),                   // 21: chromiumos.Path
+	(*chromiumos.UseFlag)(nil),                // 22: chromiumos.UseFlag
+	(*chromiumos.GomaConfig)(nil),             // 23: chromiumos.GomaConfig
+	(*chromiumos.MetricEvent)(nil),            // 24: chromiumos.MetricEvent
+	(*chromiumos.GomaArtifacts)(nil),          // 25: chromiumos.GomaArtifacts
 }
 var file_chromite_api_sysroot_proto_depIdxs = []int32{
-	15, // 0: chromite.api.Sysroot.build_target:type_name -> chromiumos.BuildTarget
-	15, // 1: chromite.api.SysrootCreateRequest.build_target:type_name -> chromiumos.BuildTarget
-	12, // 2: chromite.api.SysrootCreateRequest.flags:type_name -> chromite.api.SysrootCreateRequest.Flags
+	16, // 0: chromite.api.Sysroot.build_target:type_name -> chromiumos.BuildTarget
+	16, // 1: chromite.api.SysrootCreateRequest.build_target:type_name -> chromiumos.BuildTarget
+	13, // 2: chromite.api.SysrootCreateRequest.flags:type_name -> chromite.api.SysrootCreateRequest.Flags
 	1,  // 3: chromite.api.SysrootCreateRequest.profile:type_name -> chromite.api.Profile
-	16, // 4: chromite.api.SysrootCreateRequest.chroot:type_name -> chromiumos.Chroot
-	17, // 5: chromite.api.SysrootCreateRequest.package_indexes:type_name -> chromiumos.PackageIndexInfo
+	17, // 4: chromite.api.SysrootCreateRequest.chroot:type_name -> chromiumos.Chroot
+	18, // 5: chromite.api.SysrootCreateRequest.package_indexes:type_name -> chromiumos.PackageIndexInfo
 	0,  // 6: chromite.api.SysrootCreateResponse.sysroot:type_name -> chromite.api.Sysroot
-	15, // 7: chromite.api.SysrootGenerateArchiveRequest.build_target:type_name -> chromiumos.BuildTarget
-	16, // 8: chromite.api.SysrootGenerateArchiveRequest.chroot:type_name -> chromiumos.Chroot
-	18, // 9: chromite.api.SysrootGenerateArchiveRequest.packages:type_name -> chromiumos.PackageInfo
-	19, // 10: chromite.api.SysrootGenerateArchiveRequest.target_dir:type_name -> chromiumos.ResultPath
-	20, // 11: chromite.api.SysrootGenerateArchiveResponse.sysroot_archive:type_name -> chromiumos.Path
+	16, // 7: chromite.api.SysrootGenerateArchiveRequest.build_target:type_name -> chromiumos.BuildTarget
+	17, // 8: chromite.api.SysrootGenerateArchiveRequest.chroot:type_name -> chromiumos.Chroot
+	19, // 9: chromite.api.SysrootGenerateArchiveRequest.packages:type_name -> chromiumos.PackageInfo
+	20, // 10: chromite.api.SysrootGenerateArchiveRequest.target_dir:type_name -> chromiumos.ResultPath
+	21, // 11: chromite.api.SysrootGenerateArchiveResponse.sysroot_archive:type_name -> chromiumos.Path
 	0,  // 12: chromite.api.InstallToolchainRequest.sysroot:type_name -> chromite.api.Sysroot
-	13, // 13: chromite.api.InstallToolchainRequest.flags:type_name -> chromite.api.InstallToolchainRequest.Flags
-	16, // 14: chromite.api.InstallToolchainRequest.chroot:type_name -> chromiumos.Chroot
-	18, // 15: chromite.api.InstallToolchainResponse.failed_packages:type_name -> chromiumos.PackageInfo
+	14, // 13: chromite.api.InstallToolchainRequest.flags:type_name -> chromite.api.InstallToolchainRequest.Flags
+	17, // 14: chromite.api.InstallToolchainRequest.chroot:type_name -> chromiumos.Chroot
+	19, // 15: chromite.api.InstallToolchainResponse.failed_packages:type_name -> chromiumos.PackageInfo
 	0,  // 16: chromite.api.InstallPackagesRequest.sysroot:type_name -> chromite.api.Sysroot
-	14, // 17: chromite.api.InstallPackagesRequest.flags:type_name -> chromite.api.InstallPackagesRequest.Flags
-	18, // 18: chromite.api.InstallPackagesRequest.packages:type_name -> chromiumos.PackageInfo
-	16, // 19: chromite.api.InstallPackagesRequest.chroot:type_name -> chromiumos.Chroot
-	21, // 20: chromite.api.InstallPackagesRequest.use_flags:type_name -> chromiumos.UseFlag
-	22, // 21: chromite.api.InstallPackagesRequest.goma_config:type_name -> chromiumos.GomaConfig
-	17, // 22: chromite.api.InstallPackagesRequest.package_indexes:type_name -> chromiumos.PackageIndexInfo
-	18, // 23: chromite.api.InstallPackagesResponse.failed_packages:type_name -> chromiumos.PackageInfo
-	23, // 24: chromite.api.InstallPackagesResponse.events:type_name -> chromiumos.MetricEvent
-	24, // 25: chromite.api.InstallPackagesResponse.goma_artifacts:type_name -> chromiumos.GomaArtifacts
-	15, // 26: chromite.api.CreateSimpleChromeSysrootRequest.build_target:type_name -> chromiumos.BuildTarget
-	19, // 27: chromite.api.CreateSimpleChromeSysrootRequest.target_dir:type_name -> chromiumos.ResultPath
-	16, // 28: chromite.api.CreateSimpleChromeSysrootRequest.chroot:type_name -> chromiumos.Chroot
-	20, // 29: chromite.api.CreateSimpleChromeSysrootResponse.sysroot_archive:type_name -> chromiumos.Path
-	2,  // 30: chromite.api.SysrootService.Create:input_type -> chromite.api.SysrootCreateRequest
-	4,  // 31: chromite.api.SysrootService.GenerateArchive:input_type -> chromite.api.SysrootGenerateArchiveRequest
-	6,  // 32: chromite.api.SysrootService.InstallToolchain:input_type -> chromite.api.InstallToolchainRequest
-	8,  // 33: chromite.api.SysrootService.InstallPackages:input_type -> chromite.api.InstallPackagesRequest
-	10, // 34: chromite.api.SysrootService.CreateSimpleChromeSysroot:input_type -> chromite.api.CreateSimpleChromeSysrootRequest
-	3,  // 35: chromite.api.SysrootService.Create:output_type -> chromite.api.SysrootCreateResponse
-	5,  // 36: chromite.api.SysrootService.GenerateArchive:output_type -> chromite.api.SysrootGenerateArchiveResponse
-	7,  // 37: chromite.api.SysrootService.InstallToolchain:output_type -> chromite.api.InstallToolchainResponse
-	9,  // 38: chromite.api.SysrootService.InstallPackages:output_type -> chromite.api.InstallPackagesResponse
-	11, // 39: chromite.api.SysrootService.CreateSimpleChromeSysroot:output_type -> chromite.api.CreateSimpleChromeSysrootResponse
-	35, // [35:40] is the sub-list for method output_type
-	30, // [30:35] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	15, // 17: chromite.api.InstallPackagesRequest.flags:type_name -> chromite.api.InstallPackagesRequest.Flags
+	19, // 18: chromite.api.InstallPackagesRequest.packages:type_name -> chromiumos.PackageInfo
+	17, // 19: chromite.api.InstallPackagesRequest.chroot:type_name -> chromiumos.Chroot
+	22, // 20: chromite.api.InstallPackagesRequest.use_flags:type_name -> chromiumos.UseFlag
+	23, // 21: chromite.api.InstallPackagesRequest.goma_config:type_name -> chromiumos.GomaConfig
+	18, // 22: chromite.api.InstallPackagesRequest.package_indexes:type_name -> chromiumos.PackageIndexInfo
+	19, // 23: chromite.api.InstallPackagesResponse.failed_packages:type_name -> chromiumos.PackageInfo
+	24, // 24: chromite.api.InstallPackagesResponse.events:type_name -> chromiumos.MetricEvent
+	25, // 25: chromite.api.InstallPackagesResponse.goma_artifacts:type_name -> chromiumos.GomaArtifacts
+	10, // 26: chromite.api.InstallPackagesResponse.failed_package_data:type_name -> chromite.api.FailedPackageData
+	19, // 27: chromite.api.FailedPackageData.name:type_name -> chromiumos.PackageInfo
+	21, // 28: chromite.api.FailedPackageData.log_path:type_name -> chromiumos.Path
+	16, // 29: chromite.api.CreateSimpleChromeSysrootRequest.build_target:type_name -> chromiumos.BuildTarget
+	20, // 30: chromite.api.CreateSimpleChromeSysrootRequest.target_dir:type_name -> chromiumos.ResultPath
+	17, // 31: chromite.api.CreateSimpleChromeSysrootRequest.chroot:type_name -> chromiumos.Chroot
+	21, // 32: chromite.api.CreateSimpleChromeSysrootResponse.sysroot_archive:type_name -> chromiumos.Path
+	2,  // 33: chromite.api.SysrootService.Create:input_type -> chromite.api.SysrootCreateRequest
+	4,  // 34: chromite.api.SysrootService.GenerateArchive:input_type -> chromite.api.SysrootGenerateArchiveRequest
+	6,  // 35: chromite.api.SysrootService.InstallToolchain:input_type -> chromite.api.InstallToolchainRequest
+	8,  // 36: chromite.api.SysrootService.InstallPackages:input_type -> chromite.api.InstallPackagesRequest
+	11, // 37: chromite.api.SysrootService.CreateSimpleChromeSysroot:input_type -> chromite.api.CreateSimpleChromeSysrootRequest
+	3,  // 38: chromite.api.SysrootService.Create:output_type -> chromite.api.SysrootCreateResponse
+	5,  // 39: chromite.api.SysrootService.GenerateArchive:output_type -> chromite.api.SysrootGenerateArchiveResponse
+	7,  // 40: chromite.api.SysrootService.InstallToolchain:output_type -> chromite.api.InstallToolchainResponse
+	9,  // 41: chromite.api.SysrootService.InstallPackages:output_type -> chromite.api.InstallPackagesResponse
+	12, // 42: chromite.api.SysrootService.CreateSimpleChromeSysroot:output_type -> chromite.api.CreateSimpleChromeSysrootResponse
+	38, // [38:43] is the sub-list for method output_type
+	33, // [33:38] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_sysroot_proto_init() }
@@ -1431,7 +1511,7 @@ func file_chromite_api_sysroot_proto_init() {
 			}
 		}
 		file_chromite_api_sysroot_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateSimpleChromeSysrootRequest); i {
+			switch v := v.(*FailedPackageData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1443,7 +1523,7 @@ func file_chromite_api_sysroot_proto_init() {
 			}
 		}
 		file_chromite_api_sysroot_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateSimpleChromeSysrootResponse); i {
+			switch v := v.(*CreateSimpleChromeSysrootRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1455,7 +1535,7 @@ func file_chromite_api_sysroot_proto_init() {
 			}
 		}
 		file_chromite_api_sysroot_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SysrootCreateRequest_Flags); i {
+			switch v := v.(*CreateSimpleChromeSysrootResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1467,7 +1547,7 @@ func file_chromite_api_sysroot_proto_init() {
 			}
 		}
 		file_chromite_api_sysroot_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InstallToolchainRequest_Flags); i {
+			switch v := v.(*SysrootCreateRequest_Flags); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1479,6 +1559,18 @@ func file_chromite_api_sysroot_proto_init() {
 			}
 		}
 		file_chromite_api_sysroot_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InstallToolchainRequest_Flags); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_sysroot_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InstallPackagesRequest_Flags); i {
 			case 0:
 				return &v.state
@@ -1497,7 +1589,7 @@ func file_chromite_api_sysroot_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromite_api_sysroot_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
