@@ -20045,6 +20045,9 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "chromiumos/build/api/container_metadata.proto"
+      ],
       "messageType": [
         {
           "field": [
@@ -20054,6 +20057,14 @@
               "name": "upload_crashes",
               "number": 1,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "containerImageInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_image_info",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerImageInfo"
             }
           ],
           "name": "Param"
@@ -20069,10 +20080,14 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          1
+        ]
       },
       "dependency": [
         "chromite/api/test_metadata.proto",
+        "chromiumos/build/api/container_metadata.proto",
         "chromiumos/common.proto",
         "google/protobuf/duration.proto",
         "test_platform/execution/param.proto"
@@ -21032,6 +21047,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "container_image_info",
               "number": 8,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.build.api.ContainerImageInfo"
             }

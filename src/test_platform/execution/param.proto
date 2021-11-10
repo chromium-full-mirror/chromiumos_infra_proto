@@ -8,6 +8,8 @@ package test_platform.execution;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/execution";
 
+import "chromiumos/build/api/container_metadata.proto";
+
 // Uniformly applied parameters for all test executions in a test platform
 // request.
 message Param {
@@ -15,4 +17,11 @@ message Param {
     // builder-determined crash server (e.g. http://crash or
     // http://crash-staging)
     bool upload_crashes = 1;
+
+    // If set, a Docker container to use to run autoserv. The container must
+    // contain autoserv under the same path as the host (e.g.
+    // "/usr/local/autotest/server/autoserv").
+    //
+    // The container will be pulled if needed.
+    chromiumos.build.api.ContainerImageInfo container_image_info = 8;
 }

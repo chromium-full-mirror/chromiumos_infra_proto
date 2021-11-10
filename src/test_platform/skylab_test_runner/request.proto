@@ -113,5 +113,5 @@ message Request {
   // "/usr/local/autotest/server/autoserv").
   //
   // The container will be pulled if needed.
-  chromiumos.build.api.ContainerImageInfo container_image_info = 8;
+  chromiumos.build.api.ContainerImageInfo container_image_info = 8 [deprecated=true];
 }
