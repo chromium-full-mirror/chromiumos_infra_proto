@@ -8743,6 +8743,70 @@
       },
       "dependency": [
         "chromite/api/build_api.proto",
+        "chromiumos/common.proto",
+        "chromiumos/build/api/system_image.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "SystemImageMetadataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "systemImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "system_image",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.SystemImage"
+            }
+          ],
+          "name": "SystemImageMetadataResponse"
+        }
+      ],
+      "name": "chromite/api/metadata.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.SystemImageMetadataRequest",
+              "name": "SystemImageMetadata",
+              "outputType": ".chromite.api.SystemImageMetadataResponse"
+            }
+          ],
+          "name": "MetadataService",
+          "options": {
+            "[service_options]": {
+              "module": "metadata",
+              "serviceChrootAssert": "INSIDE",
+              "serviceVisibility": "LV_HIDDEN"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
         "chromiumos/common.proto"
       ],
       "messageType": [
