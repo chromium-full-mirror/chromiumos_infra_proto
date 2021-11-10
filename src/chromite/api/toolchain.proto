@@ -161,6 +161,12 @@ message VerifyAFDOArtifactsResponse {
 message LinterFinding {
   string message = 1;
   repeated LinterFindingLocation locations = 2;
+  enum Linters {
+    LINTER_UNSPECIFIED = 0;
+    CLANG_TIDY = 1;
+    CARGO_CLIPPY = 2;
+  }
+  Linters linter = 3;
 }
 
 // The code location of some linter finding.
@@ -182,7 +188,6 @@ message LinterRequest {
 message LinterResponse {
   repeated LinterFinding findings = 1;
 }
-
 
 // Service for Android/ARC related functionality.
 service ToolchainService {
@@ -230,7 +235,20 @@ service ToolchainService {
   rpc GetUpdatedFiles(GetUpdatedFilesRequest)
     returns (GetUpdatedFilesResponse);
 
+  // Emerge the given packages and retrieve any findings from linters.
+  rpc EmergeWithLinting(LinterRequest) returns (LinterResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  };
+
   // Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
+  // FIXME(b/187790543): remove this endpoint oboleted by "EmergeWithLinting".
+  // This refactor has the following dependency chain:
+  //  1) Create EmergeWithLinting endpoint 
+  //  2) Let Recipe Roller update the Build API for recipes
+  //  3) Update the recipe to use EmergeWithLinting
+  //  4) Delete GetClippyLints endpoint
   rpc GetClippyLints(LinterRequest) returns (LinterResponse) {
     option (method_options) = {
       method_chroot_assert: INSIDE,

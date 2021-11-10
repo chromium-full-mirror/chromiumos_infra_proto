@@ -43,7 +43,15 @@ type ToolchainServiceClient interface {
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
 	// Added in R90.
 	GetUpdatedFiles(ctx context.Context, in *GetUpdatedFilesRequest, opts ...grpc.CallOption) (*GetUpdatedFilesResponse, error)
+	// Emerge the given packages and retrieve any findings from linters.
+	EmergeWithLinting(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error)
 	// Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
+	// FIXME(b/187790543): remove this endpoint oboleted by "EmergeWithLinting".
+	// This refactor has the following dependency chain:
+	//  1) Create EmergeWithLinting endpoint
+	//  2) Let Recipe Roller update the Build API for recipes
+	//  3) Update the recipe to use EmergeWithLinting
+	//  4) Delete GetClippyLints endpoint
 	GetClippyLints(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error)
 }
 
@@ -100,6 +108,15 @@ func (c *toolchainServiceClient) GetUpdatedFiles(ctx context.Context, in *GetUpd
 	return out, nil
 }
 
+func (c *toolchainServiceClient) EmergeWithLinting(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error) {
+	out := new(LinterResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/EmergeWithLinting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *toolchainServiceClient) GetClippyLints(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error) {
 	out := new(LinterResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/GetClippyLints", in, out, opts...)
@@ -134,7 +151,15 @@ type ToolchainServiceServer interface {
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
 	// Added in R90.
 	GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error)
+	// Emerge the given packages and retrieve any findings from linters.
+	EmergeWithLinting(context.Context, *LinterRequest) (*LinterResponse, error)
 	// Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
+	// FIXME(b/187790543): remove this endpoint oboleted by "EmergeWithLinting".
+	// This refactor has the following dependency chain:
+	//  1) Create EmergeWithLinting endpoint
+	//  2) Let Recipe Roller update the Build API for recipes
+	//  3) Update the recipe to use EmergeWithLinting
+	//  4) Delete GetClippyLints endpoint
 	GetClippyLints(context.Context, *LinterRequest) (*LinterResponse, error)
 	mustEmbedUnimplementedToolchainServiceServer()
 }
@@ -157,6 +182,9 @@ func (UnimplementedToolchainServiceServer) BundleArtifacts(context.Context, *Bun
 }
 func (UnimplementedToolchainServiceServer) GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUpdatedFiles not implemented")
+}
+func (UnimplementedToolchainServiceServer) EmergeWithLinting(context.Context, *LinterRequest) (*LinterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EmergeWithLinting not implemented")
 }
 func (UnimplementedToolchainServiceServer) GetClippyLints(context.Context, *LinterRequest) (*LinterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClippyLints not implemented")
@@ -264,6 +292,24 @@ func _ToolchainService_GetUpdatedFiles_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ToolchainService_EmergeWithLinting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LinterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).EmergeWithLinting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/EmergeWithLinting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).EmergeWithLinting(ctx, req.(*LinterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ToolchainService_GetClippyLints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LinterRequest)
 	if err := dec(in); err != nil {
@@ -308,6 +354,10 @@ var ToolchainService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUpdatedFiles",
 			Handler:    _ToolchainService_GetUpdatedFiles_Handler,
+		},
+		{
+			MethodName: "EmergeWithLinting",
+			Handler:    _ToolchainService_EmergeWithLinting_Handler,
 		},
 		{
 			MethodName: "GetClippyLints",

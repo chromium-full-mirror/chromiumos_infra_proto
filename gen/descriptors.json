@@ -10764,6 +10764,25 @@
           "name": "VerifyAFDOArtifactsResponse"
         },
         {
+          "enumType": [
+            {
+              "name": "Linters",
+              "value": [
+                {
+                  "name": "LINTER_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "CLANG_TIDY",
+                  "number": 1
+                },
+                {
+                  "name": "CARGO_CLIPPY",
+                  "number": 2
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "message",
@@ -10779,6 +10798,14 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.LinterFindingLocation"
+            },
+            {
+              "jsonName": "linter",
+              "label": "LABEL_OPTIONAL",
+              "name": "linter",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.LinterFinding.Linters"
             }
           ],
           "name": "LinterFinding"
@@ -10894,6 +10921,16 @@
               "inputType": ".chromite.api.GetUpdatedFilesRequest",
               "name": "GetUpdatedFiles",
               "outputType": ".chromite.api.GetUpdatedFilesResponse"
+            },
+            {
+              "inputType": ".chromite.api.LinterRequest",
+              "name": "EmergeWithLinting",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
+              "outputType": ".chromite.api.LinterResponse"
             },
             {
               "inputType": ".chromite.api.LinterRequest",
