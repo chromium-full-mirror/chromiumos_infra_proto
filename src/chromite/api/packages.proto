@@ -304,6 +304,9 @@ message UprevPackagesResponse {
 
   // Packages that were uprev'd.
   repeated chromiumos.PackageInfo packages = 3;
+
+  // Additional info to be appended to uprev cl's commit msg.
+  string additional_commit_info = 4;
 }
 
 message UprevVersionedPackageResponse {

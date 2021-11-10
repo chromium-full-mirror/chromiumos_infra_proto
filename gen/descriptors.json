@@ -5729,6 +5729,13 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.PackageInfo"
+            },
+            {
+              "jsonName": "additionalCommitInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "additional_commit_info",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "UprevPackagesResponse",
