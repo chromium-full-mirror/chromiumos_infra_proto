@@ -102,8 +102,21 @@ message BuildReportBeta {
             string name = 1; // eg: release-R90-13816.B
         }
 
+        enum VersionKind {
+            VERSION_KIND_UNDEFINED = 0; // do not use.
+            VERSION_KIND_ASH_CHROME = 1; // The system chrome.
+            VERSION_KIND_CHROME = 2; // The Lacros (user) chrome.
+            VERSION_KIND_ARC = 3; // Android Runtime Container.
+        }
+
+        message Version {
+            VersionKind kind = 1; // eg: VERSION_KIND_ASH_CHROME.
+            string value = 2; // eg: 98.0.4697.0.
+        }
+
         Branch  branch  = 1; // Optional branch information (not present for tip-of-tree).
         Release release = 2; // Optional information for release builds.
+        repeated Version versions = 4; // Optional embedded versions (e.g. chrome, arc).
 
         // List of board models covered by this build ie: expanded list of
         // unibuild models at the time the build ran, may be empty.
