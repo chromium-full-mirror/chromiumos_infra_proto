@@ -11708,6 +11708,14 @@
                     {
                       "name": "VERSION_KIND_ARC",
                       "number": 3
+                    },
+                    {
+                      "name": "VERSION_KIND_PLATFORM",
+                      "number": 4
+                    },
+                    {
+                      "name": "VERSION_KIND_MILESTONE",
+                      "number": 5
                     }
                   ]
                 }
@@ -11733,7 +11741,7 @@
                   "jsonName": "versions",
                   "label": "LABEL_REPEATED",
                   "name": "versions",
-                  "number": 4,
+                  "number": 3,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.BuildConfig.Version"
                 },
@@ -11741,7 +11749,7 @@
                   "jsonName": "models",
                   "label": "LABEL_REPEATED",
                   "name": "models",
-                  "number": 3,
+                  "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.BuildConfig.Model"
                 }
@@ -11763,24 +11771,10 @@
                 {
                   "field": [
                     {
-                      "jsonName": "milestone",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "milestone",
-                      "number": 1,
-                      "type": "TYPE_INT32"
-                    },
-                    {
-                      "jsonName": "build",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "build",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    },
-                    {
                       "jsonName": "channels",
                       "label": "LABEL_REPEATED",
                       "name": "channels",
-                      "number": 3,
+                      "number": 1,
                       "type": "TYPE_ENUM",
                       "typeName": ".chromiumos.Channel"
                     }

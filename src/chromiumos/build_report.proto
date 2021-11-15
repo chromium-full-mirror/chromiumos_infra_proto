@@ -90,11 +90,8 @@ message BuildReportBeta {
         }
 
         message Release {
-            int32  milestone = 1; // Release milestone, eg: 91.
-            string build     = 2; // Release build number, eg: 13816.0.0.
-
             // List of channels for the build.
-            repeated chromiumos.Channel channels = 3;
+            repeated chromiumos.Channel channels = 1;
         }
 
         // Information about the branch we're building on
@@ -107,6 +104,8 @@ message BuildReportBeta {
             VERSION_KIND_ASH_CHROME = 1; // The system chrome.
             VERSION_KIND_CHROME = 2; // The Lacros (user) chrome.
             VERSION_KIND_ARC = 3; // Android Runtime Container.
+            VERSION_KIND_PLATFORM = 4; // The platform version (e.g. 13816.0.0).
+            VERSION_KIND_MILESTONE = 5; // The milestone versions (e.g. 96).
         }
 
         message Version {
@@ -116,11 +115,11 @@ message BuildReportBeta {
 
         Branch  branch  = 1; // Optional branch information (not present for tip-of-tree).
         Release release = 2; // Optional information for release builds.
-        repeated Version versions = 4; // Optional embedded versions (e.g. chrome, arc).
+        repeated Version versions = 3; // Optional embedded versions (e.g. chrome, arc).
 
         // List of board models covered by this build ie: expanded list of
         // unibuild models at the time the build ran, may be empty.
-        repeated Model models = 3;
+        repeated Model models = 4;
     }
 
     // Artifacts produced by the build.
