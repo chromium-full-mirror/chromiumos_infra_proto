@@ -246,6 +246,61 @@ func (x *TastVmTestCfg) GetTastVmTest() []*TastVmTestCfg_TastVmTest {
 	return nil
 }
 
+type TastGceTestCfg struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TastGceTest []*TastGceTestCfg_TastGceTest `protobuf:"bytes,1,rep,name=tast_gce_test,json=tastGceTest,proto3" json:"tast_gce_test,omitempty"`
+	GceMetadata *TastGceTestCfg_GceMetadata   `protobuf:"bytes,2,opt,name=gce_metadata,json=gceMetadata,proto3" json:"gce_metadata,omitempty"`
+}
+
+func (x *TastGceTestCfg) Reset() {
+	*x = TastGceTestCfg{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TastGceTestCfg) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TastGceTestCfg) ProtoMessage() {}
+
+func (x *TastGceTestCfg) ProtoReflect() protoreflect.Message {
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TastGceTestCfg.ProtoReflect.Descriptor instead.
+func (*TastGceTestCfg) Descriptor() ([]byte, []int) {
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TastGceTestCfg) GetTastGceTest() []*TastGceTestCfg_TastGceTest {
+	if x != nil {
+		return x.TastGceTest
+	}
+	return nil
+}
+
+func (x *TastGceTestCfg) GetGceMetadata() *TastGceTestCfg_GceMetadata {
+	if x != nil {
+		return x.GceMetadata
+	}
+	return nil
+}
+
 type VmTestCfg struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -257,7 +312,7 @@ type VmTestCfg struct {
 func (x *VmTestCfg) Reset() {
 	*x = VmTestCfg{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[3]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -270,7 +325,7 @@ func (x *VmTestCfg) String() string {
 func (*VmTestCfg) ProtoMessage() {}
 
 func (x *VmTestCfg) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[3]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -283,7 +338,7 @@ func (x *VmTestCfg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VmTestCfg.ProtoReflect.Descriptor instead.
 func (*VmTestCfg) Descriptor() ([]byte, []int) {
-	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{3}
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *VmTestCfg) GetVmTest() []*VmTestCfg_VmTest {
@@ -313,7 +368,7 @@ type TargetCriteria struct {
 func (x *TargetCriteria) Reset() {
 	*x = TargetCriteria{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[4]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -326,7 +381,7 @@ func (x *TargetCriteria) String() string {
 func (*TargetCriteria) ProtoMessage() {}
 
 func (x *TargetCriteria) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[4]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +394,7 @@ func (x *TargetCriteria) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TargetCriteria.ProtoReflect.Descriptor instead.
 func (*TargetCriteria) Descriptor() ([]byte, []int) {
-	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{4}
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{5}
 }
 
 func (m *TargetCriteria) GetTargetType() isTargetCriteria_TargetType {
@@ -384,15 +439,16 @@ type PerTargetTestRequirements struct {
 	// Specifies the crieria for builds to target for testing.
 	TargetCriteria *TargetCriteria `protobuf:"bytes,1,opt,name=target_criteria,json=targetCriteria,proto3" json:"target_criteria,omitempty"`
 	// These configure what testing is needed for these BuildCriteria.
-	HwTestCfg           *HwTestCfg     `protobuf:"bytes,3,opt,name=hw_test_cfg,json=hwTestCfg,proto3" json:"hw_test_cfg,omitempty"`
-	VmTestCfg           *VmTestCfg     `protobuf:"bytes,5,opt,name=vm_test_cfg,json=vmTestCfg,proto3" json:"vm_test_cfg,omitempty"`
-	DirectTastVmTestCfg *TastVmTestCfg `protobuf:"bytes,7,opt,name=direct_tast_vm_test_cfg,json=directTastVmTestCfg,proto3" json:"direct_tast_vm_test_cfg,omitempty"`
+	HwTestCfg           *HwTestCfg      `protobuf:"bytes,3,opt,name=hw_test_cfg,json=hwTestCfg,proto3" json:"hw_test_cfg,omitempty"`
+	VmTestCfg           *VmTestCfg      `protobuf:"bytes,5,opt,name=vm_test_cfg,json=vmTestCfg,proto3" json:"vm_test_cfg,omitempty"`
+	DirectTastVmTestCfg *TastVmTestCfg  `protobuf:"bytes,7,opt,name=direct_tast_vm_test_cfg,json=directTastVmTestCfg,proto3" json:"direct_tast_vm_test_cfg,omitempty"`
+	TastGceTestCfg      *TastGceTestCfg `protobuf:"bytes,8,opt,name=tast_gce_test_cfg,json=tastGceTestCfg,proto3" json:"tast_gce_test_cfg,omitempty"`
 }
 
 func (x *PerTargetTestRequirements) Reset() {
 	*x = PerTargetTestRequirements{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[5]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -405,7 +461,7 @@ func (x *PerTargetTestRequirements) String() string {
 func (*PerTargetTestRequirements) ProtoMessage() {}
 
 func (x *PerTargetTestRequirements) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[5]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -418,7 +474,7 @@ func (x *PerTargetTestRequirements) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PerTargetTestRequirements.ProtoReflect.Descriptor instead.
 func (*PerTargetTestRequirements) Descriptor() ([]byte, []int) {
-	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{5}
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PerTargetTestRequirements) GetTargetCriteria() *TargetCriteria {
@@ -449,6 +505,13 @@ func (x *PerTargetTestRequirements) GetDirectTastVmTestCfg() *TastVmTestCfg {
 	return nil
 }
 
+func (x *PerTargetTestRequirements) GetTastGceTestCfg() *TastGceTestCfg {
+	if x != nil {
+		return x.TastGceTestCfg
+	}
+	return nil
+}
+
 // A listing of all testing that should be done for all CrOS builds.
 type TargetTestRequirementsCfg struct {
 	state         protoimpl.MessageState
@@ -462,7 +525,7 @@ type TargetTestRequirementsCfg struct {
 func (x *TargetTestRequirementsCfg) Reset() {
 	*x = TargetTestRequirementsCfg{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[6]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -475,7 +538,7 @@ func (x *TargetTestRequirementsCfg) String() string {
 func (*TargetTestRequirementsCfg) ProtoMessage() {}
 
 func (x *TargetTestRequirementsCfg) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[6]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -488,7 +551,7 @@ func (x *TargetTestRequirementsCfg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TargetTestRequirementsCfg.ProtoReflect.Descriptor instead.
 func (*TargetTestRequirementsCfg) Descriptor() ([]byte, []int) {
-	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{6}
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *TargetTestRequirementsCfg) GetPerTargetTestRequirements() []*PerTargetTestRequirements {
@@ -509,7 +572,7 @@ type TestSuiteCommon_TestSuiteGroup struct {
 func (x *TestSuiteCommon_TestSuiteGroup) Reset() {
 	*x = TestSuiteCommon_TestSuiteGroup{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[7]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -522,7 +585,7 @@ func (x *TestSuiteCommon_TestSuiteGroup) String() string {
 func (*TestSuiteCommon_TestSuiteGroup) ProtoMessage() {}
 
 func (x *TestSuiteCommon_TestSuiteGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[7]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -577,7 +640,7 @@ type HwTestCfg_HwTest struct {
 func (x *HwTestCfg_HwTest) Reset() {
 	*x = HwTestCfg_HwTest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[8]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -590,7 +653,7 @@ func (x *HwTestCfg_HwTest) String() string {
 func (*HwTestCfg_HwTest) ProtoMessage() {}
 
 func (x *HwTestCfg_HwTest) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[8]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,7 +737,7 @@ type TastVmTestCfg_TastTestExpr struct {
 func (x *TastVmTestCfg_TastTestExpr) Reset() {
 	*x = TastVmTestCfg_TastTestExpr{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[9]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -687,7 +750,7 @@ func (x *TastVmTestCfg_TastTestExpr) String() string {
 func (*TastVmTestCfg_TastTestExpr) ProtoMessage() {}
 
 func (x *TastVmTestCfg_TastTestExpr) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[9]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -727,7 +790,7 @@ type TastVmTestCfg_TastVmTest struct {
 func (x *TastVmTestCfg_TastVmTest) Reset() {
 	*x = TastVmTestCfg_TastVmTest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[10]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -740,7 +803,7 @@ func (x *TastVmTestCfg_TastVmTest) String() string {
 func (*TastVmTestCfg_TastVmTest) ProtoMessage() {}
 
 func (x *TastVmTestCfg_TastVmTest) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[10]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -777,6 +840,207 @@ func (x *TastVmTestCfg_TastVmTest) GetTastTestExpr() []*TastVmTestCfg_TastTestEx
 	return nil
 }
 
+type TastGceTestCfg_TastTestExpr struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A single tast test expression. See https://goo.gl/UPNEgT
+	TestExpr string `protobuf:"bytes,1,opt,name=test_expr,json=testExpr,proto3" json:"test_expr,omitempty"`
+}
+
+func (x *TastGceTestCfg_TastTestExpr) Reset() {
+	*x = TastGceTestCfg_TastTestExpr{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TastGceTestCfg_TastTestExpr) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TastGceTestCfg_TastTestExpr) ProtoMessage() {}
+
+func (x *TastGceTestCfg_TastTestExpr) ProtoReflect() protoreflect.Message {
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TastGceTestCfg_TastTestExpr.ProtoReflect.Descriptor instead.
+func (*TastGceTestCfg_TastTestExpr) Descriptor() ([]byte, []int) {
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *TastGceTestCfg_TastTestExpr) GetTestExpr() string {
+	if x != nil {
+		return x.TestExpr
+	}
+	return ""
+}
+
+type TastGceTestCfg_TastGceTest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Common *TestSuiteCommon `protobuf:"bytes,1,opt,name=common,proto3" json:"common,omitempty"`
+	// String containing short human-readable name describing test suite.
+	SuiteName string `protobuf:"bytes,2,opt,name=suite_name,json=suiteName,proto3" json:"suite_name,omitempty"`
+	// List of string expressions describing which tests to run; this
+	// is passed directly to the 'tast run' command. See
+	// https://goo.gl/UPNEgT for info about test expressions.
+	TastTestExpr []*TastGceTestCfg_TastTestExpr `protobuf:"bytes,3,rep,name=tast_test_expr,json=tastTestExpr,proto3" json:"tast_test_expr,omitempty"`
+}
+
+func (x *TastGceTestCfg_TastGceTest) Reset() {
+	*x = TastGceTestCfg_TastGceTest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TastGceTestCfg_TastGceTest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TastGceTestCfg_TastGceTest) ProtoMessage() {}
+
+func (x *TastGceTestCfg_TastGceTest) ProtoReflect() protoreflect.Message {
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TastGceTestCfg_TastGceTest.ProtoReflect.Descriptor instead.
+func (*TastGceTestCfg_TastGceTest) Descriptor() ([]byte, []int) {
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{3, 1}
+}
+
+func (x *TastGceTestCfg_TastGceTest) GetCommon() *TestSuiteCommon {
+	if x != nil {
+		return x.Common
+	}
+	return nil
+}
+
+func (x *TastGceTestCfg_TastGceTest) GetSuiteName() string {
+	if x != nil {
+		return x.SuiteName
+	}
+	return ""
+}
+
+func (x *TastGceTestCfg_TastGceTest) GetTastTestExpr() []*TastGceTestCfg_TastTestExpr {
+	if x != nil {
+		return x.TastTestExpr
+	}
+	return nil
+}
+
+// This message should be used to fill
+// recipes.chromeos.gce_test.GceTestProperties.GceMetadata.
+type TastGceTestCfg_GceMetadata struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The GCE project in which we create GCE images/instances for test.
+	Project string `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
+	// The GCE zone in which we create GCE instances for test.
+	Zone string `protobuf:"bytes,2,opt,name=zone,proto3" json:"zone,omitempty"`
+	// The machine type of the GCE instance (e.g. n2-standard-8).
+	MachineType string `protobuf:"bytes,3,opt,name=machine_type,json=machineType,proto3" json:"machine_type,omitempty"`
+	// The network the GCE instance should be part of.
+	Network string `protobuf:"bytes,4,opt,name=network,proto3" json:"network,omitempty"`
+	// The subnet the GCE instance should be part of.
+	Subnet string `protobuf:"bytes,5,opt,name=subnet,proto3" json:"subnet,omitempty"`
+}
+
+func (x *TastGceTestCfg_GceMetadata) Reset() {
+	*x = TastGceTestCfg_GceMetadata{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TastGceTestCfg_GceMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TastGceTestCfg_GceMetadata) ProtoMessage() {}
+
+func (x *TastGceTestCfg_GceMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TastGceTestCfg_GceMetadata.ProtoReflect.Descriptor instead.
+func (*TastGceTestCfg_GceMetadata) Descriptor() ([]byte, []int) {
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{3, 2}
+}
+
+func (x *TastGceTestCfg_GceMetadata) GetProject() string {
+	if x != nil {
+		return x.Project
+	}
+	return ""
+}
+
+func (x *TastGceTestCfg_GceMetadata) GetZone() string {
+	if x != nil {
+		return x.Zone
+	}
+	return ""
+}
+
+func (x *TastGceTestCfg_GceMetadata) GetMachineType() string {
+	if x != nil {
+		return x.MachineType
+	}
+	return ""
+}
+
+func (x *TastGceTestCfg_GceMetadata) GetNetwork() string {
+	if x != nil {
+		return x.Network
+	}
+	return ""
+}
+
+func (x *TastGceTestCfg_GceMetadata) GetSubnet() string {
+	if x != nil {
+		return x.Subnet
+	}
+	return ""
+}
+
 type VmTestCfg_VmTest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -790,7 +1054,7 @@ type VmTestCfg_VmTest struct {
 func (x *VmTestCfg_VmTest) Reset() {
 	*x = VmTestCfg_VmTest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[11]
+		mi := &file_testplans_target_test_requirements_config_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -803,7 +1067,7 @@ func (x *VmTestCfg_VmTest) String() string {
 func (*VmTestCfg_VmTest) ProtoMessage() {}
 
 func (x *VmTestCfg_VmTest) ProtoReflect() protoreflect.Message {
-	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[11]
+	mi := &file_testplans_target_test_requirements_config_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -816,7 +1080,7 @@ func (x *VmTestCfg_VmTest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VmTestCfg_VmTest.ProtoReflect.Descriptor instead.
 func (*VmTestCfg_VmTest) Descriptor() ([]byte, []int) {
-	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{3, 0}
+	return file_testplans_target_test_requirements_config_proto_rawDescGZIP(), []int{4, 0}
 }
 
 func (x *VmTestCfg_VmTest) GetCommon() *TestSuiteCommon {
@@ -913,55 +1177,93 @@ var file_testplans_target_test_requirements_config_proto_rawDesc = []byte{
 	0x2e, 0x54, 0x61, 0x73, 0x74, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x2e, 0x54,
 	0x61, 0x73, 0x74, 0x54, 0x65, 0x73, 0x74, 0x45, 0x78, 0x70, 0x72, 0x52, 0x0c, 0x74, 0x61, 0x73,
 	0x74, 0x54, 0x65, 0x73, 0x74, 0x45, 0x78, 0x70, 0x72, 0x4a, 0x04, 0x08, 0x03, 0x10, 0x04, 0x22,
-	0xaa, 0x01, 0x0a, 0x09, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x12, 0x34, 0x0a,
-	0x07, 0x76, 0x6d, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b,
-	0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x56, 0x6d, 0x54, 0x65, 0x73,
-	0x74, 0x43, 0x66, 0x67, 0x2e, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x52, 0x06, 0x76, 0x6d, 0x54,
-	0x65, 0x73, 0x74, 0x1a, 0x67, 0x0a, 0x06, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x12, 0x32, 0x0a,
-	0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
-	0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75,
-	0x69, 0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x6f,
-	0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x73, 0x75, 0x69, 0x74, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x74, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65,
-	0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x4a, 0x04, 0x08, 0x03, 0x10, 0x08, 0x22, 0x67, 0x0a, 0x0e,
-	0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x43, 0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61, 0x12, 0x23,
-	0x0a, 0x0c, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x0b, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x61, 0x72,
-	0x67, 0x65, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x5f, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x62, 0x75, 0x69, 0x6c, 0x64,
-	0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x42, 0x0d, 0x0a, 0x0b, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74,
-	0x5f, 0x74, 0x79, 0x70, 0x65, 0x22, 0xad, 0x02, 0x0a, 0x19, 0x50, 0x65, 0x72, 0x54, 0x61, 0x72,
-	0x67, 0x65, 0x74, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65,
-	0x6e, 0x74, 0x73, 0x12, 0x42, 0x0a, 0x0f, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x5f, 0x63, 0x72,
-	0x69, 0x74, 0x65, 0x72, 0x69, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74,
-	0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x43,
-	0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61, 0x52, 0x0e, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x43,
-	0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61, 0x12, 0x34, 0x0a, 0x0b, 0x68, 0x77, 0x5f, 0x74, 0x65,
-	0x73, 0x74, 0x5f, 0x63, 0x66, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74,
-	0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x48, 0x77, 0x54, 0x65, 0x73, 0x74, 0x43,
-	0x66, 0x67, 0x52, 0x09, 0x68, 0x77, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x12, 0x34, 0x0a,
-	0x0b, 0x76, 0x6d, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x63, 0x66, 0x67, 0x18, 0x05, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x56,
-	0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x52, 0x09, 0x76, 0x6d, 0x54, 0x65, 0x73, 0x74,
-	0x43, 0x66, 0x67, 0x12, 0x4e, 0x0a, 0x17, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x61,
-	0x73, 0x74, 0x5f, 0x76, 0x6d, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x63, 0x66, 0x67, 0x18, 0x07,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73,
-	0x2e, 0x54, 0x61, 0x73, 0x74, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x52, 0x13,
-	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x54, 0x61, 0x73, 0x74, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74,
-	0x43, 0x66, 0x67, 0x4a, 0x04, 0x08, 0x02, 0x10, 0x03, 0x4a, 0x04, 0x08, 0x04, 0x10, 0x05, 0x4a,
-	0x04, 0x08, 0x06, 0x10, 0x07, 0x22, 0x82, 0x01, 0x0a, 0x19, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74,
-	0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73,
-	0x43, 0x66, 0x67, 0x12, 0x65, 0x0a, 0x1c, 0x70, 0x65, 0x72, 0x5f, 0x74, 0x61, 0x72, 0x67, 0x65,
-	0x74, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65,
-	0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x74, 0x65, 0x73, 0x74,
-	0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x50, 0x65, 0x72, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x54,
-	0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52,
-	0x19, 0x70, 0x65, 0x72, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65,
-	0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x6f,
-	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68,
-	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e,
-	0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x96, 0x04, 0x0a, 0x0e, 0x54, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x66, 0x67, 0x12, 0x49, 0x0a, 0x0d, 0x74, 0x61, 0x73, 0x74, 0x5f, 0x67, 0x63, 0x65, 0x5f, 0x74,
+	0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x74, 0x65, 0x73, 0x74,
+	0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x54, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x66, 0x67, 0x2e, 0x54, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74,
+	0x52, 0x0b, 0x74, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74, 0x12, 0x48, 0x0a,
+	0x0c, 0x67, 0x63, 0x65, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e,
+	0x54, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x2e, 0x47,
+	0x63, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x52, 0x0b, 0x67, 0x63, 0x65, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x2b, 0x0a, 0x0c, 0x54, 0x61, 0x73, 0x74, 0x54,
+	0x65, 0x73, 0x74, 0x45, 0x78, 0x70, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x74, 0x65, 0x73, 0x74, 0x5f,
+	0x65, 0x78, 0x70, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74, 0x65, 0x73, 0x74,
+	0x45, 0x78, 0x70, 0x72, 0x1a, 0xae, 0x01, 0x0a, 0x0b, 0x54, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65,
+	0x54, 0x65, 0x73, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73,
+	0x2e, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x75, 0x69, 0x74,
+	0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x75,
+	0x69, 0x74, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x4c, 0x0a, 0x0e, 0x74, 0x61, 0x73, 0x74, 0x5f,
+	0x74, 0x65, 0x73, 0x74, 0x5f, 0x65, 0x78, 0x70, 0x72, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x26, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x54, 0x61, 0x73, 0x74,
+	0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x2e, 0x54, 0x61, 0x73, 0x74, 0x54,
+	0x65, 0x73, 0x74, 0x45, 0x78, 0x70, 0x72, 0x52, 0x0c, 0x74, 0x61, 0x73, 0x74, 0x54, 0x65, 0x73,
+	0x74, 0x45, 0x78, 0x70, 0x72, 0x1a, 0x90, 0x01, 0x0a, 0x0b, 0x47, 0x63, 0x65, 0x4d, 0x65, 0x74,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x12,
+	0x12, 0x0a, 0x04, 0x7a, 0x6f, 0x6e, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x7a,
+	0x6f, 0x6e, 0x65, 0x12, 0x21, 0x0a, 0x0c, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x5f, 0x74,
+	0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6d, 0x61, 0x63, 0x68, 0x69,
+	0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72,
+	0x6b, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b,
+	0x12, 0x16, 0x0a, 0x06, 0x73, 0x75, 0x62, 0x6e, 0x65, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x73, 0x75, 0x62, 0x6e, 0x65, 0x74, 0x22, 0xaa, 0x01, 0x0a, 0x09, 0x56, 0x6d, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x12, 0x34, 0x0a, 0x07, 0x76, 0x6d, 0x5f, 0x74, 0x65, 0x73,
+	0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c,
+	0x61, 0x6e, 0x73, 0x2e, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x2e, 0x56, 0x6d,
+	0x54, 0x65, 0x73, 0x74, 0x52, 0x06, 0x76, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x1a, 0x67, 0x0a, 0x06,
+	0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61,
+	0x6e, 0x73, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d,
+	0x6f, 0x6e, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x65,
+	0x73, 0x74, 0x5f, 0x73, 0x75, 0x69, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x74, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x4a,
+	0x04, 0x08, 0x03, 0x10, 0x08, 0x22, 0x67, 0x0a, 0x0e, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x43,
+	0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61, 0x12, 0x23, 0x0a, 0x0c, 0x62, 0x75, 0x69, 0x6c, 0x64,
+	0x5f, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52,
+	0x0b, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x12, 0x21, 0x0a, 0x0c,
+	0x62, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0b, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x42,
+	0x0d, 0x0a, 0x0b, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x22, 0xf3,
+	0x02, 0x0a, 0x19, 0x50, 0x65, 0x72, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x54, 0x65, 0x73, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x42, 0x0a, 0x0f,
+	0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x5f, 0x63, 0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e,
+	0x73, 0x2e, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x43, 0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61,
+	0x52, 0x0e, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x43, 0x72, 0x69, 0x74, 0x65, 0x72, 0x69, 0x61,
+	0x12, 0x34, 0x0a, 0x0b, 0x68, 0x77, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x63, 0x66, 0x67, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e,
+	0x73, 0x2e, 0x48, 0x77, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x52, 0x09, 0x68, 0x77, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x12, 0x34, 0x0a, 0x0b, 0x76, 0x6d, 0x5f, 0x74, 0x65, 0x73,
+	0x74, 0x5f, 0x63, 0x66, 0x67, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x65,
+	0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66,
+	0x67, 0x52, 0x09, 0x76, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x12, 0x4e, 0x0a, 0x17,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x61, 0x73, 0x74, 0x5f, 0x76, 0x6d, 0x5f, 0x74,
+	0x65, 0x73, 0x74, 0x5f, 0x63, 0x66, 0x67, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e,
+	0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x54, 0x61, 0x73, 0x74, 0x56, 0x6d,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x52, 0x13, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x54,
+	0x61, 0x73, 0x74, 0x56, 0x6d, 0x54, 0x65, 0x73, 0x74, 0x43, 0x66, 0x67, 0x12, 0x44, 0x0a, 0x11,
+	0x74, 0x61, 0x73, 0x74, 0x5f, 0x67, 0x63, 0x65, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x63, 0x66,
+	0x67, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c,
+	0x61, 0x6e, 0x73, 0x2e, 0x54, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x66, 0x67, 0x52, 0x0e, 0x74, 0x61, 0x73, 0x74, 0x47, 0x63, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x66, 0x67, 0x4a, 0x04, 0x08, 0x02, 0x10, 0x03, 0x4a, 0x04, 0x08, 0x04, 0x10, 0x05, 0x4a, 0x04,
+	0x08, 0x06, 0x10, 0x07, 0x22, 0x82, 0x01, 0x0a, 0x19, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x54,
+	0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x43,
+	0x66, 0x67, 0x12, 0x65, 0x0a, 0x1c, 0x70, 0x65, 0x72, 0x5f, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74,
+	0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e,
+	0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x70,
+	0x6c, 0x61, 0x6e, 0x73, 0x2e, 0x50, 0x65, 0x72, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x54, 0x65,
+	0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x19,
+	0x70, 0x65, 0x72, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x54, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x69, 0x72, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x6f, 0x2e,
+	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72,
+	0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x70, 0x6c, 0x61, 0x6e, 0x73,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -977,46 +1279,55 @@ func file_testplans_target_test_requirements_config_proto_rawDescGZIP() []byte {
 }
 
 var file_testplans_target_test_requirements_config_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_testplans_target_test_requirements_config_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_testplans_target_test_requirements_config_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_testplans_target_test_requirements_config_proto_goTypes = []interface{}{
 	(HwTestCfg_HwTestSuiteType)(0),         // 0: testplans.HwTestCfg.HwTestSuiteType
 	(*TestSuiteCommon)(nil),                // 1: testplans.TestSuiteCommon
 	(*HwTestCfg)(nil),                      // 2: testplans.HwTestCfg
 	(*TastVmTestCfg)(nil),                  // 3: testplans.TastVmTestCfg
-	(*VmTestCfg)(nil),                      // 4: testplans.VmTestCfg
-	(*TargetCriteria)(nil),                 // 5: testplans.TargetCriteria
-	(*PerTargetTestRequirements)(nil),      // 6: testplans.PerTargetTestRequirements
-	(*TargetTestRequirementsCfg)(nil),      // 7: testplans.TargetTestRequirementsCfg
-	(*TestSuiteCommon_TestSuiteGroup)(nil), // 8: testplans.TestSuiteCommon.TestSuiteGroup
-	(*HwTestCfg_HwTest)(nil),               // 9: testplans.HwTestCfg.HwTest
-	(*TastVmTestCfg_TastTestExpr)(nil),     // 10: testplans.TastVmTestCfg.TastTestExpr
-	(*TastVmTestCfg_TastVmTest)(nil),       // 11: testplans.TastVmTestCfg.TastVmTest
-	(*VmTestCfg_VmTest)(nil),               // 12: testplans.VmTestCfg.VmTest
-	(*wrapperspb.BoolValue)(nil),           // 13: google.protobuf.BoolValue
-	(lab.LicenseType)(0),                   // 14: lab.LicenseType
+	(*TastGceTestCfg)(nil),                 // 4: testplans.TastGceTestCfg
+	(*VmTestCfg)(nil),                      // 5: testplans.VmTestCfg
+	(*TargetCriteria)(nil),                 // 6: testplans.TargetCriteria
+	(*PerTargetTestRequirements)(nil),      // 7: testplans.PerTargetTestRequirements
+	(*TargetTestRequirementsCfg)(nil),      // 8: testplans.TargetTestRequirementsCfg
+	(*TestSuiteCommon_TestSuiteGroup)(nil), // 9: testplans.TestSuiteCommon.TestSuiteGroup
+	(*HwTestCfg_HwTest)(nil),               // 10: testplans.HwTestCfg.HwTest
+	(*TastVmTestCfg_TastTestExpr)(nil),     // 11: testplans.TastVmTestCfg.TastTestExpr
+	(*TastVmTestCfg_TastVmTest)(nil),       // 12: testplans.TastVmTestCfg.TastVmTest
+	(*TastGceTestCfg_TastTestExpr)(nil),    // 13: testplans.TastGceTestCfg.TastTestExpr
+	(*TastGceTestCfg_TastGceTest)(nil),     // 14: testplans.TastGceTestCfg.TastGceTest
+	(*TastGceTestCfg_GceMetadata)(nil),     // 15: testplans.TastGceTestCfg.GceMetadata
+	(*VmTestCfg_VmTest)(nil),               // 16: testplans.VmTestCfg.VmTest
+	(*wrapperspb.BoolValue)(nil),           // 17: google.protobuf.BoolValue
+	(lab.LicenseType)(0),                   // 18: lab.LicenseType
 }
 var file_testplans_target_test_requirements_config_proto_depIdxs = []int32{
-	13, // 0: testplans.TestSuiteCommon.critical:type_name -> google.protobuf.BoolValue
-	8,  // 1: testplans.TestSuiteCommon.test_suite_groups:type_name -> testplans.TestSuiteCommon.TestSuiteGroup
-	9,  // 2: testplans.HwTestCfg.hw_test:type_name -> testplans.HwTestCfg.HwTest
-	11, // 3: testplans.TastVmTestCfg.tast_vm_test:type_name -> testplans.TastVmTestCfg.TastVmTest
-	12, // 4: testplans.VmTestCfg.vm_test:type_name -> testplans.VmTestCfg.VmTest
-	5,  // 5: testplans.PerTargetTestRequirements.target_criteria:type_name -> testplans.TargetCriteria
-	2,  // 6: testplans.PerTargetTestRequirements.hw_test_cfg:type_name -> testplans.HwTestCfg
-	4,  // 7: testplans.PerTargetTestRequirements.vm_test_cfg:type_name -> testplans.VmTestCfg
-	3,  // 8: testplans.PerTargetTestRequirements.direct_tast_vm_test_cfg:type_name -> testplans.TastVmTestCfg
-	6,  // 9: testplans.TargetTestRequirementsCfg.per_target_test_requirements:type_name -> testplans.PerTargetTestRequirements
-	1,  // 10: testplans.HwTestCfg.HwTest.common:type_name -> testplans.TestSuiteCommon
-	0,  // 11: testplans.HwTestCfg.HwTest.hw_test_suite_type:type_name -> testplans.HwTestCfg.HwTestSuiteType
-	14, // 12: testplans.HwTestCfg.HwTest.licenses:type_name -> lab.LicenseType
-	1,  // 13: testplans.TastVmTestCfg.TastVmTest.common:type_name -> testplans.TestSuiteCommon
-	10, // 14: testplans.TastVmTestCfg.TastVmTest.tast_test_expr:type_name -> testplans.TastVmTestCfg.TastTestExpr
-	1,  // 15: testplans.VmTestCfg.VmTest.common:type_name -> testplans.TestSuiteCommon
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	17, // 0: testplans.TestSuiteCommon.critical:type_name -> google.protobuf.BoolValue
+	9,  // 1: testplans.TestSuiteCommon.test_suite_groups:type_name -> testplans.TestSuiteCommon.TestSuiteGroup
+	10, // 2: testplans.HwTestCfg.hw_test:type_name -> testplans.HwTestCfg.HwTest
+	12, // 3: testplans.TastVmTestCfg.tast_vm_test:type_name -> testplans.TastVmTestCfg.TastVmTest
+	14, // 4: testplans.TastGceTestCfg.tast_gce_test:type_name -> testplans.TastGceTestCfg.TastGceTest
+	15, // 5: testplans.TastGceTestCfg.gce_metadata:type_name -> testplans.TastGceTestCfg.GceMetadata
+	16, // 6: testplans.VmTestCfg.vm_test:type_name -> testplans.VmTestCfg.VmTest
+	6,  // 7: testplans.PerTargetTestRequirements.target_criteria:type_name -> testplans.TargetCriteria
+	2,  // 8: testplans.PerTargetTestRequirements.hw_test_cfg:type_name -> testplans.HwTestCfg
+	5,  // 9: testplans.PerTargetTestRequirements.vm_test_cfg:type_name -> testplans.VmTestCfg
+	3,  // 10: testplans.PerTargetTestRequirements.direct_tast_vm_test_cfg:type_name -> testplans.TastVmTestCfg
+	4,  // 11: testplans.PerTargetTestRequirements.tast_gce_test_cfg:type_name -> testplans.TastGceTestCfg
+	7,  // 12: testplans.TargetTestRequirementsCfg.per_target_test_requirements:type_name -> testplans.PerTargetTestRequirements
+	1,  // 13: testplans.HwTestCfg.HwTest.common:type_name -> testplans.TestSuiteCommon
+	0,  // 14: testplans.HwTestCfg.HwTest.hw_test_suite_type:type_name -> testplans.HwTestCfg.HwTestSuiteType
+	18, // 15: testplans.HwTestCfg.HwTest.licenses:type_name -> lab.LicenseType
+	1,  // 16: testplans.TastVmTestCfg.TastVmTest.common:type_name -> testplans.TestSuiteCommon
+	11, // 17: testplans.TastVmTestCfg.TastVmTest.tast_test_expr:type_name -> testplans.TastVmTestCfg.TastTestExpr
+	1,  // 18: testplans.TastGceTestCfg.TastGceTest.common:type_name -> testplans.TestSuiteCommon
+	13, // 19: testplans.TastGceTestCfg.TastGceTest.tast_test_expr:type_name -> testplans.TastGceTestCfg.TastTestExpr
+	1,  // 20: testplans.VmTestCfg.VmTest.common:type_name -> testplans.TestSuiteCommon
+	21, // [21:21] is the sub-list for method output_type
+	21, // [21:21] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
 func init() { file_testplans_target_test_requirements_config_proto_init() }
@@ -1062,7 +1373,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VmTestCfg); i {
+			switch v := v.(*TastGceTestCfg); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1074,7 +1385,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TargetCriteria); i {
+			switch v := v.(*VmTestCfg); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1086,7 +1397,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PerTargetTestRequirements); i {
+			switch v := v.(*TargetCriteria); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1098,7 +1409,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TargetTestRequirementsCfg); i {
+			switch v := v.(*PerTargetTestRequirements); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1110,7 +1421,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TestSuiteCommon_TestSuiteGroup); i {
+			switch v := v.(*TargetTestRequirementsCfg); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1122,7 +1433,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*HwTestCfg_HwTest); i {
+			switch v := v.(*TestSuiteCommon_TestSuiteGroup); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1134,7 +1445,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TastVmTestCfg_TastTestExpr); i {
+			switch v := v.(*HwTestCfg_HwTest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1146,7 +1457,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TastVmTestCfg_TastVmTest); i {
+			switch v := v.(*TastVmTestCfg_TastTestExpr); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1158,6 +1469,54 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 		file_testplans_target_test_requirements_config_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TastVmTestCfg_TastVmTest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_testplans_target_test_requirements_config_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TastGceTestCfg_TastTestExpr); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_testplans_target_test_requirements_config_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TastGceTestCfg_TastGceTest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_testplans_target_test_requirements_config_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TastGceTestCfg_GceMetadata); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_testplans_target_test_requirements_config_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*VmTestCfg_VmTest); i {
 			case 0:
 				return &v.state
@@ -1170,7 +1529,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			}
 		}
 	}
-	file_testplans_target_test_requirements_config_proto_msgTypes[4].OneofWrappers = []interface{}{
+	file_testplans_target_test_requirements_config_proto_msgTypes[5].OneofWrappers = []interface{}{
 		(*TargetCriteria_BuildTarget)(nil),
 	}
 	type x struct{}
@@ -1179,7 +1538,7 @@ func file_testplans_target_test_requirements_config_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_testplans_target_test_requirements_config_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   12,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

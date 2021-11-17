@@ -78,6 +78,7 @@ message TastVmTestCfg {
     // A single tast test expression. See https://goo.gl/UPNEgT
     string test_expr = 1;
   }
+
   message TastVmTest {
     TestSuiteCommon common = 4;
 
@@ -92,6 +93,46 @@ message TastVmTestCfg {
   }
 
   repeated TastVmTest tast_vm_test = 1;
+}
+
+message TastGceTestCfg {
+  message TastTestExpr {
+    // A single tast test expression. See https://goo.gl/UPNEgT
+    string test_expr = 1;
+  }
+
+  message TastGceTest {
+    TestSuiteCommon common = 1;
+
+    // String containing short human-readable name describing test suite.
+    string suite_name = 2;
+    // List of string expressions describing which tests to run; this
+    // is passed directly to the 'tast run' command. See
+    // https://goo.gl/UPNEgT for info about test expressions.
+    repeated TastGceTestCfg.TastTestExpr tast_test_expr = 3;
+  }
+
+  // This message should be used to fill
+  // recipes.chromeos.gce_test.GceTestProperties.GceMetadata.
+  message GceMetadata {
+    // The GCE project in which we create GCE images/instances for test.
+    string project = 1;
+
+    // The GCE zone in which we create GCE instances for test.
+    string zone = 2;
+
+    // The machine type of the GCE instance (e.g. n2-standard-8).
+    string machine_type = 3;
+
+    // The network the GCE instance should be part of.
+    string network = 4;
+
+    // The subnet the GCE instance should be part of.
+    string subnet = 5;
+  }
+
+  repeated TastGceTest tast_gce_test = 1;
+  GceMetadata gce_metadata = 2;
 }
 
 message VmTestCfg {
@@ -131,6 +172,7 @@ message PerTargetTestRequirements {
   HwTestCfg hw_test_cfg = 3;
   VmTestCfg vm_test_cfg = 5;
   TastVmTestCfg direct_tast_vm_test_cfg = 7;
+  TastGceTestCfg tast_gce_test_cfg = 8;
 
   reserved 2, 4, 6;
 }

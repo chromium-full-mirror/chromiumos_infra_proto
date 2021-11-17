@@ -26373,6 +26373,109 @@
         {
           "field": [
             {
+              "jsonName": "tastGceTest",
+              "label": "LABEL_REPEATED",
+              "name": "tast_gce_test",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.TastGceTestCfg.TastGceTest"
+            },
+            {
+              "jsonName": "gceMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "gce_metadata",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.TastGceTestCfg.GceMetadata"
+            }
+          ],
+          "name": "TastGceTestCfg",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "testExpr",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_expr",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "TastTestExpr"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "common",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "common",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.TestSuiteCommon"
+                },
+                {
+                  "jsonName": "suiteName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "suite_name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "tastTestExpr",
+                  "label": "LABEL_REPEATED",
+                  "name": "tast_test_expr",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.TastGceTestCfg.TastTestExpr"
+                }
+              ],
+              "name": "TastGceTest"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "project",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "project",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "zone",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "zone",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "machineType",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "machine_type",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "network",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "network",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "subnet",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "subnet",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "GceMetadata"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
               "jsonName": "vmTest",
               "label": "LABEL_REPEATED",
               "name": "vm_test",
@@ -26473,6 +26576,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.TastVmTestCfg"
+            },
+            {
+              "jsonName": "tastGceTestCfg",
+              "label": "LABEL_OPTIONAL",
+              "name": "tast_gce_test_cfg",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.TastGceTestCfg"
             }
           ],
           "name": "PerTargetTestRequirements",
@@ -26585,6 +26696,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.TastVmTestUnit"
+            },
+            {
+              "jsonName": "tastGceTestUnits",
+              "label": "LABEL_REPEATED",
+              "name": "tast_gce_test_units",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.TastGceTestUnit"
             }
           ],
           "name": "GenerateTestPlanResponse",
@@ -26699,6 +26818,27 @@
             }
           ],
           "name": "TastVmTestUnit"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "common",
+              "label": "LABEL_OPTIONAL",
+              "name": "common",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.TestUnitCommon"
+            },
+            {
+              "jsonName": "tastGceTestCfg",
+              "label": "LABEL_OPTIONAL",
+              "name": "tast_gce_test_cfg",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.TastGceTestCfg"
+            }
+          ],
+          "name": "TastGceTestUnit"
         },
         {
           "field": [
