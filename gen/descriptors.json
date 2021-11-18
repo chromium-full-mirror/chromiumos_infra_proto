@@ -2715,6 +2715,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.PackageIndexInfo"
+            },
+            {
+              "jsonName": "remoteexecConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "remoteexec_config",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.RemoteexecConfig"
             }
           ],
           "name": "InstallPackagesRequest",
@@ -2748,23 +2756,21 @@
                   "name": "dryrun",
                   "number": 5,
                   "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "useRemoteexec",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "use_remoteexec",
-                  "number": 6,
-                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags",
               "reservedName": [
-                "event_file"
+                "event_file",
+                "use_remoteexec"
               ],
               "reservedRange": [
                 {
                   "end": 3,
                   "start": 2
+                },
+                {
+                  "end": 7,
+                  "start": 6
                 }
               ]
             }

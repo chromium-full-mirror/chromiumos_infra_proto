@@ -108,9 +108,14 @@ message InstallPackagesRequest {
     reserved 2;
     reserved "event_file";
 
+    // use_remoteexec was unnecessary after
+    // InstallPackagesRequest.remoteexec_config was added.
+    reserved 6;
+    reserved "use_remoteexec";
+
     // Compile from source (true), or use bin packages (false).
     bool compile_source = 1;
-    // Whether to start goma. Ignored if `use_remoteexec` is true.
+    // Whether to start goma. Ignored if remoteexec_config exists.
     bool use_goma = 3;
     // Whether a toolchain change has occurred.
     bool toolchain_changed = 4;
@@ -118,9 +123,6 @@ message InstallPackagesRequest {
     // been installed are calculated but not actually merged.
     // Added in R93
     bool dryrun = 5;
-    // Whether to use reclient and start reproxy for RBE remote execution.
-    // If this is true `use_goma` will be ignored.
-    bool use_remoteexec = 6;
   }
 
   // The sysroot into which the packages are being installed.
@@ -141,6 +143,8 @@ message InstallPackagesRequest {
   chromiumos.GomaConfig goma_config = 6;
   // Package index files available for use.
   repeated chromiumos.PackageIndexInfo package_indexes = 7;
+  // Remoteexec Config to hold info needed for remote execution.
+  chromiumos.RemoteexecConfig remoteexec_config = 8;
 }
 
 message InstallPackagesResponse {
