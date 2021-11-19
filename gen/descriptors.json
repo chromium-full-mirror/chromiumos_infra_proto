@@ -4327,6 +4327,13 @@
                   "name": "total",
                   "number": 3,
                   "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "trackOnGerrit",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "track_on_gerrit",
+                  "number": 4,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "FwSection"

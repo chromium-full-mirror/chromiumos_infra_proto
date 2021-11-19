@@ -46,6 +46,9 @@ message FwBuildMetric {
     // The total number of bytes available in this section. If this doesn't
     // apply the value will be zero.
     uint32 total = 3;
+
+    // If true, the metric will be tracked on gerrit with {region: used} info.
+    bool track_on_gerrit = 4;
   }
 
   // Version number components: "major.minor.tiny".
