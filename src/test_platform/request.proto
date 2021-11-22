@@ -10,7 +10,9 @@ import "chromite/api/test_metadata.proto";
 import "chromiumos/build/api/container_metadata.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
 import "test_platform/execution/param.proto";
+
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 
@@ -20,7 +22,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 15
+  // NEXT_TAG: 16
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -216,6 +218,12 @@ message Request {
     reserved 11;
     reserved "legacy";
     reserved 10;
+
+    // The criticality of the tests in this request as stated in
+    // target_test_requirements_config.
+    // This field is a BoolValue to match how criticality is defined in
+    // target_test_requirements_config.
+    google.protobuf.BoolValue critical = 15;
   }
 
   Params params = 1;

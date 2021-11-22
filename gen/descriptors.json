@@ -20290,6 +20290,7 @@
         "chromiumos/build/api/container_metadata.proto",
         "chromiumos/common.proto",
         "google/protobuf/duration.proto",
+        "google/protobuf/wrappers.proto",
         "test_platform/execution/param.proto"
       ],
       "messageType": [
@@ -20411,6 +20412,14 @@
                   "number": 13,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.execution.Param"
+                },
+                {
+                  "jsonName": "critical",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "critical",
+                  "number": 15,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.BoolValue"
                 }
               ],
               "name": "Params",
