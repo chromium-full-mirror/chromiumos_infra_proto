@@ -8587,6 +8587,14 @@
               "name": "numbers",
               "number": 15,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "remoteexecConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "remoteexec_config",
+              "number": 16,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.RemoteexecConfig"
             }
           ],
           "name": "TestRequestMessage"

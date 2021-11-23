@@ -50,6 +50,8 @@ message TestRequestMessage {
   repeated TestEnum test_enums = 13;
   int32 number = 14;
   repeated int32 numbers = 15;
+  // RemoteexecConfig message for testing remote execution values parsing.
+  chromiumos.RemoteexecConfig remoteexec_config = 16;
 }
 
 // Simple output message.
