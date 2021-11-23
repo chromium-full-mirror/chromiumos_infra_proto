@@ -10,7 +10,6 @@ import "chromite/api/test_metadata.proto";
 import "chromiumos/build/api/container_metadata.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
-import "google/protobuf/wrappers.proto";
 import "test_platform/execution/param.proto";
 
 
@@ -219,11 +218,20 @@ message Request {
     reserved "legacy";
     reserved 10;
 
-    // The criticality of the tests in this request as stated in
-    // target_test_requirements_config.
-    // This field is a BoolValue to match how criticality is defined in
-    // target_test_requirements_config.
-    google.protobuf.BoolValue critical = 15;
+    // TestExecutionBehavior specifies how tests should be run.
+    // This can include information about whether the tests should run and
+    // if failures should be exonerated.
+    enum TestExecutionBehavior {
+      BEHAVIOR_UNSPECIFIED = 0;
+      // The tests are critical and failures will block CQ.
+      CRITICAL = 1;
+      // The tests are not critical and failures will not block CQ.
+      NON_CRITICAL = 2;
+    }
+
+    // The behavior of the tests run in this request. It currently reflects the
+    // test unit's criticality as specified by target_test_requirements_config.
+    TestExecutionBehavior test_execution_behavior = 15;
   }
 
   Params params = 1;

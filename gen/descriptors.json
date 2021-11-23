@@ -20298,7 +20298,6 @@
         "chromiumos/build/api/container_metadata.proto",
         "chromiumos/common.proto",
         "google/protobuf/duration.proto",
-        "google/protobuf/wrappers.proto",
         "test_platform/execution/param.proto"
       ],
       "messageType": [
@@ -20324,6 +20323,25 @@
           "name": "Request",
           "nestedType": [
             {
+              "enumType": [
+                {
+                  "name": "TestExecutionBehavior",
+                  "value": [
+                    {
+                      "name": "BEHAVIOR_UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "CRITICAL",
+                      "number": 1
+                    },
+                    {
+                      "name": "NON_CRITICAL",
+                      "number": 2
+                    }
+                  ]
+                }
+              ],
               "field": [
                 {
                   "jsonName": "hardwareAttributes",
@@ -20422,12 +20440,12 @@
                   "typeName": ".test_platform.execution.Param"
                 },
                 {
-                  "jsonName": "critical",
+                  "jsonName": "testExecutionBehavior",
                   "label": "LABEL_OPTIONAL",
-                  "name": "critical",
+                  "name": "test_execution_behavior",
                   "number": 15,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".google.protobuf.BoolValue"
+                  "type": "TYPE_ENUM",
+                  "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
                 }
               ],
               "name": "Params",
