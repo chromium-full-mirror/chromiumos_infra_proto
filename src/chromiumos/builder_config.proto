@@ -185,6 +185,12 @@ message BuilderConfig {
       bool await_completion = 2;
     }
     FollowOnOrchestrator follow_on_orchestrator = 4;
+
+    // If require_stable_devices is true, the tests are scheduled to run on
+    // devices with label-device-stable: True. The label-device-stable
+    // dimension is typically used to filter out devices that have known
+    // unstable hardware, e.g. devices early in development.
+    bool require_stable_devices = 6;
   }
   Orchestrator orchestrator = 3;
 

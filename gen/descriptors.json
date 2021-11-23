@@ -9790,6 +9790,13 @@
                   "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuilderConfig.Orchestrator.FollowOnOrchestrator"
+                },
+                {
+                  "jsonName": "requireStableDevices",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "require_stable_devices",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Orchestrator",
@@ -20482,6 +20489,13 @@
                       "name": "model",
                       "number": 1,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "requireStableDevice",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "require_stable_device",
+                      "number": 2,
+                      "type": "TYPE_BOOL"
                     }
                   ],
                   "name": "HardwareAttributes"

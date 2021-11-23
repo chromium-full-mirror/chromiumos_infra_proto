@@ -28,6 +28,12 @@ message Request {
     message HardwareAttributes {
       // Model is the model to run tests against.
       string model = 1;
+
+      // If require_stable_device is true, the tests are scheduled to run on a
+      // device with label-device-stable: True. The label-device-stable
+      // dimension is typically used to filter out devices that have known
+      // unstable hardware, e.g. devices early in development.
+      bool require_stable_device = 2;
     }
 
     HardwareAttributes hardware_attributes = 1;
