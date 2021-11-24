@@ -30,6 +30,9 @@ type AndroidServiceClient interface {
 	MarkStable(ctx context.Context, in *MarkStableRequest, opts ...grpc.CallOption) (*MarkStableResponse, error)
 	// Unpin the Android package version.  Added in R76.
 	UnpinVersion(ctx context.Context, in *UnpinVersionRequest, opts ...grpc.CallOption) (*UnpinVersionResponse, error)
+	// Marks the Last Known Good Build for the given Android package/version.
+	// Added in R99.
+	WriteLKGB(ctx context.Context, in *WriteLKGBRequest, opts ...grpc.CallOption) (*WriteLKGBResponse, error)
 }
 
 type androidServiceClient struct {
@@ -67,6 +70,15 @@ func (c *androidServiceClient) UnpinVersion(ctx context.Context, in *UnpinVersio
 	return out, nil
 }
 
+func (c *androidServiceClient) WriteLKGB(ctx context.Context, in *WriteLKGBRequest, opts ...grpc.CallOption) (*WriteLKGBResponse, error) {
+	out := new(WriteLKGBResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.AndroidService/WriteLKGB", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AndroidServiceServer is the server API for AndroidService service.
 // All implementations must embed UnimplementedAndroidServiceServer
 // for forward compatibility
@@ -79,6 +91,9 @@ type AndroidServiceServer interface {
 	MarkStable(context.Context, *MarkStableRequest) (*MarkStableResponse, error)
 	// Unpin the Android package version.  Added in R76.
 	UnpinVersion(context.Context, *UnpinVersionRequest) (*UnpinVersionResponse, error)
+	// Marks the Last Known Good Build for the given Android package/version.
+	// Added in R99.
+	WriteLKGB(context.Context, *WriteLKGBRequest) (*WriteLKGBResponse, error)
 	mustEmbedUnimplementedAndroidServiceServer()
 }
 
@@ -94,6 +109,9 @@ func (UnimplementedAndroidServiceServer) MarkStable(context.Context, *MarkStable
 }
 func (UnimplementedAndroidServiceServer) UnpinVersion(context.Context, *UnpinVersionRequest) (*UnpinVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnpinVersion not implemented")
+}
+func (UnimplementedAndroidServiceServer) WriteLKGB(context.Context, *WriteLKGBRequest) (*WriteLKGBResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WriteLKGB not implemented")
 }
 func (UnimplementedAndroidServiceServer) mustEmbedUnimplementedAndroidServiceServer() {}
 
@@ -162,6 +180,24 @@ func _AndroidService_UnpinVersion_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AndroidService_WriteLKGB_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WriteLKGBRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AndroidServiceServer).WriteLKGB(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.AndroidService/WriteLKGB",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AndroidServiceServer).WriteLKGB(ctx, req.(*WriteLKGBRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AndroidService_ServiceDesc is the grpc.ServiceDesc for AndroidService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +216,10 @@ var AndroidService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnpinVersion",
 			Handler:    _AndroidService_UnpinVersion_Handler,
+		},
+		{
+			MethodName: "WriteLKGB",
+			Handler:    _AndroidService_WriteLKGB_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

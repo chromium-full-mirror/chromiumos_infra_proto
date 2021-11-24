@@ -8090,6 +8090,37 @@
         },
         {
           "name": "UnpinVersionResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "androidPackage",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_package",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "androidVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "WriteLKGBRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "modifiedFiles",
+              "label": "LABEL_REPEATED",
+              "name": "modified_files",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "WriteLKGBResponse"
         }
       ],
       "name": "chromite/api/android.proto",
@@ -8129,6 +8160,16 @@
                 }
               },
               "outputType": ".chromite.api.UnpinVersionResponse"
+            },
+            {
+              "inputType": ".chromite.api.WriteLKGBRequest",
+              "name": "WriteLKGB",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.WriteLKGBResponse"
             }
           ],
           "name": "AndroidService",

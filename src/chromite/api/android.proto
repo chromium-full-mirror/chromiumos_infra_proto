@@ -77,6 +77,20 @@ message UnpinVersionRequest {
 message UnpinVersionResponse {
 }
 
+// Added in R99.
+message WriteLKGBRequest {
+  // The Android package to mark LKGB.
+  string android_package = 1;
+  // The LKGB Android version.
+  string android_version = 2;
+}
+
+// Added in R99.
+message WriteLKGBResponse {
+  // Files modified in a successful request.
+  repeated string modified_files = 1;
+}
+
 // Service for Android/ARC related functionality.
 service AndroidService {
   option (service_options) = {
@@ -109,6 +123,15 @@ service AndroidService {
     returns (UnpinVersionResponse) {
     option (method_options) = {
       method_chroot_assert: INSIDE;
+    };
+  }
+
+  // Marks the Last Known Good Build for the given Android package/version.
+  // Added in R99.
+  rpc WriteLKGB(WriteLKGBRequest)
+    returns (WriteLKGBResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE;
     };
   }
 }
