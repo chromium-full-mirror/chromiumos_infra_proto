@@ -21287,6 +21287,14 @@
               },
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.build.api.ContainerImageInfo"
+            },
+            {
+              "jsonName": "defaultTestExecutionBehavior",
+              "label": "LABEL_OPTIONAL",
+              "name": "default_test_execution_behavior",
+              "number": 9,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
             }
           ],
           "name": "Request",

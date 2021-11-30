@@ -114,4 +114,9 @@ message Request {
   //
   // The container will be pulled if needed.
   chromiumos.build.api.ContainerImageInfo container_image_info = 8 [deprecated=true];
+
+  // TestExecutionBehavior specifies how tests should be run.
+  // This can include information about whether the tests should run and
+  // if failures should be exonerated.
+  test_platform.Request.Params.TestExecutionBehavior default_test_execution_behavior = 9;
 }
