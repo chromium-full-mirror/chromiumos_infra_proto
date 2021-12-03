@@ -16718,6 +16718,18 @@
             {
               "name": "SERVOD_DUT_CONTROLLER_MISSING",
               "number": 22
+            },
+            {
+              "name": "COLD_RESET_PIN_ISSUE",
+              "number": 23
+            },
+            {
+              "name": "WARM_RESET_PIN_ISSUE",
+              "number": 24
+            },
+            {
+              "name": "POWER_BUTTON_PIN_ISSUE",
+              "number": 25
             }
           ]
         },
