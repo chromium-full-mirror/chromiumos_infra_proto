@@ -12000,6 +12000,10 @@
                       "number": 3
                     },
                     {
+                      "name": "PAYLOAD_TYPES",
+                      "number": 4
+                    },
+                    {
                       "name": "RELEASE_IMAGE",
                       "number": 100
                     },
@@ -12050,6 +12054,14 @@
                     {
                       "name": "AFDO_CHROME",
                       "number": 303
+                    },
+                    {
+                      "name": "PAYLOAD_FULL",
+                      "number": 400
+                    },
+                    {
+                      "name": "PAYLOAD_DELTA",
+                      "number": 401
                     }
                   ]
                 }

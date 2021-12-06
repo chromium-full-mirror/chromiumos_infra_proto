@@ -134,6 +134,7 @@ message BuildReportBeta {
             IMAGE_TYPES           = 1;
             FIRMWARE_TYPES        = 2;
             AFDO_TYPES            = 3;
+            PAYLOAD_TYPES         = 4;
 
             // Image types
             RELEASE_IMAGE         = 100;
@@ -153,6 +154,10 @@ message BuildReportBeta {
             AFDO_BENCHMARK        = 301;
             AFDO_KERNEL           = 302;
             AFDO_CHROME           = 303;
+
+            // Payload types
+            PAYLOAD_FULL          = 400;
+            PAYLOAD_DELTA         = 401;
         }
 
         message URI {
