@@ -62,6 +62,11 @@ message HwTestCfg {
     // The licenses required for the DUT the test will run on.
     repeated lab.LicenseType licenses = 16;
 
+    // If true, then run test via containerized autoserv binary rather than
+    // autoserv on the drone.  This allows opt-in to the containerized execution
+    // path.
+    bool run_via_container = 17;
+
     reserved 2 to 10;
   }
 

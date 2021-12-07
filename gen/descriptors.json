@@ -26278,6 +26278,13 @@
                   "number": 16,
                   "type": "TYPE_ENUM",
                   "typeName": ".lab.LicenseType"
+                },
+                {
+                  "jsonName": "runViaContainer",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_container",
+                  "number": 17,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "HwTest",
