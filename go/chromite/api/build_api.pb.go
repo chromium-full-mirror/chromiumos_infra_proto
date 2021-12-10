@@ -85,7 +85,10 @@ func (ChrootAssertion) EnumDescriptor() ([]byte, []int) {
 
 // Allows setting services or endpoints to invisible in the methods listing.
 // Services/endpoints that are hidden can still be called, they just won't
-// appear in MethodService/Get.
+// appear in MethodService/Get. This can be convenient for endpoints in
+// development, allowing them to be committed in progress then enabled when
+// completed, i.e. making them still invisible on branches that may have been
+// cut during that time.
 type ListVisibility int32
 
 const (
@@ -225,7 +228,7 @@ type BuildApiMethodOptions struct {
 	// Assert the method is run inside/outside the chroot when specified,
 	// overriding the service config when set.
 	MethodChrootAssert *ChrootAssertion `protobuf:"varint,2,opt,name=method_chroot_assert,json=methodChrootAssert,enum=ChrootAssertion" json:"method_chroot_assert,omitempty"`
-	// Set to LV_INVISIBLE to hide the entire service from the methods listing.
+	// Set to LV_INVISIBLE to hide the method from the methods listing.
 	MethodVisibility *ListVisibility `protobuf:"varint,3,opt,name=method_visibility,json=methodVisibility,enum=ListVisibility" json:"method_visibility,omitempty"`
 }
 

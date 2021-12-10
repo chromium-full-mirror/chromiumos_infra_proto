@@ -16,7 +16,10 @@ enum ChrootAssertion {
 
 // Allows setting services or endpoints to invisible in the methods listing.
 // Services/endpoints that are hidden can still be called, they just won't
-// appear in MethodService/Get.
+// appear in MethodService/Get. This can be convenient for endpoints in
+// development, allowing them to be committed in progress then enabled when
+// completed, i.e. making them still invisible on branches that may have been
+// cut during that time.
 enum ListVisibility {
   LV_NOT_SPECIFIED = 0;
   LV_VISIBLE = 1;
@@ -42,7 +45,7 @@ message BuildApiMethodOptions {
   // Assert the method is run inside/outside the chroot when specified,
   // overriding the service config when set.
   optional ChrootAssertion method_chroot_assert = 2;
-  // Set to LV_INVISIBLE to hide the entire service from the methods listing.
+  // Set to LV_INVISIBLE to hide the method from the methods listing.
   optional ListVisibility method_visibility = 3;
 }
 
