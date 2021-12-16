@@ -22,16 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ToolchainServiceClient interface {
-	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.  R87 is the last release branch that supports the
-	// legacy toolchain builders.
-	// Update Chrome ebuild with most recent unvetted orderfile.  Added in R78.
-	UpdateEbuildWithAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
-	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.  R87 is the last release branch that supports the
-	// legacy toolchain builders.
-	// Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
-	UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error)
 	// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
@@ -61,24 +51,6 @@ type toolchainServiceClient struct {
 
 func NewToolchainServiceClient(cc grpc.ClientConnInterface) ToolchainServiceClient {
 	return &toolchainServiceClient{cc}
-}
-
-func (c *toolchainServiceClient) UpdateEbuildWithAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error) {
-	out := new(VerifyAFDOArtifactsResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/UpdateEbuildWithAFDOArtifacts", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *toolchainServiceClient) UploadVettedAFDOArtifacts(ctx context.Context, in *VerifyAFDOArtifactsRequest, opts ...grpc.CallOption) (*VerifyAFDOArtifactsResponse, error) {
-	out := new(VerifyAFDOArtifactsResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/UploadVettedAFDOArtifacts", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *toolchainServiceClient) PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error) {
@@ -130,16 +102,6 @@ func (c *toolchainServiceClient) GetClippyLints(ctx context.Context, in *LinterR
 // All implementations must embed UnimplementedToolchainServiceServer
 // for forward compatibility
 type ToolchainServiceServer interface {
-	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.  R87 is the last release branch that supports the
-	// legacy toolchain builders.
-	// Update Chrome ebuild with most recent unvetted orderfile.  Added in R78.
-	UpdateEbuildWithAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
-	// DEPRECATED for recipes: used only by legacy toolchain builders.
-	// See also crbug/1019868.  R87 is the last release branch that supports the
-	// legacy toolchain builders.
-	// Copy the orderfile from unvetted GS bucket to vetted bucket.  Added in R78.
-	UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error)
 	// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
@@ -168,12 +130,6 @@ type ToolchainServiceServer interface {
 type UnimplementedToolchainServiceServer struct {
 }
 
-func (UnimplementedToolchainServiceServer) UpdateEbuildWithAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateEbuildWithAFDOArtifacts not implemented")
-}
-func (UnimplementedToolchainServiceServer) UploadVettedAFDOArtifacts(context.Context, *VerifyAFDOArtifactsRequest) (*VerifyAFDOArtifactsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UploadVettedAFDOArtifacts not implemented")
-}
 func (UnimplementedToolchainServiceServer) PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PrepareForBuild not implemented")
 }
@@ -200,42 +156,6 @@ type UnsafeToolchainServiceServer interface {
 
 func RegisterToolchainServiceServer(s grpc.ServiceRegistrar, srv ToolchainServiceServer) {
 	s.RegisterService(&ToolchainService_ServiceDesc, srv)
-}
-
-func _ToolchainService_UpdateEbuildWithAFDOArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyAFDOArtifactsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ToolchainServiceServer).UpdateEbuildWithAFDOArtifacts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ToolchainService/UpdateEbuildWithAFDOArtifacts",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ToolchainServiceServer).UpdateEbuildWithAFDOArtifacts(ctx, req.(*VerifyAFDOArtifactsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ToolchainService_UploadVettedAFDOArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyAFDOArtifactsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ToolchainServiceServer).UploadVettedAFDOArtifacts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ToolchainService/UploadVettedAFDOArtifacts",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ToolchainServiceServer).UploadVettedAFDOArtifacts(ctx, req.(*VerifyAFDOArtifactsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _ToolchainService_PrepareForBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -335,14 +255,6 @@ var ToolchainService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "chromite.api.ToolchainService",
 	HandlerType: (*ToolchainServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "UpdateEbuildWithAFDOArtifacts",
-			Handler:    _ToolchainService_UpdateEbuildWithAFDOArtifacts_Handler,
-		},
-		{
-			MethodName: "UploadVettedAFDOArtifacts",
-			Handler:    _ToolchainService_UploadVettedAFDOArtifacts_Handler,
-		},
 		{
 			MethodName: "PrepareForBuild",
 			Handler:    _ToolchainService_PrepareForBuild_Handler,

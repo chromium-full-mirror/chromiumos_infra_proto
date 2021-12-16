@@ -305,31 +305,6 @@
               "number": 4
             }
           ]
-        },
-        {
-          "name": "AFDOArtifactType",
-          "value": [
-            {
-              "name": "NONE_TYPE",
-              "number": 0
-            },
-            {
-              "name": "ORDERFILE",
-              "number": 1
-            },
-            {
-              "name": "BENCHMARK_AFDO",
-              "number": 2
-            },
-            {
-              "name": "KERNEL_AFDO",
-              "number": 3
-            },
-            {
-              "name": "CHROME_AFDO",
-              "number": 4
-            }
-          ]
         }
       ],
       "messageType": [
@@ -3296,42 +3271,6 @@
               "typeName": ".chromiumos.Chroot"
             },
             {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.BuildTarget"
-            },
-            {
-              "jsonName": "outputDir",
-              "label": "LABEL_OPTIONAL",
-              "name": "output_dir",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "artifactType",
-              "label": "LABEL_OPTIONAL",
-              "name": "artifact_type",
-              "number": 4,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.AFDOArtifactType"
-            }
-          ],
-          "name": "BundleChromeAFDORequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
               "jsonName": "sysroot",
               "label": "LABEL_OPTIONAL",
               "name": "sysroot",
@@ -3472,11 +3411,6 @@
             {
               "inputType": ".chromite.api.BundleRequest",
               "name": "BundleImageZip",
-              "outputType": ".chromite.api.BundleResponse"
-            },
-            {
-              "inputType": ".chromite.api.BundleChromeAFDORequest",
-              "name": "BundleAFDOGenerationArtifacts",
               "outputType": ".chromite.api.BundleResponse"
             },
             {
@@ -10546,33 +10480,6 @@
         "chromiumos/builder_config.proto",
         "chromiumos/common.proto"
       ],
-      "enumType": [
-        {
-          "name": "AFDOArtifactType",
-          "value": [
-            {
-              "name": "NONE_TYPE",
-              "number": 0
-            },
-            {
-              "name": "ORDERFILE",
-              "number": 1
-            },
-            {
-              "name": "BENCHMARK_AFDO",
-              "number": 2
-            },
-            {
-              "name": "KERNEL_AFDO",
-              "number": 3
-            },
-            {
-              "name": "CHROME_AFDO",
-              "number": 4
-            }
-          ]
-        }
-      ],
       "messageType": [
         {
           "field": [
@@ -10864,39 +10771,6 @@
           ]
         },
         {
-          "field": [
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.BuildTarget"
-            },
-            {
-              "jsonName": "artifactType",
-              "label": "LABEL_OPTIONAL",
-              "name": "artifact_type",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.AFDOArtifactType"
-            }
-          ],
-          "name": "VerifyAFDOArtifactsRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "status",
-              "label": "LABEL_OPTIONAL",
-              "name": "status",
-              "number": 1,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "VerifyAFDOArtifactsResponse"
-        },
-        {
           "enumType": [
             {
               "name": "Linters",
@@ -11020,26 +10894,6 @@
       "service": [
         {
           "method": [
-            {
-              "inputType": ".chromite.api.VerifyAFDOArtifactsRequest",
-              "name": "UpdateEbuildWithAFDOArtifacts",
-              "options": {
-                "[method_options]": {
-                  "methodChrootAssert": "INSIDE"
-                }
-              },
-              "outputType": ".chromite.api.VerifyAFDOArtifactsResponse"
-            },
-            {
-              "inputType": ".chromite.api.VerifyAFDOArtifactsRequest",
-              "name": "UploadVettedAFDOArtifacts",
-              "options": {
-                "[method_options]": {
-                  "methodChrootAssert": "INSIDE"
-                }
-              },
-              "outputType": ".chromite.api.VerifyAFDOArtifactsResponse"
-            },
             {
               "inputType": ".chromite.api.PrepareForToolchainBuildRequest",
               "name": "PrepareForBuild",

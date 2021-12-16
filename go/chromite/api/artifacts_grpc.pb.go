@@ -53,11 +53,6 @@ type ArtifactsServiceClient interface {
 	// Generate zip containing all built images for the target.
 	BundleImageZip(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
-	// ToolchainService.Bundle{ArtifactType}()
-	// Create Chrome Benchmark AFDO builder artifacts.  Added in R78.
-	BundleAFDOGenerationArtifacts(ctx context.Context, in *BundleChromeAFDORequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all guest images test bundles.
 	BundlePinnedGuestImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
@@ -192,15 +187,6 @@ func (c *artifactsServiceClient) BundleImageZip(ctx context.Context, in *BundleR
 	return out, nil
 }
 
-func (c *artifactsServiceClient) BundleAFDOGenerationArtifacts(ctx context.Context, in *BundleChromeAFDORequest, opts ...grpc.CallOption) (*BundleResponse, error) {
-	out := new(BundleResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleAFDOGenerationArtifacts", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactsServiceClient) BundlePinnedGuestImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
 	out := new(BundleResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundlePinnedGuestImages", in, out, opts...)
@@ -308,11 +294,6 @@ type ArtifactsServiceServer interface {
 	// Generate zip containing all built images for the target.
 	BundleImageZip(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
-	// DEPRECATED for recipes: crbug/1019868: This are being replaced by
-	// ToolchainService.Bundle{ArtifactType}()
-	// Create Chrome Benchmark AFDO builder artifacts.  Added in R78.
-	BundleAFDOGenerationArtifacts(context.Context, *BundleChromeAFDORequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
 	// Create a tar archive with all guest images test bundles.
 	BundlePinnedGuestImages(context.Context, *BundleRequest) (*BundleResponse, error)
 	// TODO(crbug/1034529): DEPRECATED use Get
@@ -377,9 +358,6 @@ func (UnimplementedArtifactsServiceServer) BundleImageArchives(context.Context, 
 }
 func (UnimplementedArtifactsServiceServer) BundleImageZip(context.Context, *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleImageZip not implemented")
-}
-func (UnimplementedArtifactsServiceServer) BundleAFDOGenerationArtifacts(context.Context, *BundleChromeAFDORequest) (*BundleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BundleAFDOGenerationArtifacts not implemented")
 }
 func (UnimplementedArtifactsServiceServer) BundlePinnedGuestImages(context.Context, *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundlePinnedGuestImages not implemented")
@@ -616,24 +594,6 @@ func _ArtifactsService_BundleImageZip_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactsService_BundleAFDOGenerationArtifacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BundleChromeAFDORequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServiceServer).BundleAFDOGenerationArtifacts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ArtifactsService/BundleAFDOGenerationArtifacts",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServiceServer).BundleAFDOGenerationArtifacts(ctx, req.(*BundleChromeAFDORequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactsService_BundlePinnedGuestImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BundleRequest)
 	if err := dec(in); err != nil {
@@ -828,10 +788,6 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BundleImageZip",
 			Handler:    _ArtifactsService_BundleImageZip_Handler,
-		},
-		{
-			MethodName: "BundleAFDOGenerationArtifacts",
-			Handler:    _ArtifactsService_BundleAFDOGenerationArtifacts_Handler,
 		},
 		{
 			MethodName: "BundlePinnedGuestImages",
