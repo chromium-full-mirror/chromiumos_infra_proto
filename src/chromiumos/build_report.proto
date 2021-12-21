@@ -31,7 +31,7 @@ message BuildId {
     }
 }
 
-// Deprecated. Use BuildReport.
+// TODO(b/211660261) deprecate and add BuildReport without "Beta".
 // next: 11
 message BuildReportBeta {
     // Id serves as the primary key for the metadata and will be constant even
@@ -87,7 +87,21 @@ message BuildReportBeta {
     message BuildConfig {
         // Board model information.
         message Model {
-            string name = 1;
+            enum ModelVersionKind {
+                MODEL_VERSION_KIND_UNDEFINED = 0; // do not use.
+                MODEL_VERSION_KIND_EC_FIRMWARE = 1; // EC firmware version (e.g. coral_v1.1.7292-04956f5df).
+                MODEL_VERSION_KIND_MAIN_READONLY_FIRMWARE = 2; // Main read-only firmware version (e.g. Google_Coral.10068.82.0).
+                MODEL_VERSION_KIND_MAIN_READWRITE_FIRMWARE = 3; // Main read-write firmware version (e.g. Google_Coral.10068.82.0).
+            }
+
+            message ModelVersion {
+                ModelVersionKind kind = 1; // eg: MODEL_VERSION_KIND_EC_FIRMWARE.
+                string value = 2; // eg: coral_v1.1.7292-04956f5df.
+            }
+
+            string name = 1; // Name of model (e.g. astronaut).
+            string firmware_key_id = 2; // Firmware key id (e.g. CORALG).
+            repeated ModelVersion versions = 3; // Embedded versions.
         }
 
         message Release {
@@ -95,7 +109,7 @@ message BuildReportBeta {
             repeated chromiumos.Channel channels = 1;
         }
 
-        // Information about the branch we're building on
+        // Information about the branch we're building on.
         message Branch {
             string name = 1; // eg: release-R90-13816.B
         }
@@ -107,6 +121,11 @@ message BuildReportBeta {
             VERSION_KIND_ARC = 3; // Android Runtime Container.
             VERSION_KIND_PLATFORM = 4; // The platform version (e.g. 13816.0.0).
             VERSION_KIND_MILESTONE = 5; // The milestone versions (e.g. 96).
+            VERSION_KIND_ANDROID_CONTAINER = 6; // The android container version (e.g. 6387315).
+            VERSION_KIND_EC_CONTAINER = 7; // The EC version.
+            VERSION_KIND_FINGERPRINT = 8; // The build fingerprint.
+            VERSION_KIND_KERNEL = 9; // The kernel version (e.g. 4.14.176-r1088).
+            VERSION_KIND_MAIN_FIRMWARE = 10; // The main firmware version (e.g. Google_Auron_paine.6301.58.98).
         }
 
         message Version {
@@ -114,13 +133,22 @@ message BuildReportBeta {
             string value = 2; // eg: 98.0.4697.0.
         }
 
-        Branch  branch  = 1; // Optional branch information (not present for tip-of-tree).
-        Release release = 2; // Optional information for release builds.
-        repeated Version versions = 3; // Optional embedded versions (e.g. chrome, arc).
+        // Information about the build target.
+        message Target {
+            string name = 1;
+        }
+
+        Branch branch  = 1; // Optional branch information (not present for tip-of-tree).
+        Branch android_container_branch  = 2; // Optional android container branch information.
+        Target target = 3; // Name of build_target (e.g. coral).
+        Target android_container_target = 4; // Name of android container target (e.g. cheets).
+        Release release = 5; // Optional information for release builds.
+        repeated Version versions = 6; // Optional embedded versions (e.g. chrome, arc).
+        bool arc_use_set = 7; // Whether or not arc-use is enabled.
 
         // List of board models covered by this build ie: expanded list of
         // unibuild models at the time the build ran, may be empty.
-        repeated Model models = 4;
+        repeated Model models = 8;
     }
 
     // Artifacts produced by the build.
