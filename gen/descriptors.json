@@ -12191,6 +12191,19 @@
               "name": "id"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildReports",
+              "label": "LABEL_REPEATED",
+              "name": "build_reports",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildReportBeta"
+            }
+          ],
+          "name": "BuildReportList"
         }
       ],
       "name": "chromiumos/build_report.proto",

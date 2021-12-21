@@ -584,6 +584,7 @@ type BuildId_BuildbucketId struct {
 
 func (*BuildId_BuildbucketId) isBuildId_Id() {}
 
+// Deprecated. Use BuildReport.
 // next: 11
 type BuildReportBeta struct {
 	state         protoimpl.MessageState
@@ -720,6 +721,53 @@ type BuildReportBeta_BuildbucketId struct {
 
 func (*BuildReportBeta_BuildbucketId) isBuildReportBeta_Id() {}
 
+type BuildReportList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BuildReports []*BuildReportBeta `protobuf:"bytes,1,rep,name=build_reports,json=buildReports,proto3" json:"build_reports,omitempty"`
+}
+
+func (x *BuildReportList) Reset() {
+	*x = BuildReportList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromiumos_build_report_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BuildReportList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuildReportList) ProtoMessage() {}
+
+func (x *BuildReportList) ProtoReflect() protoreflect.Message {
+	mi := &file_chromiumos_build_report_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BuildReportList.ProtoReflect.Descriptor instead.
+func (*BuildReportList) Descriptor() ([]byte, []int) {
+	return file_chromiumos_build_report_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *BuildReportList) GetBuildReports() []*BuildReportBeta {
+	if x != nil {
+		return x.BuildReports
+	}
+	return nil
+}
+
 type BuildReportBeta_BuildStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -731,7 +779,7 @@ type BuildReportBeta_BuildStatus struct {
 func (x *BuildReportBeta_BuildStatus) Reset() {
 	*x = BuildReportBeta_BuildStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[3]
+		mi := &file_chromiumos_build_report_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -744,7 +792,7 @@ func (x *BuildReportBeta_BuildStatus) String() string {
 func (*BuildReportBeta_BuildStatus) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[3]
+	mi := &file_chromiumos_build_report_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -784,7 +832,7 @@ type BuildReportBeta_BuildConfig struct {
 func (x *BuildReportBeta_BuildConfig) Reset() {
 	*x = BuildReportBeta_BuildConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[4]
+		mi := &file_chromiumos_build_report_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -797,7 +845,7 @@ func (x *BuildReportBeta_BuildConfig) String() string {
 func (*BuildReportBeta_BuildConfig) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[4]
+	mi := &file_chromiumos_build_report_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -860,7 +908,7 @@ type BuildReportBeta_BuildArtifact struct {
 func (x *BuildReportBeta_BuildArtifact) Reset() {
 	*x = BuildReportBeta_BuildArtifact{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[5]
+		mi := &file_chromiumos_build_report_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -873,7 +921,7 @@ func (x *BuildReportBeta_BuildArtifact) String() string {
 func (*BuildReportBeta_BuildArtifact) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildArtifact) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[5]
+	mi := &file_chromiumos_build_report_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -934,7 +982,7 @@ type BuildReportBeta_StepDetails struct {
 func (x *BuildReportBeta_StepDetails) Reset() {
 	*x = BuildReportBeta_StepDetails{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[6]
+		mi := &file_chromiumos_build_report_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -947,7 +995,7 @@ func (x *BuildReportBeta_StepDetails) String() string {
 func (*BuildReportBeta_StepDetails) ProtoMessage() {}
 
 func (x *BuildReportBeta_StepDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[6]
+	mi := &file_chromiumos_build_report_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -989,7 +1037,7 @@ type BuildReportBeta_BuildConfig_Model struct {
 func (x *BuildReportBeta_BuildConfig_Model) Reset() {
 	*x = BuildReportBeta_BuildConfig_Model{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[7]
+		mi := &file_chromiumos_build_report_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1002,7 +1050,7 @@ func (x *BuildReportBeta_BuildConfig_Model) String() string {
 func (*BuildReportBeta_BuildConfig_Model) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildConfig_Model) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[7]
+	mi := &file_chromiumos_build_report_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1037,7 +1085,7 @@ type BuildReportBeta_BuildConfig_Release struct {
 func (x *BuildReportBeta_BuildConfig_Release) Reset() {
 	*x = BuildReportBeta_BuildConfig_Release{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[8]
+		mi := &file_chromiumos_build_report_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1050,7 +1098,7 @@ func (x *BuildReportBeta_BuildConfig_Release) String() string {
 func (*BuildReportBeta_BuildConfig_Release) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildConfig_Release) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[8]
+	mi := &file_chromiumos_build_report_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1085,7 +1133,7 @@ type BuildReportBeta_BuildConfig_Branch struct {
 func (x *BuildReportBeta_BuildConfig_Branch) Reset() {
 	*x = BuildReportBeta_BuildConfig_Branch{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[9]
+		mi := &file_chromiumos_build_report_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1098,7 +1146,7 @@ func (x *BuildReportBeta_BuildConfig_Branch) String() string {
 func (*BuildReportBeta_BuildConfig_Branch) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildConfig_Branch) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[9]
+	mi := &file_chromiumos_build_report_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1133,7 +1181,7 @@ type BuildReportBeta_BuildConfig_Version struct {
 func (x *BuildReportBeta_BuildConfig_Version) Reset() {
 	*x = BuildReportBeta_BuildConfig_Version{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[10]
+		mi := &file_chromiumos_build_report_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1146,7 +1194,7 @@ func (x *BuildReportBeta_BuildConfig_Version) String() string {
 func (*BuildReportBeta_BuildConfig_Version) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildConfig_Version) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[10]
+	mi := &file_chromiumos_build_report_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1189,7 +1237,7 @@ type BuildReportBeta_BuildArtifact_URI struct {
 func (x *BuildReportBeta_BuildArtifact_URI) Reset() {
 	*x = BuildReportBeta_BuildArtifact_URI{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[11]
+		mi := &file_chromiumos_build_report_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1202,7 +1250,7 @@ func (x *BuildReportBeta_BuildArtifact_URI) String() string {
 func (*BuildReportBeta_BuildArtifact_URI) ProtoMessage() {}
 
 func (x *BuildReportBeta_BuildArtifact_URI) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[11]
+	mi := &file_chromiumos_build_report_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1257,7 +1305,7 @@ type BuildReportBeta_StepDetails_StepInfo struct {
 func (x *BuildReportBeta_StepDetails_StepInfo) Reset() {
 	*x = BuildReportBeta_StepDetails_StepInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_build_report_proto_msgTypes[12]
+		mi := &file_chromiumos_build_report_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1270,7 +1318,7 @@ func (x *BuildReportBeta_StepDetails_StepInfo) String() string {
 func (*BuildReportBeta_StepDetails_StepInfo) ProtoMessage() {}
 
 func (x *BuildReportBeta_StepDetails_StepInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_build_report_proto_msgTypes[12]
+	mi := &file_chromiumos_build_report_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1519,13 +1567,19 @@ var file_chromiumos_build_report_proto_rawDesc = []byte{
 	0x10, 0x01, 0x12, 0x17, 0x0a, 0x13, 0x42, 0x55, 0x49, 0x4c, 0x44, 0x5f, 0x54, 0x59, 0x50, 0x45,
 	0x5f, 0x46, 0x49, 0x52, 0x4d, 0x57, 0x41, 0x52, 0x45, 0x10, 0x02, 0x12, 0x16, 0x0a, 0x12, 0x42,
 	0x55, 0x49, 0x4c, 0x44, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x46, 0x41, 0x43, 0x54, 0x4f, 0x52,
-	0x59, 0x10, 0x03, 0x42, 0x04, 0x0a, 0x02, 0x69, 0x64, 0x42, 0x59, 0x0a, 0x21, 0x63, 0x6f, 0x6d,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x65, 0x2e, 0x63,
-	0x72, 0x6f, 0x73, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x34,
-	0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f,
-	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61,
-	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
-	0x75, 0x6d, 0x6f, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x59, 0x10, 0x03, 0x42, 0x04, 0x0a, 0x02, 0x69, 0x64, 0x22, 0x53, 0x0a, 0x0f, 0x42, 0x75, 0x69,
+	0x6c, 0x64, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x40, 0x0a, 0x0d,
+	0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73,
+	0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x42, 0x65, 0x74, 0x61,
+	0x52, 0x0c, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x42, 0x59,
+	0x0a, 0x21, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x63, 0x68, 0x72,
+	0x6f, 0x6d, 0x65, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x5a, 0x34, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
+	0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f,
+	0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x63,
+	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -1541,7 +1595,7 @@ func file_chromiumos_build_report_proto_rawDescGZIP() []byte {
 }
 
 var file_chromiumos_build_report_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_chromiumos_build_report_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_chromiumos_build_report_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_chromiumos_build_report_proto_goTypes = []interface{}{
 	(BuildReportBeta_BuildType)(0),               // 0: chromiumos.BuildReportBeta.BuildType
 	(BuildReportBeta_BuildStatus_Status)(0),      // 1: chromiumos.BuildReportBeta.BuildStatus.Status
@@ -1552,50 +1606,52 @@ var file_chromiumos_build_report_proto_goTypes = []interface{}{
 	(*Timeframe)(nil),                            // 6: chromiumos.Timeframe
 	(*BuildId)(nil),                              // 7: chromiumos.BuildId
 	(*BuildReportBeta)(nil),                      // 8: chromiumos.BuildReportBeta
-	(*BuildReportBeta_BuildStatus)(nil),          // 9: chromiumos.BuildReportBeta.BuildStatus
-	(*BuildReportBeta_BuildConfig)(nil),          // 10: chromiumos.BuildReportBeta.BuildConfig
-	(*BuildReportBeta_BuildArtifact)(nil),        // 11: chromiumos.BuildReportBeta.BuildArtifact
-	(*BuildReportBeta_StepDetails)(nil),          // 12: chromiumos.BuildReportBeta.StepDetails
-	(*BuildReportBeta_BuildConfig_Model)(nil),    // 13: chromiumos.BuildReportBeta.BuildConfig.Model
-	(*BuildReportBeta_BuildConfig_Release)(nil),  // 14: chromiumos.BuildReportBeta.BuildConfig.Release
-	(*BuildReportBeta_BuildConfig_Branch)(nil),   // 15: chromiumos.BuildReportBeta.BuildConfig.Branch
-	(*BuildReportBeta_BuildConfig_Version)(nil),  // 16: chromiumos.BuildReportBeta.BuildConfig.Version
-	(*BuildReportBeta_BuildArtifact_URI)(nil),    // 17: chromiumos.BuildReportBeta.BuildArtifact.URI
-	(*BuildReportBeta_StepDetails_StepInfo)(nil), // 18: chromiumos.BuildReportBeta.StepDetails.StepInfo
-	nil,                           // 19: chromiumos.BuildReportBeta.StepDetails.InfoEntry
-	(*timestamppb.Timestamp)(nil), // 20: google.protobuf.Timestamp
-	(Channel)(0),                  // 21: chromiumos.Channel
+	(*BuildReportList)(nil),                      // 9: chromiumos.BuildReportList
+	(*BuildReportBeta_BuildStatus)(nil),          // 10: chromiumos.BuildReportBeta.BuildStatus
+	(*BuildReportBeta_BuildConfig)(nil),          // 11: chromiumos.BuildReportBeta.BuildConfig
+	(*BuildReportBeta_BuildArtifact)(nil),        // 12: chromiumos.BuildReportBeta.BuildArtifact
+	(*BuildReportBeta_StepDetails)(nil),          // 13: chromiumos.BuildReportBeta.StepDetails
+	(*BuildReportBeta_BuildConfig_Model)(nil),    // 14: chromiumos.BuildReportBeta.BuildConfig.Model
+	(*BuildReportBeta_BuildConfig_Release)(nil),  // 15: chromiumos.BuildReportBeta.BuildConfig.Release
+	(*BuildReportBeta_BuildConfig_Branch)(nil),   // 16: chromiumos.BuildReportBeta.BuildConfig.Branch
+	(*BuildReportBeta_BuildConfig_Version)(nil),  // 17: chromiumos.BuildReportBeta.BuildConfig.Version
+	(*BuildReportBeta_BuildArtifact_URI)(nil),    // 18: chromiumos.BuildReportBeta.BuildArtifact.URI
+	(*BuildReportBeta_StepDetails_StepInfo)(nil), // 19: chromiumos.BuildReportBeta.StepDetails.StepInfo
+	nil,                           // 20: chromiumos.BuildReportBeta.StepDetails.InfoEntry
+	(*timestamppb.Timestamp)(nil), // 21: google.protobuf.Timestamp
+	(Channel)(0),                  // 22: chromiumos.Channel
 }
 var file_chromiumos_build_report_proto_depIdxs = []int32{
-	20, // 0: chromiumos.Timeframe.begin:type_name -> google.protobuf.Timestamp
-	20, // 1: chromiumos.Timeframe.end:type_name -> google.protobuf.Timestamp
+	21, // 0: chromiumos.Timeframe.begin:type_name -> google.protobuf.Timestamp
+	21, // 1: chromiumos.Timeframe.end:type_name -> google.protobuf.Timestamp
 	7,  // 2: chromiumos.BuildReportBeta.parent:type_name -> chromiumos.BuildId
 	7,  // 3: chromiumos.BuildReportBeta.children:type_name -> chromiumos.BuildId
 	0,  // 4: chromiumos.BuildReportBeta.type:type_name -> chromiumos.BuildReportBeta.BuildType
-	9,  // 5: chromiumos.BuildReportBeta.status:type_name -> chromiumos.BuildReportBeta.BuildStatus
-	10, // 6: chromiumos.BuildReportBeta.config:type_name -> chromiumos.BuildReportBeta.BuildConfig
-	12, // 7: chromiumos.BuildReportBeta.steps:type_name -> chromiumos.BuildReportBeta.StepDetails
-	11, // 8: chromiumos.BuildReportBeta.artifacts:type_name -> chromiumos.BuildReportBeta.BuildArtifact
-	1,  // 9: chromiumos.BuildReportBeta.BuildStatus.value:type_name -> chromiumos.BuildReportBeta.BuildStatus.Status
-	15, // 10: chromiumos.BuildReportBeta.BuildConfig.branch:type_name -> chromiumos.BuildReportBeta.BuildConfig.Branch
-	14, // 11: chromiumos.BuildReportBeta.BuildConfig.release:type_name -> chromiumos.BuildReportBeta.BuildConfig.Release
-	16, // 12: chromiumos.BuildReportBeta.BuildConfig.versions:type_name -> chromiumos.BuildReportBeta.BuildConfig.Version
-	13, // 13: chromiumos.BuildReportBeta.BuildConfig.models:type_name -> chromiumos.BuildReportBeta.BuildConfig.Model
-	3,  // 14: chromiumos.BuildReportBeta.BuildArtifact.type:type_name -> chromiumos.BuildReportBeta.BuildArtifact.Type
-	17, // 15: chromiumos.BuildReportBeta.BuildArtifact.uri:type_name -> chromiumos.BuildReportBeta.BuildArtifact.URI
-	20, // 16: chromiumos.BuildReportBeta.BuildArtifact.created:type_name -> google.protobuf.Timestamp
-	5,  // 17: chromiumos.BuildReportBeta.StepDetails.current:type_name -> chromiumos.BuildReportBeta.StepDetails.StepName
-	19, // 18: chromiumos.BuildReportBeta.StepDetails.info:type_name -> chromiumos.BuildReportBeta.StepDetails.InfoEntry
-	21, // 19: chromiumos.BuildReportBeta.BuildConfig.Release.channels:type_name -> chromiumos.Channel
-	2,  // 20: chromiumos.BuildReportBeta.BuildConfig.Version.kind:type_name -> chromiumos.BuildReportBeta.BuildConfig.VersionKind
-	4,  // 21: chromiumos.BuildReportBeta.StepDetails.StepInfo.status:type_name -> chromiumos.BuildReportBeta.StepDetails.Status
-	6,  // 22: chromiumos.BuildReportBeta.StepDetails.StepInfo.runtime:type_name -> chromiumos.Timeframe
-	18, // 23: chromiumos.BuildReportBeta.StepDetails.InfoEntry.value:type_name -> chromiumos.BuildReportBeta.StepDetails.StepInfo
-	24, // [24:24] is the sub-list for method output_type
-	24, // [24:24] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	10, // 5: chromiumos.BuildReportBeta.status:type_name -> chromiumos.BuildReportBeta.BuildStatus
+	11, // 6: chromiumos.BuildReportBeta.config:type_name -> chromiumos.BuildReportBeta.BuildConfig
+	13, // 7: chromiumos.BuildReportBeta.steps:type_name -> chromiumos.BuildReportBeta.StepDetails
+	12, // 8: chromiumos.BuildReportBeta.artifacts:type_name -> chromiumos.BuildReportBeta.BuildArtifact
+	8,  // 9: chromiumos.BuildReportList.build_reports:type_name -> chromiumos.BuildReportBeta
+	1,  // 10: chromiumos.BuildReportBeta.BuildStatus.value:type_name -> chromiumos.BuildReportBeta.BuildStatus.Status
+	16, // 11: chromiumos.BuildReportBeta.BuildConfig.branch:type_name -> chromiumos.BuildReportBeta.BuildConfig.Branch
+	15, // 12: chromiumos.BuildReportBeta.BuildConfig.release:type_name -> chromiumos.BuildReportBeta.BuildConfig.Release
+	17, // 13: chromiumos.BuildReportBeta.BuildConfig.versions:type_name -> chromiumos.BuildReportBeta.BuildConfig.Version
+	14, // 14: chromiumos.BuildReportBeta.BuildConfig.models:type_name -> chromiumos.BuildReportBeta.BuildConfig.Model
+	3,  // 15: chromiumos.BuildReportBeta.BuildArtifact.type:type_name -> chromiumos.BuildReportBeta.BuildArtifact.Type
+	18, // 16: chromiumos.BuildReportBeta.BuildArtifact.uri:type_name -> chromiumos.BuildReportBeta.BuildArtifact.URI
+	21, // 17: chromiumos.BuildReportBeta.BuildArtifact.created:type_name -> google.protobuf.Timestamp
+	5,  // 18: chromiumos.BuildReportBeta.StepDetails.current:type_name -> chromiumos.BuildReportBeta.StepDetails.StepName
+	20, // 19: chromiumos.BuildReportBeta.StepDetails.info:type_name -> chromiumos.BuildReportBeta.StepDetails.InfoEntry
+	22, // 20: chromiumos.BuildReportBeta.BuildConfig.Release.channels:type_name -> chromiumos.Channel
+	2,  // 21: chromiumos.BuildReportBeta.BuildConfig.Version.kind:type_name -> chromiumos.BuildReportBeta.BuildConfig.VersionKind
+	4,  // 22: chromiumos.BuildReportBeta.StepDetails.StepInfo.status:type_name -> chromiumos.BuildReportBeta.StepDetails.Status
+	6,  // 23: chromiumos.BuildReportBeta.StepDetails.StepInfo.runtime:type_name -> chromiumos.Timeframe
+	19, // 24: chromiumos.BuildReportBeta.StepDetails.InfoEntry.value:type_name -> chromiumos.BuildReportBeta.StepDetails.StepInfo
+	25, // [25:25] is the sub-list for method output_type
+	25, // [25:25] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_chromiumos_build_report_proto_init() }
@@ -1642,7 +1698,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildStatus); i {
+			switch v := v.(*BuildReportList); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1654,7 +1710,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildConfig); i {
+			switch v := v.(*BuildReportBeta_BuildStatus); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1666,7 +1722,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildArtifact); i {
+			switch v := v.(*BuildReportBeta_BuildConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1678,7 +1734,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_StepDetails); i {
+			switch v := v.(*BuildReportBeta_BuildArtifact); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1690,7 +1746,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildConfig_Model); i {
+			switch v := v.(*BuildReportBeta_StepDetails); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1702,7 +1758,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildConfig_Release); i {
+			switch v := v.(*BuildReportBeta_BuildConfig_Model); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1714,7 +1770,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildConfig_Branch); i {
+			switch v := v.(*BuildReportBeta_BuildConfig_Release); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1726,7 +1782,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildConfig_Version); i {
+			switch v := v.(*BuildReportBeta_BuildConfig_Branch); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1738,7 +1794,7 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildReportBeta_BuildArtifact_URI); i {
+			switch v := v.(*BuildReportBeta_BuildConfig_Version); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1750,6 +1806,18 @@ func file_chromiumos_build_report_proto_init() {
 			}
 		}
 		file_chromiumos_build_report_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BuildReportBeta_BuildArtifact_URI); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromiumos_build_report_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BuildReportBeta_StepDetails_StepInfo); i {
 			case 0:
 				return &v.state
@@ -1768,7 +1836,7 @@ func file_chromiumos_build_report_proto_init() {
 	file_chromiumos_build_report_proto_msgTypes[2].OneofWrappers = []interface{}{
 		(*BuildReportBeta_BuildbucketId)(nil),
 	}
-	file_chromiumos_build_report_proto_msgTypes[11].OneofWrappers = []interface{}{
+	file_chromiumos_build_report_proto_msgTypes[12].OneofWrappers = []interface{}{
 		(*BuildReportBeta_BuildArtifact_URI_Gcs)(nil),
 	}
 	type x struct{}
@@ -1777,7 +1845,7 @@ func file_chromiumos_build_report_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromiumos_build_report_proto_rawDesc,
 			NumEnums:      6,
-			NumMessages:   14,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

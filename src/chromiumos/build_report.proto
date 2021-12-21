@@ -31,6 +31,7 @@ message BuildId {
     }
 }
 
+// Deprecated. Use BuildReport.
 // next: 11
 message BuildReportBeta {
     // Id serves as the primary key for the metadata and will be constant even
@@ -230,4 +231,8 @@ message BuildReportBeta {
         // enum to get their string representation.
         map<string, StepInfo> info = 2;
     }
+}
+
+message BuildReportList {
+    repeated BuildReportBeta build_reports = 1;
 }
