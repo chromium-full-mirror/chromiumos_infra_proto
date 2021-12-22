@@ -122,7 +122,7 @@ message BuildReportBeta {
             VERSION_KIND_PLATFORM = 4; // The platform version (e.g. 13816.0.0).
             VERSION_KIND_MILESTONE = 5; // The milestone versions (e.g. 96).
             VERSION_KIND_ANDROID_CONTAINER = 6; // The android container version (e.g. 6387315).
-            VERSION_KIND_EC_CONTAINER = 7; // The EC version.
+            VERSION_KIND_EC_FIRMWARE = 7; // The EC firmware version.
             VERSION_KIND_FINGERPRINT = 8; // The build fingerprint.
             VERSION_KIND_KERNEL = 9; // The kernel version (e.g. 4.14.176-r1088).
             VERSION_KIND_MAIN_FIRMWARE = 10; // The main firmware version (e.g. Google_Auron_paine.6301.58.98).
