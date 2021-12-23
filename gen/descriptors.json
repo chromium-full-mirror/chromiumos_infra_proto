@@ -26443,14 +26443,6 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.TastGceTestCfg.TastGceTest"
-            },
-            {
-              "jsonName": "gceMetadata",
-              "label": "LABEL_OPTIONAL",
-              "name": "gce_metadata",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.TastGceTestCfg.GceMetadata"
             }
           ],
           "name": "TastGceTestCfg",
@@ -26491,49 +26483,68 @@
                   "number": 3,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".testplans.TastGceTestCfg.TastTestExpr"
-                }
-              ],
-              "name": "TastGceTest"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "project",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "project",
-                  "number": 1,
-                  "type": "TYPE_STRING"
                 },
                 {
-                  "jsonName": "zone",
+                  "jsonName": "gceMetadata",
                   "label": "LABEL_OPTIONAL",
-                  "name": "zone",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "machineType",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "machine_type",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "network",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "network",
+                  "name": "gce_metadata",
                   "number": 4,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "subnet",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "subnet",
-                  "number": 5,
-                  "type": "TYPE_STRING"
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.TastGceTestCfg.TastGceTest.GceMetadata"
                 }
               ],
-              "name": "GceMetadata"
+              "name": "TastGceTest",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "project",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "project",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "zone",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "zone",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "machineType",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "machine_type",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "network",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "network",
+                      "number": 4,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "subnet",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "subnet",
+                      "number": 5,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "GceMetadata"
+                }
+              ]
+            }
+          ],
+          "reservedName": [
+            "gce_metadata"
+          ],
+          "reservedRange": [
+            {
+              "end": 3,
+              "start": 2
             }
           ]
         },

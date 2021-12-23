@@ -96,12 +96,34 @@ message TastVmTestCfg {
 }
 
 message TastGceTestCfg {
+  reserved 2;
+  reserved "gce_metadata";
+
   message TastTestExpr {
     // A single tast test expression. See https://goo.gl/UPNEgT
     string test_expr = 1;
   }
 
   message TastGceTest {
+    // This message should be used to fill
+    // recipes.chromeos.gce_test.GceTestProperties.GceMetadata.
+    message GceMetadata {
+      // The GCE project in which we create GCE images/instances for test.
+      string project = 1;
+
+      // The GCE zone in which we create GCE instances for test.
+      string zone = 2;
+
+      // The machine type of the GCE instance (e.g. n2-standard-8).
+      string machine_type = 3;
+
+      // The network the GCE instance should be part of.
+      string network = 4;
+
+      // The subnet the GCE instance should be part of.
+      string subnet = 5;
+    }
+
     TestSuiteCommon common = 1;
 
     // String containing short human-readable name describing test suite.
@@ -110,29 +132,11 @@ message TastGceTestCfg {
     // is passed directly to the 'tast run' command. See
     // https://goo.gl/UPNEgT for info about test expressions.
     repeated TastGceTestCfg.TastTestExpr tast_test_expr = 3;
-  }
-
-  // This message should be used to fill
-  // recipes.chromeos.gce_test.GceTestProperties.GceMetadata.
-  message GceMetadata {
-    // The GCE project in which we create GCE images/instances for test.
-    string project = 1;
-
-    // The GCE zone in which we create GCE instances for test.
-    string zone = 2;
-
-    // The machine type of the GCE instance (e.g. n2-standard-8).
-    string machine_type = 3;
-
-    // The network the GCE instance should be part of.
-    string network = 4;
-
-    // The subnet the GCE instance should be part of.
-    string subnet = 5;
+    // GCE instace metadata to run the tests on.
+    GceMetadata gce_metadata = 4;
   }
 
   repeated TastGceTest tast_gce_test = 1;
-  GceMetadata gce_metadata = 2;
 }
 
 message VmTestCfg {
