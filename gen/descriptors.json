@@ -20350,14 +20350,10 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false,
-        "unusedDependency": [
-          1
-        ]
+        "isSyntaxUnspecified": false
       },
       "dependency": [
         "chromite/api/test_metadata.proto",
-        "chromiumos/build/api/container_metadata.proto",
         "chromiumos/common.proto",
         "google/protobuf/duration.proto",
         "test_platform/execution/param.proto"

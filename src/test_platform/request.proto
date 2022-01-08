@@ -7,7 +7,6 @@ syntax = "proto3";
 package test_platform;
 
 import "chromite/api/test_metadata.proto";
-import "chromiumos/build/api/container_metadata.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/duration.proto";
 import "test_platform/execution/param.proto";
