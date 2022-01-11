@@ -15,6 +15,14 @@ message AggregateGreenness {
 
     // Indication of greenness for the target in this run.
     int64 metric = 2;
+
+    // Specifies context for greenness score if needed.
+    enum Context {
+        UNSPECIFIED = 0;
+        // The target was not relevant.
+        IRRELEVANT = 1;
+    }
+    Context context = 3;
   }
 
   // Aggregate indication of greenness for all targets in this run.

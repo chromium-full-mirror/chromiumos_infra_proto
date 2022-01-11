@@ -13016,6 +13016,21 @@
           "name": "AggregateGreenness",
           "nestedType": [
             {
+              "enumType": [
+                {
+                  "name": "Context",
+                  "value": [
+                    {
+                      "name": "UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "IRRELEVANT",
+                      "number": 1
+                    }
+                  ]
+                }
+              ],
               "field": [
                 {
                   "jsonName": "target",
@@ -13030,6 +13045,14 @@
                   "name": "metric",
                   "number": 2,
                   "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "context",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "context",
+                  "number": 3,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.AggregateGreenness.Greenness.Context"
                 }
               ],
               "name": "Greenness"
