@@ -6511,6 +6511,14 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.MetricEvent"
+            },
+            {
+              "jsonName": "failedPackageData",
+              "label": "LABEL_REPEATED",
+              "name": "failed_package_data",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FailedPackageData"
             }
           ],
           "name": "BuildTargetUnitTestResponse"

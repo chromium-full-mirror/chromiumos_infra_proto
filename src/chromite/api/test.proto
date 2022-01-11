@@ -108,6 +108,8 @@ message BuildTargetUnitTestResponse {
   repeated chromiumos.PackageInfo failed_packages = 2;
   // The metric events that occurred during the running of BuildTargetUnitTest.
   repeated chromiumos.MetricEvent events = 3;
+  // Additional data about the packages that failed to build.
+  repeated FailedPackageData failed_package_data = 4;
 }
 
 // Chromite UnitTest request.
