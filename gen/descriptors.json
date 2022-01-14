@@ -6522,13 +6522,6 @@
               "typeName": ".chromiumos.BuildTarget"
             },
             {
-              "jsonName": "resultPath",
-              "label": "LABEL_OPTIONAL",
-              "name": "result_path",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "chroot",
               "label": "LABEL_OPTIONAL",
               "name": "chroot",
@@ -6604,7 +6597,14 @@
               "name": "Flags"
             }
           ],
+          "reservedName": [
+            "result_path"
+          ],
           "reservedRange": [
+            {
+              "end": 3,
+              "start": 2
+            },
             {
               "end": 6,
               "start": 5
@@ -6613,13 +6613,6 @@
         },
         {
           "field": [
-            {
-              "jsonName": "tarballPath",
-              "label": "LABEL_OPTIONAL",
-              "name": "tarball_path",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
             {
               "jsonName": "failedPackages",
               "label": "LABEL_REPEATED",
@@ -6645,7 +6638,16 @@
               "typeName": ".chromite.api.FailedPackageData"
             }
           ],
-          "name": "BuildTargetUnitTestResponse"
+          "name": "BuildTargetUnitTestResponse",
+          "reservedName": [
+            "tarball_path"
+          ],
+          "reservedRange": [
+            {
+              "end": 2,
+              "start": 1
+            }
+          ]
         },
         {
           "field": [
