@@ -120,6 +120,27 @@ message UnmountPathRequest {
 message UnmountPathResponse {
 }
 
+// Build prebuilt packages for the SDK.
+message BuildPrebuiltsRequest {
+  // The chroot to use to execute the endpoint
+  chromiumos.Chroot chroot = 1;
+}
+
+message BuildPrebuiltsResponse {
+}
+
+// Upload ChromeOS SDK prebuilt packages.
+message UploadPrebuiltPackagesRequest {
+  // chroot in which the packages have been built.
+  chromiumos.Chroot chroot = 1;
+  string prepend_version = 2;
+  string version = 3;
+  string upload_location = 4;
+}
+
+message UploadPrebuiltPackagesResponse {
+}
+
 // SDK operations.
 service SdkService {
   // The service options (see build_api.proto).
@@ -156,4 +177,12 @@ service SdkService {
   // Unmount a filesystem path and any submounts under it.  Added in R86.
   rpc UnmountPath(UnmountPathRequest)
       returns (UnmountPathResponse);
+
+  // Builds the binary packages that comprise the SDK.
+  rpc BuildPrebuilts(BuildPrebuiltsRequest)
+      returns (BuildPrebuiltsResponse);
+
+  // Uploads prebuilt packages (such as built by BuildSdkPrebuilts).
+  rpc UploadPrebuiltPackages(UploadPrebuiltPackagesRequest)
+      returns (UploadPrebuiltPackagesResponse);
 }

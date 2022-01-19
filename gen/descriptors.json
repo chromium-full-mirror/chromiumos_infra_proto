@@ -6184,6 +6184,59 @@
         },
         {
           "name": "UnmountPathResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "BuildPrebuiltsRequest"
+        },
+        {
+          "name": "BuildPrebuiltsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "prependVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "prepend_version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "uploadLocation",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_location",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UploadPrebuiltPackagesRequest"
+        },
+        {
+          "name": "UploadPrebuiltPackagesResponse"
         }
       ],
       "name": "chromite/api/sdk.proto",
@@ -6238,6 +6291,16 @@
               "inputType": ".chromite.api.UnmountPathRequest",
               "name": "UnmountPath",
               "outputType": ".chromite.api.UnmountPathResponse"
+            },
+            {
+              "inputType": ".chromite.api.BuildPrebuiltsRequest",
+              "name": "BuildPrebuilts",
+              "outputType": ".chromite.api.BuildPrebuiltsResponse"
+            },
+            {
+              "inputType": ".chromite.api.UploadPrebuiltPackagesRequest",
+              "name": "UploadPrebuiltPackages",
+              "outputType": ".chromite.api.UploadPrebuiltPackagesResponse"
             }
           ],
           "name": "SdkService",

@@ -38,6 +38,10 @@ type SdkServiceClient interface {
 	RestoreSnapshot(ctx context.Context, in *RestoreSnapshotRequest, opts ...grpc.CallOption) (*RestoreSnapshotResponse, error)
 	// Unmount a filesystem path and any submounts under it.  Added in R86.
 	UnmountPath(ctx context.Context, in *UnmountPathRequest, opts ...grpc.CallOption) (*UnmountPathResponse, error)
+	// Builds the binary packages that comprise the SDK.
+	BuildPrebuilts(ctx context.Context, in *BuildPrebuiltsRequest, opts ...grpc.CallOption) (*BuildPrebuiltsResponse, error)
+	// Uploads prebuilt packages (such as built by BuildSdkPrebuilts).
+	UploadPrebuiltPackages(ctx context.Context, in *UploadPrebuiltPackagesRequest, opts ...grpc.CallOption) (*UploadPrebuiltPackagesResponse, error)
 }
 
 type sdkServiceClient struct {
@@ -120,6 +124,24 @@ func (c *sdkServiceClient) UnmountPath(ctx context.Context, in *UnmountPathReque
 	return out, nil
 }
 
+func (c *sdkServiceClient) BuildPrebuilts(ctx context.Context, in *BuildPrebuiltsRequest, opts ...grpc.CallOption) (*BuildPrebuiltsResponse, error) {
+	out := new(BuildPrebuiltsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/BuildPrebuilts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sdkServiceClient) UploadPrebuiltPackages(ctx context.Context, in *UploadPrebuiltPackagesRequest, opts ...grpc.CallOption) (*UploadPrebuiltPackagesResponse, error) {
+	out := new(UploadPrebuiltPackagesResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/UploadPrebuiltPackages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SdkServiceServer is the server API for SdkService service.
 // All implementations must embed UnimplementedSdkServiceServer
 // for forward compatibility
@@ -140,6 +162,10 @@ type SdkServiceServer interface {
 	RestoreSnapshot(context.Context, *RestoreSnapshotRequest) (*RestoreSnapshotResponse, error)
 	// Unmount a filesystem path and any submounts under it.  Added in R86.
 	UnmountPath(context.Context, *UnmountPathRequest) (*UnmountPathResponse, error)
+	// Builds the binary packages that comprise the SDK.
+	BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error)
+	// Uploads prebuilt packages (such as built by BuildSdkPrebuilts).
+	UploadPrebuiltPackages(context.Context, *UploadPrebuiltPackagesRequest) (*UploadPrebuiltPackagesResponse, error)
 	mustEmbedUnimplementedSdkServiceServer()
 }
 
@@ -170,6 +196,12 @@ func (UnimplementedSdkServiceServer) RestoreSnapshot(context.Context, *RestoreSn
 }
 func (UnimplementedSdkServiceServer) UnmountPath(context.Context, *UnmountPathRequest) (*UnmountPathResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnmountPath not implemented")
+}
+func (UnimplementedSdkServiceServer) BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildPrebuilts not implemented")
+}
+func (UnimplementedSdkServiceServer) UploadPrebuiltPackages(context.Context, *UploadPrebuiltPackagesRequest) (*UploadPrebuiltPackagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadPrebuiltPackages not implemented")
 }
 func (UnimplementedSdkServiceServer) mustEmbedUnimplementedSdkServiceServer() {}
 
@@ -328,6 +360,42 @@ func _SdkService_UnmountPath_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SdkService_BuildPrebuilts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildPrebuiltsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).BuildPrebuilts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/BuildPrebuilts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).BuildPrebuilts(ctx, req.(*BuildPrebuiltsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SdkService_UploadPrebuiltPackages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadPrebuiltPackagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).UploadPrebuiltPackages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/UploadPrebuiltPackages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).UploadPrebuiltPackages(ctx, req.(*UploadPrebuiltPackagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SdkService_ServiceDesc is the grpc.ServiceDesc for SdkService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -366,6 +434,14 @@ var SdkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnmountPath",
 			Handler:    _SdkService_UnmountPath_Handler,
+		},
+		{
+			MethodName: "BuildPrebuilts",
+			Handler:    _SdkService_BuildPrebuilts_Handler,
+		},
+		{
+			MethodName: "UploadPrebuiltPackages",
+			Handler:    _SdkService_UploadPrebuiltPackages_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
