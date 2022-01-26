@@ -7,9 +7,7 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
-import "chromiumos/test/api/coverage_rule.proto";
 import "chromiumos/build/api/container_metadata.proto";
-import "chromiumos/test/plan/source_test_plan.proto";
 
 // Proto for executing test-related functionality.
 
@@ -237,29 +235,6 @@ message SimpleChromeWorkflowTestRequest {
 message SimpleChromeWorkflowTestResponse {
 }
 
-message GetCoverageRulesRequest {
-  // The chroot in which to run commands. Required.
-  chromiumos.Chroot chroot = 5;
-
-  // SourceTestPlans for a given CQ run, release build, etc. Required.
-  repeated chromiumos.test.plan.SourceTestPlan source_test_plans = 1;
-
-  // Path to a BuildMetadataList jsonproto for the builds being tested. Required.
-  chromiumos.Path build_metadata_list = 2;
-
-  // Path to the current DutAttributeList jsonproto, used to validated
-  // DutAttribute ids used in generated CoverageRules. Required.
-  chromiumos.Path dut_attribute_list = 3;
-
-  // Path to a FlatConfigList jsonproto for the builds being tested. Required.
-  chromiumos.Path flat_config_list = 4;
-}
-
-message GetCoverageRulesResponse {
-  // CoverageRules generated from the input SourceTestPlans and metadata.
-  repeated chromiumos.test.api.CoverageRule coverage_rules = 1;
-}
-
 // The test service.
 service TestService {
   option (service_options) = {
@@ -316,7 +291,4 @@ service TestService {
       method_chroot_assert: OUTSIDE,
     };
   }
-
-  // Get CoverageRules required by a set of SourceTestPlans.
-  rpc GetCoverageRules(GetCoverageRulesRequest) returns (GetCoverageRulesResponse);
 }
