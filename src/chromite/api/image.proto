@@ -119,6 +119,14 @@ message PushImageRequest {
 
 // Response from pushimage script.
 message PushImageResponse {
+  // Instructions argument - represents an instructions file.
+  message Instructions {
+    // GS path of the instructions file.
+    string instructions_file_path = 1;
+  }
+
+  // The list of images pushed.
+  repeated Instructions instructions = 1;
 }
 
 // The image service.

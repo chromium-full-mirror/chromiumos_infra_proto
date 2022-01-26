@@ -4991,7 +4991,31 @@
           "name": "PushImageRequest"
         },
         {
-          "name": "PushImageResponse"
+          "field": [
+            {
+              "jsonName": "instructions",
+              "label": "LABEL_REPEATED",
+              "name": "instructions",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.PushImageResponse.Instructions"
+            }
+          ],
+          "name": "PushImageResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "instructionsFilePath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "instructions_file_path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Instructions"
+            }
+          ]
         }
       ],
       "name": "chromite/api/image.proto",
