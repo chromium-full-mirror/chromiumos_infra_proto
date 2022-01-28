@@ -11658,6 +11658,14 @@
               "typeName": ".chromiumos.BuildReportBeta.StepDetails"
             },
             {
+              "jsonName": "signedBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "signed_build",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata"
+            },
+            {
               "jsonName": "artifacts",
               "label": "LABEL_REPEATED",
               "name": "artifacts",
@@ -12280,6 +12288,206 @@
                   "options": {
                     "mapEntry": true
                   }
+                }
+              ]
+            },
+            {
+              "enumType": [
+                {
+                  "name": "VersionKind",
+                  "value": [
+                    {
+                      "name": "VERSION_KIND_UNDEFINED",
+                      "number": 0
+                    },
+                    {
+                      "name": "VERSION_KIND_PLATFORM",
+                      "number": 1
+                    },
+                    {
+                      "name": "VERSION_KIND_MILESTONE",
+                      "number": 2
+                    },
+                    {
+                      "name": "VERSION_KIND_KEY_FIRMWARE_KEY",
+                      "number": 3
+                    },
+                    {
+                      "name": "VERSION_KIND_KEY_FIRMWARE",
+                      "number": 4
+                    },
+                    {
+                      "name": "VERSION_KIND_KEY_KERNEL_KEY",
+                      "number": 5
+                    },
+                    {
+                      "name": "VERSION_KIND_KEY_KERNEL",
+                      "number": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "SigningStatus",
+                  "value": [
+                    {
+                      "name": "SIGNING_STATUS_UNKNOWN",
+                      "number": 0
+                    },
+                    {
+                      "name": "SIGNING_STATUS_DOWNLOADING",
+                      "number": 1
+                    },
+                    {
+                      "name": "SIGNING_STATUS_SIGNING",
+                      "number": 2
+                    },
+                    {
+                      "name": "SIGNING_STATUS_UPLOADING",
+                      "number": 3
+                    },
+                    {
+                      "name": "SIGNING_STATUS_FINISHED",
+                      "number": 4
+                    },
+                    {
+                      "name": "SIGNING_STATUS_RETRY",
+                      "number": 5
+                    },
+                    {
+                      "name": "SIGNING_STATUS_PASSED",
+                      "number": 6
+                    },
+                    {
+                      "name": "SIGNING_STATUS_FAILED",
+                      "number": 7
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "status",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "status",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.SigningStatus"
+                },
+                {
+                  "jsonName": "board",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "board",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 3,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.ImageType"
+                },
+                {
+                  "jsonName": "channel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "channel",
+                  "number": 4,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.Channel"
+                },
+                {
+                  "jsonName": "keyset",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "keyset",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "keysetIsMp",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "keyset_is_mp",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "files",
+                  "label": "LABEL_REPEATED",
+                  "name": "files",
+                  "number": 7,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.FileWithHashes"
+                },
+                {
+                  "jsonName": "versions",
+                  "label": "LABEL_REPEATED",
+                  "name": "versions",
+                  "number": 8,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.Version"
+                }
+              ],
+              "name": "SignedBuildMetadata",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "filename",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "filename",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "md5",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "md5",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "sha1",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "sha1",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "sha256",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "sha256",
+                      "number": 4,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "size",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "size",
+                      "number": 5,
+                      "type": "TYPE_INT32"
+                    }
+                  ],
+                  "name": "FileWithHashes"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "kind",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "kind",
+                      "number": 1,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.VersionKind"
+                    },
+                    {
+                      "jsonName": "value",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "value",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "Version"
                 }
               ]
             }

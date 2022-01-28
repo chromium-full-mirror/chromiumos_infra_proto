@@ -49,6 +49,7 @@ message BuildReportBeta {
     BuildStatus status = 3;
     BuildConfig config = 4;
     StepDetails steps  = 5;
+    SignedBuildMetadata signed_build = 6;
 
     // Artifacts from the build.
     repeated BuildArtifact artifacts = 7;
@@ -258,6 +259,56 @@ message BuildReportBeta {
         // forced to use a string. Keys must be marshalled via the StepName
         // enum to get their string representation.
         map<string, StepInfo> info = 2;
+    }
+
+    // Metadata produced by signing images. Translated from the .json file that
+    // is generated alongside the image when it is signed.
+    message SignedBuildMetadata {
+
+        // A file along with the hashes verifying its contents.
+        message FileWithHashes {
+            string filename = 1;
+            string md5 = 2;
+            string sha1 = 3;
+            string sha256 = 4;
+            int32 size = 5;
+        }
+
+        enum VersionKind {
+            VERSION_KIND_UNDEFINED = 0; // do not use.
+            VERSION_KIND_PLATFORM = 1; // eg: 14324.43.0
+            VERSION_KIND_MILESTONE = 2; // eg: 97
+            VERSION_KIND_KEY_FIRMWARE_KEY = 3; // eg: 1
+            VERSION_KIND_KEY_FIRMWARE = 4; // eg: 1
+            VERSION_KIND_KEY_KERNEL_KEY = 5; // eg: 1
+            VERSION_KIND_KEY_KERNEL = 6; // eg: 1
+        }
+
+        message Version {
+            VersionKind kind = 1; // eg: VERSION_KIND_PLATFORM.
+            string value = 2; // eg: 14324.43.0.
+        }
+
+        // Valid statuses signers can communicate.
+        enum SigningStatus {
+            SIGNING_STATUS_UNKNOWN = 0;
+            SIGNING_STATUS_DOWNLOADING = 1;
+            SIGNING_STATUS_SIGNING = 2;
+            SIGNING_STATUS_UPLOADING = 3;
+            SIGNING_STATUS_FINISHED = 4;
+            SIGNING_STATUS_RETRY = 5;
+            SIGNING_STATUS_PASSED = 6;
+            SIGNING_STATUS_FAILED = 7;
+        }
+
+        SigningStatus status = 1; // Status of signing.
+        string board = 2; // The board the image is for.
+        chromiumos.ImageType type = 3; // The type of image (eg: "recovery").
+        chromiumos.Channel channel = 4; // The channel of the image (eg: "stable").
+        string keyset = 5;
+        bool keyset_is_mp = 6;
+        repeated FileWithHashes files = 7;
+        repeated Version versions = 8;
     }
 }
 
