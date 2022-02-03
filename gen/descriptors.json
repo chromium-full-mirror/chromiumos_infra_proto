@@ -11703,6 +11703,14 @@
               "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata"
             },
             {
+              "jsonName": "payloads",
+              "label": "LABEL_REPEATED",
+              "name": "payloads",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildReportBeta.Payload"
+            },
+            {
               "jsonName": "artifacts",
               "label": "LABEL_REPEATED",
               "name": "artifacts",
@@ -12535,6 +12543,107 @@
                   "name": "Version"
                 }
               ]
+            },
+            {
+              "enumType": [
+                {
+                  "name": "PayloadType",
+                  "value": [
+                    {
+                      "name": "PAYLOAD_TYPE_UNKNOWN",
+                      "number": 0
+                    },
+                    {
+                      "name": "PAYLOAD_TYPE_STANDARD",
+                      "number": 1
+                    },
+                    {
+                      "name": "PAYLOAD_TYPE_MINIOS",
+                      "number": 2
+                    },
+                    {
+                      "name": "PAYLOAD_TYPE_DLC",
+                      "number": 3
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "payload",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "payload",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.BuildReportBeta.BuildArtifact"
+                },
+                {
+                  "jsonName": "payloadType",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "payload_type",
+                  "number": 2,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.BuildReportBeta.Payload.PayloadType"
+                },
+                {
+                  "jsonName": "board",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "board",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "channel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "channel",
+                  "number": 4,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.Channel"
+                },
+                {
+                  "jsonName": "appid",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "appid",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "metadataSignature",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "metadata_signature",
+                  "number": 6,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "metadataSize",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "metadata_size",
+                  "number": 7,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "sourceVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "source_version",
+                  "number": 8,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "targetVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "target_version",
+                  "number": 9,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "size",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "size",
+                  "number": 10,
+                  "type": "TYPE_INT64"
+                }
+              ],
+              "name": "Payload"
             }
           ],
           "oneofDecl": [

@@ -50,6 +50,7 @@ message BuildReportBeta {
     BuildConfig config = 4;
     StepDetails steps  = 5;
     repeated SignedBuildMetadata signed_builds = 6;
+    repeated Payload payloads = 11;
 
     // Artifacts from the build.
     repeated BuildArtifact artifacts = 7;
@@ -312,6 +313,29 @@ message BuildReportBeta {
         bool keyset_is_mp = 6;
         repeated FileWithHashes files = 7;
         repeated Version versions = 8;
+    }
+
+    message Payload {
+        // The actual payload. Contains the artifact URI, whether the payload
+        // is full or delta, etc.
+        BuildArtifact payload = 1;
+
+        enum PayloadType {
+            PAYLOAD_TYPE_UNKNOWN = 0;
+            PAYLOAD_TYPE_STANDARD = 1; // Regular OS payload.
+            PAYLOAD_TYPE_MINIOS = 2;
+            PAYLOAD_TYPE_DLC = 3;
+        }
+        PayloadType payload_type = 2;
+        string board = 3; // The board the payload is for.
+        chromiumos.Channel channel = 4; // The channel the payload is for.
+
+        string appid = 5;
+        string metadata_signature = 6;
+        int64 metadata_size = 7;
+        string source_version = 8; // e.g. 14388.8.0
+        string target_version = 9; // e.g. 14440.0.0
+        int64 size = 10; // Size of payload, in bytes.
     }
 }
 
