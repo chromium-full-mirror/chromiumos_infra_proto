@@ -242,6 +242,8 @@ message BuildReportBeta {
             STEP_BUILD          = 400;
             STEP_BUILD_SYSROOT  = 401;
             STEP_BUILD_PACKAGES = 402;
+
+            STEP_DEBUG_SYMBOLS = 500;
         }
 
         message StepInfo {

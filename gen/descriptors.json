@@ -12221,6 +12221,10 @@
                     {
                       "name": "STEP_BUILD_PACKAGES",
                       "number": 402
+                    },
+                    {
+                      "name": "STEP_DEBUG_SYMBOLS",
+                      "number": 500
                     }
                   ]
                 }
