@@ -22275,6 +22275,20 @@
               "name": "enabled",
               "number": 1,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "testAllowlist",
+              "label": "LABEL_REPEATED",
+              "name": "test_allowlist",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suiteAllowlist",
+              "label": "LABEL_REPEATED",
+              "name": "suite_allowlist",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "DutTopologyExperiment"

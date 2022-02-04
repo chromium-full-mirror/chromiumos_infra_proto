@@ -68,6 +68,10 @@ message ProvisionDutExperiment {
 message DutTopologyExperiment {
   // Global flag to control this experiment.
   bool enabled = 1;
+  // Test name allowlist to turn on this experiment on a per-test basis.
+  repeated string test_allowlist = 2;
+  // Suite name allowlist to turn on this experiment on a per-suite basis.
+  repeated string suite_allowlist = 3;
 }
 
 // Knobs specific to the step that uploads log-data to Google Storage.
