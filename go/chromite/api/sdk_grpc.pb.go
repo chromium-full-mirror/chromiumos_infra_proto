@@ -40,7 +40,9 @@ type SdkServiceClient interface {
 	UnmountPath(ctx context.Context, in *UnmountPathRequest, opts ...grpc.CallOption) (*UnmountPathResponse, error)
 	// Builds the binary packages that comprise the SDK.
 	BuildPrebuilts(ctx context.Context, in *BuildPrebuiltsRequest, opts ...grpc.CallOption) (*BuildPrebuiltsResponse, error)
-	// Uploads prebuilt packages (such as built by BuildSdkPrebuilts).
+	// Creates CLs to point the binhost at uploaded prebuilts.
+	CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error)
+	// Uploads prebuilt packages (such as built by BuildPrebuilts).
 	UploadPrebuiltPackages(ctx context.Context, in *UploadPrebuiltPackagesRequest, opts ...grpc.CallOption) (*UploadPrebuiltPackagesResponse, error)
 }
 
@@ -133,6 +135,15 @@ func (c *sdkServiceClient) BuildPrebuilts(ctx context.Context, in *BuildPrebuilt
 	return out, nil
 }
 
+func (c *sdkServiceClient) CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error) {
+	out := new(CreateBinhostCLsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/CreateBinhostCLs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sdkServiceClient) UploadPrebuiltPackages(ctx context.Context, in *UploadPrebuiltPackagesRequest, opts ...grpc.CallOption) (*UploadPrebuiltPackagesResponse, error) {
 	out := new(UploadPrebuiltPackagesResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/UploadPrebuiltPackages", in, out, opts...)
@@ -164,7 +175,9 @@ type SdkServiceServer interface {
 	UnmountPath(context.Context, *UnmountPathRequest) (*UnmountPathResponse, error)
 	// Builds the binary packages that comprise the SDK.
 	BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error)
-	// Uploads prebuilt packages (such as built by BuildSdkPrebuilts).
+	// Creates CLs to point the binhost at uploaded prebuilts.
+	CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error)
+	// Uploads prebuilt packages (such as built by BuildPrebuilts).
 	UploadPrebuiltPackages(context.Context, *UploadPrebuiltPackagesRequest) (*UploadPrebuiltPackagesResponse, error)
 	mustEmbedUnimplementedSdkServiceServer()
 }
@@ -199,6 +212,9 @@ func (UnimplementedSdkServiceServer) UnmountPath(context.Context, *UnmountPathRe
 }
 func (UnimplementedSdkServiceServer) BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildPrebuilts not implemented")
+}
+func (UnimplementedSdkServiceServer) CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBinhostCLs not implemented")
 }
 func (UnimplementedSdkServiceServer) UploadPrebuiltPackages(context.Context, *UploadPrebuiltPackagesRequest) (*UploadPrebuiltPackagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadPrebuiltPackages not implemented")
@@ -378,6 +394,24 @@ func _SdkService_BuildPrebuilts_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SdkService_CreateBinhostCLs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBinhostCLsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).CreateBinhostCLs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/CreateBinhostCLs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).CreateBinhostCLs(ctx, req.(*CreateBinhostCLsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SdkService_UploadPrebuiltPackages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UploadPrebuiltPackagesRequest)
 	if err := dec(in); err != nil {
@@ -438,6 +472,10 @@ var SdkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BuildPrebuilts",
 			Handler:    _SdkService_BuildPrebuilts_Handler,
+		},
+		{
+			MethodName: "CreateBinhostCLs",
+			Handler:    _SdkService_CreateBinhostCLs_Handler,
 		},
 		{
 			MethodName: "UploadPrebuiltPackages",

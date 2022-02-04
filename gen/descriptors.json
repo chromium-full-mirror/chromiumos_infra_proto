@@ -6245,6 +6245,35 @@
         {
           "field": [
             {
+              "jsonName": "prependVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "prepend_version",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "uploadLocation",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_location",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CreateBinhostCLsRequest"
+        },
+        {
+          "name": "CreateBinhostCLsResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "chroot",
               "label": "LABEL_OPTIONAL",
               "name": "chroot",
@@ -6337,6 +6366,11 @@
               "inputType": ".chromite.api.BuildPrebuiltsRequest",
               "name": "BuildPrebuilts",
               "outputType": ".chromite.api.BuildPrebuiltsResponse"
+            },
+            {
+              "inputType": ".chromite.api.CreateBinhostCLsRequest",
+              "name": "CreateBinhostCLs",
+              "outputType": ".chromite.api.CreateBinhostCLsResponse"
             },
             {
               "inputType": ".chromite.api.UploadPrebuiltPackagesRequest",

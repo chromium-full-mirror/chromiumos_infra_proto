@@ -132,6 +132,16 @@ message BuildPrebuiltsRequest {
 message BuildPrebuiltsResponse {
 }
 
+// Create CLs to point the binhost at a given SDK version.
+message CreateBinhostCLsRequest {
+  string prepend_version = 1;
+  string version = 2;
+  string upload_location = 3;
+}
+
+message CreateBinhostCLsResponse {
+}
+
 // Upload ChromeOS SDK prebuilt packages.
 message UploadPrebuiltPackagesRequest {
   // chroot in which the packages have been built.
@@ -185,7 +195,11 @@ service SdkService {
   rpc BuildPrebuilts(BuildPrebuiltsRequest)
       returns (BuildPrebuiltsResponse);
 
-  // Uploads prebuilt packages (such as built by BuildSdkPrebuilts).
+  // Creates CLs to point the binhost at uploaded prebuilts.
+  rpc CreateBinhostCLs(CreateBinhostCLsRequest)
+      returns (CreateBinhostCLsResponse);
+
+  // Uploads prebuilt packages (such as built by BuildPrebuilts).
   rpc UploadPrebuiltPackages(UploadPrebuiltPackagesRequest)
       returns (UploadPrebuiltPackagesResponse);
 }
