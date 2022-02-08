@@ -9019,6 +9019,13 @@
               "number": 12,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "minios",
+              "label": "LABEL_OPTIONAL",
+              "name": "minios",
+              "number": 13,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "GenerationRequest",

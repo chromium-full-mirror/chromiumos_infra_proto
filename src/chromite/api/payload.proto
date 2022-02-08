@@ -107,6 +107,11 @@ message GenerationRequest {
   // The chroot where the operations will be executed.
   // Required.
   chromiumos.Chroot chroot = 12;
+
+  // Whether the request is for a miniOS payload.
+  // This is only meaningful if the src and tgt images are either
+  // both SignedImage or both UnsignedImage.
+  bool minios = 13;
 }
 
 // Result of a payload generation.
