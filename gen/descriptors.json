@@ -11695,9 +11695,9 @@
               "typeName": ".chromiumos.BuildReportBeta.StepDetails"
             },
             {
-              "jsonName": "signedBuild",
-              "label": "LABEL_OPTIONAL",
-              "name": "signed_build",
+              "jsonName": "signedBuilds",
+              "label": "LABEL_REPEATED",
+              "name": "signed_builds",
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata"

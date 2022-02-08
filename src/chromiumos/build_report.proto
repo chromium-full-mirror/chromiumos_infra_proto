@@ -49,7 +49,7 @@ message BuildReportBeta {
     BuildStatus status = 3;
     BuildConfig config = 4;
     StepDetails steps  = 5;
-    SignedBuildMetadata signed_build = 6;
+    repeated SignedBuildMetadata signed_builds = 6;
 
     // Artifacts from the build.
     repeated BuildArtifact artifacts = 7;
