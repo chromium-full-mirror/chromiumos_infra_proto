@@ -28,8 +28,10 @@ message Board {
 
 // Aims to reflect data in lab_config.ini.
 message LabConfig {
-    // List of board definitions.
+    // List of board definitions for ChromeOS.
     repeated Board boards = 1;
+    // List of board definitions for Android.
+    repeated Board android_boards = 2;
 }
 
 // Specify a Board and Variant pair.

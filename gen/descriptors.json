@@ -27508,6 +27508,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.Board"
+            },
+            {
+              "jsonName": "androidBoards",
+              "label": "LABEL_REPEATED",
+              "name": "android_boards",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.Board"
             }
           ],
           "name": "LabConfig"
