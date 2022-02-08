@@ -125,6 +125,13 @@ message GenerationResponse {
 
   // If successful we may have uploaded an artifact to google storage.
   string remote_uri = 3;
+
+  // If no payload was generated, we may be able to report the reason why.
+  enum FailureReason {
+    UNSPECIFIED = 0;
+    NOT_MINIOS_COMPATIBLE = 1;
+  }
+  FailureReason failure_reason = 4;
 }
 
 // The image service definition.

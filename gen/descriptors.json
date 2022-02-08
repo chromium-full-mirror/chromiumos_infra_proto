@@ -9039,6 +9039,21 @@
           ]
         },
         {
+          "enumType": [
+            {
+              "name": "FailureReason",
+              "value": [
+                {
+                  "name": "UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "NOT_MINIOS_COMPATIBLE",
+                  "number": 1
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "success",
@@ -9060,6 +9075,14 @@
               "name": "remote_uri",
               "number": 3,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "failureReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_reason",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.GenerationResponse.FailureReason"
             }
           ],
           "name": "GenerationResponse"
