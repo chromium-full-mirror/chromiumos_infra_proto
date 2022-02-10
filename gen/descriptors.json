@@ -12517,7 +12517,7 @@
                       "label": "LABEL_OPTIONAL",
                       "name": "size",
                       "number": 5,
-                      "type": "TYPE_INT32"
+                      "type": "TYPE_INT64"
                     }
                   ],
                   "name": "FileWithHashes"

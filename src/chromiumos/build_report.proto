@@ -275,7 +275,7 @@ message BuildReportBeta {
             string md5 = 2;
             string sha1 = 3;
             string sha256 = 4;
-            int32 size = 5;
+            int64 size = 5;
         }
 
         enum VersionKind {
