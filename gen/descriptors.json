@@ -150,7 +150,8 @@
             "DLC",
             "GSC_FIRMWARE",
             "ACCESSORY_USBPD",
-            "ACCESSORY_RWSIG"
+            "ACCESSORY_RWSIG",
+            "HPS_FIRMWARE"
           ],
           "value": [
             {
@@ -216,6 +217,10 @@
             {
               "name": "IMAGE_TYPE_ACCESSORY_RWSIG",
               "number": 15
+            },
+            {
+              "name": "IMAGE_TYPE_HPS_FIRMWARE",
+              "number": 16
             }
           ]
         },

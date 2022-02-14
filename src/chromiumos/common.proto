@@ -264,7 +264,7 @@ enum ImageType {
   // Removed in R92.
   reserved "BASE", "TEST", "DEV", "BASE_VM", "TEST_VM", "RECOVERY", "FACTORY";
   reserved "FIRMWARE", "CR50_FIRMWARE", "BASE_GUEST_VM", "TEST_GUEST_VM", "DLC";
-  reserved "GSC_FIRMWARE", "ACCESSORY_USBPD", "ACCESSORY_RWSIG";
+  reserved "GSC_FIRMWARE", "ACCESSORY_USBPD", "ACCESSORY_RWSIG", "HPS_FIRMWARE";
 
   IMAGE_TYPE_UNDEFINED = 0;
 
@@ -283,6 +283,7 @@ enum ImageType {
   IMAGE_TYPE_GSC_FIRMWARE = 13;
   IMAGE_TYPE_ACCESSORY_USBPD = 14;
   IMAGE_TYPE_ACCESSORY_RWSIG = 15;
+  IMAGE_TYPE_HPS_FIRMWARE = 16;
 }
 
 // The various channels that we release through.
