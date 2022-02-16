@@ -17,6 +17,8 @@ message Image {
   chromiumos.ImageType type = 2;
   // The build target used to create the image.
   chromiumos.BuildTarget build_target = 3;
+  // The sha256 of the image binary.
+  string image_sha256 = 4;
 }
 
 // The image test arguments.
