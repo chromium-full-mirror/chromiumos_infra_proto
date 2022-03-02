@@ -6858,6 +6858,22 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "RulesCrosUnitTestRequest"
+        },
+        {
+          "name": "RulesCrosUnitTestResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "sysroot",
               "label": "LABEL_OPTIONAL",
               "name": "sysroot",
@@ -6949,6 +6965,11 @@
                 }
               },
               "outputType": ".chromite.api.MoblabVmTestResponse"
+            },
+            {
+              "inputType": ".chromite.api.RulesCrosUnitTestRequest",
+              "name": "RulesCrosUnitTest",
+              "outputType": ".chromite.api.RulesCrosUnitTestResponse"
             },
             {
               "inputType": ".chromite.api.SimpleChromeWorkflowTestRequest",

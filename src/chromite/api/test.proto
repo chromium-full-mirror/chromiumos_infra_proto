@@ -218,6 +218,15 @@ message MoblabVmTestRequest {
 message MoblabVmTestResponse {
 }
 
+// rules_cros UnitTest request.
+message RulesCrosUnitTestRequest {
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+}
+
+message RulesCrosUnitTestResponse {
+}
+
 message SimpleChromeWorkflowTestRequest {
   // The sysroot for which SimpleChrome flow will be run.
   // The path and build_target are required.
@@ -283,6 +292,10 @@ service TestService {
       method_chroot_assert: OUTSIDE,
     };
   }
+
+  // Run the rules_cros unit tests.
+  rpc RulesCrosUnitTest(RulesCrosUnitTestRequest)
+    returns (RulesCrosUnitTestResponse);
 
   // Run the Simple Chrome workflow unit tests.
   rpc SimpleChromeWorkflowTest(SimpleChromeWorkflowTestRequest)

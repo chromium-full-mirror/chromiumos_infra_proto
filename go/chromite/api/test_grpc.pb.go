@@ -42,6 +42,8 @@ type TestServiceClient interface {
 	VmTest(ctx context.Context, in *VmTestRequest, opts ...grpc.CallOption) (*VmTestResponse, error)
 	// Run Moblab VM tests and report failures.
 	MoblabVmTest(ctx context.Context, in *MoblabVmTestRequest, opts ...grpc.CallOption) (*MoblabVmTestResponse, error)
+	// Run the rules_cros unit tests.
+	RulesCrosUnitTest(ctx context.Context, in *RulesCrosUnitTestRequest, opts ...grpc.CallOption) (*RulesCrosUnitTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
 	SimpleChromeWorkflowTest(ctx context.Context, in *SimpleChromeWorkflowTestRequest, opts ...grpc.CallOption) (*SimpleChromeWorkflowTestResponse, error)
 }
@@ -126,6 +128,15 @@ func (c *testServiceClient) MoblabVmTest(ctx context.Context, in *MoblabVmTestRe
 	return out, nil
 }
 
+func (c *testServiceClient) RulesCrosUnitTest(ctx context.Context, in *RulesCrosUnitTestRequest, opts ...grpc.CallOption) (*RulesCrosUnitTestResponse, error) {
+	out := new(RulesCrosUnitTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/RulesCrosUnitTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *testServiceClient) SimpleChromeWorkflowTest(ctx context.Context, in *SimpleChromeWorkflowTestRequest, opts ...grpc.CallOption) (*SimpleChromeWorkflowTestResponse, error) {
 	out := new(SimpleChromeWorkflowTestResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.TestService/SimpleChromeWorkflowTest", in, out, opts...)
@@ -159,6 +170,8 @@ type TestServiceServer interface {
 	VmTest(context.Context, *VmTestRequest) (*VmTestResponse, error)
 	// Run Moblab VM tests and report failures.
 	MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error)
+	// Run the rules_cros unit tests.
+	RulesCrosUnitTest(context.Context, *RulesCrosUnitTestRequest) (*RulesCrosUnitTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
 	SimpleChromeWorkflowTest(context.Context, *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error)
 	mustEmbedUnimplementedTestServiceServer()
@@ -191,6 +204,9 @@ func (UnimplementedTestServiceServer) VmTest(context.Context, *VmTestRequest) (*
 }
 func (UnimplementedTestServiceServer) MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoblabVmTest not implemented")
+}
+func (UnimplementedTestServiceServer) RulesCrosUnitTest(context.Context, *RulesCrosUnitTestRequest) (*RulesCrosUnitTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RulesCrosUnitTest not implemented")
 }
 func (UnimplementedTestServiceServer) SimpleChromeWorkflowTest(context.Context, *SimpleChromeWorkflowTestRequest) (*SimpleChromeWorkflowTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SimpleChromeWorkflowTest not implemented")
@@ -352,6 +368,24 @@ func _TestService_MoblabVmTest_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TestService_RulesCrosUnitTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RulesCrosUnitTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).RulesCrosUnitTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/RulesCrosUnitTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).RulesCrosUnitTest(ctx, req.(*RulesCrosUnitTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TestService_SimpleChromeWorkflowTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SimpleChromeWorkflowTestRequest)
 	if err := dec(in); err != nil {
@@ -408,6 +442,10 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoblabVmTest",
 			Handler:    _TestService_MoblabVmTest_Handler,
+		},
+		{
+			MethodName: "RulesCrosUnitTest",
+			Handler:    _TestService_RulesCrosUnitTest_Handler,
 		},
 		{
 			MethodName: "SimpleChromeWorkflowTest",
