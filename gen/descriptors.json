@@ -14990,6 +14990,10 @@
                 {
                   "name": "SOC_ALDER_LAKE_N",
                   "number": 41
+                },
+                {
+                  "name": "SOC_RAPTOR_LAKE_N",
+                  "number": 42
                 }
               ]
             },
