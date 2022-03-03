@@ -305,14 +305,15 @@ message BuildReportBeta {
             SIGNING_STATUS_FAILED = 7;
         }
 
-        SigningStatus status = 1; // Status of signing.
-        string board = 2; // The board the image is for.
-        chromiumos.ImageType type = 3; // The type of image (eg: "recovery").
-        chromiumos.Channel channel = 4; // The channel of the image (eg: "stable").
-        string keyset = 5;
-        bool keyset_is_mp = 6;
-        repeated FileWithHashes files = 7;
-        repeated Version versions = 8;
+        string release_directory = 1; // Directory of the release (eg: "rubik-channel/kevin-kernelnext/14545.0.0/").
+        SigningStatus status = 2; // Status of signing.
+        string board = 3; // The board the image is for.
+        chromiumos.ImageType type = 4; // The type of image (eg: "recovery").
+        chromiumos.Channel channel = 5; // The channel of the image (eg: "stable").
+        string keyset = 6;
+        bool keyset_is_mp = 7;
+        repeated FileWithHashes files = 8;
+        repeated Version versions = 9;
     }
 
     message Payload {

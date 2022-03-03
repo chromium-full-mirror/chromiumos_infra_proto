@@ -12494,10 +12494,17 @@
               ],
               "field": [
                 {
+                  "jsonName": "releaseDirectory",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "release_directory",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
                   "jsonName": "status",
                   "label": "LABEL_OPTIONAL",
                   "name": "status",
-                  "number": 1,
+                  "number": 2,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.SigningStatus"
                 },
@@ -12505,14 +12512,14 @@
                   "jsonName": "board",
                   "label": "LABEL_OPTIONAL",
                   "name": "board",
-                  "number": 2,
+                  "number": 3,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "type",
                   "label": "LABEL_OPTIONAL",
                   "name": "type",
-                  "number": 3,
+                  "number": 4,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.ImageType"
                 },
@@ -12520,7 +12527,7 @@
                   "jsonName": "channel",
                   "label": "LABEL_OPTIONAL",
                   "name": "channel",
-                  "number": 4,
+                  "number": 5,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.Channel"
                 },
@@ -12528,21 +12535,21 @@
                   "jsonName": "keyset",
                   "label": "LABEL_OPTIONAL",
                   "name": "keyset",
-                  "number": 5,
+                  "number": 6,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "keysetIsMp",
                   "label": "LABEL_OPTIONAL",
                   "name": "keyset_is_mp",
-                  "number": 6,
+                  "number": 7,
                   "type": "TYPE_BOOL"
                 },
                 {
                   "jsonName": "files",
                   "label": "LABEL_REPEATED",
                   "name": "files",
-                  "number": 7,
+                  "number": 8,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.FileWithHashes"
                 },
@@ -12550,7 +12557,7 @@
                   "jsonName": "versions",
                   "label": "LABEL_REPEATED",
                   "name": "versions",
-                  "number": 8,
+                  "number": 9,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata.Version"
                 }
