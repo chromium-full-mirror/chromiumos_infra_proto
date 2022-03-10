@@ -50,6 +50,7 @@ message BuildReportBeta {
     BuildConfig config = 4;
     StepDetails steps  = 5;
     repeated SignedBuildMetadata signed_builds = 6;
+    bool signing_was_mocked = 12; // True in staging environments where we mock signing.
     repeated Payload payloads = 11;
 
     // Artifacts from the build.

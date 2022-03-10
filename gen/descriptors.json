@@ -11778,6 +11778,13 @@
               "typeName": ".chromiumos.BuildReportBeta.SignedBuildMetadata"
             },
             {
+              "jsonName": "signingWasMocked",
+              "label": "LABEL_OPTIONAL",
+              "name": "signing_was_mocked",
+              "number": 12,
+              "type": "TYPE_BOOL"
+            },
+            {
               "jsonName": "payloads",
               "label": "LABEL_REPEATED",
               "name": "payloads",
