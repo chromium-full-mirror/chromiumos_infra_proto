@@ -24069,7 +24069,8 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "test_platform/skylab_local_state/common.proto"
+        "test_platform/skylab_local_state/common.proto",
+        "chromiumos/test/lab/api/dut.proto"
       ],
       "messageType": [
         {
@@ -24179,6 +24180,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_local_state.Dut"
+            },
+            {
+              "jsonName": "labDutTopology",
+              "label": "LABEL_REPEATED",
+              "name": "lab_dut_topology",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.DutTopology"
             }
           ],
           "name": "LoadResponse",
