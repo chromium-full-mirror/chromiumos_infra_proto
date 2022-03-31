@@ -15047,6 +15047,10 @@
                 {
                   "name": "SOC_RAPTOR_LAKE_N",
                   "number": 42
+                },
+                {
+                  "name": "SOC_MT8186",
+                  "number": 43
                 }
               ]
             },
