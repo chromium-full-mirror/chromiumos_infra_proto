@@ -12,12 +12,8 @@ import "testplans/common.proto";
 import "google/protobuf/wrappers.proto";
 
 // The input proto for invocations of the Pointless Build Checker program.
+// Next: 12
 message PointlessBuildCheckRequest {
-  // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
-  // or similar. Explicit proto import is avoided here to prevent a dependency
-  // on the luci-go repo.
-  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
-  repeated ProtoBytes gerrit_changes = 7;
 
   message Path {
     string path = 1;
@@ -27,13 +23,32 @@ message PointlessBuildCheckRequest {
   // be used instead of passing a full DepGraph.
   repeated Path relevant_paths = 9;
 
-  // The manifest-internal snapshot commit hash that's being used for the current build.
-  // Note that manifest_commit will be soon replaced with gitiles_commit below.
-  string manifest_commit = 6;
+  // A list of source paths affected by the changes in the CQ run.
+  //
+  // If provided, the gerrit_changes and gitiles_commit fields are ignored.
+  repeated Path affected_paths = 11;
+
+  // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
+  // or similar. Explicit proto import is avoided here to prevent a dependency
+  // on the luci-go repo.
+  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+  //
+  // Must be used in conjunction with gitiles_commit.
+  // If affected_paths is passed in, this field is ignored.
+  repeated ProtoBytes gerrit_changes = 7;
 
   // Serialized buildbucket GitilesCommit, representing the manifest or
   // manifest-internal commit to which the build is synced.
+  //
+  // Must be used in conjunction with gerrit_changes.
+  // If affected_paths is passed in, this field is ignored.
   ProtoBytes gitiles_commit = 8;
+
+  // DEPRECATED use gitiles_commit instead.
+  //
+  // The manifest-internal snapshot commit hash that's being used for the current build.
+  // Note that manifest_commit will be soon replaced with gitiles_commit below.
+  string manifest_commit = 6 [deprecated = true];
 
   // In some cases (e.g. when pointless build checker is called for toolchain
   // update detection) we don't want known non-portage paths to trigger

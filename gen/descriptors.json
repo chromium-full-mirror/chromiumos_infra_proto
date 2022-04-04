@@ -13365,19 +13365,20 @@
         {
           "field": [
             {
+              "jsonName": "affectedPaths",
+              "label": "LABEL_REPEATED",
+              "name": "affected_paths",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.GenerateBuildPlanRequest.Path"
+            },
+            {
               "jsonName": "gerritChanges",
               "label": "LABEL_REPEATED",
               "name": "gerrit_changes",
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ProtoBytes"
-            },
-            {
-              "jsonName": "manifestCommit",
-              "label": "LABEL_OPTIONAL",
-              "name": "manifest_commit",
-              "number": 2,
-              "type": "TYPE_STRING"
             },
             {
               "jsonName": "gitilesCommit",
@@ -13388,6 +13389,16 @@
               "typeName": ".chromiumos.ProtoBytes"
             },
             {
+              "jsonName": "manifestCommit",
+              "label": "LABEL_OPTIONAL",
+              "name": "manifest_commit",
+              "number": 2,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "builderConfigs",
               "label": "LABEL_REPEATED",
               "name": "builder_configs",
@@ -13396,7 +13407,21 @@
               "typeName": ".chromiumos.BuilderConfig"
             }
           ],
-          "name": "GenerateBuildPlanRequest"
+          "name": "GenerateBuildPlanRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Path"
+            }
+          ]
         },
         {
           "field": [
@@ -27439,14 +27464,6 @@
         {
           "field": [
             {
-              "jsonName": "gerritChanges",
-              "label": "LABEL_REPEATED",
-              "name": "gerrit_changes",
-              "number": 7,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.ProtoBytes"
-            },
-            {
               "jsonName": "relevantPaths",
               "label": "LABEL_REPEATED",
               "name": "relevant_paths",
@@ -27455,11 +27472,20 @@
               "typeName": ".testplans.PointlessBuildCheckRequest.Path"
             },
             {
-              "jsonName": "manifestCommit",
-              "label": "LABEL_OPTIONAL",
-              "name": "manifest_commit",
-              "number": 6,
-              "type": "TYPE_STRING"
+              "jsonName": "affectedPaths",
+              "label": "LABEL_REPEATED",
+              "name": "affected_paths",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.PointlessBuildCheckRequest.Path"
+            },
+            {
+              "jsonName": "gerritChanges",
+              "label": "LABEL_REPEATED",
+              "name": "gerrit_changes",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.ProtoBytes"
             },
             {
               "jsonName": "gitilesCommit",
@@ -27468,6 +27494,16 @@
               "number": 8,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.ProtoBytes"
+            },
+            {
+              "jsonName": "manifestCommit",
+              "label": "LABEL_OPTIONAL",
+              "name": "manifest_commit",
+              "number": 6,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_STRING"
             },
             {
               "jsonName": "ignoreKnownNonPortageDirectories",

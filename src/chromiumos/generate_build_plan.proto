@@ -13,19 +13,38 @@ import "chromiumos/builder_config.proto";
 import "chromiumos/common.proto";
 
 // The input proto for invocations of the Build Planner.
+// Next: 6
 message GenerateBuildPlanRequest {
+
+  message Path {
+    string path = 1;
+  }
+
+  // A list of source paths affected by the changes in the CQ run.
+  //
+  // If provided, the gerrit_changes and gitiles_commit fields are ignored.
+  repeated Path affected_paths = 5;
+
   // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
-  // or similar. Explicit proto import is avoided here to prevent a dependency
-  // on the luci-go repo.
+  // or similar.
+  // Explicit proto import is avoided here to prevent a dependency on the luci-go repo.
   // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+  //
+  // Must be used in conjunction with gitiles_commit.
+  // If affected_paths is passed in, this field is ignored.
   repeated ProtoBytes gerrit_changes = 1;
 
-  // The manifest-internal snapshot commit hash that's being used for the current build.
-  // Note that manifest_commit will be soon replaced with gitiles_commit below.
-  string manifest_commit = 2;
   // Serialized buildbucket GitilesCommit, representing the manifest or
   // manifest-internal commit to which the build is synced.
+  //
+  // Must be used in conjunction with gerrit_changes.
+  // If affected_paths is passed in, this field is ignored.
   ProtoBytes gitiles_commit = 4;
+
+  // DEPRECATED use gitiles_commit instead.
+  //
+  // The manifest-internal snapshot commit hash that's being used for the current build.
+  string manifest_commit = 2 [deprecated = true];
 
   // The BuilderConfigs to consider for skipping.
   repeated BuilderConfig builder_configs = 3;
