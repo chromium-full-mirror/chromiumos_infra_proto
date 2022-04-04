@@ -20803,6 +20803,14 @@
               "type": "TYPE_BOOL"
             },
             {
+              "jsonName": "containerMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_metadata",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerMetadata"
+            },
+            {
               "jsonName": "containerImageInfo",
               "label": "LABEL_OPTIONAL",
               "name": "container_image_info",

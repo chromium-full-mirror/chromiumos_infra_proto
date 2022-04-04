@@ -18,10 +18,15 @@ message Param {
     // http://crash-staging)
     bool upload_crashes = 1;
 
+    // If set with proper flag, CFT test execution workflow will be
+    // invoked with provided container metadata.
+    chromiumos.build.api.ContainerMetadata container_metadata = 2;
+
     // If set, a Docker container to use to run autoserv. The container must
     // contain autoserv under the same path as the host (e.g.
     // "/usr/local/autotest/server/autoserv").
     //
     // The container will be pulled if needed.
+    // TODO(b/227666105): Will be deprecated once CFT workflow is enabled and stable.
     chromiumos.build.api.ContainerImageInfo container_image_info = 8;
 }
