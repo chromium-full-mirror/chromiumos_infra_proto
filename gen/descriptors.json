@@ -24459,6 +24459,146 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/timestamp.proto",
+        "test_platform/request.proto",
+        "chromiumos/test/api/provision_state.proto",
+        "chromiumos/test/api/test_suite.proto",
+        "chromiumos/test/lab/api/dut.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "primaryDut",
+              "label": "LABEL_OPTIONAL",
+              "name": "primary_dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.Device"
+            },
+            {
+              "jsonName": "companionDuts",
+              "label": "LABEL_REPEATED",
+              "name": "companion_duts",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.Device"
+            },
+            {
+              "jsonName": "testSuites",
+              "label": "LABEL_REPEATED",
+              "name": "test_suites",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.TestSuite"
+            },
+            {
+              "jsonName": "deadline",
+              "label": "LABEL_OPTIONAL",
+              "name": "deadline",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "parentRequestUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_request_uid",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "parentBuildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_build_id",
+              "number": 6,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "autotestKeyvals",
+              "label": "LABEL_REPEATED",
+              "name": "autotest_keyvals",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.AutotestKeyvalsEntry"
+            },
+            {
+              "jsonName": "defaultTestExecutionBehavior",
+              "label": "LABEL_OPTIONAL",
+              "name": "default_test_execution_behavior",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
+            }
+          ],
+          "name": "CFTTestRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "AutotestKeyvalsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "dutModel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dut_model",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.lab.api.DutModel"
+                },
+                {
+                  "jsonName": "provisionState",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "provision_state",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.ProvisionState"
+                },
+                {
+                  "jsonName": "containerMetadataKey",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "container_metadata_key",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Device"
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/cft_request.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "test_platform/phosphorus/common.proto"
       ],
       "messageType": [
