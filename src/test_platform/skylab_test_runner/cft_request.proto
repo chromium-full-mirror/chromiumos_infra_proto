@@ -13,6 +13,7 @@ import "test_platform/request.proto";
 import "chromiumos/test/api/provision_state.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "chromiumos/test/lab/api/dut.proto";
+import "chromiumos/build/api/container_metadata.proto";
 
 // CFTTestRequest represents a request for running an individual test suite via
 // CFT workflow in skylab_test_runner recipe.
@@ -46,6 +47,9 @@ message CFTTestRequest {
  // This can include information about whether the tests should run and
  // if failures should be exonerated.
  test_platform.Request.Params.TestExecutionBehavior default_test_execution_behavior = 8;
+
+ // Container metadata to be used in test execution.
+ chromiumos.build.api.ContainerMetadata container_metadata = 9;
 
  message Device {
    // DUT model to be provisioned.

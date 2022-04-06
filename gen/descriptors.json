@@ -24467,7 +24467,8 @@
         "test_platform/request.proto",
         "chromiumos/test/api/provision_state.proto",
         "chromiumos/test/api/test_suite.proto",
-        "chromiumos/test/lab/api/dut.proto"
+        "chromiumos/test/lab/api/dut.proto",
+        "chromiumos/build/api/container_metadata.proto"
       ],
       "messageType": [
         {
@@ -24533,6 +24534,14 @@
               "number": 8,
               "type": "TYPE_ENUM",
               "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
+            },
+            {
+              "jsonName": "containerMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_metadata",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerMetadata"
             }
           ],
           "name": "CFTTestRequest",
