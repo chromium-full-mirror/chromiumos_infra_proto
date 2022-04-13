@@ -150,9 +150,12 @@ message LinterRequest {
 
   Sysroot sysroot = 2;
   chromiumos.Chroot chroot = 3;
+
+  // Filter findings to only keep lints in modified lines
+  bool filter_modified = 4;
 }
 
-// Linter findings generated when em,erging some package.
+// Linter findings generated when emerging some package.
 message LinterResponse {
   repeated LinterFinding findings = 1;
 }
