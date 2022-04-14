@@ -80,9 +80,9 @@ message BuildTargetUnitTestRequest {
     // Whether to filter out any non-cros_workon packages passed in.
     //Added in R92.
     bool filter_only_cros_workon = 5;
-   }
+  }
 
-   reserved 5;
+  reserved 5;
 
   // The build target being tested.
   chromiumos.BuildTarget build_target = 1;
@@ -264,12 +264,7 @@ service TestService {
   }
 
   // Run a build target's ebuild unit tests.
-  rpc BuildTargetUnitTest(BuildTargetUnitTestRequest)
-    returns (BuildTargetUnitTestResponse) {
-    option (method_options) = {
-      method_chroot_assert: OUTSIDE,
-    };
-  }
+  rpc BuildTargetUnitTest(BuildTargetUnitTestRequest) returns (BuildTargetUnitTestResponse);
 
   // Run the chromite unit tests.
   rpc ChromiteUnitTest(ChromiteUnitTestRequest) returns (ChromiteUnitTestResponse);
