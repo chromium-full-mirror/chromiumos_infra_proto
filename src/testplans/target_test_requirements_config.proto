@@ -65,7 +65,12 @@ message HwTestCfg {
     // If true, then run test via containerized autoserv binary rather than
     // autoserv on the drone.  This allows opt-in to the containerized execution
     // path.
+    // TODO(b/227666105): Deprecate after removing all references.
     bool run_via_container = 17;
+
+    // If true, then run test via CFT workflow.
+    // This allows opt-in to the CFT execution path.
+    bool run_via_cft = 18;
 
     reserved 2 to 10;
   }

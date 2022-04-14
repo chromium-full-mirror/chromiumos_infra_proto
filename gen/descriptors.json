@@ -27021,6 +27021,13 @@
                   "name": "run_via_container",
                   "number": 17,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "runViaCft",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_cft",
+                  "number": 18,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "HwTest",
