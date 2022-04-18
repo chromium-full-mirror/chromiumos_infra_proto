@@ -202,9 +202,8 @@ message SchedulerConfig {
 
         // Timeout of the task.
         int32 timeout_mins = 3;
-        // If sanity HW test passed, launch this test. Irrespective of the release build's
-        // final status.
-        bool only_sanity_test_required = 4;
+        // If build passed and was uploaded, launch this test.
+        bool only_successful_build_required = 4;
         TriggerType trigger_type = 5;
     }
     RunOptions run_options = 9;
