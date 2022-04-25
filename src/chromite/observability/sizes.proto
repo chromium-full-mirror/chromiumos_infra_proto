@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package chromite.observability;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/observability";
+
+import "chromiumos/common.proto";
+import "chromite/observability/shared.proto";
+
+message ImageSizeObservabilityData {
+  observability.BuilderMetadata builder_metadata = 1;
+  observability.BuildVersionData build_version_data = 2;
+  repeated ImageData image_data = 3;
+}
+
+message ImageData {
+  chromiumos.ImageType image_type = 1;
+  repeated ImagePartitionData image_partition_data = 2;
+}
+
+message ImagePartitionData {
+  string partition_name = 1;
+  uint64 partition_size = 2;  // in bytes
+  repeated PackageSizeData packages = 3;
+}
+
+message PackageSizeData {
+  PackageIdentifier identifier = 1;
+  uint64 size = 2; // in bytes
+}
+
+// Provides the category, name, version components, and revision components of a
+// given package. This is used in place of chromiumos.PackageInfo because it is
+// more extensible and minimizes the amount of post-processing required for
+// building out the ISCP data pipeline.
+message PackageIdentifier {
+  PackageName package_name = 1;
+  PackageVersion package_version = 2;
+}
+
+message PackageName {
+  string atom = 1;
+  string category = 2;
+  string package_name = 3;
+}
+
+message PackageVersion {
+  uint32 major = 1;
+  uint32 minor = 2;
+  uint32 patch = 3;
+  uint32 extended = 4;
+  uint32 revision = 5;
+  string full_version = 6;
+}
+

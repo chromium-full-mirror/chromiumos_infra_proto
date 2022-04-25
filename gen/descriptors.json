@@ -11036,6 +11036,337 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "google/protobuf/timestamp.proto",
+        "chromiumos/common.proto",
+        "chromiumos/builder_config.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "buildbucketId",
+              "label": "LABEL_OPTIONAL",
+              "name": "buildbucket_id",
+              "number": 1,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "startTimestamp",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_timestamp",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "buildType",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_type",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.BuilderConfig.Id.Type"
+            },
+            {
+              "jsonName": "buildConfigName",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_config_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "annealingCommitId",
+              "label": "LABEL_OPTIONAL",
+              "name": "annealing_commit_id",
+              "number": 6,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "manifestCommit",
+              "label": "LABEL_OPTIONAL",
+              "name": "manifest_commit",
+              "number": 7,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BuilderMetadata"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "platformVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PlatformVersion"
+            }
+          ],
+          "name": "BuildVersionData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "platformBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_build",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "platformBranch",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_branch",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "platformPatch",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_patch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "PlatformVersion"
+        }
+      ],
+      "name": "chromite/observability/shared.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/observability"
+      },
+      "package": "chromite.observability",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromiumos/common.proto",
+        "chromite/observability/shared.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "builderMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "builder_metadata",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.BuilderMetadata"
+            },
+            {
+              "jsonName": "buildVersionData",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_version_data",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.BuildVersionData"
+            },
+            {
+              "jsonName": "imageData",
+              "label": "LABEL_REPEATED",
+              "name": "image_data",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.ImageData"
+            }
+          ],
+          "name": "ImageSizeObservabilityData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "imageType",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_type",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
+              "jsonName": "imagePartitionData",
+              "label": "LABEL_REPEATED",
+              "name": "image_partition_data",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.ImagePartitionData"
+            }
+          ],
+          "name": "ImageData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "partitionName",
+              "label": "LABEL_OPTIONAL",
+              "name": "partition_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "partitionSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "partition_size",
+              "number": 2,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "packages",
+              "label": "LABEL_REPEATED",
+              "name": "packages",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageSizeData"
+            }
+          ],
+          "name": "ImagePartitionData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "identifier",
+              "label": "LABEL_OPTIONAL",
+              "name": "identifier",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageIdentifier"
+            },
+            {
+              "jsonName": "size",
+              "label": "LABEL_OPTIONAL",
+              "name": "size",
+              "number": 2,
+              "type": "TYPE_UINT64"
+            }
+          ],
+          "name": "PackageSizeData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "packageName",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageName"
+            },
+            {
+              "jsonName": "packageVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageVersion"
+            }
+          ],
+          "name": "PackageIdentifier"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "atom",
+              "label": "LABEL_OPTIONAL",
+              "name": "atom",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "category",
+              "label": "LABEL_OPTIONAL",
+              "name": "category",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "packageName",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PackageName"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "major",
+              "label": "LABEL_OPTIONAL",
+              "name": "major",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "minor",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "patch",
+              "label": "LABEL_OPTIONAL",
+              "name": "patch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "extended",
+              "label": "LABEL_OPTIONAL",
+              "name": "extended",
+              "number": 4,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "revision",
+              "label": "LABEL_OPTIONAL",
+              "name": "revision",
+              "number": 5,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "fullVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "full_version",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PackageVersion"
+        }
+      ],
+      "name": "chromite/observability/sizes.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/observability"
+      },
+      "package": "chromite.observability",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
