@@ -202,9 +202,14 @@ message SchedulerConfig {
 
         // Timeout of the task.
         int32 timeout_mins = 3;
-        // If build passed and was uploaded, launch this test.
-        bool only_successful_build_required = 4;
+
+        // Use only_successful_build_required instead.
+        bool only_sanity_test_required = 4 [deprecated = true];
+
         TriggerType trigger_type = 5;
+
+        // If build passed and was uploaded, launch this test.
+        bool only_successful_build_required = 6;
     }
     RunOptions run_options = 9;
 

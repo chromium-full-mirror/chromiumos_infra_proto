@@ -66,8 +66,8 @@ message BranchFilter {
 
 // BuildFilters defines on which build to run a suite test.
 message BuildFilters {
-  // DEPRECATED: use only_successful_build_required instead.
-  bool only_hwtest_sanity_required = 1;
+  // Use only_successful_build_required instead.
+  bool only_hwtest_sanity_required = 1 [deprecated = true];
   // BranchFilter defines the target branch of the new build.
   // Note, the final result is "AND" of each single filter.
   repeated BranchFilter branch_filters = 2;

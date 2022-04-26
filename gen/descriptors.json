@@ -26290,6 +26290,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "only_hwtest_sanity_required",
               "number": 1,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_BOOL"
             },
             {
@@ -28411,10 +28414,13 @@
                   "type": "TYPE_INT32"
                 },
                 {
-                  "jsonName": "onlySuccessfulBuildRequired",
+                  "jsonName": "onlySanityTestRequired",
                   "label": "LABEL_OPTIONAL",
-                  "name": "only_successful_build_required",
+                  "name": "only_sanity_test_required",
                   "number": 4,
+                  "options": {
+                    "deprecated": true
+                  },
                   "type": "TYPE_BOOL"
                 },
                 {
@@ -28424,6 +28430,13 @@
                   "number": 5,
                   "type": "TYPE_ENUM",
                   "typeName": ".testplans.SchedulerConfig.TriggerType"
+                },
+                {
+                  "jsonName": "onlySuccessfulBuildRequired",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "only_successful_build_required",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "RunOptions",
