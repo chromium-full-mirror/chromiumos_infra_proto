@@ -66,7 +66,7 @@ message BranchFilter {
 
 // BuildFilters defines on which build to run a suite test.
 message BuildFilters {
-  // If true, use the relax_builds.
+  // DEPRECATED: use only_successful_build_required instead.
   bool only_hwtest_sanity_required = 1;
   // BranchFilter defines the target branch of the new build.
   // Note, the final result is "AND" of each single filter.
@@ -75,6 +75,8 @@ message BuildFilters {
   // in suite scheduler, "cros" = "RELEASE".
   chromiumos.Branch.BranchType firmware_ro_build_spec = 3;
   chromiumos.Branch.BranchType firmware_rw_build_spec = 4;
+  // If true, use the relaxed_builds table.
+  bool only_successful_build_required = 5;
 }
 
 // ScheduleJobTrigger defines the trigger to kick off a suite test.
@@ -146,7 +148,7 @@ message ScheduleJobSection {
       BuildInfo release_build = 1;
       // relax_builds are the builds failed but met the relaxed success
       // requirement. Relax builds are for the suite job configured
-      // "only_hwtest_sanity_required: True".
+      // "only_successful_build_required: True".
       BuildInfo relax_build = 2;
       // The firmware build information.
       FirmwareBuildInfo firmware_ro_build = 3;
