@@ -4762,16 +4762,15 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildTarget"
-            },
-            {
-              "jsonName": "imageSha256",
-              "label": "LABEL_OPTIONAL",
-              "name": "image_sha256",
-              "number": 4,
-              "type": "TYPE_STRING"
             }
           ],
-          "name": "Image"
+          "name": "Image",
+          "reservedRange": [
+            {
+              "end": 5,
+              "start": 4
+            }
+          ]
         },
         {
           "field": [
