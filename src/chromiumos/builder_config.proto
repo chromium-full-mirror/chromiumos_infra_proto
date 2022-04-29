@@ -475,6 +475,9 @@ message BuilderConfig {
       // so don't use such images for hw testing.
       // e.g. 4gb-rootfs
       string disk_layout = 3;
+
+      // Whether to use the base image as the recovery image.
+      bool base_is_recovery = 4;
     }
     BuildImages build_images = 15;
   }

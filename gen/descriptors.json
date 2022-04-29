@@ -10476,6 +10476,13 @@
                       "name": "disk_layout",
                       "number": 3,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "baseIsRecovery",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "base_is_recovery",
+                      "number": 4,
+                      "type": "TYPE_BOOL"
                     }
                   ],
                   "name": "BuildImages"
