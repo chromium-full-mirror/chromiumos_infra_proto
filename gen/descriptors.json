@@ -21405,6 +21405,13 @@
                   "name": "name",
                   "number": 1,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "runViaCft",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_cft",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Suite"
@@ -28442,6 +28449,13 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "only_successful_build_required",
                   "number": 6,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "runViaCft",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_cft",
+                  "number": 7,
                   "type": "TYPE_BOOL"
                 }
               ],

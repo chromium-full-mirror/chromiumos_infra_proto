@@ -163,7 +163,7 @@ message Request {
     message Metadata {
       // A Google Storage path to the location of test metadata to be used.
       // For example:
-      // "gs://chromeos-image-archive/arkham-release/R57-9202.10.11".
+      // "gs://chromeos-image-archive/arkham-release/R57-9202.10.11/metadata/containers.jsonpb".
       string test_metadata_url = 1;
 
       // A Google Storage path to the location of image archive in which to find
@@ -244,6 +244,9 @@ message Request {
   // SuiteRequest defines an individual named suite.
   message Suite {
     string name = 1;
+    // If true, this suite will be executed through CFT execution path
+    // using containers defined in test_metadata_url.
+    bool run_via_cft = 2;
   }
 
   message Test {

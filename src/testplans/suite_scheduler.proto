@@ -210,6 +210,9 @@ message SchedulerConfig {
 
         // If build passed and was uploaded, launch this test.
         bool only_successful_build_required = 6;
+
+        // If set, suite will be executed through CFT execution path.
+        bool run_via_cft = 7;
     }
     RunOptions run_options = 9;
 
