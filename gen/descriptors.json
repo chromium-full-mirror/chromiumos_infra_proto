@@ -24897,6 +24897,14 @@
                         {
                           "name": "VERDICT_NO_VERDICT",
                           "number": 3
+                        },
+                        {
+                          "name": "VERDICT_ERROR",
+                          "number": 4
+                        },
+                        {
+                          "name": "VERDICT_ABORT",
+                          "number": 5
                         }
                       ]
                     }

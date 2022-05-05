@@ -22,11 +22,25 @@ message Result {
       string name = 1;
 
       // Verdict defines the test case result to be reported.
+      // NEXT ID: 6
       enum Verdict {
+        // Status was not specificed.
         VERDICT_UNDEFINED = 0;
+
+        // The test has passed.
         VERDICT_PASS = 1;
+
+        // The test has failed.
         VERDICT_FAIL = 2;
+
+        // The test was skipped before execution.
         VERDICT_NO_VERDICT = 3;
+
+        // The test has crashed during exectuion due to an error.
+        VERDICT_ERROR = 4;
+
+        // The test has started but was aborted before finishing.
+        VERDICT_ABORT = 5;
       }
 
       Verdict verdict = 2;
