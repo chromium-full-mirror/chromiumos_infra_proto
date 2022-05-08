@@ -21023,6 +21023,13 @@
                   "number": 15,
                   "type": "TYPE_ENUM",
                   "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
+                },
+                {
+                  "jsonName": "runViaCft",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_cft",
+                  "number": 16,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",
@@ -21268,6 +21275,13 @@
                       "name": "debug_symbols_archive_url",
                       "number": 2,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "containerMetadataUrl",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "container_metadata_url",
+                      "number": 3,
+                      "type": "TYPE_STRING"
                     }
                   ],
                   "name": "Metadata"
@@ -21405,16 +21419,18 @@
                   "name": "name",
                   "number": 1,
                   "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "runViaCft",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "run_via_cft",
-                  "number": 2,
-                  "type": "TYPE_BOOL"
                 }
               ],
-              "name": "Suite"
+              "name": "Suite",
+              "reservedName": [
+                "run_via_cft"
+              ],
+              "reservedRange": [
+                {
+                  "end": 3,
+                  "start": 2
+                }
+              ]
             },
             {
               "field": [

@@ -20,7 +20,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 16
+  // NEXT_TAG: 17
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -163,13 +163,19 @@ message Request {
     message Metadata {
       // A Google Storage path to the location of test metadata to be used.
       // For example:
-      // "gs://chromeos-image-archive/arkham-release/R57-9202.10.11/metadata/containers.jsonpb".
+      // "gs://chromeos-image-archive/arkham-release/R57-9202.10.11".
       string test_metadata_url = 1;
 
       // A Google Storage path to the location of image archive in which to find
       // debug symbols to be used in post-process symbolication of crashes. This
       // is generally the same as test_metadata_url.
       string debug_symbols_archive_url = 2;
+
+      // A Google Storage path to the location of container metadata to be used.
+      // Used for CFT test executions. Will be required if run_via_cft is true.
+      // For example:
+      // "gs://chromeos-image-archive/arkham-release/R57-9202.10.11/metadata/containers.jsonpb".
+      string container_metadata_url = 3;
     }
 
     Metadata metadata = 6;
@@ -237,6 +243,10 @@ message Request {
     // The behavior of the tests run in this request. It currently reflects the
     // test unit's criticality as specified by target_test_requirements_config.
     TestExecutionBehavior test_execution_behavior = 15;
+
+    // If true, this suite will be executed through CFT execution path
+    // using containers defined in container_metadata_url.
+    bool run_via_cft = 16;
   }
 
   Params params = 1;
@@ -244,9 +254,8 @@ message Request {
   // SuiteRequest defines an individual named suite.
   message Suite {
     string name = 1;
-    // If true, this suite will be executed through CFT execution path
-    // using containers defined in test_metadata_url.
-    bool run_via_cft = 2;
+    reserved 2;
+    reserved "run_via_cft";
   }
 
   message Test {
