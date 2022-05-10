@@ -185,7 +185,7 @@ message FirmwareArtifactInfo {
       }
       FirmwareType.Type type = 3;
 
-      // The firmware version from updater.sh --manifest.
+      // The firmware version from chromeos-firmwareupdate --manifest.
       message Version {
         int32 major = 1;
         int32 minor = 2;

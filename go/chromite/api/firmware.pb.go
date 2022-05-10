@@ -1359,7 +1359,7 @@ func (*FirmwareArtifactInfo_TarballInfo_FirmwareType) Descriptor() ([]byte, []in
 	return file_chromite_api_firmware_proto_rawDescGZIP(), []int{12, 0, 0}
 }
 
-// The firmware version from updater.sh --manifest.
+// The firmware version from chromeos-firmwareupdate --manifest.
 type FirmwareArtifactInfo_TarballInfo_Version struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
