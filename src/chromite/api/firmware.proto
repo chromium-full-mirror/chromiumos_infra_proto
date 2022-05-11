@@ -82,6 +82,12 @@ message FwBuildMetricList {
 message FwTestMetric {
   // Name of firmware test.
   string name = 1;
+  // Percent of lines covered. (covered_lines / total_lines * 100)
+  float coverage_percent = 2;
+  // Number of covered lines.
+  uint32 covered_lines = 3;
+  // Total number of executable lines in files linked by this test.
+  uint32 total_lines = 4;
 }
 
 // A list of FW metrics collected on every successful firmware unit test.

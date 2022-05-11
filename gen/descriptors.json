@@ -4344,6 +4344,27 @@
               "name": "name",
               "number": 1,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "coveragePercent",
+              "label": "LABEL_OPTIONAL",
+              "name": "coverage_percent",
+              "number": 2,
+              "type": "TYPE_FLOAT"
+            },
+            {
+              "jsonName": "coveredLines",
+              "label": "LABEL_OPTIONAL",
+              "name": "covered_lines",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "totalLines",
+              "label": "LABEL_OPTIONAL",
+              "name": "total_lines",
+              "number": 4,
+              "type": "TYPE_UINT32"
             }
           ],
           "name": "FwTestMetric"
