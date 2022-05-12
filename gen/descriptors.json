@@ -24824,7 +24824,8 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "test_platform/common/task.proto"
+        "test_platform/common/task.proto",
+        "google/protobuf/timestamp.proto"
       ],
       "messageType": [
         {
@@ -24947,6 +24948,22 @@
                       "name": "human_readable_summary",
                       "number": 3,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "startTime",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "start_time",
+                      "number": 4,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".google.protobuf.Timestamp"
+                    },
+                    {
+                      "jsonName": "endTime",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "end_time",
+                      "number": 5,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".google.protobuf.Timestamp"
                     }
                   ],
                   "name": "TestCase"

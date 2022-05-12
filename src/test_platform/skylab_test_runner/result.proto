@@ -7,6 +7,7 @@ syntax = "proto3";
 package test_platform.skylab_test_runner;
 
 import "test_platform/common/task.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
@@ -17,6 +18,7 @@ message Result {
   message Autotest {
     // TestCase describes the result of an individual test case.
     // A single control file may correspond to multiple test cases.
+    // NEXT ID: 6
     message TestCase {
       // Test case name as it appears in status.log.
       string name = 1;
@@ -50,6 +52,12 @@ message Result {
       // parseable. There's no guarantee that a given root cause will always
       // resolve to the same summary.
       string human_readable_summary = 3;
+
+      // The start time of the test case run.
+      google.protobuf.Timestamp start_time = 4;
+
+      // The end time of the test case run.
+      google.protobuf.Timestamp end_time = 5;
     }
 
     repeated TestCase test_cases = 1;
