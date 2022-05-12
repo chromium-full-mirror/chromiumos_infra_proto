@@ -33,7 +33,7 @@ message StepExecutionResult {
 // This proto should only be used by a recipes module to do the wrapping and a
 // layer on the Analysis Server to do the unwrapping.
 //
-// NEXT ID: 57;
+// NEXT ID: 59;
 message AnalysisServiceEvent {
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
@@ -83,6 +83,7 @@ message AnalysisServiceEvent {
     chromite.api.GetChromeVersionRequest get_chrome_version_request = 48;
     chromite.api.GetBuilderMetadataRequest get_builder_metadata_request = 53;
     chromite.api.BuildAllFirmwareRequest build_all_firmware_request = 55;
+    chromite.api.TestAllFirmwareRequest test_all_firmware_request = 57;
   }
 
   // The response to upload.
@@ -111,5 +112,6 @@ message AnalysisServiceEvent {
     chromite.api.GetChromeVersionResponse get_chrome_version_response = 49;
     chromite.api.GetBuilderMetadataResponse get_builder_metadata_response = 54;
     chromite.api.BuildAllFirmwareResponse build_all_firmware_response = 56;
+    chromite.api.TestAllFirmwareResponse test_all_firmware_response = 58;
   }
 }

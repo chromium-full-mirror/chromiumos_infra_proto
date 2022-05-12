@@ -7339,6 +7339,15 @@
               "typeName": ".chromite.api.BuildAllFirmwareRequest"
             },
             {
+              "jsonName": "testAllFirmwareRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_all_firmware_request",
+              "number": 57,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.TestAllFirmwareRequest"
+            },
+            {
               "jsonName": "installPackagesResponse",
               "label": "LABEL_OPTIONAL",
               "name": "install_packages_response",
@@ -7553,6 +7562,15 @@
               "oneofIndex": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.BuildAllFirmwareResponse"
+            },
+            {
+              "jsonName": "testAllFirmwareResponse",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_all_firmware_response",
+              "number": 58,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.TestAllFirmwareResponse"
             }
           ],
           "name": "AnalysisServiceEvent",
