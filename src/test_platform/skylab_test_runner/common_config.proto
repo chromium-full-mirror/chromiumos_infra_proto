@@ -1,0 +1,37 @@
+// Copyright 2022 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.skylab_test_runner;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
+
+// Config defines configuration parameters of skylab_test_runner.
+message CommonConfig {
+
+  CrosFirmwareUpdateConfig cros_firmware_update_config = 1;
+
+  message CrosFirmwareUpdateConfig {
+    // Global flag to control OS bundled firmware update in prejob.
+    bool enabled = 1;
+
+    // Selects DUTs based on its board/model to determine if OS bundled firmware
+    // update should be executed. Both board and model can be used and it allows
+    // overlap, e.g. it considers a match as long as one of criteria is matched.
+    message CrosSlector {
+      // List of chromeOS board names.
+      repeated string boards = 1;
+      // List of chromeOS model names.
+      repeated string models = 2;
+    }
+
+    oneof cros_firmware_update_selector {
+      // Only update OS bundled firmware on boards/models match with the list.
+      CrosSlector allow_list = 2;
+      // Block OS bundled firmware update on boards/models match with the list.
+      CrosSlector block_list = 3;
+    }
+  }
+}

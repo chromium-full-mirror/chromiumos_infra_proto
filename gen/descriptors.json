@@ -24673,6 +24673,91 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "crosFirmwareUpdateConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "cros_firmware_update_config",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig"
+            }
+          ],
+          "name": "CommonConfig",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "enabled",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "enabled",
+                  "number": 1,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "allowList",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "allow_list",
+                  "number": 2,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector"
+                },
+                {
+                  "jsonName": "blockList",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "block_list",
+                  "number": 3,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector"
+                }
+              ],
+              "name": "CrosFirmwareUpdateConfig",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "boards",
+                      "label": "LABEL_REPEATED",
+                      "name": "boards",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "models",
+                      "label": "LABEL_REPEATED",
+                      "name": "models",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "CrosSlector"
+                }
+              ],
+              "oneofDecl": [
+                {
+                  "name": "cros_firmware_update_selector"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/common_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "test_platform/phosphorus/common.proto"
       ],
