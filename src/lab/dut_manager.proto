@@ -10,7 +10,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
-import "google/protobuf/empty.proto";
 
 import "chromiumos/test/api/dut_attribute.proto";
 import "chromiumos/storage_path.proto";

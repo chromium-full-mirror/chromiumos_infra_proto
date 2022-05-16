@@ -8,7 +8,6 @@ package lab;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/lab";
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
 import "lab/managed_dut.proto";
