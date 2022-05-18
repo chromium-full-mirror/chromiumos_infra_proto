@@ -22825,6 +22825,13 @@
               "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.phosphorus.PrejobRequest.ProvisionTarget"
+            },
+            {
+              "jsonName": "updateFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_firmware",
+              "number": 10,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "PrejobRequest",
@@ -22911,6 +22918,13 @@
                   "number": 2,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.Request.Params.SoftwareDependency"
+                },
+                {
+                  "jsonName": "updateFirmware",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "update_firmware",
+                  "number": 3,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "ProvisionTarget"

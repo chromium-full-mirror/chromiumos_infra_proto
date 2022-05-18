@@ -52,10 +52,17 @@ message PrejobRequest {
   message ProvisionTarget {
     string dut_hostname = 1;
     repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 2;
+    // Provision OS bundled firmware is controlled at each DUT level, so we need this flag
+    // for secondary devices as well.
+    bool update_firmware = 3;
   }
 
   // This field provide metadata to provision secondary devices in a multi-DUTs test.
   repeated ProvisionTarget addtional_targets = 9;
+
+  // This field served as a flag to decide if we should update OS bundled firmware(RW)
+  // during the provision step.
+  bool update_firmware = 10;
 }
 
 // PrejobResponse defines the output of `phosphorus prejob`.
