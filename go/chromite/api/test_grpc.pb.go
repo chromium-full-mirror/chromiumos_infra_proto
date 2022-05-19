@@ -40,8 +40,6 @@ type TestServiceClient interface {
 	DebugInfoTest(ctx context.Context, in *DebugInfoTestRequest, opts ...grpc.CallOption) (*DebugInfoTestResponse, error)
 	// Run VM tests and report failures.
 	VmTest(ctx context.Context, in *VmTestRequest, opts ...grpc.CallOption) (*VmTestResponse, error)
-	// Run Moblab VM tests and report failures.
-	MoblabVmTest(ctx context.Context, in *MoblabVmTestRequest, opts ...grpc.CallOption) (*MoblabVmTestResponse, error)
 	// Run the rules_cros unit tests.
 	RulesCrosUnitTest(ctx context.Context, in *RulesCrosUnitTestRequest, opts ...grpc.CallOption) (*RulesCrosUnitTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
@@ -119,15 +117,6 @@ func (c *testServiceClient) VmTest(ctx context.Context, in *VmTestRequest, opts 
 	return out, nil
 }
 
-func (c *testServiceClient) MoblabVmTest(ctx context.Context, in *MoblabVmTestRequest, opts ...grpc.CallOption) (*MoblabVmTestResponse, error) {
-	out := new(MoblabVmTestResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.TestService/MoblabVmTest", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *testServiceClient) RulesCrosUnitTest(ctx context.Context, in *RulesCrosUnitTestRequest, opts ...grpc.CallOption) (*RulesCrosUnitTestResponse, error) {
 	out := new(RulesCrosUnitTestResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.TestService/RulesCrosUnitTest", in, out, opts...)
@@ -168,8 +157,6 @@ type TestServiceServer interface {
 	DebugInfoTest(context.Context, *DebugInfoTestRequest) (*DebugInfoTestResponse, error)
 	// Run VM tests and report failures.
 	VmTest(context.Context, *VmTestRequest) (*VmTestResponse, error)
-	// Run Moblab VM tests and report failures.
-	MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error)
 	// Run the rules_cros unit tests.
 	RulesCrosUnitTest(context.Context, *RulesCrosUnitTestRequest) (*RulesCrosUnitTestResponse, error)
 	// Run the Simple Chrome workflow unit tests.
@@ -201,9 +188,6 @@ func (UnimplementedTestServiceServer) DebugInfoTest(context.Context, *DebugInfoT
 }
 func (UnimplementedTestServiceServer) VmTest(context.Context, *VmTestRequest) (*VmTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VmTest not implemented")
-}
-func (UnimplementedTestServiceServer) MoblabVmTest(context.Context, *MoblabVmTestRequest) (*MoblabVmTestResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MoblabVmTest not implemented")
 }
 func (UnimplementedTestServiceServer) RulesCrosUnitTest(context.Context, *RulesCrosUnitTestRequest) (*RulesCrosUnitTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RulesCrosUnitTest not implemented")
@@ -350,24 +334,6 @@ func _TestService_VmTest_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TestService_MoblabVmTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MoblabVmTestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TestServiceServer).MoblabVmTest(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.TestService/MoblabVmTest",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TestServiceServer).MoblabVmTest(ctx, req.(*MoblabVmTestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TestService_RulesCrosUnitTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RulesCrosUnitTestRequest)
 	if err := dec(in); err != nil {
@@ -438,10 +404,6 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VmTest",
 			Handler:    _TestService_VmTest_Handler,
-		},
-		{
-			MethodName: "MoblabVmTest",
-			Handler:    _TestService_MoblabVmTest_Handler,
 		},
 		{
 			MethodName: "RulesCrosUnitTest",

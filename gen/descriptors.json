@@ -6837,53 +6837,6 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "imagePayload",
-              "label": "LABEL_OPTIONAL",
-              "name": "image_payload",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.MoblabVmTestRequest.Payload"
-            },
-            {
-              "jsonName": "cachePayloads",
-              "label": "LABEL_REPEATED",
-              "name": "cache_payloads",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.MoblabVmTestRequest.Payload"
-            }
-          ],
-          "name": "MoblabVmTestRequest",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "path",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "path",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.Path"
-                }
-              ],
-              "name": "Payload"
-            }
-          ]
-        },
-        {
-          "name": "MoblabVmTestResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
             }
           ],
           "name": "RulesCrosUnitTestRequest"
@@ -6970,16 +6923,6 @@
               "inputType": ".chromite.api.VmTestRequest",
               "name": "VmTest",
               "outputType": ".chromite.api.VmTestResponse"
-            },
-            {
-              "inputType": ".chromite.api.MoblabVmTestRequest",
-              "name": "MoblabVmTest",
-              "options": {
-                "[method_options]": {
-                  "methodChrootAssert": "OUTSIDE"
-                }
-              },
-              "outputType": ".chromite.api.MoblabVmTestResponse"
             },
             {
               "inputType": ".chromite.api.RulesCrosUnitTestRequest",
@@ -7285,15 +7228,6 @@
               "typeName": ".chromite.api.VmTestRequest"
             },
             {
-              "jsonName": "moblabVmTestRequest",
-              "label": "LABEL_OPTIONAL",
-              "name": "moblab_vm_test_request",
-              "number": 40,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.MoblabVmTestRequest"
-            },
-            {
               "jsonName": "uprevPackagesRequest",
               "label": "LABEL_OPTIONAL",
               "name": "uprev_packages_request",
@@ -7510,15 +7444,6 @@
               "typeName": ".chromite.api.VmTestResponse"
             },
             {
-              "jsonName": "moblabVmTestResponse",
-              "label": "LABEL_OPTIONAL",
-              "name": "moblab_vm_test_response",
-              "number": 41,
-              "oneofIndex": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.MoblabVmTestResponse"
-            },
-            {
               "jsonName": "uprevPackagesResponse",
               "label": "LABEL_OPTIONAL",
               "name": "uprev_packages_response",
@@ -7580,6 +7505,16 @@
             },
             {
               "name": "response"
+            }
+          ],
+          "reservedRange": [
+            {
+              "end": 41,
+              "start": 40
+            },
+            {
+              "end": 42,
+              "start": 41
             }
           ]
         }
