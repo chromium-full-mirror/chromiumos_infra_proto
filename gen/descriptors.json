@@ -8914,1019 +8914,6 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "chromite/api/build_api.proto",
-        "chromiumos/common.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.BuildTarget"
-            },
-            {
-              "jsonName": "version",
-              "label": "LABEL_OPTIONAL",
-              "name": "version",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "bucket",
-              "label": "LABEL_OPTIONAL",
-              "name": "bucket",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "channel",
-              "label": "LABEL_OPTIONAL",
-              "name": "channel",
-              "number": 4,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "Build"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "build",
-              "label": "LABEL_OPTIONAL",
-              "name": "build",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.Build"
-            },
-            {
-              "jsonName": "dlcId",
-              "label": "LABEL_OPTIONAL",
-              "name": "dlc_id",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "dlcPackage",
-              "label": "LABEL_OPTIONAL",
-              "name": "dlc_package",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "dlcImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "dlc_image",
-              "number": 4,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "imageType",
-              "label": "LABEL_OPTIONAL",
-              "name": "image_type",
-              "number": 5,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ImageType"
-            }
-          ],
-          "name": "DLCImage"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "build",
-              "label": "LABEL_OPTIONAL",
-              "name": "build",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.Build"
-            },
-            {
-              "jsonName": "imageType",
-              "label": "LABEL_OPTIONAL",
-              "name": "image_type",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ImageType"
-            },
-            {
-              "jsonName": "key",
-              "label": "LABEL_OPTIONAL",
-              "name": "key",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "SignedImage"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "build",
-              "label": "LABEL_OPTIONAL",
-              "name": "build",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.Build"
-            },
-            {
-              "jsonName": "imageType",
-              "label": "LABEL_OPTIONAL",
-              "name": "image_type",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ImageType"
-            },
-            {
-              "jsonName": "milestone",
-              "label": "LABEL_OPTIONAL",
-              "name": "milestone",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "UnsignedImage"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "fullUpdate",
-              "label": "LABEL_OPTIONAL",
-              "name": "full_update",
-              "number": 1,
-              "oneofIndex": 0,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "srcSignedImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "src_signed_image",
-              "number": 2,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.SignedImage"
-            },
-            {
-              "jsonName": "srcUnsignedImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "src_unsigned_image",
-              "number": 3,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.UnsignedImage"
-            },
-            {
-              "jsonName": "srcDlcImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "src_dlc_image",
-              "number": 10,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.DLCImage"
-            },
-            {
-              "jsonName": "tgtSignedImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "tgt_signed_image",
-              "number": 4,
-              "oneofIndex": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.SignedImage"
-            },
-            {
-              "jsonName": "tgtUnsignedImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "tgt_unsigned_image",
-              "number": 5,
-              "oneofIndex": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.UnsignedImage"
-            },
-            {
-              "jsonName": "tgtDlcImage",
-              "label": "LABEL_OPTIONAL",
-              "name": "tgt_dlc_image",
-              "number": 11,
-              "oneofIndex": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.DLCImage"
-            },
-            {
-              "jsonName": "bucket",
-              "label": "LABEL_OPTIONAL",
-              "name": "bucket",
-              "number": 6,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "verify",
-              "label": "LABEL_OPTIONAL",
-              "name": "verify",
-              "number": 7,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "keyset",
-              "label": "LABEL_OPTIONAL",
-              "name": "keyset",
-              "number": 8,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "dryrun",
-              "label": "LABEL_OPTIONAL",
-              "name": "dryrun",
-              "number": 9,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 12,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "minios",
-              "label": "LABEL_OPTIONAL",
-              "name": "minios",
-              "number": 13,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "GenerationRequest",
-          "oneofDecl": [
-            {
-              "name": "src_image_oneof"
-            },
-            {
-              "name": "tgt_image_oneof"
-            }
-          ]
-        },
-        {
-          "enumType": [
-            {
-              "name": "FailureReason",
-              "value": [
-                {
-                  "name": "UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "NOT_MINIOS_COMPATIBLE",
-                  "number": 1
-                }
-              ]
-            }
-          ],
-          "field": [
-            {
-              "jsonName": "success",
-              "label": "LABEL_OPTIONAL",
-              "name": "success",
-              "number": 1,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "localPath",
-              "label": "LABEL_OPTIONAL",
-              "name": "local_path",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "remoteUri",
-              "label": "LABEL_OPTIONAL",
-              "name": "remote_uri",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "failureReason",
-              "label": "LABEL_OPTIONAL",
-              "name": "failure_reason",
-              "number": 4,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromite.api.GenerationResponse.FailureReason"
-            }
-          ],
-          "name": "GenerationResponse"
-        }
-      ],
-      "name": "chromite/api/payload.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
-      },
-      "package": "chromite.api",
-      "service": [
-        {
-          "method": [
-            {
-              "inputType": ".chromite.api.GenerationRequest",
-              "name": "GeneratePayload",
-              "outputType": ".chromite.api.GenerationResponse"
-            }
-          ],
-          "name": "PayloadService",
-          "options": {
-            "[service_options]": {
-              "module": "payload",
-              "serviceChrootAssert": "INSIDE"
-            }
-          }
-        }
-      ],
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromite/api/build_api.proto",
-        "chromiumos/common.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            }
-          ],
-          "name": "RunSpidersRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "buildTargets",
-              "label": "LABEL_REPEATED",
-              "name": "build_targets",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.RunSpidersResponse.BuildTarget"
-            },
-            {
-              "jsonName": "overlays",
-              "label": "LABEL_REPEATED",
-              "name": "overlays",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.RunSpidersResponse.Overlay"
-            }
-          ],
-          "name": "RunSpidersResponse",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "profileId",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "profile_id",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
-                }
-              ],
-              "name": "BuildTarget"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "id",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "id",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "path",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "path",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "useFlags",
-                  "label": "LABEL_REPEATED",
-                  "name": "use_flags",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.ProfileUse"
-                },
-                {
-                  "jsonName": "parentProfiles",
-                  "label": "LABEL_REPEATED",
-                  "name": "parent_profiles",
-                  "number": 5,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
-                }
-              ],
-              "name": "Profile"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "path",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "path",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "profiles",
-                  "label": "LABEL_REPEATED",
-                  "name": "profiles",
-                  "number": 3,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
-                },
-                {
-                  "jsonName": "ebuilds",
-                  "label": "LABEL_REPEATED",
-                  "name": "ebuilds",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.Ebuild"
-                },
-                {
-                  "jsonName": "eclasses",
-                  "label": "LABEL_REPEATED",
-                  "name": "eclasses",
-                  "number": 5,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.Eclass"
-                }
-              ],
-              "name": "Overlay"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "path",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "path",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "packageInfo",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "package_info",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.PackageInfo"
-                },
-                {
-                  "jsonName": "version",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "version",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "revision",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "revision",
-                  "number": 4,
-                  "type": "TYPE_INT32"
-                },
-                {
-                  "jsonName": "eapi",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "eapi",
-                  "number": 5,
-                  "type": "TYPE_INT32"
-                },
-                {
-                  "jsonName": "description",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "description",
-                  "number": 6,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "homepage",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "homepage",
-                  "number": 7,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "license",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "license",
-                  "number": 8,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "slot",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "slot",
-                  "number": 9,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "srcUri",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "src_uri",
-                  "number": 10,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "restrict",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "restrict",
-                  "number": 11,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "depend",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "depend",
-                  "number": 12,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "rdepend",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "rdepend",
-                  "number": 13,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "bdepend",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "bdepend",
-                  "number": 14,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "pdepend",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "pdepend",
-                  "number": 15,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "useFlags",
-                  "label": "LABEL_REPEATED",
-                  "name": "use_flags",
-                  "number": 16,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.EbuildUse"
-                },
-                {
-                  "jsonName": "eclassInherits",
-                  "label": "LABEL_REPEATED",
-                  "name": "eclass_inherits",
-                  "number": 17,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Ebuild"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "path",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "path",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "eclassInherits",
-                  "label": "LABEL_REPEATED",
-                  "name": "eclass_inherits",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Eclass"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "enabled",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "enabled",
-                  "number": 2,
-                  "type": "TYPE_BOOL"
-                }
-              ],
-              "name": "ProfileUse"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "defaultEnabled",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "default_enabled",
-                  "number": 2,
-                  "type": "TYPE_BOOL"
-                }
-              ],
-              "name": "EbuildUse"
-            }
-          ]
-        }
-      ],
-      "name": "chromite/api/portage_explorer.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
-      },
-      "package": "chromite.api",
-      "service": [
-        {
-          "method": [
-            {
-              "inputType": ".chromite.api.RunSpidersRequest",
-              "name": "RunSpiders",
-              "outputType": ".chromite.api.RunSpidersResponse"
-            }
-          ],
-          "name": "PortageExplorerService",
-          "options": {
-            "[service_options]": {
-              "module": "portage_explorer",
-              "serviceChrootAssert": "INSIDE"
-            }
-          }
-        }
-      ],
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromite/api/build_api.proto",
-        "chromiumos/common.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "targetDir",
-              "label": "LABEL_OPTIONAL",
-              "name": "target_dir",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ResultPath"
-            }
-          ],
-          "name": "AssembleRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "remoteTestDrivers",
-              "label": "LABEL_REPEATED",
-              "name": "remote_test_drivers",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.RemoteTestDriver"
-            }
-          ],
-          "name": "AssembleResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "buildContext",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_context",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Path"
-            }
-          ],
-          "name": "RemoteTestDriver"
-        }
-      ],
-      "name": "chromite/api/remote_test_driver.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
-      },
-      "package": "chromite.api",
-      "service": [
-        {
-          "method": [
-            {
-              "inputType": ".chromite.api.AssembleRequest",
-              "name": "Assemble",
-              "outputType": ".chromite.api.AssembleResponse"
-            }
-          ],
-          "name": "RemoteTestDriverService",
-          "options": {
-            "[service_options]": {
-              "module": "remote_test_driver",
-              "serviceChrootAssert": "INSIDE"
-            }
-          }
-        }
-      ],
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromite/api/build_api.proto",
-        "chromite/api/sysroot.proto",
-        "chromiumos/common.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "sysroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "sysroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.Sysroot"
-            }
-          ],
-          "name": "TestMetadataRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "autotest",
-              "label": "LABEL_OPTIONAL",
-              "name": "autotest",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.AutotestTestMetadata"
-            }
-          ],
-          "name": "TestMetadataResponse"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "suites",
-              "label": "LABEL_REPEATED",
-              "name": "suites",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.AutotestSuite"
-            },
-            {
-              "jsonName": "tests",
-              "label": "LABEL_REPEATED",
-              "name": "tests",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.AutotestTest"
-            }
-          ],
-          "name": "AutotestTestMetadata"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "childDependencies",
-              "label": "LABEL_REPEATED",
-              "name": "child_dependencies",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.AutotestTaskDependency"
-            },
-            {
-              "jsonName": "childTaskTimeoutSec",
-              "label": "LABEL_OPTIONAL",
-              "name": "child_task_timeout_sec",
-              "number": 3,
-              "type": "TYPE_INT32"
-            },
-            {
-              "jsonName": "tests",
-              "label": "LABEL_REPEATED",
-              "name": "tests",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.AutotestSuite.TestReference"
-            }
-          ],
-          "name": "AutotestSuite",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "TestReference"
-            }
-          ]
-        },
-        {
-          "enumType": [
-            {
-              "name": "ExecutionEnvironment",
-              "value": [
-                {
-                  "name": "EXECUTION_ENVIRONMENT_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "EXECUTION_ENVIRONMENT_CLIENT",
-                  "number": 1
-                },
-                {
-                  "name": "EXECUTION_ENVIRONMENT_SERVER",
-                  "number": 2
-                }
-              ]
-            }
-          ],
-          "field": [
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "dependencies",
-              "label": "LABEL_REPEATED",
-              "name": "dependencies",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.AutotestTaskDependency"
-            },
-            {
-              "jsonName": "allowRetries",
-              "label": "LABEL_OPTIONAL",
-              "name": "allow_retries",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "maxRetries",
-              "label": "LABEL_OPTIONAL",
-              "name": "max_retries",
-              "number": 4,
-              "type": "TYPE_INT32"
-            },
-            {
-              "jsonName": "needsMultipleDuts",
-              "label": "LABEL_OPTIONAL",
-              "name": "needs_multiple_duts",
-              "number": 5,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "dutCount",
-              "label": "LABEL_OPTIONAL",
-              "name": "dut_count",
-              "number": 6,
-              "type": "TYPE_INT32"
-            },
-            {
-              "jsonName": "executionEnvironment",
-              "label": "LABEL_OPTIONAL",
-              "name": "execution_environment",
-              "number": 7,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromite.api.AutotestTest.ExecutionEnvironment"
-            }
-          ],
-          "name": "AutotestTest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "label",
-              "label": "LABEL_OPTIONAL",
-              "name": "label",
-              "number": 1,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "AutotestTaskDependency"
-        }
-      ],
-      "name": "chromite/api/test_metadata.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
-      },
-      "package": "chromite.api",
-      "service": [
-        {
-          "method": [
-            {
-              "inputType": ".chromite.api.TestMetadataRequest",
-              "name": "Get",
-              "outputType": ".chromite.api.TestMetadataResponse"
-            }
-          ],
-          "name": "TestMetadataService",
-          "options": {
-            "[service_options]": {
-              "module": "test_metadata",
-              "serviceChrootAssert": "INSIDE"
-            }
-          }
-        }
-      ],
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
         "chromiumos/common.proto",
         "google/protobuf/timestamp.proto",
         "google/protobuf/wrappers.proto"
@@ -11005,6 +9992,1413 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/timestamp.proto",
+        "chromiumos/common.proto",
+        "chromiumos/builder_config.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "buildbucketId",
+              "label": "LABEL_OPTIONAL",
+              "name": "buildbucket_id",
+              "number": 1,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "startTimestamp",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_timestamp",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "buildType",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_type",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.BuilderConfig.Id.Type"
+            },
+            {
+              "jsonName": "buildConfigName",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_config_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "annealingCommitId",
+              "label": "LABEL_OPTIONAL",
+              "name": "annealing_commit_id",
+              "number": 6,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "manifestCommit",
+              "label": "LABEL_OPTIONAL",
+              "name": "manifest_commit",
+              "number": 7,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BuilderMetadata"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "platformVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PlatformVersion"
+            }
+          ],
+          "name": "BuildVersionData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "platformBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_build",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "platformBranch",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_branch",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "platformPatch",
+              "label": "LABEL_OPTIONAL",
+              "name": "platform_patch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "PlatformVersion"
+        }
+      ],
+      "name": "chromite/observability/shared.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/observability"
+      },
+      "package": "chromite.observability",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromiumos/common.proto",
+        "chromite/observability/shared.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "builderMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "builder_metadata",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.BuilderMetadata"
+            },
+            {
+              "jsonName": "buildVersionData",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_version_data",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.BuildVersionData"
+            },
+            {
+              "jsonName": "imageData",
+              "label": "LABEL_REPEATED",
+              "name": "image_data",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.ImageData"
+            }
+          ],
+          "name": "ImageSizeObservabilityData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "imageType",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_type",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
+              "jsonName": "imagePartitionData",
+              "label": "LABEL_REPEATED",
+              "name": "image_partition_data",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.ImagePartitionData"
+            }
+          ],
+          "name": "ImageData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "partitionName",
+              "label": "LABEL_OPTIONAL",
+              "name": "partition_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "partitionSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "partition_size",
+              "number": 2,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "packages",
+              "label": "LABEL_REPEATED",
+              "name": "packages",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageSizeData"
+            }
+          ],
+          "name": "ImagePartitionData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "identifier",
+              "label": "LABEL_OPTIONAL",
+              "name": "identifier",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageIdentifier"
+            },
+            {
+              "jsonName": "size",
+              "label": "LABEL_OPTIONAL",
+              "name": "size",
+              "number": 2,
+              "type": "TYPE_UINT64"
+            }
+          ],
+          "name": "PackageSizeData"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "packageName",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_name",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageName"
+            },
+            {
+              "jsonName": "packageVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.PackageVersion"
+            }
+          ],
+          "name": "PackageIdentifier"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "atom",
+              "label": "LABEL_OPTIONAL",
+              "name": "atom",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "category",
+              "label": "LABEL_OPTIONAL",
+              "name": "category",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "packageName",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PackageName"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "major",
+              "label": "LABEL_OPTIONAL",
+              "name": "major",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "minor",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "patch",
+              "label": "LABEL_OPTIONAL",
+              "name": "patch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "extended",
+              "label": "LABEL_OPTIONAL",
+              "name": "extended",
+              "number": 4,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "revision",
+              "label": "LABEL_OPTIONAL",
+              "name": "revision",
+              "number": 5,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "fullVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "full_version",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PackageVersion"
+        }
+      ],
+      "name": "chromite/observability/sizes.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/observability"
+      },
+      "package": "chromite.observability",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromite/api/image.proto",
+        "chromite/observability/sizes.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "builtImages",
+              "label": "LABEL_REPEATED",
+              "name": "built_images",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Image"
+            }
+          ],
+          "name": "GetImageSizeDataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "imageData",
+              "label": "LABEL_REPEATED",
+              "name": "image_data",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.observability.ImageData"
+            }
+          ],
+          "name": "GetImageSizeDataResponse"
+        }
+      ],
+      "name": "chromite/api/observability.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.GetImageSizeDataRequest",
+              "name": "GetImageSizeData",
+              "outputType": ".chromite.api.GetImageSizeDataResponse"
+            }
+          ],
+          "name": "ObservabilityService",
+          "options": {
+            "[service_options]": {
+              "module": "observability",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "bucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "bucket",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "channel",
+              "label": "LABEL_OPTIONAL",
+              "name": "channel",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Build"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Build"
+            },
+            {
+              "jsonName": "dlcId",
+              "label": "LABEL_OPTIONAL",
+              "name": "dlc_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dlcPackage",
+              "label": "LABEL_OPTIONAL",
+              "name": "dlc_package",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "dlc_image",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "imageType",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_type",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            }
+          ],
+          "name": "DLCImage"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Build"
+            },
+            {
+              "jsonName": "imageType",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_type",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SignedImage"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Build"
+            },
+            {
+              "jsonName": "imageType",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_type",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UnsignedImage"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "fullUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "full_update",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "srcSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_signed_image",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SignedImage"
+            },
+            {
+              "jsonName": "srcUnsignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_unsigned_image",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UnsignedImage"
+            },
+            {
+              "jsonName": "srcDlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_dlc_image",
+              "number": 10,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DLCImage"
+            },
+            {
+              "jsonName": "tgtSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_signed_image",
+              "number": 4,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SignedImage"
+            },
+            {
+              "jsonName": "tgtUnsignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_unsigned_image",
+              "number": 5,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UnsignedImage"
+            },
+            {
+              "jsonName": "tgtDlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_dlc_image",
+              "number": 11,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DLCImage"
+            },
+            {
+              "jsonName": "bucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "bucket",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "verify",
+              "label": "LABEL_OPTIONAL",
+              "name": "verify",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dryrun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dryrun",
+              "number": 9,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 12,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "minios",
+              "label": "LABEL_OPTIONAL",
+              "name": "minios",
+              "number": 13,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "GenerationRequest",
+          "oneofDecl": [
+            {
+              "name": "src_image_oneof"
+            },
+            {
+              "name": "tgt_image_oneof"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "FailureReason",
+              "value": [
+                {
+                  "name": "UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "NOT_MINIOS_COMPATIBLE",
+                  "number": 1
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "success",
+              "label": "LABEL_OPTIONAL",
+              "name": "success",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "localPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "local_path",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "remoteUri",
+              "label": "LABEL_OPTIONAL",
+              "name": "remote_uri",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "failureReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_reason",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.GenerationResponse.FailureReason"
+            }
+          ],
+          "name": "GenerationResponse"
+        }
+      ],
+      "name": "chromite/api/payload.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.GenerationRequest",
+              "name": "GeneratePayload",
+              "outputType": ".chromite.api.GenerationResponse"
+            }
+          ],
+          "name": "PayloadService",
+          "options": {
+            "[service_options]": {
+              "module": "payload",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "RunSpidersRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "build_targets",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunSpidersResponse.BuildTarget"
+            },
+            {
+              "jsonName": "overlays",
+              "label": "LABEL_REPEATED",
+              "name": "overlays",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunSpidersResponse.Overlay"
+            }
+          ],
+          "name": "RunSpidersResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "profileId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "profile_id",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
+                }
+              ],
+              "name": "BuildTarget"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "id",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "id",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "useFlags",
+                  "label": "LABEL_REPEATED",
+                  "name": "use_flags",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.ProfileUse"
+                },
+                {
+                  "jsonName": "parentProfiles",
+                  "label": "LABEL_REPEATED",
+                  "name": "parent_profiles",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
+                }
+              ],
+              "name": "Profile"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "profiles",
+                  "label": "LABEL_REPEATED",
+                  "name": "profiles",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
+                },
+                {
+                  "jsonName": "ebuilds",
+                  "label": "LABEL_REPEATED",
+                  "name": "ebuilds",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Ebuild"
+                },
+                {
+                  "jsonName": "eclasses",
+                  "label": "LABEL_REPEATED",
+                  "name": "eclasses",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Eclass"
+                }
+              ],
+              "name": "Overlay"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "packageInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "package_info",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.PackageInfo"
+                },
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "revision",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "revision",
+                  "number": 4,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "eapi",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "eapi",
+                  "number": 5,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "description",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "description",
+                  "number": 6,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "homepage",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "homepage",
+                  "number": 7,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "license",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "license",
+                  "number": 8,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "slot",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "slot",
+                  "number": 9,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "srcUri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "src_uri",
+                  "number": 10,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "restrict",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "restrict",
+                  "number": 11,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "depend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "depend",
+                  "number": 12,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "rdepend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "rdepend",
+                  "number": 13,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "bdepend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bdepend",
+                  "number": 14,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pdepend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pdepend",
+                  "number": 15,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "useFlags",
+                  "label": "LABEL_REPEATED",
+                  "name": "use_flags",
+                  "number": 16,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.EbuildUse"
+                },
+                {
+                  "jsonName": "eclassInherits",
+                  "label": "LABEL_REPEATED",
+                  "name": "eclass_inherits",
+                  "number": 17,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Ebuild"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "eclassInherits",
+                  "label": "LABEL_REPEATED",
+                  "name": "eclass_inherits",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Eclass"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "enabled",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "enabled",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "ProfileUse"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "defaultEnabled",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "default_enabled",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "EbuildUse"
+            }
+          ]
+        }
+      ],
+      "name": "chromite/api/portage_explorer.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.RunSpidersRequest",
+              "name": "RunSpiders",
+              "outputType": ".chromite.api.RunSpidersResponse"
+            }
+          ],
+          "name": "PortageExplorerService",
+          "options": {
+            "[service_options]": {
+              "module": "portage_explorer",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "targetDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_dir",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            }
+          ],
+          "name": "AssembleRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "remoteTestDrivers",
+              "label": "LABEL_REPEATED",
+              "name": "remote_test_drivers",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RemoteTestDriver"
+            }
+          ],
+          "name": "AssembleResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildContext",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_context",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "RemoteTestDriver"
+        }
+      ],
+      "name": "chromite/api/remote_test_driver.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.AssembleRequest",
+              "name": "Assemble",
+              "outputType": ".chromite.api.AssembleResponse"
+            }
+          ],
+          "name": "RemoteTestDriverService",
+          "options": {
+            "[service_options]": {
+              "module": "remote_test_driver",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromite/api/sysroot.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            }
+          ],
+          "name": "TestMetadataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "autotest",
+              "label": "LABEL_OPTIONAL",
+              "name": "autotest",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.AutotestTestMetadata"
+            }
+          ],
+          "name": "TestMetadataResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "suites",
+              "label": "LABEL_REPEATED",
+              "name": "suites",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.AutotestSuite"
+            },
+            {
+              "jsonName": "tests",
+              "label": "LABEL_REPEATED",
+              "name": "tests",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.AutotestTest"
+            }
+          ],
+          "name": "AutotestTestMetadata"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "childDependencies",
+              "label": "LABEL_REPEATED",
+              "name": "child_dependencies",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.AutotestTaskDependency"
+            },
+            {
+              "jsonName": "childTaskTimeoutSec",
+              "label": "LABEL_OPTIONAL",
+              "name": "child_task_timeout_sec",
+              "number": 3,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "tests",
+              "label": "LABEL_REPEATED",
+              "name": "tests",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.AutotestSuite.TestReference"
+            }
+          ],
+          "name": "AutotestSuite",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "TestReference"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "ExecutionEnvironment",
+              "value": [
+                {
+                  "name": "EXECUTION_ENVIRONMENT_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "EXECUTION_ENVIRONMENT_CLIENT",
+                  "number": 1
+                },
+                {
+                  "name": "EXECUTION_ENVIRONMENT_SERVER",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dependencies",
+              "label": "LABEL_REPEATED",
+              "name": "dependencies",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.AutotestTaskDependency"
+            },
+            {
+              "jsonName": "allowRetries",
+              "label": "LABEL_OPTIONAL",
+              "name": "allow_retries",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "maxRetries",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_retries",
+              "number": 4,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "needsMultipleDuts",
+              "label": "LABEL_OPTIONAL",
+              "name": "needs_multiple_duts",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dutCount",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut_count",
+              "number": 6,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "executionEnvironment",
+              "label": "LABEL_OPTIONAL",
+              "name": "execution_environment",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.AutotestTest.ExecutionEnvironment"
+            }
+          ],
+          "name": "AutotestTest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "label",
+              "label": "LABEL_OPTIONAL",
+              "name": "label",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AutotestTaskDependency"
+        }
+      ],
+      "name": "chromite/api/test_metadata.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.TestMetadataRequest",
+              "name": "Get",
+              "outputType": ".chromite.api.TestMetadataResponse"
+            }
+          ],
+          "name": "TestMetadataService",
+          "options": {
+            "[service_options]": {
+              "module": "test_metadata",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/artifacts.proto",
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
@@ -11525,337 +11919,6 @@
           }
         }
       ],
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "google/protobuf/timestamp.proto",
-        "chromiumos/common.proto",
-        "chromiumos/builder_config.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "buildbucketId",
-              "label": "LABEL_OPTIONAL",
-              "name": "buildbucket_id",
-              "number": 1,
-              "type": "TYPE_UINT64"
-            },
-            {
-              "jsonName": "startTimestamp",
-              "label": "LABEL_OPTIONAL",
-              "name": "start_timestamp",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".google.protobuf.Timestamp"
-            },
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.BuildTarget"
-            },
-            {
-              "jsonName": "buildType",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_type",
-              "number": 4,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.BuilderConfig.Id.Type"
-            },
-            {
-              "jsonName": "buildConfigName",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_config_name",
-              "number": 5,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "annealingCommitId",
-              "label": "LABEL_OPTIONAL",
-              "name": "annealing_commit_id",
-              "number": 6,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "manifestCommit",
-              "label": "LABEL_OPTIONAL",
-              "name": "manifest_commit",
-              "number": 7,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "BuilderMetadata"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "milestone",
-              "label": "LABEL_OPTIONAL",
-              "name": "milestone",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "platformVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "platform_version",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.PlatformVersion"
-            }
-          ],
-          "name": "BuildVersionData"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "platformBuild",
-              "label": "LABEL_OPTIONAL",
-              "name": "platform_build",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "platformBranch",
-              "label": "LABEL_OPTIONAL",
-              "name": "platform_branch",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "platformPatch",
-              "label": "LABEL_OPTIONAL",
-              "name": "platform_patch",
-              "number": 3,
-              "type": "TYPE_UINT32"
-            }
-          ],
-          "name": "PlatformVersion"
-        }
-      ],
-      "name": "chromite/observability/shared.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/observability"
-      },
-      "package": "chromite.observability",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromiumos/common.proto",
-        "chromite/observability/shared.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "builderMetadata",
-              "label": "LABEL_OPTIONAL",
-              "name": "builder_metadata",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.BuilderMetadata"
-            },
-            {
-              "jsonName": "buildVersionData",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_version_data",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.BuildVersionData"
-            },
-            {
-              "jsonName": "imageData",
-              "label": "LABEL_REPEATED",
-              "name": "image_data",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.ImageData"
-            }
-          ],
-          "name": "ImageSizeObservabilityData"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "imageType",
-              "label": "LABEL_OPTIONAL",
-              "name": "image_type",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ImageType"
-            },
-            {
-              "jsonName": "imagePartitionData",
-              "label": "LABEL_REPEATED",
-              "name": "image_partition_data",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.ImagePartitionData"
-            }
-          ],
-          "name": "ImageData"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "partitionName",
-              "label": "LABEL_OPTIONAL",
-              "name": "partition_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "partitionSize",
-              "label": "LABEL_OPTIONAL",
-              "name": "partition_size",
-              "number": 2,
-              "type": "TYPE_UINT64"
-            },
-            {
-              "jsonName": "packages",
-              "label": "LABEL_REPEATED",
-              "name": "packages",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.PackageSizeData"
-            }
-          ],
-          "name": "ImagePartitionData"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "identifier",
-              "label": "LABEL_OPTIONAL",
-              "name": "identifier",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.PackageIdentifier"
-            },
-            {
-              "jsonName": "size",
-              "label": "LABEL_OPTIONAL",
-              "name": "size",
-              "number": 2,
-              "type": "TYPE_UINT64"
-            }
-          ],
-          "name": "PackageSizeData"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "packageName",
-              "label": "LABEL_OPTIONAL",
-              "name": "package_name",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.PackageName"
-            },
-            {
-              "jsonName": "packageVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "package_version",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.observability.PackageVersion"
-            }
-          ],
-          "name": "PackageIdentifier"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "atom",
-              "label": "LABEL_OPTIONAL",
-              "name": "atom",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "category",
-              "label": "LABEL_OPTIONAL",
-              "name": "category",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "packageName",
-              "label": "LABEL_OPTIONAL",
-              "name": "package_name",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "PackageName"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "major",
-              "label": "LABEL_OPTIONAL",
-              "name": "major",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "minor",
-              "label": "LABEL_OPTIONAL",
-              "name": "minor",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "patch",
-              "label": "LABEL_OPTIONAL",
-              "name": "patch",
-              "number": 3,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "extended",
-              "label": "LABEL_OPTIONAL",
-              "name": "extended",
-              "number": 4,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "revision",
-              "label": "LABEL_OPTIONAL",
-              "name": "revision",
-              "number": 5,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "fullVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "full_version",
-              "number": 6,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "PackageVersion"
-        }
-      ],
-      "name": "chromite/observability/sizes.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/observability"
-      },
-      "package": "chromite.observability",
       "syntax": "proto3"
     },
     {
