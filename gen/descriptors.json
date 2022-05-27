@@ -9630,6 +9630,10 @@
                     {
                       "name": "RELEASE",
                       "number": 5
+                    },
+                    {
+                      "name": "PUBLIC",
+                      "number": 6
                     }
                   ]
                 }
