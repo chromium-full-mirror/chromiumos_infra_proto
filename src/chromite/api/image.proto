@@ -44,6 +44,8 @@ message CreateImageRequest {
   string builder_path = 6;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 7;
+  // Whether to use the base image as the recovery image.
+  bool base_is_recovery = 8;
 }
 
 message CreateImageResult {
