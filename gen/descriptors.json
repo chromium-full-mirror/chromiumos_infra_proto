@@ -5985,6 +5985,13 @@
               "name": "sdk_version",
               "number": 3,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "skipChrootUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_chroot_update",
+              "number": 4,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CreateRequest",
