@@ -133,6 +133,7 @@ message LinterFinding {
     LINTER_UNSPECIFIED = 0;
     CLANG_TIDY = 1;
     CARGO_CLIPPY = 2;
+    GO_LINT = 3;
   }
   Linters linter = 3;
 }

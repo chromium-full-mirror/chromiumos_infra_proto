@@ -10889,6 +10889,10 @@
                 {
                   "name": "CARGO_CLIPPY",
                   "number": 2
+                },
+                {
+                  "name": "GO_LINT",
+                  "number": 3
                 }
               ]
             }
