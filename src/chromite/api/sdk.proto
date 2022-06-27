@@ -35,7 +35,7 @@ message CreateRequest {
   // `cros_sdk --sdk-version`.
   string sdk_version = 3;
   // Optional. Whether or not to pass --skip-chroot-upgrade to `cros_sdk`.
-  bool skip_chroot_update = 4;
+  bool skip_chroot_upgrade = 4;
 }
 
 // Create response message.

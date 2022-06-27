@@ -5987,9 +5987,9 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "skipChrootUpdate",
+              "jsonName": "skipChrootUpgrade",
               "label": "LABEL_OPTIONAL",
-              "name": "skip_chroot_update",
+              "name": "skip_chroot_upgrade",
               "number": 4,
               "type": "TYPE_BOOL"
             }
