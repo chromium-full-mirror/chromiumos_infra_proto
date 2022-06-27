@@ -12178,6 +12178,27 @@
               "typeName": ".chromiumos.BuildReportBeta.Payload"
             },
             {
+              "jsonName": "sdkVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_version",
+              "number": 13,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "toolchainUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "toolchain_url",
+              "number": 14,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "toolchains",
+              "label": "LABEL_REPEATED",
+              "name": "toolchains",
+              "number": 15,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "artifacts",
               "label": "LABEL_REPEATED",
               "name": "artifacts",
