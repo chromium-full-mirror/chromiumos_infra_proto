@@ -9250,6 +9250,401 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "RunSpidersRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "build_targets",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunSpidersResponse.BuildTarget"
+            },
+            {
+              "jsonName": "overlays",
+              "label": "LABEL_REPEATED",
+              "name": "overlays",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunSpidersResponse.Overlay"
+            }
+          ],
+          "name": "RunSpidersResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "profileId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "profile_id",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
+                }
+              ],
+              "name": "BuildTarget"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "id",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "id",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "useFlags",
+                  "label": "LABEL_REPEATED",
+                  "name": "use_flags",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.ProfileUse"
+                },
+                {
+                  "jsonName": "parentProfiles",
+                  "label": "LABEL_REPEATED",
+                  "name": "parent_profiles",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
+                }
+              ],
+              "name": "Profile"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "profiles",
+                  "label": "LABEL_REPEATED",
+                  "name": "profiles",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Profile"
+                },
+                {
+                  "jsonName": "ebuilds",
+                  "label": "LABEL_REPEATED",
+                  "name": "ebuilds",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Ebuild"
+                },
+                {
+                  "jsonName": "eclasses",
+                  "label": "LABEL_REPEATED",
+                  "name": "eclasses",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Eclass"
+                }
+              ],
+              "name": "Overlay"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "packageInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "package_info",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.PackageInfo"
+                },
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "revision",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "revision",
+                  "number": 4,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "eapi",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "eapi",
+                  "number": 5,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "description",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "description",
+                  "number": 6,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "homepage",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "homepage",
+                  "number": 7,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "license",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "license",
+                  "number": 8,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "slot",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "slot",
+                  "number": 9,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "srcUri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "src_uri",
+                  "number": 10,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "restrict",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "restrict",
+                  "number": 11,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "dependencies",
+                  "label": "LABEL_REPEATED",
+                  "name": "dependencies",
+                  "number": 12,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.Dependency"
+                },
+                {
+                  "jsonName": "useFlags",
+                  "label": "LABEL_REPEATED",
+                  "name": "use_flags",
+                  "number": 13,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.RunSpidersResponse.EbuildUse"
+                },
+                {
+                  "jsonName": "eclassInherits",
+                  "label": "LABEL_REPEATED",
+                  "name": "eclass_inherits",
+                  "number": 14,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Ebuild"
+            },
+            {
+              "enumType": [
+                {
+                  "name": "DependencyType",
+                  "value": [
+                    {
+                      "name": "DEPEND_UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "DEPEND",
+                      "number": 1
+                    },
+                    {
+                      "name": "RDEPEND",
+                      "number": 2
+                    },
+                    {
+                      "name": "BDEPEND",
+                      "number": 3
+                    },
+                    {
+                      "name": "PDEPEND",
+                      "number": 4
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.api.RunSpidersResponse.Dependency.DependencyType"
+                },
+                {
+                  "jsonName": "packageInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "package_info",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.PackageInfo"
+                }
+              ],
+              "name": "Dependency"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "eclassInherits",
+                  "label": "LABEL_REPEATED",
+                  "name": "eclass_inherits",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Eclass"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "enabled",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "enabled",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "ProfileUse"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "defaultEnabled",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "default_enabled",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "EbuildUse"
+            }
+          ]
+        }
+      ],
+      "name": "chromite/api/portage_explorer.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.RunSpidersRequest",
+              "name": "RunSpiders",
+              "outputType": ".chromite.api.RunSpidersResponse"
+            }
+          ],
+          "name": "PortageExplorerService",
+          "options": {
+            "[service_options]": {
+              "module": "portage_explorer",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
             },
             {
               "jsonName": "targetDir",
