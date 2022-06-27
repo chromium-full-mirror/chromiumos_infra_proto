@@ -10987,6 +10987,37 @@
             }
           ],
           "name": "LinterResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ToolchainsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "defaultToolchains",
+              "label": "LABEL_REPEATED",
+              "name": "default_toolchains",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "nondefaultToolchains",
+              "label": "LABEL_REPEATED",
+              "name": "nondefault_toolchains",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ToolchainsResponse"
         }
       ],
       "name": "chromite/api/toolchain.proto",
