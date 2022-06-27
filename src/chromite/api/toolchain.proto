@@ -160,6 +160,19 @@ message LinterResponse {
   repeated LinterFinding findings = 1;
 }
 
+// Request toolchains info for a board.
+message ToolchainsRequest {
+  string board = 1;
+}
+
+// Toolchains info for a board.
+message ToolchainsResponse {
+  // e.g. x86_64-cros-linux-gnu
+  repeated string default_toolchains = 1;
+  // e.g. i686-cros-linux-gnu
+  repeated string nondefault_toolchains = 2;
+}
+
 // Service for Android/ARC related functionality.
 service ToolchainService {
   option (service_options) = {
