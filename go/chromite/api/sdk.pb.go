@@ -84,6 +84,7 @@ type CreateRequest struct {
 	// `cros_sdk --sdk-version`.
 	SdkVersion string `protobuf:"bytes,3,opt,name=sdk_version,json=sdkVersion,proto3" json:"sdk_version,omitempty"`
 	// Optional. Whether or not to pass --skip-chroot-upgrade to `cros_sdk`.
+	// This option is unofficially supported and is not guaranteed to work.
 	SkipChrootUpgrade bool `protobuf:"varint,4,opt,name=skip_chroot_upgrade,json=skipChrootUpgrade,proto3" json:"skip_chroot_upgrade,omitempty"`
 }
 
