@@ -11069,6 +11069,11 @@
                 }
               },
               "outputType": ".chromite.api.LinterResponse"
+            },
+            {
+              "inputType": ".chromite.api.ToolchainsRequest",
+              "name": "GetToolchainsForBoard",
+              "outputType": ".chromite.api.ToolchainsResponse"
             }
           ],
           "name": "ToolchainService",

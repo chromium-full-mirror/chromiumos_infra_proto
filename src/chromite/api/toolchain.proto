@@ -216,4 +216,7 @@ service ToolchainService {
       method_chroot_assert: INSIDE,
     };
   };
+
+  // Get the default and non-default toolchains for a board.
+  rpc GetToolchainsForBoard(ToolchainsRequest) returns (ToolchainsResponse);
 }
