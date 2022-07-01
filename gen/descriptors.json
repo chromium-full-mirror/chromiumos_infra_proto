@@ -12129,6 +12129,10 @@
                 {
                   "name": "BUILD_TYPE_FACTORY",
                   "number": 3
+                },
+                {
+                  "name": "BUILD_TYPE_PUBLIC",
+                  "number": 4
                 }
               ]
             }
