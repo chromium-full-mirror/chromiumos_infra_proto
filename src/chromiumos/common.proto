@@ -867,6 +867,9 @@ message ArtifactsByService {
       FIRMWARE_LCOV = 33;
 
       reserved 34 to 43;
+
+      // Code coverage HTML report tar archive.
+      CODE_COVERAGE_HTML = 44;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having

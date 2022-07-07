@@ -191,6 +191,7 @@ message BuildReportBeta {
             FIRMWARE_TARBALL      = 200;
             FIRMWARE_TARBALL_INFO = 201;
             FIRMWARE_LCOV         = 202;
+            CODE_COVERAGE_HTML    = 203;
 
             // AFDO types
             AFDO_ORDERFILE        = 300;

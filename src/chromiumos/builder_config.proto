@@ -330,6 +330,9 @@ message BuilderConfig {
 
       // factory_image.zip archive.
       FACTORY_IMAGE = 43;
+
+      // Code coverage HTML report tar archive.
+      CODE_COVERAGE_HTML = 44;
     }
     repeated ArtifactTypes artifact_types = 2;
 

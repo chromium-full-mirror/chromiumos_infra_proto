@@ -1806,6 +1806,10 @@
                     {
                       "name": "FIRMWARE_LCOV",
                       "number": 33
+                    },
+                    {
+                      "name": "CODE_COVERAGE_HTML",
+                      "number": 44
                     }
                   ]
                 }
@@ -10177,6 +10181,10 @@
                     {
                       "name": "FACTORY_IMAGE",
                       "number": 43
+                    },
+                    {
+                      "name": "CODE_COVERAGE_HTML",
+                      "number": 44
                     }
                   ]
                 }
@@ -12626,6 +12634,10 @@
                     {
                       "name": "FIRMWARE_LCOV",
                       "number": 202
+                    },
+                    {
+                      "name": "CODE_COVERAGE_HTML",
+                      "number": 203
                     },
                     {
                       "name": "AFDO_ORDERFILE",
