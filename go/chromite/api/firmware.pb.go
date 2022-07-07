@@ -1254,6 +1254,44 @@ func (x *FirmwareArtifactInfo_LcovTarballInfo) GetType() FirmwareArtifactInfo_Lc
 	return FirmwareArtifactInfo_LcovTarballInfo_LcovType_UNKNOWN
 }
 
+type FirmwareArtifactInfo_CoverageHtmlInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FirmwareArtifactInfo_CoverageHtmlInfo) Reset() {
+	*x = FirmwareArtifactInfo_CoverageHtmlInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_firmware_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FirmwareArtifactInfo_CoverageHtmlInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FirmwareArtifactInfo_CoverageHtmlInfo) ProtoMessage() {}
+
+func (x *FirmwareArtifactInfo_CoverageHtmlInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_firmware_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FirmwareArtifactInfo_CoverageHtmlInfo.ProtoReflect.Descriptor instead.
+func (*FirmwareArtifactInfo_CoverageHtmlInfo) Descriptor() ([]byte, []int) {
+	return file_chromite_api_firmware_proto_rawDescGZIP(), []int{12, 2}
+}
+
 type FirmwareArtifactInfo_ObjectInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1264,13 +1302,14 @@ type FirmwareArtifactInfo_ObjectInfo struct {
 	// Types that are assignable to FirmwareObjectInfo:
 	//	*FirmwareArtifactInfo_ObjectInfo_TarballInfo
 	//	*FirmwareArtifactInfo_ObjectInfo_LcovInfo
+	//	*FirmwareArtifactInfo_ObjectInfo_CoverageHtml
 	FirmwareObjectInfo isFirmwareArtifactInfo_ObjectInfo_FirmwareObjectInfo `protobuf_oneof:"firmware_object_info"`
 }
 
 func (x *FirmwareArtifactInfo_ObjectInfo) Reset() {
 	*x = FirmwareArtifactInfo_ObjectInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_firmware_proto_msgTypes[18]
+		mi := &file_chromite_api_firmware_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1283,7 +1322,7 @@ func (x *FirmwareArtifactInfo_ObjectInfo) String() string {
 func (*FirmwareArtifactInfo_ObjectInfo) ProtoMessage() {}
 
 func (x *FirmwareArtifactInfo_ObjectInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_firmware_proto_msgTypes[18]
+	mi := &file_chromite_api_firmware_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1296,7 +1335,7 @@ func (x *FirmwareArtifactInfo_ObjectInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FirmwareArtifactInfo_ObjectInfo.ProtoReflect.Descriptor instead.
 func (*FirmwareArtifactInfo_ObjectInfo) Descriptor() ([]byte, []int) {
-	return file_chromite_api_firmware_proto_rawDescGZIP(), []int{12, 2}
+	return file_chromite_api_firmware_proto_rawDescGZIP(), []int{12, 3}
 }
 
 func (x *FirmwareArtifactInfo_ObjectInfo) GetFileName() string {
@@ -1327,6 +1366,13 @@ func (x *FirmwareArtifactInfo_ObjectInfo) GetLcovInfo() *FirmwareArtifactInfo_Lc
 	return nil
 }
 
+func (x *FirmwareArtifactInfo_ObjectInfo) GetCoverageHtml() *FirmwareArtifactInfo_CoverageHtmlInfo {
+	if x, ok := x.GetFirmwareObjectInfo().(*FirmwareArtifactInfo_ObjectInfo_CoverageHtml); ok {
+		return x.CoverageHtml
+	}
+	return nil
+}
+
 type isFirmwareArtifactInfo_ObjectInfo_FirmwareObjectInfo interface {
 	isFirmwareArtifactInfo_ObjectInfo_FirmwareObjectInfo()
 }
@@ -1341,10 +1387,18 @@ type FirmwareArtifactInfo_ObjectInfo_LcovInfo struct {
 	LcovInfo *FirmwareArtifactInfo_LcovTarballInfo `protobuf:"bytes,3,opt,name=lcov_info,json=lcovInfo,proto3,oneof"`
 }
 
+type FirmwareArtifactInfo_ObjectInfo_CoverageHtml struct {
+	// Info about html tarball.
+	CoverageHtml *FirmwareArtifactInfo_CoverageHtmlInfo `protobuf:"bytes,4,opt,name=coverage_html,json=coverageHtml,proto3,oneof"`
+}
+
 func (*FirmwareArtifactInfo_ObjectInfo_TarballInfo) isFirmwareArtifactInfo_ObjectInfo_FirmwareObjectInfo() {
 }
 
 func (*FirmwareArtifactInfo_ObjectInfo_LcovInfo) isFirmwareArtifactInfo_ObjectInfo_FirmwareObjectInfo() {
+}
+
+func (*FirmwareArtifactInfo_ObjectInfo_CoverageHtml) isFirmwareArtifactInfo_ObjectInfo_FirmwareObjectInfo() {
 }
 
 // The type of a firmware binary.
@@ -1357,7 +1411,7 @@ type FirmwareArtifactInfo_TarballInfo_FirmwareType struct {
 func (x *FirmwareArtifactInfo_TarballInfo_FirmwareType) Reset() {
 	*x = FirmwareArtifactInfo_TarballInfo_FirmwareType{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_firmware_proto_msgTypes[19]
+		mi := &file_chromite_api_firmware_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1370,7 +1424,7 @@ func (x *FirmwareArtifactInfo_TarballInfo_FirmwareType) String() string {
 func (*FirmwareArtifactInfo_TarballInfo_FirmwareType) ProtoMessage() {}
 
 func (x *FirmwareArtifactInfo_TarballInfo_FirmwareType) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_firmware_proto_msgTypes[19]
+	mi := &file_chromite_api_firmware_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1399,7 +1453,7 @@ type FirmwareArtifactInfo_TarballInfo_Version struct {
 func (x *FirmwareArtifactInfo_TarballInfo_Version) Reset() {
 	*x = FirmwareArtifactInfo_TarballInfo_Version{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_firmware_proto_msgTypes[20]
+		mi := &file_chromite_api_firmware_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1412,7 +1466,7 @@ func (x *FirmwareArtifactInfo_TarballInfo_Version) String() string {
 func (*FirmwareArtifactInfo_TarballInfo_Version) ProtoMessage() {}
 
 func (x *FirmwareArtifactInfo_TarballInfo_Version) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_firmware_proto_msgTypes[20]
+	mi := &file_chromite_api_firmware_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1452,7 +1506,7 @@ type FirmwareArtifactInfo_LcovTarballInfo_LcovType struct {
 func (x *FirmwareArtifactInfo_LcovTarballInfo_LcovType) Reset() {
 	*x = FirmwareArtifactInfo_LcovTarballInfo_LcovType{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_firmware_proto_msgTypes[21]
+		mi := &file_chromite_api_firmware_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1465,7 +1519,7 @@ func (x *FirmwareArtifactInfo_LcovTarballInfo_LcovType) String() string {
 func (*FirmwareArtifactInfo_LcovTarballInfo_LcovType) ProtoMessage() {}
 
 func (x *FirmwareArtifactInfo_LcovTarballInfo_LcovType) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_firmware_proto_msgTypes[21]
+	mi := &file_chromite_api_firmware_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1608,7 +1662,7 @@ var file_chromite_api_firmware_proto_rawDesc = []byte{
 	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64,
 	0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x42, 0x79, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x52, 0x09, 0x61,
-	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x22, 0x86, 0x08, 0x0a, 0x14, 0x46, 0x69, 0x72,
+	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x22, 0xf6, 0x08, 0x0a, 0x14, 0x46, 0x69, 0x72,
 	0x6d, 0x77, 0x61, 0x72, 0x65, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x66,
 	0x6f, 0x12, 0x47, 0x0a, 0x07, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03,
 	0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70,
@@ -1658,20 +1712,27 @@ var file_chromite_api_firmware_proto_rawDesc = []byte{
 	0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x1a, 0x29, 0x0a, 0x08, 0x4c, 0x63,
 	0x6f, 0x76, 0x54, 0x79, 0x70, 0x65, 0x22, 0x1d, 0x0a, 0x04, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0b,
 	0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x4c,
-	0x43, 0x4f, 0x56, 0x10, 0x01, 0x1a, 0xe9, 0x01, 0x0a, 0x0a, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
-	0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x4e, 0x61, 0x6d,
-	0x65, 0x12, 0x53, 0x0a, 0x0c, 0x74, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x5f, 0x69, 0x6e, 0x66,
-	0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
-	0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x41,
-	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x2e, 0x54, 0x61, 0x72, 0x62,
-	0x61, 0x6c, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x48, 0x00, 0x52, 0x0b, 0x74, 0x61, 0x72, 0x62, 0x61,
-	0x6c, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x51, 0x0a, 0x09, 0x6c, 0x63, 0x6f, 0x76, 0x5f, 0x69,
-	0x6e, 0x66, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x63, 0x68, 0x72, 0x6f,
-	0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72,
-	0x65, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x2e, 0x4c, 0x63,
-	0x6f, 0x76, 0x54, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x48, 0x00, 0x52,
-	0x08, 0x6c, 0x63, 0x6f, 0x76, 0x49, 0x6e, 0x66, 0x6f, 0x42, 0x16, 0x0a, 0x14, 0x66, 0x69, 0x72,
+	0x43, 0x4f, 0x56, 0x10, 0x01, 0x1a, 0x12, 0x0a, 0x10, 0x43, 0x6f, 0x76, 0x65, 0x72, 0x61, 0x67,
+	0x65, 0x48, 0x74, 0x6d, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x1a, 0xc5, 0x02, 0x0a, 0x0a, 0x4f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65,
+	0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c,
+	0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x53, 0x0a, 0x0c, 0x74, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c,
+	0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77,
+	0x61, 0x72, 0x65, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x2e,
+	0x54, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x48, 0x00, 0x52, 0x0b, 0x74,
+	0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x51, 0x0a, 0x09, 0x6c, 0x63,
+	0x6f, 0x76, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x32, 0x2e,
+	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x72,
+	0x6d, 0x77, 0x61, 0x72, 0x65, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x66,
+	0x6f, 0x2e, 0x4c, 0x63, 0x6f, 0x76, 0x54, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x49, 0x6e, 0x66,
+	0x6f, 0x48, 0x00, 0x52, 0x08, 0x6c, 0x63, 0x6f, 0x76, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x5a, 0x0a,
+	0x0d, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x5f, 0x68, 0x74, 0x6d, 0x6c, 0x18, 0x04,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x33, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x41, 0x72, 0x74, 0x69,
+	0x66, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x2e, 0x43, 0x6f, 0x76, 0x65, 0x72, 0x61, 0x67,
+	0x65, 0x48, 0x74, 0x6d, 0x6c, 0x49, 0x6e, 0x66, 0x6f, 0x48, 0x00, 0x52, 0x0c, 0x63, 0x6f, 0x76,
+	0x65, 0x72, 0x61, 0x67, 0x65, 0x48, 0x74, 0x6d, 0x6c, 0x42, 0x16, 0x0a, 0x14, 0x66, 0x69, 0x72,
 	0x6d, 0x77, 0x61, 0x72, 0x65, 0x5f, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x69, 0x6e, 0x66,
 	0x6f, 0x32, 0xde, 0x02, 0x0a, 0x0f, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x61, 0x0a, 0x10, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x41, 0x6c,
@@ -1715,7 +1776,7 @@ func file_chromite_api_firmware_proto_rawDescGZIP() []byte {
 }
 
 var file_chromite_api_firmware_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_chromite_api_firmware_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_chromite_api_firmware_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_chromite_api_firmware_proto_goTypes = []interface{}{
 	(FirmwareArtifactInfo_TarballInfo_FirmwareType_Type)(0), // 0: chromite.api.FirmwareArtifactInfo.TarballInfo.FirmwareType.Type
 	(FirmwareArtifactInfo_LcovTarballInfo_LcovType_Type)(0), // 1: chromite.api.FirmwareArtifactInfo.LcovTarballInfo.LcovType.Type
@@ -1737,52 +1798,54 @@ var file_chromite_api_firmware_proto_goTypes = []interface{}{
 	(*FwBuildMetric_ZephyrTarget)(nil),                     // 17: chromite.api.FwBuildMetric.ZephyrTarget
 	(*FirmwareArtifactInfo_TarballInfo)(nil),               // 18: chromite.api.FirmwareArtifactInfo.TarballInfo
 	(*FirmwareArtifactInfo_LcovTarballInfo)(nil),           // 19: chromite.api.FirmwareArtifactInfo.LcovTarballInfo
-	(*FirmwareArtifactInfo_ObjectInfo)(nil),                // 20: chromite.api.FirmwareArtifactInfo.ObjectInfo
-	(*FirmwareArtifactInfo_TarballInfo_FirmwareType)(nil),  // 21: chromite.api.FirmwareArtifactInfo.TarballInfo.FirmwareType
-	(*FirmwareArtifactInfo_TarballInfo_Version)(nil),       // 22: chromite.api.FirmwareArtifactInfo.TarballInfo.Version
-	(*FirmwareArtifactInfo_LcovTarballInfo_LcovType)(nil),  // 23: chromite.api.FirmwareArtifactInfo.LcovTarballInfo.LcovType
-	(chromiumos.FwLocation)(0),                             // 24: chromiumos.FwLocation
-	(*chromiumos.Chroot)(nil),                              // 25: chromiumos.Chroot
-	(*chromiumos.ResultPath)(nil),                          // 26: chromiumos.ResultPath
-	(*chromiumos.ArtifactsByService_Firmware)(nil),         // 27: chromiumos.ArtifactsByService.Firmware
-	(*chromiumos.UploadedArtifactsByService_Firmware)(nil), // 28: chromiumos.UploadedArtifactsByService.Firmware
+	(*FirmwareArtifactInfo_CoverageHtmlInfo)(nil),          // 20: chromite.api.FirmwareArtifactInfo.CoverageHtmlInfo
+	(*FirmwareArtifactInfo_ObjectInfo)(nil),                // 21: chromite.api.FirmwareArtifactInfo.ObjectInfo
+	(*FirmwareArtifactInfo_TarballInfo_FirmwareType)(nil),  // 22: chromite.api.FirmwareArtifactInfo.TarballInfo.FirmwareType
+	(*FirmwareArtifactInfo_TarballInfo_Version)(nil),       // 23: chromite.api.FirmwareArtifactInfo.TarballInfo.Version
+	(*FirmwareArtifactInfo_LcovTarballInfo_LcovType)(nil),  // 24: chromite.api.FirmwareArtifactInfo.LcovTarballInfo.LcovType
+	(chromiumos.FwLocation)(0),                             // 25: chromiumos.FwLocation
+	(*chromiumos.Chroot)(nil),                              // 26: chromiumos.Chroot
+	(*chromiumos.ResultPath)(nil),                          // 27: chromiumos.ResultPath
+	(*chromiumos.ArtifactsByService_Firmware)(nil),         // 28: chromiumos.ArtifactsByService.Firmware
+	(*chromiumos.UploadedArtifactsByService_Firmware)(nil), // 29: chromiumos.UploadedArtifactsByService.Firmware
 }
 var file_chromite_api_firmware_proto_depIdxs = []int32{
 	15, // 0: chromite.api.FwBuildMetric.fw_section:type_name -> chromite.api.FwBuildMetric.FwSection
 	17, // 1: chromite.api.FwBuildMetric.zephyr:type_name -> chromite.api.FwBuildMetric.ZephyrTarget
 	4,  // 2: chromite.api.FwBuildMetricList.value:type_name -> chromite.api.FwBuildMetric
 	6,  // 3: chromite.api.FwTestMetricList.value:type_name -> chromite.api.FwTestMetric
-	24, // 4: chromite.api.BuildAllFirmwareRequest.firmware_location:type_name -> chromiumos.FwLocation
-	25, // 5: chromite.api.BuildAllFirmwareRequest.chroot:type_name -> chromiumos.Chroot
+	25, // 4: chromite.api.BuildAllFirmwareRequest.firmware_location:type_name -> chromiumos.FwLocation
+	26, // 5: chromite.api.BuildAllFirmwareRequest.chroot:type_name -> chromiumos.Chroot
 	5,  // 6: chromite.api.BuildAllFirmwareResponse.metrics:type_name -> chromite.api.FwBuildMetricList
-	24, // 7: chromite.api.TestAllFirmwareRequest.firmware_location:type_name -> chromiumos.FwLocation
-	25, // 8: chromite.api.TestAllFirmwareRequest.chroot:type_name -> chromiumos.Chroot
+	25, // 7: chromite.api.TestAllFirmwareRequest.firmware_location:type_name -> chromiumos.FwLocation
+	26, // 8: chromite.api.TestAllFirmwareRequest.chroot:type_name -> chromiumos.Chroot
 	7,  // 9: chromite.api.TestAllFirmwareResponse.metrics:type_name -> chromite.api.FwTestMetricList
-	25, // 10: chromite.api.BundleFirmwareArtifactsRequest.chroot:type_name -> chromiumos.Chroot
-	26, // 11: chromite.api.BundleFirmwareArtifactsRequest.result_path:type_name -> chromiumos.ResultPath
-	27, // 12: chromite.api.BundleFirmwareArtifactsRequest.artifacts:type_name -> chromiumos.ArtifactsByService.Firmware
+	26, // 10: chromite.api.BundleFirmwareArtifactsRequest.chroot:type_name -> chromiumos.Chroot
+	27, // 11: chromite.api.BundleFirmwareArtifactsRequest.result_path:type_name -> chromiumos.ResultPath
+	28, // 12: chromite.api.BundleFirmwareArtifactsRequest.artifacts:type_name -> chromiumos.ArtifactsByService.Firmware
 	2,  // 13: chromite.api.BundleFirmwareArtifactsRequest.bcs_version_info:type_name -> chromite.api.BcsVersionInfo
-	28, // 14: chromite.api.BundleFirmwareArtifactsResponse.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Firmware
-	20, // 15: chromite.api.FirmwareArtifactInfo.objects:type_name -> chromite.api.FirmwareArtifactInfo.ObjectInfo
+	29, // 14: chromite.api.BundleFirmwareArtifactsResponse.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Firmware
+	21, // 15: chromite.api.FirmwareArtifactInfo.objects:type_name -> chromite.api.FirmwareArtifactInfo.ObjectInfo
 	2,  // 16: chromite.api.FirmwareArtifactInfo.bcs_version_info:type_name -> chromite.api.BcsVersionInfo
 	16, // 17: chromite.api.FwBuildMetric.ZephyrTarget.kernel_version:type_name -> chromite.api.FwBuildMetric.Version
 	0,  // 18: chromite.api.FirmwareArtifactInfo.TarballInfo.type:type_name -> chromite.api.FirmwareArtifactInfo.TarballInfo.FirmwareType.Type
-	22, // 19: chromite.api.FirmwareArtifactInfo.TarballInfo.version:type_name -> chromite.api.FirmwareArtifactInfo.TarballInfo.Version
+	23, // 19: chromite.api.FirmwareArtifactInfo.TarballInfo.version:type_name -> chromite.api.FirmwareArtifactInfo.TarballInfo.Version
 	3,  // 20: chromite.api.FirmwareArtifactInfo.TarballInfo.firmware_version_info:type_name -> chromite.api.FirmwareVersionInfo
 	1,  // 21: chromite.api.FirmwareArtifactInfo.LcovTarballInfo.type:type_name -> chromite.api.FirmwareArtifactInfo.LcovTarballInfo.LcovType.Type
 	18, // 22: chromite.api.FirmwareArtifactInfo.ObjectInfo.tarball_info:type_name -> chromite.api.FirmwareArtifactInfo.TarballInfo
 	19, // 23: chromite.api.FirmwareArtifactInfo.ObjectInfo.lcov_info:type_name -> chromite.api.FirmwareArtifactInfo.LcovTarballInfo
-	8,  // 24: chromite.api.FirmwareService.BuildAllFirmware:input_type -> chromite.api.BuildAllFirmwareRequest
-	10, // 25: chromite.api.FirmwareService.TestAllFirmware:input_type -> chromite.api.TestAllFirmwareRequest
-	12, // 26: chromite.api.FirmwareService.BundleFirmwareArtifacts:input_type -> chromite.api.BundleFirmwareArtifactsRequest
-	9,  // 27: chromite.api.FirmwareService.BuildAllFirmware:output_type -> chromite.api.BuildAllFirmwareResponse
-	11, // 28: chromite.api.FirmwareService.TestAllFirmware:output_type -> chromite.api.TestAllFirmwareResponse
-	13, // 29: chromite.api.FirmwareService.BundleFirmwareArtifacts:output_type -> chromite.api.BundleFirmwareArtifactsResponse
-	27, // [27:30] is the sub-list for method output_type
-	24, // [24:27] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	20, // 24: chromite.api.FirmwareArtifactInfo.ObjectInfo.coverage_html:type_name -> chromite.api.FirmwareArtifactInfo.CoverageHtmlInfo
+	8,  // 25: chromite.api.FirmwareService.BuildAllFirmware:input_type -> chromite.api.BuildAllFirmwareRequest
+	10, // 26: chromite.api.FirmwareService.TestAllFirmware:input_type -> chromite.api.TestAllFirmwareRequest
+	12, // 27: chromite.api.FirmwareService.BundleFirmwareArtifacts:input_type -> chromite.api.BundleFirmwareArtifactsRequest
+	9,  // 28: chromite.api.FirmwareService.BuildAllFirmware:output_type -> chromite.api.BuildAllFirmwareResponse
+	11, // 29: chromite.api.FirmwareService.TestAllFirmware:output_type -> chromite.api.TestAllFirmwareResponse
+	13, // 30: chromite.api.FirmwareService.BundleFirmwareArtifacts:output_type -> chromite.api.BundleFirmwareArtifactsResponse
+	28, // [28:31] is the sub-list for method output_type
+	25, // [25:28] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_firmware_proto_init() }
@@ -2009,7 +2072,7 @@ func file_chromite_api_firmware_proto_init() {
 			}
 		}
 		file_chromite_api_firmware_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FirmwareArtifactInfo_ObjectInfo); i {
+			switch v := v.(*FirmwareArtifactInfo_CoverageHtmlInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2021,7 +2084,7 @@ func file_chromite_api_firmware_proto_init() {
 			}
 		}
 		file_chromite_api_firmware_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FirmwareArtifactInfo_TarballInfo_FirmwareType); i {
+			switch v := v.(*FirmwareArtifactInfo_ObjectInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2033,7 +2096,7 @@ func file_chromite_api_firmware_proto_init() {
 			}
 		}
 		file_chromite_api_firmware_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FirmwareArtifactInfo_TarballInfo_Version); i {
+			switch v := v.(*FirmwareArtifactInfo_TarballInfo_FirmwareType); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2045,6 +2108,18 @@ func file_chromite_api_firmware_proto_init() {
 			}
 		}
 		file_chromite_api_firmware_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FirmwareArtifactInfo_TarballInfo_Version); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_firmware_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FirmwareArtifactInfo_LcovTarballInfo_LcovType); i {
 			case 0:
 				return &v.state
@@ -2060,9 +2135,10 @@ func file_chromite_api_firmware_proto_init() {
 	file_chromite_api_firmware_proto_msgTypes[2].OneofWrappers = []interface{}{
 		(*FwBuildMetric_Zephyr)(nil),
 	}
-	file_chromite_api_firmware_proto_msgTypes[18].OneofWrappers = []interface{}{
+	file_chromite_api_firmware_proto_msgTypes[19].OneofWrappers = []interface{}{
 		(*FirmwareArtifactInfo_ObjectInfo_TarballInfo)(nil),
 		(*FirmwareArtifactInfo_ObjectInfo_LcovInfo)(nil),
+		(*FirmwareArtifactInfo_ObjectInfo_CoverageHtml)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2070,7 +2146,7 @@ func file_chromite_api_firmware_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromite_api_firmware_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   22,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

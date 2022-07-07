@@ -4679,6 +4679,9 @@
               ]
             },
             {
+              "name": "CoverageHtmlInfo"
+            },
+            {
               "field": [
                 {
                   "jsonName": "fileName",
@@ -4704,6 +4707,15 @@
                   "oneofIndex": 0,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromite.api.FirmwareArtifactInfo.LcovTarballInfo"
+                },
+                {
+                  "jsonName": "coverageHtml",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "coverage_html",
+                  "number": 4,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.CoverageHtmlInfo"
                 }
               ],
               "name": "ObjectInfo",
