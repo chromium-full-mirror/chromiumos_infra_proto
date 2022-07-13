@@ -251,6 +251,10 @@ message Request {
 
   Params params = 1;
 
+  message Tag {
+    string value = 1;
+  }
+
   // SuiteRequest defines an individual named suite.
   message Suite {
     string name = 1;
@@ -290,10 +294,14 @@ message Request {
     repeated AutotestInvocation autotest_invocations = 2;
   }
 
+
+
   message TestPlan {
     repeated Suite suite = 1;
     repeated Test test = 2;
     Enumeration enumeration = 3;
+    repeated Tag tags = 4;
+    repeated Tag exclude_tags = 5;
   }
 
   TestPlan test_plan = 5;

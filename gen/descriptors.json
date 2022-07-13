@@ -21842,6 +21842,18 @@
             {
               "field": [
                 {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Tag"
+            },
+            {
+              "field": [
+                {
                   "jsonName": "name",
                   "label": "LABEL_OPTIONAL",
                   "name": "name",
@@ -22006,6 +22018,22 @@
                   "number": 3,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.Request.Enumeration"
+                },
+                {
+                  "jsonName": "tags",
+                  "label": "LABEL_REPEATED",
+                  "name": "tags",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Tag"
+                },
+                {
+                  "jsonName": "excludeTags",
+                  "label": "LABEL_REPEATED",
+                  "name": "exclude_tags",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Tag"
                 }
               ],
               "name": "TestPlan"

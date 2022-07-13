@@ -370,6 +370,53 @@ func (x *Request_Params) GetRunViaCft() bool {
 	return false
 }
 
+type Request_Tag struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *Request_Tag) Reset() {
+	*x = Request_Tag{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_test_platform_request_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Request_Tag) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Request_Tag) ProtoMessage() {}
+
+func (x *Request_Tag) ProtoReflect() protoreflect.Message {
+	mi := &file_test_platform_request_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Request_Tag.ProtoReflect.Descriptor instead.
+func (*Request_Tag) Descriptor() ([]byte, []int) {
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 1}
+}
+
+func (x *Request_Tag) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
 // SuiteRequest defines an individual named suite.
 type Request_Suite struct {
 	state         protoimpl.MessageState
@@ -382,7 +429,7 @@ type Request_Suite struct {
 func (x *Request_Suite) Reset() {
 	*x = Request_Suite{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[2]
+		mi := &file_test_platform_request_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -395,7 +442,7 @@ func (x *Request_Suite) String() string {
 func (*Request_Suite) ProtoMessage() {}
 
 func (x *Request_Suite) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[2]
+	mi := &file_test_platform_request_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +455,7 @@ func (x *Request_Suite) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request_Suite.ProtoReflect.Descriptor instead.
 func (*Request_Suite) Descriptor() ([]byte, []int) {
-	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 1}
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 2}
 }
 
 func (x *Request_Suite) GetName() string {
@@ -431,7 +478,7 @@ type Request_Test struct {
 func (x *Request_Test) Reset() {
 	*x = Request_Test{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[3]
+		mi := &file_test_platform_request_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -444,7 +491,7 @@ func (x *Request_Test) String() string {
 func (*Request_Test) ProtoMessage() {}
 
 func (x *Request_Test) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[3]
+	mi := &file_test_platform_request_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -457,7 +504,7 @@ func (x *Request_Test) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request_Test.ProtoReflect.Descriptor instead.
 func (*Request_Test) Descriptor() ([]byte, []int) {
-	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 2}
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 3}
 }
 
 func (m *Request_Test) GetHarness() isRequest_Test_Harness {
@@ -499,7 +546,7 @@ type Request_Enumeration struct {
 func (x *Request_Enumeration) Reset() {
 	*x = Request_Enumeration{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[4]
+		mi := &file_test_platform_request_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -512,7 +559,7 @@ func (x *Request_Enumeration) String() string {
 func (*Request_Enumeration) ProtoMessage() {}
 
 func (x *Request_Enumeration) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[4]
+	mi := &file_test_platform_request_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -525,7 +572,7 @@ func (x *Request_Enumeration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request_Enumeration.ProtoReflect.Descriptor instead.
 func (*Request_Enumeration) Descriptor() ([]byte, []int) {
-	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 3}
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 4}
 }
 
 func (x *Request_Enumeration) GetAutotestInvocations() []*Request_Enumeration_AutotestInvocation {
@@ -543,12 +590,14 @@ type Request_TestPlan struct {
 	Suite       []*Request_Suite     `protobuf:"bytes,1,rep,name=suite,proto3" json:"suite,omitempty"`
 	Test        []*Request_Test      `protobuf:"bytes,2,rep,name=test,proto3" json:"test,omitempty"`
 	Enumeration *Request_Enumeration `protobuf:"bytes,3,opt,name=enumeration,proto3" json:"enumeration,omitempty"`
+	Tags        []*Request_Tag       `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+	ExcludeTags []*Request_Tag       `protobuf:"bytes,5,rep,name=exclude_tags,json=excludeTags,proto3" json:"exclude_tags,omitempty"`
 }
 
 func (x *Request_TestPlan) Reset() {
 	*x = Request_TestPlan{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[5]
+		mi := &file_test_platform_request_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -561,7 +610,7 @@ func (x *Request_TestPlan) String() string {
 func (*Request_TestPlan) ProtoMessage() {}
 
 func (x *Request_TestPlan) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[5]
+	mi := &file_test_platform_request_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -574,7 +623,7 @@ func (x *Request_TestPlan) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request_TestPlan.ProtoReflect.Descriptor instead.
 func (*Request_TestPlan) Descriptor() ([]byte, []int) {
-	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 4}
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 5}
 }
 
 func (x *Request_TestPlan) GetSuite() []*Request_Suite {
@@ -598,6 +647,20 @@ func (x *Request_TestPlan) GetEnumeration() *Request_Enumeration {
 	return nil
 }
 
+func (x *Request_TestPlan) GetTags() []*Request_Tag {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *Request_TestPlan) GetExcludeTags() []*Request_Tag {
+	if x != nil {
+		return x.ExcludeTags
+	}
+	return nil
+}
+
 // HardwareAttributes defines the hardware-bound characteristics
 // of the devices to run tests on.
 type Request_Params_HardwareAttributes struct {
@@ -617,7 +680,7 @@ type Request_Params_HardwareAttributes struct {
 func (x *Request_Params_HardwareAttributes) Reset() {
 	*x = Request_Params_HardwareAttributes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[6]
+		mi := &file_test_platform_request_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -630,7 +693,7 @@ func (x *Request_Params_HardwareAttributes) String() string {
 func (*Request_Params_HardwareAttributes) ProtoMessage() {}
 
 func (x *Request_Params_HardwareAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[6]
+	mi := &file_test_platform_request_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -673,7 +736,7 @@ type Request_Params_SoftwareAttributes struct {
 func (x *Request_Params_SoftwareAttributes) Reset() {
 	*x = Request_Params_SoftwareAttributes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[7]
+		mi := &file_test_platform_request_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -686,7 +749,7 @@ func (x *Request_Params_SoftwareAttributes) String() string {
 func (*Request_Params_SoftwareAttributes) ProtoMessage() {}
 
 func (x *Request_Params_SoftwareAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[7]
+	mi := &file_test_platform_request_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -726,7 +789,7 @@ type Request_Params_FreeformAttributes struct {
 func (x *Request_Params_FreeformAttributes) Reset() {
 	*x = Request_Params_FreeformAttributes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[8]
+		mi := &file_test_platform_request_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -739,7 +802,7 @@ func (x *Request_Params_FreeformAttributes) String() string {
 func (*Request_Params_FreeformAttributes) ProtoMessage() {}
 
 func (x *Request_Params_FreeformAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[8]
+	mi := &file_test_platform_request_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -781,7 +844,7 @@ type Request_Params_SoftwareDependency struct {
 func (x *Request_Params_SoftwareDependency) Reset() {
 	*x = Request_Params_SoftwareDependency{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[9]
+		mi := &file_test_platform_request_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -794,7 +857,7 @@ func (x *Request_Params_SoftwareDependency) String() string {
 func (*Request_Params_SoftwareDependency) ProtoMessage() {}
 
 func (x *Request_Params_SoftwareDependency) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[9]
+	mi := &file_test_platform_request_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -912,7 +975,7 @@ type Request_Params_SecondaryDevice struct {
 func (x *Request_Params_SecondaryDevice) Reset() {
 	*x = Request_Params_SecondaryDevice{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[10]
+		mi := &file_test_platform_request_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -925,7 +988,7 @@ func (x *Request_Params_SecondaryDevice) String() string {
 func (*Request_Params_SecondaryDevice) ProtoMessage() {}
 
 func (x *Request_Params_SecondaryDevice) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[10]
+	mi := &file_test_platform_request_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -995,7 +1058,7 @@ type Request_Params_Scheduling struct {
 func (x *Request_Params_Scheduling) Reset() {
 	*x = Request_Params_Scheduling{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[11]
+		mi := &file_test_platform_request_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1008,7 +1071,7 @@ func (x *Request_Params_Scheduling) String() string {
 func (*Request_Params_Scheduling) ProtoMessage() {}
 
 func (x *Request_Params_Scheduling) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[11]
+	mi := &file_test_platform_request_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1095,7 +1158,7 @@ type Request_Params_Retry struct {
 func (x *Request_Params_Retry) Reset() {
 	*x = Request_Params_Retry{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[12]
+		mi := &file_test_platform_request_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1108,7 +1171,7 @@ func (x *Request_Params_Retry) String() string {
 func (*Request_Params_Retry) ProtoMessage() {}
 
 func (x *Request_Params_Retry) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[12]
+	mi := &file_test_platform_request_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1163,7 +1226,7 @@ type Request_Params_Metadata struct {
 func (x *Request_Params_Metadata) Reset() {
 	*x = Request_Params_Metadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[13]
+		mi := &file_test_platform_request_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1176,7 +1239,7 @@ func (x *Request_Params_Metadata) String() string {
 func (*Request_Params_Metadata) ProtoMessage() {}
 
 func (x *Request_Params_Metadata) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[13]
+	mi := &file_test_platform_request_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1226,7 +1289,7 @@ type Request_Params_Time struct {
 func (x *Request_Params_Time) Reset() {
 	*x = Request_Params_Time{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[14]
+		mi := &file_test_platform_request_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1239,7 +1302,7 @@ func (x *Request_Params_Time) String() string {
 func (*Request_Params_Time) ProtoMessage() {}
 
 func (x *Request_Params_Time) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[14]
+	mi := &file_test_platform_request_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1284,7 +1347,7 @@ type Request_Params_Decorations struct {
 func (x *Request_Params_Decorations) Reset() {
 	*x = Request_Params_Decorations{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[15]
+		mi := &file_test_platform_request_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1297,7 +1360,7 @@ func (x *Request_Params_Decorations) String() string {
 func (*Request_Params_Decorations) ProtoMessage() {}
 
 func (x *Request_Params_Decorations) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[15]
+	mi := &file_test_platform_request_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1345,7 +1408,7 @@ type Request_Params_Migrations struct {
 func (x *Request_Params_Migrations) Reset() {
 	*x = Request_Params_Migrations{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[16]
+		mi := &file_test_platform_request_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1358,7 +1421,7 @@ func (x *Request_Params_Migrations) String() string {
 func (*Request_Params_Migrations) ProtoMessage() {}
 
 func (x *Request_Params_Migrations) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[16]
+	mi := &file_test_platform_request_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1392,7 +1455,7 @@ type Request_Test_Autotest struct {
 func (x *Request_Test_Autotest) Reset() {
 	*x = Request_Test_Autotest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[19]
+		mi := &file_test_platform_request_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1405,7 +1468,7 @@ func (x *Request_Test_Autotest) String() string {
 func (*Request_Test_Autotest) ProtoMessage() {}
 
 func (x *Request_Test_Autotest) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[19]
+	mi := &file_test_platform_request_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1418,7 +1481,7 @@ func (x *Request_Test_Autotest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request_Test_Autotest.ProtoReflect.Descriptor instead.
 func (*Request_Test_Autotest) Descriptor() ([]byte, []int) {
-	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 2, 0}
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 3, 0}
 }
 
 func (x *Request_Test_Autotest) GetName() string {
@@ -1456,7 +1519,7 @@ type Request_Enumeration_AutotestInvocation struct {
 func (x *Request_Enumeration_AutotestInvocation) Reset() {
 	*x = Request_Enumeration_AutotestInvocation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_request_proto_msgTypes[20]
+		mi := &file_test_platform_request_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1469,7 +1532,7 @@ func (x *Request_Enumeration_AutotestInvocation) String() string {
 func (*Request_Enumeration_AutotestInvocation) ProtoMessage() {}
 
 func (x *Request_Enumeration_AutotestInvocation) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_request_proto_msgTypes[20]
+	mi := &file_test_platform_request_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1482,7 +1545,7 @@ func (x *Request_Enumeration_AutotestInvocation) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use Request_Enumeration_AutotestInvocation.ProtoReflect.Descriptor instead.
 func (*Request_Enumeration_AutotestInvocation) Descriptor() ([]byte, []int) {
-	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 3, 0}
+	return file_test_platform_request_proto_rawDescGZIP(), []int{0, 4, 0}
 }
 
 func (x *Request_Enumeration_AutotestInvocation) GetTest() *api.AutotestTest {
@@ -1526,7 +1589,7 @@ var file_test_platform_request_proto_rawDesc = []byte{
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f,
 	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x23, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c,
 	0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2f, 0x65, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
-	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xc5, 0x21, 0x0a,
+	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xd1, 0x22, 0x0a,
 	0x07, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x35, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61,
 	0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f,
 	0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
@@ -1741,65 +1804,74 @@ var file_test_platform_request_proto_rawDesc = []byte{
 	0x10, 0x0a, 0x0c, 0x4e, 0x4f, 0x4e, 0x5f, 0x43, 0x52, 0x49, 0x54, 0x49, 0x43, 0x41, 0x4c, 0x10,
 	0x02, 0x4a, 0x04, 0x08, 0x0b, 0x10, 0x0c, 0x4a, 0x04, 0x08, 0x0a, 0x10, 0x0b, 0x52, 0x0d, 0x6e,
 	0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x06, 0x6c, 0x65,
-	0x67, 0x61, 0x63, 0x79, 0x1a, 0x2e, 0x0a, 0x05, 0x53, 0x75, 0x69, 0x74, 0x65, 0x12, 0x12, 0x0a,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x4a, 0x04, 0x08, 0x02, 0x10, 0x03, 0x52, 0x0b, 0x72, 0x75, 0x6e, 0x5f, 0x76, 0x69, 0x61,
-	0x5f, 0x63, 0x66, 0x74, 0x1a, 0xb5, 0x01, 0x0a, 0x04, 0x54, 0x65, 0x73, 0x74, 0x12, 0x42, 0x0a,
-	0x08, 0x61, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x24, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x2e, 0x41, 0x75, 0x74,
-	0x6f, 0x74, 0x65, 0x73, 0x74, 0x48, 0x00, 0x52, 0x08, 0x61, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73,
-	0x74, 0x1a, 0x5e, 0x0a, 0x08, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x12, 0x1b, 0x0a, 0x09, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x61, 0x72, 0x67, 0x73, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74, 0x65, 0x73, 0x74, 0x41, 0x72, 0x67, 0x73, 0x12, 0x21,
-	0x0a, 0x0c, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d,
-	0x65, 0x42, 0x09, 0x0a, 0x07, 0x68, 0x61, 0x72, 0x6e, 0x65, 0x73, 0x73, 0x1a, 0xb1, 0x03, 0x0a,
-	0x0b, 0x45, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x68, 0x0a, 0x14,
-	0x61, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x69, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x35, 0x2e, 0x74, 0x65, 0x73,
-	0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x41,
-	0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x52, 0x13, 0x61, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x63,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x1a, 0xb7, 0x02, 0x0a, 0x12, 0x41, 0x75, 0x74, 0x6f, 0x74,
-	0x65, 0x73, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a,
-	0x04, 0x74, 0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x63, 0x68,
-	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x74,
-	0x65, 0x73, 0x74, 0x54, 0x65, 0x73, 0x74, 0x52, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a,
-	0x09, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x61, 0x72, 0x67, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x08, 0x74, 0x65, 0x73, 0x74, 0x41, 0x72, 0x67, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x64, 0x69,
-	0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x6f, 0x0a,
-	0x0e, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x5f, 0x6b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x18,
-	0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x48, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61,
-	0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x45, 0x6e,
-	0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65,
-	0x73, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x73,
-	0x75, 0x6c, 0x74, 0x4b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52,
-	0x0d, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x4b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x1a, 0x40,
-	0x0a, 0x12, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x4b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x45,
-	0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01,
-	0x1a, 0xb5, 0x01, 0x0a, 0x08, 0x54, 0x65, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x12, 0x32, 0x0a,
-	0x05, 0x73, 0x75, 0x69, 0x74, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x74,
+	0x67, 0x61, 0x63, 0x79, 0x1a, 0x1b, 0x0a, 0x03, 0x54, 0x61, 0x67, 0x12, 0x14, 0x0a, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x1a, 0x2e, 0x0a, 0x05, 0x53, 0x75, 0x69, 0x74, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x4a, 0x04,
+	0x08, 0x02, 0x10, 0x03, 0x52, 0x0b, 0x72, 0x75, 0x6e, 0x5f, 0x76, 0x69, 0x61, 0x5f, 0x63, 0x66,
+	0x74, 0x1a, 0xb5, 0x01, 0x0a, 0x04, 0x54, 0x65, 0x73, 0x74, 0x12, 0x42, 0x0a, 0x08, 0x61, 0x75,
+	0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x74,
 	0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x2e, 0x53, 0x75, 0x69, 0x74, 0x65, 0x52, 0x05, 0x73, 0x75, 0x69, 0x74,
-	0x65, 0x12, 0x2f, 0x0a, 0x04, 0x74, 0x65, 0x73, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x1b, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x52, 0x04, 0x74, 0x65,
-	0x73, 0x74, 0x12, 0x44, 0x0a, 0x0b, 0x65, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70,
+	0x75, 0x65, 0x73, 0x74, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65,
+	0x73, 0x74, 0x48, 0x00, 0x52, 0x08, 0x61, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x1a, 0x5e,
+	0x0a, 0x08, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1b,
+	0x0a, 0x09, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x61, 0x72, 0x67, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x74, 0x65, 0x73, 0x74, 0x41, 0x72, 0x67, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x64,
+	0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x42, 0x09,
+	0x0a, 0x07, 0x68, 0x61, 0x72, 0x6e, 0x65, 0x73, 0x73, 0x1a, 0xb1, 0x03, 0x0a, 0x0b, 0x45, 0x6e,
+	0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x68, 0x0a, 0x14, 0x61, 0x75, 0x74,
+	0x6f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x69, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x35, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70,
 	0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e,
-	0x45, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x65, 0x6e, 0x75,
-	0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4a, 0x04, 0x08, 0x06, 0x10, 0x07, 0x4a, 0x04,
-	0x08, 0x07, 0x10, 0x08, 0x42, 0x39, 0x5a, 0x37, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
-	0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
-	0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67,
-	0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x45, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x41, 0x75, 0x74, 0x6f,
+	0x74, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x13,
+	0x61, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x1a, 0xb7, 0x02, 0x0a, 0x12, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74,
+	0x49, 0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a, 0x04, 0x74, 0x65,
+	0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
+	0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74,
+	0x54, 0x65, 0x73, 0x74, 0x52, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x74, 0x65,
+	0x73, 0x74, 0x5f, 0x61, 0x72, 0x67, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74,
+	0x65, 0x73, 0x74, 0x41, 0x72, 0x67, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x64, 0x69, 0x73, 0x70, 0x6c,
+	0x61, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64,
+	0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x6f, 0x0a, 0x0e, 0x72, 0x65,
+	0x73, 0x75, 0x6c, 0x74, 0x5f, 0x6b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x18, 0x04, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x48, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f,
+	0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x65,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x74, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x76, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x4b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x0d, 0x72, 0x65,
+	0x73, 0x75, 0x6c, 0x74, 0x4b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x1a, 0x40, 0x0a, 0x12, 0x52,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x4b, 0x65, 0x79, 0x76, 0x61, 0x6c, 0x73, 0x45, 0x6e, 0x74, 0x72,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0xa4, 0x02,
+	0x0a, 0x08, 0x54, 0x65, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x12, 0x32, 0x0a, 0x05, 0x73, 0x75,
+	0x69, 0x74, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x74, 0x65, 0x73, 0x74,
+	0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x2e, 0x53, 0x75, 0x69, 0x74, 0x65, 0x52, 0x05, 0x73, 0x75, 0x69, 0x74, 0x65, 0x12, 0x2f,
+	0x0a, 0x04, 0x74, 0x65, 0x73, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x74,
+	0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x52, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12,
+	0x44, 0x0a, 0x0b, 0x65, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74,
+	0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x45, 0x6e, 0x75,
+	0x6d, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x65, 0x6e, 0x75, 0x6d, 0x65, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x04, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66,
+	0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x54, 0x61, 0x67, 0x52,
+	0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x3d, 0x0a, 0x0c, 0x65, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65,
+	0x5f, 0x74, 0x61, 0x67, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x65,
+	0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x0b, 0x65, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65,
+	0x54, 0x61, 0x67, 0x73, 0x4a, 0x04, 0x08, 0x06, 0x10, 0x07, 0x4a, 0x04, 0x08, 0x07, 0x10, 0x08,
+	0x42, 0x39, 0x5a, 0x37, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e,
+	0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69,
+	0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x65,
+	0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1815,73 +1887,76 @@ func file_test_platform_request_proto_rawDescGZIP() []byte {
 }
 
 var file_test_platform_request_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_test_platform_request_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_test_platform_request_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_test_platform_request_proto_goTypes = []interface{}{
 	(Request_Params_TestExecutionBehavior)(0),  // 0: test_platform.Request.Params.TestExecutionBehavior
 	(Request_Params_Scheduling_ManagedPool)(0), // 1: test_platform.Request.Params.Scheduling.ManagedPool
 	(*Request)(nil),                                // 2: test_platform.Request
 	(*Request_Params)(nil),                         // 3: test_platform.Request.Params
-	(*Request_Suite)(nil),                          // 4: test_platform.Request.Suite
-	(*Request_Test)(nil),                           // 5: test_platform.Request.Test
-	(*Request_Enumeration)(nil),                    // 6: test_platform.Request.Enumeration
-	(*Request_TestPlan)(nil),                       // 7: test_platform.Request.TestPlan
-	(*Request_Params_HardwareAttributes)(nil),      // 8: test_platform.Request.Params.HardwareAttributes
-	(*Request_Params_SoftwareAttributes)(nil),      // 9: test_platform.Request.Params.SoftwareAttributes
-	(*Request_Params_FreeformAttributes)(nil),      // 10: test_platform.Request.Params.FreeformAttributes
-	(*Request_Params_SoftwareDependency)(nil),      // 11: test_platform.Request.Params.SoftwareDependency
-	(*Request_Params_SecondaryDevice)(nil),         // 12: test_platform.Request.Params.SecondaryDevice
-	(*Request_Params_Scheduling)(nil),              // 13: test_platform.Request.Params.Scheduling
-	(*Request_Params_Retry)(nil),                   // 14: test_platform.Request.Params.Retry
-	(*Request_Params_Metadata)(nil),                // 15: test_platform.Request.Params.Metadata
-	(*Request_Params_Time)(nil),                    // 16: test_platform.Request.Params.Time
-	(*Request_Params_Decorations)(nil),             // 17: test_platform.Request.Params.Decorations
-	(*Request_Params_Migrations)(nil),              // 18: test_platform.Request.Params.Migrations
-	nil,                                            // 19: test_platform.Request.Params.Decorations.AutotestKeyvalsEntry
-	nil,                                            // 20: test_platform.Request.Params.Decorations.TestArgsEntry
-	(*Request_Test_Autotest)(nil),                  // 21: test_platform.Request.Test.Autotest
-	(*Request_Enumeration_AutotestInvocation)(nil), // 22: test_platform.Request.Enumeration.AutotestInvocation
-	nil,                            // 23: test_platform.Request.Enumeration.AutotestInvocation.ResultKeyvalsEntry
-	(*execution.Param)(nil),        // 24: test_platform.execution.Param
-	(*chromiumos.BuildTarget)(nil), // 25: chromiumos.BuildTarget
-	(*durationpb.Duration)(nil),    // 26: google.protobuf.Duration
-	(*api.AutotestTest)(nil),       // 27: chromite.api.AutotestTest
+	(*Request_Tag)(nil),                            // 4: test_platform.Request.Tag
+	(*Request_Suite)(nil),                          // 5: test_platform.Request.Suite
+	(*Request_Test)(nil),                           // 6: test_platform.Request.Test
+	(*Request_Enumeration)(nil),                    // 7: test_platform.Request.Enumeration
+	(*Request_TestPlan)(nil),                       // 8: test_platform.Request.TestPlan
+	(*Request_Params_HardwareAttributes)(nil),      // 9: test_platform.Request.Params.HardwareAttributes
+	(*Request_Params_SoftwareAttributes)(nil),      // 10: test_platform.Request.Params.SoftwareAttributes
+	(*Request_Params_FreeformAttributes)(nil),      // 11: test_platform.Request.Params.FreeformAttributes
+	(*Request_Params_SoftwareDependency)(nil),      // 12: test_platform.Request.Params.SoftwareDependency
+	(*Request_Params_SecondaryDevice)(nil),         // 13: test_platform.Request.Params.SecondaryDevice
+	(*Request_Params_Scheduling)(nil),              // 14: test_platform.Request.Params.Scheduling
+	(*Request_Params_Retry)(nil),                   // 15: test_platform.Request.Params.Retry
+	(*Request_Params_Metadata)(nil),                // 16: test_platform.Request.Params.Metadata
+	(*Request_Params_Time)(nil),                    // 17: test_platform.Request.Params.Time
+	(*Request_Params_Decorations)(nil),             // 18: test_platform.Request.Params.Decorations
+	(*Request_Params_Migrations)(nil),              // 19: test_platform.Request.Params.Migrations
+	nil,                                            // 20: test_platform.Request.Params.Decorations.AutotestKeyvalsEntry
+	nil,                                            // 21: test_platform.Request.Params.Decorations.TestArgsEntry
+	(*Request_Test_Autotest)(nil),                  // 22: test_platform.Request.Test.Autotest
+	(*Request_Enumeration_AutotestInvocation)(nil), // 23: test_platform.Request.Enumeration.AutotestInvocation
+	nil,                            // 24: test_platform.Request.Enumeration.AutotestInvocation.ResultKeyvalsEntry
+	(*execution.Param)(nil),        // 25: test_platform.execution.Param
+	(*chromiumos.BuildTarget)(nil), // 26: chromiumos.BuildTarget
+	(*durationpb.Duration)(nil),    // 27: google.protobuf.Duration
+	(*api.AutotestTest)(nil),       // 28: chromite.api.AutotestTest
 }
 var file_test_platform_request_proto_depIdxs = []int32{
 	3,  // 0: test_platform.Request.params:type_name -> test_platform.Request.Params
-	7,  // 1: test_platform.Request.test_plan:type_name -> test_platform.Request.TestPlan
-	8,  // 2: test_platform.Request.Params.hardware_attributes:type_name -> test_platform.Request.Params.HardwareAttributes
-	9,  // 3: test_platform.Request.Params.software_attributes:type_name -> test_platform.Request.Params.SoftwareAttributes
-	10, // 4: test_platform.Request.Params.freeform_attributes:type_name -> test_platform.Request.Params.FreeformAttributes
-	11, // 5: test_platform.Request.Params.software_dependencies:type_name -> test_platform.Request.Params.SoftwareDependency
-	12, // 6: test_platform.Request.Params.secondary_devices:type_name -> test_platform.Request.Params.SecondaryDevice
-	13, // 7: test_platform.Request.Params.scheduling:type_name -> test_platform.Request.Params.Scheduling
-	14, // 8: test_platform.Request.Params.retry:type_name -> test_platform.Request.Params.Retry
-	15, // 9: test_platform.Request.Params.metadata:type_name -> test_platform.Request.Params.Metadata
-	16, // 10: test_platform.Request.Params.time:type_name -> test_platform.Request.Params.Time
-	17, // 11: test_platform.Request.Params.decorations:type_name -> test_platform.Request.Params.Decorations
-	18, // 12: test_platform.Request.Params.migrations:type_name -> test_platform.Request.Params.Migrations
-	24, // 13: test_platform.Request.Params.execution_param:type_name -> test_platform.execution.Param
+	8,  // 1: test_platform.Request.test_plan:type_name -> test_platform.Request.TestPlan
+	9,  // 2: test_platform.Request.Params.hardware_attributes:type_name -> test_platform.Request.Params.HardwareAttributes
+	10, // 3: test_platform.Request.Params.software_attributes:type_name -> test_platform.Request.Params.SoftwareAttributes
+	11, // 4: test_platform.Request.Params.freeform_attributes:type_name -> test_platform.Request.Params.FreeformAttributes
+	12, // 5: test_platform.Request.Params.software_dependencies:type_name -> test_platform.Request.Params.SoftwareDependency
+	13, // 6: test_platform.Request.Params.secondary_devices:type_name -> test_platform.Request.Params.SecondaryDevice
+	14, // 7: test_platform.Request.Params.scheduling:type_name -> test_platform.Request.Params.Scheduling
+	15, // 8: test_platform.Request.Params.retry:type_name -> test_platform.Request.Params.Retry
+	16, // 9: test_platform.Request.Params.metadata:type_name -> test_platform.Request.Params.Metadata
+	17, // 10: test_platform.Request.Params.time:type_name -> test_platform.Request.Params.Time
+	18, // 11: test_platform.Request.Params.decorations:type_name -> test_platform.Request.Params.Decorations
+	19, // 12: test_platform.Request.Params.migrations:type_name -> test_platform.Request.Params.Migrations
+	25, // 13: test_platform.Request.Params.execution_param:type_name -> test_platform.execution.Param
 	0,  // 14: test_platform.Request.Params.test_execution_behavior:type_name -> test_platform.Request.Params.TestExecutionBehavior
-	21, // 15: test_platform.Request.Test.autotest:type_name -> test_platform.Request.Test.Autotest
-	22, // 16: test_platform.Request.Enumeration.autotest_invocations:type_name -> test_platform.Request.Enumeration.AutotestInvocation
-	4,  // 17: test_platform.Request.TestPlan.suite:type_name -> test_platform.Request.Suite
-	5,  // 18: test_platform.Request.TestPlan.test:type_name -> test_platform.Request.Test
-	6,  // 19: test_platform.Request.TestPlan.enumeration:type_name -> test_platform.Request.Enumeration
-	25, // 20: test_platform.Request.Params.SoftwareAttributes.build_target:type_name -> chromiumos.BuildTarget
-	9,  // 21: test_platform.Request.Params.SecondaryDevice.software_attributes:type_name -> test_platform.Request.Params.SoftwareAttributes
-	8,  // 22: test_platform.Request.Params.SecondaryDevice.hardware_attributes:type_name -> test_platform.Request.Params.HardwareAttributes
-	11, // 23: test_platform.Request.Params.SecondaryDevice.software_dependencies:type_name -> test_platform.Request.Params.SoftwareDependency
-	1,  // 24: test_platform.Request.Params.Scheduling.managed_pool:type_name -> test_platform.Request.Params.Scheduling.ManagedPool
-	26, // 25: test_platform.Request.Params.Time.maximum_duration:type_name -> google.protobuf.Duration
-	19, // 26: test_platform.Request.Params.Decorations.autotest_keyvals:type_name -> test_platform.Request.Params.Decorations.AutotestKeyvalsEntry
-	20, // 27: test_platform.Request.Params.Decorations.test_args:type_name -> test_platform.Request.Params.Decorations.TestArgsEntry
-	27, // 28: test_platform.Request.Enumeration.AutotestInvocation.test:type_name -> chromite.api.AutotestTest
-	23, // 29: test_platform.Request.Enumeration.AutotestInvocation.result_keyvals:type_name -> test_platform.Request.Enumeration.AutotestInvocation.ResultKeyvalsEntry
-	30, // [30:30] is the sub-list for method output_type
-	30, // [30:30] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	22, // 15: test_platform.Request.Test.autotest:type_name -> test_platform.Request.Test.Autotest
+	23, // 16: test_platform.Request.Enumeration.autotest_invocations:type_name -> test_platform.Request.Enumeration.AutotestInvocation
+	5,  // 17: test_platform.Request.TestPlan.suite:type_name -> test_platform.Request.Suite
+	6,  // 18: test_platform.Request.TestPlan.test:type_name -> test_platform.Request.Test
+	7,  // 19: test_platform.Request.TestPlan.enumeration:type_name -> test_platform.Request.Enumeration
+	4,  // 20: test_platform.Request.TestPlan.tags:type_name -> test_platform.Request.Tag
+	4,  // 21: test_platform.Request.TestPlan.exclude_tags:type_name -> test_platform.Request.Tag
+	26, // 22: test_platform.Request.Params.SoftwareAttributes.build_target:type_name -> chromiumos.BuildTarget
+	10, // 23: test_platform.Request.Params.SecondaryDevice.software_attributes:type_name -> test_platform.Request.Params.SoftwareAttributes
+	9,  // 24: test_platform.Request.Params.SecondaryDevice.hardware_attributes:type_name -> test_platform.Request.Params.HardwareAttributes
+	12, // 25: test_platform.Request.Params.SecondaryDevice.software_dependencies:type_name -> test_platform.Request.Params.SoftwareDependency
+	1,  // 26: test_platform.Request.Params.Scheduling.managed_pool:type_name -> test_platform.Request.Params.Scheduling.ManagedPool
+	27, // 27: test_platform.Request.Params.Time.maximum_duration:type_name -> google.protobuf.Duration
+	20, // 28: test_platform.Request.Params.Decorations.autotest_keyvals:type_name -> test_platform.Request.Params.Decorations.AutotestKeyvalsEntry
+	21, // 29: test_platform.Request.Params.Decorations.test_args:type_name -> test_platform.Request.Params.Decorations.TestArgsEntry
+	28, // 30: test_platform.Request.Enumeration.AutotestInvocation.test:type_name -> chromite.api.AutotestTest
+	24, // 31: test_platform.Request.Enumeration.AutotestInvocation.result_keyvals:type_name -> test_platform.Request.Enumeration.AutotestInvocation.ResultKeyvalsEntry
+	32, // [32:32] is the sub-list for method output_type
+	32, // [32:32] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_test_platform_request_proto_init() }
@@ -1915,7 +1990,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Suite); i {
+			switch v := v.(*Request_Tag); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1927,7 +2002,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Test); i {
+			switch v := v.(*Request_Suite); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1939,7 +2014,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Enumeration); i {
+			switch v := v.(*Request_Test); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1951,7 +2026,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_TestPlan); i {
+			switch v := v.(*Request_Enumeration); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1963,7 +2038,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_HardwareAttributes); i {
+			switch v := v.(*Request_TestPlan); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1975,7 +2050,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_SoftwareAttributes); i {
+			switch v := v.(*Request_Params_HardwareAttributes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1987,7 +2062,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_FreeformAttributes); i {
+			switch v := v.(*Request_Params_SoftwareAttributes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1999,7 +2074,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_SoftwareDependency); i {
+			switch v := v.(*Request_Params_FreeformAttributes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2011,7 +2086,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_SecondaryDevice); i {
+			switch v := v.(*Request_Params_SoftwareDependency); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2023,7 +2098,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_Scheduling); i {
+			switch v := v.(*Request_Params_SecondaryDevice); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2035,7 +2110,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_Retry); i {
+			switch v := v.(*Request_Params_Scheduling); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2047,7 +2122,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_Metadata); i {
+			switch v := v.(*Request_Params_Retry); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2059,7 +2134,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_Time); i {
+			switch v := v.(*Request_Params_Metadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2071,7 +2146,7 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request_Params_Decorations); i {
+			switch v := v.(*Request_Params_Time); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2083,6 +2158,18 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 		file_test_platform_request_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Request_Params_Decorations); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_test_platform_request_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Request_Params_Migrations); i {
 			case 0:
 				return &v.state
@@ -2094,7 +2181,7 @@ func file_test_platform_request_proto_init() {
 				return nil
 			}
 		}
-		file_test_platform_request_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_test_platform_request_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Request_Test_Autotest); i {
 			case 0:
 				return &v.state
@@ -2106,7 +2193,7 @@ func file_test_platform_request_proto_init() {
 				return nil
 			}
 		}
-		file_test_platform_request_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_test_platform_request_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Request_Enumeration_AutotestInvocation); i {
 			case 0:
 				return &v.state
@@ -2119,17 +2206,17 @@ func file_test_platform_request_proto_init() {
 			}
 		}
 	}
-	file_test_platform_request_proto_msgTypes[3].OneofWrappers = []interface{}{
+	file_test_platform_request_proto_msgTypes[4].OneofWrappers = []interface{}{
 		(*Request_Test_Autotest_)(nil),
 	}
-	file_test_platform_request_proto_msgTypes[9].OneofWrappers = []interface{}{
+	file_test_platform_request_proto_msgTypes[10].OneofWrappers = []interface{}{
 		(*Request_Params_SoftwareDependency_ChromeosBuild)(nil),
 		(*Request_Params_SoftwareDependency_ChromeosBuildGcsBucket)(nil),
 		(*Request_Params_SoftwareDependency_RoFirmwareBuild)(nil),
 		(*Request_Params_SoftwareDependency_RwFirmwareBuild)(nil),
 		(*Request_Params_SoftwareDependency_LacrosGcsPath)(nil),
 	}
-	file_test_platform_request_proto_msgTypes[11].OneofWrappers = []interface{}{
+	file_test_platform_request_proto_msgTypes[12].OneofWrappers = []interface{}{
 		(*Request_Params_Scheduling_ManagedPool_)(nil),
 		(*Request_Params_Scheduling_UnmanagedPool)(nil),
 	}
@@ -2139,7 +2226,7 @@ func file_test_platform_request_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_test_platform_request_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   22,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
