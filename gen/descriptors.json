@@ -14402,6 +14402,127 @@
         {
           "enumType": [
             {
+              "name": "TestBehavior",
+              "value": [
+                {
+                  "name": "CRITICAL",
+                  "number": 0
+                },
+                {
+                  "name": "INFORMATIONAL",
+                  "number": 1
+                },
+                {
+                  "name": "INVALID",
+                  "number": 2
+                },
+                {
+                  "name": "WONT_FIX",
+                  "number": 3
+                },
+                {
+                  "name": "SKIP_TEMPORARY",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dutCriteria",
+              "label": "LABEL_REPEATED",
+              "name": "dut_criteria",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.TestDisablement.FilterCriterion"
+            },
+            {
+              "jsonName": "testCriteria",
+              "label": "LABEL_REPEATED",
+              "name": "test_criteria",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.TestDisablement.FilterCriterion"
+            },
+            {
+              "jsonName": "contextCriteria",
+              "label": "LABEL_REPEATED",
+              "name": "context_criteria",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.TestDisablement.FilterCriterion"
+            },
+            {
+              "jsonName": "behavior",
+              "label": "LABEL_OPTIONAL",
+              "name": "behavior",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.TestDisablement.TestBehavior"
+            },
+            {
+              "jsonName": "bugIds",
+              "label": "LABEL_REPEATED",
+              "name": "bug_ids",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "TestDisablement",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "values",
+                  "label": "LABEL_REPEATED",
+                  "name": "values",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "negated",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "negated",
+                  "number": 3,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "FilterCriterion"
+            }
+          ]
+        }
+      ],
+      "name": "chromiumos/test_disablement.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "enumType": [
+            {
               "name": "VersionComponent",
               "value": [
                 {
