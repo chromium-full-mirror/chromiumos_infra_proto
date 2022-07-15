@@ -61,3 +61,10 @@ message TestDisablement {
   // removed. e.g. "b/1234567"
   repeated string bug_ids = 6;
 }
+
+
+// Defines a configuration proto that encapsulates the individual
+// disablements.
+message TestDisablementCfg {
+    repeated TestDisablement disablements = 1;
+}

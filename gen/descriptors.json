@@ -14899,6 +14899,19 @@
               "name": "FilterCriterion"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "disablements",
+              "label": "LABEL_REPEATED",
+              "name": "disablements",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.TestDisablement"
+            }
+          ],
+          "name": "TestDisablementCfg"
         }
       ],
       "name": "chromiumos/test_disablement.proto",
