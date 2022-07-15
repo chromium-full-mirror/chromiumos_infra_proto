@@ -1,11 +1,11 @@
 # Entity Definitions
-This section defines all of the core entities of the Chrome OS domain model.
+This section defines all of the core entities of the ChromeOS domain model.
 Terms are loosely grouped into categories based on where the terms are the most
 prevalent.
 
 ## Business Entity Definitions
 __Form Factors__:  Form Factors are high level classification for the
-devices that Chrome OS supports. The current supported form factors are
+devices that ChromeOS supports. The current supported form factors are
 (chromebooks, convertible, detachable, chromeslate, chromebox and
 chromebase). Old form factors are chromebit.
 Please refer
@@ -26,8 +26,8 @@ wants to build a Chrome device.  The kits includes schematics (PDF), board
 layout files (BRD), initial BIOS/EC, as well as the approved BOM, and are an
 actual deliverable used to kickoff a project.
 
-__RFP__: Twice a year Chrome OS PEng team sends out 'request for proposal'
-to OEM partners that introduces the new reference designs for Chrome OS
+__RFP__: Twice a year ChromeOS PEng team sends out 'request for proposal'
+to OEM partners that introduces the new reference designs for ChromeOS
 device form factors that Google is working, and OEMs can respond
 with proposals to build devices based on these platforms.
 
@@ -150,7 +150,7 @@ __Build Target__: This is a distinct portage build target that is used to
 generate builds.
 
 __Build Image__: This is a unsigned binary image that can be deployed on a
-Chrome OS for development/testing purposes.
+ChromeOS for development/testing purposes.
 
 __Signed Build Image__: This is an image that has been signed (with official
 production or dev keys), making it a valid image to support secure verified

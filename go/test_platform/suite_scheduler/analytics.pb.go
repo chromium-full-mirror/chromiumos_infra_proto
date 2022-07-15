@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -145,7 +145,7 @@ type BuildInfo struct {
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,1,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
 	// The milestone number (e.g. 73).
 	Milestone uint32 `protobuf:"varint,2,opt,name=milestone,proto3" json:"milestone,omitempty"`
-	// The chrome os version (e.g. "12240.0.0" or "").
+	// The ChromeOS version (e.g. "12240.0.0" or "").
 	ChromeOsVersion string `protobuf:"bytes,3,opt,name=chrome_os_version,json=chromeOsVersion,proto3" json:"chrome_os_version,omitempty"`
 	// Build type with the board name as the prefix, e.g.
 	// "RELEASE" or "FIRMWARE".

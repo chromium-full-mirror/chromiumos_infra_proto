@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -73,7 +73,7 @@ func (x *TestGroups) GetName() []string {
 }
 
 // A description of how to remove test suites from the default set of test
-// suites in Chrome OS CQ, as a result of source configuration.
+// suites in ChromeOS CQ, as a result of source configuration.
 // See http://go/cq-source-config
 type SubtractiveRule struct {
 	state         protoimpl.MessageState
@@ -90,7 +90,7 @@ type SubtractiveRule struct {
 	OnlyKeepAllSuitesInGroups *TestGroups `protobuf:"bytes,3,opt,name=only_keep_all_suites_in_groups,json=onlyKeepAllSuitesInGroups,proto3" json:"only_keep_all_suites_in_groups,omitempty"`
 	// Prunes away all default suites except one in each provided test group.
 	// e.g. can be used to ensure a test suite is launched on each of the
-	// supported Chrome OS processor architectures.
+	// supported ChromeOS processor architectures.
 	OnlyKeepOneSuiteFromEachGroup *TestGroups `protobuf:"bytes,4,opt,name=only_keep_one_suite_from_each_group,json=onlyKeepOneSuiteFromEachGroup,proto3" json:"only_keep_one_suite_from_each_group,omitempty"`
 }
 
@@ -173,7 +173,7 @@ type AdditiveRule struct {
 	// Adds on one test suite from each of the provided groups, even if that suite
 	// has disable_by_default=True.
 	// e.g. could be used to trigger wificell testing (which is expensive) on one
-	// board in each Chrome OS processor architecture.
+	// board in each ChromeOS processor architecture.
 	AddOneSuiteFromEachGroup *TestGroups `protobuf:"bytes,2,opt,name=add_one_suite_from_each_group,json=addOneSuiteFromEachGroup,proto3" json:"add_one_suite_from_each_group,omitempty"`
 }
 
@@ -230,7 +230,7 @@ type SourceTestRules struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A file pattern, representing a segment of Chrome OS code.
+	// A file pattern, representing a segment of ChromeOS code.
 	FilePattern *FilePattern `protobuf:"bytes,1,opt,name=file_pattern,json=filePattern,proto3" json:"file_pattern,omitempty"`
 	// A subtractive rule to apply to this file pattern. See the relevant message
 	// documentation.

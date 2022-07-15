@@ -1,4 +1,4 @@
-// Copyright 2022 The Chromium OS Authors. All rights reserved.
+// Copyright 2022 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -21,9 +21,9 @@ message CommonConfig {
     // update should be executed. Both board and model can be used and it allows
     // overlap, e.g. it considers a match as long as one of criteria is matched.
     message CrosSlector {
-      // List of chromeOS board names.
+      // List of ChromeOS board names.
       repeated string boards = 1;
-      // List of chromeOS model names.
+      // List of ChromeOS model names.
       repeated string models = 2;
     }
 

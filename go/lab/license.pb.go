@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -30,10 +30,10 @@ type LicenseType int32
 const (
 	LicenseType_LICENSE_TYPE_UNSPECIFIED LicenseType = 0
 	// Microsoft Windows 10 Professional Desktop Operating System.
-	// Contact the Chrome OS Parallels team for license specifics.
+	// Contact the ChromeOS Parallels team for license specifics.
 	LicenseType_LICENSE_TYPE_WINDOWS_10_PRO LicenseType = 1
 	// Microsoft Office Standard.
-	// Contact the Chrome OS Parallels team for license specifics.
+	// Contact the ChromeOS Parallels team for license specifics.
 	LicenseType_LICENSE_TYPE_MS_OFFICE_STANDARD LicenseType = 2
 )
 

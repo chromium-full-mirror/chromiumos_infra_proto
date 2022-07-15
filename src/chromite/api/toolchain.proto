@@ -101,7 +101,7 @@ message GetUpdatedFilesResponse {
   // The commit message to use.
   string commit_message = 2;
 
-  // The Cq-Depend footer is used by LUCI (and Chrome OS Recipes) to operate
+  // The Cq-Depend footer is used by LUCI (and ChromeOS Recipes) to operate
   // on interdependent changes at various steps.
   message CqDependFooter {
     // The gerrit change(s) we depend on.

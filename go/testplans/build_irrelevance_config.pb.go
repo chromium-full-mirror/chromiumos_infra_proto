@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -33,9 +33,9 @@ type BuildIrrelevanceCfg struct {
 
 	// See documentation in the FilePattern message.
 	//
-	// File patterns that never affect Chrome OS builds.
+	// File patterns that never affect ChromeOS builds.
 	IrrelevantFilePatterns []*FilePattern `protobuf:"bytes,3,rep,name=irrelevant_file_patterns,json=irrelevantFilePatterns,proto3" json:"irrelevant_file_patterns,omitempty"`
-	// File patterns that always affect Chrome OS builds.
+	// File patterns that always affect ChromeOS builds.
 	RelevantFilePatterns []*FilePattern `protobuf:"bytes,4,rep,name=relevant_file_patterns,json=relevantFilePatterns,proto3" json:"relevant_file_patterns,omitempty"`
 }
 

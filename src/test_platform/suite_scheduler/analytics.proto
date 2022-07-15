@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -19,7 +19,7 @@ message BuildInfo {
     chromiumos.BuildTarget build_target = 1;
     // The milestone number (e.g. 73).
     uint32 milestone = 2;
-    // The chrome os version (e.g. "12240.0.0" or "").
+    // The ChromeOS version (e.g. "12240.0.0" or "").
     string chrome_os_version = 3;
     // Build type with the board name as the prefix, e.g.
     // "RELEASE" or "FIRMWARE".

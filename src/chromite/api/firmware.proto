@@ -10,7 +10,7 @@ import "chromiumos/common.proto";
 
 // Added in R91.
 message BcsVersionInfo {
-  // Chrome OS version string, such as "R91-13844.0.0-45436".
+  // ChromeOS version string, such as "R91-13844.0.0-45436".
   string version_string = 1;
   // Extend with fields that break down the version string.
   // This should come from chromiumos/common.proto.
@@ -152,7 +152,7 @@ message BundleFirmwareArtifactsRequest {
   // artifacts.output_artifacts[].location.
   chromiumos.ArtifactsByService.Firmware artifacts = 4;
 
-  // The Chrome OS style version to use in FirmwareArtifactInfo.
+  // The ChromeOS style version to use in FirmwareArtifactInfo.
   // Added and deprecated in R91.
   string bcs_version = 5 [deprecated = true];
 
@@ -170,7 +170,7 @@ message FirmwareArtifactInfo {
   // TODO(crbug/1176305): Use types from
   // chromiumos/config/api/software/firmware_config.proto
   message TarballInfo {
-      // The Chrome OS style version.
+      // The ChromeOS style version.
       // Use bcs_version_info.version_string instead.
       // Deprecated since R91.
       string bcs_version = 1 [deprecated = true];
@@ -230,7 +230,7 @@ message FirmwareArtifactInfo {
   repeated ObjectInfo objects = 1;
 
   // The value provided by BundleFirmwareArtifactsRequest, this is the version
-  // of Chrome OS used for this build.
+  // of ChromeOS used for this build.
   // Added in R91.
   BcsVersionInfo bcs_version_info = 2;
 }

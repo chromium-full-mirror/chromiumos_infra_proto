@@ -1,4 +1,4 @@
-// Copyright 2022 The Chromium OS Authors. All rights reserved.
+// Copyright 2022 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -173,9 +173,9 @@ type CommonConfig_CrosFirmwareUpdateConfig_CrosSlector struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// List of chromeOS board names.
+	// List of ChromeOS board names.
 	Boards []string `protobuf:"bytes,1,rep,name=boards,proto3" json:"boards,omitempty"`
-	// List of chromeOS model names.
+	// List of ChromeOS model names.
 	Models []string `protobuf:"bytes,2,rep,name=models,proto3" json:"models,omitempty"`
 }
 

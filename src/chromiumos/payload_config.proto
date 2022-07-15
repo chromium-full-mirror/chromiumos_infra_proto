@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -75,7 +75,7 @@ message PayloadProperties {
   // The channel to sign payloads for (e.g. 'dev', 'stable', or '').
   string channel = 3;
 
-  // The chrome os version (e.g. '12240.0.0' or '').
+  // The ChromeOS version (e.g. '12240.0.0' or '').
   string chrome_os_version = 4;
 
   // The version of chrome within the payload (e.g. '78.0.3877.0').

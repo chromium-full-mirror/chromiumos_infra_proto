@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -136,7 +136,7 @@ type GenerateBuildPlanResponse struct {
 	// BuilderConfigs that cannot be skipped.
 	BuildsToRun []*BuilderConfig_Id `protobuf:"bytes,1,rep,name=builds_to_run,json=buildsToRun,proto3" json:"builds_to_run,omitempty"`
 	// BuilderConfigs that can be skipped due to Portage dependency rules around
-	// files that are known to never be relevant for Chrome OS builds.
+	// files that are known to never be relevant for ChromeOS builds.
 	SkipForGlobalBuildIrrelevance []*BuilderConfig_Id `protobuf:"bytes,2,rep,name=skip_for_global_build_irrelevance,json=skipForGlobalBuildIrrelevance,proto3" json:"skip_for_global_build_irrelevance,omitempty"`
 	// BuilderConfigs that can be skipped because of per-BuilderConfig RunWhen
 	// rules.

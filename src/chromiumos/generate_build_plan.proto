@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -57,7 +57,7 @@ message GenerateBuildPlanResponse {
   repeated BuilderConfig.Id builds_to_run = 1;
 
   // BuilderConfigs that can be skipped due to Portage dependency rules around
-  // files that are known to never be relevant for Chrome OS builds.
+  // files that are known to never be relevant for ChromeOS builds.
   repeated BuilderConfig.Id skip_for_global_build_irrelevance = 2;
 
   // BuilderConfigs that can be skipped because of per-BuilderConfig RunWhen

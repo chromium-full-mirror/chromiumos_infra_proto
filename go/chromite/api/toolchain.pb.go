@@ -993,7 +993,7 @@ func (x *GetUpdatedFilesResponse_UpdatedFile) GetPath() string {
 	return ""
 }
 
-// The Cq-Depend footer is used by LUCI (and Chrome OS Recipes) to operate
+// The Cq-Depend footer is used by LUCI (and ChromeOS Recipes) to operate
 // on interdependent changes at various steps.
 type GetUpdatedFilesResponse_CqDependFooter struct {
 	state         protoimpl.MessageState

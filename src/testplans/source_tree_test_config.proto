@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -16,7 +16,7 @@ message TestGroups {
 }
 
 // A description of how to remove test suites from the default set of test
-// suites in Chrome OS CQ, as a result of source configuration.
+// suites in ChromeOS CQ, as a result of source configuration.
 // See http://go/cq-source-config
 message SubtractiveRule {
   // Whether to disable hardware test suites.
@@ -29,7 +29,7 @@ message SubtractiveRule {
   TestGroups only_keep_all_suites_in_groups = 3;
   // Prunes away all default suites except one in each provided test group.
   // e.g. can be used to ensure a test suite is launched on each of the
-  // supported Chrome OS processor architectures.
+  // supported ChromeOS processor architectures.
   TestGroups only_keep_one_suite_from_each_group = 4;
 }
 
@@ -48,14 +48,14 @@ message AdditiveRule {
   // Adds on one test suite from each of the provided groups, even if that suite
   // has disable_by_default=True.
   // e.g. could be used to trigger wificell testing (which is expensive) on one
-  // board in each Chrome OS processor architecture.
+  // board in each ChromeOS processor architecture.
   TestGroups add_one_suite_from_each_group = 2;
 }
 
 // A set of test subtractions and additions to perform for a source tree.
 // See http://go/cq-source-config for documentation.
 message SourceTestRules {
-  // A file pattern, representing a segment of Chrome OS code.
+  // A file pattern, representing a segment of ChromeOS code.
   FilePattern file_pattern = 1;
 
   // A subtractive rule to apply to this file pattern. See the relevant message

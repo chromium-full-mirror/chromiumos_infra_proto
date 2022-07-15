@@ -125,7 +125,7 @@ type BcsVersionInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Chrome OS version string, such as "R91-13844.0.0-45436".
+	// ChromeOS version string, such as "R91-13844.0.0-45436".
 	VersionString string `protobuf:"bytes,1,opt,name=version_string,json=versionString,proto3" json:"version_string,omitempty"`
 }
 
@@ -737,7 +737,7 @@ type BundleFirmwareArtifactsRequest struct {
 	// The artifact types requested.  The firmware_location is found in
 	// artifacts.output_artifacts[].location.
 	Artifacts *chromiumos.ArtifactsByService_Firmware `protobuf:"bytes,4,opt,name=artifacts,proto3" json:"artifacts,omitempty"`
-	// The Chrome OS style version to use in FirmwareArtifactInfo.
+	// The ChromeOS style version to use in FirmwareArtifactInfo.
 	// Added and deprecated in R91.
 	//
 	// Deprecated: Do not use.
@@ -870,7 +870,7 @@ type FirmwareArtifactInfo struct {
 
 	Objects []*FirmwareArtifactInfo_ObjectInfo `protobuf:"bytes,1,rep,name=objects,proto3" json:"objects,omitempty"`
 	// The value provided by BundleFirmwareArtifactsRequest, this is the version
-	// of Chrome OS used for this build.
+	// of ChromeOS used for this build.
 	// Added in R91.
 	BcsVersionInfo *BcsVersionInfo `protobuf:"bytes,2,opt,name=bcs_version_info,json=bcsVersionInfo,proto3" json:"bcs_version_info,omitempty"`
 }
@@ -1118,7 +1118,7 @@ type FirmwareArtifactInfo_TarballInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The Chrome OS style version.
+	// The ChromeOS style version.
 	// Use bcs_version_info.version_string instead.
 	// Deprecated since R91.
 	//

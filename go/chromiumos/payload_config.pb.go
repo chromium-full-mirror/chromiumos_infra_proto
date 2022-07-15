@@ -1,4 +1,4 @@
-// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Copyright 2019 The ChromiumOS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -168,7 +168,7 @@ type PayloadProperties struct {
 	DeltaType PayloadProperties_DeltaType `protobuf:"varint,2,opt,name=delta_type,json=deltaType,proto3,enum=chromiumos.PayloadProperties_DeltaType" json:"delta_type,omitempty"`
 	// The channel to sign payloads for (e.g. 'dev', 'stable', or '').
 	Channel string `protobuf:"bytes,3,opt,name=channel,proto3" json:"channel,omitempty"`
-	// The chrome os version (e.g. '12240.0.0' or '').
+	// The ChromeOS version (e.g. '12240.0.0' or '').
 	ChromeOsVersion string `protobuf:"bytes,4,opt,name=chrome_os_version,json=chromeOsVersion,proto3" json:"chrome_os_version,omitempty"`
 	// The version of chrome within the payload (e.g. '78.0.3877.0').
 	ChromeVersion string `protobuf:"bytes,5,opt,name=chrome_version,json=chromeVersion,proto3" json:"chrome_version,omitempty"`
