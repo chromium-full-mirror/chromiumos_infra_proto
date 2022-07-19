@@ -11419,6 +11419,14 @@
               "name": "filter_modified",
               "number": 4,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "disabledLinters",
+              "label": "LABEL_REPEATED",
+              "name": "disabled_linters",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.LinterFinding.Linters"
             }
           ],
           "name": "LinterRequest"

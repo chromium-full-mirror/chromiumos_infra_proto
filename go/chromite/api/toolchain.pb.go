@@ -672,6 +672,8 @@ type LinterRequest struct {
 	Chroot   *chromiumos.Chroot        `protobuf:"bytes,3,opt,name=chroot,proto3" json:"chroot,omitempty"`
 	// Filter findings to only keep lints in modified lines
 	FilterModified bool `protobuf:"varint,4,opt,name=filter_modified,json=filterModified,proto3" json:"filter_modified,omitempty"`
+	// Selectively disable unneeded linters
+	DisabledLinters []LinterFinding_Linters `protobuf:"varint,5,rep,packed,name=disabled_linters,json=disabledLinters,proto3,enum=chromite.api.LinterFinding_Linters" json:"disabled_linters,omitempty"`
 }
 
 func (x *LinterRequest) Reset() {
@@ -732,6 +734,13 @@ func (x *LinterRequest) GetFilterModified() bool {
 		return x.FilterModified
 	}
 	return false
+}
+
+func (x *LinterRequest) GetDisabledLinters() []LinterFinding_Linters {
+	if x != nil {
+		return x.DisabledLinters
+	}
+	return nil
 }
 
 // Linter findings generated when emerging some package.
@@ -1344,7 +1353,7 @@ var file_chromite_api_toolchain_proto_rawDesc = []byte{
 	0x1d, 0x0a, 0x0a, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x05, 0x52, 0x09, 0x6c, 0x69, 0x6e, 0x65, 0x53, 0x74, 0x61, 0x72, 0x74, 0x12, 0x19,
 	0x0a, 0x08, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x65, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x07, 0x6c, 0x69, 0x6e, 0x65, 0x45, 0x6e, 0x64, 0x22, 0xca, 0x01, 0x0a, 0x0d, 0x4c, 0x69,
+	0x52, 0x07, 0x6c, 0x69, 0x6e, 0x65, 0x45, 0x6e, 0x64, 0x22, 0x9a, 0x02, 0x0a, 0x0d, 0x4c, 0x69,
 	0x6e, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x08, 0x70,
 	0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e,
 	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x50, 0x61, 0x63, 0x6b, 0x61,
@@ -1357,7 +1366,12 @@ var file_chromite_api_toolchain_proto_rawDesc = []byte{
 	0x68, 0x72, 0x6f, 0x6f, 0x74, 0x52, 0x06, 0x63, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x12, 0x27, 0x0a,
 	0x0f, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x5f, 0x6d, 0x6f, 0x64, 0x69, 0x66, 0x69, 0x65, 0x64,
 	0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0e, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4d, 0x6f,
-	0x64, 0x69, 0x66, 0x69, 0x65, 0x64, 0x22, 0x49, 0x0a, 0x0e, 0x4c, 0x69, 0x6e, 0x74, 0x65, 0x72,
+	0x64, 0x69, 0x66, 0x69, 0x65, 0x64, 0x12, 0x4e, 0x0a, 0x10, 0x64, 0x69, 0x73, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x5f, 0x6c, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0e,
+	0x32, 0x23, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x4c, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x46, 0x69, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x2e, 0x4c, 0x69,
+	0x6e, 0x74, 0x65, 0x72, 0x73, 0x52, 0x0f, 0x64, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4c,
+	0x69, 0x6e, 0x74, 0x65, 0x72, 0x73, 0x22, 0x49, 0x0a, 0x0e, 0x4c, 0x69, 0x6e, 0x74, 0x65, 0x72,
 	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x37, 0x0a, 0x08, 0x66, 0x69, 0x6e, 0x64,
 	0x69, 0x6e, 0x67, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x63, 0x68, 0x72,
 	0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x4c, 0x69, 0x6e, 0x74, 0x65, 0x72,
@@ -1486,29 +1500,30 @@ var file_chromite_api_toolchain_proto_depIdxs = []int32{
 	27, // 20: chromite.api.LinterRequest.packages:type_name -> chromiumos.PackageInfo
 	22, // 21: chromite.api.LinterRequest.sysroot:type_name -> chromite.api.Sysroot
 	21, // 22: chromite.api.LinterRequest.chroot:type_name -> chromiumos.Chroot
-	8,  // 23: chromite.api.LinterResponse.findings:type_name -> chromite.api.LinterFinding
-	1,  // 24: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.artifact_info:type_name -> chromite.api.ArtifactInfo
-	25, // 25: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.profile_info:type_name -> chromiumos.ArtifactProfileInfo
-	28, // 26: chromite.api.GetUpdatedFilesResponse.CqDependFooter.gerrit_change:type_name -> chromiumos.GerritChange
-	16, // 27: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_depend:type_name -> chromite.api.GetUpdatedFilesResponse.CqDependFooter
-	17, // 28: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_cl_tag:type_name -> chromite.api.GetUpdatedFilesResponse.CqClTagFooter
-	2,  // 29: chromite.api.ToolchainService.PrepareForBuild:input_type -> chromite.api.PrepareForToolchainBuildRequest
-	4,  // 30: chromite.api.ToolchainService.BundleArtifacts:input_type -> chromite.api.BundleToolchainRequest
-	6,  // 31: chromite.api.ToolchainService.GetUpdatedFiles:input_type -> chromite.api.GetUpdatedFilesRequest
-	10, // 32: chromite.api.ToolchainService.EmergeWithLinting:input_type -> chromite.api.LinterRequest
-	10, // 33: chromite.api.ToolchainService.GetClippyLints:input_type -> chromite.api.LinterRequest
-	12, // 34: chromite.api.ToolchainService.GetToolchainsForBoard:input_type -> chromite.api.ToolchainsRequest
-	3,  // 35: chromite.api.ToolchainService.PrepareForBuild:output_type -> chromite.api.PrepareForToolchainBuildResponse
-	5,  // 36: chromite.api.ToolchainService.BundleArtifacts:output_type -> chromite.api.BundleToolchainResponse
-	7,  // 37: chromite.api.ToolchainService.GetUpdatedFiles:output_type -> chromite.api.GetUpdatedFilesResponse
-	11, // 38: chromite.api.ToolchainService.EmergeWithLinting:output_type -> chromite.api.LinterResponse
-	11, // 39: chromite.api.ToolchainService.GetClippyLints:output_type -> chromite.api.LinterResponse
-	13, // 40: chromite.api.ToolchainService.GetToolchainsForBoard:output_type -> chromite.api.ToolchainsResponse
-	35, // [35:41] is the sub-list for method output_type
-	29, // [29:35] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	0,  // 23: chromite.api.LinterRequest.disabled_linters:type_name -> chromite.api.LinterFinding.Linters
+	8,  // 24: chromite.api.LinterResponse.findings:type_name -> chromite.api.LinterFinding
+	1,  // 25: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.artifact_info:type_name -> chromite.api.ArtifactInfo
+	25, // 26: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.profile_info:type_name -> chromiumos.ArtifactProfileInfo
+	28, // 27: chromite.api.GetUpdatedFilesResponse.CqDependFooter.gerrit_change:type_name -> chromiumos.GerritChange
+	16, // 28: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_depend:type_name -> chromite.api.GetUpdatedFilesResponse.CqDependFooter
+	17, // 29: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_cl_tag:type_name -> chromite.api.GetUpdatedFilesResponse.CqClTagFooter
+	2,  // 30: chromite.api.ToolchainService.PrepareForBuild:input_type -> chromite.api.PrepareForToolchainBuildRequest
+	4,  // 31: chromite.api.ToolchainService.BundleArtifacts:input_type -> chromite.api.BundleToolchainRequest
+	6,  // 32: chromite.api.ToolchainService.GetUpdatedFiles:input_type -> chromite.api.GetUpdatedFilesRequest
+	10, // 33: chromite.api.ToolchainService.EmergeWithLinting:input_type -> chromite.api.LinterRequest
+	10, // 34: chromite.api.ToolchainService.GetClippyLints:input_type -> chromite.api.LinterRequest
+	12, // 35: chromite.api.ToolchainService.GetToolchainsForBoard:input_type -> chromite.api.ToolchainsRequest
+	3,  // 36: chromite.api.ToolchainService.PrepareForBuild:output_type -> chromite.api.PrepareForToolchainBuildResponse
+	5,  // 37: chromite.api.ToolchainService.BundleArtifacts:output_type -> chromite.api.BundleToolchainResponse
+	7,  // 38: chromite.api.ToolchainService.GetUpdatedFiles:output_type -> chromite.api.GetUpdatedFilesResponse
+	11, // 39: chromite.api.ToolchainService.EmergeWithLinting:output_type -> chromite.api.LinterResponse
+	11, // 40: chromite.api.ToolchainService.GetClippyLints:output_type -> chromite.api.LinterResponse
+	13, // 41: chromite.api.ToolchainService.GetToolchainsForBoard:output_type -> chromite.api.ToolchainsResponse
+	36, // [36:42] is the sub-list for method output_type
+	30, // [30:36] is the sub-list for method input_type
+	30, // [30:30] is the sub-list for extension type_name
+	30, // [30:30] is the sub-list for extension extendee
+	0,  // [0:30] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_toolchain_proto_init() }

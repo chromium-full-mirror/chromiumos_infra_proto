@@ -154,6 +154,9 @@ message LinterRequest {
 
   // Filter findings to only keep lints in modified lines
   bool filter_modified = 4;
+
+  // Selectively disable unneeded linters
+  repeated LinterFinding.Linters disabled_linters = 5;
 }
 
 // Linter findings generated when emerging some package.
