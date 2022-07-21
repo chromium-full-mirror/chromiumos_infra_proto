@@ -21831,6 +21831,7 @@
       "dependency": [
         "chromite/api/test_metadata.proto",
         "chromiumos/common.proto",
+        "chromiumos/test/api/test_suite.proto",
         "google/protobuf/duration.proto",
         "test_platform/execution/param.proto"
       ],
@@ -22554,15 +22555,7 @@
                   "name": "tags",
                   "number": 4,
                   "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Tag"
-                },
-                {
-                  "jsonName": "excludeTags",
-                  "label": "LABEL_REPEATED",
-                  "name": "exclude_tags",
-                  "number": 5,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Tag"
+                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
                 }
               ],
               "name": "TestPlan"

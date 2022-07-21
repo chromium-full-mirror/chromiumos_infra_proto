@@ -8,6 +8,7 @@ package test_platform;
 
 import "chromite/api/test_metadata.proto";
 import "chromiumos/common.proto";
+import "chromiumos/test/api/test_suite.proto";
 import "google/protobuf/duration.proto";
 import "test_platform/execution/param.proto";
 
@@ -300,8 +301,7 @@ message Request {
     repeated Suite suite = 1;
     repeated Test test = 2;
     Enumeration enumeration = 3;
-    repeated Tag tags = 4;
-    repeated Tag exclude_tags = 5;
+    repeated chromiumos.test.api.TestSuite.TestCaseTagCriteria tags = 4;
   }
 
   TestPlan test_plan = 5;
