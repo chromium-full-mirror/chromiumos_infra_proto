@@ -22550,9 +22550,9 @@
                   "typeName": ".test_platform.Request.Enumeration"
                 },
                 {
-                  "jsonName": "tags",
-                  "label": "LABEL_REPEATED",
-                  "name": "tags",
+                  "jsonName": "tagCriteria",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tag_criteria",
                   "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"

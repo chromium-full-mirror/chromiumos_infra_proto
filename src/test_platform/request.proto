@@ -301,7 +301,7 @@ message Request {
     repeated Suite suite = 1;
     repeated Test test = 2;
     Enumeration enumeration = 3;
-    repeated chromiumos.test.api.TestSuite.TestCaseTagCriteria tags = 4;
+    chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 4;
   }
 
   TestPlan test_plan = 5;
