@@ -9461,18 +9461,38 @@
                   "type": "TYPE_STRING"
                 },
                 {
-                  "jsonName": "dependencies",
-                  "label": "LABEL_REPEATED",
-                  "name": "dependencies",
+                  "jsonName": "depend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "depend",
                   "number": 12,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.RunSpidersResponse.Dependency"
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "rdepend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "rdepend",
+                  "number": 13,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "bdepend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bdepend",
+                  "number": 14,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pdepend",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pdepend",
+                  "number": 15,
+                  "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "useFlags",
                   "label": "LABEL_REPEATED",
                   "name": "use_flags",
-                  "number": 13,
+                  "number": 16,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromite.api.RunSpidersResponse.EbuildUse"
                 },
@@ -9480,59 +9500,11 @@
                   "jsonName": "eclassInherits",
                   "label": "LABEL_REPEATED",
                   "name": "eclass_inherits",
-                  "number": 14,
+                  "number": 17,
                   "type": "TYPE_STRING"
                 }
               ],
               "name": "Ebuild"
-            },
-            {
-              "enumType": [
-                {
-                  "name": "DependencyType",
-                  "value": [
-                    {
-                      "name": "DEPEND_UNSPECIFIED",
-                      "number": 0
-                    },
-                    {
-                      "name": "DEPEND",
-                      "number": 1
-                    },
-                    {
-                      "name": "RDEPEND",
-                      "number": 2
-                    },
-                    {
-                      "name": "BDEPEND",
-                      "number": 3
-                    },
-                    {
-                      "name": "PDEPEND",
-                      "number": 4
-                    }
-                  ]
-                }
-              ],
-              "field": [
-                {
-                  "jsonName": "type",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "type",
-                  "number": 1,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".chromite.api.RunSpidersResponse.Dependency.DependencyType"
-                },
-                {
-                  "jsonName": "packageInfo",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "package_info",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.PackageInfo"
-                }
-              ],
-              "name": "Dependency"
             },
             {
               "field": [

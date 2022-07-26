@@ -75,33 +75,18 @@ message RunSpidersResponse {
     string src_uri = 10;
     // Portage features the ebuild restricts.
     string restrict = 11;
-    // List of package dependencies in the ebuild.
-    repeated Dependency dependencies = 12;
+    // Build time dependencies.
+    string depend = 12;
+    // Run time dependencies.
+    string rdepend = 13;
+    // Build time dependencies needed during the build.
+    string bdepend = 14;
+    // Post time dependencies.
+    string pdepend = 15;
     // List of USE flags used in the ebuild. Can be default enabled.
-    repeated EbuildUse use_flags = 13;
+    repeated EbuildUse use_flags = 16;
     // List of eclass names the ebuild inherits from.
-    repeated string eclass_inherits = 14;
-  }
-
-  // A dependency from an ebuild. Only track the type and package that the
-  // ebuild depends on. Can implement constraints in future.
-  message Dependency {
-    // Types of dependencies in an ebuild.
-    enum DependencyType {
-      DEPEND_UNSPECIFIED = 0;
-      // Build dependencies.
-      DEPEND = 1;
-      // Runtime dependencies.
-      RDEPEND = 2;
-      // Build dependencies that have to be executed during build-time.
-      BDEPEND = 3;
-      // Post dependencies.
-      PDEPEND = 4;
-    }
-    // Type of the depedency.
-    DependencyType type = 1;
-    // The category/name of the package that that the ebuild depends on.
-    chromiumos.PackageInfo package_info = 2;
+    repeated string eclass_inherits = 17;
   }
 
   // An eclass.
