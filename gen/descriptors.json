@@ -10946,6 +10946,13 @@
                   "number": 9,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.PackageInfo"
+                },
+                {
+                  "jsonName": "skipImageTests",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "skip_image_tests",
+                  "number": 10,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "UnitTests",

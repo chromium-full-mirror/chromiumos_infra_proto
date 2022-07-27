@@ -506,6 +506,9 @@ message BuilderConfig {
 
     // Skipped packages.
     repeated PackageInfo package_blocklist = 9;
+
+    // Whether or not to skip image unit tests. Defaults to false.
+    bool skip_image_tests = 10;
   }
   UnitTests unit_tests = 7;
 }
