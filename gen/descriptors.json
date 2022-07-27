@@ -29047,6 +29047,9 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "chromiumos/test/api/test_suite.proto"
+      ],
       "enumType": [
         {
           "name": "Branch",
@@ -29564,6 +29567,14 @@
                   "name": "run_via_cft",
                   "number": 7,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "tagCriteria",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tag_criteria",
+                  "number": 8,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
                 }
               ],
               "name": "RunOptions",
