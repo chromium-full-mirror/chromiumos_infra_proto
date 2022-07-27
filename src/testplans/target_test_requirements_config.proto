@@ -9,6 +9,7 @@ package testplans;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "google/protobuf/wrappers.proto";
+import "chromiumos/test/api/test_suite.proto";
 
 import "lab/license.proto";
 
@@ -71,6 +72,9 @@ message HwTestCfg {
     // If true, then run test via CFT workflow.
     // This allows opt-in to the CFT execution path.
     bool run_via_cft = 18;
+
+    // Tags criteria that will be used to enumerate tests for CFT test execution workflow.
+    chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 19;
 
     reserved 2 to 10;
   }

@@ -28000,6 +28000,7 @@
       },
       "dependency": [
         "google/protobuf/wrappers.proto",
+        "chromiumos/test/api/test_suite.proto",
         "lab/license.proto"
       ],
       "messageType": [
@@ -28151,6 +28152,14 @@
                   "name": "run_via_cft",
                   "number": 18,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "tagCriteria",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tag_criteria",
+                  "number": 19,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
                 }
               ],
               "name": "HwTest",
