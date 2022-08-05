@@ -10201,22 +10201,38 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "partitionSize",
-              "label": "LABEL_OPTIONAL",
-              "name": "partition_size",
-              "number": 2,
-              "type": "TYPE_UINT64"
-            },
-            {
               "jsonName": "packages",
               "label": "LABEL_REPEATED",
               "name": "packages",
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.observability.PackageSizeData"
+            },
+            {
+              "jsonName": "partitionApparentSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "partition_apparent_size",
+              "number": 4,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "partitionDiskUtilizationSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "partition_disk_utilization_size",
+              "number": 5,
+              "type": "TYPE_UINT64"
             }
           ],
-          "name": "ImagePartitionData"
+          "name": "ImagePartitionData",
+          "reservedName": [
+            "partition_size"
+          ],
+          "reservedRange": [
+            {
+              "end": 3,
+              "start": 2
+            }
+          ]
         },
         {
           "field": [
@@ -10229,14 +10245,30 @@
               "typeName": ".chromite.observability.PackageIdentifier"
             },
             {
-              "jsonName": "size",
+              "jsonName": "apparentSize",
               "label": "LABEL_OPTIONAL",
-              "name": "size",
-              "number": 2,
+              "name": "apparent_size",
+              "number": 3,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "diskUtilizationSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "disk_utilization_size",
+              "number": 4,
               "type": "TYPE_UINT64"
             }
           ],
-          "name": "PackageSizeData"
+          "name": "PackageSizeData",
+          "reservedName": [
+            "size"
+          ],
+          "reservedRange": [
+            {
+              "end": 3,
+              "start": 2
+            }
+          ]
         },
         {
           "field": [
