@@ -385,6 +385,10 @@ message BuilderConfig {
 
     // Artifacts separated by service.
     ArtifactsByService artifacts_info = 8;
+
+    // Google storage bucket to upload devinstall prebuilts to.
+    // e.g. "chromeos-dev-installer".
+    string devinstall_prebuilts_gs_bucket = 9;
   }
   Artifacts artifacts = 4;
 

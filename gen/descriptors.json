@@ -9617,6 +9617,13 @@
                   "number": 8,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.ArtifactsByService"
+                },
+                {
+                  "jsonName": "devinstallPrebuiltsGsBucket",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "devinstall_prebuilts_gs_bucket",
+                  "number": 9,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "Artifacts",
