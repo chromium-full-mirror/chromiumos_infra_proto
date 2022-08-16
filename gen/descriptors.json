@@ -246,10 +246,6 @@
             {
               "name": "CHANNEL_CANARY",
               "number": 4
-            },
-            {
-              "name": "CHANNEL_RUBIK",
-              "number": 5
             }
           ]
         },
