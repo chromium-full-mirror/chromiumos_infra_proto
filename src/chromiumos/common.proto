@@ -443,7 +443,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
-      reserved 33 to 43;
+      reserved 33 to 45;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -549,7 +549,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 30 to 43;
+      reserved 30 to 45;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -617,6 +617,11 @@ message ArtifactsByService {
       
       // factory_image.zip.
       FACTORY_IMAGE = 43;
+
+      reserved 44;
+
+      // stripped-packages.tar archive.
+      STRIPPED_PACKAGES = 45;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -666,7 +671,7 @@ message ArtifactsByService {
       // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 43;
+      reserved 1 to 45;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -795,6 +800,8 @@ message ArtifactsByService {
 
       // HWQual archive.
       HWQUAL = 42;
+
+      reserved 43 to 45;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -867,6 +874,8 @@ message ArtifactsByService {
 
       // Code coverage HTML report tar archive.
       CODE_COVERAGE_HTML = 44;
+
+      reserved 45;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -925,7 +934,7 @@ message ArtifactsByService {
 
       BUILD_MANIFEST = 36;
 
-      reserved 37 to 43;
+      reserved 37 to 45;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having

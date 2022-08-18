@@ -333,6 +333,9 @@ message BuilderConfig {
 
       // Code coverage HTML report tar archive.
       CODE_COVERAGE_HTML = 44;
+
+      // stripped-packages.tar archive.
+      STRIPPED_PACKAGES = 45;
     }
     repeated ArtifactTypes artifact_types = 2;
 

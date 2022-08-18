@@ -1129,7 +1129,7 @@
                       "start": 29
                     },
                     {
-                      "end": 43,
+                      "end": 45,
                       "start": 33
                     }
                   ],
@@ -1269,7 +1269,7 @@
                       "start": 27
                     },
                     {
-                      "end": 43,
+                      "end": 45,
                       "start": 30
                     }
                   ],
@@ -1420,6 +1420,10 @@
                     {
                       "end": 42,
                       "start": 39
+                    },
+                    {
+                      "end": 44,
+                      "start": 44
                     }
                   ],
                   "value": [
@@ -1438,6 +1442,10 @@
                     {
                       "name": "FACTORY_IMAGE",
                       "number": 43
+                    },
+                    {
+                      "name": "STRIPPED_PACKAGES",
+                      "number": 45
                     }
                   ]
                 }
@@ -1503,7 +1511,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 43,
+                      "end": 45,
                       "start": 1
                     }
                   ],
@@ -1683,6 +1691,10 @@
                     {
                       "end": 41,
                       "start": 40
+                    },
+                    {
+                      "end": 45,
+                      "start": 43
                     }
                   ],
                   "value": [
@@ -1784,6 +1796,10 @@
                     {
                       "end": 43,
                       "start": 34
+                    },
+                    {
+                      "end": 45,
+                      "start": 45
                     }
                   ],
                   "value": [
@@ -1891,7 +1907,7 @@
                       "start": 1
                     },
                     {
-                      "end": 43,
+                      "end": 45,
                       "start": 37
                     }
                   ],
@@ -9547,6 +9563,10 @@
                     {
                       "name": "CODE_COVERAGE_HTML",
                       "number": 44
+                    },
+                    {
+                      "name": "STRIPPED_PACKAGES",
+                      "number": 45
                     }
                   ]
                 }
