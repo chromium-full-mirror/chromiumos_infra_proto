@@ -104,10 +104,8 @@ message BuildTargetUnitTestRequest {
 }
 
 message BuildTargetUnitTestResponse {
-  reserved 1;
-  reserved 'tarball_path';
-  // The list of packages that failed.
-  repeated chromiumos.PackageInfo failed_packages = 2;
+  reserved 1, 2;
+  reserved 'tarball_path', 'failed_packages';
   // The metric events that occurred during the running of BuildTargetUnitTest.
   repeated chromiumos.MetricEvent events = 3;
   // Additional data about the packages that failed to build.

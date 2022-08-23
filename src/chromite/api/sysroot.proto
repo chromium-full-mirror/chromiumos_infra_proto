@@ -95,11 +95,11 @@ message InstallToolchainRequest {
 }
 
 message InstallToolchainResponse {
-  // The packages that failed to install. Will populate at least the category
-  // and package fields for any failed packages.
-  repeated chromiumos.PackageInfo failed_packages = 1;
   // Additional data about the packages that failed to build.
   repeated FailedPackageData failed_package_data = 4;
+
+  reserved 1;
+  reserved "failed_packages";
 }
 
 message InstallPackagesRequest {
@@ -148,9 +148,6 @@ message InstallPackagesRequest {
 }
 
 message InstallPackagesResponse {
-  // The packages that failed to install. Will populate at least the category
-  // and package fields for any failed packages.
-  repeated chromiumos.PackageInfo failed_packages = 1;
   // The metric events that occurred during the running of InstallPackages.
   repeated chromiumos.MetricEvent events = 2;
   // Goma artifacts will only be populated if
@@ -158,6 +155,9 @@ message InstallPackagesResponse {
   chromiumos.GomaArtifacts goma_artifacts = 3;
   // Additional data about the packages that failed to build.
   repeated FailedPackageData failed_package_data = 4;
+
+  reserved 1;
+  reserved "failed_packages";
 }
 
 message FailedPackageData {
