@@ -14172,17 +14172,10 @@
               "label": "LABEL_OPTIONAL",
               "name": "rubik_target_milestone",
               "number": 7,
-              "oneofIndex": 0,
-              "proto3Optional": true,
               "type": "TYPE_INT32"
             }
           ],
-          "name": "ReferenceBoardUnifiedBuildConfig",
-          "oneofDecl": [
-            {
-              "name": "_rubik_target_milestone"
-            }
-          ]
+          "name": "ReferenceBoardUnifiedBuildConfig"
         },
         {
           "field": [
@@ -14248,17 +14241,10 @@
               "label": "LABEL_OPTIONAL",
               "name": "rubik_target_milestone",
               "number": 3,
-              "oneofIndex": 0,
-              "proto3Optional": true,
               "type": "TYPE_INT32"
             }
           ],
-          "name": "BuildBoard",
-          "oneofDecl": [
-            {
-              "name": "_rubik_target_milestone"
-            }
-          ]
+          "name": "BuildBoard"
         },
         {
           "field": [
