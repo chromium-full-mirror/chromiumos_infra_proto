@@ -79,6 +79,8 @@ message ReferenceBoardUnifiedBuildConfig {
   // The list of models that are based on the given reference board
   // and supported as part of the unified build.
   repeated Model models = 6;
+
+  optional int32 rubik_target_milestone = 7;
 }
 
 // Message to represent a build config for a given builder
@@ -95,6 +97,7 @@ message Config {
 message BuildBoard {
   string name = 1;
   repeated Config configs = 2;
+  optional int32 rubik_target_milestone = 3;
 }
 
 // Message to represent a build configuration.

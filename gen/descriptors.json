@@ -14166,9 +14166,23 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Model"
+            },
+            {
+              "jsonName": "rubikTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "rubik_target_milestone",
+              "number": 7,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_INT32"
             }
           ],
-          "name": "ReferenceBoardUnifiedBuildConfig"
+          "name": "ReferenceBoardUnifiedBuildConfig",
+          "oneofDecl": [
+            {
+              "name": "_rubik_target_milestone"
+            }
+          ]
         },
         {
           "field": [
@@ -14228,9 +14242,23 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Config"
+            },
+            {
+              "jsonName": "rubikTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "rubik_target_milestone",
+              "number": 3,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_INT32"
             }
           ],
-          "name": "BuildBoard"
+          "name": "BuildBoard",
+          "oneofDecl": [
+            {
+              "name": "_rubik_target_milestone"
+            }
+          ]
         },
         {
           "field": [
