@@ -136,6 +136,8 @@ message LinterFinding {
     GO_LINT = 3;
   }
   Linters linter = 3;
+  string lint_name = 4;
+  repeated LinterSuggestedFix suggested_fixes = 5;
 }
 
 // The code location of some linter finding.
@@ -143,6 +145,14 @@ message LinterFindingLocation {
   string filepath = 1;
   int32 line_start = 2;
   int32 line_end = 3;
+  int32 col_start = 4;
+  int32 col_end = 5;
+}
+
+// A linter suggested replacement.
+message LinterSuggestedFix {
+  LinterFindingLocation location = 1;
+  string replacement = 2;
 }
 
 // Request lints from some packages.

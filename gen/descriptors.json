@@ -11797,6 +11797,21 @@
               "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".chromite.api.LinterFinding.Linters"
+            },
+            {
+              "jsonName": "lintName",
+              "label": "LABEL_OPTIONAL",
+              "name": "lint_name",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suggestedFixes",
+              "label": "LABEL_REPEATED",
+              "name": "suggested_fixes",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.LinterSuggestedFix"
             }
           ],
           "name": "LinterFinding"
@@ -11823,9 +11838,43 @@
               "name": "line_end",
               "number": 3,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "colStart",
+              "label": "LABEL_OPTIONAL",
+              "name": "col_start",
+              "number": 4,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "colEnd",
+              "label": "LABEL_OPTIONAL",
+              "name": "col_end",
+              "number": 5,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "LinterFindingLocation"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "location",
+              "label": "LABEL_OPTIONAL",
+              "name": "location",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.LinterFindingLocation"
+            },
+            {
+              "jsonName": "replacement",
+              "label": "LABEL_OPTIONAL",
+              "name": "replacement",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "LinterSuggestedFix"
         },
         {
           "field": [
