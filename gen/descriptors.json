@@ -13877,6 +13877,30 @@
               "number": 16,
               "type": "TYPE_MESSAGE",
               "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "ltcDate",
+              "label": "LABEL_OPTIONAL",
+              "name": "ltc_date",
+              "number": 17,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "ltrDate",
+              "label": "LABEL_OPTIONAL",
+              "name": "ltr_date",
+              "number": 18,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "ltrLastRefreshDate",
+              "label": "LABEL_OPTIONAL",
+              "name": "ltr_last_refresh_date",
+              "number": 19,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
             }
           ],
           "name": "Milestone",
