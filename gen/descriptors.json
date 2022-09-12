@@ -221,6 +221,10 @@
             {
               "name": "IMAGE_TYPE_HPS_FIRMWARE",
               "number": 16
+            },
+            {
+              "name": "IMAGE_TYPE_NETBOOT",
+              "number": 17
             }
           ]
         },

@@ -284,6 +284,7 @@ enum ImageType {
   IMAGE_TYPE_ACCESSORY_USBPD = 14;
   IMAGE_TYPE_ACCESSORY_RWSIG = 15;
   IMAGE_TYPE_HPS_FIRMWARE = 16;
+  IMAGE_TYPE_NETBOOT = 17;
 }
 
 // The various channels that we release through.
