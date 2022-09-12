@@ -3,10 +3,10 @@
 # found in the LICENSE file.
 
 # ChromeOS Build Team
-file:chromiumos/chromite:main:/OWNERS.build
+include chromiumos/owners:v1:/infra/OWNERS.build
 
 # ChromeOS CI Team
-file:chromiumos/chromite:main:/OWNERS.ci
+include chromiumos/owners:v1:/infra/OWNERS.ci
 
 # Fleet team.
 ayatane@chromium.org
