@@ -78,8 +78,13 @@ message BuildTargetUnitTestRequest {
     // Whether to allow no testable packages to be found.
     bool testable_packages_optional = 4;
     // Whether to filter out any non-cros_workon packages passed in.
-    //Added in R92.
+    // Added in R92.
     bool filter_only_cros_workon = 5;
+    // Whether to produce rust code coverage data.
+    // Details in go/cros-rust-code-coverage
+    // TODO(b/215596245): Reuse the code_coverage flag and remove this
+    // once rust and clang converge on tooling.
+    bool rust_code_coverage = 6;
   }
 
   reserved 2, 5;

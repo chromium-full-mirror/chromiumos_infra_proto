@@ -6672,6 +6672,13 @@
                   "name": "filter_only_cros_workon",
                   "number": 5,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "rustCodeCoverage",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "rust_code_coverage",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags"
