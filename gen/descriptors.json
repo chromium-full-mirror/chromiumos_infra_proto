@@ -6305,6 +6305,15 @@
           "name": "CreateBinhostCLsRequest"
         },
         {
+          "field": [
+            {
+              "jsonName": "cls",
+              "label": "LABEL_REPEATED",
+              "name": "cls",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
           "name": "CreateBinhostCLsResponse"
         },
         {

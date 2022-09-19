@@ -140,6 +140,7 @@ message CreateBinhostCLsRequest {
 }
 
 message CreateBinhostCLsResponse {
+  repeated string cls = 1;
 }
 
 // Upload ChromeOS SDK prebuilt packages.
