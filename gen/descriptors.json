@@ -1717,6 +1717,10 @@
                     {
                       "name": "HWQUAL",
                       "number": 42
+                    },
+                    {
+                      "name": "CODE_COVERAGE_RUST_LLVM_JSON",
+                      "number": 46
                     }
                   ]
                 }
