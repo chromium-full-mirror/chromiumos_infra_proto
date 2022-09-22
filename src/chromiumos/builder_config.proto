@@ -490,6 +490,9 @@ message BuilderConfig {
 
       // Whether to use the base image as the recovery image.
       bool base_is_recovery = 4;
+
+      // Whether to check for an image size regression.
+      bool verify_image_size_delta = 5;
     }
     BuildImages build_images = 15;
   }

@@ -10201,6 +10201,13 @@
                       "name": "base_is_recovery",
                       "number": 4,
                       "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "verifyImageSizeDelta",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "verify_image_size_delta",
+                      "number": 5,
+                      "type": "TYPE_BOOL"
                     }
                   ],
                   "name": "BuildImages"
