@@ -8866,6 +8866,284 @@
     {
       "bufExtension": {
         "isImport": false,
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          1
+        ]
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "MergeConflictBehavior",
+              "value": [
+                {
+                  "name": "MERGE_CONFLICT_BEHAVIOR_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "MERGE_CONFLICT_BEHAVIOR_SKIP",
+                  "number": 1
+                },
+                {
+                  "name": "MERGE_CONFLICT_BEHAVIOR_FAIL",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "upstream",
+              "label": "LABEL_OPTIONAL",
+              "name": "upstream",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.Repo"
+            },
+            {
+              "jsonName": "downstream",
+              "label": "LABEL_OPTIONAL",
+              "name": "downstream",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.Repo"
+            },
+            {
+              "jsonName": "topic",
+              "label": "LABEL_OPTIONAL",
+              "name": "topic",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "labels",
+              "label": "LABEL_REPEATED",
+              "name": "labels",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.GerritLabel"
+            },
+            {
+              "jsonName": "reviewers",
+              "label": "LABEL_REPEATED",
+              "name": "reviewers",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.GerritUser"
+            },
+            {
+              "jsonName": "ccs",
+              "label": "LABEL_REPEATED",
+              "name": "ccs",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.GerritUser"
+            },
+            {
+              "jsonName": "prependSubject",
+              "label": "LABEL_OPTIONAL",
+              "name": "prepend_subject",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "mergeConflictBehavior",
+              "label": "LABEL_OPTIONAL",
+              "name": "merge_conflict_behavior",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RunCopybotRequest.MergeConflictBehavior"
+            },
+            {
+              "jsonName": "excludeFilePatterns",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_file_patterns",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.Pattern"
+            },
+            {
+              "jsonName": "keepPseudoheaders",
+              "label": "LABEL_REPEATED",
+              "name": "keep_pseudoheaders",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.Pseudoheader"
+            },
+            {
+              "jsonName": "addSignedOffBy",
+              "label": "LABEL_OPTIONAL",
+              "name": "add_signed_off_by",
+              "number": 11,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "RunCopybotRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "url",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "url",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "branch",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "branch",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Repo"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "user",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "user",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "GerritUser"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "label",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "label",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "GerritLabel"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "pattern",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pattern",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Pattern"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Pseudoheader"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "FailureReason",
+              "value": [
+                {
+                  "name": "FAILURE_UNKNOWN",
+                  "number": 0
+                },
+                {
+                  "name": "FAILURE_UPSTREAM_FETCH_ERROR",
+                  "number": 1
+                },
+                {
+                  "name": "FAILURE_DOWNSTREAM_FETCH_ERROR",
+                  "number": 2
+                },
+                {
+                  "name": "FAILURE_DOWNSTREAM_PUSH_ERROR",
+                  "number": 3
+                },
+                {
+                  "name": "FAILURE_MERGE_CONFLITS",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "failureReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_reason",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RunCopybotResponse.FailureReason"
+            },
+            {
+              "jsonName": "mergeConflicts",
+              "label": "LABEL_REPEATED",
+              "name": "merge_conflicts",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotResponse.MergeConflictCommit"
+            }
+          ],
+          "name": "RunCopybotResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "hash",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hash",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "MergeConflictCommit"
+            }
+          ]
+        }
+      ],
+      "name": "chromite/api/copybot.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.RunCopybotRequest",
+              "name": "RunCopybot",
+              "outputType": ".chromite.api.RunCopybotResponse"
+            }
+          ],
+          "name": "CopybotService",
+          "options": {
+            "[service_options]": {
+              "module": "copybot"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
         "isSyntaxUnspecified": false
       },
       "dependency": [

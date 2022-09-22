@@ -1,0 +1,117 @@
+syntax = "proto3";
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+import "chromiumos/common.proto";
+
+// The request to run CopyBot.
+message RunCopybotRequest {
+  message Repo {
+    // The URL (e.g., "https://github.com/zephyrproject-rtos/zephyr").
+    string url = 1;
+    // The branch (e.g., "main").
+    string branch = 2;
+  }
+
+  // A username or email of a gerrit account.
+  message GerritUser {
+    string user = 1;
+  }
+
+  // The upstream repo to copy from.
+  Repo upstream = 1;
+
+  // The downstream GoB to upload to.
+  Repo downstream = 2;
+
+  // The topic to use for tracking dowstreaming (e.g., "zephyr-downstream").
+  string topic = 3;
+
+  // Any labels to set while uploading (e.g., "Verified+1").
+  message GerritLabel {
+    string label = 1;
+  }
+  repeated GerritLabel labels = 4;
+
+  // Any reviewers to add while uploading to Gerrit.
+  repeated GerritUser reviewers = 5;
+
+  // Any CCs to add while uploading to Gerrit.
+  repeated GerritUser ccs = 6;
+
+  // String to prepend the subject of the commit message with
+  // (e.g., "UPSTREAM: ").
+  string prepend_subject = 7;
+
+  // How should CopyBot beahve when it encounters a merge conflict?
+  enum MergeConflictBehavior {
+    // Use the default behavior (skip).  Subject to change later.
+    MERGE_CONFLICT_BEHAVIOR_UNSPECIFIED = 0;
+    // Skip the commit that merge conflicted and upload anyway.  The
+    // job will exit with failure status.
+    MERGE_CONFLICT_BEHAVIOR_SKIP = 1;
+    // Fail the job immediately.  Do not upload.
+    MERGE_CONFLICT_BEHAVIOR_FAIL = 2;
+  }
+  MergeConflictBehavior merge_conflict_behavior = 8;
+
+  // A list of paths which should not be copied.  Interpreted as a
+  // Python regex.
+  message Pattern {
+    string pattern = 1;
+  }
+  repeated Pattern exclude_file_patterns = 9;
+
+  // A list of pseudoheaders which should be preserved (and not
+  // prefixed with "Original-").
+  message Pseudoheader {
+    string name = 1;
+  }
+  repeated Pseudoheader keep_pseudoheaders = 10;
+
+  // Should CopyBot add a "Signed-off-by" pseudoheader, even though a
+  // signature from a robot means nothing?  Generally, you should only
+  // to set this to true if you plan to have CopyBot interact with
+  // another bot that wants this pseudoheader (e.g., Sean Paul Bot).
+  bool add_signed_off_by = 11;
+}
+
+// The result of CopyBot being run.
+message RunCopybotResponse {
+  // If CopyBot failed, why did it?  Note: you should first check the
+  // exit status of the Build API endpoint.  If the exit status is
+  // zero, CopyBot ran successfully and this reason should not be
+  // checked.  If the exit status is non-zero, you can check this
+  // field for the failure reason.
+  enum FailureReason {
+    // Failed for a reason not listed below.
+    FAILURE_UNKNOWN = 0;
+    // Failed to fetch the upstream Git repo.
+    FAILURE_UPSTREAM_FETCH_ERROR = 1;
+    // Failed to fetch the downstream Git repo.
+    FAILURE_DOWNSTREAM_FETCH_ERROR = 2;
+    // Failed to push commits to Gerrit.
+    FAILURE_DOWNSTREAM_PUSH_ERROR = 3;
+    // Failed due to merge conflict(s).
+    FAILURE_MERGE_CONFLITS = 4;
+  };
+  FailureReason failure_reason = 1;
+
+  // If there were merge conflicts, a list of the upstream commit
+  // hashes which conflicted.
+  message MergeConflictCommit {
+    string hash = 1;
+  }
+  repeated MergeConflictCommit merge_conflicts = 2;
+}
+
+service CopybotService {
+  option (service_options) = {
+    module: "copybot",
+  };
+
+  // Run CopyBot.
+  rpc RunCopybot(RunCopybotRequest) returns (RunCopybotResponse);
+}
