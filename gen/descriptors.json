@@ -9620,6 +9620,13 @@
                       "number": 2,
                       "type": "TYPE_ENUM",
                       "typeName": ".chromiumos.BuilderConfig.Orchestrator.ChildSpec.CollectHandling"
+                    },
+                    {
+                      "jsonName": "bucket",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "bucket",
+                      "number": 3,
+                      "type": "TYPE_STRING"
                     }
                   ],
                   "name": "ChildSpec"

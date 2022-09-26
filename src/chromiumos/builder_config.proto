@@ -168,6 +168,11 @@ message BuilderConfig {
         COLLECT_AFTER_HW_TEST = 3;
       }
       CollectHandling collect_handling = 2;
+
+      // Name of the Buildbucket bucket in which the child builder lives.
+      // If not present, it is assumed that the child builder lives in the
+      // same bucket as its parent.
+      string bucket = 3;
     }
     repeated ChildSpec child_specs = 5;
 
