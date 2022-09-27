@@ -397,6 +397,11 @@ message BuilderConfig {
     // Google storage bucket to upload devinstall prebuilts to.
     // e.g. "chromeos-dev-installer".
     string devinstall_prebuilts_gs_bucket = 9;
+
+    // Whether artifacts produced by this builder are eligible for attestation.
+    // Snoopy then determines if builder can get attestation and at what level.
+    bool attestation_eligible = 10;
+
   }
   Artifacts artifacts = 4;
 
