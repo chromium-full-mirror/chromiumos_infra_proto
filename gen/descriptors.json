@@ -12993,6 +12993,24 @@
           ]
         },
         {
+          "field": [
+            {
+              "jsonName": "gcs",
+              "label": "LABEL_OPTIONAL",
+              "name": "gcs",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "URI",
+          "oneofDecl": [
+            {
+              "name": "uri"
+            }
+          ]
+        },
+        {
           "enumType": [
             {
               "name": "BuildType",
@@ -13135,6 +13153,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildReportBeta.BuildArtifact"
+            },
+            {
+              "jsonName": "dlcs",
+              "label": "LABEL_OPTIONAL",
+              "name": "dlcs",
+              "number": 16,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildReportBeta.DLCs"
             }
           ],
           "name": "BuildReportBeta",
@@ -13556,7 +13582,7 @@
                   "name": "uri",
                   "number": 2,
                   "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.BuildReportBeta.BuildArtifact.URI"
+                  "typeName": ".chromiumos.URI"
                 },
                 {
                   "jsonName": "sha256",
@@ -13574,27 +13600,7 @@
                   "typeName": ".google.protobuf.Timestamp"
                 }
               ],
-              "name": "BuildArtifact",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "gcs",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "gcs",
-                      "number": 1,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "URI",
-                  "oneofDecl": [
-                    {
-                      "name": "uri"
-                    }
-                  ]
-                }
-              ]
+              "name": "BuildArtifact"
             },
             {
               "enumType": [
@@ -14073,6 +14079,19 @@
                 }
               ],
               "name": "Payload"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "dlcArtifacts",
+                  "label": "LABEL_REPEATED",
+                  "name": "dlc_artifacts",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.URI"
+                }
+              ],
+              "name": "DLCs"
             }
           ],
           "oneofDecl": [

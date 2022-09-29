@@ -31,6 +31,12 @@ message BuildId {
     }
 }
 
+message URI {
+    oneof uri {
+        string gcs = 1; // Google cloud storage URI (including gs://) for artifact.
+    }
+}
+
 // TODO(b/211660261) deprecate and add BuildReport without "Beta".
 // next: 11
 message BuildReportBeta {
@@ -65,6 +71,9 @@ message BuildReportBeta {
 
     // Artifacts from the build.
     repeated BuildArtifact artifacts = 7;
+
+    // Holder object for DLCs.
+    DLCs dlcs = 16;
 
     enum BuildType {
         BUILD_TYPE_UNDEFINED = 0;
@@ -202,12 +211,6 @@ message BuildReportBeta {
             // Payload types
             PAYLOAD_FULL          = 400;
             PAYLOAD_DELTA         = 401;
-        }
-
-        message URI {
-            oneof uri {
-                string gcs = 1; // Google cloud storage URI (including gs://) for artifact.
-            }
         }
 
         Type   type   = 1; // The artifact type.
@@ -350,6 +353,12 @@ message BuildReportBeta {
         string source_version = 8; // e.g. 14388.8.0
         string target_version = 9; // e.g. 14440.0.0
         int64 size = 10; // Size of payload, in bytes.
+    }
+
+    // Representation of DLCs that may or may not live in Payloads.
+    message DLCs {
+        // DLC artifacts.
+        repeated URI dlc_artifacts = 1; // URIs of DLC artifacts.
     }
 }
 
