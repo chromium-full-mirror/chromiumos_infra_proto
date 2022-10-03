@@ -14611,6 +14611,13 @@
               "name": "rubik_target_milestone",
               "number": 7,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "stableTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "stable_target_milestone",
+              "number": 8,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "ReferenceBoardUnifiedBuildConfig"
@@ -14679,6 +14686,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "rubik_target_milestone",
               "number": 3,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "stableTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "stable_target_milestone",
+              "number": 4,
               "type": "TYPE_INT32"
             }
           ],
