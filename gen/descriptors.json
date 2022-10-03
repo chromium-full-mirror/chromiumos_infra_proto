@@ -1133,7 +1133,7 @@
                       "start": 29
                     },
                     {
-                      "end": 45,
+                      "end": 47,
                       "start": 33
                     }
                   ],
@@ -1273,7 +1273,7 @@
                       "start": 27
                     },
                     {
-                      "end": 45,
+                      "end": 47,
                       "start": 30
                     }
                   ],
@@ -1428,6 +1428,10 @@
                     {
                       "end": 44,
                       "start": 44
+                    },
+                    {
+                      "end": 47,
+                      "start": 46
                     }
                   ],
                   "value": [
@@ -1515,7 +1519,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 45,
+                      "end": 47,
                       "start": 1
                     }
                   ],
@@ -1598,6 +1602,10 @@
                     {
                       "end": 39,
                       "start": 36
+                    },
+                    {
+                      "end": 46,
+                      "start": 42
                     }
                   ],
                   "value": [
@@ -1620,6 +1628,10 @@
                     {
                       "name": "CHROME_EBUILD_ENV",
                       "number": 41
+                    },
+                    {
+                      "name": "FUZZER_SYSROOT",
+                      "number": 47
                     }
                   ]
                 }
@@ -1699,6 +1711,10 @@
                     {
                       "end": 45,
                       "start": 43
+                    },
+                    {
+                      "end": 47,
+                      "start": 47
                     }
                   ],
                   "value": [
@@ -1806,7 +1822,7 @@
                       "start": 34
                     },
                     {
-                      "end": 45,
+                      "end": 47,
                       "start": 45
                     }
                   ],
@@ -1915,7 +1931,7 @@
                       "start": 1
                     },
                     {
-                      "end": 45,
+                      "end": 47,
                       "start": 37
                     }
                   ],
@@ -9876,6 +9892,14 @@
                     {
                       "name": "STRIPPED_PACKAGES",
                       "number": 45
+                    },
+                    {
+                      "name": "CODE_COVERAGE_RUST_LLVM_JSON",
+                      "number": 46
+                    },
+                    {
+                      "name": "FUZZER_SYSROOT",
+                      "number": 47
                     }
                   ]
                 }
