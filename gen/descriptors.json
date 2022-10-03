@@ -14554,6 +14554,13 @@
               "name": "hwid_match",
               "number": 8,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "stableTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "stable_target_milestone",
+              "number": 9,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "Model"
