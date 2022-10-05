@@ -38,7 +38,7 @@ message URI {
 }
 
 // TODO(b/211660261) deprecate and add BuildReport without "Beta".
-// next: 11
+// next: 17
 message BuildReportBeta {
     // Id serves as the primary key for the metadata and will be constant even
     // when sending multiple partial messages.  Oneof to keep open changing the
@@ -81,6 +81,7 @@ message BuildReportBeta {
         BUILD_TYPE_FIRMWARE  = 2;
         BUILD_TYPE_FACTORY   = 3;
         BUILD_TYPE_PUBLIC    = 4;
+        BUILD_TYPE_PAYGEN    = 5;
     }
 
     message BuildStatus {
