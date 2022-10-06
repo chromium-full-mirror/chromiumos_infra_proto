@@ -60,6 +60,8 @@ message BuilderConfig {
       PUBLIC = 6;
     }
     Type type = 3;
+    // The name of the bucket the builder lives in.
+    string bucket = 4;
   }
   Id id = 1;
 

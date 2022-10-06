@@ -9401,6 +9401,13 @@
                   "number": 3,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.BuilderConfig.Id.Type"
+                },
+                {
+                  "jsonName": "bucket",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bucket",
+                  "number": 4,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "Id",
