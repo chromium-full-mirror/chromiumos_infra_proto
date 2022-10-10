@@ -8891,14 +8891,10 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false,
-        "unusedDependency": [
-          1
-        ]
+        "isSyntaxUnspecified": false
       },
       "dependency": [
-        "chromite/api/build_api.proto",
-        "chromiumos/common.proto"
+        "chromite/api/build_api.proto"
       ],
       "messageType": [
         {

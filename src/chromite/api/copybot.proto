@@ -4,7 +4,6 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
-import "chromiumos/common.proto";
 
 // The request to run CopyBot.
 message RunCopybotRequest {
