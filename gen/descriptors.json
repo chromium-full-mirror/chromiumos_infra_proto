@@ -9516,6 +9516,13 @@
                   "number": 8,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.FwLocation"
+                },
+                {
+                  "jsonName": "publishImageSizes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "publish_image_sizes",
+                  "number": 9,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "General",

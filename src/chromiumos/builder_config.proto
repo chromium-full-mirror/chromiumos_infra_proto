@@ -137,6 +137,9 @@ message BuilderConfig {
 
     // The Firmware Location, passed to FirmwareService calls.
     FwLocation firmware_location = 8;
+
+    // Whether to publish image size data for the builder.
+    bool publish_image_sizes = 9;
   }
   General general = 2;
 
