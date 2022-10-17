@@ -25958,6 +25958,13 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.build.api.ContainerImageInfo"
+            },
+            {
+              "jsonName": "maxExecutionSeconds",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_execution_seconds",
+              "number": 7,
+              "type": "TYPE_INT64"
             }
           ],
           "name": "RunTestRequest",
