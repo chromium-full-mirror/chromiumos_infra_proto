@@ -150,6 +150,9 @@ message SetBinhostRequest {
 
   // URI storing all the binaries.
   string uri = 4;
+
+  // Max URIs to store
+  int32 max_uris = 5;
 }
 
 // Response for SetBinhost service call.

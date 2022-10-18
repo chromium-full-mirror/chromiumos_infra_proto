@@ -3836,6 +3836,13 @@
               "name": "uri",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "maxUris",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_uris",
+              "number": 5,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "SetBinhostRequest"
