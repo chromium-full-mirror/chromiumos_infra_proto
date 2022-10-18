@@ -1737,6 +1737,10 @@
                     {
                       "name": "CODE_COVERAGE_RUST_LLVM_JSON",
                       "number": 46
+                    },
+                    {
+                      "name": "CODE_COVERAGE_GOLANG",
+                      "number": 48
                     }
                   ]
                 }
@@ -9917,6 +9921,10 @@
                     {
                       "name": "FUZZER_SYSROOT",
                       "number": 47
+                    },
+                    {
+                      "name": "CODE_COVERAGE_GOLANG",
+                      "number": 48
                     }
                   ]
                 }
