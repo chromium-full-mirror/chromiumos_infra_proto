@@ -28,6 +28,7 @@ type ImageServiceClient interface {
 	//  "build_target": {"name": "reef"},
 	// }
 	Create(ctx context.Context, in *CreateImageRequest, opts ...grpc.CallOption) (*CreateImageResult, error)
+	CreateNetboot(ctx context.Context, in *CreateNetbootRequest, opts ...grpc.CallOption) (*CreateNetbootResponse, error)
 	// Test an image.
 	// Example json:
 	// {
@@ -76,6 +77,15 @@ func (c *imageServiceClient) Create(ctx context.Context, in *CreateImageRequest,
 	return out, nil
 }
 
+func (c *imageServiceClient) CreateNetboot(ctx context.Context, in *CreateNetbootRequest, opts ...grpc.CallOption) (*CreateNetbootResponse, error) {
+	out := new(CreateNetbootResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ImageService/CreateNetboot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *imageServiceClient) Test(ctx context.Context, in *TestImageRequest, opts ...grpc.CallOption) (*TestImageResult, error) {
 	out := new(TestImageResult)
 	err := c.cc.Invoke(ctx, "/chromite.api.ImageService/Test", in, out, opts...)
@@ -113,6 +123,7 @@ type ImageServiceServer interface {
 	//  "build_target": {"name": "reef"},
 	// }
 	Create(context.Context, *CreateImageRequest) (*CreateImageResult, error)
+	CreateNetboot(context.Context, *CreateNetbootRequest) (*CreateNetbootResponse, error)
 	// Test an image.
 	// Example json:
 	// {
@@ -152,6 +163,9 @@ type UnimplementedImageServiceServer struct {
 func (UnimplementedImageServiceServer) Create(context.Context, *CreateImageRequest) (*CreateImageResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
+func (UnimplementedImageServiceServer) CreateNetboot(context.Context, *CreateNetbootRequest) (*CreateNetbootResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNetboot not implemented")
+}
 func (UnimplementedImageServiceServer) Test(context.Context, *TestImageRequest) (*TestImageResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Test not implemented")
 }
@@ -188,6 +202,24 @@ func _ImageService_Create_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ImageServiceServer).Create(ctx, req.(*CreateImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ImageService_CreateNetboot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNetbootRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImageServiceServer).CreateNetboot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ImageService/CreateNetboot",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImageServiceServer).CreateNetboot(ctx, req.(*CreateNetbootRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -256,6 +288,10 @@ var ImageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _ImageService_Create_Handler,
+		},
+		{
+			MethodName: "CreateNetboot",
+			Handler:    _ImageService_CreateNetboot_Handler,
 		},
 		{
 			MethodName: "Test",

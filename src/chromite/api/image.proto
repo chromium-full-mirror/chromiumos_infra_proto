@@ -61,6 +61,23 @@ message CreateImageResult {
 }
 
 // The image test arguments.
+message CreateNetbootRequest {
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+  // Required.
+  // The build target whose image is being built.
+  chromiumos.BuildTarget build_target = 2;
+  // The factory shim path. The factory shim's directory is used as the output
+  // path for the netboot kernel creation script. The factory shim path can be
+  // fetched from the CreateImage result.
+  string factory_shim_path = 3;
+}
+
+message CreateNetbootResponse {
+
+}
+
+// The image test arguments.
 message TestImageRequest {
   // The image to be tested.
   // Image.path is required.
@@ -146,6 +163,8 @@ service ImageService {
   //  "build_target": {"name": "reef"},
   // }
   rpc Create(CreateImageRequest) returns (CreateImageResult);
+
+  rpc CreateNetboot(CreateNetbootRequest) returns (CreateNetbootResponse);
 
   // Test an image.
   // Example json:
