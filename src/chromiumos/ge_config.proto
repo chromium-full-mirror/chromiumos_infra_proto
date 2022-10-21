@@ -48,7 +48,7 @@ message Model {
   // on.
   int32 stable_target_milestone = 9;
   // Whether a build for this model is considered experimental only.
-  optional bool is_experimental = 10;
+  bool is_experimental = 10;
 
 }
 

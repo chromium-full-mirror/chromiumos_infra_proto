@@ -15713,17 +15713,10 @@
               "label": "LABEL_OPTIONAL",
               "name": "is_experimental",
               "number": 10,
-              "oneofIndex": 0,
-              "proto3Optional": true,
               "type": "TYPE_BOOL"
             }
           ],
-          "name": "Model",
-          "oneofDecl": [
-            {
-              "name": "_is_experimental"
-            }
-          ]
+          "name": "Model"
         },
         {
           "field": [
