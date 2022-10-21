@@ -47,6 +47,9 @@ message Model {
   // The first milestone that this board will be released to stable
   // on.
   int32 stable_target_milestone = 9;
+  // Whether a build for this model is considered experimental only.
+  optional bool is_experimental = 10;
+
 }
 
 // Enum for various type of builders
