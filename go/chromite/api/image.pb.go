@@ -294,9 +294,12 @@ type CreateNetbootRequest struct {
 	// Required.
 	// The build target whose image is being built.
 	BuildTarget *chromiumos.BuildTarget `protobuf:"bytes,2,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
-	// The factory shim path. The factory shim's directory is used as the output
-	// path for the netboot kernel creation script. The factory shim path can be
-	// fetched from the CreateImage result.
+	// Optional.
+	// The factory shim path.
+	// When not provided, uses the path where the factory shim would be created by
+	// ImageService/Create, which will not match a standard build_image run.
+	// The factory shim's directory is used as the output path for the netboot
+	// kernel creation script.
 	FactoryShimPath string `protobuf:"bytes,3,opt,name=factory_shim_path,json=factoryShimPath,proto3" json:"factory_shim_path,omitempty"`
 }
 
