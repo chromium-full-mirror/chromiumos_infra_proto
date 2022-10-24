@@ -27955,7 +27955,9 @@
       },
       "dependency": [
         "test_platform/skylab_test_runner/config.proto",
-        "test_platform/skylab_test_runner/request.proto"
+        "test_platform/skylab_test_runner/request.proto",
+        "test_platform/skylab_test_runner/cft_request.proto",
+        "test_platform/skylab_test_runner/common_config.proto"
       ],
       "messageType": [
         {
@@ -27975,6 +27977,22 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.Config"
+            },
+            {
+              "jsonName": "cftTestRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft_test_request",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest"
+            },
+            {
+              "jsonName": "commonConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "common_config",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CommonConfig"
             }
           ],
           "name": "RunTestsRequest"
