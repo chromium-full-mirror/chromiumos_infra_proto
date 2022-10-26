@@ -8092,6 +8092,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "android_build_branch",
               "number": 2,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -8154,6 +8157,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "android_build_branch",
               "number": 4,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {

@@ -10,7 +10,8 @@ import "chromiumos/common.proto";
 message GetLatestBuildRequest {
   reserved 1;
   // The Android branch to look for the latest build.
-  string android_build_branch = 2;
+  // Deprecated since R109.
+  string android_build_branch = 2 [deprecated = true];
   // The Android package to look for the latest build e.g 'android-vm-rvc'.
   // The default corresponding branch is used. Ignored if android_build_branch
   // is already specified.
@@ -35,7 +36,8 @@ message MarkStableRequest {
   string package_name = 3;
   // Android branch to import from.
   // Optional since R92.
-  string android_build_branch = 4;
+  // Deprecated since R109.
+  string android_build_branch = 4 [deprecated = true];
   // Force set the android build id that will be used.
   string android_version = 5;
   // Android GTS branch to copy artifacts from.
