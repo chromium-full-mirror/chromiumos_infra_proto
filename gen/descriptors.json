@@ -2251,6 +2251,20 @@
                       "number": 2,
                       "type": "TYPE_MESSAGE",
                       "typeName": ".chromiumos.Path"
+                    },
+                    {
+                      "jsonName": "failed",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "failed",
+                      "number": 3,
+                      "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "failureReason",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "failure_reason",
+                      "number": 4,
+                      "type": "TYPE_STRING"
                     }
                   ],
                   "name": "ArtifactPaths"
