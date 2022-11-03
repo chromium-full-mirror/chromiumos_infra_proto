@@ -1007,6 +1007,12 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 3;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 4;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -1019,6 +1025,12 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 3;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 4;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -1031,6 +1043,12 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 3;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 4;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -1043,6 +1061,12 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 3;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 4;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -1073,6 +1097,12 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 3;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 4;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -1088,6 +1118,12 @@ message UploadedArtifactsByService {
 
       // The firmware location.
       FwLocation location = 3;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 4;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 5;
     }
     repeated ArtifactPaths artifacts = 1;
   }
@@ -1100,6 +1136,12 @@ message UploadedArtifactsByService {
 
       // Absolute path to the artifact file.
       repeated Path paths = 2;
+
+      // Whether or not the artifact generation failed.
+      bool failed = 3;
+
+      // Failure reason that the artifact was not generated.
+      string failure_reason = 4;
     }
     repeated ArtifactPaths artifacts = 1;
   }
