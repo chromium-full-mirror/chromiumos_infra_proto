@@ -2776,6 +2776,14 @@
         {
           "field": [
             {
+              "jsonName": "failedPackages",
+              "label": "LABEL_REPEATED",
+              "name": "failed_packages",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
+            },
+            {
               "jsonName": "failedPackageData",
               "label": "LABEL_REPEATED",
               "name": "failed_package_data",
@@ -2784,16 +2792,7 @@
               "typeName": ".chromite.api.FailedPackageData"
             }
           ],
-          "name": "InstallToolchainResponse",
-          "reservedName": [
-            "failed_packages"
-          ],
-          "reservedRange": [
-            {
-              "end": 2,
-              "start": 1
-            }
-          ]
+          "name": "InstallToolchainResponse"
         },
         {
           "field": [
@@ -2916,6 +2915,14 @@
         {
           "field": [
             {
+              "jsonName": "failedPackages",
+              "label": "LABEL_REPEATED",
+              "name": "failed_packages",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
+            },
+            {
               "jsonName": "events",
               "label": "LABEL_REPEATED",
               "name": "events",
@@ -2940,16 +2947,7 @@
               "typeName": ".chromite.api.FailedPackageData"
             }
           ],
-          "name": "InstallPackagesResponse",
-          "reservedName": [
-            "failed_packages"
-          ],
-          "reservedRange": [
-            {
-              "end": 2,
-              "start": 1
-            }
-          ]
+          "name": "InstallPackagesResponse"
         },
         {
           "field": [
@@ -6891,6 +6889,14 @@
         {
           "field": [
             {
+              "jsonName": "failedPackages",
+              "label": "LABEL_REPEATED",
+              "name": "failed_packages",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
+            },
+            {
               "jsonName": "events",
               "label": "LABEL_REPEATED",
               "name": "events",
@@ -6909,17 +6915,12 @@
           ],
           "name": "BuildTargetUnitTestResponse",
           "reservedName": [
-            "tarball_path",
-            "failed_packages"
+            "tarball_path"
           ],
           "reservedRange": [
             {
               "end": 2,
               "start": 1
-            },
-            {
-              "end": 3,
-              "start": 2
             }
           ]
         },
