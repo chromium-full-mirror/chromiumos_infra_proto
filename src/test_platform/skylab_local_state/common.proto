@@ -21,5 +21,8 @@ message Config {
 
   // Unified Fleet System service host, e.g. ufs.api.cr.dev.
   string cros_ufs_service = 4;
+
+  // Swarming bot prefix to be used on the drone
+  string bot_prefix = 5;
 }
 

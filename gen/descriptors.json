@@ -27000,6 +27000,13 @@
               "name": "cros_ufs_service",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "botPrefix",
+              "label": "LABEL_OPTIONAL",
+              "name": "bot_prefix",
+              "number": 5,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Config"
