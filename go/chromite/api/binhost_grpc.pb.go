@@ -40,6 +40,8 @@ type BinhostServiceClient interface {
 	SetBinhost(ctx context.Context, in *SetBinhostRequest, opts ...grpc.CallOption) (*SetBinhostResponse, error)
 	// Regenerate the builder cache.  Added in R78.
 	RegenBuildCache(ctx context.Context, in *RegenBuildCacheRequest, opts ...grpc.CallOption) (*RegenBuildCacheResponse, error)
+	// Get the file path for the binhost conf file.
+	GetBinhostConfPath(ctx context.Context, in *GetBinhostConfPathRequest, opts ...grpc.CallOption) (*GetBinhostConfPathResponse, error)
 }
 
 type binhostServiceClient struct {
@@ -104,6 +106,15 @@ func (c *binhostServiceClient) RegenBuildCache(ctx context.Context, in *RegenBui
 	return out, nil
 }
 
+func (c *binhostServiceClient) GetBinhostConfPath(ctx context.Context, in *GetBinhostConfPathRequest, opts ...grpc.CallOption) (*GetBinhostConfPathResponse, error) {
+	out := new(GetBinhostConfPathResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/GetBinhostConfPath", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BinhostServiceServer is the server API for BinhostService service.
 // All implementations must embed UnimplementedBinhostServiceServer
 // for forward compatibility
@@ -126,6 +137,8 @@ type BinhostServiceServer interface {
 	SetBinhost(context.Context, *SetBinhostRequest) (*SetBinhostResponse, error)
 	// Regenerate the builder cache.  Added in R78.
 	RegenBuildCache(context.Context, *RegenBuildCacheRequest) (*RegenBuildCacheResponse, error)
+	// Get the file path for the binhost conf file.
+	GetBinhostConfPath(context.Context, *GetBinhostConfPathRequest) (*GetBinhostConfPathResponse, error)
 	mustEmbedUnimplementedBinhostServiceServer()
 }
 
@@ -150,6 +163,9 @@ func (UnimplementedBinhostServiceServer) SetBinhost(context.Context, *SetBinhost
 }
 func (UnimplementedBinhostServiceServer) RegenBuildCache(context.Context, *RegenBuildCacheRequest) (*RegenBuildCacheResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegenBuildCache not implemented")
+}
+func (UnimplementedBinhostServiceServer) GetBinhostConfPath(context.Context, *GetBinhostConfPathRequest) (*GetBinhostConfPathResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBinhostConfPath not implemented")
 }
 func (UnimplementedBinhostServiceServer) mustEmbedUnimplementedBinhostServiceServer() {}
 
@@ -272,6 +288,24 @@ func _BinhostService_RegenBuildCache_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BinhostService_GetBinhostConfPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBinhostConfPathRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).GetBinhostConfPath(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/GetBinhostConfPath",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).GetBinhostConfPath(ctx, req.(*GetBinhostConfPathRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BinhostService_ServiceDesc is the grpc.ServiceDesc for BinhostService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -302,6 +336,10 @@ var BinhostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegenBuildCache",
 			Handler:    _BinhostService_RegenBuildCache_Handler,
+		},
+		{
+			MethodName: "GetBinhostConfPath",
+			Handler:    _BinhostService_GetBinhostConfPath_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

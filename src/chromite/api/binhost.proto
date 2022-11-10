@@ -199,6 +199,24 @@ message RegenBuildCacheResponse {
   repeated Overlay modified_overlays = 1;
 }
 
+// Get binhost conf path for the given build target.
+message GetBinhostConfPathRequest {
+  // Build target to get the configuration file path for.
+  chromiumos.BuildTarget build_target = 1;
+
+  // Whether or not the binhost is private.
+  bool private = 2;
+
+  // Binhost key to get.
+  BinhostKey key = 3;
+}
+
+// Response for the GetBinhostConfPath service call.
+message GetBinhostConfPathResponse {
+  // Absolute path to the updated binhost conf file.
+  string conf_path = 1;
+}
+
 // Service for reading and writing to Portage package index.
 service BinhostService {
   option (service_options) = {
@@ -235,4 +253,7 @@ service BinhostService {
 
   // Regenerate the builder cache.  Added in R78.
   rpc RegenBuildCache(RegenBuildCacheRequest) returns (RegenBuildCacheResponse);
+
+  // Get the file path for the binhost conf file.
+  rpc GetBinhostConfPath(GetBinhostConfPathRequest) returns (GetBinhostConfPathResponse);
 }

@@ -4024,6 +4024,46 @@
               "name": "Overlay"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "private",
+              "label": "LABEL_OPTIONAL",
+              "name": "private",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.BinhostKey"
+            }
+          ],
+          "name": "GetBinhostConfPathRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "confPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "conf_path",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetBinhostConfPathResponse"
         }
       ],
       "name": "chromite/api/binhost.proto",
@@ -4068,6 +4108,11 @@
               "inputType": ".chromite.api.RegenBuildCacheRequest",
               "name": "RegenBuildCache",
               "outputType": ".chromite.api.RegenBuildCacheResponse"
+            },
+            {
+              "inputType": ".chromite.api.GetBinhostConfPathRequest",
+              "name": "GetBinhostConfPath",
+              "outputType": ".chromite.api.GetBinhostConfPathResponse"
             }
           ],
           "name": "BinhostService",
