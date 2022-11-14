@@ -18537,6 +18537,13 @@
               "name": "usb_hub_port",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "fwVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw_version",
+              "number": 5,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ServoTopologyItem"
