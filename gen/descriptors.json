@@ -30041,6 +30041,25 @@
           ]
         },
         {
+          "field": [
+            {
+              "jsonName": "totalShards",
+              "label": "LABEL_OPTIONAL",
+              "name": "total_shards",
+              "number": 1,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "shardIndex",
+              "label": "LABEL_OPTIONAL",
+              "name": "shard_index",
+              "number": 2,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "TastTestShard"
+        },
+        {
           "enumType": [
             {
               "name": "HwTestSuiteType",
@@ -30208,6 +30227,14 @@
                   "number": 2,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".testplans.TastVmTestCfg.TastTestExpr"
+                },
+                {
+                  "jsonName": "tastTestShard",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tast_test_shard",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.TastTestShard"
                 }
               ],
               "name": "TastVmTest",
@@ -30277,6 +30304,14 @@
                   "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".testplans.TastGceTestCfg.TastGceTest.GceMetadata"
+                },
+                {
+                  "jsonName": "tastTestShard",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tast_test_shard",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.TastTestShard"
                 }
               ],
               "name": "TastGceTest",

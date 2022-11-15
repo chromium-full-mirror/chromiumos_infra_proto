@@ -32,6 +32,15 @@ message TestSuiteCommon {
   bool disable_by_default = 4;
 }
 
+  message TastTestShard {
+    // The total number of shards to be used in a test run.
+    int64 total_shards = 1;
+
+    // The index of the shard to use.
+    // Note: This value is 0-indexed.
+    int64 shard_index = 2;
+  }
+
 message HwTestCfg {
   enum HwTestSuiteType {
     HW_TEST_SUITE_TYPE_UNSPECIFIED = 0;
@@ -99,6 +108,8 @@ message TastVmTestCfg {
     repeated TastTestExpr tast_test_expr = 2;
 
     reserved 3;
+
+    TastTestShard tast_test_shard = 5;
   }
 
   repeated TastVmTest tast_vm_test = 1;
@@ -143,6 +154,7 @@ message TastGceTestCfg {
     repeated TastGceTestCfg.TastTestExpr tast_test_expr = 3;
     // GCE instace metadata to run the tests on.
     GceMetadata gce_metadata = 4;
+    TastTestShard tast_test_shard = 5;
   }
 
   repeated TastGceTest tast_gce_test = 1;
