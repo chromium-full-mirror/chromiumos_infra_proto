@@ -27579,6 +27579,13 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig"
+            },
+            {
+              "jsonName": "partnerPrivate",
+              "label": "LABEL_OPTIONAL",
+              "name": "partner_private",
+              "number": 2,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CommonConfig",
