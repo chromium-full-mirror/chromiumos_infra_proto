@@ -116,9 +116,6 @@ message GenerationRequest {
 
 // Result of a payload generation.
 message GenerationResponse {
-  // Whether we've completed successfully.
-  bool success = 1;
-
   // If successful we may have a local artifact available. Generally this takes
   // the form of '/tmp/ioadwjoawjd/delta.bin'.
   string local_path = 2;
@@ -132,6 +129,9 @@ message GenerationResponse {
     NOT_MINIOS_COMPATIBLE = 1;
   }
   FailureReason failure_reason = 4;
+
+  reserved 1;
+  reserved "success";
 }
 
 // The image service definition.

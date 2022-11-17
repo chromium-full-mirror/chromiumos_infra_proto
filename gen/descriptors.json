@@ -11335,13 +11335,6 @@
           ],
           "field": [
             {
-              "jsonName": "success",
-              "label": "LABEL_OPTIONAL",
-              "name": "success",
-              "number": 1,
-              "type": "TYPE_BOOL"
-            },
-            {
               "jsonName": "localPath",
               "label": "LABEL_OPTIONAL",
               "name": "local_path",
@@ -11364,7 +11357,16 @@
               "typeName": ".chromite.api.GenerationResponse.FailureReason"
             }
           ],
-          "name": "GenerationResponse"
+          "name": "GenerationResponse",
+          "reservedName": [
+            "success"
+          ],
+          "reservedRange": [
+            {
+              "end": 2,
+              "start": 1
+            }
+          ]
         }
       ],
       "name": "chromite/api/payload.proto",
