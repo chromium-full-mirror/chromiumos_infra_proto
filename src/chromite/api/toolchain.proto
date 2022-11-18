@@ -134,6 +134,7 @@ message LinterFinding {
     CLANG_TIDY = 1;
     CARGO_CLIPPY = 2;
     GO_LINT = 3;
+    IWYU = 4;
   }
   Linters linter = 3;
   string lint_name = 4;
