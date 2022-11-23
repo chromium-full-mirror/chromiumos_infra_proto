@@ -248,6 +248,9 @@ message Request {
     // If true, this suite will be executed through CFT execution path
     // using containers defined in container_metadata_url.
     bool run_via_cft = 16;
+
+    // If true, this suite will be scheduled by Scheduke, not Quota Scheduler.
+    bool schedule_via_scheduke = 17;
   }
 
   Params params = 1;

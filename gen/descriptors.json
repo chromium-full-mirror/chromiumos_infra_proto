@@ -23910,6 +23910,13 @@
                   "name": "run_via_cft",
                   "number": 16,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "scheduleViaScheduke",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "schedule_via_scheduke",
+                  "number": 17,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",
