@@ -2063,6 +2063,10 @@ type ReleaseBuilder struct {
 	// A builder with an expiration date set (that has not yet occurred)
 	// will not be pruned as a stale milestone by automatic release config management.
 	ExpirationDate *ReleaseBuilder_Date `protobuf:"bytes,3,opt,name=expiration_date,json=expirationDate,proto3" json:"expiration_date,omitempty"`
+	// Mapping from Android package names to their corresponding Android branches
+	// for this release, e.g. "android-vm-rvc" -> "git_rvc-arc-m110".
+	// Android uprev builders are automatically set up according to this mapping.
+	AndroidBranches map[string]string `protobuf:"bytes,4,rep,name=android_branches,json=androidBranches,proto3" json:"android_branches,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *ReleaseBuilder) Reset() {
@@ -2121,6 +2125,13 @@ func (x *ReleaseBuilder) GetBuildSchedule() string {
 func (x *ReleaseBuilder) GetExpirationDate() *ReleaseBuilder_Date {
 	if x != nil {
 		return x.ExpirationDate
+	}
+	return nil
+}
+
+func (x *ReleaseBuilder) GetAndroidBranches() map[string]string {
+	if x != nil {
+		return x.AndroidBranches
 	}
 	return nil
 }
@@ -2933,7 +2944,7 @@ type ReleaseChannels_ChannelList struct {
 func (x *ReleaseChannels_ChannelList) Reset() {
 	*x = ReleaseChannels_ChannelList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[28]
+		mi := &file_chromiumos_common_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2946,7 +2957,7 @@ func (x *ReleaseChannels_ChannelList) String() string {
 func (*ReleaseChannels_ChannelList) ProtoMessage() {}
 
 func (x *ReleaseChannels_ChannelList) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[28]
+	mi := &file_chromiumos_common_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2981,7 +2992,7 @@ type ArtifactsByService_CodeCoverageUploadInfo struct {
 func (x *ArtifactsByService_CodeCoverageUploadInfo) Reset() {
 	*x = ArtifactsByService_CodeCoverageUploadInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[30]
+		mi := &file_chromiumos_common_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2994,7 +3005,7 @@ func (x *ArtifactsByService_CodeCoverageUploadInfo) String() string {
 func (*ArtifactsByService_CodeCoverageUploadInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_CodeCoverageUploadInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[30]
+	mi := &file_chromiumos_common_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3033,7 +3044,7 @@ type ArtifactsByService_Legacy struct {
 func (x *ArtifactsByService_Legacy) Reset() {
 	*x = ArtifactsByService_Legacy{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[31]
+		mi := &file_chromiumos_common_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3046,7 +3057,7 @@ func (x *ArtifactsByService_Legacy) String() string {
 func (*ArtifactsByService_Legacy) ProtoMessage() {}
 
 func (x *ArtifactsByService_Legacy) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[31]
+	mi := &file_chromiumos_common_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3090,7 +3101,7 @@ type ArtifactsByService_Toolchain struct {
 func (x *ArtifactsByService_Toolchain) Reset() {
 	*x = ArtifactsByService_Toolchain{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[32]
+		mi := &file_chromiumos_common_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3103,7 +3114,7 @@ func (x *ArtifactsByService_Toolchain) String() string {
 func (*ArtifactsByService_Toolchain) ProtoMessage() {}
 
 func (x *ArtifactsByService_Toolchain) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[32]
+	mi := &file_chromiumos_common_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3147,7 +3158,7 @@ type ArtifactsByService_Image struct {
 func (x *ArtifactsByService_Image) Reset() {
 	*x = ArtifactsByService_Image{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[33]
+		mi := &file_chromiumos_common_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3160,7 +3171,7 @@ func (x *ArtifactsByService_Image) String() string {
 func (*ArtifactsByService_Image) ProtoMessage() {}
 
 func (x *ArtifactsByService_Image) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[33]
+	mi := &file_chromiumos_common_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3204,7 +3215,7 @@ type ArtifactsByService_Package struct {
 func (x *ArtifactsByService_Package) Reset() {
 	*x = ArtifactsByService_Package{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[34]
+		mi := &file_chromiumos_common_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3217,7 +3228,7 @@ func (x *ArtifactsByService_Package) String() string {
 func (*ArtifactsByService_Package) ProtoMessage() {}
 
 func (x *ArtifactsByService_Package) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[34]
+	mi := &file_chromiumos_common_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3261,7 +3272,7 @@ type ArtifactsByService_Sysroot struct {
 func (x *ArtifactsByService_Sysroot) Reset() {
 	*x = ArtifactsByService_Sysroot{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[35]
+		mi := &file_chromiumos_common_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3274,7 +3285,7 @@ func (x *ArtifactsByService_Sysroot) String() string {
 func (*ArtifactsByService_Sysroot) ProtoMessage() {}
 
 func (x *ArtifactsByService_Sysroot) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[35]
+	mi := &file_chromiumos_common_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3318,7 +3329,7 @@ type ArtifactsByService_Test struct {
 func (x *ArtifactsByService_Test) Reset() {
 	*x = ArtifactsByService_Test{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[36]
+		mi := &file_chromiumos_common_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3331,7 +3342,7 @@ func (x *ArtifactsByService_Test) String() string {
 func (*ArtifactsByService_Test) ProtoMessage() {}
 
 func (x *ArtifactsByService_Test) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[36]
+	mi := &file_chromiumos_common_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3375,7 +3386,7 @@ type ArtifactsByService_Firmware struct {
 func (x *ArtifactsByService_Firmware) Reset() {
 	*x = ArtifactsByService_Firmware{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[37]
+		mi := &file_chromiumos_common_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3388,7 +3399,7 @@ func (x *ArtifactsByService_Firmware) String() string {
 func (*ArtifactsByService_Firmware) ProtoMessage() {}
 
 func (x *ArtifactsByService_Firmware) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[37]
+	mi := &file_chromiumos_common_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3432,7 +3443,7 @@ type ArtifactsByService_Infra struct {
 func (x *ArtifactsByService_Infra) Reset() {
 	*x = ArtifactsByService_Infra{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[38]
+		mi := &file_chromiumos_common_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3445,7 +3456,7 @@ func (x *ArtifactsByService_Infra) String() string {
 func (*ArtifactsByService_Infra) ProtoMessage() {}
 
 func (x *ArtifactsByService_Infra) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[38]
+	mi := &file_chromiumos_common_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3507,7 +3518,7 @@ type ArtifactsByService_Legacy_ArtifactInfo struct {
 func (x *ArtifactsByService_Legacy_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Legacy_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[39]
+		mi := &file_chromiumos_common_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3520,7 +3531,7 @@ func (x *ArtifactsByService_Legacy_ArtifactInfo) String() string {
 func (*ArtifactsByService_Legacy_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Legacy_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[39]
+	mi := &file_chromiumos_common_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3591,7 +3602,7 @@ type ArtifactsByService_Toolchain_ArtifactInfo struct {
 func (x *ArtifactsByService_Toolchain_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Toolchain_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[40]
+		mi := &file_chromiumos_common_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3604,7 +3615,7 @@ func (x *ArtifactsByService_Toolchain_ArtifactInfo) String() string {
 func (*ArtifactsByService_Toolchain_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Toolchain_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[40]
+	mi := &file_chromiumos_common_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3675,7 +3686,7 @@ type ArtifactsByService_Image_ArtifactInfo struct {
 func (x *ArtifactsByService_Image_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Image_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[41]
+		mi := &file_chromiumos_common_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3688,7 +3699,7 @@ func (x *ArtifactsByService_Image_ArtifactInfo) String() string {
 func (*ArtifactsByService_Image_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Image_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[41]
+	mi := &file_chromiumos_common_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3759,7 +3770,7 @@ type ArtifactsByService_Package_ArtifactInfo struct {
 func (x *ArtifactsByService_Package_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Package_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[42]
+		mi := &file_chromiumos_common_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3772,7 +3783,7 @@ func (x *ArtifactsByService_Package_ArtifactInfo) String() string {
 func (*ArtifactsByService_Package_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Package_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[42]
+	mi := &file_chromiumos_common_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3843,7 +3854,7 @@ type ArtifactsByService_Sysroot_ArtifactInfo struct {
 func (x *ArtifactsByService_Sysroot_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Sysroot_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[43]
+		mi := &file_chromiumos_common_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3856,7 +3867,7 @@ func (x *ArtifactsByService_Sysroot_ArtifactInfo) String() string {
 func (*ArtifactsByService_Sysroot_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Sysroot_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[43]
+	mi := &file_chromiumos_common_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3929,7 +3940,7 @@ type ArtifactsByService_Test_ArtifactInfo struct {
 func (x *ArtifactsByService_Test_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Test_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[44]
+		mi := &file_chromiumos_common_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3942,7 +3953,7 @@ func (x *ArtifactsByService_Test_ArtifactInfo) String() string {
 func (*ArtifactsByService_Test_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Test_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[44]
+	mi := &file_chromiumos_common_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4024,7 +4035,7 @@ type ArtifactsByService_Firmware_ArtifactInfo struct {
 func (x *ArtifactsByService_Firmware_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Firmware_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[45]
+		mi := &file_chromiumos_common_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4037,7 +4048,7 @@ func (x *ArtifactsByService_Firmware_ArtifactInfo) String() string {
 func (*ArtifactsByService_Firmware_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Firmware_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[45]
+	mi := &file_chromiumos_common_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4122,7 +4133,7 @@ type ArtifactsByService_Infra_ArtifactInfo struct {
 func (x *ArtifactsByService_Infra_ArtifactInfo) Reset() {
 	*x = ArtifactsByService_Infra_ArtifactInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[46]
+		mi := &file_chromiumos_common_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4135,7 +4146,7 @@ func (x *ArtifactsByService_Infra_ArtifactInfo) String() string {
 func (*ArtifactsByService_Infra_ArtifactInfo) ProtoMessage() {}
 
 func (x *ArtifactsByService_Infra_ArtifactInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[46]
+	mi := &file_chromiumos_common_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4186,7 +4197,7 @@ type UploadedArtifactsByService_Legacy struct {
 func (x *UploadedArtifactsByService_Legacy) Reset() {
 	*x = UploadedArtifactsByService_Legacy{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[47]
+		mi := &file_chromiumos_common_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4199,7 +4210,7 @@ func (x *UploadedArtifactsByService_Legacy) String() string {
 func (*UploadedArtifactsByService_Legacy) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Legacy) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[47]
+	mi := &file_chromiumos_common_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4233,7 +4244,7 @@ type UploadedArtifactsByService_Toolchain struct {
 func (x *UploadedArtifactsByService_Toolchain) Reset() {
 	*x = UploadedArtifactsByService_Toolchain{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[48]
+		mi := &file_chromiumos_common_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4246,7 +4257,7 @@ func (x *UploadedArtifactsByService_Toolchain) String() string {
 func (*UploadedArtifactsByService_Toolchain) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Toolchain) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[48]
+	mi := &file_chromiumos_common_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4280,7 +4291,7 @@ type UploadedArtifactsByService_Image struct {
 func (x *UploadedArtifactsByService_Image) Reset() {
 	*x = UploadedArtifactsByService_Image{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[49]
+		mi := &file_chromiumos_common_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4293,7 +4304,7 @@ func (x *UploadedArtifactsByService_Image) String() string {
 func (*UploadedArtifactsByService_Image) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Image) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[49]
+	mi := &file_chromiumos_common_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4327,7 +4338,7 @@ type UploadedArtifactsByService_Package struct {
 func (x *UploadedArtifactsByService_Package) Reset() {
 	*x = UploadedArtifactsByService_Package{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[50]
+		mi := &file_chromiumos_common_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4340,7 +4351,7 @@ func (x *UploadedArtifactsByService_Package) String() string {
 func (*UploadedArtifactsByService_Package) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Package) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[50]
+	mi := &file_chromiumos_common_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4374,7 +4385,7 @@ type UploadedArtifactsByService_Sysroot struct {
 func (x *UploadedArtifactsByService_Sysroot) Reset() {
 	*x = UploadedArtifactsByService_Sysroot{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[51]
+		mi := &file_chromiumos_common_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4387,7 +4398,7 @@ func (x *UploadedArtifactsByService_Sysroot) String() string {
 func (*UploadedArtifactsByService_Sysroot) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Sysroot) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[51]
+	mi := &file_chromiumos_common_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4421,7 +4432,7 @@ type UploadedArtifactsByService_Test struct {
 func (x *UploadedArtifactsByService_Test) Reset() {
 	*x = UploadedArtifactsByService_Test{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[52]
+		mi := &file_chromiumos_common_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4434,7 +4445,7 @@ func (x *UploadedArtifactsByService_Test) String() string {
 func (*UploadedArtifactsByService_Test) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Test) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[52]
+	mi := &file_chromiumos_common_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4468,7 +4479,7 @@ type UploadedArtifactsByService_Firmware struct {
 func (x *UploadedArtifactsByService_Firmware) Reset() {
 	*x = UploadedArtifactsByService_Firmware{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[53]
+		mi := &file_chromiumos_common_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4481,7 +4492,7 @@ func (x *UploadedArtifactsByService_Firmware) String() string {
 func (*UploadedArtifactsByService_Firmware) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Firmware) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[53]
+	mi := &file_chromiumos_common_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4515,7 +4526,7 @@ type UploadedArtifactsByService_Infra struct {
 func (x *UploadedArtifactsByService_Infra) Reset() {
 	*x = UploadedArtifactsByService_Infra{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[54]
+		mi := &file_chromiumos_common_proto_msgTypes[55]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4528,7 +4539,7 @@ func (x *UploadedArtifactsByService_Infra) String() string {
 func (*UploadedArtifactsByService_Infra) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Infra) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[54]
+	mi := &file_chromiumos_common_proto_msgTypes[55]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4569,7 +4580,7 @@ type UploadedArtifactsByService_Legacy_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Legacy_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Legacy_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[55]
+		mi := &file_chromiumos_common_proto_msgTypes[56]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4582,7 +4593,7 @@ func (x *UploadedArtifactsByService_Legacy_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Legacy_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Legacy_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[55]
+	mi := &file_chromiumos_common_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4644,7 +4655,7 @@ type UploadedArtifactsByService_Toolchain_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Toolchain_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Toolchain_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[56]
+		mi := &file_chromiumos_common_proto_msgTypes[57]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4657,7 +4668,7 @@ func (x *UploadedArtifactsByService_Toolchain_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Toolchain_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Toolchain_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[56]
+	mi := &file_chromiumos_common_proto_msgTypes[57]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4719,7 +4730,7 @@ type UploadedArtifactsByService_Image_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Image_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Image_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[57]
+		mi := &file_chromiumos_common_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4732,7 +4743,7 @@ func (x *UploadedArtifactsByService_Image_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Image_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Image_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[57]
+	mi := &file_chromiumos_common_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4794,7 +4805,7 @@ type UploadedArtifactsByService_Package_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Package_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Package_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[58]
+		mi := &file_chromiumos_common_proto_msgTypes[59]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4807,7 +4818,7 @@ func (x *UploadedArtifactsByService_Package_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Package_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Package_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[58]
+	mi := &file_chromiumos_common_proto_msgTypes[59]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4869,7 +4880,7 @@ type UploadedArtifactsByService_Sysroot_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Sysroot_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Sysroot_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[59]
+		mi := &file_chromiumos_common_proto_msgTypes[60]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4882,7 +4893,7 @@ func (x *UploadedArtifactsByService_Sysroot_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Sysroot_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Sysroot_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[59]
+	mi := &file_chromiumos_common_proto_msgTypes[60]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4944,7 +4955,7 @@ type UploadedArtifactsByService_Test_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Test_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Test_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[60]
+		mi := &file_chromiumos_common_proto_msgTypes[61]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4957,7 +4968,7 @@ func (x *UploadedArtifactsByService_Test_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Test_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Test_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[60]
+	mi := &file_chromiumos_common_proto_msgTypes[61]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5021,7 +5032,7 @@ type UploadedArtifactsByService_Firmware_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Firmware_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Firmware_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[61]
+		mi := &file_chromiumos_common_proto_msgTypes[62]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5034,7 +5045,7 @@ func (x *UploadedArtifactsByService_Firmware_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Firmware_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Firmware_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[61]
+	mi := &file_chromiumos_common_proto_msgTypes[62]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5103,7 +5114,7 @@ type UploadedArtifactsByService_Infra_ArtifactPaths struct {
 func (x *UploadedArtifactsByService_Infra_ArtifactPaths) Reset() {
 	*x = UploadedArtifactsByService_Infra_ArtifactPaths{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_common_proto_msgTypes[62]
+		mi := &file_chromiumos_common_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5116,7 +5127,7 @@ func (x *UploadedArtifactsByService_Infra_ArtifactPaths) String() string {
 func (*UploadedArtifactsByService_Infra_ArtifactPaths) ProtoMessage() {}
 
 func (x *UploadedArtifactsByService_Infra_ArtifactPaths) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_common_proto_msgTypes[62]
+	mi := &file_chromiumos_common_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5283,7 +5294,7 @@ var file_chromiumos_common_proto_rawDesc = []byte{
 	0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x08, 0x70, 0x6f, 0x73, 0x69,
 	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x1d, 0x0a, 0x07, 0x55, 0x73, 0x65, 0x46, 0x6c, 0x61, 0x67, 0x12,
 	0x12, 0x0a, 0x04, 0x66, 0x6c, 0x61, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x66,
-	0x6c, 0x61, 0x67, 0x22, 0x90, 0x03, 0x0a, 0x0e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x42,
+	0x6c, 0x61, 0x67, 0x22, 0xb0, 0x04, 0x0a, 0x0e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x42,
 	0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x12, 0x44, 0x0a, 0x09, 0x6d, 0x69, 0x6c, 0x65, 0x73, 0x74,
 	0x6f, 0x6e, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x63, 0x68, 0x72, 0x6f,
 	0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x42, 0x75,
@@ -5295,19 +5306,29 @@ var file_chromiumos_common_proto_rawDesc = []byte{
 	0x6e, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x63,
 	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73,
 	0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x2e, 0x44, 0x61, 0x74, 0x65, 0x52, 0x0e, 0x65,
-	0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x1a, 0x1c, 0x0a,
-	0x04, 0x44, 0x61, 0x74, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x1a, 0x93, 0x01, 0x0a, 0x09,
-	0x4d, 0x69, 0x6c, 0x65, 0x73, 0x74, 0x6f, 0x6e, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d,
-	0x62, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65,
-	0x72, 0x12, 0x4d, 0x0a, 0x12, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x5f, 0x62, 0x72, 0x61, 0x6e,
-	0x63, 0x68, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e,
-	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x6c, 0x65, 0x61,
-	0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x2e, 0x44, 0x61, 0x74, 0x65, 0x52, 0x10,
-	0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x42, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x44, 0x61, 0x74, 0x65,
-	0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x62, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x4e, 0x61, 0x6d,
-	0x65, 0x42, 0x13, 0x0a, 0x11, 0x6d, 0x69, 0x6c, 0x65, 0x73, 0x74, 0x6f, 0x6e, 0x65, 0x5f, 0x6d,
+	0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x12, 0x5a, 0x0a,
+	0x10, 0x61, 0x6e, 0x64, 0x72, 0x6f, 0x69, 0x64, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x65,
+	0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
+	0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c,
+	0x64, 0x65, 0x72, 0x2e, 0x41, 0x6e, 0x64, 0x72, 0x6f, 0x69, 0x64, 0x42, 0x72, 0x61, 0x6e, 0x63,
+	0x68, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x0f, 0x61, 0x6e, 0x64, 0x72, 0x6f, 0x69,
+	0x64, 0x42, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x65, 0x73, 0x1a, 0x1c, 0x0a, 0x04, 0x44, 0x61, 0x74,
+	0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x1a, 0x93, 0x01, 0x0a, 0x09, 0x4d, 0x69, 0x6c, 0x65,
+	0x73, 0x74, 0x6f, 0x6e, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x4d, 0x0a,
+	0x12, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x5f, 0x64,
+	0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x63, 0x68, 0x72, 0x6f,
+	0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x42, 0x75,
+	0x69, 0x6c, 0x64, 0x65, 0x72, 0x2e, 0x44, 0x61, 0x74, 0x65, 0x52, 0x10, 0x74, 0x61, 0x72, 0x67,
+	0x65, 0x74, 0x42, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x44, 0x61, 0x74, 0x65, 0x12, 0x1f, 0x0a, 0x0b,
+	0x62, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x62, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x4e, 0x61, 0x6d, 0x65, 0x1a, 0x42, 0x0a,
+	0x14, 0x41, 0x6e, 0x64, 0x72, 0x6f, 0x69, 0x64, 0x42, 0x72, 0x61, 0x6e, 0x63, 0x68, 0x65, 0x73,
+	0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38,
+	0x01, 0x42, 0x13, 0x0a, 0x11, 0x6d, 0x69, 0x6c, 0x65, 0x73, 0x74, 0x6f, 0x6e, 0x65, 0x5f, 0x6d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x49, 0x0a, 0x0f, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73,
 	0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x73, 0x12, 0x36, 0x0a, 0x08, 0x62, 0x75, 0x69,
 	0x6c, 0x64, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x63, 0x68,
@@ -6006,7 +6027,7 @@ func file_chromiumos_common_proto_rawDescGZIP() []byte {
 }
 
 var file_chromiumos_common_proto_enumTypes = make([]protoimpl.EnumInfo, 15)
-var file_chromiumos_common_proto_msgTypes = make([]protoimpl.MessageInfo, 63)
+var file_chromiumos_common_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
 var file_chromiumos_common_proto_goTypes = []interface{}{
 	(ImageType)(0),               // 0: chromiumos.ImageType
 	(Channel)(0),                 // 1: chromiumos.Channel
@@ -6051,41 +6072,42 @@ var file_chromiumos_common_proto_goTypes = []interface{}{
 	(*Chroot_ChrootEnv)(nil),                                        // 40: chromiumos.Chroot.ChrootEnv
 	(*ReleaseBuilder_Date)(nil),                                     // 41: chromiumos.ReleaseBuilder.Date
 	(*ReleaseBuilder_Milestone)(nil),                                // 42: chromiumos.ReleaseBuilder.Milestone
-	(*ReleaseChannels_ChannelList)(nil),                             // 43: chromiumos.ReleaseChannels.ChannelList
-	nil,                                                             // 44: chromiumos.ReleaseChannels.ReleaseChannelsEntry
-	(*ArtifactsByService_CodeCoverageUploadInfo)(nil),               // 45: chromiumos.ArtifactsByService.CodeCoverageUploadInfo
-	(*ArtifactsByService_Legacy)(nil),                               // 46: chromiumos.ArtifactsByService.Legacy
-	(*ArtifactsByService_Toolchain)(nil),                            // 47: chromiumos.ArtifactsByService.Toolchain
-	(*ArtifactsByService_Image)(nil),                                // 48: chromiumos.ArtifactsByService.Image
-	(*ArtifactsByService_Package)(nil),                              // 49: chromiumos.ArtifactsByService.Package
-	(*ArtifactsByService_Sysroot)(nil),                              // 50: chromiumos.ArtifactsByService.Sysroot
-	(*ArtifactsByService_Test)(nil),                                 // 51: chromiumos.ArtifactsByService.Test
-	(*ArtifactsByService_Firmware)(nil),                             // 52: chromiumos.ArtifactsByService.Firmware
-	(*ArtifactsByService_Infra)(nil),                                // 53: chromiumos.ArtifactsByService.Infra
-	(*ArtifactsByService_Legacy_ArtifactInfo)(nil),                  // 54: chromiumos.ArtifactsByService.Legacy.ArtifactInfo
-	(*ArtifactsByService_Toolchain_ArtifactInfo)(nil),               // 55: chromiumos.ArtifactsByService.Toolchain.ArtifactInfo
-	(*ArtifactsByService_Image_ArtifactInfo)(nil),                   // 56: chromiumos.ArtifactsByService.Image.ArtifactInfo
-	(*ArtifactsByService_Package_ArtifactInfo)(nil),                 // 57: chromiumos.ArtifactsByService.Package.ArtifactInfo
-	(*ArtifactsByService_Sysroot_ArtifactInfo)(nil),                 // 58: chromiumos.ArtifactsByService.Sysroot.ArtifactInfo
-	(*ArtifactsByService_Test_ArtifactInfo)(nil),                    // 59: chromiumos.ArtifactsByService.Test.ArtifactInfo
-	(*ArtifactsByService_Firmware_ArtifactInfo)(nil),                // 60: chromiumos.ArtifactsByService.Firmware.ArtifactInfo
-	(*ArtifactsByService_Infra_ArtifactInfo)(nil),                   // 61: chromiumos.ArtifactsByService.Infra.ArtifactInfo
-	(*UploadedArtifactsByService_Legacy)(nil),                       // 62: chromiumos.UploadedArtifactsByService.Legacy
-	(*UploadedArtifactsByService_Toolchain)(nil),                    // 63: chromiumos.UploadedArtifactsByService.Toolchain
-	(*UploadedArtifactsByService_Image)(nil),                        // 64: chromiumos.UploadedArtifactsByService.Image
-	(*UploadedArtifactsByService_Package)(nil),                      // 65: chromiumos.UploadedArtifactsByService.Package
-	(*UploadedArtifactsByService_Sysroot)(nil),                      // 66: chromiumos.UploadedArtifactsByService.Sysroot
-	(*UploadedArtifactsByService_Test)(nil),                         // 67: chromiumos.UploadedArtifactsByService.Test
-	(*UploadedArtifactsByService_Firmware)(nil),                     // 68: chromiumos.UploadedArtifactsByService.Firmware
-	(*UploadedArtifactsByService_Infra)(nil),                        // 69: chromiumos.UploadedArtifactsByService.Infra
-	(*UploadedArtifactsByService_Legacy_ArtifactPaths)(nil),         // 70: chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths
-	(*UploadedArtifactsByService_Toolchain_ArtifactPaths)(nil),      // 71: chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths
-	(*UploadedArtifactsByService_Image_ArtifactPaths)(nil),          // 72: chromiumos.UploadedArtifactsByService.Image.ArtifactPaths
-	(*UploadedArtifactsByService_Package_ArtifactPaths)(nil),        // 73: chromiumos.UploadedArtifactsByService.Package.ArtifactPaths
-	(*UploadedArtifactsByService_Sysroot_ArtifactPaths)(nil),        // 74: chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths
-	(*UploadedArtifactsByService_Test_ArtifactPaths)(nil),           // 75: chromiumos.UploadedArtifactsByService.Test.ArtifactPaths
-	(*UploadedArtifactsByService_Firmware_ArtifactPaths)(nil),       // 76: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths
-	(*UploadedArtifactsByService_Infra_ArtifactPaths)(nil),          // 77: chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths
+	nil,                                                             // 43: chromiumos.ReleaseBuilder.AndroidBranchesEntry
+	(*ReleaseChannels_ChannelList)(nil),                             // 44: chromiumos.ReleaseChannels.ChannelList
+	nil,                                                             // 45: chromiumos.ReleaseChannels.ReleaseChannelsEntry
+	(*ArtifactsByService_CodeCoverageUploadInfo)(nil),               // 46: chromiumos.ArtifactsByService.CodeCoverageUploadInfo
+	(*ArtifactsByService_Legacy)(nil),                               // 47: chromiumos.ArtifactsByService.Legacy
+	(*ArtifactsByService_Toolchain)(nil),                            // 48: chromiumos.ArtifactsByService.Toolchain
+	(*ArtifactsByService_Image)(nil),                                // 49: chromiumos.ArtifactsByService.Image
+	(*ArtifactsByService_Package)(nil),                              // 50: chromiumos.ArtifactsByService.Package
+	(*ArtifactsByService_Sysroot)(nil),                              // 51: chromiumos.ArtifactsByService.Sysroot
+	(*ArtifactsByService_Test)(nil),                                 // 52: chromiumos.ArtifactsByService.Test
+	(*ArtifactsByService_Firmware)(nil),                             // 53: chromiumos.ArtifactsByService.Firmware
+	(*ArtifactsByService_Infra)(nil),                                // 54: chromiumos.ArtifactsByService.Infra
+	(*ArtifactsByService_Legacy_ArtifactInfo)(nil),                  // 55: chromiumos.ArtifactsByService.Legacy.ArtifactInfo
+	(*ArtifactsByService_Toolchain_ArtifactInfo)(nil),               // 56: chromiumos.ArtifactsByService.Toolchain.ArtifactInfo
+	(*ArtifactsByService_Image_ArtifactInfo)(nil),                   // 57: chromiumos.ArtifactsByService.Image.ArtifactInfo
+	(*ArtifactsByService_Package_ArtifactInfo)(nil),                 // 58: chromiumos.ArtifactsByService.Package.ArtifactInfo
+	(*ArtifactsByService_Sysroot_ArtifactInfo)(nil),                 // 59: chromiumos.ArtifactsByService.Sysroot.ArtifactInfo
+	(*ArtifactsByService_Test_ArtifactInfo)(nil),                    // 60: chromiumos.ArtifactsByService.Test.ArtifactInfo
+	(*ArtifactsByService_Firmware_ArtifactInfo)(nil),                // 61: chromiumos.ArtifactsByService.Firmware.ArtifactInfo
+	(*ArtifactsByService_Infra_ArtifactInfo)(nil),                   // 62: chromiumos.ArtifactsByService.Infra.ArtifactInfo
+	(*UploadedArtifactsByService_Legacy)(nil),                       // 63: chromiumos.UploadedArtifactsByService.Legacy
+	(*UploadedArtifactsByService_Toolchain)(nil),                    // 64: chromiumos.UploadedArtifactsByService.Toolchain
+	(*UploadedArtifactsByService_Image)(nil),                        // 65: chromiumos.UploadedArtifactsByService.Image
+	(*UploadedArtifactsByService_Package)(nil),                      // 66: chromiumos.UploadedArtifactsByService.Package
+	(*UploadedArtifactsByService_Sysroot)(nil),                      // 67: chromiumos.UploadedArtifactsByService.Sysroot
+	(*UploadedArtifactsByService_Test)(nil),                         // 68: chromiumos.UploadedArtifactsByService.Test
+	(*UploadedArtifactsByService_Firmware)(nil),                     // 69: chromiumos.UploadedArtifactsByService.Firmware
+	(*UploadedArtifactsByService_Infra)(nil),                        // 70: chromiumos.UploadedArtifactsByService.Infra
+	(*UploadedArtifactsByService_Legacy_ArtifactPaths)(nil),         // 71: chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths
+	(*UploadedArtifactsByService_Toolchain_ArtifactPaths)(nil),      // 72: chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths
+	(*UploadedArtifactsByService_Image_ArtifactPaths)(nil),          // 73: chromiumos.UploadedArtifactsByService.Image.ArtifactPaths
+	(*UploadedArtifactsByService_Package_ArtifactPaths)(nil),        // 74: chromiumos.UploadedArtifactsByService.Package.ArtifactPaths
+	(*UploadedArtifactsByService_Sysroot_ArtifactPaths)(nil),        // 75: chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths
+	(*UploadedArtifactsByService_Test_ArtifactPaths)(nil),           // 76: chromiumos.UploadedArtifactsByService.Test.ArtifactPaths
+	(*UploadedArtifactsByService_Firmware_ArtifactPaths)(nil),       // 77: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths
+	(*UploadedArtifactsByService_Infra_ArtifactPaths)(nil),          // 78: chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths
 }
 var file_chromiumos_common_proto_depIdxs = []int32{
 	40, // 0: chromiumos.Chroot.env:type_name -> chromiumos.Chroot.ChrootEnv
@@ -6097,89 +6119,90 @@ var file_chromiumos_common_proto_depIdxs = []int32{
 	25, // 6: chromiumos.ResultPath.path:type_name -> chromiumos.Path
 	42, // 7: chromiumos.ReleaseBuilder.milestone:type_name -> chromiumos.ReleaseBuilder.Milestone
 	41, // 8: chromiumos.ReleaseBuilder.expiration_date:type_name -> chromiumos.ReleaseBuilder.Date
-	31, // 9: chromiumos.ReleaseBuilders.builders:type_name -> chromiumos.ReleaseBuilder
-	44, // 10: chromiumos.ReleaseChannels.release_channels:type_name -> chromiumos.ReleaseChannels.ReleaseChannelsEntry
-	36, // 11: chromiumos.ArtifactProfileInfo.afdo_release:type_name -> chromiumos.AfdoRelease
-	46, // 12: chromiumos.ArtifactsByService.legacy:type_name -> chromiumos.ArtifactsByService.Legacy
-	47, // 13: chromiumos.ArtifactsByService.toolchain:type_name -> chromiumos.ArtifactsByService.Toolchain
-	48, // 14: chromiumos.ArtifactsByService.image:type_name -> chromiumos.ArtifactsByService.Image
-	49, // 15: chromiumos.ArtifactsByService.package:type_name -> chromiumos.ArtifactsByService.Package
-	50, // 16: chromiumos.ArtifactsByService.sysroot:type_name -> chromiumos.ArtifactsByService.Sysroot
-	51, // 17: chromiumos.ArtifactsByService.test:type_name -> chromiumos.ArtifactsByService.Test
-	37, // 18: chromiumos.ArtifactsByService.profile_info:type_name -> chromiumos.ArtifactProfileInfo
-	52, // 19: chromiumos.ArtifactsByService.firmware:type_name -> chromiumos.ArtifactsByService.Firmware
-	53, // 20: chromiumos.ArtifactsByService.infra:type_name -> chromiumos.ArtifactsByService.Infra
-	62, // 21: chromiumos.UploadedArtifactsByService.legacy:type_name -> chromiumos.UploadedArtifactsByService.Legacy
-	63, // 22: chromiumos.UploadedArtifactsByService.toolchain:type_name -> chromiumos.UploadedArtifactsByService.Toolchain
-	64, // 23: chromiumos.UploadedArtifactsByService.image:type_name -> chromiumos.UploadedArtifactsByService.Image
-	65, // 24: chromiumos.UploadedArtifactsByService.package:type_name -> chromiumos.UploadedArtifactsByService.Package
-	66, // 25: chromiumos.UploadedArtifactsByService.sysroot:type_name -> chromiumos.UploadedArtifactsByService.Sysroot
-	67, // 26: chromiumos.UploadedArtifactsByService.test:type_name -> chromiumos.UploadedArtifactsByService.Test
-	68, // 27: chromiumos.UploadedArtifactsByService.firmware:type_name -> chromiumos.UploadedArtifactsByService.Firmware
-	69, // 28: chromiumos.UploadedArtifactsByService.infra:type_name -> chromiumos.UploadedArtifactsByService.Infra
-	30, // 29: chromiumos.Chroot.ChrootEnv.use_flags:type_name -> chromiumos.UseFlag
-	18, // 30: chromiumos.Chroot.ChrootEnv.features:type_name -> chromiumos.Feature
-	41, // 31: chromiumos.ReleaseBuilder.Milestone.target_branch_date:type_name -> chromiumos.ReleaseBuilder.Date
-	1,  // 32: chromiumos.ReleaseChannels.ChannelList.channels:type_name -> chromiumos.Channel
-	43, // 33: chromiumos.ReleaseChannels.ReleaseChannelsEntry.value:type_name -> chromiumos.ReleaseChannels.ChannelList
-	6,  // 34: chromiumos.ArtifactsByService.CodeCoverageUploadInfo.coverage_type:type_name -> chromiumos.ArtifactsByService.CodeCoverageUploadInfo.CodeCoverageType
-	54, // 35: chromiumos.ArtifactsByService.Legacy.input_artifacts:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactInfo
-	54, // 36: chromiumos.ArtifactsByService.Legacy.output_artifacts:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactInfo
-	55, // 37: chromiumos.ArtifactsByService.Toolchain.input_artifacts:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactInfo
-	55, // 38: chromiumos.ArtifactsByService.Toolchain.output_artifacts:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactInfo
-	56, // 39: chromiumos.ArtifactsByService.Image.input_artifacts:type_name -> chromiumos.ArtifactsByService.Image.ArtifactInfo
-	56, // 40: chromiumos.ArtifactsByService.Image.output_artifacts:type_name -> chromiumos.ArtifactsByService.Image.ArtifactInfo
-	57, // 41: chromiumos.ArtifactsByService.Package.input_artifacts:type_name -> chromiumos.ArtifactsByService.Package.ArtifactInfo
-	57, // 42: chromiumos.ArtifactsByService.Package.output_artifacts:type_name -> chromiumos.ArtifactsByService.Package.ArtifactInfo
-	58, // 43: chromiumos.ArtifactsByService.Sysroot.input_artifacts:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactInfo
-	58, // 44: chromiumos.ArtifactsByService.Sysroot.output_artifacts:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactInfo
-	59, // 45: chromiumos.ArtifactsByService.Test.input_artifacts:type_name -> chromiumos.ArtifactsByService.Test.ArtifactInfo
-	59, // 46: chromiumos.ArtifactsByService.Test.output_artifacts:type_name -> chromiumos.ArtifactsByService.Test.ArtifactInfo
-	60, // 47: chromiumos.ArtifactsByService.Firmware.input_artifacts:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactInfo
-	60, // 48: chromiumos.ArtifactsByService.Firmware.output_artifacts:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactInfo
-	61, // 49: chromiumos.ArtifactsByService.Infra.input_artifacts:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactInfo
-	61, // 50: chromiumos.ArtifactsByService.Infra.output_artifacts:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactInfo
-	7,  // 51: chromiumos.ArtifactsByService.Legacy.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactType
-	8,  // 52: chromiumos.ArtifactsByService.Toolchain.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactType
-	9,  // 53: chromiumos.ArtifactsByService.Image.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Image.ArtifactType
-	10, // 54: chromiumos.ArtifactsByService.Package.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Package.ArtifactType
-	11, // 55: chromiumos.ArtifactsByService.Sysroot.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactType
-	12, // 56: chromiumos.ArtifactsByService.Test.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Test.ArtifactType
-	45, // 57: chromiumos.ArtifactsByService.Test.ArtifactInfo.code_coverage_upload_info:type_name -> chromiumos.ArtifactsByService.CodeCoverageUploadInfo
-	13, // 58: chromiumos.ArtifactsByService.Firmware.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactType
-	3,  // 59: chromiumos.ArtifactsByService.Firmware.ArtifactInfo.location:type_name -> chromiumos.FwLocation
-	45, // 60: chromiumos.ArtifactsByService.Firmware.ArtifactInfo.code_coverage_upload_info:type_name -> chromiumos.ArtifactsByService.CodeCoverageUploadInfo
-	14, // 61: chromiumos.ArtifactsByService.Infra.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactType
-	70, // 62: chromiumos.UploadedArtifactsByService.Legacy.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths
-	71, // 63: chromiumos.UploadedArtifactsByService.Toolchain.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths
-	72, // 64: chromiumos.UploadedArtifactsByService.Image.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Image.ArtifactPaths
-	73, // 65: chromiumos.UploadedArtifactsByService.Package.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Package.ArtifactPaths
-	74, // 66: chromiumos.UploadedArtifactsByService.Sysroot.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths
-	75, // 67: chromiumos.UploadedArtifactsByService.Test.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Test.ArtifactPaths
-	76, // 68: chromiumos.UploadedArtifactsByService.Firmware.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths
-	77, // 69: chromiumos.UploadedArtifactsByService.Infra.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths
-	7,  // 70: chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactType
-	25, // 71: chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths.paths:type_name -> chromiumos.Path
-	8,  // 72: chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactType
-	25, // 73: chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths.paths:type_name -> chromiumos.Path
-	9,  // 74: chromiumos.UploadedArtifactsByService.Image.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Image.ArtifactType
-	25, // 75: chromiumos.UploadedArtifactsByService.Image.ArtifactPaths.paths:type_name -> chromiumos.Path
-	10, // 76: chromiumos.UploadedArtifactsByService.Package.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Package.ArtifactType
-	25, // 77: chromiumos.UploadedArtifactsByService.Package.ArtifactPaths.paths:type_name -> chromiumos.Path
-	11, // 78: chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactType
-	25, // 79: chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths.paths:type_name -> chromiumos.Path
-	12, // 80: chromiumos.UploadedArtifactsByService.Test.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Test.ArtifactType
-	25, // 81: chromiumos.UploadedArtifactsByService.Test.ArtifactPaths.paths:type_name -> chromiumos.Path
-	13, // 82: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactType
-	25, // 83: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths.paths:type_name -> chromiumos.Path
-	3,  // 84: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths.location:type_name -> chromiumos.FwLocation
-	14, // 85: chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactType
-	25, // 86: chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths.paths:type_name -> chromiumos.Path
-	87, // [87:87] is the sub-list for method output_type
-	87, // [87:87] is the sub-list for method input_type
-	87, // [87:87] is the sub-list for extension type_name
-	87, // [87:87] is the sub-list for extension extendee
-	0,  // [0:87] is the sub-list for field type_name
+	43, // 9: chromiumos.ReleaseBuilder.android_branches:type_name -> chromiumos.ReleaseBuilder.AndroidBranchesEntry
+	31, // 10: chromiumos.ReleaseBuilders.builders:type_name -> chromiumos.ReleaseBuilder
+	45, // 11: chromiumos.ReleaseChannels.release_channels:type_name -> chromiumos.ReleaseChannels.ReleaseChannelsEntry
+	36, // 12: chromiumos.ArtifactProfileInfo.afdo_release:type_name -> chromiumos.AfdoRelease
+	47, // 13: chromiumos.ArtifactsByService.legacy:type_name -> chromiumos.ArtifactsByService.Legacy
+	48, // 14: chromiumos.ArtifactsByService.toolchain:type_name -> chromiumos.ArtifactsByService.Toolchain
+	49, // 15: chromiumos.ArtifactsByService.image:type_name -> chromiumos.ArtifactsByService.Image
+	50, // 16: chromiumos.ArtifactsByService.package:type_name -> chromiumos.ArtifactsByService.Package
+	51, // 17: chromiumos.ArtifactsByService.sysroot:type_name -> chromiumos.ArtifactsByService.Sysroot
+	52, // 18: chromiumos.ArtifactsByService.test:type_name -> chromiumos.ArtifactsByService.Test
+	37, // 19: chromiumos.ArtifactsByService.profile_info:type_name -> chromiumos.ArtifactProfileInfo
+	53, // 20: chromiumos.ArtifactsByService.firmware:type_name -> chromiumos.ArtifactsByService.Firmware
+	54, // 21: chromiumos.ArtifactsByService.infra:type_name -> chromiumos.ArtifactsByService.Infra
+	63, // 22: chromiumos.UploadedArtifactsByService.legacy:type_name -> chromiumos.UploadedArtifactsByService.Legacy
+	64, // 23: chromiumos.UploadedArtifactsByService.toolchain:type_name -> chromiumos.UploadedArtifactsByService.Toolchain
+	65, // 24: chromiumos.UploadedArtifactsByService.image:type_name -> chromiumos.UploadedArtifactsByService.Image
+	66, // 25: chromiumos.UploadedArtifactsByService.package:type_name -> chromiumos.UploadedArtifactsByService.Package
+	67, // 26: chromiumos.UploadedArtifactsByService.sysroot:type_name -> chromiumos.UploadedArtifactsByService.Sysroot
+	68, // 27: chromiumos.UploadedArtifactsByService.test:type_name -> chromiumos.UploadedArtifactsByService.Test
+	69, // 28: chromiumos.UploadedArtifactsByService.firmware:type_name -> chromiumos.UploadedArtifactsByService.Firmware
+	70, // 29: chromiumos.UploadedArtifactsByService.infra:type_name -> chromiumos.UploadedArtifactsByService.Infra
+	30, // 30: chromiumos.Chroot.ChrootEnv.use_flags:type_name -> chromiumos.UseFlag
+	18, // 31: chromiumos.Chroot.ChrootEnv.features:type_name -> chromiumos.Feature
+	41, // 32: chromiumos.ReleaseBuilder.Milestone.target_branch_date:type_name -> chromiumos.ReleaseBuilder.Date
+	1,  // 33: chromiumos.ReleaseChannels.ChannelList.channels:type_name -> chromiumos.Channel
+	44, // 34: chromiumos.ReleaseChannels.ReleaseChannelsEntry.value:type_name -> chromiumos.ReleaseChannels.ChannelList
+	6,  // 35: chromiumos.ArtifactsByService.CodeCoverageUploadInfo.coverage_type:type_name -> chromiumos.ArtifactsByService.CodeCoverageUploadInfo.CodeCoverageType
+	55, // 36: chromiumos.ArtifactsByService.Legacy.input_artifacts:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactInfo
+	55, // 37: chromiumos.ArtifactsByService.Legacy.output_artifacts:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactInfo
+	56, // 38: chromiumos.ArtifactsByService.Toolchain.input_artifacts:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactInfo
+	56, // 39: chromiumos.ArtifactsByService.Toolchain.output_artifacts:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactInfo
+	57, // 40: chromiumos.ArtifactsByService.Image.input_artifacts:type_name -> chromiumos.ArtifactsByService.Image.ArtifactInfo
+	57, // 41: chromiumos.ArtifactsByService.Image.output_artifacts:type_name -> chromiumos.ArtifactsByService.Image.ArtifactInfo
+	58, // 42: chromiumos.ArtifactsByService.Package.input_artifacts:type_name -> chromiumos.ArtifactsByService.Package.ArtifactInfo
+	58, // 43: chromiumos.ArtifactsByService.Package.output_artifacts:type_name -> chromiumos.ArtifactsByService.Package.ArtifactInfo
+	59, // 44: chromiumos.ArtifactsByService.Sysroot.input_artifacts:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactInfo
+	59, // 45: chromiumos.ArtifactsByService.Sysroot.output_artifacts:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactInfo
+	60, // 46: chromiumos.ArtifactsByService.Test.input_artifacts:type_name -> chromiumos.ArtifactsByService.Test.ArtifactInfo
+	60, // 47: chromiumos.ArtifactsByService.Test.output_artifacts:type_name -> chromiumos.ArtifactsByService.Test.ArtifactInfo
+	61, // 48: chromiumos.ArtifactsByService.Firmware.input_artifacts:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactInfo
+	61, // 49: chromiumos.ArtifactsByService.Firmware.output_artifacts:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactInfo
+	62, // 50: chromiumos.ArtifactsByService.Infra.input_artifacts:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactInfo
+	62, // 51: chromiumos.ArtifactsByService.Infra.output_artifacts:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactInfo
+	7,  // 52: chromiumos.ArtifactsByService.Legacy.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactType
+	8,  // 53: chromiumos.ArtifactsByService.Toolchain.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactType
+	9,  // 54: chromiumos.ArtifactsByService.Image.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Image.ArtifactType
+	10, // 55: chromiumos.ArtifactsByService.Package.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Package.ArtifactType
+	11, // 56: chromiumos.ArtifactsByService.Sysroot.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactType
+	12, // 57: chromiumos.ArtifactsByService.Test.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Test.ArtifactType
+	46, // 58: chromiumos.ArtifactsByService.Test.ArtifactInfo.code_coverage_upload_info:type_name -> chromiumos.ArtifactsByService.CodeCoverageUploadInfo
+	13, // 59: chromiumos.ArtifactsByService.Firmware.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactType
+	3,  // 60: chromiumos.ArtifactsByService.Firmware.ArtifactInfo.location:type_name -> chromiumos.FwLocation
+	46, // 61: chromiumos.ArtifactsByService.Firmware.ArtifactInfo.code_coverage_upload_info:type_name -> chromiumos.ArtifactsByService.CodeCoverageUploadInfo
+	14, // 62: chromiumos.ArtifactsByService.Infra.ArtifactInfo.artifact_types:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactType
+	71, // 63: chromiumos.UploadedArtifactsByService.Legacy.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths
+	72, // 64: chromiumos.UploadedArtifactsByService.Toolchain.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths
+	73, // 65: chromiumos.UploadedArtifactsByService.Image.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Image.ArtifactPaths
+	74, // 66: chromiumos.UploadedArtifactsByService.Package.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Package.ArtifactPaths
+	75, // 67: chromiumos.UploadedArtifactsByService.Sysroot.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths
+	76, // 68: chromiumos.UploadedArtifactsByService.Test.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Test.ArtifactPaths
+	77, // 69: chromiumos.UploadedArtifactsByService.Firmware.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths
+	78, // 70: chromiumos.UploadedArtifactsByService.Infra.artifacts:type_name -> chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths
+	7,  // 71: chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Legacy.ArtifactType
+	25, // 72: chromiumos.UploadedArtifactsByService.Legacy.ArtifactPaths.paths:type_name -> chromiumos.Path
+	8,  // 73: chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Toolchain.ArtifactType
+	25, // 74: chromiumos.UploadedArtifactsByService.Toolchain.ArtifactPaths.paths:type_name -> chromiumos.Path
+	9,  // 75: chromiumos.UploadedArtifactsByService.Image.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Image.ArtifactType
+	25, // 76: chromiumos.UploadedArtifactsByService.Image.ArtifactPaths.paths:type_name -> chromiumos.Path
+	10, // 77: chromiumos.UploadedArtifactsByService.Package.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Package.ArtifactType
+	25, // 78: chromiumos.UploadedArtifactsByService.Package.ArtifactPaths.paths:type_name -> chromiumos.Path
+	11, // 79: chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Sysroot.ArtifactType
+	25, // 80: chromiumos.UploadedArtifactsByService.Sysroot.ArtifactPaths.paths:type_name -> chromiumos.Path
+	12, // 81: chromiumos.UploadedArtifactsByService.Test.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Test.ArtifactType
+	25, // 82: chromiumos.UploadedArtifactsByService.Test.ArtifactPaths.paths:type_name -> chromiumos.Path
+	13, // 83: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Firmware.ArtifactType
+	25, // 84: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths.paths:type_name -> chromiumos.Path
+	3,  // 85: chromiumos.UploadedArtifactsByService.Firmware.ArtifactPaths.location:type_name -> chromiumos.FwLocation
+	14, // 86: chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths.artifact_type:type_name -> chromiumos.ArtifactsByService.Infra.ArtifactType
+	25, // 87: chromiumos.UploadedArtifactsByService.Infra.ArtifactPaths.paths:type_name -> chromiumos.Path
+	88, // [88:88] is the sub-list for method output_type
+	88, // [88:88] is the sub-list for method input_type
+	88, // [88:88] is the sub-list for extension type_name
+	88, // [88:88] is the sub-list for extension extendee
+	0,  // [0:88] is the sub-list for field type_name
 }
 
 func init() { file_chromiumos_common_proto_init() }
@@ -6524,7 +6547,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReleaseChannels_ChannelList); i {
 			case 0:
 				return &v.state
@@ -6536,7 +6559,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_CodeCoverageUploadInfo); i {
 			case 0:
 				return &v.state
@@ -6548,7 +6571,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Legacy); i {
 			case 0:
 				return &v.state
@@ -6560,7 +6583,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Toolchain); i {
 			case 0:
 				return &v.state
@@ -6572,7 +6595,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Image); i {
 			case 0:
 				return &v.state
@@ -6584,7 +6607,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Package); i {
 			case 0:
 				return &v.state
@@ -6596,7 +6619,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Sysroot); i {
 			case 0:
 				return &v.state
@@ -6608,7 +6631,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Test); i {
 			case 0:
 				return &v.state
@@ -6620,7 +6643,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Firmware); i {
 			case 0:
 				return &v.state
@@ -6632,7 +6655,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Infra); i {
 			case 0:
 				return &v.state
@@ -6644,7 +6667,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Legacy_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6656,7 +6679,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Toolchain_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6668,7 +6691,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Image_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6680,7 +6703,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Package_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6692,7 +6715,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Sysroot_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6704,7 +6727,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Test_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6716,7 +6739,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Firmware_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6728,7 +6751,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArtifactsByService_Infra_ArtifactInfo); i {
 			case 0:
 				return &v.state
@@ -6740,7 +6763,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Legacy); i {
 			case 0:
 				return &v.state
@@ -6752,7 +6775,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Toolchain); i {
 			case 0:
 				return &v.state
@@ -6764,7 +6787,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Image); i {
 			case 0:
 				return &v.state
@@ -6776,7 +6799,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Package); i {
 			case 0:
 				return &v.state
@@ -6788,7 +6811,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Sysroot); i {
 			case 0:
 				return &v.state
@@ -6800,7 +6823,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Test); i {
 			case 0:
 				return &v.state
@@ -6812,7 +6835,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Firmware); i {
 			case 0:
 				return &v.state
@@ -6824,7 +6847,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Infra); i {
 			case 0:
 				return &v.state
@@ -6836,7 +6859,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Legacy_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6848,7 +6871,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Toolchain_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6860,7 +6883,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Image_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6872,7 +6895,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Package_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6884,7 +6907,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Sysroot_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6896,7 +6919,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Test_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6908,7 +6931,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Firmware_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6920,7 +6943,7 @@ func file_chromiumos_common_proto_init() {
 				return nil
 			}
 		}
-		file_chromiumos_common_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
+		file_chromiumos_common_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UploadedArtifactsByService_Infra_ArtifactPaths); i {
 			case 0:
 				return &v.state
@@ -6951,7 +6974,7 @@ func file_chromiumos_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromiumos_common_proto_rawDesc,
 			NumEnums:      15,
-			NumMessages:   63,
+			NumMessages:   64,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

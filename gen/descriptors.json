@@ -804,6 +804,14 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ReleaseBuilder.Date"
+            },
+            {
+              "jsonName": "androidBranches",
+              "label": "LABEL_REPEATED",
+              "name": "android_branches",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ReleaseBuilder.AndroidBranchesEntry"
             }
           ],
           "name": "ReleaseBuilder",
@@ -846,6 +854,28 @@
                 }
               ],
               "name": "Milestone"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "AndroidBranchesEntry",
+              "options": {
+                "mapEntry": true
+              }
             }
           ],
           "oneofDecl": [

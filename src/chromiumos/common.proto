@@ -248,6 +248,11 @@ message ReleaseBuilder {
   // A builder with an expiration date set (that has not yet occurred)
   // will not be pruned as a stale milestone by automatic release config management.
   Date expiration_date = 3;
+
+  // Mapping from Android package names to their corresponding Android branches
+  // for this release, e.g. "android-vm-rvc" -> "git_rvc-arc-m110".
+  // Android uprev builders are automatically set up according to this mapping.
+  map<string, string> android_branches = 4;
 }
 
 message ReleaseBuilders {
