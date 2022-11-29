@@ -197,6 +197,8 @@ message RegenBuildCacheResponse {
 
   // The overlays that have outstanding cache updates.
   repeated Overlay modified_overlays = 1;
+  // Overlays that failed during cache updates.
+  repeated Overlay failed_overlays = 2;
 }
 
 // Get binhost conf path for the given build target.

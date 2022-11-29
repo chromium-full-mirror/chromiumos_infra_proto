@@ -4037,6 +4037,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RegenBuildCacheResponse.Overlay"
+            },
+            {
+              "jsonName": "failedOverlays",
+              "label": "LABEL_REPEATED",
+              "name": "failed_overlays",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RegenBuildCacheResponse.Overlay"
             }
           ],
           "name": "RegenBuildCacheResponse",
