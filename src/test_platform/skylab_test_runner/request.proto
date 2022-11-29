@@ -119,4 +119,8 @@ message Request {
   // This can include information about whether the tests should run and
   // if failures should be exonerated.
   test_platform.Request.Params.TestExecutionBehavior default_test_execution_behavior = 9;
+
+  // The retry attempt identifier. Details how many retries
+  // this build has performed.
+  int32 retry_number = 10;
 }

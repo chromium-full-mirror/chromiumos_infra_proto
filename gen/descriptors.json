@@ -24839,6 +24839,13 @@
               "number": 9,
               "type": "TYPE_ENUM",
               "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
+            },
+            {
+              "jsonName": "retryNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "retry_number",
+              "number": 10,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "Request",
@@ -27552,6 +27559,13 @@
               "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.build.api.ContainerMetadata"
+            },
+            {
+              "jsonName": "retryNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "retry_number",
+              "number": 10,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "CFTTestRequest",

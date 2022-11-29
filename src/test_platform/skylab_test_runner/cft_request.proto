@@ -51,6 +51,10 @@ message CFTTestRequest {
  // Container metadata to be used in test execution.
  chromiumos.build.api.ContainerMetadata container_metadata = 9;
 
+ // The retry attempt identifier. Details how many retries
+ // this build has performed.
+ int32 retry_number = 10;
+
  message Device {
    // DUT model to be provisioned.
    chromiumos.test.lab.api.DutModel dut_model = 1;
