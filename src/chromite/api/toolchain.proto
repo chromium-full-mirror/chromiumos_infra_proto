@@ -175,6 +175,18 @@ message LinterResponse {
   repeated LinterFinding findings = 1;
 }
 
+// Request lints to be uploaded to GS for all packages.
+message DashboardLintRequest {
+  Sysroot sysroot = 1;
+  chromiumos.Chroot chroot = 2;
+  int64 start_time = 3;
+}
+
+// GS path where lints were uploaded.
+message DashboardLintResponse {
+  string gs_path = 1;
+}
+
 // Request toolchains info for a board.
 message ToolchainsRequest {
   string board = 1;
@@ -211,6 +223,12 @@ service ToolchainService {
   // Added in R90.
   rpc GetUpdatedFiles(GetUpdatedFilesRequest)
     returns (GetUpdatedFilesResponse);
+
+  rpc EmergeAndUploadLints(DashboardLintRequest) returns (DashboardLintResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE
+    };
+  };
 
   // Emerge the given packages and retrieve any findings from linters.
   rpc EmergeWithLinting(LinterRequest) returns (LinterResponse) {

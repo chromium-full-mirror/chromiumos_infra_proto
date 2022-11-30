@@ -33,6 +33,7 @@ type ToolchainServiceClient interface {
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
 	// Added in R90.
 	GetUpdatedFiles(ctx context.Context, in *GetUpdatedFilesRequest, opts ...grpc.CallOption) (*GetUpdatedFilesResponse, error)
+	EmergeAndUploadLints(ctx context.Context, in *DashboardLintRequest, opts ...grpc.CallOption) (*DashboardLintResponse, error)
 	// Emerge the given packages and retrieve any findings from linters.
 	EmergeWithLinting(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error)
 	// Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
@@ -82,6 +83,15 @@ func (c *toolchainServiceClient) GetUpdatedFiles(ctx context.Context, in *GetUpd
 	return out, nil
 }
 
+func (c *toolchainServiceClient) EmergeAndUploadLints(ctx context.Context, in *DashboardLintRequest, opts ...grpc.CallOption) (*DashboardLintResponse, error) {
+	out := new(DashboardLintResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/EmergeAndUploadLints", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *toolchainServiceClient) EmergeWithLinting(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error) {
 	out := new(LinterResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/EmergeWithLinting", in, out, opts...)
@@ -124,6 +134,7 @@ type ToolchainServiceServer interface {
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
 	// Added in R90.
 	GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error)
+	EmergeAndUploadLints(context.Context, *DashboardLintRequest) (*DashboardLintResponse, error)
 	// Emerge the given packages and retrieve any findings from linters.
 	EmergeWithLinting(context.Context, *LinterRequest) (*LinterResponse, error)
 	// Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
@@ -151,6 +162,9 @@ func (UnimplementedToolchainServiceServer) BundleArtifacts(context.Context, *Bun
 }
 func (UnimplementedToolchainServiceServer) GetUpdatedFiles(context.Context, *GetUpdatedFilesRequest) (*GetUpdatedFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUpdatedFiles not implemented")
+}
+func (UnimplementedToolchainServiceServer) EmergeAndUploadLints(context.Context, *DashboardLintRequest) (*DashboardLintResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EmergeAndUploadLints not implemented")
 }
 func (UnimplementedToolchainServiceServer) EmergeWithLinting(context.Context, *LinterRequest) (*LinterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EmergeWithLinting not implemented")
@@ -228,6 +242,24 @@ func _ToolchainService_GetUpdatedFiles_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ToolchainService_EmergeAndUploadLints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DashboardLintRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).EmergeAndUploadLints(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/EmergeAndUploadLints",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).EmergeAndUploadLints(ctx, req.(*DashboardLintRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ToolchainService_EmergeWithLinting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LinterRequest)
 	if err := dec(in); err != nil {
@@ -300,6 +332,10 @@ var ToolchainService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUpdatedFiles",
 			Handler:    _ToolchainService_GetUpdatedFiles_Handler,
+		},
+		{
+			MethodName: "EmergeAndUploadLints",
+			Handler:    _ToolchainService_EmergeAndUploadLints_Handler,
 		},
 		{
 			MethodName: "EmergeWithLinting",

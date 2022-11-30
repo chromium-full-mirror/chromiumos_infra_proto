@@ -12256,6 +12256,46 @@
         {
           "field": [
             {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 3,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "DashboardLintRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "gsPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_path",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DashboardLintResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "board",
               "label": "LABEL_OPTIONAL",
               "name": "board",
@@ -12307,6 +12347,16 @@
               "inputType": ".chromite.api.GetUpdatedFilesRequest",
               "name": "GetUpdatedFiles",
               "outputType": ".chromite.api.GetUpdatedFilesResponse"
+            },
+            {
+              "inputType": ".chromite.api.DashboardLintRequest",
+              "name": "EmergeAndUploadLints",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
+              "outputType": ".chromite.api.DashboardLintResponse"
             },
             {
               "inputType": ".chromite.api.LinterRequest",
