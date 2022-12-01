@@ -1460,7 +1460,7 @@
                       "start": 44
                     },
                     {
-                      "end": 47,
+                      "end": 48,
                       "start": 46
                     }
                   ],
@@ -1484,6 +1484,10 @@
                     {
                       "name": "STRIPPED_PACKAGES",
                       "number": 45
+                    },
+                    {
+                      "name": "IMAGE_SCRIPTS",
+                      "number": 49
                     }
                   ]
                 }
@@ -1549,7 +1553,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 47,
+                      "end": 49,
                       "start": 1
                     }
                   ],
@@ -1636,6 +1640,10 @@
                     {
                       "end": 46,
                       "start": 42
+                    },
+                    {
+                      "end": 49,
+                      "start": 48
                     }
                   ],
                   "value": [
@@ -1745,6 +1753,10 @@
                     {
                       "end": 47,
                       "start": 47
+                    },
+                    {
+                      "end": 49,
+                      "start": 49
                     }
                   ],
                   "value": [
@@ -1856,7 +1868,7 @@
                       "start": 34
                     },
                     {
-                      "end": 47,
+                      "end": 49,
                       "start": 45
                     }
                   ],
@@ -1965,7 +1977,7 @@
                       "start": 1
                     },
                     {
-                      "end": 47,
+                      "end": 49,
                       "start": 37
                     }
                   ],
@@ -10159,6 +10171,10 @@
                     {
                       "name": "CODE_COVERAGE_GOLANG",
                       "number": 48
+                    },
+                    {
+                      "name": "IMAGE_SCRIPTS",
+                      "number": 49
                     }
                   ]
                 }
