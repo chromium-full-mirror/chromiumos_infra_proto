@@ -160,20 +160,6 @@ message TastGceTestCfg {
   repeated TastGceTest tast_gce_test = 1;
 }
 
-message VmTestCfg {
-  message VmTest {
-    TestSuiteCommon common = 8;
-
-    // Test suite to be run in VMTest.
-    string test_suite = 2;
-
-    reserved 1, 3 to 7;
-  }
-
-  repeated VmTest vm_test = 1;
-}
-
-
 // Specifies a CrOS builder to target.
 message TargetCriteria {
   // DEPRECATED: we need to target builder_name instead. build_target
@@ -195,11 +181,10 @@ message PerTargetTestRequirements {
 
   // These configure what testing is needed for these BuildCriteria.
   HwTestCfg hw_test_cfg = 3;
-  VmTestCfg vm_test_cfg = 5;
   TastVmTestCfg direct_tast_vm_test_cfg = 7;
   TastGceTestCfg tast_gce_test_cfg = 8;
 
-  reserved 2, 4, 6;
+  reserved 2, 4, 5, 6;
 }
 
 // A listing of all testing that should be done for all CrOS builds.

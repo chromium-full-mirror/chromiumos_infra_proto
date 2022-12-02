@@ -30457,51 +30457,6 @@
         {
           "field": [
             {
-              "jsonName": "vmTest",
-              "label": "LABEL_REPEATED",
-              "name": "vm_test",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.VmTestCfg.VmTest"
-            }
-          ],
-          "name": "VmTestCfg",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "common",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "common",
-                  "number": 8,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.TestSuiteCommon"
-                },
-                {
-                  "jsonName": "testSuite",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "test_suite",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "VmTest",
-              "reservedRange": [
-                {
-                  "end": 2,
-                  "start": 1
-                },
-                {
-                  "end": 8,
-                  "start": 3
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "field": [
-            {
               "jsonName": "buildTarget",
               "label": "LABEL_OPTIONAL",
               "name": "build_target",
@@ -30543,14 +30498,6 @@
               "typeName": ".testplans.HwTestCfg"
             },
             {
-              "jsonName": "vmTestCfg",
-              "label": "LABEL_OPTIONAL",
-              "name": "vm_test_cfg",
-              "number": 5,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.VmTestCfg"
-            },
-            {
               "jsonName": "directTastVmTestCfg",
               "label": "LABEL_OPTIONAL",
               "name": "direct_tast_vm_test_cfg",
@@ -30576,6 +30523,10 @@
             {
               "end": 5,
               "start": 4
+            },
+            {
+              "end": 6,
+              "start": 5
             },
             {
               "end": 7,
@@ -30663,14 +30614,6 @@
               "typeName": ".testplans.HwTestUnit"
             },
             {
-              "jsonName": "vmTestUnits",
-              "label": "LABEL_REPEATED",
-              "name": "vm_test_units",
-              "number": 6,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.VmTestUnit"
-            },
-            {
               "jsonName": "directTastVmTestUnits",
               "label": "LABEL_REPEATED",
               "name": "direct_tast_vm_test_units",
@@ -30700,6 +30643,10 @@
             {
               "end": 6,
               "start": 5
+            },
+            {
+              "end": 7,
+              "start": 6
             }
           ]
         },
@@ -30820,27 +30767,6 @@
             }
           ],
           "name": "TastGceTestUnit"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "common",
-              "label": "LABEL_OPTIONAL",
-              "name": "common",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.TestUnitCommon"
-            },
-            {
-              "jsonName": "vmTestCfg",
-              "label": "LABEL_OPTIONAL",
-              "name": "vm_test_cfg",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.VmTestCfg"
-            }
-          ],
-          "name": "VmTestUnit"
         }
       ],
       "name": "testplans/generate_test_plan.proto",
