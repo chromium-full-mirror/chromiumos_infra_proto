@@ -27,8 +27,6 @@ lint:
       - chromite
     PACKAGE_DEFINED:
       - chromite
-    PACKAGE_DIRECTORY_MATCH:
-      - build/build_config.proto
     FIELD_NO_DESCRIPTOR:
       - chromiumos/branch.proto
     FIELD_LOWER_SNAKE_CASE:
