@@ -40,6 +40,8 @@ type SdkServiceClient interface {
 	UnmountPath(ctx context.Context, in *UnmountPathRequest, opts ...grpc.CallOption) (*UnmountPathResponse, error)
 	// Builds the binary packages that comprise the SDK.
 	BuildPrebuilts(ctx context.Context, in *BuildPrebuiltsRequest, opts ...grpc.CallOption) (*BuildPrebuiltsResponse, error)
+	// Creates a tarball from a previously built SDK.
+	BuildSdkTarball(ctx context.Context, in *BuildSdkTarballRequest, opts ...grpc.CallOption) (*BuildSdkTarballResponse, error)
 	// Creates CLs to point the binhost at uploaded prebuilts.
 	CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error)
 	// Uploads prebuilt packages (such as built by BuildPrebuilts).
@@ -135,6 +137,15 @@ func (c *sdkServiceClient) BuildPrebuilts(ctx context.Context, in *BuildPrebuilt
 	return out, nil
 }
 
+func (c *sdkServiceClient) BuildSdkTarball(ctx context.Context, in *BuildSdkTarballRequest, opts ...grpc.CallOption) (*BuildSdkTarballResponse, error) {
+	out := new(BuildSdkTarballResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/BuildSdkTarball", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sdkServiceClient) CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error) {
 	out := new(CreateBinhostCLsResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/CreateBinhostCLs", in, out, opts...)
@@ -175,6 +186,8 @@ type SdkServiceServer interface {
 	UnmountPath(context.Context, *UnmountPathRequest) (*UnmountPathResponse, error)
 	// Builds the binary packages that comprise the SDK.
 	BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error)
+	// Creates a tarball from a previously built SDK.
+	BuildSdkTarball(context.Context, *BuildSdkTarballRequest) (*BuildSdkTarballResponse, error)
 	// Creates CLs to point the binhost at uploaded prebuilts.
 	CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error)
 	// Uploads prebuilt packages (such as built by BuildPrebuilts).
@@ -212,6 +225,9 @@ func (UnimplementedSdkServiceServer) UnmountPath(context.Context, *UnmountPathRe
 }
 func (UnimplementedSdkServiceServer) BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildPrebuilts not implemented")
+}
+func (UnimplementedSdkServiceServer) BuildSdkTarball(context.Context, *BuildSdkTarballRequest) (*BuildSdkTarballResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildSdkTarball not implemented")
 }
 func (UnimplementedSdkServiceServer) CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBinhostCLs not implemented")
@@ -394,6 +410,24 @@ func _SdkService_BuildPrebuilts_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SdkService_BuildSdkTarball_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildSdkTarballRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).BuildSdkTarball(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/BuildSdkTarball",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).BuildSdkTarball(ctx, req.(*BuildSdkTarballRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SdkService_CreateBinhostCLs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateBinhostCLsRequest)
 	if err := dec(in); err != nil {
@@ -472,6 +506,10 @@ var SdkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BuildPrebuilts",
 			Handler:    _SdkService_BuildPrebuilts_Handler,
+		},
+		{
+			MethodName: "BuildSdkTarball",
+			Handler:    _SdkService_BuildSdkTarball_Handler,
 		},
 		{
 			MethodName: "CreateBinhostCLs",

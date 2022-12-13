@@ -135,11 +135,25 @@ message BuildPrebuiltsRequest {
 message BuildPrebuiltsResponse {
 }
 
+// Create a tarball from a previously built SDK.
+message BuildSdkTarballRequest {
+  // The chroot which contains the built SDK.
+  chromiumos.Chroot chroot = 1;
+}
+
+message BuildSdkTarballResponse {
+  // Path where the SDK tarball has been stored.
+  chromiumos.Path sdk_tarball_path = 1;
+}
+
 // Create CLs to point the binhost at a given SDK version.
 message CreateBinhostCLsRequest {
   string prepend_version = 1;
   string version = 2;
   string upload_location = 3;
+  // Template string for locating the SDK tarball, as used in
+  // src/third_party/chromiumos-overlay/chromeos/binhost/host/sdk_version.conf
+  string sdk_tarball_template = 4;
 }
 
 message CreateBinhostCLsResponse {
@@ -198,6 +212,9 @@ service SdkService {
   // Builds the binary packages that comprise the SDK.
   rpc BuildPrebuilts(BuildPrebuiltsRequest)
       returns (BuildPrebuiltsResponse);
+
+  // Creates a tarball from a previously built SDK.
+  rpc BuildSdkTarball(BuildSdkTarballRequest) returns (BuildSdkTarballResponse);
 
   // Creates CLs to point the binhost at uploaded prebuilts.
   rpc CreateBinhostCLs(CreateBinhostCLsRequest)

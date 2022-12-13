@@ -6561,6 +6561,32 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "BuildSdkTarballRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "sdkTarballPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_tarball_path",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "BuildSdkTarballResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "prependVersion",
               "label": "LABEL_OPTIONAL",
               "name": "prepend_version",
@@ -6579,6 +6605,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "upload_location",
               "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sdkTarballTemplate",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_tarball_template",
+              "number": 4,
               "type": "TYPE_STRING"
             }
           ],
@@ -6691,6 +6724,11 @@
               "inputType": ".chromite.api.BuildPrebuiltsRequest",
               "name": "BuildPrebuilts",
               "outputType": ".chromite.api.BuildPrebuiltsResponse"
+            },
+            {
+              "inputType": ".chromite.api.BuildSdkTarballRequest",
+              "name": "BuildSdkTarball",
+              "outputType": ".chromite.api.BuildSdkTarballResponse"
             },
             {
               "inputType": ".chromite.api.CreateBinhostCLsRequest",
