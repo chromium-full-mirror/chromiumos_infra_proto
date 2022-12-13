@@ -36,10 +36,11 @@ message GenerateTestPlanRequest {
 // The final test plan.
 message GenerateTestPlanResponse {
   repeated HwTestUnit hw_test_units = 3;
+  repeated VmTestUnit vm_test_units = 6;
   repeated TastVmTestUnit direct_tast_vm_test_units = 7;
   repeated TastGceTestUnit tast_gce_test_units = 8;
 
-  reserved 2, 4, 5, 6;
+  reserved 2, 4, 5;
 }
 
 // The files that should be tested in a test plan.
@@ -82,5 +83,10 @@ message TastVmTestUnit {
 message TastGceTestUnit {
   TestUnitCommon common = 1;
   TastGceTestCfg tast_gce_test_cfg = 2;
+}
+
+message VmTestUnit {
+  TestUnitCommon common = 1;
+  VmTestCfg vm_test_cfg = 2;
 }
 
