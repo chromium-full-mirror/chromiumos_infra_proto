@@ -58,6 +58,11 @@ message AutotestTest {
     EXECUTION_ENVIRONMENT_SERVER = 2;
   }
   ExecutionEnvironment execution_environment = 7;
+  // List of tests.
+  // 'name' captures a single name representing a shard of tests
+  // whereas 'names' removes the encapsulation on the shard of tests by listing out their individual names.
+  // 'name' will be ignored if 'names' is provided.
+  repeated string names = 8;
 }
 
 message AutotestTaskDependency {

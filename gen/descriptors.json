@@ -12030,6 +12030,13 @@
               "number": 7,
               "type": "TYPE_ENUM",
               "typeName": ".chromite.api.AutotestTest.ExecutionEnvironment"
+            },
+            {
+              "jsonName": "names",
+              "label": "LABEL_REPEATED",
+              "name": "names",
+              "number": 8,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "AutotestTest"
