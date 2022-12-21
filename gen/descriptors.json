@@ -15536,6 +15536,82 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "enumType": [
+        {
+          "name": "RetryStep",
+          "value": [
+            {
+              "name": "UNDEFINED",
+              "number": 0
+            },
+            {
+              "name": "CREATE_BUILDSPEC",
+              "number": 10
+            },
+            {
+              "name": "PUBLIC_BUILD_LKGM",
+              "number": 20
+            },
+            {
+              "name": "RUN_CHILDREN",
+              "number": 30
+            },
+            {
+              "name": "RUN_FAILED_CHILDREN",
+              "number": 31
+            },
+            {
+              "name": "LAUNCH_TESTS",
+              "number": 40
+            },
+            {
+              "name": "STAGE_ARTIFACTS",
+              "number": 150
+            },
+            {
+              "name": "PUSH_IMAGES",
+              "number": 160
+            },
+            {
+              "name": "DEBUG_SYMBOLS",
+              "number": 165
+            },
+            {
+              "name": "EBUILD_TESTS",
+              "number": 170
+            },
+            {
+              "name": "COLLECT_SIGNING",
+              "number": 180
+            },
+            {
+              "name": "PAYGEN",
+              "number": 190
+            },
+            {
+              "name": "UPLOAD_PAYLOAD",
+              "number": 1000
+            },
+            {
+              "name": "TEST_PAYLOAD",
+              "number": 1010
+            }
+          ]
+        }
+      ],
+      "name": "chromiumos/checkpoint.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
