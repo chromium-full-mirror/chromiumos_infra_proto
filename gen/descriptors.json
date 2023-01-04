@@ -6543,6 +6543,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
             }
           ],
           "name": "BuildPrebuiltsRequest"

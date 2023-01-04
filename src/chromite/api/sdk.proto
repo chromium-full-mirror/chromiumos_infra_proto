@@ -127,6 +127,9 @@ message UnmountPathResponse {
 message BuildPrebuiltsRequest {
   // The chroot to use to execute the endpoint
   chromiumos.Chroot chroot = 1;
+
+  // The host build target to build packages for.
+  chromiumos.BuildTarget build_target = 2;
 }
 
 message BuildPrebuiltsResponse {
