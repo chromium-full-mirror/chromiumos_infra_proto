@@ -46,6 +46,8 @@ type SdkServiceClient interface {
 	CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error)
 	// Uploads prebuilt packages (such as built by BuildPrebuilts).
 	UploadPrebuiltPackages(ctx context.Context, in *UploadPrebuiltPackagesRequest, opts ...grpc.CallOption) (*UploadPrebuiltPackagesResponse, error)
+	// Build toolchain cross-compilers for the SDK.
+	BuildSDKToolchain(ctx context.Context, in *BuildSDKToolchainRequest, opts ...grpc.CallOption) (*BuildSDKToolchainResponse, error)
 }
 
 type sdkServiceClient struct {
@@ -164,6 +166,15 @@ func (c *sdkServiceClient) UploadPrebuiltPackages(ctx context.Context, in *Uploa
 	return out, nil
 }
 
+func (c *sdkServiceClient) BuildSDKToolchain(ctx context.Context, in *BuildSDKToolchainRequest, opts ...grpc.CallOption) (*BuildSDKToolchainResponse, error) {
+	out := new(BuildSDKToolchainResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/BuildSDKToolchain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SdkServiceServer is the server API for SdkService service.
 // All implementations must embed UnimplementedSdkServiceServer
 // for forward compatibility
@@ -192,6 +203,8 @@ type SdkServiceServer interface {
 	CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error)
 	// Uploads prebuilt packages (such as built by BuildPrebuilts).
 	UploadPrebuiltPackages(context.Context, *UploadPrebuiltPackagesRequest) (*UploadPrebuiltPackagesResponse, error)
+	// Build toolchain cross-compilers for the SDK.
+	BuildSDKToolchain(context.Context, *BuildSDKToolchainRequest) (*BuildSDKToolchainResponse, error)
 	mustEmbedUnimplementedSdkServiceServer()
 }
 
@@ -234,6 +247,9 @@ func (UnimplementedSdkServiceServer) CreateBinhostCLs(context.Context, *CreateBi
 }
 func (UnimplementedSdkServiceServer) UploadPrebuiltPackages(context.Context, *UploadPrebuiltPackagesRequest) (*UploadPrebuiltPackagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadPrebuiltPackages not implemented")
+}
+func (UnimplementedSdkServiceServer) BuildSDKToolchain(context.Context, *BuildSDKToolchainRequest) (*BuildSDKToolchainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildSDKToolchain not implemented")
 }
 func (UnimplementedSdkServiceServer) mustEmbedUnimplementedSdkServiceServer() {}
 
@@ -464,6 +480,24 @@ func _SdkService_UploadPrebuiltPackages_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SdkService_BuildSDKToolchain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildSDKToolchainRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).BuildSDKToolchain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/BuildSDKToolchain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).BuildSDKToolchain(ctx, req.(*BuildSDKToolchainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SdkService_ServiceDesc is the grpc.ServiceDesc for SdkService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -518,6 +552,10 @@ var SdkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UploadPrebuiltPackages",
 			Handler:    _SdkService_UploadPrebuiltPackages_Handler,
+		},
+		{
+			MethodName: "BuildSDKToolchain",
+			Handler:    _SdkService_BuildSDKToolchain_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

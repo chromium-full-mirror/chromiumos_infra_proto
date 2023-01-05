@@ -6665,6 +6665,30 @@
         },
         {
           "name": "UploadPrebuiltPackagesResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "useFlags",
+              "label": "LABEL_REPEATED",
+              "name": "use_flags",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.UseFlag"
+            }
+          ],
+          "name": "BuildSDKToolchainRequest"
+        },
+        {
+          "name": "BuildSDKToolchainResponse"
         }
       ],
       "name": "chromite/api/sdk.proto",
@@ -6739,6 +6763,11 @@
               "inputType": ".chromite.api.UploadPrebuiltPackagesRequest",
               "name": "UploadPrebuiltPackages",
               "outputType": ".chromite.api.UploadPrebuiltPackagesResponse"
+            },
+            {
+              "inputType": ".chromite.api.BuildSDKToolchainRequest",
+              "name": "BuildSDKToolchain",
+              "outputType": ".chromite.api.BuildSDKToolchainResponse"
             }
           ],
           "name": "SdkService",

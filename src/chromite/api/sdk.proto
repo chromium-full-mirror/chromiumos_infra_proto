@@ -172,6 +172,18 @@ message UploadPrebuiltPackagesRequest {
 message UploadPrebuiltPackagesResponse {
 }
 
+// Request info for building toolchain packages for the SDK.
+message BuildSDKToolchainRequest {
+  chromiumos.Chroot chroot = 1;
+
+  // USE flags to pass into cros_setup_toolchain.
+  repeated chromiumos.UseFlag use_flags = 2;
+}
+
+// Response from building toolchain packages for the SDK.
+message BuildSDKToolchainResponse {
+}
+
 // SDK operations.
 service SdkService {
   // The service options (see build_api.proto).
@@ -223,4 +235,8 @@ service SdkService {
   // Uploads prebuilt packages (such as built by BuildPrebuilts).
   rpc UploadPrebuiltPackages(UploadPrebuiltPackagesRequest)
       returns (UploadPrebuiltPackagesResponse);
+
+  // Build toolchain cross-compilers for the SDK.
+  rpc BuildSDKToolchain(BuildSDKToolchainRequest)
+    returns (BuildSDKToolchainResponse);
 }
