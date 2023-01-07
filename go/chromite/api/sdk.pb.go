@@ -1321,7 +1321,7 @@ func (*UploadPrebuiltPackagesResponse) Descriptor() ([]byte, []int) {
 }
 
 // Request info for building toolchain packages for the SDK.
-type BuildSDKToolchainRequest struct {
+type BuildSdkToolchainRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1331,8 +1331,8 @@ type BuildSDKToolchainRequest struct {
 	UseFlags []*chromiumos.UseFlag `protobuf:"bytes,2,rep,name=use_flags,json=useFlags,proto3" json:"use_flags,omitempty"`
 }
 
-func (x *BuildSDKToolchainRequest) Reset() {
-	*x = BuildSDKToolchainRequest{}
+func (x *BuildSdkToolchainRequest) Reset() {
+	*x = BuildSdkToolchainRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_chromite_api_sdk_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1340,13 +1340,13 @@ func (x *BuildSDKToolchainRequest) Reset() {
 	}
 }
 
-func (x *BuildSDKToolchainRequest) String() string {
+func (x *BuildSdkToolchainRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BuildSDKToolchainRequest) ProtoMessage() {}
+func (*BuildSdkToolchainRequest) ProtoMessage() {}
 
-func (x *BuildSDKToolchainRequest) ProtoReflect() protoreflect.Message {
+func (x *BuildSdkToolchainRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_chromite_api_sdk_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1358,19 +1358,19 @@ func (x *BuildSDKToolchainRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use BuildSDKToolchainRequest.ProtoReflect.Descriptor instead.
-func (*BuildSDKToolchainRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use BuildSdkToolchainRequest.ProtoReflect.Descriptor instead.
+func (*BuildSdkToolchainRequest) Descriptor() ([]byte, []int) {
 	return file_chromite_api_sdk_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *BuildSDKToolchainRequest) GetChroot() *chromiumos.Chroot {
+func (x *BuildSdkToolchainRequest) GetChroot() *chromiumos.Chroot {
 	if x != nil {
 		return x.Chroot
 	}
 	return nil
 }
 
-func (x *BuildSDKToolchainRequest) GetUseFlags() []*chromiumos.UseFlag {
+func (x *BuildSdkToolchainRequest) GetUseFlags() []*chromiumos.UseFlag {
 	if x != nil {
 		return x.UseFlags
 	}
@@ -1378,14 +1378,14 @@ func (x *BuildSDKToolchainRequest) GetUseFlags() []*chromiumos.UseFlag {
 }
 
 // Response from building toolchain packages for the SDK.
-type BuildSDKToolchainResponse struct {
+type BuildSdkToolchainResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *BuildSDKToolchainResponse) Reset() {
-	*x = BuildSDKToolchainResponse{}
+func (x *BuildSdkToolchainResponse) Reset() {
+	*x = BuildSdkToolchainResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_chromite_api_sdk_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1393,13 +1393,13 @@ func (x *BuildSDKToolchainResponse) Reset() {
 	}
 }
 
-func (x *BuildSDKToolchainResponse) String() string {
+func (x *BuildSdkToolchainResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BuildSDKToolchainResponse) ProtoMessage() {}
+func (*BuildSdkToolchainResponse) ProtoMessage() {}
 
-func (x *BuildSDKToolchainResponse) ProtoReflect() protoreflect.Message {
+func (x *BuildSdkToolchainResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_chromite_api_sdk_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1411,8 +1411,8 @@ func (x *BuildSDKToolchainResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use BuildSDKToolchainResponse.ProtoReflect.Descriptor instead.
-func (*BuildSDKToolchainResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use BuildSdkToolchainResponse.ProtoReflect.Descriptor instead.
+func (*BuildSdkToolchainResponse) Descriptor() ([]byte, []int) {
 	return file_chromite_api_sdk_proto_rawDescGZIP(), []int{27}
 }
 
@@ -1690,7 +1690,7 @@ var file_chromite_api_sdk_proto_rawDesc = []byte{
 	0x61, 0x64, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x20, 0x0a, 0x1e, 0x55, 0x70,
 	0x6c, 0x6f, 0x61, 0x64, 0x50, 0x72, 0x65, 0x62, 0x75, 0x69, 0x6c, 0x74, 0x50, 0x61, 0x63, 0x6b,
 	0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x78, 0x0a, 0x18,
-	0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x44, 0x4b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69,
+	0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x64, 0x6b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69,
 	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2a, 0x0a, 0x06, 0x63, 0x68, 0x72, 0x6f,
 	0x6f, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
 	0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x43, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x52, 0x06, 0x63, 0x68,
@@ -1698,7 +1698,7 @@ var file_chromite_api_sdk_proto_rawDesc = []byte{
 	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
 	0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x55, 0x73, 0x65, 0x46, 0x6c, 0x61, 0x67, 0x52, 0x08, 0x75, 0x73,
 	0x65, 0x46, 0x6c, 0x61, 0x67, 0x73, 0x22, 0x1b, 0x0a, 0x19, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53,
-	0x44, 0x4b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x64, 0x6b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x32, 0x86, 0x09, 0x0a, 0x0a, 0x53, 0x64, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x43, 0x0a, 0x06, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x1b, 0x2e, 0x63,
 	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x43, 0x72, 0x65, 0x61,
@@ -1765,11 +1765,11 @@ var file_chromite_api_sdk_proto_rawDesc = []byte{
 	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61,
 	0x64, 0x50, 0x72, 0x65, 0x62, 0x75, 0x69, 0x6c, 0x74, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
 	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x64, 0x0a, 0x11, 0x42, 0x75, 0x69,
-	0x6c, 0x64, 0x53, 0x44, 0x4b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x12, 0x26,
+	0x6c, 0x64, 0x53, 0x64, 0x6b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x12, 0x26,
 	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x42, 0x75,
-	0x69, 0x6c, 0x64, 0x53, 0x44, 0x4b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52,
+	0x69, 0x6c, 0x64, 0x53, 0x64, 0x6b, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74,
-	0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x44, 0x4b, 0x54, 0x6f,
+	0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x64, 0x6b, 0x54, 0x6f,
 	0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a,
 	0x0b, 0xc2, 0xed, 0x1a, 0x07, 0x0a, 0x03, 0x73, 0x64, 0x6b, 0x10, 0x02, 0x42, 0x38, 0x5a, 0x36,
 	0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f,
@@ -1818,8 +1818,8 @@ var file_chromite_api_sdk_proto_goTypes = []interface{}{
 	(*CreateBinhostCLsResponse)(nil),       // 23: chromite.api.CreateBinhostCLsResponse
 	(*UploadPrebuiltPackagesRequest)(nil),  // 24: chromite.api.UploadPrebuiltPackagesRequest
 	(*UploadPrebuiltPackagesResponse)(nil), // 25: chromite.api.UploadPrebuiltPackagesResponse
-	(*BuildSDKToolchainRequest)(nil),       // 26: chromite.api.BuildSDKToolchainRequest
-	(*BuildSDKToolchainResponse)(nil),      // 27: chromite.api.BuildSDKToolchainResponse
+	(*BuildSdkToolchainRequest)(nil),       // 26: chromite.api.BuildSdkToolchainRequest
+	(*BuildSdkToolchainResponse)(nil),      // 27: chromite.api.BuildSdkToolchainResponse
 	(*CreateRequest_Flags)(nil),            // 28: chromite.api.CreateRequest.Flags
 	(*UpdateRequest_Flags)(nil),            // 29: chromite.api.UpdateRequest.Flags
 	(*chromiumos.Chroot)(nil),              // 30: chromiumos.Chroot
@@ -1848,8 +1848,8 @@ var file_chromite_api_sdk_proto_depIdxs = []int32{
 	30, // 17: chromite.api.BuildSdkTarballRequest.chroot:type_name -> chromiumos.Chroot
 	32, // 18: chromite.api.BuildSdkTarballResponse.sdk_tarball_path:type_name -> chromiumos.Path
 	30, // 19: chromite.api.UploadPrebuiltPackagesRequest.chroot:type_name -> chromiumos.Chroot
-	30, // 20: chromite.api.BuildSDKToolchainRequest.chroot:type_name -> chromiumos.Chroot
-	33, // 21: chromite.api.BuildSDKToolchainRequest.use_flags:type_name -> chromiumos.UseFlag
+	30, // 20: chromite.api.BuildSdkToolchainRequest.chroot:type_name -> chromiumos.Chroot
+	33, // 21: chromite.api.BuildSdkToolchainRequest.use_flags:type_name -> chromiumos.UseFlag
 	1,  // 22: chromite.api.SdkService.Create:input_type -> chromite.api.CreateRequest
 	3,  // 23: chromite.api.SdkService.Delete:input_type -> chromite.api.DeleteRequest
 	9,  // 24: chromite.api.SdkService.Clean:input_type -> chromite.api.CleanRequest
@@ -1862,7 +1862,7 @@ var file_chromite_api_sdk_proto_depIdxs = []int32{
 	20, // 31: chromite.api.SdkService.BuildSdkTarball:input_type -> chromite.api.BuildSdkTarballRequest
 	22, // 32: chromite.api.SdkService.CreateBinhostCLs:input_type -> chromite.api.CreateBinhostCLsRequest
 	24, // 33: chromite.api.SdkService.UploadPrebuiltPackages:input_type -> chromite.api.UploadPrebuiltPackagesRequest
-	26, // 34: chromite.api.SdkService.BuildSDKToolchain:input_type -> chromite.api.BuildSDKToolchainRequest
+	26, // 34: chromite.api.SdkService.BuildSdkToolchain:input_type -> chromite.api.BuildSdkToolchainRequest
 	2,  // 35: chromite.api.SdkService.Create:output_type -> chromite.api.CreateResponse
 	4,  // 36: chromite.api.SdkService.Delete:output_type -> chromite.api.DeleteResponse
 	10, // 37: chromite.api.SdkService.Clean:output_type -> chromite.api.CleanResponse
@@ -1875,7 +1875,7 @@ var file_chromite_api_sdk_proto_depIdxs = []int32{
 	21, // 44: chromite.api.SdkService.BuildSdkTarball:output_type -> chromite.api.BuildSdkTarballResponse
 	23, // 45: chromite.api.SdkService.CreateBinhostCLs:output_type -> chromite.api.CreateBinhostCLsResponse
 	25, // 46: chromite.api.SdkService.UploadPrebuiltPackages:output_type -> chromite.api.UploadPrebuiltPackagesResponse
-	27, // 47: chromite.api.SdkService.BuildSDKToolchain:output_type -> chromite.api.BuildSDKToolchainResponse
+	27, // 47: chromite.api.SdkService.BuildSdkToolchain:output_type -> chromite.api.BuildSdkToolchainResponse
 	35, // [35:48] is the sub-list for method output_type
 	22, // [22:35] is the sub-list for method input_type
 	22, // [22:22] is the sub-list for extension type_name
@@ -2203,7 +2203,7 @@ func file_chromite_api_sdk_proto_init() {
 			}
 		}
 		file_chromite_api_sdk_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildSDKToolchainRequest); i {
+			switch v := v.(*BuildSdkToolchainRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2215,7 +2215,7 @@ func file_chromite_api_sdk_proto_init() {
 			}
 		}
 		file_chromite_api_sdk_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BuildSDKToolchainResponse); i {
+			switch v := v.(*BuildSdkToolchainResponse); i {
 			case 0:
 				return &v.state
 			case 1:

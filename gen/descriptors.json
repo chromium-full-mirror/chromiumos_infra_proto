@@ -6685,10 +6685,10 @@
               "typeName": ".chromiumos.UseFlag"
             }
           ],
-          "name": "BuildSDKToolchainRequest"
+          "name": "BuildSdkToolchainRequest"
         },
         {
-          "name": "BuildSDKToolchainResponse"
+          "name": "BuildSdkToolchainResponse"
         }
       ],
       "name": "chromite/api/sdk.proto",
@@ -6765,9 +6765,9 @@
               "outputType": ".chromite.api.UploadPrebuiltPackagesResponse"
             },
             {
-              "inputType": ".chromite.api.BuildSDKToolchainRequest",
-              "name": "BuildSDKToolchain",
-              "outputType": ".chromite.api.BuildSDKToolchainResponse"
+              "inputType": ".chromite.api.BuildSdkToolchainRequest",
+              "name": "BuildSdkToolchain",
+              "outputType": ".chromite.api.BuildSdkToolchainResponse"
             }
           ],
           "name": "SdkService",
