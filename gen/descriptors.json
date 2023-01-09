@@ -15610,6 +15610,144 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromiumos/checkpoint.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_REPEATED",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "builderNameRe",
+              "label": "LABEL_REPEATED",
+              "name": "builder_name_re",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "summaryMarkdownRe",
+              "label": "LABEL_REPEATED",
+              "name": "summary_markdown_re",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "failedCheckpoint",
+              "label": "LABEL_OPTIONAL",
+              "name": "failed_checkpoint",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.RetryStep"
+            },
+            {
+              "jsonName": "cutoffPercent",
+              "label": "LABEL_OPTIONAL",
+              "name": "cutoff_percent",
+              "number": 5,
+              "type": "TYPE_FLOAT"
+            },
+            {
+              "jsonName": "cutoffSeconds",
+              "label": "LABEL_OPTIONAL",
+              "name": "cutoff_seconds",
+              "number": 6,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "maxRetries",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_retries",
+              "number": 7,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "maxRetriesPerBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_retries_per_build",
+              "number": 8,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "RetryRule"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "rules",
+              "label": "LABEL_REPEATED",
+              "name": "rules",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.RetryRule"
+            }
+          ],
+          "name": "CollectConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "pollingIntervalSeconds",
+              "label": "LABEL_OPTIONAL",
+              "name": "polling_interval_seconds",
+              "number": 1,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "collectConfigs",
+              "label": "LABEL_REPEATED",
+              "name": "collect_configs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ConductorConfig.CollectConfigsEntry"
+            }
+          ],
+          "name": "ConductorConfig",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.CollectConfig"
+                }
+              ],
+              "name": "CollectConfigsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        }
+      ],
+      "name": "chromiumos/conductor.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromiumos/bot_scaling.proto"
       ],
       "enumType": [

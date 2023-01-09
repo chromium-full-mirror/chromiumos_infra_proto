@@ -1,0 +1,49 @@
+// Copyright 2023 The ChromiumOS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package chromiumos;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
+
+import "chromiumos/checkpoint.proto";
+
+// Define protos for the Build Conductor. See go/cros-infra:build-conductor-dd
+// for details.
+message RetryRule {
+    // These fields will be used to match failures.
+    // If a value is not specified, any value is accepted for that field.
+
+    // Will be converted to the Status enum, but passed as an int here to
+    // prevent a dependency on the luci-go repo.
+    // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+    repeated int32 status = 1;
+    repeated string builder_name_re = 2;
+    repeated string summary_markdown_re = 3;
+    chromiumos.RetryStep failed_checkpoint = 4;
+
+    // If more than a certain percent of builds fail, we'll stop retrying.
+    float cutoff_percent = 5;
+    // If we're more than this many seconds into this build collection, don't retry.
+    int32 cutoff_seconds = 6;
+
+    // Maximum number of retries to do.
+    int32 max_retries = 7;
+    // Maximum number of retries to do per build.
+    int32 max_retries_per_build = 8;
+}
+
+message CollectConfig {
+    repeated RetryRule rules = 1;
+}
+
+message ConductorConfig {
+    // Seconds to wait between polling builders.
+    int32 polling_interval_seconds = 1;
+
+    // Maps collect names to CollectConfigs.
+    map<string, CollectConfig> collect_configs = 2;
+}
