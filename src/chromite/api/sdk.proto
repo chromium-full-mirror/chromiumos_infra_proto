@@ -183,6 +183,7 @@ message BuildSdkToolchainRequest {
 
 // Response from building toolchain packages for the SDK.
 message BuildSdkToolchainResponse {
+  repeated chromiumos.Path generated_files = 1;
 }
 
 // SDK operations.

@@ -6688,6 +6688,16 @@
           "name": "BuildSdkToolchainRequest"
         },
         {
+          "field": [
+            {
+              "jsonName": "generatedFiles",
+              "label": "LABEL_REPEATED",
+              "name": "generated_files",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
           "name": "BuildSdkToolchainResponse"
         }
       ],
