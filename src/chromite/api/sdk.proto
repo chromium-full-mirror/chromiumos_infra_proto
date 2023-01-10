@@ -157,6 +157,7 @@ message CreateBinhostCLsRequest {
 }
 
 message CreateBinhostCLsResponse {
+  // Identifiers for the created CLs (e.g. ["chromium:4149846"]).
   repeated string cls = 1;
 }
 

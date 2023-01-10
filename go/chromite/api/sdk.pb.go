@@ -1167,6 +1167,7 @@ type CreateBinhostCLsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Identifiers for the created CLs (e.g. ["chromium:4149846"]).
 	Cls []string `protobuf:"bytes,1,rep,name=cls,proto3" json:"cls,omitempty"`
 }
 
