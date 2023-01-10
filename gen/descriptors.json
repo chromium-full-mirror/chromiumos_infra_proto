@@ -12171,6 +12171,14 @@
               "number": 5,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.LinterSuggestedFix"
+            },
+            {
+              "jsonName": "package",
+              "label": "LABEL_OPTIONAL",
+              "name": "package",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
             }
           ],
           "name": "LinterFinding"

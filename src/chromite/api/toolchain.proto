@@ -139,6 +139,7 @@ message LinterFinding {
   Linters linter = 3;
   string lint_name = 4;
   repeated LinterSuggestedFix suggested_fixes = 5;
+  chromiumos.PackageInfo package = 6;
 }
 
 // The code location of some linter finding.
