@@ -29,6 +29,9 @@ message RetryRule {
     float cutoff_percent = 5;
     // If we're more than this many seconds into this build collection, don't retry.
     int32 cutoff_seconds = 6;
+    // Don't retry builds that have been running for more than build_runtime
+    // seconds.
+    int32 build_runtime_cutoff = 9;
 
     // Maximum number of retries to do.
     int32 max_retries = 7;

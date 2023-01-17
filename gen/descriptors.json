@@ -15669,6 +15669,13 @@
               "type": "TYPE_INT32"
             },
             {
+              "jsonName": "buildRuntimeCutoff",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_runtime_cutoff",
+              "number": 9,
+              "type": "TYPE_INT32"
+            },
+            {
               "jsonName": "maxRetries",
               "label": "LABEL_OPTIONAL",
               "name": "max_retries",
