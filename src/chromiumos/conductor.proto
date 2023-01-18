@@ -42,11 +42,3 @@ message RetryRule {
 message CollectConfig {
     repeated RetryRule rules = 1;
 }
-
-message ConductorConfig {
-    // Seconds to wait between polling builders.
-    int32 polling_interval_seconds = 1;
-
-    // Maps collect names to CollectConfigs.
-    map<string, CollectConfig> collect_configs = 2;
-}
