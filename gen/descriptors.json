@@ -12458,6 +12458,645 @@
         {
           "field": [
             {
+              "jsonName": "eventTimeMs",
+              "label": "LABEL_OPTIONAL",
+              "name": "event_time_ms",
+              "number": 1,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "sourceExtension",
+              "label": "LABEL_OPTIONAL",
+              "name": "source_extension",
+              "number": 1190,
+              "type": "TYPE_BYTES"
+            }
+          ],
+          "name": "LogEvent"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "clientType",
+              "label": "LABEL_OPTIONAL",
+              "name": "client_type",
+              "number": 1,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "ClientInfo"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "clientInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "client_info",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.ClientInfo"
+            },
+            {
+              "jsonName": "logSource",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_source",
+              "number": 2,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "requestTimeMs",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_time_ms",
+              "number": 4,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "logEvent",
+              "label": "LABEL_REPEATED",
+              "name": "log_event",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.LogEvent"
+            }
+          ],
+          "name": "LogRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "nextRequestWaitMillis",
+              "label": "LABEL_OPTIONAL",
+              "name": "next_request_wait_millis",
+              "number": 1,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "LogResponse"
+        }
+      ],
+      "name": "chromite/telemetry/clientanalytics.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/telemetry"
+      },
+      "package": "chromite.telemetry"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "google/protobuf/struct.proto"
+      ],
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "SpanKind",
+              "value": [
+                {
+                  "name": "SPAN_KIND_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "SPAN_KIND_INTERNAL",
+                  "number": 1
+                },
+                {
+                  "name": "SPAN_KIND_SERVER",
+                  "number": 2
+                },
+                {
+                  "name": "SPAN_KIND_CLIENT",
+                  "number": 3
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "context",
+              "label": "LABEL_OPTIONAL",
+              "name": "context",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.Context"
+            },
+            {
+              "jsonName": "parentSpanId",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_span_id",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "spanKind",
+              "label": "LABEL_OPTIONAL",
+              "name": "span_kind",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.telemetry.TraceSpan.SpanKind"
+            },
+            {
+              "jsonName": "startTimeMillis",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time_millis",
+              "number": 5,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "endTimeMillis",
+              "label": "LABEL_OPTIONAL",
+              "name": "end_time_millis",
+              "number": 6,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "attributes",
+              "label": "LABEL_OPTIONAL",
+              "name": "attributes",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Struct"
+            },
+            {
+              "jsonName": "events",
+              "label": "LABEL_REPEATED",
+              "name": "events",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.Event"
+            },
+            {
+              "jsonName": "links",
+              "label": "LABEL_REPEATED",
+              "name": "links",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.Link"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.Status"
+            },
+            {
+              "jsonName": "resource",
+              "label": "LABEL_OPTIONAL",
+              "name": "resource",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.Resource"
+            },
+            {
+              "jsonName": "instrumentationScope",
+              "label": "LABEL_OPTIONAL",
+              "name": "instrumentation_scope",
+              "number": 12,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.InstrumentationScope"
+            },
+            {
+              "jsonName": "telemetrySdk",
+              "label": "LABEL_OPTIONAL",
+              "name": "telemetry_sdk",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.telemetry.TraceSpan.TelemetrySdk"
+            }
+          ],
+          "name": "TraceSpan",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_REQUIRED",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_REQUIRED",
+                  "name": "version",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "language",
+                  "label": "LABEL_REQUIRED",
+                  "name": "language",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "TelemetrySdk"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "osName",
+                  "label": "LABEL_REQUIRED",
+                  "name": "os_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "osVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "os_version",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "osType",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "os_type",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "cpu",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "cpu",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "cpuArchitecture",
+                  "label": "LABEL_REQUIRED",
+                  "name": "cpu_architecture",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "System"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "pid",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pid",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "executableName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "executable_name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "executablePath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "executable_path",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "command",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "command",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "commandArgs",
+                  "label": "LABEL_REPEATED",
+                  "name": "command_args",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "ownerIsRoot",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "owner_is_root",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "runtimeName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "runtime_name",
+                  "number": 7,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "runtimeVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "runtime_version",
+                  "number": 8,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "runtimeDescription",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "runtime_description",
+                  "number": 9,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "apiVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "api_version",
+                  "number": 10,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "env",
+                  "label": "LABEL_REPEATED",
+                  "name": "env",
+                  "number": 11,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.telemetry.TraceSpan.Process.EnvEntry"
+                }
+              ],
+              "name": "Process",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "key",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "key",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "value",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "value",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "EnvEntry",
+                  "options": {
+                    "mapEntry": true
+                  }
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "process",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "process",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.telemetry.TraceSpan.Process"
+                },
+                {
+                  "jsonName": "system",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "system",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.telemetry.TraceSpan.System"
+                },
+                {
+                  "jsonName": "attributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "attributes",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.Struct"
+                }
+              ],
+              "name": "Resource"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "InstrumentationScope"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "eventTimeMillis",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "event_time_millis",
+                  "number": 1,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "attributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "attributes",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.Struct"
+                }
+              ],
+              "name": "Event"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "functionName",
+                  "label": "LABEL_REQUIRED",
+                  "name": "function_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "fileName",
+                  "label": "LABEL_REQUIRED",
+                  "name": "file_name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "lineNumber",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "line_number",
+                  "number": 3,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "columnNumber",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "column_number",
+                  "number": 4,
+                  "type": "TYPE_INT64"
+                }
+              ],
+              "name": "StackFrame"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "stackFrames",
+                  "label": "LABEL_REPEATED",
+                  "name": "stack_frames",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.telemetry.TraceSpan.StackFrame"
+                },
+                {
+                  "jsonName": "droppedFramesCount",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dropped_frames_count",
+                  "number": 2,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "stacktraceHash",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "stacktrace_hash",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "StackTrace"
+            },
+            {
+              "enumType": [
+                {
+                  "name": "StatusCode",
+                  "value": [
+                    {
+                      "name": "STATUS_CODE_UNSET",
+                      "number": 0
+                    },
+                    {
+                      "name": "STATUS_CODE_OK",
+                      "number": 1
+                    },
+                    {
+                      "name": "STATUS_CODE_ERROR",
+                      "number": 2
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "statusCode",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "status_code",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.telemetry.TraceSpan.Status.StatusCode"
+                },
+                {
+                  "jsonName": "message",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "message",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "stackTrace",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "stack_trace",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.telemetry.TraceSpan.StackTrace"
+                }
+              ],
+              "name": "Status"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "traceId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "trace_id",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "spanId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "span_id",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "traceState",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "trace_state",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Context"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "context",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "context",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.telemetry.TraceSpan.Context"
+                },
+                {
+                  "jsonName": "attributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "attributes",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.Struct"
+                }
+              ],
+              "name": "Link"
+            }
+          ]
+        }
+      ],
+      "name": "chromite/telemetry/trace_span.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/telemetry"
+      },
+      "package": "chromite.telemetry"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "botSize",
               "label": "LABEL_OPTIONAL",
               "name": "bot_size",
