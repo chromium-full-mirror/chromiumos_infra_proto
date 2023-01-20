@@ -83,6 +83,8 @@ message WriteLKGBRequest {
   string android_package = 1;
   // The LKGB Android version.
   string android_version = 2;
+  // The LKGB Android branch. Added in R111.
+  string android_branch = 3;
 }
 
 // Added in R99.
