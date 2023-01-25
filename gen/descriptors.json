@@ -16280,6 +16280,13 @@
         {
           "field": [
             {
+              "jsonName": "insufficient",
+              "label": "LABEL_OPTIONAL",
+              "name": "insufficient",
+              "number": 10,
+              "type": "TYPE_BOOL"
+            },
+            {
               "jsonName": "status",
               "label": "LABEL_REPEATED",
               "name": "status",

@@ -14,6 +14,14 @@ import "chromiumos/checkpoint.proto";
 // Define protos for the Build Conductor. See go/cros-infra:build-conductor-dd
 // for details.
 message RetryRule {
+    // If `insufficient` is true, this rule alone is insufficient cause for retry.
+    // However, limits (such as cutoff_percent, max_retries, etc.) will still be
+    // enforced.
+    // A common use case for this field is a "catch-all" rule we want to impose
+    // a global max_retries (by matching all builds) but we don't want to just
+    // retry everything.
+    bool insufficient = 10;
+
     // These fields will be used to match failures.
     // If a value is not specified, any value is accepted for that field.
 
