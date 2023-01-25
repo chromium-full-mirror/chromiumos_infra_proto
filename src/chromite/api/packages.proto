@@ -111,6 +111,8 @@ message GetTargetVersionsResponse {
   string milestone_version = 6;
   // Platform version, e.g. 12438.0.0.
   string platform_version = 7;
+  // LaCrOS version, e.g. 111.0.5550.0.
+  string lacros_version = 8;
 }
 
 // The associated method can be run after InstallPackages.

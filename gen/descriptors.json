@@ -5658,6 +5658,13 @@
               "name": "platform_version",
               "number": 7,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "lacrosVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "lacros_version",
+              "number": 8,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "GetTargetVersionsResponse"
