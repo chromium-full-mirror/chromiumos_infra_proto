@@ -3701,6 +3701,10 @@
             {
               "name": "PREFLIGHT_BINHOST",
               "number": 3
+            },
+            {
+              "name": "PUBLIC_BINHOST",
+              "number": 4
             }
           ]
         },
