@@ -25166,6 +25166,13 @@
                   "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
+                },
+                {
+                  "jsonName": "seed",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "seed",
+                  "number": 5,
+                  "type": "TYPE_INT64"
                 }
               ],
               "name": "TestPlan"

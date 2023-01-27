@@ -305,6 +305,9 @@ message Request {
     repeated Test test = 2;
     Enumeration enumeration = 3;
     chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 4;
+    // Seed to be used as the randomization seed when sharding test cases.
+    // Seed will only be used when tag_criteria is provided.
+    int64 seed = 5;
   }
 
   TestPlan test_plan = 5;
