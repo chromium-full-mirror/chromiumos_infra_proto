@@ -42,6 +42,8 @@ type SdkServiceClient interface {
 	BuildPrebuilts(ctx context.Context, in *BuildPrebuiltsRequest, opts ...grpc.CallOption) (*BuildPrebuiltsResponse, error)
 	// Creates a tarball from a previously built SDK.
 	BuildSdkTarball(ctx context.Context, in *BuildSdkTarballRequest, opts ...grpc.CallOption) (*BuildSdkTarballResponse, error)
+	// Create a manifest file showing the ebuilds in an SDK tarball.
+	CreateManifestFromSdk(ctx context.Context, in *CreateManifestFromSdkRequest, opts ...grpc.CallOption) (*CreateManifestFromSdkResponse, error)
 	// Creates CLs to point the binhost at uploaded prebuilts.
 	CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error)
 	// Uploads prebuilt packages (such as built by BuildPrebuilts).
@@ -148,6 +150,15 @@ func (c *sdkServiceClient) BuildSdkTarball(ctx context.Context, in *BuildSdkTarb
 	return out, nil
 }
 
+func (c *sdkServiceClient) CreateManifestFromSdk(ctx context.Context, in *CreateManifestFromSdkRequest, opts ...grpc.CallOption) (*CreateManifestFromSdkResponse, error) {
+	out := new(CreateManifestFromSdkResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/CreateManifestFromSdk", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sdkServiceClient) CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error) {
 	out := new(CreateBinhostCLsResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/CreateBinhostCLs", in, out, opts...)
@@ -199,6 +210,8 @@ type SdkServiceServer interface {
 	BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error)
 	// Creates a tarball from a previously built SDK.
 	BuildSdkTarball(context.Context, *BuildSdkTarballRequest) (*BuildSdkTarballResponse, error)
+	// Create a manifest file showing the ebuilds in an SDK tarball.
+	CreateManifestFromSdk(context.Context, *CreateManifestFromSdkRequest) (*CreateManifestFromSdkResponse, error)
 	// Creates CLs to point the binhost at uploaded prebuilts.
 	CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error)
 	// Uploads prebuilt packages (such as built by BuildPrebuilts).
@@ -241,6 +254,9 @@ func (UnimplementedSdkServiceServer) BuildPrebuilts(context.Context, *BuildPrebu
 }
 func (UnimplementedSdkServiceServer) BuildSdkTarball(context.Context, *BuildSdkTarballRequest) (*BuildSdkTarballResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildSdkTarball not implemented")
+}
+func (UnimplementedSdkServiceServer) CreateManifestFromSdk(context.Context, *CreateManifestFromSdkRequest) (*CreateManifestFromSdkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateManifestFromSdk not implemented")
 }
 func (UnimplementedSdkServiceServer) CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBinhostCLs not implemented")
@@ -444,6 +460,24 @@ func _SdkService_BuildSdkTarball_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SdkService_CreateManifestFromSdk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateManifestFromSdkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).CreateManifestFromSdk(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/CreateManifestFromSdk",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).CreateManifestFromSdk(ctx, req.(*CreateManifestFromSdkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SdkService_CreateBinhostCLs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateBinhostCLsRequest)
 	if err := dec(in); err != nil {
@@ -544,6 +578,10 @@ var SdkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BuildSdkTarball",
 			Handler:    _SdkService_BuildSdkTarball_Handler,
+		},
+		{
+			MethodName: "CreateManifestFromSdk",
+			Handler:    _SdkService_CreateManifestFromSdk_Handler,
 		},
 		{
 			MethodName: "CreateBinhostCLs",

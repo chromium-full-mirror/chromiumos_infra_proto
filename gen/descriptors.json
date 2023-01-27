@@ -6594,6 +6594,40 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sdkTarballPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_tarball_path",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "CreateManifestFromSdkRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "manifestPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "manifest_path",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "CreateManifestFromSdkResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "prependVersion",
               "label": "LABEL_OPTIONAL",
               "name": "prepend_version",
@@ -6770,6 +6804,11 @@
               "inputType": ".chromite.api.BuildSdkTarballRequest",
               "name": "BuildSdkTarball",
               "outputType": ".chromite.api.BuildSdkTarballResponse"
+            },
+            {
+              "inputType": ".chromite.api.CreateManifestFromSdkRequest",
+              "name": "CreateManifestFromSdk",
+              "outputType": ".chromite.api.CreateManifestFromSdkResponse"
             },
             {
               "inputType": ".chromite.api.CreateBinhostCLsRequest",

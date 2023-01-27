@@ -146,6 +146,16 @@ message BuildSdkTarballResponse {
   chromiumos.Path sdk_tarball_path = 1;
 }
 
+// Create a manifest file showing the ebuilds in an SDK tarball.
+message CreateManifestFromSdkRequest {
+  chromiumos.Chroot chroot = 1;
+  chromiumos.Path sdk_tarball_path = 2;
+}
+
+message CreateManifestFromSdkResponse {
+  chromiumos.Path manifest_path = 1;
+}
+
 // Create CLs to point the binhost at a given SDK version.
 message CreateBinhostCLsRequest {
   string prepend_version = 1;
@@ -229,6 +239,10 @@ service SdkService {
 
   // Creates a tarball from a previously built SDK.
   rpc BuildSdkTarball(BuildSdkTarballRequest) returns (BuildSdkTarballResponse);
+
+  // Create a manifest file showing the ebuilds in an SDK tarball.
+  rpc CreateManifestFromSdk(CreateManifestFromSdkRequest)
+      returns (CreateManifestFromSdkResponse);
 
   // Creates CLs to point the binhost at uploaded prebuilts.
   rpc CreateBinhostCLs(CreateBinhostCLsRequest)
