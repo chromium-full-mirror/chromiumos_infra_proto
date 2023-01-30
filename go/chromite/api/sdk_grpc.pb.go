@@ -42,7 +42,7 @@ type SdkServiceClient interface {
 	BuildPrebuilts(ctx context.Context, in *BuildPrebuiltsRequest, opts ...grpc.CallOption) (*BuildPrebuiltsResponse, error)
 	// Creates a tarball from a previously built SDK.
 	BuildSdkTarball(ctx context.Context, in *BuildSdkTarballRequest, opts ...grpc.CallOption) (*BuildSdkTarballResponse, error)
-	// Create a manifest file showing the ebuilds in an SDK tarball.
+	// Create a manifest file showing the ebuilds in an SDK.
 	CreateManifestFromSdk(ctx context.Context, in *CreateManifestFromSdkRequest, opts ...grpc.CallOption) (*CreateManifestFromSdkResponse, error)
 	// Creates CLs to point the binhost at uploaded prebuilts.
 	CreateBinhostCLs(ctx context.Context, in *CreateBinhostCLsRequest, opts ...grpc.CallOption) (*CreateBinhostCLsResponse, error)
@@ -210,7 +210,7 @@ type SdkServiceServer interface {
 	BuildPrebuilts(context.Context, *BuildPrebuiltsRequest) (*BuildPrebuiltsResponse, error)
 	// Creates a tarball from a previously built SDK.
 	BuildSdkTarball(context.Context, *BuildSdkTarballRequest) (*BuildSdkTarballResponse, error)
-	// Create a manifest file showing the ebuilds in an SDK tarball.
+	// Create a manifest file showing the ebuilds in an SDK.
 	CreateManifestFromSdk(context.Context, *CreateManifestFromSdkRequest) (*CreateManifestFromSdkResponse, error)
 	// Creates CLs to point the binhost at uploaded prebuilts.
 	CreateBinhostCLs(context.Context, *CreateBinhostCLsRequest) (*CreateBinhostCLsResponse, error)

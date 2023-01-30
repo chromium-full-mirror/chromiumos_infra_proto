@@ -6602,9 +6602,9 @@
               "typeName": ".chromiumos.Chroot"
             },
             {
-              "jsonName": "sdkTarballPath",
+              "jsonName": "sdkPath",
               "label": "LABEL_OPTIONAL",
-              "name": "sdk_tarball_path",
+              "name": "sdk_path",
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Path"
