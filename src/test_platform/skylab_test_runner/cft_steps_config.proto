@@ -1,0 +1,44 @@
+// Copyright 2023 The ChromiumOS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package test_platform.skylab_test_runner;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
+
+// CftStepsConfig defines config for execution steps for different
+// execution types.
+message CftStepsConfig {
+  oneof config_type {
+    // Config for hw test execution.
+    HwTestConfig hw_test_config = 1;
+  }
+}
+
+// Config for hw test execution.
+message HwTestConfig {
+  // Skip provision control flag.
+  bool skip_provision = 1;
+
+  // Skip test execution control flag.
+  bool skip_test_execution = 2;
+
+  // Skip all result publish control flag. If this is set to true, all kind of
+  // result publish will be skipped regardless of other specific publish
+  // control flag's values.
+  bool skip_all_result_publish = 3;
+
+  // Skip gcs publish control flag. Will only be considered if
+  // skip_all_result_publish is not true.
+  bool skip_gcs_publish = 4;
+
+  // Skip rdb publish control flag. Will only be considered if
+  // skip_all_result_publish is not true.
+  bool skip_rdb_publish = 5;
+
+  // // Skip tko publish control flag. Will only be considered if
+  // skip_all_result_publish is not true.
+  bool skip_tko_publish = 6;
+}

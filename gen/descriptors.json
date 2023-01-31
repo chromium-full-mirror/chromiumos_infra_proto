@@ -24470,12 +24470,93 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "hwTestConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "hw_test_config",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.HwTestConfig"
+            }
+          ],
+          "name": "CftStepsConfig",
+          "oneofDecl": [
+            {
+              "name": "config_type"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "skipProvision",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_provision",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipTestExecution",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_test_execution",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipAllResultPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_all_result_publish",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipGcsPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_gcs_publish",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipRdbPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_rdb_publish",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipTkoPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_tko_publish",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "HwTestConfig"
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/cft_steps_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "chromite/api/test_metadata.proto",
         "chromiumos/common.proto",
         "chromiumos/test/api/test_suite.proto",
         "google/protobuf/duration.proto",
-        "test_platform/execution/param.proto"
+        "test_platform/execution/param.proto",
+        "test_platform/skylab_test_runner/cft_steps_config.proto"
       ],
       "messageType": [
         {
@@ -24637,6 +24718,21 @@
                   "name": "schedule_via_scheduke",
                   "number": 17,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "runViaTrv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_trv2",
+                  "number": 18,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "trv2StepsConfig",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "trv2_steps_config",
+                  "number": 19,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.CftStepsConfig"
                 }
               ],
               "name": "Params",
@@ -28182,7 +28278,8 @@
         "chromiumos/test/api/provision_state.proto",
         "chromiumos/test/api/test_suite.proto",
         "chromiumos/test/lab/api/dut.proto",
-        "chromiumos/build/api/container_metadata.proto"
+        "chromiumos/build/api/container_metadata.proto",
+        "test_platform/skylab_test_runner/cft_steps_config.proto"
       ],
       "messageType": [
         {
@@ -28263,6 +28360,21 @@
               "name": "retry_number",
               "number": 10,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "stepsConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "steps_config",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CftStepsConfig"
+            },
+            {
+              "jsonName": "runViaTrv2",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_via_trv2",
+              "number": 12,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CFTTestRequest",
@@ -28349,6 +28461,14 @@
               "name": "partner_private",
               "number": 2,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "enableTrv2Config",
+              "label": "LABEL_OPTIONAL",
+              "name": "enable_trv2_config",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Trv2Config"
             }
           ],
           "name": "CommonConfig",
@@ -28410,6 +28530,52 @@
               ]
             }
           ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "BuildType",
+              "value": [
+                {
+                  "name": "CQ",
+                  "number": 0
+                },
+                {
+                  "name": "RELEASE",
+                  "number": 1
+                },
+                {
+                  "name": "POSTSUBMIT",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "allowedSuites",
+              "label": "LABEL_REPEATED",
+              "name": "allowed_suites",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "allowedBoards",
+              "label": "LABEL_REPEATED",
+              "name": "allowed_boards",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "allowedBuildTypes",
+              "label": "LABEL_REPEATED",
+              "name": "allowed_build_types",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.skylab_test_runner.Trv2Config.BuildType"
+            }
+          ],
+          "name": "Trv2Config"
         }
       ],
       "name": "test_platform/skylab_test_runner/common_config.proto",

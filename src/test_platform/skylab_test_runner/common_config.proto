@@ -38,4 +38,33 @@ message CommonConfig {
   // If true, indicates this bucket runs partner-private tests not intended to
   // be shared generally/through Omnilab
   bool partner_private = 2;
+
+  // Config to define when test_runner should execute via trv2.
+  Trv2Config enable_trv2_config = 3;
+}
+
+// b/267268890: Config to control trv2 gradual rollout in prod. Should be
+// deprecated after full rollout.
+message Trv2Config {
+  // List of allowed suites which should run via trv2.
+  // 'Or' relationship between suites.
+  // 'And' relationship with allowed_boards & allowed_build_types.
+  repeated string allowed_suites = 1;
+
+  // List of allowed suites which should run via trv2.
+  // 'Or' relationship between boards.
+  // 'And' relationship with allowed_suites & allowed_build_types.
+  repeated string allowed_boards = 2;
+
+  // List of allowed build types which should run via trv2.
+  // 'Or' relationship between build types.
+  // 'And' relationship with allowed_boards & allowed_suites.
+  repeated BuildType allowed_build_types = 3;
+
+  // Different build types.
+  enum BuildType {
+    CQ = 0;
+    RELEASE = 1;
+    POSTSUBMIT = 2;
+  }
 }
