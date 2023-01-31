@@ -17,4 +17,8 @@ message TaskLogData {
     // stainless_url is the full URL to the stainless logs viewer for archived
     // logs.
     string stainless_url = 2;
+
+    // testhaus_url is the full URL to the Testhaus logs viewer for archived
+    // logs.
+    string testhaus_url = 3;
 }
