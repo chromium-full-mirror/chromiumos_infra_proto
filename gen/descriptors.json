@@ -478,13 +478,6 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "gomaClientJson",
-              "label": "LABEL_OPTIONAL",
-              "name": "goma_client_json",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "chromeosGomaDir",
               "label": "LABEL_OPTIONAL",
               "name": "chromeos_goma_dir",
@@ -522,7 +515,16 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "GomaConfig"
+          "name": "GomaConfig",
+          "reservedName": [
+            "goma_client_json"
+          ],
+          "reservedRange": [
+            {
+              "end": 3,
+              "start": 2
+            }
+          ]
         },
         {
           "field": [

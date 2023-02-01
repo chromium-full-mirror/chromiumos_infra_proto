@@ -63,11 +63,12 @@ message RemoteexecConfig {
 }
 
 message GomaConfig {
+  reserved 2;
+  reserved "goma_client_json";
+
   // The goma install location.
   // Required.
   string goma_dir = 1;
-  // The goma client credentials file.
-  string goma_client_json = 2;
   // Path to the Goma client used for build package.
   // If None, goma_dir will be used instead.
   string chromeos_goma_dir = 3;
