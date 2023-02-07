@@ -373,6 +373,8 @@ message ArtifactProfileInfo {
     // ToolchainService Unverified Release AFDO artifacts require more.
     AfdoRelease afdo_release = 3;
   }
+  // Profile architecture, required in all artifacts.
+  string arch = 4;
 }
 
 // Artifact information. Used by the ArtifactsService.PrepareForBuild and

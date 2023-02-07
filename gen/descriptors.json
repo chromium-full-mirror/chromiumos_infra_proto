@@ -1033,6 +1033,13 @@
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.AfdoRelease"
+            },
+            {
+              "jsonName": "arch",
+              "label": "LABEL_OPTIONAL",
+              "name": "arch",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ArtifactProfileInfo",
