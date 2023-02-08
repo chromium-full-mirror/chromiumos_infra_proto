@@ -14888,6 +14888,13 @@
                   "name": "size",
                   "number": 10,
                   "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "recoveryKeyVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "recovery_key_version",
+                  "number": 11,
+                  "type": "TYPE_UINT32"
                 }
               ],
               "name": "Payload"

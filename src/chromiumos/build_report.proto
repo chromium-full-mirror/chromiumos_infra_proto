@@ -353,6 +353,7 @@ message BuildReport {
         string source_version = 8; // e.g. 14388.8.0
         string target_version = 9; // e.g. 14440.0.0
         int64 size = 10; // Size of payload, in bytes.
+        uint32 recovery_key_version = 11; // for miniOS payloads only.
     }
 
     // Representation of DLCs that may or may not live in Payloads.
