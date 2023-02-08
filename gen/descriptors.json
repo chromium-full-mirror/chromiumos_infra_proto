@@ -9045,6 +9045,13 @@
               "name": "add_signed_off_by",
               "number": 11,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 12,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunCopybotRequest",

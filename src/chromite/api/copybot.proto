@@ -75,6 +75,10 @@ message RunCopybotRequest {
   // to set this to true if you plan to have CopyBot interact with
   // another bot that wants this pseudoheader (e.g., Sean Paul Bot).
   bool add_signed_off_by = 11;
+
+  // If true, CopyBot executes a dry run and will not push any commits
+  // to the downstream repo(s).
+  bool dry_run = 12;
 }
 
 // The result of CopyBot being run.
