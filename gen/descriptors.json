@@ -11139,6 +11139,14 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "versionedArtifacts",
+              "label": "LABEL_REPEATED",
+              "name": "versioned_artifacts",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.GenerationResponse.VersionedArtifact"
+            },
+            {
               "jsonName": "failureReason",
               "label": "LABEL_OPTIONAL",
               "name": "failure_reason",
@@ -11148,6 +11156,34 @@
             }
           ],
           "name": "GenerationResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "localPath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "local_path",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "remoteUri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "remote_uri",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "VersionedArtifact"
+            }
+          ],
           "reservedName": [
             "success"
           ],

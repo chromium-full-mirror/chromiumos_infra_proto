@@ -116,12 +116,26 @@ message GenerationRequest {
 
 // Result of a payload generation.
 message GenerationResponse {
+  // Deprecated since R112. Use versioned_artifact.
   // If successful we may have a local artifact available. Generally this takes
   // the form of '/tmp/ioadwjoawjd/delta.bin'.
   string local_path = 2;
 
+  // Deprecated since R112. Use versioned_artifact.
   // If successful we may have uploaded an artifact to google storage.
   string remote_uri = 3;
+
+  // Remote and local artifacts along with a version ID (if successful).
+  message VersionedArtifact {
+    // Version of the payload (eg. 1).
+    uint32 version = 1;
+    // If successful we may have a local artifact available. Generally this takes
+    // the form of '/tmp/ioadwjoawjd/delta.bin'.
+    string local_path = 2;
+    // If successful we may have uploaded an artifact to google storage.
+    string remote_uri = 3;
+  }
+  repeated VersionedArtifact versioned_artifacts = 5;
 
   // If no payload was generated, we may be able to report the reason why.
   enum FailureReason {
