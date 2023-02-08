@@ -150,6 +150,7 @@ message BuildSdkTarballResponse {
 message CreateManifestFromSdkRequest {
   chromiumos.Chroot chroot = 1;
   chromiumos.Path sdk_path = 2;
+  chromiumos.Path dest_dir = 3;
 }
 
 message CreateManifestFromSdkResponse {

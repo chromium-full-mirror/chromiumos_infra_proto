@@ -6621,6 +6621,14 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "destDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "dest_dir",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             }
           ],
           "name": "CreateManifestFromSdkRequest"
