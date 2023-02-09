@@ -11,7 +11,7 @@ import "chromiumos/common.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "google/protobuf/duration.proto";
 import "test_platform/execution/param.proto";
-import "test_platform/skylab_test_runner/cft_steps_config.proto";
+import "test_platform/common/cft_steps_config.proto";
 
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
@@ -259,7 +259,7 @@ message Request {
     // Steps config for cft test execution. If not provided, all desired steps
     // will be executed by default. Will only be passed on to trv2 if
     // run_via_cft & run_via_trv2 is true.
-    test_platform.skylab_test_runner.CftStepsConfig trv2_steps_config = 19;
+    test_platform.common.CftStepsConfig trv2_steps_config = 19;
   }
 
   Params params = 1;

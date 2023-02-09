@@ -14,7 +14,7 @@ import "chromiumos/test/api/provision_state.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "chromiumos/test/lab/api/dut.proto";
 import "chromiumos/build/api/container_metadata.proto";
-import "test_platform/skylab_test_runner/cft_steps_config.proto";
+import "test_platform/common/cft_steps_config.proto";
 
 
 // CFTTestRequest represents a request for running an individual test suite via
@@ -59,7 +59,7 @@ message CFTTestRequest {
 
  // Steps config for cft test execution. If not provided, all desired steps
  // will be executed by default.
- CftStepsConfig steps_config = 11;
+ test_platform.common.CftStepsConfig steps_config = 11;
 
  // b/267268890: temporary flag to enable trv2 integration testing and
  // gradual rollout. Should be deprecated after full rollout.

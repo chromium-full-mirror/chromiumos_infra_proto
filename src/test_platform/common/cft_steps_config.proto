@@ -4,9 +4,9 @@
 
 syntax = "proto3";
 
-package test_platform.skylab_test_runner;
+package test_platform.common;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/common";
 
 // CftStepsConfig defines config for execution steps for different
 // execution types.
@@ -17,28 +17,41 @@ message CftStepsConfig {
   }
 }
 
-// Config for hw test execution.
+// Config for hw test execution. These config helps changing mainlab hw
+// test execution flow. If not provided, default mainlab hw test execution
+// flow will take place.
+// NEXT_TAG: 9
 message HwTestConfig {
+  // Skip loading dut topology
+  bool skip_loading_dut_topology = 1;
+
+  // Skip starting dut service
+  bool skip_starting_dut_service = 2;
+
   // Skip provision control flag.
-  bool skip_provision = 1;
+  bool skip_provision = 3;
 
   // Skip test execution control flag.
-  bool skip_test_execution = 2;
+  bool skip_test_execution = 4;
 
   // Skip all result publish control flag. If this is set to true, all kind of
   // result publish will be skipped regardless of other specific publish
   // control flag's values.
-  bool skip_all_result_publish = 3;
+  bool skip_all_result_publish = 5;
 
   // Skip gcs publish control flag. Will only be considered if
   // skip_all_result_publish is not true.
-  bool skip_gcs_publish = 4;
+  bool skip_gcs_publish = 6;
 
   // Skip rdb publish control flag. Will only be considered if
   // skip_all_result_publish is not true.
-  bool skip_rdb_publish = 5;
+  bool skip_rdb_publish = 7;
 
-  // // Skip tko publish control flag. Will only be considered if
+  // Skip tko publish control flag. Will only be considered if
   // skip_all_result_publish is not true.
-  bool skip_tko_publish = 6;
+  bool skip_tko_publish = 8;
+
+  // Run cpcon publish control flag. This is not part of mainlab test
+  // execution flow. Hence it's a include flag, rather than exclude flag.
+  bool run_cpcon_publish = 9;
 }
