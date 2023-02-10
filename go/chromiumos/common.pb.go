@@ -1830,7 +1830,9 @@ func (x *SyncedDir) GetDir() string {
 }
 
 // See also crrev.com/c/1929452 and:
-//   https://cs.corp.google.com/piper///depot/google3/third_party/luci/buildbucket/proto/common.proto?l=147-176&rcl=257714215
+//
+//	https://cs.corp.google.com/piper///depot/google3/third_party/luci/buildbucket/proto/common.proto?l=147-176&rcl=257714215
+//
 // A Gerrit patchset.
 type GerritChange struct {
 	state         protoimpl.MessageState
@@ -2869,7 +2871,7 @@ func (x *ReleaseBuilder_Date) GetValue() string {
 
 // The release milestone. Needs to have "branch_name" filled out.
 // TODO(b/177487002): cannot include prototype.Milestone at this time.
-//prototype.Milestone milestone = 1;
+// prototype.Milestone milestone = 1;
 type ReleaseBuilder_Milestone struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

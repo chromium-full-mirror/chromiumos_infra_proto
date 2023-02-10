@@ -28,36 +28,37 @@ const (
 // A single milestone according to chromium dash.
 //
 // Example message:
-// {
-//   final_beta_cut: "2021-01-12T00:00:00",
-//   final_beta: "2021-01-13T00:00:00",
-//   feature_freeze: "2020-10-30T00:00:00",
-//   earliest_beta: "2020-12-03T00:00:00",
-//   stable_refresh_first: "2021-02-02T00:00:00",
-//   latest_beta: "2020-12-10T00:00:00",
-//   owners: {
-//     clank: "Krishna Govind",
-//     bling: "Bindu Suvarna",
-//     cros: "Marina Kazatcker",
-//     desktop: "Srinivas Sista"
-//   },
-//   stable_cut: "2021-01-12T00:00:00",
-//   stable_refresh_second: "2021-02-16T00:00:00",
-//   mstone: 88,
-//   late_stable_date: "2021-01-26T00:00:00",
-//   stable_date: "2021-01-19T00:00:00",
-//   ldaps: {
-//     clank: "govind",
-//     bling: "bindusuvarna",
-//     cros: "marinakz",
-//     desktop: "srinivassista "
-//   },
-//   earliest_beta_ios: "2020-11-17T00:00:00",
-//   branch_point: "2020-11-12T00:00:00",
-//   ltc_date: "2022-06-02T00:00:00",
-//   ltr_date: "2022-09-01T00:00:00",
-//   ltr_last_refresh_date: 2023-03-09T00:00:00
-// }
+//
+//	{
+//	  final_beta_cut: "2021-01-12T00:00:00",
+//	  final_beta: "2021-01-13T00:00:00",
+//	  feature_freeze: "2020-10-30T00:00:00",
+//	  earliest_beta: "2020-12-03T00:00:00",
+//	  stable_refresh_first: "2021-02-02T00:00:00",
+//	  latest_beta: "2020-12-10T00:00:00",
+//	  owners: {
+//	    clank: "Krishna Govind",
+//	    bling: "Bindu Suvarna",
+//	    cros: "Marina Kazatcker",
+//	    desktop: "Srinivas Sista"
+//	  },
+//	  stable_cut: "2021-01-12T00:00:00",
+//	  stable_refresh_second: "2021-02-16T00:00:00",
+//	  mstone: 88,
+//	  late_stable_date: "2021-01-26T00:00:00",
+//	  stable_date: "2021-01-19T00:00:00",
+//	  ldaps: {
+//	    clank: "govind",
+//	    bling: "bindusuvarna",
+//	    cros: "marinakz",
+//	    desktop: "srinivassista "
+//	  },
+//	  earliest_beta_ios: "2020-11-17T00:00:00",
+//	  branch_point: "2020-11-12T00:00:00",
+//	  ltc_date: "2022-06-02T00:00:00",
+//	  ltr_date: "2022-09-01T00:00:00",
+//	  ltr_last_refresh_date: 2023-03-09T00:00:00
+//	}
 type Milestone struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -254,17 +255,18 @@ func (x *Milestone) GetLtrLastRefreshDate() *timestamppb.Timestamp {
 // e.g. https://chromiumdash.appspot.com/fetch_milestone_schedule?mstone=78&n=10
 //
 // Example message:
-// {
-//   mstones: [
-//      {
-//        final_beta_cut:...
-//        ..
-//      },
-//      {
-//        ...
-//      }
-//   ]
-// }
+//
+//	{
+//	  mstones: [
+//	     {
+//	       final_beta_cut:...
+//	       ..
+//	     },
+//	     {
+//	       ...
+//	     }
+//	  ]
+//	}
 type FetchMilestoneScheduleResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

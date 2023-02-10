@@ -27,18 +27,16 @@ const (
 // Client concept represents an end-user infra service that users interact with
 // directly. e.g: CQ, Release testing.
 // ClientId proto and companion protos are used for two purposes:
-//   1) Coordinate configs across different internal sub services to achieve a
-//      certain property that's required by the end-user infra service.
-//   2) Provide useful analytics of how the sub-services operate to fullfill
-//      requests from the end-user infra services.
 //
+//  1. Coordinate configs across different internal sub services to achieve a
+//     certain property that's required by the end-user infra service.
 //
+//  2. Provide useful analytics of how the sub-services operate to fullfill
+//     requests from the end-user infra services.
 //
-//
-//    ---------------    1:N    -----------
-//    |   Client    | <---------| Profile |  // Use for coordinate
-//    ---------------           -----------  // behavioral configs
-//
+//     ---------------    1:N    -----------
+//     |   Client    | <---------| Profile |  // Use for coordinate
+//     ---------------           -----------  // behavioral configs
 type Client struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

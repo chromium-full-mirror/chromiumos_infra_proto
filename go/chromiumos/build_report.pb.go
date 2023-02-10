@@ -1263,9 +1263,10 @@ func (x *BuildReport_BuildConfig) GetModels() []*BuildReport_BuildConfig_Model {
 }
 
 // Artifacts produced by the build.
-//   These could be source from chromiumos/common.proto but this message is
-//   intended to be a long-term archival format so it's easier and safer to
-//   define our own artifact types for reporting.
+//
+//	These could be source from chromiumos/common.proto but this message is
+//	intended to be a long-term archival format so it's easier and safer to
+//	define our own artifact types for reporting.
 type BuildReport_BuildArtifact struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

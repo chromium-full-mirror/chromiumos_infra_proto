@@ -25,7 +25,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-//Defines a config for tests to be retried automatically.
+// Defines a config for tests to be retried automatically.
 type SuiteRetryCfg struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Copyright 2019 The ChromiumOS Authors. All rights reserved.
+# Copyright 2023 The ChromiumOS Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 #
@@ -9,6 +9,14 @@
 CROS_CONFIG_REPO="https://chromium.googlesource.com/chromiumos/config"
 
 readonly golden_file="gen/descriptors.json"
+
+die() {
+  1>&2 printf '%s\n' "$@"
+  exit 1
+}
+mydir="$(dirname -- "${BASH_SOURCE[0]}")"
+test -d "$mydir" || die 'cannot find own directory'
+cd -P -- "$mydir" || die 'cannot chdir to own directory'
 
 regenerate_golden() {
     # We want to split --path from the filenames so silence warning.
@@ -136,6 +144,9 @@ for file in "${proto_files[@]}"; do
            --go_out=go/ --go_opt=paths=source_relative \
            --go-grpc_out=go/ --go-grpc_opt=paths=source_relative "${file}";
 done
+echo "== Formatting everything..."
+test -d "./go" || die 'go dir does not exist'
+gofmt -s -w "./go" || die 'failed to format source directory'
 
 chromite_root="$(readlink -f "$(dirname "$0")/../..")"
 chromite_api_compiler="${chromite_root}/api/compile_build_api_proto"
