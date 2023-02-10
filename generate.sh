@@ -14,9 +14,6 @@ die() {
   1>&2 printf '%s\n' "$@"
   exit 1
 }
-mydir="$(dirname -- "${BASH_SOURCE[0]}")"
-test -d "$mydir" || die 'cannot find own directory'
-cd -P -- "$mydir" || die 'cannot chdir to own directory'
 
 regenerate_golden() {
     # We want to split --path from the filenames so silence warning.
