@@ -10,6 +10,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "google/protobuf/wrappers.proto";
 import "chromiumos/test/api/test_suite.proto";
+import "test_platform/common/cft_steps_config.proto";
 
 import "lab/license.proto";
 
@@ -84,6 +85,15 @@ message HwTestCfg {
 
     // Tags criteria that will be used to enumerate tests for CFT test execution workflow.
     chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 19;
+
+    // If true, then run test via cros_test_runner(trv2) workflow.
+    // This flag can only be true if run_via_cft is true.
+    bool run_via_trv2 = 20;
+
+    // Steps config for cft test execution. If not provided, all desired steps
+    // will be executed by default. Will only be passed on to trv2 if
+    // run_via_cft & run_via_trv2 is true.
+    test_platform.common.CftStepsConfig trv2_steps_config = 21;
 
     reserved 2 to 10;
   }

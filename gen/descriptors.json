@@ -29912,6 +29912,7 @@
       "dependency": [
         "google/protobuf/wrappers.proto",
         "chromiumos/test/api/test_suite.proto",
+        "test_platform/common/cft_steps_config.proto",
         "lab/license.proto"
       ],
       "messageType": [
@@ -30090,6 +30091,21 @@
                   "number": 19,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
+                },
+                {
+                  "jsonName": "runViaTrv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_trv2",
+                  "number": 20,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "trv2StepsConfig",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "trv2_steps_config",
+                  "number": 21,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.common.CftStepsConfig"
                 }
               ],
               "name": "HwTest",
