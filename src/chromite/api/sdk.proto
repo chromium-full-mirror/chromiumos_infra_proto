@@ -89,6 +89,36 @@ message UpdateResponse {
   ChrootVersion version = 1;
 }
 
+// Uprev SDK request.
+// Creates code changes to uprev the SDK version file and prebuilt conf files.
+message UprevRequest {
+  // Required. The chroot path.
+  chromiumos.Chroot chroot = 1;
+
+  // Required. The Google Storage bucket containing SDK tarballs to point to.
+  // Example: "gs://chromiumos-sdk/"
+  string sdk_tarball_gs_bucket = 2;
+
+  // Required. The Google Storage bucket containing binhosts to point to.
+  // Example: "gs://chromeos-prebuilt/"
+  string binhost_gs_bucket = 3;
+
+  // Optional. The SDK/prebuilt version to uprev to, formatted as
+  // "%Y.%m.%d.%H%M%S".
+  // Example: "2023.02.12.144623"
+  // If not provided, the latest available SDK/prebuilts will be used.
+  string version = 4;
+}
+
+// Uprev SDK response.
+message UprevResponse {
+  // Files modified for this uprev.
+  repeated chromiumos.Path modified_files = 1;
+
+  // Version uprevved to.
+  string version = 2;
+}
+
 message CleanRequest {
   chromiumos.Chroot chroot = 1;
 }
@@ -223,6 +253,10 @@ service SdkService {
       method_chroot_assert: INSIDE,
     };
   }
+
+  // Uprev the SDK.
+  // Creates code changes to uprev the SDK version file and prebuilt conf files.
+  rpc Uprev(UprevRequest) returns (UprevResponse);
 
   // Create a chroot snapshot. Added in R83.
   rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse);

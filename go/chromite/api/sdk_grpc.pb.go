@@ -32,6 +32,9 @@ type SdkServiceClient interface {
 	Unmount(ctx context.Context, in *UnmountRequest, opts ...grpc.CallOption) (*UnmountResponse, error)
 	// Update the chroot.
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	// Uprev the SDK.
+	// Creates code changes to uprev the SDK version file and prebuilt conf files.
+	Uprev(ctx context.Context, in *UprevRequest, opts ...grpc.CallOption) (*UprevResponse, error)
 	// Create a chroot snapshot. Added in R83.
 	CreateSnapshot(ctx context.Context, in *CreateSnapshotRequest, opts ...grpc.CallOption) (*CreateSnapshotResponse, error)
 	// Restore a chroot to a snapshot. Added in R83.
@@ -99,6 +102,15 @@ func (c *sdkServiceClient) Unmount(ctx context.Context, in *UnmountRequest, opts
 func (c *sdkServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	out := new(UpdateResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sdkServiceClient) Uprev(ctx context.Context, in *UprevRequest, opts ...grpc.CallOption) (*UprevResponse, error) {
+	out := new(UprevResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkService/Uprev", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -200,6 +212,9 @@ type SdkServiceServer interface {
 	Unmount(context.Context, *UnmountRequest) (*UnmountResponse, error)
 	// Update the chroot.
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	// Uprev the SDK.
+	// Creates code changes to uprev the SDK version file and prebuilt conf files.
+	Uprev(context.Context, *UprevRequest) (*UprevResponse, error)
 	// Create a chroot snapshot. Added in R83.
 	CreateSnapshot(context.Context, *CreateSnapshotRequest) (*CreateSnapshotResponse, error)
 	// Restore a chroot to a snapshot. Added in R83.
@@ -239,6 +254,9 @@ func (UnimplementedSdkServiceServer) Unmount(context.Context, *UnmountRequest) (
 }
 func (UnimplementedSdkServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedSdkServiceServer) Uprev(context.Context, *UprevRequest) (*UprevResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Uprev not implemented")
 }
 func (UnimplementedSdkServiceServer) CreateSnapshot(context.Context, *CreateSnapshotRequest) (*CreateSnapshotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSnapshot not implemented")
@@ -366,6 +384,24 @@ func _SdkService_Update_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SdkServiceServer).Update(ctx, req.(*UpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SdkService_Uprev_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UprevRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkServiceServer).Uprev(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkService/Uprev",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkServiceServer).Uprev(ctx, req.(*UprevRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -558,6 +594,10 @@ var SdkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _SdkService_Update_Handler,
+		},
+		{
+			MethodName: "Uprev",
+			Handler:    _SdkService_Uprev_Handler,
 		},
 		{
 			MethodName: "CreateSnapshot",

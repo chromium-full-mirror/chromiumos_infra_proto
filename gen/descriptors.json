@@ -6469,6 +6469,60 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sdkTarballGsBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_tarball_gs_bucket",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "binhostGsBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "binhost_gs_bucket",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UprevRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "modifiedFiles",
+              "label": "LABEL_REPEATED",
+              "name": "modified_files",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UprevResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
             }
           ],
           "name": "CleanRequest"
@@ -6800,6 +6854,11 @@
                 }
               },
               "outputType": ".chromite.api.UpdateResponse"
+            },
+            {
+              "inputType": ".chromite.api.UprevRequest",
+              "name": "Uprev",
+              "outputType": ".chromite.api.UprevResponse"
             },
             {
               "inputType": ".chromite.api.CreateSnapshotRequest",
