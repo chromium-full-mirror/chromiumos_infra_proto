@@ -79,6 +79,13 @@ message RunCopybotRequest {
   // If true, CopyBot executes a dry run and will not push any commits
   // to the downstream repo(s).
   bool dry_run = 12;
+
+  // Allows specifying push options to be passed along when pushing commits to
+  // the downstream repo.
+  message PushOption {
+    string opt = 1;
+  }
+  repeated PushOption push_options = 13;
 }
 
 // The result of CopyBot being run.

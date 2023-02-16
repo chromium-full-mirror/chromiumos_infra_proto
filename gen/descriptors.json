@@ -9119,6 +9119,14 @@
               "name": "dry_run",
               "number": 12,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "pushOptions",
+              "label": "LABEL_REPEATED",
+              "name": "push_options",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.PushOption"
             }
           ],
           "name": "RunCopybotRequest",
@@ -9189,6 +9197,18 @@
                 }
               ],
               "name": "Pseudoheader"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "opt",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "opt",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "PushOption"
             }
           ]
         },
