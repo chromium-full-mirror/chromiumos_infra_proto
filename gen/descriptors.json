@@ -26993,6 +26993,13 @@
               "name": "bot_prefix",
               "number": 5,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ufsNamespace",
+              "label": "LABEL_OPTIONAL",
+              "name": "ufs_namespace",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Config"

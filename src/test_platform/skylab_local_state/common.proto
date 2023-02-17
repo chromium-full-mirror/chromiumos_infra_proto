@@ -24,5 +24,9 @@ message Config {
 
   // Swarming bot prefix to be used on the drone
   string bot_prefix = 5;
+
+  // Unified Fleet System service host, e.g. `os`, `os-partner`
+  // If left empty, should be handled as if it were `os`
+  string ufs_namespace = 6;
 }
 
