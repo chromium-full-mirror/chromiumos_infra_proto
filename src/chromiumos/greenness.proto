@@ -23,6 +23,9 @@ message AggregateGreenness {
         IRRELEVANT = 1;
     }
     Context context = 3;
+
+    // Indication of build-only greenness for the target in this run.
+    int64 build_metric = 4;
   }
 
   // Aggregate indication of greenness for all targets in this run.
@@ -30,4 +33,7 @@ message AggregateGreenness {
 
   // List of greenness to target granularity.
   repeated Greenness target_greenness = 2;
+
+  // Aggregate indication of build-only greenness for all targets in this run.
+  int64 aggregate_build_metric = 3;
 }

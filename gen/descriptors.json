@@ -16006,6 +16006,13 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.AggregateGreenness.Greenness"
+            },
+            {
+              "jsonName": "aggregateBuildMetric",
+              "label": "LABEL_OPTIONAL",
+              "name": "aggregate_build_metric",
+              "number": 3,
+              "type": "TYPE_INT64"
             }
           ],
           "name": "AggregateGreenness",
@@ -16048,6 +16055,13 @@
                   "number": 3,
                   "type": "TYPE_ENUM",
                   "typeName": ".chromiumos.AggregateGreenness.Greenness.Context"
+                },
+                {
+                  "jsonName": "buildMetric",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "build_metric",
+                  "number": 4,
+                  "type": "TYPE_INT64"
                 }
               ],
               "name": "Greenness"
