@@ -181,6 +181,11 @@ message SchedulerConfig {
       string firmware_rw_version = 13;
     }
 
+    // The name of the firmware branch to use for firmware_ro_build_spec
+    // and firmware_rw_build_spec is normally the derived from the board.
+    // Set firmware_board_name to override this.
+    string firmware_board_name = 14;
+
     enum TriggerType {
       TRIGGER_UNSPECIFIED = 0;
       // Trigger test whenever there is a new build for the primary board.

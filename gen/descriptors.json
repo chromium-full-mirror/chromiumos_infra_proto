@@ -31312,6 +31312,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "firmwareBoardName",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_board_name",
+              "number": 14,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "runOptions",
               "label": "LABEL_OPTIONAL",
               "name": "run_options",
