@@ -3712,6 +3712,10 @@
             {
               "name": "PUBLIC_BINHOST",
               "number": 4
+            },
+            {
+              "name": "CQ_BINHOST",
+              "number": 5
             }
           ]
         },
