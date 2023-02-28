@@ -26,4 +26,7 @@ message RunTestsResponse {
   // A markdown string that should be used in Buildbucket as a summary of the
   // test_runner build.
   string error_summary_markdown = 1;
+
+  // compressed result that will be read by CTP.
+  string compressed_result = 2[json_name="compressed_result"];
 }

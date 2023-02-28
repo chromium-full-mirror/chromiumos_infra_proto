@@ -28206,6 +28206,13 @@
               "name": "error_summary_markdown",
               "number": 1,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "compressed_result",
+              "label": "LABEL_OPTIONAL",
+              "name": "compressed_result",
+              "number": 2,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunTestsResponse"
