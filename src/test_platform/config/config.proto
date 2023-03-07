@@ -82,6 +82,10 @@ message Config {
 
         // go/buildbucket-pubsub: Buildbucket status updates for child builds.
         PubSub bb_status_update_channel = 4;
+
+        // Which swarming pool the test_runner build will run in. Should match
+        // the buildbucket configuration
+        string swarming_pool = 5;
     }
 
     Swarming skylab_swarming = 1;

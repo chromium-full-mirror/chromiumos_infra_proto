@@ -23567,6 +23567,13 @@
                   "number": 4,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.config.Config.PubSub"
+                },
+                {
+                  "jsonName": "swarmingPool",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "swarming_pool",
+                  "number": 5,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "TestRunner"
