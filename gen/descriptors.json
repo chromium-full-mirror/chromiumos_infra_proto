@@ -374,6 +374,13 @@
               "name": "chrome_dir",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "outPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "out_path",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Chroot",

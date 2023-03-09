@@ -48,6 +48,8 @@ message Chroot {
   ChrootEnv env = 3;
   // The directory where the chrome source should be mounted.
   string chrome_dir = 4;
+  // The directory where build state and output artifacts should be placed.
+  string out_path = 6;
 }
 
 // FEATURES environment variable component message.
