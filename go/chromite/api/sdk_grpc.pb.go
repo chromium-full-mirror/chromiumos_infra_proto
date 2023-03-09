@@ -29,6 +29,7 @@ type SdkServiceClient interface {
 	// Clean up unneeded files from the chroot. Added in R81.
 	Clean(ctx context.Context, in *CleanRequest, opts ...grpc.CallOption) (*CleanResponse, error)
 	// Unmount a chroot. Added in R81.
+	// Deprecated.
 	Unmount(ctx context.Context, in *UnmountRequest, opts ...grpc.CallOption) (*UnmountResponse, error)
 	// Update the chroot.
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
@@ -209,6 +210,7 @@ type SdkServiceServer interface {
 	// Clean up unneeded files from the chroot. Added in R81.
 	Clean(context.Context, *CleanRequest) (*CleanResponse, error)
 	// Unmount a chroot. Added in R81.
+	// Deprecated.
 	Unmount(context.Context, *UnmountRequest) (*UnmountResponse, error)
 	// Update the chroot.
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)

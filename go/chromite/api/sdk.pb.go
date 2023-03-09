@@ -285,6 +285,7 @@ func (*DeleteResponse) Descriptor() ([]byte, []int) {
 	return file_chromite_api_sdk_proto_rawDescGZIP(), []int{4}
 }
 
+// Deprecated.
 type UnmountRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -333,6 +334,7 @@ func (x *UnmountRequest) GetChroot() *chromiumos.Chroot {
 	return nil
 }
 
+// Deprecated.
 type UnmountResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

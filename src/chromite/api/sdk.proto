@@ -55,11 +55,13 @@ message DeleteRequest {
 message DeleteResponse {
 }
 
+// Deprecated.
 message UnmountRequest {
   // The chroot to unmount.
   chromiumos.Chroot chroot = 1;
 }
 
+// Deprecated.
 message UnmountResponse {
 }
 
@@ -245,6 +247,7 @@ service SdkService {
   rpc Clean(CleanRequest) returns (CleanResponse);
 
   // Unmount a chroot. Added in R81.
+  // Deprecated.
   rpc Unmount(UnmountRequest) returns (UnmountResponse);
 
   // Update the chroot.
