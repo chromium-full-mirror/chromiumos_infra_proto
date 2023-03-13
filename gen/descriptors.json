@@ -24451,566 +24451,6 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "google/protobuf/timestamp.proto",
-        "test_platform/request.proto",
-        "chromiumos/test/api/provision_state.proto",
-        "chromiumos/test/api/test_suite.proto",
-        "chromiumos/test/lab/api/dut.proto",
-        "chromiumos/build/api/container_metadata.proto",
-        "test_platform/common/cft_steps_config.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "primaryDut",
-              "label": "LABEL_OPTIONAL",
-              "name": "primary_dut",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.Device"
-            },
-            {
-              "jsonName": "companionDuts",
-              "label": "LABEL_REPEATED",
-              "name": "companion_duts",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.Device"
-            },
-            {
-              "jsonName": "testSuites",
-              "label": "LABEL_REPEATED",
-              "name": "test_suites",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.TestSuite"
-            },
-            {
-              "jsonName": "deadline",
-              "label": "LABEL_OPTIONAL",
-              "name": "deadline",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".google.protobuf.Timestamp"
-            },
-            {
-              "jsonName": "parentRequestUid",
-              "label": "LABEL_OPTIONAL",
-              "name": "parent_request_uid",
-              "number": 5,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "parentBuildId",
-              "label": "LABEL_OPTIONAL",
-              "name": "parent_build_id",
-              "number": 6,
-              "type": "TYPE_INT64"
-            },
-            {
-              "jsonName": "autotestKeyvals",
-              "label": "LABEL_REPEATED",
-              "name": "autotest_keyvals",
-              "number": 7,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.AutotestKeyvalsEntry"
-            },
-            {
-              "jsonName": "defaultTestExecutionBehavior",
-              "label": "LABEL_OPTIONAL",
-              "name": "default_test_execution_behavior",
-              "number": 8,
-              "type": "TYPE_ENUM",
-              "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
-            },
-            {
-              "jsonName": "containerMetadata",
-              "label": "LABEL_OPTIONAL",
-              "name": "container_metadata",
-              "number": 9,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.build.api.ContainerMetadata"
-            },
-            {
-              "jsonName": "retryNumber",
-              "label": "LABEL_OPTIONAL",
-              "name": "retry_number",
-              "number": 10,
-              "type": "TYPE_INT32"
-            },
-            {
-              "jsonName": "stepsConfig",
-              "label": "LABEL_OPTIONAL",
-              "name": "steps_config",
-              "number": 11,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.common.CftStepsConfig"
-            },
-            {
-              "jsonName": "runViaTrv2",
-              "label": "LABEL_OPTIONAL",
-              "name": "run_via_trv2",
-              "number": 12,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "CFTTestRequest",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "AutotestKeyvalsEntry",
-              "options": {
-                "mapEntry": true
-              }
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "dutModel",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "dut_model",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.test.lab.api.DutModel"
-                },
-                {
-                  "jsonName": "provisionState",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "provision_state",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.test.api.ProvisionState"
-                },
-                {
-                  "jsonName": "containerMetadataKey",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "container_metadata_key",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Device"
-            }
-          ]
-        }
-      ],
-      "name": "test_platform/skylab_test_runner/cft_request.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
-      },
-      "package": "test_platform.skylab_test_runner",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "test_platform/common/task.proto",
-        "google/protobuf/timestamp.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "autotestResult",
-              "label": "LABEL_OPTIONAL",
-              "name": "autotest_result",
-              "number": 1,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.Result.Autotest"
-            },
-            {
-              "jsonName": "prejob",
-              "label": "LABEL_OPTIONAL",
-              "name": "prejob",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.Result.Prejob"
-            },
-            {
-              "jsonName": "logData",
-              "label": "LABEL_OPTIONAL",
-              "name": "log_data",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.common.TaskLogData"
-            },
-            {
-              "jsonName": "stateUpdate",
-              "label": "LABEL_OPTIONAL",
-              "name": "state_update",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.Result.StateUpdate"
-            },
-            {
-              "jsonName": "autotestResults",
-              "label": "LABEL_REPEATED",
-              "name": "autotest_results",
-              "number": 6,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.Result.AutotestResultsEntry"
-            }
-          ],
-          "name": "Result",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "testCases",
-                  "label": "LABEL_REPEATED",
-                  "name": "test_cases",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.skylab_test_runner.Result.Autotest.TestCase"
-                },
-                {
-                  "jsonName": "incomplete",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "incomplete",
-                  "number": 2,
-                  "type": "TYPE_BOOL"
-                }
-              ],
-              "name": "Autotest",
-              "nestedType": [
-                {
-                  "enumType": [
-                    {
-                      "name": "Verdict",
-                      "value": [
-                        {
-                          "name": "VERDICT_UNDEFINED",
-                          "number": 0
-                        },
-                        {
-                          "name": "VERDICT_PASS",
-                          "number": 1
-                        },
-                        {
-                          "name": "VERDICT_FAIL",
-                          "number": 2
-                        },
-                        {
-                          "name": "VERDICT_NO_VERDICT",
-                          "number": 3
-                        },
-                        {
-                          "name": "VERDICT_ERROR",
-                          "number": 4
-                        },
-                        {
-                          "name": "VERDICT_ABORT",
-                          "number": 5
-                        }
-                      ]
-                    }
-                  ],
-                  "field": [
-                    {
-                      "jsonName": "name",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "name",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "verdict",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "verdict",
-                      "number": 2,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".test_platform.skylab_test_runner.Result.Autotest.TestCase.Verdict"
-                    },
-                    {
-                      "jsonName": "humanReadableSummary",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "human_readable_summary",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "startTime",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "start_time",
-                      "number": 4,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".google.protobuf.Timestamp"
-                    },
-                    {
-                      "jsonName": "endTime",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "end_time",
-                      "number": 5,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".google.protobuf.Timestamp"
-                    }
-                  ],
-                  "name": "TestCase"
-                }
-              ],
-              "reservedName": [
-                "synchronous_log_data_url"
-              ],
-              "reservedRange": [
-                {
-                  "end": 4,
-                  "start": 3
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "step",
-                  "label": "LABEL_REPEATED",
-                  "name": "step",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.skylab_test_runner.Result.Prejob.Step"
-                }
-              ],
-              "name": "Prejob",
-              "nestedType": [
-                {
-                  "enumType": [
-                    {
-                      "name": "Verdict",
-                      "value": [
-                        {
-                          "name": "VERDICT_UNDEFINED",
-                          "number": 0
-                        },
-                        {
-                          "name": "VERDICT_PASS",
-                          "number": 1
-                        },
-                        {
-                          "name": "VERDICT_FAIL",
-                          "number": 2
-                        }
-                      ]
-                    }
-                  ],
-                  "field": [
-                    {
-                      "jsonName": "name",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "name",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "verdict",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "verdict",
-                      "number": 2,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".test_platform.skylab_test_runner.Result.Prejob.Step.Verdict"
-                    },
-                    {
-                      "jsonName": "humanReadableSummary",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "human_readable_summary",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "Step"
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "dutState",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "dut_state",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "StateUpdate"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.skylab_test_runner.Result.Autotest"
-                }
-              ],
-              "name": "AutotestResultsEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ],
-          "oneofDecl": [
-            {
-              "name": "harness"
-            }
-          ],
-          "reservedName": [
-            "async_results"
-          ],
-          "reservedRange": [
-            {
-              "end": 6,
-              "start": 5
-            }
-          ]
-        }
-      ],
-      "name": "test_platform/skylab_test_runner/result.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
-      },
-      "package": "test_platform.skylab_test_runner",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "test_platform/request.proto",
-        "chromiumos/test/lab/api/dut.proto",
-        "test_platform/skylab_test_runner/cft_request.proto",
-        "test_platform/skylab_test_runner/result.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "hostName",
-              "label": "LABEL_OPTIONAL",
-              "name": "host_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "logDataGsRoot",
-              "label": "LABEL_OPTIONAL",
-              "name": "log_data_gs_root",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "dockerKeyFileLocation",
-              "label": "LABEL_OPTIONAL",
-              "name": "docker_key_file_location",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "dutTopology",
-              "label": "LABEL_OPTIONAL",
-              "name": "dut_topology",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.lab.api.DutTopology"
-            }
-          ],
-          "name": "CrosTestRunnerServerStartRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "testPlan",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_plan",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.Request.TestPlan"
-            },
-            {
-              "jsonName": "cftTestRequest",
-              "label": "LABEL_OPTIONAL",
-              "name": "cft_test_request",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest"
-            },
-            {
-              "jsonName": "ctrCipdVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ctr_cipd_version",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "ExecuteRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "result",
-              "label": "LABEL_OPTIONAL",
-              "name": "result",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.skylab_test_runner.Result"
-            }
-          ],
-          "name": "ExecuteResponse"
-        }
-      ],
-      "name": "test_platform/cros_test_runner_service.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
-      },
-      "package": "test_platform",
-      "service": [
-        {
-          "method": [
-            {
-              "inputType": ".test_platform.ExecuteRequest",
-              "name": "Execute",
-              "outputType": ".test_platform.ExecuteResponse"
-            }
-          ],
-          "name": "CrosTestRunnerService"
-        }
-      ],
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
         "chromiumos/common.proto",
         "test_platform/request.proto"
       ],
@@ -27952,6 +27392,178 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "google/protobuf/timestamp.proto",
+        "test_platform/request.proto",
+        "chromiumos/test/api/provision_state.proto",
+        "chromiumos/test/api/test_suite.proto",
+        "chromiumos/test/lab/api/dut.proto",
+        "chromiumos/build/api/container_metadata.proto",
+        "test_platform/common/cft_steps_config.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "primaryDut",
+              "label": "LABEL_OPTIONAL",
+              "name": "primary_dut",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.Device"
+            },
+            {
+              "jsonName": "companionDuts",
+              "label": "LABEL_REPEATED",
+              "name": "companion_duts",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.Device"
+            },
+            {
+              "jsonName": "testSuites",
+              "label": "LABEL_REPEATED",
+              "name": "test_suites",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.TestSuite"
+            },
+            {
+              "jsonName": "deadline",
+              "label": "LABEL_OPTIONAL",
+              "name": "deadline",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "parentRequestUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_request_uid",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "parentBuildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_build_id",
+              "number": 6,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "autotestKeyvals",
+              "label": "LABEL_REPEATED",
+              "name": "autotest_keyvals",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest.AutotestKeyvalsEntry"
+            },
+            {
+              "jsonName": "defaultTestExecutionBehavior",
+              "label": "LABEL_OPTIONAL",
+              "name": "default_test_execution_behavior",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
+            },
+            {
+              "jsonName": "containerMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_metadata",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerMetadata"
+            },
+            {
+              "jsonName": "retryNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "retry_number",
+              "number": 10,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "stepsConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "steps_config",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.common.CftStepsConfig"
+            },
+            {
+              "jsonName": "runViaTrv2",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_via_trv2",
+              "number": 12,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "CFTTestRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "AutotestKeyvalsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "dutModel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dut_model",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.lab.api.DutModel"
+                },
+                {
+                  "jsonName": "provisionState",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "provision_state",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.ProvisionState"
+                },
+                {
+                  "jsonName": "containerMetadataKey",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "container_metadata_key",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Device"
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/cft_request.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -28272,6 +27884,394 @@
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
       },
       "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "test_platform/common/task.proto",
+        "google/protobuf/timestamp.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "autotestResult",
+              "label": "LABEL_OPTIONAL",
+              "name": "autotest_result",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result.Autotest"
+            },
+            {
+              "jsonName": "prejob",
+              "label": "LABEL_OPTIONAL",
+              "name": "prejob",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result.Prejob"
+            },
+            {
+              "jsonName": "logData",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_data",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.common.TaskLogData"
+            },
+            {
+              "jsonName": "stateUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "state_update",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result.StateUpdate"
+            },
+            {
+              "jsonName": "autotestResults",
+              "label": "LABEL_REPEATED",
+              "name": "autotest_results",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result.AutotestResultsEntry"
+            }
+          ],
+          "name": "Result",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "testCases",
+                  "label": "LABEL_REPEATED",
+                  "name": "test_cases",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.Result.Autotest.TestCase"
+                },
+                {
+                  "jsonName": "incomplete",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "incomplete",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "Autotest",
+              "nestedType": [
+                {
+                  "enumType": [
+                    {
+                      "name": "Verdict",
+                      "value": [
+                        {
+                          "name": "VERDICT_UNDEFINED",
+                          "number": 0
+                        },
+                        {
+                          "name": "VERDICT_PASS",
+                          "number": 1
+                        },
+                        {
+                          "name": "VERDICT_FAIL",
+                          "number": 2
+                        },
+                        {
+                          "name": "VERDICT_NO_VERDICT",
+                          "number": 3
+                        },
+                        {
+                          "name": "VERDICT_ERROR",
+                          "number": 4
+                        },
+                        {
+                          "name": "VERDICT_ABORT",
+                          "number": 5
+                        }
+                      ]
+                    }
+                  ],
+                  "field": [
+                    {
+                      "jsonName": "name",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "name",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "verdict",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "verdict",
+                      "number": 2,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".test_platform.skylab_test_runner.Result.Autotest.TestCase.Verdict"
+                    },
+                    {
+                      "jsonName": "humanReadableSummary",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "human_readable_summary",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "startTime",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "start_time",
+                      "number": 4,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".google.protobuf.Timestamp"
+                    },
+                    {
+                      "jsonName": "endTime",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "end_time",
+                      "number": 5,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".google.protobuf.Timestamp"
+                    }
+                  ],
+                  "name": "TestCase"
+                }
+              ],
+              "reservedName": [
+                "synchronous_log_data_url"
+              ],
+              "reservedRange": [
+                {
+                  "end": 4,
+                  "start": 3
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "step",
+                  "label": "LABEL_REPEATED",
+                  "name": "step",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.Result.Prejob.Step"
+                }
+              ],
+              "name": "Prejob",
+              "nestedType": [
+                {
+                  "enumType": [
+                    {
+                      "name": "Verdict",
+                      "value": [
+                        {
+                          "name": "VERDICT_UNDEFINED",
+                          "number": 0
+                        },
+                        {
+                          "name": "VERDICT_PASS",
+                          "number": 1
+                        },
+                        {
+                          "name": "VERDICT_FAIL",
+                          "number": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "field": [
+                    {
+                      "jsonName": "name",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "name",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "verdict",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "verdict",
+                      "number": 2,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".test_platform.skylab_test_runner.Result.Prejob.Step.Verdict"
+                    },
+                    {
+                      "jsonName": "humanReadableSummary",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "human_readable_summary",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "Step"
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "dutState",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dut_state",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "StateUpdate"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.Result.Autotest"
+                }
+              ],
+              "name": "AutotestResultsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "harness"
+            }
+          ],
+          "reservedName": [
+            "async_results"
+          ],
+          "reservedRange": [
+            {
+              "end": 6,
+              "start": 5
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/result.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "test_platform/request.proto",
+        "chromiumos/test/lab/api/dut.proto",
+        "test_platform/skylab_test_runner/cft_request.proto",
+        "test_platform/skylab_test_runner/result.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "hostName",
+              "label": "LABEL_OPTIONAL",
+              "name": "host_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "logDataGsRoot",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_data_gs_root",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dockerKeyFileLocation",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_key_file_location",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dutTopology",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut_topology",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.DutTopology"
+            }
+          ],
+          "name": "CrosTestRunnerServerStartRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testPlan",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.TestPlan"
+            },
+            {
+              "jsonName": "cftTestRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft_test_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest"
+            },
+            {
+              "jsonName": "ctrCipdVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctr_cipd_version",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ExecuteRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "result",
+              "label": "LABEL_OPTIONAL",
+              "name": "result",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result"
+            }
+          ],
+          "name": "ExecuteResponse"
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/cros_test_runner_service.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".test_platform.skylab_test_runner.ExecuteRequest",
+              "name": "Execute",
+              "outputType": ".test_platform.skylab_test_runner.ExecuteResponse"
+            }
+          ],
+          "name": "CrosTestRunnerService"
+        }
+      ],
       "syntax": "proto3"
     },
     {

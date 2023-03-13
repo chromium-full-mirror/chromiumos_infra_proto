@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.1.0
 // - protoc             v3.17.1
-// source: test_platform/cros_test_runner_service.proto
+// source: test_platform/skylab_test_runner/cros_test_runner_service.proto
 
-package test_platform
+package skylab_test_runner
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ func NewCrosTestRunnerServiceClient(cc grpc.ClientConnInterface) CrosTestRunnerS
 
 func (c *crosTestRunnerServiceClient) Execute(ctx context.Context, in *ExecuteRequest, opts ...grpc.CallOption) (*ExecuteResponse, error) {
 	out := new(ExecuteResponse)
-	err := c.cc.Invoke(ctx, "/test_platform.CrosTestRunnerService/Execute", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/test_platform.skylab_test_runner.CrosTestRunnerService/Execute", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _CrosTestRunnerService_Execute_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/test_platform.CrosTestRunnerService/Execute",
+		FullMethod: "/test_platform.skylab_test_runner.CrosTestRunnerService/Execute",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CrosTestRunnerServiceServer).Execute(ctx, req.(*ExecuteRequest))
@@ -92,7 +92,7 @@ func _CrosTestRunnerService_Execute_Handler(srv interface{}, ctx context.Context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CrosTestRunnerService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "test_platform.CrosTestRunnerService",
+	ServiceName: "test_platform.skylab_test_runner.CrosTestRunnerService",
 	HandlerType: (*CrosTestRunnerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -101,5 +101,5 @@ var CrosTestRunnerService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "test_platform/cros_test_runner_service.proto",
+	Metadata: "test_platform/skylab_test_runner/cros_test_runner_service.proto",
 }

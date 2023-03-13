@@ -4,14 +4,14 @@
 
 syntax = "proto3";
 
-package test_platform;
+package test_platform.skylab_test_runner;
 
 import "test_platform/request.proto";
 import "chromiumos/test/lab/api/dut.proto";
 import "test_platform/skylab_test_runner/cft_request.proto";
 import "test_platform/skylab_test_runner/result.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
 // CrosTestRunnerServerStartRequest represents the server start request for
 // cros test runner service. Any data that should be used throughout the whole
