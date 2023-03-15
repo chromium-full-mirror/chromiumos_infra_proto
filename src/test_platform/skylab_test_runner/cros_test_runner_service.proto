@@ -42,6 +42,10 @@ message ExecuteRequest {
 
   // Cros-tool-runner cipd version to use.
   string ctr_cipd_version = 3;
+
+  // Path to where the test artifacts are going to be stored. It's callers
+  // responsibility to make sure this path is valid and unique per execution.
+  string artifacts_path = 4;
  }
 
 // ExecuteResponse represents the response for cros test runner service.

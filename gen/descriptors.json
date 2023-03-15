@@ -28237,6 +28237,13 @@
               "name": "ctr_cipd_version",
               "number": 3,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "artifactsPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "artifacts_path",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ExecuteRequest"
