@@ -308,6 +308,10 @@
             {
               "name": "PLATFORM_CR50",
               "number": 4
+            },
+            {
+              "name": "PLATFORM_CHAMELEON",
+              "number": 5
             }
           ]
         }
