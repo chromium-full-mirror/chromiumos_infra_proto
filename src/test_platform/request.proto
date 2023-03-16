@@ -9,6 +9,7 @@ package test_platform;
 import "chromite/api/test_metadata.proto";
 import "chromiumos/common.proto";
 import "chromiumos/test/api/test_suite.proto";
+import "chromiumos/test/api/test_execution_metadata.proto";
 import "google/protobuf/duration.proto";
 import "test_platform/execution/param.proto";
 import "test_platform/common/cft_steps_config.proto";
@@ -317,6 +318,9 @@ message Request {
     // Seed to be used as the randomization seed when sharding test cases.
     // Seed will only be used when tag_criteria is provided.
     int64 seed = 5;
+    // Test arguments provided for each cros_test_runner execution.
+    // Exclusive to the local server execution path of cros_test_runner.
+    chromiumos.test.api.AutotestExecutionMetadata test_args = 6;
   }
 
   TestPlan test_plan = 5;

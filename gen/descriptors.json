@@ -23671,6 +23671,7 @@
         "chromite/api/test_metadata.proto",
         "chromiumos/common.proto",
         "chromiumos/test/api/test_suite.proto",
+        "chromiumos/test/api/test_execution_metadata.proto",
         "google/protobuf/duration.proto",
         "test_platform/execution/param.proto",
         "test_platform/common/cft_steps_config.proto"
@@ -24425,6 +24426,14 @@
                   "name": "seed",
                   "number": 5,
                   "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "testArgs",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_args",
+                  "number": 6,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.AutotestExecutionMetadata"
                 }
               ],
               "name": "TestPlan"
