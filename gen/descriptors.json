@@ -12672,7 +12672,7 @@
               "jsonName": "sourceExtension",
               "label": "LABEL_OPTIONAL",
               "name": "source_extension",
-              "number": 1190,
+              "number": 6,
               "type": "TYPE_BYTES"
             }
           ],
@@ -12885,21 +12885,21 @@
               "field": [
                 {
                   "jsonName": "name",
-                  "label": "LABEL_REQUIRED",
+                  "label": "LABEL_OPTIONAL",
                   "name": "name",
                   "number": 1,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "version",
-                  "label": "LABEL_REQUIRED",
+                  "label": "LABEL_OPTIONAL",
                   "name": "version",
                   "number": 2,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "language",
-                  "label": "LABEL_REQUIRED",
+                  "label": "LABEL_OPTIONAL",
                   "name": "language",
                   "number": 3,
                   "type": "TYPE_STRING"
@@ -12911,7 +12911,7 @@
               "field": [
                 {
                   "jsonName": "osName",
-                  "label": "LABEL_REQUIRED",
+                  "label": "LABEL_OPTIONAL",
                   "name": "os_name",
                   "number": 1,
                   "type": "TYPE_STRING"
@@ -12938,9 +12938,9 @@
                   "type": "TYPE_STRING"
                 },
                 {
-                  "jsonName": "cpuArchitecture",
-                  "label": "LABEL_REQUIRED",
-                  "name": "cpu_architecture",
+                  "jsonName": "hostArchitecture",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "host_architecture",
                   "number": 5,
                   "type": "TYPE_STRING"
                 }
@@ -13133,14 +13133,14 @@
               "field": [
                 {
                   "jsonName": "functionName",
-                  "label": "LABEL_REQUIRED",
+                  "label": "LABEL_OPTIONAL",
                   "name": "function_name",
                   "number": 1,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "fileName",
-                  "label": "LABEL_REQUIRED",
+                  "label": "LABEL_OPTIONAL",
                   "name": "file_name",
                   "number": 2,
                   "type": "TYPE_STRING"

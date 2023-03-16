@@ -12,9 +12,9 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/telemetr
 // Individual log event
 message LogEvent {
   // unix timestamp in millis for the event
-  optional int64 event_time_ms = 1 ;
+  optional int64 event_time_ms = 1;
   // serialized log message
-  optional bytes source_extension = 1190;
+  optional bytes source_extension = 6;
 }
 
 message ClientInfo {
