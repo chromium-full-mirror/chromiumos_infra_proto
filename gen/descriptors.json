@@ -20147,6 +20147,135 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "unitName",
+              "label": "LABEL_OPTIONAL",
+              "name": "unit_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "taskName",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "enableRecovery",
+              "label": "LABEL_OPTIONAL",
+              "name": "enable_recovery",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "updateInventory",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_inventory",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "adminService",
+              "label": "LABEL_OPTIONAL",
+              "name": "admin_service",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "inventoryService",
+              "label": "LABEL_OPTIONAL",
+              "name": "inventory_service",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "noStepper",
+              "label": "LABEL_OPTIONAL",
+              "name": "no_stepper",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "noMetrics",
+              "label": "LABEL_OPTIONAL",
+              "name": "no_metrics",
+              "number": 9,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "configuration",
+              "label": "LABEL_OPTIONAL",
+              "name": "configuration",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "inventoryNamespace",
+              "label": "LABEL_OPTIONAL",
+              "name": "inventory_namespace",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "bbid",
+              "label": "LABEL_OPTIONAL",
+              "name": "bbid",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "swarmingTaskId",
+              "label": "LABEL_OPTIONAL",
+              "name": "swarming_task_id",
+              "number": 12,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "caller",
+              "label": "LABEL_OPTIONAL",
+              "name": "caller",
+              "number": 13,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "LabpackInput"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "success",
+              "label": "LABEL_OPTIONAL",
+              "name": "success",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "failReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "fail_reason",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "LabpackResponse"
+        }
+      ],
+      "name": "lab/labpack.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/lab"
+      },
+      "package": "lab",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/timestamp.proto"
       ],
