@@ -1482,6 +1482,10 @@
                     {
                       "end": 48,
                       "start": 46
+                    },
+                    {
+                      "end": 50,
+                      "start": 50
                     }
                   ],
                   "value": [
@@ -1573,7 +1577,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 49,
+                      "end": 50,
                       "start": 1
                     }
                   ],
@@ -1690,6 +1694,10 @@
                     {
                       "name": "FUZZER_SYSROOT",
                       "number": 47
+                    },
+                    {
+                      "name": "SYSROOT_ARCHIVE",
+                      "number": 50
                     }
                   ]
                 }
@@ -1775,7 +1783,7 @@
                       "start": 47
                     },
                     {
-                      "end": 49,
+                      "end": 50,
                       "start": 49
                     }
                   ],
@@ -1888,7 +1896,7 @@
                       "start": 34
                     },
                     {
-                      "end": 49,
+                      "end": 50,
                       "start": 45
                     }
                   ],
@@ -1997,7 +2005,7 @@
                       "start": 1
                     },
                     {
-                      "end": 49,
+                      "end": 50,
                       "start": 37
                     }
                   ],
@@ -10074,6 +10082,10 @@
                     {
                       "name": "IMAGE_SCRIPTS",
                       "number": 49
+                    },
+                    {
+                      "name": "SYSROOT_ARCHIVE",
+                      "number": 50
                     }
                   ]
                 }

@@ -360,6 +360,9 @@ message BuilderConfig {
 
       // image_scripts.tar.xz archive.
       IMAGE_SCRIPTS = 49;
+
+      // Archive the entire sysroot.
+      SYSROOT_ARCHIVE = 50;
     }
     repeated ArtifactTypes artifact_types = 2;
 
