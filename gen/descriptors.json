@@ -6486,12 +6486,12 @@
         {
           "field": [
             {
-              "jsonName": "chroot",
+              "jsonName": "sourceRoot",
               "label": "LABEL_OPTIONAL",
-              "name": "chroot",
+              "name": "source_root",
               "number": 1,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
+              "typeName": ".chromiumos.Path"
             },
             {
               "jsonName": "sdkTarballGsBucket",
