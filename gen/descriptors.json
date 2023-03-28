@@ -250,6 +250,14 @@
             {
               "name": "CHANNEL_CANARY",
               "number": 4
+            },
+            {
+              "name": "CHANNEL_LTS",
+              "number": 5
+            },
+            {
+              "name": "CHANNEL_LTC",
+              "number": 6
             }
           ]
         },
