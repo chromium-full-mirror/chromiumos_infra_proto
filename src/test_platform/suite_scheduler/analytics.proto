@@ -77,6 +77,10 @@ message BuildFilters {
   chromiumos.Branch.BranchType firmware_rw_build_spec = 4;
   // If true, use the relaxed_builds table.
   bool only_successful_build_required = 5;
+  // The name of the firmware branch to use for firmware_ro_build_spec
+  // and firmware_rw_build_spec is normally the derived from the board.
+  // Set firmware_board_name to override this.
+  string firmware_board_name = 6;
 }
 
 // ScheduleJobTrigger defines the trigger to kick off a suite test.

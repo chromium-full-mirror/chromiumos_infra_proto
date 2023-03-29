@@ -29826,6 +29826,13 @@
               "name": "only_successful_build_required",
               "number": 5,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "firmwareBoardName",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_board_name",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "BuildFilters"
