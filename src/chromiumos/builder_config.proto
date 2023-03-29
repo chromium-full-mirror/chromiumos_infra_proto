@@ -60,6 +60,8 @@ message BuilderConfig {
       PUBLIC = 6;
       // Factory build.
       FACTORY = 7;
+      // Incremental build.
+      INCREMENTAL = 8;
     }
     Type type = 3;
     // The name of the bucket the builder lives in.
