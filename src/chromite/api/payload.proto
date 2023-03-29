@@ -141,6 +141,9 @@ message GenerationResponse {
   enum FailureReason {
     UNSPECIFIED = 0;
     NOT_MINIOS_COMPATIBLE = 1;
+    // This occurs when the source and target builds do not support the same
+    // number of recovery keys.
+    MINIOS_COUNT_MISMATCH = 2;
   }
   FailureReason failure_reason = 4;
 

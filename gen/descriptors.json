@@ -11315,6 +11315,10 @@
                 {
                   "name": "NOT_MINIOS_COMPATIBLE",
                   "number": 1
+                },
+                {
+                  "name": "MINIOS_COUNT_MISMATCH",
+                  "number": 2
                 }
               ]
             }
