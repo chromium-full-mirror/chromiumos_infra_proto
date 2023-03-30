@@ -123,6 +123,8 @@ message InstallPackagesRequest {
     // been installed are calculated but not actually merged.
     // Added in R93
     bool dryrun = 5;
+    // Whether to allow cros workon packages to build from the unstable ebuild.
+    bool workon = 7;
   }
 
   // The sysroot into which the packages are being installed.

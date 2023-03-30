@@ -2971,6 +2971,13 @@
                   "name": "dryrun",
                   "number": 5,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "workon",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "workon",
+                  "number": 7,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags",
