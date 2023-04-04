@@ -6561,6 +6561,62 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "safe",
+              "label": "LABEL_OPTIONAL",
+              "name": "safe",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "images",
+              "label": "LABEL_OPTIONAL",
+              "name": "images",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "sysroots",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroots",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "tmp",
+              "label": "LABEL_OPTIONAL",
+              "name": "tmp",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "cache",
+              "label": "LABEL_OPTIONAL",
+              "name": "cache",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "logs",
+              "label": "LABEL_OPTIONAL",
+              "name": "logs",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "workdirs",
+              "label": "LABEL_OPTIONAL",
+              "name": "workdirs",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "incrementals",
+              "label": "LABEL_OPTIONAL",
+              "name": "incrementals",
+              "number": 9,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CleanRequest"

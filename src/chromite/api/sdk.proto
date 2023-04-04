@@ -121,8 +121,29 @@ message UprevResponse {
   string version = 2;
 }
 
+// Ask chromite to clean build artifacts.
+// If no optional arguments are provided it will default to 'safe' &&
+// 'sysroots'.
 message CleanRequest {
+  // The chroot to clean.
   chromiumos.Chroot chroot = 1;
+
+  // Optional. Clean all produced artifacts.
+  bool safe = 2;
+  // Optional. Remove all built images.
+  bool images = 3;
+  // Optional. Remove all of the sysroots.
+  bool sysroots = 4;
+  // Optional. Clean the tmp/ directory.
+  bool tmp = 5;
+  // Optional. Clean the shared cache.
+  bool cache = 6;
+  // Optional. Clean up various logs.
+  bool logs = 7;
+  // Optional. Clean out various package build work directories.
+  bool workdirs = 8;
+  // Optional. Clean out the incremental artifacts.
+  bool incrementals = 9;
 }
 
 message CleanResponse {}
