@@ -28472,6 +28472,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "pathToCipdBin",
+              "label": "LABEL_OPTIONAL",
+              "name": "path_to_cipd_bin",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "artifactsPath",
               "label": "LABEL_OPTIONAL",
               "name": "artifacts_path",

@@ -43,6 +43,10 @@ message ExecuteRequest {
   // Cros-tool-runner cipd version to use.
   string ctr_cipd_version = 3;
 
+  // Local path to cros-tool-runner binary to run with; this field is meant to be
+  // an alternative to ctr_cipd_version and will take priority over it
+  string path_to_cipd_bin = 5;
+
   // Path to where the test artifacts are going to be stored. It's callers
   // responsibility to make sure this path is valid and unique per execution.
   string artifacts_path = 4;
