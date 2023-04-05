@@ -143,6 +143,32 @@ message PrepareDevInstallBinhostUploadsResponse {
   repeated UploadTarget upload_targets = 1;
 }
 
+// Describe the package index file and what changes should be made to it.
+// Currently supports the following operations:
+//   - Set upload location (URI and PATH) for all packages
+message UpdatePackageIndexRequest {
+  // Required if the package_index_file location is INSIDE.
+  // The chroot which (likely) contains the package index file.
+  chromiumos.Chroot chroot = 1;
+
+  // Required.
+  // The absolute path on the local filesystem to the package index file.
+  // Must already exist on the local filesystem.
+  // The RPC will modify this file in-place.
+  chromiumos.Path package_index_file = 2;
+
+  // If true, then the URI and PATH fields will be set for all package entries.
+  bool set_upload_location = 3;
+
+  // Required if set_upload_location is true.
+  // Full URI to which the prebuilts will be uploaded.
+  // Note that this service call does NOT upload them; it only updates metadata.
+  // Example: gs://chromeos-prebuilts/board/amd64-host/packages/
+  string uri = 4;
+}
+
+message UpdatePackageIndexResponse {}
+
 // Set a binhost URL for the given build target.
 message SetBinhostRequest {
   // Build target to update binhost for.
@@ -255,6 +281,11 @@ service BinhostService {
   // remote disk.  Added in R78.
   rpc PrepareDevInstallBinhostUploads(PrepareDevInstallBinhostUploadsRequest)
     returns (PrepareDevInstallBinhostUploadsResponse);
+
+  // UpdatePackageIndex modifies the package index (the file called 'Packages'
+  // in the binhost) in-place.
+  rpc UpdatePackageIndex(UpdatePackageIndexRequest)
+    returns (UpdatePackageIndexResponse);
 
   // Update the binhost key for a build targets.
   rpc SetBinhost(SetBinhostRequest) returns (SetBinhostResponse);

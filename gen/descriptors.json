@@ -4019,6 +4019,44 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "packageIndexFile",
+              "label": "LABEL_OPTIONAL",
+              "name": "package_index_file",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "setUploadLocation",
+              "label": "LABEL_OPTIONAL",
+              "name": "set_upload_location",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UpdatePackageIndexRequest"
+        },
+        {
+          "name": "UpdatePackageIndexResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "buildTarget",
               "label": "LABEL_OPTIONAL",
               "name": "build_target",
@@ -4199,6 +4237,11 @@
               "inputType": ".chromite.api.PrepareDevInstallBinhostUploadsRequest",
               "name": "PrepareDevInstallBinhostUploads",
               "outputType": ".chromite.api.PrepareDevInstallBinhostUploadsResponse"
+            },
+            {
+              "inputType": ".chromite.api.UpdatePackageIndexRequest",
+              "name": "UpdatePackageIndex",
+              "outputType": ".chromite.api.UpdatePackageIndexResponse"
             },
             {
               "inputType": ".chromite.api.SetBinhostRequest",

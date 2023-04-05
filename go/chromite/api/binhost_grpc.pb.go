@@ -36,6 +36,9 @@ type BinhostServiceClient interface {
 	// will share the same relative path on the remote disk as they do on the
 	// remote disk.  Added in R78.
 	PrepareDevInstallBinhostUploads(ctx context.Context, in *PrepareDevInstallBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareDevInstallBinhostUploadsResponse, error)
+	// UpdatePackageIndex modifies the package index (the file called 'Packages'
+	// in the binhost) in-place.
+	UpdatePackageIndex(ctx context.Context, in *UpdatePackageIndexRequest, opts ...grpc.CallOption) (*UpdatePackageIndexResponse, error)
 	// Update the binhost key for a build targets.
 	SetBinhost(ctx context.Context, in *SetBinhostRequest, opts ...grpc.CallOption) (*SetBinhostResponse, error)
 	// Regenerate the builder cache.  Added in R78.
@@ -88,6 +91,15 @@ func (c *binhostServiceClient) PrepareDevInstallBinhostUploads(ctx context.Conte
 	return out, nil
 }
 
+func (c *binhostServiceClient) UpdatePackageIndex(ctx context.Context, in *UpdatePackageIndexRequest, opts ...grpc.CallOption) (*UpdatePackageIndexResponse, error) {
+	out := new(UpdatePackageIndexResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/UpdatePackageIndex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *binhostServiceClient) SetBinhost(ctx context.Context, in *SetBinhostRequest, opts ...grpc.CallOption) (*SetBinhostResponse, error) {
 	out := new(SetBinhostResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/SetBinhost", in, out, opts...)
@@ -133,6 +145,9 @@ type BinhostServiceServer interface {
 	// will share the same relative path on the remote disk as they do on the
 	// remote disk.  Added in R78.
 	PrepareDevInstallBinhostUploads(context.Context, *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error)
+	// UpdatePackageIndex modifies the package index (the file called 'Packages'
+	// in the binhost) in-place.
+	UpdatePackageIndex(context.Context, *UpdatePackageIndexRequest) (*UpdatePackageIndexResponse, error)
 	// Update the binhost key for a build targets.
 	SetBinhost(context.Context, *SetBinhostRequest) (*SetBinhostResponse, error)
 	// Regenerate the builder cache.  Added in R78.
@@ -157,6 +172,9 @@ func (UnimplementedBinhostServiceServer) PrepareBinhostUploads(context.Context, 
 }
 func (UnimplementedBinhostServiceServer) PrepareDevInstallBinhostUploads(context.Context, *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PrepareDevInstallBinhostUploads not implemented")
+}
+func (UnimplementedBinhostServiceServer) UpdatePackageIndex(context.Context, *UpdatePackageIndexRequest) (*UpdatePackageIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePackageIndex not implemented")
 }
 func (UnimplementedBinhostServiceServer) SetBinhost(context.Context, *SetBinhostRequest) (*SetBinhostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetBinhost not implemented")
@@ -252,6 +270,24 @@ func _BinhostService_PrepareDevInstallBinhostUploads_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BinhostService_UpdatePackageIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePackageIndexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).UpdatePackageIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/UpdatePackageIndex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).UpdatePackageIndex(ctx, req.(*UpdatePackageIndexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BinhostService_SetBinhost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetBinhostRequest)
 	if err := dec(in); err != nil {
@@ -328,6 +364,10 @@ var BinhostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PrepareDevInstallBinhostUploads",
 			Handler:    _BinhostService_PrepareDevInstallBinhostUploads_Handler,
+		},
+		{
+			MethodName: "UpdatePackageIndex",
+			Handler:    _BinhostService_UpdatePackageIndex_Handler,
 		},
 		{
 			MethodName: "SetBinhost",
