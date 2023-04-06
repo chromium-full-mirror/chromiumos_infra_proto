@@ -36,6 +36,11 @@ type BinhostServiceClient interface {
 	// will share the same relative path on the remote disk as they do on the
 	// remote disk.  Added in R78.
 	PrepareDevInstallBinhostUploads(ctx context.Context, in *PrepareDevInstallBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareDevInstallBinhostUploadsResponse, error)
+	// Return a list of Chrome files to upload to the binhost. Like
+	// PrepareBinhostUploads, this method assumes that all files, once uploaded,
+	// will share the same relative path on the remote disk as they do on the
+	// local disk.
+	PrepareChromeBinhostUploads(ctx context.Context, in *PrepareChromeBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareChromeBinhostUploadsResponse, error)
 	// UpdatePackageIndex modifies the package index (the file called 'Packages'
 	// in the binhost) in-place.
 	UpdatePackageIndex(ctx context.Context, in *UpdatePackageIndexRequest, opts ...grpc.CallOption) (*UpdatePackageIndexResponse, error)
@@ -85,6 +90,15 @@ func (c *binhostServiceClient) PrepareBinhostUploads(ctx context.Context, in *Pr
 func (c *binhostServiceClient) PrepareDevInstallBinhostUploads(ctx context.Context, in *PrepareDevInstallBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareDevInstallBinhostUploadsResponse, error) {
 	out := new(PrepareDevInstallBinhostUploadsResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/PrepareDevInstallBinhostUploads", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *binhostServiceClient) PrepareChromeBinhostUploads(ctx context.Context, in *PrepareChromeBinhostUploadsRequest, opts ...grpc.CallOption) (*PrepareChromeBinhostUploadsResponse, error) {
+	out := new(PrepareChromeBinhostUploadsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.BinhostService/PrepareChromeBinhostUploads", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,6 +159,11 @@ type BinhostServiceServer interface {
 	// will share the same relative path on the remote disk as they do on the
 	// remote disk.  Added in R78.
 	PrepareDevInstallBinhostUploads(context.Context, *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error)
+	// Return a list of Chrome files to upload to the binhost. Like
+	// PrepareBinhostUploads, this method assumes that all files, once uploaded,
+	// will share the same relative path on the remote disk as they do on the
+	// local disk.
+	PrepareChromeBinhostUploads(context.Context, *PrepareChromeBinhostUploadsRequest) (*PrepareChromeBinhostUploadsResponse, error)
 	// UpdatePackageIndex modifies the package index (the file called 'Packages'
 	// in the binhost) in-place.
 	UpdatePackageIndex(context.Context, *UpdatePackageIndexRequest) (*UpdatePackageIndexResponse, error)
@@ -172,6 +191,9 @@ func (UnimplementedBinhostServiceServer) PrepareBinhostUploads(context.Context, 
 }
 func (UnimplementedBinhostServiceServer) PrepareDevInstallBinhostUploads(context.Context, *PrepareDevInstallBinhostUploadsRequest) (*PrepareDevInstallBinhostUploadsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PrepareDevInstallBinhostUploads not implemented")
+}
+func (UnimplementedBinhostServiceServer) PrepareChromeBinhostUploads(context.Context, *PrepareChromeBinhostUploadsRequest) (*PrepareChromeBinhostUploadsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareChromeBinhostUploads not implemented")
 }
 func (UnimplementedBinhostServiceServer) UpdatePackageIndex(context.Context, *UpdatePackageIndexRequest) (*UpdatePackageIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePackageIndex not implemented")
@@ -270,6 +292,24 @@ func _BinhostService_PrepareDevInstallBinhostUploads_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BinhostService_PrepareChromeBinhostUploads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrepareChromeBinhostUploadsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BinhostServiceServer).PrepareChromeBinhostUploads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.BinhostService/PrepareChromeBinhostUploads",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BinhostServiceServer).PrepareChromeBinhostUploads(ctx, req.(*PrepareChromeBinhostUploadsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BinhostService_UpdatePackageIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdatePackageIndexRequest)
 	if err := dec(in); err != nil {
@@ -364,6 +404,10 @@ var BinhostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PrepareDevInstallBinhostUploads",
 			Handler:    _BinhostService_PrepareDevInstallBinhostUploads_Handler,
+		},
+		{
+			MethodName: "PrepareChromeBinhostUploads",
+			Handler:    _BinhostService_PrepareChromeBinhostUploads_Handler,
 		},
 		{
 			MethodName: "UpdatePackageIndex",

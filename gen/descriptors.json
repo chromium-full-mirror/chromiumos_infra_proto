@@ -4019,6 +4019,54 @@
         {
           "field": [
             {
+              "jsonName": "uploadsDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "uploads_dir",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            }
+          ],
+          "name": "PrepareChromeBinhostUploadsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "uploadTargets",
+              "label": "LABEL_REPEATED",
+              "name": "upload_targets",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UploadTarget"
+            }
+          ],
+          "name": "PrepareChromeBinhostUploadsResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "chroot",
               "label": "LABEL_OPTIONAL",
               "name": "chroot",
@@ -4237,6 +4285,11 @@
               "inputType": ".chromite.api.PrepareDevInstallBinhostUploadsRequest",
               "name": "PrepareDevInstallBinhostUploads",
               "outputType": ".chromite.api.PrepareDevInstallBinhostUploadsResponse"
+            },
+            {
+              "inputType": ".chromite.api.PrepareChromeBinhostUploadsRequest",
+              "name": "PrepareChromeBinhostUploads",
+              "outputType": ".chromite.api.PrepareChromeBinhostUploadsResponse"
             },
             {
               "inputType": ".chromite.api.UpdatePackageIndexRequest",

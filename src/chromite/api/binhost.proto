@@ -143,6 +143,35 @@ message PrepareDevInstallBinhostUploadsResponse {
   repeated UploadTarget upload_targets = 1;
 }
 
+// Describe where Chrome prebuilts will be uploaded so the package index and
+// other Portage metadata can be updated appropriately.
+message PrepareChromeBinhostUploadsRequest {
+  // Required.
+  // Absolute path to the local directory that contains all of the files to
+  // upload.
+  string uploads_dir = 1;
+
+  // Required.
+  // Full URI where we wish to store the prebuilts. Note that this service call
+  // does NOT upload them, it only updates metadata.
+  // Example: gs://chromeos-prebuilt/board/amd64-generic/packages/
+  string uri = 2;
+
+  // Required when the chroot is not at the default location.
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 3;
+
+  // Required.
+  // The sysroot whose prebuilts are being uploaded.
+  Sysroot sysroot = 4;
+}
+
+// Return all Chrome files to upload.
+message PrepareChromeBinhostUploadsResponse {
+  // All targets to be uploaded to the binhost.
+  repeated UploadTarget upload_targets = 1;
+}
+
 // Describe the package index file and what changes should be made to it.
 // Currently supports the following operations:
 //   - Set upload location (URI and PATH) for all packages
@@ -281,6 +310,13 @@ service BinhostService {
   // remote disk.  Added in R78.
   rpc PrepareDevInstallBinhostUploads(PrepareDevInstallBinhostUploadsRequest)
     returns (PrepareDevInstallBinhostUploadsResponse);
+
+  // Return a list of Chrome files to upload to the binhost. Like
+  // PrepareBinhostUploads, this method assumes that all files, once uploaded,
+  // will share the same relative path on the remote disk as they do on the
+  // local disk.
+  rpc PrepareChromeBinhostUploads(PrepareChromeBinhostUploadsRequest)
+    returns (PrepareChromeBinhostUploadsResponse);
 
   // UpdatePackageIndex modifies the package index (the file called 'Packages'
   // in the binhost) in-place.
