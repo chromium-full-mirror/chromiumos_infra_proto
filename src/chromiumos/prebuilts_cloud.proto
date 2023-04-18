@@ -1,0 +1,28 @@
+// Copyright 2023 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Protocol buffer definitions for different operations in `prebuilts-cloud`.
+
+syntax = "proto3";
+
+package chromiumos;
+
+// This is used by the `update_service` to update the `lookup_service` database
+// with metadata related to snapshots. The `update_snapshot_data` Pub/Sub topic
+// is associated with this schema definition, so messages sent to update
+// snapshot data must follow this format.
+// All the fields must be sent in each message.
+message UpdateSnapshotDataRequest {
+  // Unique sha of the snapshot.
+  string snapshot_sha = 1;
+
+  // Snapshot number.
+  uint32 snapshot_num = 2;
+
+  // Boolean to denote if the snapshot is external.
+  bool external = 3;
+
+  // Id of the annealing build that created the snapshot.
+  uint64 buildbucket_id = 4;
+}

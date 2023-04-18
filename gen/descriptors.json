@@ -16450,6 +16450,50 @@
       },
       "messageType": [
         {
+          "field": [
+            {
+              "jsonName": "snapshotSha",
+              "label": "LABEL_OPTIONAL",
+              "name": "snapshot_sha",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "snapshotNum",
+              "label": "LABEL_OPTIONAL",
+              "name": "snapshot_num",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "external",
+              "label": "LABEL_OPTIONAL",
+              "name": "external",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "buildbucketId",
+              "label": "LABEL_OPTIONAL",
+              "name": "buildbucket_id",
+              "number": 4,
+              "type": "TYPE_UINT64"
+            }
+          ],
+          "name": "UpdateSnapshotDataRequest"
+        }
+      ],
+      "name": "chromiumos/prebuilts_cloud.proto",
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
           "enumType": [
             {
               "name": "State",
