@@ -28268,6 +28268,55 @@
             }
           ],
           "name": "Trv2Config"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "enabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "enabled",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "allowList",
+              "label": "LABEL_OPTIONAL",
+              "name": "allow_list",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.IleDeFranceConfig.ModelList"
+            },
+            {
+              "jsonName": "denyList",
+              "label": "LABEL_OPTIONAL",
+              "name": "deny_list",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.IleDeFranceConfig.ModelList"
+            }
+          ],
+          "name": "IleDeFranceConfig",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "models",
+                  "label": "LABEL_REPEATED",
+                  "name": "models",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "ModelList"
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "ile_de_france_selector"
+            }
+          ]
         }
       ],
       "name": "test_platform/skylab_test_runner/common_config.proto",

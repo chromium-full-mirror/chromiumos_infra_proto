@@ -229,6 +229,101 @@ func (x *Trv2Config) GetAllowedBuildTypes() []Trv2Config_BuildType {
 	return nil
 }
 
+// IleDeFranceConfig controls whether ile-de-france (the lightweight
+// verifier) is enabled or disabled for any given model.
+type IleDeFranceConfig struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Global flag to control whether the ile-de-france config is allowed to run
+	// at all or not
+	Enabled bool `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	// Determine whether ile-de-france runs are permitted or not by specifying an
+	// allowlist or a denylist.
+	//
+	// Types that are assignable to IleDeFranceSelector:
+	//	*IleDeFranceConfig_AllowList
+	//	*IleDeFranceConfig_DenyList
+	IleDeFranceSelector isIleDeFranceConfig_IleDeFranceSelector `protobuf_oneof:"ile_de_france_selector"`
+}
+
+func (x *IleDeFranceConfig) Reset() {
+	*x = IleDeFranceConfig{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IleDeFranceConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IleDeFranceConfig) ProtoMessage() {}
+
+func (x *IleDeFranceConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IleDeFranceConfig.ProtoReflect.Descriptor instead.
+func (*IleDeFranceConfig) Descriptor() ([]byte, []int) {
+	return file_test_platform_skylab_test_runner_common_config_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *IleDeFranceConfig) GetEnabled() bool {
+	if x != nil {
+		return x.Enabled
+	}
+	return false
+}
+
+func (m *IleDeFranceConfig) GetIleDeFranceSelector() isIleDeFranceConfig_IleDeFranceSelector {
+	if m != nil {
+		return m.IleDeFranceSelector
+	}
+	return nil
+}
+
+func (x *IleDeFranceConfig) GetAllowList() *IleDeFranceConfig_ModelList {
+	if x, ok := x.GetIleDeFranceSelector().(*IleDeFranceConfig_AllowList); ok {
+		return x.AllowList
+	}
+	return nil
+}
+
+func (x *IleDeFranceConfig) GetDenyList() *IleDeFranceConfig_ModelList {
+	if x, ok := x.GetIleDeFranceSelector().(*IleDeFranceConfig_DenyList); ok {
+		return x.DenyList
+	}
+	return nil
+}
+
+type isIleDeFranceConfig_IleDeFranceSelector interface {
+	isIleDeFranceConfig_IleDeFranceSelector()
+}
+
+type IleDeFranceConfig_AllowList struct {
+	AllowList *IleDeFranceConfig_ModelList `protobuf:"bytes,2,opt,name=allow_list,json=allowList,proto3,oneof"`
+}
+
+type IleDeFranceConfig_DenyList struct {
+	DenyList *IleDeFranceConfig_ModelList `protobuf:"bytes,3,opt,name=deny_list,json=denyList,proto3,oneof"`
+}
+
+func (*IleDeFranceConfig_AllowList) isIleDeFranceConfig_IleDeFranceSelector() {}
+
+func (*IleDeFranceConfig_DenyList) isIleDeFranceConfig_IleDeFranceSelector() {}
+
 type CommonConfig_CrosFirmwareUpdateConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -245,7 +340,7 @@ type CommonConfig_CrosFirmwareUpdateConfig struct {
 func (x *CommonConfig_CrosFirmwareUpdateConfig) Reset() {
 	*x = CommonConfig_CrosFirmwareUpdateConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[2]
+		mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -258,7 +353,7 @@ func (x *CommonConfig_CrosFirmwareUpdateConfig) String() string {
 func (*CommonConfig_CrosFirmwareUpdateConfig) ProtoMessage() {}
 
 func (x *CommonConfig_CrosFirmwareUpdateConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[2]
+	mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +434,7 @@ type CommonConfig_CrosFirmwareUpdateConfig_CrosSlector struct {
 func (x *CommonConfig_CrosFirmwareUpdateConfig_CrosSlector) Reset() {
 	*x = CommonConfig_CrosFirmwareUpdateConfig_CrosSlector{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[3]
+		mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -352,7 +447,7 @@ func (x *CommonConfig_CrosFirmwareUpdateConfig_CrosSlector) String() string {
 func (*CommonConfig_CrosFirmwareUpdateConfig_CrosSlector) ProtoMessage() {}
 
 func (x *CommonConfig_CrosFirmwareUpdateConfig_CrosSlector) ProtoReflect() protoreflect.Message {
-	mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[3]
+	mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -376,6 +471,54 @@ func (x *CommonConfig_CrosFirmwareUpdateConfig_CrosSlector) GetBoards() []string
 }
 
 func (x *CommonConfig_CrosFirmwareUpdateConfig_CrosSlector) GetModels() []string {
+	if x != nil {
+		return x.Models
+	}
+	return nil
+}
+
+// A list of models to allow or deny, as appropriate.
+type IleDeFranceConfig_ModelList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Models []string `protobuf:"bytes,1,rep,name=models,proto3" json:"models,omitempty"`
+}
+
+func (x *IleDeFranceConfig_ModelList) Reset() {
+	*x = IleDeFranceConfig_ModelList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IleDeFranceConfig_ModelList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IleDeFranceConfig_ModelList) ProtoMessage() {}
+
+func (x *IleDeFranceConfig_ModelList) ProtoReflect() protoreflect.Message {
+	mi := &file_test_platform_skylab_test_runner_common_config_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IleDeFranceConfig_ModelList.ProtoReflect.Descriptor instead.
+func (*IleDeFranceConfig_ModelList) Descriptor() ([]byte, []int) {
+	return file_test_platform_skylab_test_runner_common_config_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *IleDeFranceConfig_ModelList) GetModels() []string {
 	if x != nil {
 		return x.Models
 	}
@@ -452,12 +595,31 @@ var file_test_platform_skylab_test_runner_common_config_proto_rawDesc = []byte{
 	0x30, 0x0a, 0x09, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x06, 0x0a, 0x02,
 	0x43, 0x51, 0x10, 0x00, 0x12, 0x0b, 0x0a, 0x07, 0x52, 0x45, 0x4c, 0x45, 0x41, 0x53, 0x45, 0x10,
 	0x01, 0x12, 0x0e, 0x0a, 0x0a, 0x50, 0x4f, 0x53, 0x54, 0x53, 0x55, 0x42, 0x4d, 0x49, 0x54, 0x10,
-	0x02, 0x42, 0x4c, 0x5a, 0x4a, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
-	0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f,
-	0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x74,
-	0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2f, 0x73, 0x6b, 0x79,
-	0x6c, 0x61, 0x62, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x02, 0x22, 0xaa, 0x02, 0x0a, 0x11, 0x49, 0x6c, 0x65, 0x44, 0x65, 0x46, 0x72, 0x61, 0x6e, 0x63,
+	0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x18, 0x0a, 0x07, 0x65, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x12, 0x5e, 0x0a, 0x0a, 0x61, 0x6c, 0x6c, 0x6f, 0x77, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x3d, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61,
+	0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x73, 0x6b, 0x79, 0x6c, 0x61, 0x62, 0x5f, 0x74, 0x65, 0x73,
+	0x74, 0x5f, 0x72, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x2e, 0x49, 0x6c, 0x65, 0x44, 0x65, 0x46, 0x72,
+	0x61, 0x6e, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x4c, 0x69, 0x73, 0x74, 0x48, 0x00, 0x52, 0x09, 0x61, 0x6c, 0x6c, 0x6f, 0x77, 0x4c, 0x69, 0x73,
+	0x74, 0x12, 0x5c, 0x0a, 0x09, 0x64, 0x65, 0x6e, 0x79, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x3d, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74,
+	0x66, 0x6f, 0x72, 0x6d, 0x2e, 0x73, 0x6b, 0x79, 0x6c, 0x61, 0x62, 0x5f, 0x74, 0x65, 0x73, 0x74,
+	0x5f, 0x72, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x2e, 0x49, 0x6c, 0x65, 0x44, 0x65, 0x46, 0x72, 0x61,
+	0x6e, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4c,
+	0x69, 0x73, 0x74, 0x48, 0x00, 0x52, 0x08, 0x64, 0x65, 0x6e, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x1a,
+	0x23, 0x0a, 0x09, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x73, 0x42, 0x18, 0x0a, 0x16, 0x69, 0x6c, 0x65, 0x5f, 0x64, 0x65, 0x5f, 0x66,
+	0x72, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x73, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x42, 0x4c,
+	0x5a, 0x4a, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72,
+	0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66,
+	0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74,
+	0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2f, 0x73, 0x6b, 0x79, 0x6c, 0x61, 0x62,
+	0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -473,25 +635,29 @@ func file_test_platform_skylab_test_runner_common_config_proto_rawDescGZIP() []b
 }
 
 var file_test_platform_skylab_test_runner_common_config_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_test_platform_skylab_test_runner_common_config_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_test_platform_skylab_test_runner_common_config_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_test_platform_skylab_test_runner_common_config_proto_goTypes = []interface{}{
 	(Trv2Config_BuildType)(0),                                 // 0: test_platform.skylab_test_runner.Trv2Config.BuildType
 	(*CommonConfig)(nil),                                      // 1: test_platform.skylab_test_runner.CommonConfig
 	(*Trv2Config)(nil),                                        // 2: test_platform.skylab_test_runner.Trv2Config
-	(*CommonConfig_CrosFirmwareUpdateConfig)(nil),             // 3: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig
-	(*CommonConfig_CrosFirmwareUpdateConfig_CrosSlector)(nil), // 4: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector
+	(*IleDeFranceConfig)(nil),                                 // 3: test_platform.skylab_test_runner.IleDeFranceConfig
+	(*CommonConfig_CrosFirmwareUpdateConfig)(nil),             // 4: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig
+	(*CommonConfig_CrosFirmwareUpdateConfig_CrosSlector)(nil), // 5: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector
+	(*IleDeFranceConfig_ModelList)(nil),                       // 6: test_platform.skylab_test_runner.IleDeFranceConfig.ModelList
 }
 var file_test_platform_skylab_test_runner_common_config_proto_depIdxs = []int32{
-	3, // 0: test_platform.skylab_test_runner.CommonConfig.cros_firmware_update_config:type_name -> test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig
+	4, // 0: test_platform.skylab_test_runner.CommonConfig.cros_firmware_update_config:type_name -> test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig
 	2, // 1: test_platform.skylab_test_runner.CommonConfig.enable_trv2_config:type_name -> test_platform.skylab_test_runner.Trv2Config
 	0, // 2: test_platform.skylab_test_runner.Trv2Config.allowed_build_types:type_name -> test_platform.skylab_test_runner.Trv2Config.BuildType
-	4, // 3: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.allow_list:type_name -> test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector
-	4, // 4: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.block_list:type_name -> test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	6, // 3: test_platform.skylab_test_runner.IleDeFranceConfig.allow_list:type_name -> test_platform.skylab_test_runner.IleDeFranceConfig.ModelList
+	6, // 4: test_platform.skylab_test_runner.IleDeFranceConfig.deny_list:type_name -> test_platform.skylab_test_runner.IleDeFranceConfig.ModelList
+	5, // 5: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.allow_list:type_name -> test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector
+	5, // 6: test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.block_list:type_name -> test_platform.skylab_test_runner.CommonConfig.CrosFirmwareUpdateConfig.CrosSlector
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_test_platform_skylab_test_runner_common_config_proto_init() }
@@ -525,7 +691,7 @@ func file_test_platform_skylab_test_runner_common_config_proto_init() {
 			}
 		}
 		file_test_platform_skylab_test_runner_common_config_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CommonConfig_CrosFirmwareUpdateConfig); i {
+			switch v := v.(*IleDeFranceConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -537,7 +703,31 @@ func file_test_platform_skylab_test_runner_common_config_proto_init() {
 			}
 		}
 		file_test_platform_skylab_test_runner_common_config_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CommonConfig_CrosFirmwareUpdateConfig); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_test_platform_skylab_test_runner_common_config_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CommonConfig_CrosFirmwareUpdateConfig_CrosSlector); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_test_platform_skylab_test_runner_common_config_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IleDeFranceConfig_ModelList); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -550,6 +740,10 @@ func file_test_platform_skylab_test_runner_common_config_proto_init() {
 		}
 	}
 	file_test_platform_skylab_test_runner_common_config_proto_msgTypes[2].OneofWrappers = []interface{}{
+		(*IleDeFranceConfig_AllowList)(nil),
+		(*IleDeFranceConfig_DenyList)(nil),
+	}
+	file_test_platform_skylab_test_runner_common_config_proto_msgTypes[3].OneofWrappers = []interface{}{
 		(*CommonConfig_CrosFirmwareUpdateConfig_AllowList)(nil),
 		(*CommonConfig_CrosFirmwareUpdateConfig_BlockList)(nil),
 	}
@@ -559,7 +753,7 @@ func file_test_platform_skylab_test_runner_common_config_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_test_platform_skylab_test_runner_common_config_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

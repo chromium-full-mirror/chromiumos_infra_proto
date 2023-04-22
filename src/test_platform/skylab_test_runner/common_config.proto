@@ -76,3 +76,23 @@ message Trv2Config {
     POSTSUBMIT = 2;
   }
 }
+
+// IleDeFranceConfig controls whether ile-de-france (the lightweight
+// verifier) is enabled or disabled for any given model.
+message IleDeFranceConfig {
+  // Global flag to control whether the ile-de-france config is allowed to run
+  // at all or not
+  bool enabled = 1;
+
+  // A list of models to allow or deny, as appropriate.
+  message ModelList {
+    repeated string models = 1;
+  }
+
+  // Determine whether ile-de-france runs are permitted or not by specifying an
+  // allowlist or a denylist.
+  oneof ile_de_france_selector {
+    ModelList allow_list = 2;
+    ModelList deny_list = 3;
+  }
+}
