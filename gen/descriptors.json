@@ -27987,6 +27987,13 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.Trv2Config"
+            },
+            {
+              "jsonName": "skipBoardModelRealmCheck",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_board_model_realm_check",
+              "number": 4,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CommonConfig",

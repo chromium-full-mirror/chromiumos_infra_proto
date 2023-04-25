@@ -41,6 +41,14 @@ message CommonConfig {
 
   // Config to define when test_runner should execute via trv2.
   Trv2Config enable_trv2_config = 3;
+
+  // If true, the board/model realm we attempt to publish to will not be
+  // verified via fetching a definitive list. This should only be enabled for
+  // builders where fetching an (internal) file from git is not possible.
+  //
+  // If this is enabled and an invalid board-model realm is determined, it's
+  // likely the result will not be visible to anyone.
+  bool skip_board_model_realm_check = 4;
 }
 
 // b/267268890: Config to control trv2 gradual rollout in prod. Should be
