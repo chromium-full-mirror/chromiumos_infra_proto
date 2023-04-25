@@ -9669,6 +9669,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuilderConfig.UnitTests"
+            },
+            {
+              "jsonName": "updateChroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_chroot",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuilderConfig.UpdateChroot"
             }
           ],
           "name": "BuilderConfig",
@@ -10688,6 +10696,19 @@
                   "start": 4
                 }
               ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "runSpec",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_spec",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.BuilderConfig.RunSpec"
+                }
+              ],
+              "name": "UpdateChroot"
             }
           ]
         },

@@ -555,6 +555,14 @@ message BuilderConfig {
     bool skip_image_tests = 10;
   }
   UnitTests unit_tests = 7;
+
+  message UpdateChroot {
+    // Controls whether or not this build will update the chroot immediately
+    // after it is initialized (unless explicitly overridden by the recipe).
+    // Most recipes update the chroot by default, if run_spec is UNSPECIFIED.
+    RunSpec run_spec = 1;
+  }
+  UpdateChroot update_chroot = 8;
 }
 
 // List of builder configs. Intended to be serialized to / from disk.
