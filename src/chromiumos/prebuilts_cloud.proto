@@ -8,6 +8,9 @@ syntax = "proto3";
 
 package chromiumos;
 
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
+
 // This is used by the `update_service` to update the `lookup_service` database
 // with metadata related to snapshots. The `update_snapshot_data` Pub/Sub topic
 // is associated with this schema definition, so messages sent to update

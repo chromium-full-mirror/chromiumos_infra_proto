@@ -16505,6 +16505,10 @@
         }
       ],
       "name": "chromiumos/prebuilts_cloud.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
       "package": "chromiumos",
       "syntax": "proto3"
     },
