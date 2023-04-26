@@ -125,7 +125,7 @@ echo "== Linting protobuffers"
 # shellcheck disable=2068
 if ! buf lint ${proto_paths[@]}; then
   echo "One or more files need cleanup" >&2
-  exit
+  exit 1 # failing lint should block presubmit as it prevents pb file gen
 else
   echo "Files are clean"
 fi
