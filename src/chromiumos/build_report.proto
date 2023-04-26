@@ -37,6 +37,11 @@ message URI {
     }
 }
 
+message DlcArtifact {
+    URI    uri    = 1; // URI of the DLC artifact.
+    string sha256 = 2; // SHA256 of the DLC artifact.
+}
+
 // next: 17
 message BuildReport {
     // Id serves as the primary key for the metadata and will be constant even
@@ -360,5 +365,6 @@ message BuildReport {
     message DLCs {
         // DLC artifacts.
         repeated URI dlc_artifacts = 1; // URIs of DLC artifacts.
+        repeated DlcArtifact dlc_artifact_details = 2;
     }
 }

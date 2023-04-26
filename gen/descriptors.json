@@ -14259,6 +14259,26 @@
           ]
         },
         {
+          "field": [
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.URI"
+            },
+            {
+              "jsonName": "sha256",
+              "label": "LABEL_OPTIONAL",
+              "name": "sha256",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DlcArtifact"
+        },
+        {
           "enumType": [
             {
               "name": "BuildType",
@@ -15348,6 +15368,14 @@
                   "number": 1,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.URI"
+                },
+                {
+                  "jsonName": "dlcArtifactDetails",
+                  "label": "LABEL_REPEATED",
+                  "name": "dlc_artifact_details",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.DlcArtifact"
                 }
               ],
               "name": "DLCs"
