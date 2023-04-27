@@ -42,6 +42,23 @@
               "number": 2
             }
           ]
+        },
+        {
+          "name": "BranchedExecution",
+          "value": [
+            {
+              "name": "EXECUTE_NOT_SPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "EXECUTE_BRANCHED",
+              "number": 1
+            },
+            {
+              "name": "EXECUTE_TOT",
+              "number": 2
+            }
+          ]
         }
       ],
       "extension": [
@@ -89,6 +106,14 @@
               "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".ListVisibility"
+            },
+            {
+              "jsonName": "serviceBranchedExecution",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_branched_execution",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".BranchedExecution"
             }
           ],
           "name": "BuildApiServiceOptions"
@@ -117,6 +142,14 @@
               "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".ListVisibility"
+            },
+            {
+              "jsonName": "methodBranchedExecution",
+              "label": "LABEL_OPTIONAL",
+              "name": "method_branched_execution",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".BranchedExecution"
             }
           ],
           "name": "BuildApiMethodOptions"
