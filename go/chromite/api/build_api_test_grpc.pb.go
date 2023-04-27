@@ -519,3 +519,199 @@ var HiddenService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "chromite/api/build_api_test.proto",
 }
+
+// TotExecutionServiceClient is the client API for TotExecutionService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TotExecutionServiceClient interface {
+	TotServiceTotMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	// This is not a valid combination.
+	TotServiceTotMethodInside(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	TotServiceBranchedMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+	TotServiceBranchedMethodInside(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error)
+}
+
+type totExecutionServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTotExecutionServiceClient(cc grpc.ClientConnInterface) TotExecutionServiceClient {
+	return &totExecutionServiceClient{cc}
+}
+
+func (c *totExecutionServiceClient) TotServiceTotMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TotExecutionService/TotServiceTotMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *totExecutionServiceClient) TotServiceTotMethodInside(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TotExecutionService/TotServiceTotMethodInside", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *totExecutionServiceClient) TotServiceBranchedMethod(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TotExecutionService/TotServiceBranchedMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *totExecutionServiceClient) TotServiceBranchedMethodInside(ctx context.Context, in *TestRequestMessage, opts ...grpc.CallOption) (*TestResultMessage, error) {
+	out := new(TestResultMessage)
+	err := c.cc.Invoke(ctx, "/chromite.api.TotExecutionService/TotServiceBranchedMethodInside", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TotExecutionServiceServer is the server API for TotExecutionService service.
+// All implementations must embed UnimplementedTotExecutionServiceServer
+// for forward compatibility
+type TotExecutionServiceServer interface {
+	TotServiceTotMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	// This is not a valid combination.
+	TotServiceTotMethodInside(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	TotServiceBranchedMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	TotServiceBranchedMethodInside(context.Context, *TestRequestMessage) (*TestResultMessage, error)
+	mustEmbedUnimplementedTotExecutionServiceServer()
+}
+
+// UnimplementedTotExecutionServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTotExecutionServiceServer struct {
+}
+
+func (UnimplementedTotExecutionServiceServer) TotServiceTotMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TotServiceTotMethod not implemented")
+}
+func (UnimplementedTotExecutionServiceServer) TotServiceTotMethodInside(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TotServiceTotMethodInside not implemented")
+}
+func (UnimplementedTotExecutionServiceServer) TotServiceBranchedMethod(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TotServiceBranchedMethod not implemented")
+}
+func (UnimplementedTotExecutionServiceServer) TotServiceBranchedMethodInside(context.Context, *TestRequestMessage) (*TestResultMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TotServiceBranchedMethodInside not implemented")
+}
+func (UnimplementedTotExecutionServiceServer) mustEmbedUnimplementedTotExecutionServiceServer() {}
+
+// UnsafeTotExecutionServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TotExecutionServiceServer will
+// result in compilation errors.
+type UnsafeTotExecutionServiceServer interface {
+	mustEmbedUnimplementedTotExecutionServiceServer()
+}
+
+func RegisterTotExecutionServiceServer(s grpc.ServiceRegistrar, srv TotExecutionServiceServer) {
+	s.RegisterService(&TotExecutionService_ServiceDesc, srv)
+}
+
+func _TotExecutionService_TotServiceTotMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TotExecutionServiceServer).TotServiceTotMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TotExecutionService/TotServiceTotMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TotExecutionServiceServer).TotServiceTotMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TotExecutionService_TotServiceTotMethodInside_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TotExecutionServiceServer).TotServiceTotMethodInside(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TotExecutionService/TotServiceTotMethodInside",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TotExecutionServiceServer).TotServiceTotMethodInside(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TotExecutionService_TotServiceBranchedMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TotExecutionServiceServer).TotServiceBranchedMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TotExecutionService/TotServiceBranchedMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TotExecutionServiceServer).TotServiceBranchedMethod(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TotExecutionService_TotServiceBranchedMethodInside_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TotExecutionServiceServer).TotServiceBranchedMethodInside(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TotExecutionService/TotServiceBranchedMethodInside",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TotExecutionServiceServer).TotServiceBranchedMethodInside(ctx, req.(*TestRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TotExecutionService_ServiceDesc is the grpc.ServiceDesc for TotExecutionService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TotExecutionService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.TotExecutionService",
+	HandlerType: (*TotExecutionServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "TotServiceTotMethod",
+			Handler:    _TotExecutionService_TotServiceTotMethod_Handler,
+		},
+		{
+			MethodName: "TotServiceTotMethodInside",
+			Handler:    _TotExecutionService_TotServiceTotMethodInside_Handler,
+		},
+		{
+			MethodName: "TotServiceBranchedMethod",
+			Handler:    _TotExecutionService_TotServiceBranchedMethod_Handler,
+		},
+		{
+			MethodName: "TotServiceBranchedMethodInside",
+			Handler:    _TotExecutionService_TotServiceBranchedMethodInside_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chromite/api/build_api_test.proto",
+}

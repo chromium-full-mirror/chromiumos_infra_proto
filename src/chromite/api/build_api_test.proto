@@ -140,3 +140,33 @@ service HiddenService {
 
   rpc HiddenMethod(TestRequestMessage) returns (TestResultMessage);
 }
+
+service TotExecutionService {
+  option (service_options) = {
+    module: "build_api_test",
+    service_branched_execution: EXECUTE_TOT,
+    service_chroot_assert: OUTSIDE,
+  };
+
+  rpc TotServiceTotMethod(TestRequestMessage) returns (TestResultMessage);
+
+  // This is not a valid combination.
+  rpc TotServiceTotMethodInside(TestRequestMessage)
+    returns (TestResultMessage) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  }
+
+  rpc TotServiceBranchedMethod(TestRequestMessage) returns (TestResultMessage) {
+    option (method_options) = {
+      method_branched_execution: EXECUTE_BRANCHED,
+    };
+  }
+
+  rpc TotServiceBranchedMethodInside(TestRequestMessage) returns (TestResultMessage) {
+    option (method_options) = {
+      method_branched_execution: EXECUTE_BRANCHED,
+    };
+  }
+}

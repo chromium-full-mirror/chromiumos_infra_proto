@@ -9217,6 +9217,53 @@
               "serviceVisibility": "LV_HIDDEN"
             }
           }
+        },
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.TestRequestMessage",
+              "name": "TotServiceTotMethod",
+              "outputType": ".chromite.api.TestResultMessage"
+            },
+            {
+              "inputType": ".chromite.api.TestRequestMessage",
+              "name": "TotServiceTotMethodInside",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
+              "outputType": ".chromite.api.TestResultMessage"
+            },
+            {
+              "inputType": ".chromite.api.TestRequestMessage",
+              "name": "TotServiceBranchedMethod",
+              "options": {
+                "[method_options]": {
+                  "methodBranchedExecution": "EXECUTE_BRANCHED"
+                }
+              },
+              "outputType": ".chromite.api.TestResultMessage"
+            },
+            {
+              "inputType": ".chromite.api.TestRequestMessage",
+              "name": "TotServiceBranchedMethodInside",
+              "options": {
+                "[method_options]": {
+                  "methodBranchedExecution": "EXECUTE_BRANCHED"
+                }
+              },
+              "outputType": ".chromite.api.TestResultMessage"
+            }
+          ],
+          "name": "TotExecutionService",
+          "options": {
+            "[service_options]": {
+              "module": "build_api_test",
+              "serviceBranchedExecution": "EXECUTE_TOT",
+              "serviceChrootAssert": "OUTSIDE"
+            }
+          }
         }
       ],
       "syntax": "proto3"
