@@ -6657,6 +6657,13 @@
               "name": "version",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "toolchainTarballTemplate",
+              "label": "LABEL_OPTIONAL",
+              "name": "toolchain_tarball_template",
+              "number": 5,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "UprevRequest"
