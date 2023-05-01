@@ -49,6 +49,7 @@ message HwTestCfg {
     TAST = 2;
   }
   // Configuration for a hardware test suite.
+  // NEXT ID: 23
   message HwTest {
     TestSuiteCommon common = 12;
 
@@ -85,6 +86,10 @@ message HwTestCfg {
 
     // Tags criteria that will be used to enumerate tests for CFT test execution workflow.
     chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 19;
+
+    // The total number of shards to be used in a test run. Only used when
+    // tag_criteria is also set.
+    int64 total_shards = 22;
 
     // If true, then run test via cros_test_runner(trv2) workflow.
     // This flag can only be true if run_via_cft is true.

@@ -30838,6 +30838,13 @@
                   "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
                 },
                 {
+                  "jsonName": "totalShards",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "total_shards",
+                  "number": 22,
+                  "type": "TYPE_INT64"
+                },
+                {
                   "jsonName": "runViaTrv2",
                   "label": "LABEL_OPTIONAL",
                   "name": "run_via_trv2",
