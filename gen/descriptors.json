@@ -1741,6 +1741,31 @@
                       "number": 50
                     }
                   ]
+                },
+                {
+                  "name": "BreakpadSymbolGenerationExpectedFile",
+                  "value": [
+                    {
+                      "name": "EXPECTED_FILE_UNSET",
+                      "number": 0
+                    },
+                    {
+                      "name": "EXPECTED_FILE_ASH_CHROME",
+                      "number": 1
+                    },
+                    {
+                      "name": "EXPECTED_FILE_LIBC",
+                      "number": 2
+                    },
+                    {
+                      "name": "EXPECTED_FILE_CRASH_REPORTER",
+                      "number": 3
+                    },
+                    {
+                      "name": "EXPECTED_FILE_LIBMETRICS",
+                      "number": 4
+                    }
+                  ]
                 }
               ],
               "field": [
@@ -1759,6 +1784,21 @@
                   "number": 2,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.ArtifactsByService.Sysroot.ArtifactInfo"
+                },
+                {
+                  "jsonName": "ignoreBreakpadSymbolGenerationErrors",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ignore_breakpad_symbol_generation_errors",
+                  "number": 3,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "ignoreBreakpadSymbolGenerationExpectedFiles",
+                  "label": "LABEL_REPEATED",
+                  "name": "ignore_breakpad_symbol_generation_expected_files",
+                  "number": 4,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.ArtifactsByService.Sysroot.BreakpadSymbolGenerationExpectedFile"
                 }
               ],
               "name": "Sysroot",

@@ -799,6 +799,24 @@ message ArtifactsByService {
 
     // Output artifact information
     repeated ArtifactInfo output_artifacts = 2;
+
+    // If true, ignore errors during breakpad symbol generation.
+    bool ignore_breakpad_symbol_generation_errors = 3;
+
+    // The ExpectedFiles enum from cros_generate_breakpad_symbols.py.
+    enum BreakpadSymbolGenerationExpectedFile {
+      // Not used but required by proto3 syntax.
+      EXPECTED_FILE_UNSET = 0;
+
+      EXPECTED_FILE_ASH_CHROME = 1;
+      EXPECTED_FILE_LIBC = 2;
+      EXPECTED_FILE_CRASH_REPORTER = 3;
+      EXPECTED_FILE_LIBMETRICS = 4;
+    }
+    // During BREAKPAD_DEBUG_SYMBOLS generation, do not complain about missing
+    // any of the expected files in this list.
+    repeated BreakpadSymbolGenerationExpectedFile
+        ignore_breakpad_symbol_generation_expected_files = 4;
   }
   Sysroot sysroot = 5;
 
