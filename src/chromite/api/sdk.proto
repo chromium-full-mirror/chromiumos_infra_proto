@@ -94,12 +94,7 @@ message UpdateResponse {
 // Uprev SDK request.
 // Creates code changes to uprev the SDK version file and prebuilt conf files.
 message UprevRequest {
-  // Required. The root directory of the ChromiumOS checkout.
-  chromiumos.Path source_root = 1;
-
-  // Required. The Google Storage bucket containing SDK tarballs to point to.
-  // Example: "gs://chromiumos-sdk/"
-  string sdk_tarball_gs_bucket = 2;
+  reserved 1 to 2;
 
   // Required. The Google Storage bucket containing binhosts to point to.
   // Example: "gs://chromeos-prebuilt/"

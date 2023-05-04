@@ -6630,21 +6630,6 @@
         {
           "field": [
             {
-              "jsonName": "sourceRoot",
-              "label": "LABEL_OPTIONAL",
-              "name": "source_root",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Path"
-            },
-            {
-              "jsonName": "sdkTarballGsBucket",
-              "label": "LABEL_OPTIONAL",
-              "name": "sdk_tarball_gs_bucket",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "binhostGsBucket",
               "label": "LABEL_OPTIONAL",
               "name": "binhost_gs_bucket",
@@ -6666,7 +6651,13 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "UprevRequest"
+          "name": "UprevRequest",
+          "reservedRange": [
+            {
+              "end": 3,
+              "start": 1
+            }
+          ]
         },
         {
           "field": [

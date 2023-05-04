@@ -498,11 +498,6 @@ type UprevRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Required. The root directory of the ChromiumOS checkout.
-	SourceRoot *chromiumos.Path `protobuf:"bytes,1,opt,name=source_root,json=sourceRoot,proto3" json:"source_root,omitempty"`
-	// Required. The Google Storage bucket containing SDK tarballs to point to.
-	// Example: "gs://chromiumos-sdk/"
-	SdkTarballGsBucket string `protobuf:"bytes,2,opt,name=sdk_tarball_gs_bucket,json=sdkTarballGsBucket,proto3" json:"sdk_tarball_gs_bucket,omitempty"`
 	// Required. The Google Storage bucket containing binhosts to point to.
 	// Example: "gs://chromeos-prebuilt/"
 	BinhostGsBucket string `protobuf:"bytes,3,opt,name=binhost_gs_bucket,json=binhostGsBucket,proto3" json:"binhost_gs_bucket,omitempty"`
@@ -548,20 +543,6 @@ func (x *UprevRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UprevRequest.ProtoReflect.Descriptor instead.
 func (*UprevRequest) Descriptor() ([]byte, []int) {
 	return file_chromite_api_sdk_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *UprevRequest) GetSourceRoot() *chromiumos.Path {
-	if x != nil {
-		return x.SourceRoot
-	}
-	return nil
-}
-
-func (x *UprevRequest) GetSdkTarballGsBucket() string {
-	if x != nil {
-		return x.SdkTarballGsBucket
-	}
-	return ""
 }
 
 func (x *UprevRequest) GetBinhostGsBucket() string {
@@ -1960,22 +1941,16 @@ var file_chromite_api_sdk_proto_rawDesc = []byte{
 	0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x63, 0x68, 0x72,
 	0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x43, 0x68, 0x72, 0x6f, 0x6f, 0x74,
 	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
-	0x22, 0xf8, 0x01, 0x0a, 0x0c, 0x55, 0x70, 0x72, 0x65, 0x76, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x31, 0x0a, 0x0b, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x72, 0x6f, 0x6f, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75,
-	0x6d, 0x6f, 0x73, 0x2e, 0x50, 0x61, 0x74, 0x68, 0x52, 0x0a, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
-	0x52, 0x6f, 0x6f, 0x74, 0x12, 0x31, 0x0a, 0x15, 0x73, 0x64, 0x6b, 0x5f, 0x74, 0x61, 0x72, 0x62,
-	0x61, 0x6c, 0x6c, 0x5f, 0x67, 0x73, 0x5f, 0x62, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x12, 0x73, 0x64, 0x6b, 0x54, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x47,
-	0x73, 0x42, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x2a, 0x0a, 0x11, 0x62, 0x69, 0x6e, 0x68, 0x6f,
-	0x73, 0x74, 0x5f, 0x67, 0x73, 0x5f, 0x62, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0f, 0x62, 0x69, 0x6e, 0x68, 0x6f, 0x73, 0x74, 0x47, 0x73, 0x42, 0x75, 0x63,
-	0x6b, 0x65, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x04,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a,
-	0x1a, 0x74, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5f, 0x74, 0x61, 0x72, 0x62, 0x61,
-	0x6c, 0x6c, 0x5f, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x18, 0x74, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x54, 0x61, 0x72, 0x62,
-	0x61, 0x6c, 0x6c, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x22, 0x62, 0x0a, 0x0d, 0x55,
+	0x22, 0x98, 0x01, 0x0a, 0x0c, 0x55, 0x70, 0x72, 0x65, 0x76, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x2a, 0x0a, 0x11, 0x62, 0x69, 0x6e, 0x68, 0x6f, 0x73, 0x74, 0x5f, 0x67, 0x73, 0x5f,
+	0x62, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x62, 0x69,
+	0x6e, 0x68, 0x6f, 0x73, 0x74, 0x47, 0x73, 0x42, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x18, 0x0a,
+	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a, 0x1a, 0x74, 0x6f, 0x6f, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x5f, 0x74, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x5f, 0x74, 0x65, 0x6d,
+	0x70, 0x6c, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x18, 0x74, 0x6f, 0x6f,
+	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x54, 0x61, 0x72, 0x62, 0x61, 0x6c, 0x6c, 0x54, 0x65, 0x6d,
+	0x70, 0x6c, 0x61, 0x74, 0x65, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x03, 0x22, 0x62, 0x0a, 0x0d, 0x55,
 	0x70, 0x72, 0x65, 0x76, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x37, 0x0a, 0x0e,
 	0x6d, 0x6f, 0x64, 0x69, 0x66, 0x69, 0x65, 0x64, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x18, 0x01,
 	0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f,
@@ -2257,61 +2232,60 @@ var file_chromite_api_sdk_proto_depIdxs = []int32{
 	35, // 6: chromite.api.UpdateRequest.toolchain_targets:type_name -> chromiumos.BuildTarget
 	34, // 7: chromite.api.UpdateRequest.chroot:type_name -> chromiumos.Chroot
 	0,  // 8: chromite.api.UpdateResponse.version:type_name -> chromite.api.ChrootVersion
-	36, // 9: chromite.api.UprevRequest.source_root:type_name -> chromiumos.Path
-	36, // 10: chromite.api.UprevResponse.modified_files:type_name -> chromiumos.Path
-	34, // 11: chromite.api.CleanRequest.chroot:type_name -> chromiumos.Chroot
-	34, // 12: chromite.api.CreateSnapshotRequest.chroot:type_name -> chromiumos.Chroot
-	13, // 13: chromite.api.CreateSnapshotResponse.snapshot_token:type_name -> chromite.api.SnapshotToken
-	34, // 14: chromite.api.RestoreSnapshotRequest.chroot:type_name -> chromiumos.Chroot
-	13, // 15: chromite.api.RestoreSnapshotRequest.snapshot_token:type_name -> chromite.api.SnapshotToken
-	36, // 16: chromite.api.UnmountPathRequest.path:type_name -> chromiumos.Path
-	34, // 17: chromite.api.BuildPrebuiltsRequest.chroot:type_name -> chromiumos.Chroot
-	35, // 18: chromite.api.BuildPrebuiltsRequest.build_target:type_name -> chromiumos.BuildTarget
-	34, // 19: chromite.api.BuildSdkTarballRequest.chroot:type_name -> chromiumos.Chroot
-	36, // 20: chromite.api.BuildSdkTarballResponse.sdk_tarball_path:type_name -> chromiumos.Path
-	34, // 21: chromite.api.CreateManifestFromSdkRequest.chroot:type_name -> chromiumos.Chroot
-	36, // 22: chromite.api.CreateManifestFromSdkRequest.sdk_path:type_name -> chromiumos.Path
-	36, // 23: chromite.api.CreateManifestFromSdkRequest.dest_dir:type_name -> chromiumos.Path
-	36, // 24: chromite.api.CreateManifestFromSdkResponse.manifest_path:type_name -> chromiumos.Path
-	34, // 25: chromite.api.UploadPrebuiltPackagesRequest.chroot:type_name -> chromiumos.Chroot
-	34, // 26: chromite.api.BuildSdkToolchainRequest.chroot:type_name -> chromiumos.Chroot
-	37, // 27: chromite.api.BuildSdkToolchainRequest.use_flags:type_name -> chromiumos.UseFlag
-	36, // 28: chromite.api.BuildSdkToolchainResponse.generated_files:type_name -> chromiumos.Path
-	1,  // 29: chromite.api.SdkService.Create:input_type -> chromite.api.CreateRequest
-	3,  // 30: chromite.api.SdkService.Delete:input_type -> chromite.api.DeleteRequest
-	11, // 31: chromite.api.SdkService.Clean:input_type -> chromite.api.CleanRequest
-	5,  // 32: chromite.api.SdkService.Unmount:input_type -> chromite.api.UnmountRequest
-	7,  // 33: chromite.api.SdkService.Update:input_type -> chromite.api.UpdateRequest
-	9,  // 34: chromite.api.SdkService.Uprev:input_type -> chromite.api.UprevRequest
-	14, // 35: chromite.api.SdkService.CreateSnapshot:input_type -> chromite.api.CreateSnapshotRequest
-	16, // 36: chromite.api.SdkService.RestoreSnapshot:input_type -> chromite.api.RestoreSnapshotRequest
-	18, // 37: chromite.api.SdkService.UnmountPath:input_type -> chromite.api.UnmountPathRequest
-	20, // 38: chromite.api.SdkService.BuildPrebuilts:input_type -> chromite.api.BuildPrebuiltsRequest
-	22, // 39: chromite.api.SdkService.BuildSdkTarball:input_type -> chromite.api.BuildSdkTarballRequest
-	24, // 40: chromite.api.SdkService.CreateManifestFromSdk:input_type -> chromite.api.CreateManifestFromSdkRequest
-	26, // 41: chromite.api.SdkService.CreateBinhostCLs:input_type -> chromite.api.CreateBinhostCLsRequest
-	28, // 42: chromite.api.SdkService.UploadPrebuiltPackages:input_type -> chromite.api.UploadPrebuiltPackagesRequest
-	30, // 43: chromite.api.SdkService.BuildSdkToolchain:input_type -> chromite.api.BuildSdkToolchainRequest
-	2,  // 44: chromite.api.SdkService.Create:output_type -> chromite.api.CreateResponse
-	4,  // 45: chromite.api.SdkService.Delete:output_type -> chromite.api.DeleteResponse
-	12, // 46: chromite.api.SdkService.Clean:output_type -> chromite.api.CleanResponse
-	6,  // 47: chromite.api.SdkService.Unmount:output_type -> chromite.api.UnmountResponse
-	8,  // 48: chromite.api.SdkService.Update:output_type -> chromite.api.UpdateResponse
-	10, // 49: chromite.api.SdkService.Uprev:output_type -> chromite.api.UprevResponse
-	15, // 50: chromite.api.SdkService.CreateSnapshot:output_type -> chromite.api.CreateSnapshotResponse
-	17, // 51: chromite.api.SdkService.RestoreSnapshot:output_type -> chromite.api.RestoreSnapshotResponse
-	19, // 52: chromite.api.SdkService.UnmountPath:output_type -> chromite.api.UnmountPathResponse
-	21, // 53: chromite.api.SdkService.BuildPrebuilts:output_type -> chromite.api.BuildPrebuiltsResponse
-	23, // 54: chromite.api.SdkService.BuildSdkTarball:output_type -> chromite.api.BuildSdkTarballResponse
-	25, // 55: chromite.api.SdkService.CreateManifestFromSdk:output_type -> chromite.api.CreateManifestFromSdkResponse
-	27, // 56: chromite.api.SdkService.CreateBinhostCLs:output_type -> chromite.api.CreateBinhostCLsResponse
-	29, // 57: chromite.api.SdkService.UploadPrebuiltPackages:output_type -> chromite.api.UploadPrebuiltPackagesResponse
-	31, // 58: chromite.api.SdkService.BuildSdkToolchain:output_type -> chromite.api.BuildSdkToolchainResponse
-	44, // [44:59] is the sub-list for method output_type
-	29, // [29:44] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	36, // 9: chromite.api.UprevResponse.modified_files:type_name -> chromiumos.Path
+	34, // 10: chromite.api.CleanRequest.chroot:type_name -> chromiumos.Chroot
+	34, // 11: chromite.api.CreateSnapshotRequest.chroot:type_name -> chromiumos.Chroot
+	13, // 12: chromite.api.CreateSnapshotResponse.snapshot_token:type_name -> chromite.api.SnapshotToken
+	34, // 13: chromite.api.RestoreSnapshotRequest.chroot:type_name -> chromiumos.Chroot
+	13, // 14: chromite.api.RestoreSnapshotRequest.snapshot_token:type_name -> chromite.api.SnapshotToken
+	36, // 15: chromite.api.UnmountPathRequest.path:type_name -> chromiumos.Path
+	34, // 16: chromite.api.BuildPrebuiltsRequest.chroot:type_name -> chromiumos.Chroot
+	35, // 17: chromite.api.BuildPrebuiltsRequest.build_target:type_name -> chromiumos.BuildTarget
+	34, // 18: chromite.api.BuildSdkTarballRequest.chroot:type_name -> chromiumos.Chroot
+	36, // 19: chromite.api.BuildSdkTarballResponse.sdk_tarball_path:type_name -> chromiumos.Path
+	34, // 20: chromite.api.CreateManifestFromSdkRequest.chroot:type_name -> chromiumos.Chroot
+	36, // 21: chromite.api.CreateManifestFromSdkRequest.sdk_path:type_name -> chromiumos.Path
+	36, // 22: chromite.api.CreateManifestFromSdkRequest.dest_dir:type_name -> chromiumos.Path
+	36, // 23: chromite.api.CreateManifestFromSdkResponse.manifest_path:type_name -> chromiumos.Path
+	34, // 24: chromite.api.UploadPrebuiltPackagesRequest.chroot:type_name -> chromiumos.Chroot
+	34, // 25: chromite.api.BuildSdkToolchainRequest.chroot:type_name -> chromiumos.Chroot
+	37, // 26: chromite.api.BuildSdkToolchainRequest.use_flags:type_name -> chromiumos.UseFlag
+	36, // 27: chromite.api.BuildSdkToolchainResponse.generated_files:type_name -> chromiumos.Path
+	1,  // 28: chromite.api.SdkService.Create:input_type -> chromite.api.CreateRequest
+	3,  // 29: chromite.api.SdkService.Delete:input_type -> chromite.api.DeleteRequest
+	11, // 30: chromite.api.SdkService.Clean:input_type -> chromite.api.CleanRequest
+	5,  // 31: chromite.api.SdkService.Unmount:input_type -> chromite.api.UnmountRequest
+	7,  // 32: chromite.api.SdkService.Update:input_type -> chromite.api.UpdateRequest
+	9,  // 33: chromite.api.SdkService.Uprev:input_type -> chromite.api.UprevRequest
+	14, // 34: chromite.api.SdkService.CreateSnapshot:input_type -> chromite.api.CreateSnapshotRequest
+	16, // 35: chromite.api.SdkService.RestoreSnapshot:input_type -> chromite.api.RestoreSnapshotRequest
+	18, // 36: chromite.api.SdkService.UnmountPath:input_type -> chromite.api.UnmountPathRequest
+	20, // 37: chromite.api.SdkService.BuildPrebuilts:input_type -> chromite.api.BuildPrebuiltsRequest
+	22, // 38: chromite.api.SdkService.BuildSdkTarball:input_type -> chromite.api.BuildSdkTarballRequest
+	24, // 39: chromite.api.SdkService.CreateManifestFromSdk:input_type -> chromite.api.CreateManifestFromSdkRequest
+	26, // 40: chromite.api.SdkService.CreateBinhostCLs:input_type -> chromite.api.CreateBinhostCLsRequest
+	28, // 41: chromite.api.SdkService.UploadPrebuiltPackages:input_type -> chromite.api.UploadPrebuiltPackagesRequest
+	30, // 42: chromite.api.SdkService.BuildSdkToolchain:input_type -> chromite.api.BuildSdkToolchainRequest
+	2,  // 43: chromite.api.SdkService.Create:output_type -> chromite.api.CreateResponse
+	4,  // 44: chromite.api.SdkService.Delete:output_type -> chromite.api.DeleteResponse
+	12, // 45: chromite.api.SdkService.Clean:output_type -> chromite.api.CleanResponse
+	6,  // 46: chromite.api.SdkService.Unmount:output_type -> chromite.api.UnmountResponse
+	8,  // 47: chromite.api.SdkService.Update:output_type -> chromite.api.UpdateResponse
+	10, // 48: chromite.api.SdkService.Uprev:output_type -> chromite.api.UprevResponse
+	15, // 49: chromite.api.SdkService.CreateSnapshot:output_type -> chromite.api.CreateSnapshotResponse
+	17, // 50: chromite.api.SdkService.RestoreSnapshot:output_type -> chromite.api.RestoreSnapshotResponse
+	19, // 51: chromite.api.SdkService.UnmountPath:output_type -> chromite.api.UnmountPathResponse
+	21, // 52: chromite.api.SdkService.BuildPrebuilts:output_type -> chromite.api.BuildPrebuiltsResponse
+	23, // 53: chromite.api.SdkService.BuildSdkTarball:output_type -> chromite.api.BuildSdkTarballResponse
+	25, // 54: chromite.api.SdkService.CreateManifestFromSdk:output_type -> chromite.api.CreateManifestFromSdkResponse
+	27, // 55: chromite.api.SdkService.CreateBinhostCLs:output_type -> chromite.api.CreateBinhostCLsResponse
+	29, // 56: chromite.api.SdkService.UploadPrebuiltPackages:output_type -> chromite.api.UploadPrebuiltPackagesResponse
+	31, // 57: chromite.api.SdkService.BuildSdkToolchain:output_type -> chromite.api.BuildSdkToolchainResponse
+	43, // [43:58] is the sub-list for method output_type
+	28, // [28:43] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_sdk_proto_init() }
