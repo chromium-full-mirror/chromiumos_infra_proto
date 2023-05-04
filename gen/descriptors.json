@@ -24981,6 +24981,20 @@
                   "number": 6,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.AutotestExecutionMetadata"
+                },
+                {
+                  "jsonName": "totalShards",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "total_shards",
+                  "number": 7,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "maxInShard",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "max_in_shard",
+                  "number": 8,
+                  "type": "TYPE_INT64"
                 }
               ],
               "name": "TestPlan"

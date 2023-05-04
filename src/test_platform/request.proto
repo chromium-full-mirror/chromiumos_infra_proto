@@ -321,6 +321,15 @@ message Request {
     // Test arguments provided for each cros_test_runner execution.
     // Exclusive to the local server execution path of cros_test_runner.
     chromiumos.test.api.AutotestExecutionMetadata test_args = 6;
+    // The total number of shards to be used in a test run.
+    // Can be overridden if the bucketing process creates more buckets
+    // than total_shards.
+    // Only used when tag_criteria is also set.
+    int64 total_shards = 7;
+    // The total number of tests allowed to be used in a shard.
+    // Total_shards takes priority over max_in_shard.
+    // Only used when tag_criteria is also set.
+    int64 max_in_shard = 8;
   }
 
   TestPlan test_plan = 5;
