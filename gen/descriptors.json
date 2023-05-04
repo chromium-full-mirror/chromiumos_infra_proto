@@ -16996,6 +16996,53 @@
             }
           ],
           "name": "TestDisablementCfg"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "excludeTests",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_tests",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ExcludeCfg.ExcludeTest"
+            },
+            {
+              "jsonName": "excludeSuites",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_suites",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ExcludeCfg.ExcludeSuite"
+            }
+          ],
+          "name": "ExcludeCfg",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "ExcludeTest"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "ExcludeSuite"
+            }
+          ]
         }
       ],
       "name": "chromiumos/test_disablement.proto",
