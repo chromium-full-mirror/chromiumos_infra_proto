@@ -6,9 +6,12 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromite/api/image.proto";
 import "chromite/observability/sizes.proto";
+import "chromiumos/common.proto";
+
 
 message GetImageSizeDataRequest {
   repeated chromite.api.Image built_images = 1;
+  chromiumos.Chroot chroot = 2;
 }
 
 message GetImageSizeDataResponse {

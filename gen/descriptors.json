@@ -11183,7 +11183,8 @@
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/image.proto",
-        "chromite/observability/sizes.proto"
+        "chromite/observability/sizes.proto",
+        "chromiumos/common.proto"
       ],
       "messageType": [
         {
@@ -11195,6 +11196,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.Image"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
             }
           ],
           "name": "GetImageSizeDataRequest"
