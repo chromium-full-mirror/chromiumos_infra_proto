@@ -979,9 +979,9 @@ func (ArtifactsByService_Firmware_ArtifactType) EnumDescriptor() ([]byte, []int)
 	return file_chromiumos_common_proto_rawDescGZIP(), []int{23, 7, 0}
 }
 
-// Infra artifacts, e.g. a pinned manifest.  Not actually passed to Build API --
-// all artifacts in this message are handled by recipes. Chromite should
-// completely ignore this message.
+// Infra artifacts, e.g. a pinned manifest.  Not actually passed to Build
+// API -- all artifacts in this message are handled by recipes. Chromite
+// should completely ignore this message.
 type ArtifactsByService_Infra_ArtifactType int32
 
 const (
@@ -2080,7 +2080,8 @@ type ReleaseBuilder struct {
 	BuildSchedule string `protobuf:"bytes,2,opt,name=build_schedule,json=buildSchedule,proto3" json:"build_schedule,omitempty"`
 	// Expiration date of builder.
 	// A builder with an expiration date set (that has not yet occurred)
-	// will not be pruned as a stale milestone by automatic release config management.
+	// will not be pruned as a stale milestone by automatic release config
+	// management.
 	ExpirationDate *ReleaseBuilder_Date `protobuf:"bytes,3,opt,name=expiration_date,json=expirationDate,proto3" json:"expiration_date,omitempty"`
 	// Mapping from Android package names to their corresponding Android branches
 	// for this release, e.g. "android-vm-rvc" -> "git_rvc-arc-m110".

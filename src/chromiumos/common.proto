@@ -6,7 +6,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 option java_package = "com.google.chrome.crosinfra.proto";
 
 // TODO(b/177487002): cannot include prototype.milestone at this time.
-//import "prototype/milestone.proto";
+// import "prototype/milestone.proto";
 
 // Common message definitions.
 
@@ -22,8 +22,8 @@ message BuildTarget {
 
 // Generic GCS path split into bucket name and path within
 message GcsPath {
-    string bucket = 1;
-    string path   = 2;
+  string bucket = 1;
+  string path = 2;
 }
 
 // Chroot is used to define how to enter a chroot.
@@ -53,9 +53,7 @@ message Chroot {
 }
 
 // FEATURES environment variable component message.
-message Feature {
-  string feature = 1;
-}
+message Feature { string feature = 1; }
 
 message RemoteexecConfig {
   // The location of the re-client binaries needed for remote execution.
@@ -105,7 +103,6 @@ message GomaArtifacts {
   // Goma log files.
   repeated string log_files = 3;
 }
-
 
 // Message describing a package, The corresponding variable names are from
 // https://devmanual.gentoo.org/ebuild-writing/variables/index.html
@@ -227,7 +224,7 @@ message ReleaseBuilder {
 
   // The release milestone. Needs to have "branch_name" filled out.
   // TODO(b/177487002): cannot include prototype.Milestone at this time.
-  //prototype.Milestone milestone = 1;
+  // prototype.Milestone milestone = 1;
   message Milestone {
     // E.g. 86
     int32 number = 1;
@@ -239,9 +236,7 @@ message ReleaseBuilder {
     // E.g. release-R86-13421.B
     string branch_name = 3;
   }
-  oneof milestone_message {
-    Milestone milestone = 1;
-  }
+  oneof milestone_message { Milestone milestone = 1; }
 
   // Schedule to use for release builder.
   // e.g. "0 5 * * *"
@@ -249,7 +244,8 @@ message ReleaseBuilder {
 
   // Expiration date of builder.
   // A builder with an expiration date set (that has not yet occurred)
-  // will not be pruned as a stale milestone by automatic release config management.
+  // will not be pruned as a stale milestone by automatic release config
+  // management.
   Date expiration_date = 3;
 
   // Mapping from Android package names to their corresponding Android branches
@@ -308,9 +304,7 @@ enum Channel {
 
 // A map of release milestones to their appropriate channels.
 message ReleaseChannels {
-  message ChannelList {
-    repeated Channel channels = 1;
-  }
+  message ChannelList { repeated Channel channels = 1; }
   map<int32, ChannelList> release_channels = 1;
 }
 
@@ -326,20 +320,17 @@ enum DeltaType {
 }
 
 // A wrapper around a serialized protocol buffer.
-message ProtoBytes {
-  bytes serialized_proto = 1;
-}
+message ProtoBytes { bytes serialized_proto = 1; }
 
 // List of known location that firmware can be built from
 enum FwLocation {
   FW_LOCATION_UNKNOWN = 0;
-  PLATFORM_EC = 1; // platform/ec/firmware_builder.py
-  PLATFORM_ZEPHYR = 2; // platform/zephyr-chrome/firmware_builder.py
-  PLATFORM_TI50 = 3; // platform/ti50/common/firmware_builder.py
-  PLATFORM_CR50 = 4; // platform/cr50/firmware_builder.py
+  PLATFORM_EC = 1;        // platform/ec/firmware_builder.py
+  PLATFORM_ZEPHYR = 2;    // platform/zephyr-chrome/firmware_builder.py
+  PLATFORM_TI50 = 3;      // platform/ti50/common/firmware_builder.py
+  PLATFORM_CR50 = 4;      // platform/cr50/firmware_builder.py
   PLATFORM_CHAMELEON = 5; // platform/chameleon/v3/ec/firmware_builder.py
 }
-
 
 // Additional information about artifacts used by PrepareForBuild endpoints.
 // TODO(crbug/1019868): This is migrating to ArtifactProfileInfo.
@@ -965,9 +956,9 @@ message ArtifactsByService {
   Firmware firmware = 8;
 
   message Infra {
-    // Infra artifacts, e.g. a pinned manifest.  Not actually passed to Build API --
-    // all artifacts in this message are handled by recipes. Chromite should
-    // completely ignore this message.
+    // Infra artifacts, e.g. a pinned manifest.  Not actually passed to Build
+    // API -- all artifacts in this message are handled by recipes. Chromite
+    // should completely ignore this message.
     enum ArtifactType {
       UNSPECIFIED = 0;
 
