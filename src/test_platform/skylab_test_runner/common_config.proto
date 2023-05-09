@@ -42,6 +42,9 @@ message CommonConfig {
   // Config to define when test_runner should execute via trv2.
   Trv2Config enable_trv2_config = 3;
 
+  // Config to define when test_runner should use ile-de-france.
+  IleDeFranceConfig enable_ile_de_france_config = 5;
+
   // If true, the board/model realm we attempt to publish to will not be
   // verified via fetching a definitive list. This should only be enabled for
   // builders where fetching an (internal) file from git is not possible.

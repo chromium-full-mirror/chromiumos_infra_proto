@@ -28165,6 +28165,14 @@
               "typeName": ".test_platform.skylab_test_runner.Trv2Config"
             },
             {
+              "jsonName": "enableIleDeFranceConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "enable_ile_de_france_config",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.IleDeFranceConfig"
+            },
+            {
               "jsonName": "skipBoardModelRealmCheck",
               "label": "LABEL_OPTIONAL",
               "name": "skip_board_model_realm_check",
