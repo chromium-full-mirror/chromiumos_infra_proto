@@ -62,6 +62,8 @@ message BuilderConfig {
       FACTORY = 7;
       // Incremental build.
       INCREMENTAL = 8;
+      // SDK build.
+      SDK = 9;
     }
     Type type = 3;
     // The name of the bucket the builder lives in.
