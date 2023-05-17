@@ -2805,6 +2805,13 @@
                   "name": "toolchain_changed",
                   "number": 3,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "useCqPrebuilts",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "use_cq_prebuilts",
+                  "number": 4,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags"
