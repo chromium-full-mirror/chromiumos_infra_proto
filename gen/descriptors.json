@@ -16668,6 +16668,67 @@
             }
           ],
           "name": "UpdateSnapshotDataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "profile",
+              "label": "LABEL_OPTIONAL",
+              "name": "profile",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "snapshotSha",
+              "label": "LABEL_OPTIONAL",
+              "name": "snapshot_sha",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gsUri",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_uri",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gsBucketName",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_bucket_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildbucketId",
+              "label": "LABEL_OPTIONAL",
+              "name": "buildbucket_id",
+              "number": 6,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "complete",
+              "label": "LABEL_OPTIONAL",
+              "name": "complete",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "private",
+              "label": "LABEL_OPTIONAL",
+              "name": "private",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "UpdateBinhostDataRequest"
         }
       ],
       "name": "chromiumos/prebuilts_cloud.proto",
