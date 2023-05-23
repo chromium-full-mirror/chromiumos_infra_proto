@@ -10474,6 +10474,13 @@
                   "name": "attestation_eligible",
                   "number": 10,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "useCqPrebuilts",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "use_cq_prebuilts",
+                  "number": 11,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Artifacts",
