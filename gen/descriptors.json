@@ -9743,6 +9743,23 @@
                   "number": 2
                 }
               ]
+            },
+            {
+              "name": "BuildOrchestrator",
+              "value": [
+                {
+                  "name": "BUILD_ORCHESTRATOR_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "PORTAGE",
+                  "number": 1
+                },
+                {
+                  "name": "BAZEL",
+                  "number": 2
+                }
+              ]
             }
           ],
           "field": [
@@ -10722,6 +10739,14 @@
                       "number": 5,
                       "type": "TYPE_ENUM",
                       "typeName": ".chromiumos.BuilderConfig.Dependencies"
+                    },
+                    {
+                      "jsonName": "installPackagesOrchestrator",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "install_packages_orchestrator",
+                      "number": 7,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".chromiumos.BuilderConfig.BuildOrchestrator"
                     }
                   ],
                   "name": "InstallPackages"
@@ -10763,6 +10788,14 @@
                       "name": "verify_image_size_delta",
                       "number": 5,
                       "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "buildImagesOrchestrator",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "build_images_orchestrator",
+                      "number": 6,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".chromiumos.BuilderConfig.BuildOrchestrator"
                     }
                   ],
                   "name": "BuildImages"
@@ -10830,6 +10863,14 @@
                   "name": "skip_image_tests",
                   "number": 10,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "unitTestsOrchestrator",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "unit_tests_orchestrator",
+                  "number": 11,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromiumos.BuilderConfig.BuildOrchestrator"
                 }
               ],
               "name": "UnitTests",

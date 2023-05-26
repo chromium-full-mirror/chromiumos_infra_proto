@@ -37,6 +37,16 @@ message BuilderConfig {
     CL_AFFECTED_DEPENDENCIES = 2;
   }
 
+  // A BuildOrchestrator is the software system that builds packages into a
+  // software image, such as Portage or Bazel.
+  // This is not related to the orchestrator recipe, CQ orchestrator, etc.
+  enum BuildOrchestrator {
+    // If unspecified, let recipes decide which build orchestrator to use.
+    BUILD_ORCHESTRATOR_UNSPECIFIED = 0;
+    PORTAGE = 1;
+    BAZEL = 2;
+  }
+
   // Unique identifier of the builder configuration.
   message Id {
     // The name of the configuration such as "arm-generic-postsubmit".
@@ -510,6 +520,9 @@ message BuilderConfig {
 
       // Set of package dependencies to install.
       Dependencies dependencies = 5;
+
+      // What software system should install packages.
+      BuildOrchestrator install_packages_orchestrator = 7;
     }
     reserved 14;
     InstallPackages install_packages = 16;
@@ -531,6 +544,9 @@ message BuilderConfig {
 
       // Whether to check for an image size regression.
       bool verify_image_size_delta = 5;
+
+      // What software system should build images.
+      BuildOrchestrator build_images_orchestrator = 6;
     }
     BuildImages build_images = 15;
   }
@@ -557,6 +573,9 @@ message BuilderConfig {
 
     // Whether or not to skip image unit tests. Defaults to false.
     bool skip_image_tests = 10;
+
+    // What software system should run unit tests.
+    BuildOrchestrator unit_tests_orchestrator = 11;
   }
   UnitTests unit_tests = 7;
 
