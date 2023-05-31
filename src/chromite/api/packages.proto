@@ -263,6 +263,11 @@ message UprevPackagesRequest {
   // Optional.
   // A directory where results should be dumped.
   string output_dir = 4;
+
+  // If true, this is running in a limited checkout where not all referenced
+  // projects may be available, and ebuilds referencing missing projects should
+  // be ignored.  This is used for paygen builders.
+  bool ignore_missing_projects = 5;
 }
 
 

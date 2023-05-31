@@ -6251,6 +6251,13 @@
               "name": "output_dir",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ignoreMissingProjects",
+              "label": "LABEL_OPTIONAL",
+              "name": "ignore_missing_projects",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "UprevPackagesRequest"
