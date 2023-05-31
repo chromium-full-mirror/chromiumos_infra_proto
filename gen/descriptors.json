@@ -28966,6 +28966,13 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.test.lab.api.DutTopology"
+            },
+            {
+              "jsonName": "useDockerKeyDirectly",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_docker_key_directly",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CrosTestRunnerServerStartRequest"

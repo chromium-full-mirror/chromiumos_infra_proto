@@ -21,6 +21,7 @@ message CrosTestRunnerServerStartRequest {
   string log_data_gs_root = 2;
   string docker_key_file_location = 3;
   chromiumos.test.lab.api.DutTopology dut_topology = 4;
+  bool use_docker_key_directly = 5;
 }
 
 // CrosTestRunnerService represents cros test runner service.
