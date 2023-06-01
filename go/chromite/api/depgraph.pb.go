@@ -460,7 +460,9 @@ type ListRequest struct {
 	// List of packages for which to get dependencies. If none are specified the
 	// standard list of packages is used.
 	Packages []*chromiumos.PackageInfo `protobuf:"bytes,4,rep,name=packages,proto3" json:"packages,omitempty"`
-	// Whether to also include reverse dependencies. False by default.
+	// Whether to also include affected reverse dependencies. False by default.
+	// See chromite.lib.dependency_graph.PackageNode.affected_packages for
+	// details.
 	// Added in R92.
 	IncludeRevDeps bool `protobuf:"varint,5,opt,name=include_rev_deps,json=includeRevDeps,proto3" json:"include_rev_deps,omitempty"`
 }

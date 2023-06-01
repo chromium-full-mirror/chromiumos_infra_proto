@@ -92,7 +92,9 @@ message ListRequest {
   // List of packages for which to get dependencies. If none are specified the
   // standard list of packages is used.
   repeated chromiumos.PackageInfo packages = 4;
-  // Whether to also include reverse dependencies. False by default.
+  // Whether to also include affected reverse dependencies. False by default.
+  // See chromite.lib.dependency_graph.PackageNode.affected_packages for
+  // details.
   // Added in R92.
   bool include_rev_deps = 5;
 }
