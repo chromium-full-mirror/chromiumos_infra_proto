@@ -32,6 +32,7 @@ message RetryRule {
     repeated string builder_name_re = 2;
     repeated string summary_markdown_re = 3;
     chromiumos.RetryStep failed_checkpoint = 4;
+    chromiumos.RetryStep before_checkpoint = 11;
 
     // If more than a certain percent of builds fail, we'll stop retrying.
     float cutoff_percent = 5;

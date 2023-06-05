@@ -15818,6 +15818,14 @@
               "typeName": ".chromiumos.RetryStep"
             },
             {
+              "jsonName": "beforeCheckpoint",
+              "label": "LABEL_OPTIONAL",
+              "name": "before_checkpoint",
+              "number": 11,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.RetryStep"
+            },
+            {
               "jsonName": "cutoffPercent",
               "label": "LABEL_OPTIONAL",
               "name": "cutoff_percent",
