@@ -2978,6 +2978,13 @@
                   "name": "workon",
                   "number": 7,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "bazel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bazel",
+                  "number": 8,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags",
