@@ -14,9 +14,10 @@ message TaskLogData {
     // gs_url is the full google storage URL at which a task's logs are stored.
     string gs_url = 1;
 
+    // Deprecated: Use the testhaus_url field below instead.
     // stainless_url is the full URL to the stainless logs viewer for archived
     // logs.
-    string stainless_url = 2;
+    string stainless_url = 2 [deprecated = true];
 
     // testhaus_url is the full URL to the Testhaus logs viewer for archived
     // logs.

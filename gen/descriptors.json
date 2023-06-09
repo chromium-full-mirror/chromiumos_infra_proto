@@ -23979,6 +23979,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "stainless_url",
               "number": 2,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
