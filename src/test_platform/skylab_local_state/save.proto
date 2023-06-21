@@ -31,4 +31,7 @@ message SaveRequest {
 
   // Hostname of peer DUTs in a multi-DUTs task.
   repeated string peer_duts = 7;
+
+  // Special repair-requests to enforce repair actions.
+  repeated string repair_requests = 8;
 }
