@@ -244,6 +244,9 @@ message BuildSdkToolchainRequest {
 
   // USE flags to pass into cros_setup_toolchain.
   repeated chromiumos.UseFlag use_flags = 2;
+
+  // Path into which generated files will be extracted.
+  chromiumos.ResultPath result_path = 3;
 }
 
 // Response from building toolchain packages for the SDK.

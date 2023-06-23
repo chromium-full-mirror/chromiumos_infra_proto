@@ -7081,6 +7081,14 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.UseFlag"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "BuildSdkToolchainRequest"
