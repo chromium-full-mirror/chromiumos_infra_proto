@@ -6719,6 +6719,7 @@
       },
       "dependency": [
         "chromite/api/build_api.proto",
+        "chromite/api/sysroot.proto",
         "chromiumos/common.proto"
       ],
       "messageType": [
@@ -6901,6 +6902,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.ChrootVersion"
+            },
+            {
+              "jsonName": "failedPackageData",
+              "label": "LABEL_REPEATED",
+              "name": "failed_package_data",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FailedPackageData"
             }
           ],
           "name": "UpdateResponse"

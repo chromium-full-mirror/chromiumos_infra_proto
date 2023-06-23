@@ -5,6 +5,7 @@ package chromite.api;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
 
@@ -89,6 +90,9 @@ message UpdateRequest {
 message UpdateResponse {
   // The chroot version after update is complete.
   ChrootVersion version = 1;
+  // Additional data about the packages that failed to build.
+  // Added in R118.
+  repeated FailedPackageData failed_package_data = 2;
 }
 
 // Uprev SDK request.
