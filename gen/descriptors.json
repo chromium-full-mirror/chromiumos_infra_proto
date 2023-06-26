@@ -7193,6 +7193,11 @@
             {
               "inputType": ".chromite.api.BuildSdkToolchainRequest",
               "name": "BuildSdkToolchain",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
               "outputType": ".chromite.api.BuildSdkToolchainResponse"
             }
           ],

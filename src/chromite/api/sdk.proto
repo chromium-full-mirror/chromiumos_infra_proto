@@ -317,5 +317,9 @@ service SdkService {
 
   // Build toolchain cross-compilers for the SDK.
   rpc BuildSdkToolchain(BuildSdkToolchainRequest)
-    returns (BuildSdkToolchainResponse);
+      returns (BuildSdkToolchainResponse) {
+          option (method_options) = {
+            method_chroot_assert: INSIDE,
+          };
+    };
 }
