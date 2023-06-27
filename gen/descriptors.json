@@ -11876,6 +11876,14 @@
               "name": "minios",
               "number": 13,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 14,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "GenerationRequest",
@@ -11956,6 +11964,9 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "local_path",
                   "number": 2,
+                  "options": {
+                    "deprecated": true
+                  },
                   "type": "TYPE_STRING"
                 },
                 {
@@ -11964,6 +11975,14 @@
                   "name": "remote_uri",
                   "number": 3,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "filePath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "file_path",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.Path"
                 }
               ],
               "name": "VersionedArtifact"

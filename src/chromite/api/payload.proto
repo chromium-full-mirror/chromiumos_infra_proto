@@ -112,6 +112,9 @@ message GenerationRequest {
   // This is only meaningful if the src and tgt images are either
   // both SignedImage or both UnsignedImage.
   bool minios = 13;
+
+  // Target directory where output artifacts should be stored.
+  chromiumos.ResultPath result_path = 14;
 }
 
 // Result of a payload generation.
@@ -129,11 +132,13 @@ message GenerationResponse {
   message VersionedArtifact {
     // Version of the payload (eg. 1).
     uint32 version = 1;
-    // If successful we may have a local artifact available. Generally this takes
-    // the form of '/tmp/ioadwjoawjd/delta.bin'.
-    string local_path = 2;
+    // Local artifact path. Deprecated since R117. Use file_path.
+    string local_path = 2 [deprecated = true];
     // If successful we may have uploaded an artifact to google storage.
     string remote_uri = 3;
+    // If successful we may have a local artifact available. Generally this
+    // takes the form of '/path/to/tmp/ioadwjoawjd/delta.bin'.
+    chromiumos.Path file_path = 4;
   }
   repeated VersionedArtifact versioned_artifacts = 5;
 
