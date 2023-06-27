@@ -101,6 +101,8 @@ message BuildTargetUnitTestRequest {
   repeated chromiumos.PackageInfo packages = 6;
   // Skipped packages.
   repeated chromiumos.PackageInfo package_blocklist = 7;
+  // Directory where results (logs, etc.) should be stored.
+  chromiumos.ResultPath results_path = 8;
 }
 
 message BuildTargetUnitTestResponse {

@@ -2906,6 +2906,14 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "InstallToolchainRequest",
@@ -3018,6 +3026,14 @@
               "number": 8,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.RemoteexecConfig"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "InstallPackagesRequest",
@@ -7423,6 +7439,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.PackageInfo"
+            },
+            {
+              "jsonName": "resultsPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "results_path",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "BuildTargetUnitTestRequest",

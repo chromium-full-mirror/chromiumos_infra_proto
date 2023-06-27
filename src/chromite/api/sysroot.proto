@@ -94,6 +94,8 @@ message InstallToolchainRequest {
   Flags flags = 2;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 3;
+  // Directory where results (logs, etc.) should be stored.
+  chromiumos.ResultPath result_path = 4;
 }
 
 message InstallToolchainResponse {
@@ -151,6 +153,8 @@ message InstallPackagesRequest {
   repeated chromiumos.PackageIndexInfo package_indexes = 7;
   // Remoteexec Config to hold info needed for remote execution.
   chromiumos.RemoteexecConfig remoteexec_config = 8;
+  // Directory where results (logs, etc.) should be stored.
+  chromiumos.ResultPath result_path = 9;
 }
 
 message InstallPackagesResponse {
