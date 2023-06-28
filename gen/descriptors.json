@@ -1232,7 +1232,7 @@
                       "start": 29
                     },
                     {
-                      "end": 51,
+                      "end": 52,
                       "start": 33
                     }
                   ],
@@ -1448,6 +1448,10 @@
                     {
                       "name": "COMPILER_RUSAGE_LOG",
                       "number": 29
+                    },
+                    {
+                      "name": "SDK_TOOLCHAIN_PREBUILTS",
+                      "number": 52
                     }
                   ]
                 }
@@ -1533,7 +1537,7 @@
                       "start": 46
                     },
                     {
-                      "end": 51,
+                      "end": 52,
                       "start": 50
                     }
                   ],
@@ -1626,7 +1630,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 51,
+                      "end": 52,
                       "start": 1
                     }
                   ],
@@ -1719,8 +1723,8 @@
                       "start": 48
                     },
                     {
-                      "end": 51,
-                      "start": 51
+                      "end": 52,
+                      "start": 52
                     }
                   ],
                   "value": [
@@ -1876,7 +1880,7 @@
                       "start": 47
                     },
                     {
-                      "end": 51,
+                      "end": 52,
                       "start": 49
                     }
                   ],
@@ -1989,7 +1993,7 @@
                       "start": 34
                     },
                     {
-                      "end": 51,
+                      "end": 52,
                       "start": 45
                     }
                   ],
@@ -2098,7 +2102,7 @@
                       "start": 1
                     },
                     {
-                      "end": 51,
+                      "end": 52,
                       "start": 37
                     }
                   ],
@@ -2177,6 +2181,10 @@
                     {
                       "end": 50,
                       "start": 1
+                    },
+                    {
+                      "end": 52,
+                      "start": 52
                     }
                   ],
                   "value": [
