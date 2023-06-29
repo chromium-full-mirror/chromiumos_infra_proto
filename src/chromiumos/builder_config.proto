@@ -377,6 +377,12 @@ message BuilderConfig {
 
       // Archive the entire sysroot.
       SYSROOT_ARCHIVE = 50;
+
+      // A tarball containing the SDK itself.
+      SDK_TARBALL = 51;
+
+      // Tarball of cross-compiling toolchain prebuilts.
+      SDK_TOOLCHAIN_PREBUILTS = 52;
     }
     repeated ArtifactTypes artifact_types = 2;
 

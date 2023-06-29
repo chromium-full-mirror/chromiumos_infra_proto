@@ -10617,6 +10617,14 @@
                     {
                       "name": "SYSROOT_ARCHIVE",
                       "number": 50
+                    },
+                    {
+                      "name": "SDK_TARBALL",
+                      "number": 51
+                    },
+                    {
+                      "name": "SDK_TOOLCHAIN_PREBUILTS",
+                      "number": 52
                     }
                   ]
                 }
