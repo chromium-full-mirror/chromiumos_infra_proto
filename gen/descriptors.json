@@ -14049,6 +14049,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "resourceGroup",
+              "label": "LABEL_OPTIONAL",
+              "name": "resource_group",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "botType",
               "label": "LABEL_OPTIONAL",
               "name": "bot_type",

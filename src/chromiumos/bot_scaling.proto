@@ -35,6 +35,8 @@ message SwarmingDimension {
 message BotPolicy {
   // Bot group controlled by this policy, like, 'cq', 'postsubmit',...
   string bot_group = 1;
+  // Resource group for quota and cost tracking.
+  string resource_group = 11;
   // The type of bot to be requested.
   BotType bot_type = 2;
   // Scaling restriction specifies the limits on how the group can be
