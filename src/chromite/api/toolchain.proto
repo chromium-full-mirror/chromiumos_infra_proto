@@ -206,6 +206,9 @@ message SetupToolchainsRequest {
   // Boards whose toolchains we will always include.
   // Maps to the --include-boards param of cros_setup_toolchains.
   repeated chromiumos.BuildTarget boards = 1;
+
+  // The chroot to run the command in.
+  chromiumos.Chroot chroot = 2;
 }
 
 message SetupToolchainsResponse {}
