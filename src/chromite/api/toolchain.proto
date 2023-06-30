@@ -201,7 +201,16 @@ message ToolchainsResponse {
   repeated string nondefault_toolchains = 2;
 }
 
-// Service for Android/ARC related functionality.
+// Parameters to run cros_setup_toolchains.
+message SetupToolchainsRequest {
+  // Boards whose toolchains we will always include.
+  // Maps to the --include-boards param of cros_setup_toolchains.
+  repeated chromiumos.BuildTarget boards = 1;
+}
+
+message SetupToolchainsResponse {}
+
+// Service for toolchain-related functionality: compilers, linkers, runtimes.
 service ToolchainService {
   option (service_options) = {
     module: "toolchain",
@@ -253,4 +262,10 @@ service ToolchainService {
 
   // Get the default and non-default toolchains for a board.
   rpc GetToolchainsForBoard(ToolchainsRequest) returns (ToolchainsResponse);
+
+  rpc SetupToolchains(SetupToolchainsRequest) returns (SetupToolchainsResponse) {
+    option (method_options) = {
+      method_chroot_assert: INSIDE,
+    };
+  };
 }

@@ -13189,6 +13189,22 @@
             }
           ],
           "name": "ToolchainsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "boards",
+              "label": "LABEL_REPEATED",
+              "name": "boards",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            }
+          ],
+          "name": "SetupToolchainsRequest"
+        },
+        {
+          "name": "SetupToolchainsResponse"
         }
       ],
       "name": "chromite/api/toolchain.proto",
@@ -13248,6 +13264,16 @@
               "inputType": ".chromite.api.ToolchainsRequest",
               "name": "GetToolchainsForBoard",
               "outputType": ".chromite.api.ToolchainsResponse"
+            },
+            {
+              "inputType": ".chromite.api.SetupToolchainsRequest",
+              "name": "SetupToolchains",
+              "options": {
+                "[method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
+              "outputType": ".chromite.api.SetupToolchainsResponse"
             }
           ],
           "name": "ToolchainService",

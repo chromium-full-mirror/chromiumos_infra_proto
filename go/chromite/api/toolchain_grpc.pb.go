@@ -46,6 +46,7 @@ type ToolchainServiceClient interface {
 	GetClippyLints(ctx context.Context, in *LinterRequest, opts ...grpc.CallOption) (*LinterResponse, error)
 	// Get the default and non-default toolchains for a board.
 	GetToolchainsForBoard(ctx context.Context, in *ToolchainsRequest, opts ...grpc.CallOption) (*ToolchainsResponse, error)
+	SetupToolchains(ctx context.Context, in *SetupToolchainsRequest, opts ...grpc.CallOption) (*SetupToolchainsResponse, error)
 }
 
 type toolchainServiceClient struct {
@@ -119,6 +120,15 @@ func (c *toolchainServiceClient) GetToolchainsForBoard(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *toolchainServiceClient) SetupToolchains(ctx context.Context, in *SetupToolchainsRequest, opts ...grpc.CallOption) (*SetupToolchainsResponse, error) {
+	out := new(SetupToolchainsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/SetupToolchains", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ToolchainServiceServer is the server API for ToolchainService service.
 // All implementations must embed UnimplementedToolchainServiceServer
 // for forward compatibility
@@ -147,6 +157,7 @@ type ToolchainServiceServer interface {
 	GetClippyLints(context.Context, *LinterRequest) (*LinterResponse, error)
 	// Get the default and non-default toolchains for a board.
 	GetToolchainsForBoard(context.Context, *ToolchainsRequest) (*ToolchainsResponse, error)
+	SetupToolchains(context.Context, *SetupToolchainsRequest) (*SetupToolchainsResponse, error)
 	mustEmbedUnimplementedToolchainServiceServer()
 }
 
@@ -174,6 +185,9 @@ func (UnimplementedToolchainServiceServer) GetClippyLints(context.Context, *Lint
 }
 func (UnimplementedToolchainServiceServer) GetToolchainsForBoard(context.Context, *ToolchainsRequest) (*ToolchainsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetToolchainsForBoard not implemented")
+}
+func (UnimplementedToolchainServiceServer) SetupToolchains(context.Context, *SetupToolchainsRequest) (*SetupToolchainsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetupToolchains not implemented")
 }
 func (UnimplementedToolchainServiceServer) mustEmbedUnimplementedToolchainServiceServer() {}
 
@@ -314,6 +328,24 @@ func _ToolchainService_GetToolchainsForBoard_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ToolchainService_SetupToolchains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetupToolchainsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).SetupToolchains(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/SetupToolchains",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).SetupToolchains(ctx, req.(*SetupToolchainsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ToolchainService_ServiceDesc is the grpc.ServiceDesc for ToolchainService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -348,6 +380,10 @@ var ToolchainService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetToolchainsForBoard",
 			Handler:    _ToolchainService_GetToolchainsForBoard_Handler,
+		},
+		{
+			MethodName: "SetupToolchains",
+			Handler:    _ToolchainService_SetupToolchains_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
