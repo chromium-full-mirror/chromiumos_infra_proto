@@ -85,6 +85,8 @@ message BuildTargetUnitTestRequest {
     // TODO(b/215596245): Reuse the code_coverage flag and remove this
     // once rust and clang converge on tooling.
     bool rust_code_coverage = 6;
+    // Whether to use Bazel to run unit tests.
+    bool bazel = 7;
   }
 
   reserved 2, 5;

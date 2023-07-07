@@ -5530,6 +5530,13 @@
               "name": "base_is_recovery",
               "number": 8,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "bazel",
+              "label": "LABEL_OPTIONAL",
+              "name": "bazel",
+              "number": 9,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CreateImageRequest"
@@ -7648,6 +7655,13 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "rust_code_coverage",
                   "number": 6,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "bazel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bazel",
+                  "number": 7,
                   "type": "TYPE_BOOL"
                 }
               ],

@@ -46,6 +46,8 @@ message CreateImageRequest {
   chromiumos.Chroot chroot = 7;
   // Whether to use the base image as the recovery image.
   bool base_is_recovery = 8;
+  // Whether to use Bazel to build the image.
+  bool bazel = 9;
 }
 
 message CreateImageResult {
