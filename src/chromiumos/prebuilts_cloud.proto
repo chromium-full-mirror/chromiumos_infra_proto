@@ -11,6 +11,8 @@ package chromiumos;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 option java_package = "com.google.chrome.crosinfra.proto";
 
+import "google/protobuf/timestamp.proto";
+
 // This is used by the `update_service` to update the `lookup_service` database
 // with metadata related to snapshots. The `update_snapshot_data` Pub/Sub topic
 // is associated with this schema definition, so messages sent to update
@@ -34,10 +36,10 @@ message UpdateSnapshotDataRequest {
 // While this is primarily used to update binhost metadata, the build target
 // profiles table is also updated to keep a record of all build targets and
 // their associated profiles. The `update_binhost_data` Pub/Sub topic is
-// associated with this schema defintion, so messages sent to update binhost
+// associated with this schema definition, so messages sent to update binhost
 // data must follow this format.
 // All the fields must be sent in each message.
-message UpdateBinhostDataRequest{
+message UpdateBinhostDataRequest {
   // The system Chrome OS is being built for, also known as board.
   string build_target = 1;
 
@@ -62,4 +64,51 @@ message UpdateBinhostDataRequest{
 
   // Bool to indicate if the binhost is private.
   bool private = 8;
+}
+
+// This is used to query binhosts from the binhost lookup service. The cloud
+// function defined in the `chromeos-prebuilts` project accepts incoming HTTP
+// GET requests and returns locations of the binhosts, which are filtered based
+// on the given filter parameters. The data sent using this protobuf message
+// must be a serialized, base64 encoded and sent as query parameter with the
+// name `filter`.
+message LookupBinhostsRequest {
+
+  // Name of the google storage bucket (without the "gs://" prefix) which
+  // contains the binhosts (e.g. "chromeos-prebuilt").
+  string gs_bucket_name = 1;
+
+  // List of snapshot SHAs to query for binhosts.
+  repeated string snapshot_shas = 2;
+
+  // The build target (also know as board) of the binhosts.
+  string build_target = 3;
+
+  // build_target profile of the binhosts.
+  string profile = 4;
+
+  // Bool to indicate if the binhosts are private.
+  bool private = 5;
+}
+
+// Response sent by the cloud function defined in the `chromeos-prebuilts`
+// project to lookup binhosts. This contains locations of the binhosts, which
+// are filtered based on the filter parameters.
+message LookupBinhostsResponse {
+
+  // Metadata related to a binhost.
+  message Binhost {
+
+    // ID of the binhost record in the `lookup_service` DB.
+    uint64 binhost_id = 1;
+
+    // Full path to the google storage location of the binhost.
+    string gs_uri = 2;
+
+    // Time when the binhost record was inserted into the database.
+    google.protobuf.Timestamp created_at = 3;
+  }
+
+  // List of `Binhost` objects.
+  repeated Binhost binhosts = 1;
 }

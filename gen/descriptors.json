@@ -17003,6 +17003,9 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "google/protobuf/timestamp.proto"
+      ],
       "messageType": [
         {
           "field": [
@@ -17097,6 +17100,88 @@
             }
           ],
           "name": "UpdateBinhostDataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "gsBucketName",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_bucket_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "snapshotShas",
+              "label": "LABEL_REPEATED",
+              "name": "snapshot_shas",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "profile",
+              "label": "LABEL_OPTIONAL",
+              "name": "profile",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "private",
+              "label": "LABEL_OPTIONAL",
+              "name": "private",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "LookupBinhostsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "binhosts",
+              "label": "LABEL_REPEATED",
+              "name": "binhosts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.LookupBinhostsResponse.Binhost"
+            }
+          ],
+          "name": "LookupBinhostsResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "binhostId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "binhost_id",
+                  "number": 1,
+                  "type": "TYPE_UINT64"
+                },
+                {
+                  "jsonName": "gsUri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "gs_uri",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "createdAt",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "created_at",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.Timestamp"
+                }
+              ],
+              "name": "Binhost"
+            }
+          ]
         }
       ],
       "name": "chromiumos/prebuilts_cloud.proto",
