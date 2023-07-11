@@ -32645,6 +32645,10 @@
                     {
                       "name": "CRON_BASED",
                       "number": 4
+                    },
+                    {
+                      "name": "FORTNIGHTLY",
+                      "number": 5
                     }
                   ]
                 }

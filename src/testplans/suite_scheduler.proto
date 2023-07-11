@@ -83,12 +83,14 @@ message SchedulerConfig {
             WEEKLY = 3;
             // NOT SUPPORTED. Will be supported in the redesign.
             CRON_BASED = 4;
+            // Run once every other week at the specified time
+            FORTNIGHTLY = 5;
         }
         LaunchProfile launch_profile = 1;
         // Hour at which to run. Needs to be specified for nightly and weekly profiles.
         // Has to be [0, 23].
         int32 hour = 2;
-        // Day on which to run. Needs to be specified for weekly profile.
+        // Day on which to run. Needs to be specified for weekly AND fortnightly profile.
         // Has to be [0, 6].
         int32 day = 3;
         // NOT SUPPORTED. Cron compatible schedule eg: "* * 1,3,5 * *".
