@@ -18604,6 +18604,10 @@
                 {
                   "name": "SOC_MT8188G",
                   "number": 44
+                },
+                {
+                  "name": "SOC_PHOENIX",
+                  "number": 45
                 }
               ]
             },
