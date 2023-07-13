@@ -66,6 +66,9 @@ message BinhostGetRequest {
   // Required.
   // Whether to include private binhosts.
   bool private = 2;
+  // Required when chroot not at default location.
+  // The chroot where the build target's sysroot lives.
+  chromiumos.Chroot chroot = 3;
 }
 
 message BinhostGetResponse {

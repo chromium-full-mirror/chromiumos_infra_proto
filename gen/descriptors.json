@@ -4133,6 +4133,14 @@
               "name": "private",
               "number": 2,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
             }
           ],
           "name": "BinhostGetRequest"
