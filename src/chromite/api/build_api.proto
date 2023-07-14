@@ -1,6 +1,8 @@
 // Custom option defs must be proto2 syntax.
 syntax = "proto2";
 
+package chromite.api;
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 import "google/protobuf/descriptor.proto";

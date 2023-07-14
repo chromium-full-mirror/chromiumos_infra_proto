@@ -69,7 +69,7 @@
           "name": "service_options",
           "number": 55000,
           "type": "TYPE_MESSAGE",
-          "typeName": ".BuildApiServiceOptions"
+          "typeName": ".chromite.api.BuildApiServiceOptions"
         },
         {
           "extendee": ".google.protobuf.MethodOptions",
@@ -78,7 +78,7 @@
           "name": "method_options",
           "number": 55000,
           "type": "TYPE_MESSAGE",
-          "typeName": ".BuildApiMethodOptions"
+          "typeName": ".chromite.api.BuildApiMethodOptions"
         }
       ],
       "messageType": [
@@ -97,7 +97,7 @@
               "name": "service_chroot_assert",
               "number": 2,
               "type": "TYPE_ENUM",
-              "typeName": ".ChrootAssertion"
+              "typeName": ".chromite.api.ChrootAssertion"
             },
             {
               "jsonName": "serviceVisibility",
@@ -105,7 +105,7 @@
               "name": "service_visibility",
               "number": 3,
               "type": "TYPE_ENUM",
-              "typeName": ".ListVisibility"
+              "typeName": ".chromite.api.ListVisibility"
             },
             {
               "jsonName": "serviceBranchedExecution",
@@ -113,7 +113,7 @@
               "name": "service_branched_execution",
               "number": 4,
               "type": "TYPE_ENUM",
-              "typeName": ".BranchedExecution"
+              "typeName": ".chromite.api.BranchedExecution"
             }
           ],
           "name": "BuildApiServiceOptions"
@@ -133,7 +133,7 @@
               "name": "method_chroot_assert",
               "number": 2,
               "type": "TYPE_ENUM",
-              "typeName": ".ChrootAssertion"
+              "typeName": ".chromite.api.ChrootAssertion"
             },
             {
               "jsonName": "methodVisibility",
@@ -141,7 +141,7 @@
               "name": "method_visibility",
               "number": 3,
               "type": "TYPE_ENUM",
-              "typeName": ".ListVisibility"
+              "typeName": ".chromite.api.ListVisibility"
             },
             {
               "jsonName": "methodBranchedExecution",
@@ -149,7 +149,7 @@
               "name": "method_branched_execution",
               "number": 4,
               "type": "TYPE_ENUM",
-              "typeName": ".BranchedExecution"
+              "typeName": ".chromite.api.BranchedExecution"
             }
           ],
           "name": "BuildApiMethodOptions"
@@ -158,7 +158,8 @@
       "name": "chromite/api/build_api.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
-      }
+      },
+      "package": "chromite.api"
     },
     {
       "bufExtension": {
@@ -3401,7 +3402,7 @@
           ],
           "name": "SysrootService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "sysroot",
               "serviceChrootAssert": "INSIDE"
             }
@@ -3970,7 +3971,7 @@
           ],
           "name": "ArtifactsService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "artifacts",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -4543,7 +4544,7 @@
               "inputType": ".chromite.api.BinhostGetRequest",
               "name": "Get",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "implementationName": "GetBinhosts",
                   "methodChrootAssert": "INSIDE"
                 }
@@ -4593,7 +4594,7 @@
           ],
           "name": "BinhostService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "binhost",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -4851,7 +4852,7 @@
           ],
           "name": "DependencyService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "dependency",
               "serviceChrootAssert": "INSIDE"
             }
@@ -5436,7 +5437,7 @@
           ],
           "name": "FirmwareService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "firmware",
               "serviceChrootAssert": "INSIDE"
             }
@@ -5829,7 +5830,7 @@
           ],
           "name": "ImageService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "image",
               "serviceChrootAssert": "INSIDE"
             }
@@ -6656,7 +6657,7 @@
               "inputType": ".chromite.api.RevBumpChromeRequest",
               "name": "RevBumpChrome",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -6666,7 +6667,7 @@
               "inputType": ".chromite.api.UprevPackagesRequest",
               "name": "Uprev",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -6676,7 +6677,7 @@
               "inputType": ".chromite.api.UprevVersionedPackageRequest",
               "name": "UprevVersionedPackage",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -6685,7 +6686,7 @@
           ],
           "name": "PackageService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "packages",
               "serviceChrootAssert": "INSIDE"
             }
@@ -7338,7 +7339,7 @@
               "inputType": ".chromite.api.UpdateRequest",
               "name": "Update",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -7393,7 +7394,7 @@
               "inputType": ".chromite.api.BuildSdkToolchainRequest",
               "name": "BuildSdkToolchain",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -7402,7 +7403,7 @@
           ],
           "name": "SdkService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "sdk",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -7979,7 +7980,7 @@
               "inputType": ".chromite.api.BuildTestServiceContainersRequest",
               "name": "BuildTestServiceContainers",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -8024,7 +8025,7 @@
               "inputType": ".chromite.api.SimpleChromeWorkflowTestRequest",
               "name": "SimpleChromeWorkflowTest",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -8033,7 +8034,7 @@
           ],
           "name": "TestService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "test",
               "serviceChrootAssert": "INSIDE"
             }
@@ -8844,7 +8845,7 @@
               "inputType": ".chromite.api.GetLatestBuildRequest",
               "name": "GetLatestBuild",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -8854,7 +8855,7 @@
               "inputType": ".chromite.api.MarkStableRequest",
               "name": "MarkStable",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -8864,7 +8865,7 @@
               "inputType": ".chromite.api.UnpinVersionRequest",
               "name": "UnpinVersion",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -8874,7 +8875,7 @@
               "inputType": ".chromite.api.WriteLKGBRequest",
               "name": "WriteLKGB",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -8883,7 +8884,7 @@
           ],
           "name": "AndroidService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "android",
               "serviceChrootAssert": "INSIDE"
             }
@@ -9022,7 +9023,7 @@
           ],
           "name": "ApiService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "api",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -9034,7 +9035,7 @@
               "inputType": ".chromite.api.MethodGetRequest",
               "name": "Get",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "implementationName": "GetMethods"
                 }
               },
@@ -9043,7 +9044,7 @@
           ],
           "name": "MethodService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "api",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -9055,7 +9056,7 @@
               "inputType": ".chromite.api.VersionGetRequest",
               "name": "Get",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "implementationName": "GetVersion"
                 }
               },
@@ -9064,7 +9065,7 @@
           ],
           "name": "VersionService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "api",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -9411,7 +9412,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "RenamedMethod",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "implementationName": "CorrectName"
                 }
               },
@@ -9421,7 +9422,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "HiddenMethod",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodVisibility": "LV_HIDDEN"
                 }
               },
@@ -9430,7 +9431,7 @@
           ],
           "name": "TestApiService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "build_api_test"
             }
           }
@@ -9446,7 +9447,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "InsideServiceOutsideMethod",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
@@ -9455,7 +9456,7 @@
           ],
           "name": "InsideChrootApiService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "build_api_test",
               "serviceChrootAssert": "INSIDE"
             }
@@ -9472,7 +9473,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "OutsideServiceInsideMethod",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -9481,7 +9482,7 @@
           ],
           "name": "OutsideChrootApiService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "build_api_test",
               "serviceChrootAssert": "OUTSIDE"
             }
@@ -9497,7 +9498,7 @@
           ],
           "name": "HiddenService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "build_api_test",
               "serviceChrootAssert": "OUTSIDE",
               "serviceVisibility": "LV_HIDDEN"
@@ -9515,7 +9516,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "TotServiceTotMethodInside",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -9525,7 +9526,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "TotServiceBranchedMethod",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodBranchedExecution": "EXECUTE_BRANCHED"
                 }
               },
@@ -9535,7 +9536,7 @@
               "inputType": ".chromite.api.TestRequestMessage",
               "name": "TotServiceBranchedMethodInside",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodBranchedExecution": "EXECUTE_BRANCHED"
                 }
               },
@@ -9544,7 +9545,7 @@
           ],
           "name": "TotExecutionService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "build_api_test",
               "serviceBranchedExecution": "EXECUTE_TOT",
               "serviceChrootAssert": "OUTSIDE"
@@ -9847,7 +9848,7 @@
           ],
           "name": "CopybotService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "copybot"
             }
           }
@@ -9918,7 +9919,7 @@
           ],
           "name": "MetadataService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "metadata",
               "serviceChrootAssert": "INSIDE"
             }
@@ -11586,7 +11587,7 @@
           ],
           "name": "ObservabilityService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "observability",
               "serviceChrootAssert": "INSIDE"
             }
@@ -11963,7 +11964,7 @@
           ],
           "name": "PayloadService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "payload",
               "serviceChrootAssert": "INSIDE"
             }
@@ -12330,7 +12331,7 @@
           ],
           "name": "PortageExplorerService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "portage_explorer",
               "serviceChrootAssert": "INSIDE"
             }
@@ -12413,7 +12414,7 @@
           ],
           "name": "RemoteTestDriverService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "remote_test_driver",
               "serviceChrootAssert": "INSIDE"
             }
@@ -12648,7 +12649,7 @@
           ],
           "name": "TestMetadataService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "test_metadata",
               "serviceChrootAssert": "INSIDE"
             }
@@ -13277,7 +13278,7 @@
               "inputType": ".chromite.api.DashboardLintRequest",
               "name": "EmergeAndUploadLints",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -13287,7 +13288,7 @@
               "inputType": ".chromite.api.LinterRequest",
               "name": "EmergeWithLinting",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -13297,7 +13298,7 @@
               "inputType": ".chromite.api.LinterRequest",
               "name": "GetClippyLints",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -13312,7 +13313,7 @@
               "inputType": ".chromite.api.SetupToolchainsRequest",
               "name": "SetupToolchains",
               "options": {
-                "[method_options]": {
+                "[chromite.api.method_options]": {
                   "methodChrootAssert": "INSIDE"
                 }
               },
@@ -13321,7 +13322,7 @@
           ],
           "name": "ToolchainService",
           "options": {
-            "[service_options]": {
+            "[chromite.api.service_options]": {
               "module": "toolchain",
               "serviceChrootAssert": "OUTSIDE"
             }
