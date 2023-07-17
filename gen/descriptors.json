@@ -4536,7 +4536,8 @@
               "name": "Get",
               "options": {
                 "[method_options]": {
-                  "implementationName": "GetBinhosts"
+                  "implementationName": "GetBinhosts",
+                  "methodChrootAssert": "INSIDE"
                 }
               },
               "outputType": ".chromite.api.BinhostGetResponse"

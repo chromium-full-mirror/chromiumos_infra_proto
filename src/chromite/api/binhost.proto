@@ -297,6 +297,7 @@ service BinhostService {
   rpc Get(BinhostGetRequest) returns (BinhostGetResponse) {
     option (method_options) = {
       implementation_name: "GetBinhosts",
+      method_chroot_assert: INSIDE,
     };
   }
 
