@@ -4008,6 +4008,10 @@
             {
               "name": "CQ_BINHOST",
               "number": 5
+            },
+            {
+              "name": "INFORMATIONAL_BINHOST",
+              "number": 6
             }
           ]
         },
