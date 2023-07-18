@@ -22,13 +22,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ToolchainServiceClient interface {
-	// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
+	// TODO(b/187790484): Migrate this to ArtifactsService/BuildSetup.
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
 	// again at the start of the 'install packages' step, if the build gets that
 	// far.  Added in R80.
 	PrepareForBuild(ctx context.Context, in *PrepareForToolchainBuildRequest, opts ...grpc.CallOption) (*PrepareForToolchainBuildResponse, error)
-	// TODO(crbug/1034529): Migrate this to ArtifactsService/Get.
+	// TODO(b/187790484): Migrate this to ArtifactsService/Get.
 	// Bundle toolchain artifacts.  Added in R80.
 	BundleArtifacts(ctx context.Context, in *BundleToolchainRequest, opts ...grpc.CallOption) (*BundleToolchainResponse, error)
 	// Added in R90.
@@ -133,13 +133,13 @@ func (c *toolchainServiceClient) SetupToolchains(ctx context.Context, in *SetupT
 // All implementations must embed UnimplementedToolchainServiceServer
 // for forward compatibility
 type ToolchainServiceServer interface {
-	// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
+	// TODO(b/187790484): Migrate this to ArtifactsService/BuildSetup.
 	// Prepare to build toolchain artifacts.  This will be called twice:
 	// Once with chroot and sysroot = None, before the chroot is created, and
 	// again at the start of the 'install packages' step, if the build gets that
 	// far.  Added in R80.
 	PrepareForBuild(context.Context, *PrepareForToolchainBuildRequest) (*PrepareForToolchainBuildResponse, error)
-	// TODO(crbug/1034529): Migrate this to ArtifactsService/Get.
+	// TODO(b/187790484): Migrate this to ArtifactsService/Get.
 	// Bundle toolchain artifacts.  Added in R80.
 	BundleArtifacts(context.Context, *BundleToolchainRequest) (*BundleToolchainResponse, error)
 	// Added in R90.

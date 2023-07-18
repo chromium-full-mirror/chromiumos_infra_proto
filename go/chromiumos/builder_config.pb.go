@@ -547,7 +547,7 @@ func (BuilderConfig_Artifacts_Prebuilts) EnumDescriptor() ([]byte, []int) {
 // Used to indicate artifact types that should be uploaded by the builder.
 // Must be kept in sync with the dictionary in:
 // https://chromium.googlesource.com/chromiumos/infra/recipes/+/refs/heads/master/recipe_modules/cros_artifacts/api.py
-// TODO(crbug/1034529): Being replaced by common.ArtifactsByService, to
+// TODO(b/187790484): Being replaced by common.ArtifactsByService, to
 // eliminate the need to update cros_artifacts every time an artifact type
 // is added.
 type BuilderConfig_Artifacts_ArtifactTypes int32
@@ -1254,7 +1254,7 @@ type BuilderConfig_Artifacts struct {
 	// There may be more than one set of consumable artifacts.
 	InputArtifacts []*BuilderConfig_Artifacts_InputArtifactInfo `protobuf:"bytes,6,rep,name=input_artifacts,json=inputArtifacts,proto3" json:"input_artifacts,omitempty"`
 	// Profile information needed by artifact prepare/bundle endpoints.
-	// TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+	// TODO(b/187790484): DEPRECATED: see artifacts_info.
 	ArtifactProfileInfo *ArtifactProfileInfo `protobuf:"bytes,7,opt,name=artifact_profile_info,json=artifactProfileInfo,proto3" json:"artifact_profile_info,omitempty"`
 	// Artifacts separated by service.
 	ArtifactsInfo *ArtifactsByService `protobuf:"bytes,8,opt,name=artifacts_info,json=artifactsInfo,proto3" json:"artifacts_info,omitempty"`
@@ -1877,7 +1877,7 @@ func (x *BuilderConfig_Orchestrator_FollowOnOrchestrator) GetAwaitCompletion() b
 	return false
 }
 
-// TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+// TODO(b/187790484): DEPRECATED: see artifacts_info.
 type BuilderConfig_Artifacts_PublishInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1953,7 +1953,7 @@ func (x *BuilderConfig_Artifacts_PublishInfo) GetAclName() string {
 	return ""
 }
 
-// TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+// TODO(b/187790484): DEPRECATED: see artifacts_info.
 type BuilderConfig_Artifacts_InputArtifactInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

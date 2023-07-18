@@ -236,7 +236,7 @@ message BuilderConfig {
     // Used to indicate artifact types that should be uploaded by the builder.
     // Must be kept in sync with the dictionary in:
     // https://chromium.googlesource.com/chromiumos/infra/recipes/+/refs/heads/master/recipe_modules/cros_artifacts/api.py
-    // TODO(crbug/1034529): Being replaced by common.ArtifactsByService, to
+    // TODO(b/187790484): Being replaced by common.ArtifactsByService, to
     // eliminate the need to update cros_artifacts every time an artifact type
     // is added.
     enum ArtifactTypes {
@@ -392,7 +392,7 @@ message BuilderConfig {
     // Google storage bucket to upload all artifacts to.
     string artifacts_gs_bucket = 4;
 
-    // TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+    // TODO(b/187790484): DEPRECATED: see artifacts_info.
     message PublishInfo {
       reserved 1;
 
@@ -417,7 +417,7 @@ message BuilderConfig {
     // There may be more than one set of publishing instructions.
     repeated PublishInfo publish_artifacts = 5;
 
-    // TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+    // TODO(b/187790484): DEPRECATED: see artifacts_info.
     message InputArtifactInfo {
       // Artifact type to seek in these buckets.  Use the first instance of the
       // artifact found in the list of locations.
@@ -430,7 +430,7 @@ message BuilderConfig {
     repeated InputArtifactInfo input_artifacts = 6;
 
     // Profile information needed by artifact prepare/bundle endpoints.
-    // TODO(crbug/1034529): DEPRECATED: see artifacts_info.
+    // TODO(b/187790484): DEPRECATED: see artifacts_info.
     ArtifactProfileInfo artifact_profile_info = 7;
 
     // Artifacts separated by service.

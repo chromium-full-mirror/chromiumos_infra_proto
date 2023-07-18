@@ -22,7 +22,7 @@ message ArtifactInfo {
   repeated Artifact artifacts = 2;
 }
 
-// TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
+// TODO(b/187790484): Migrate this to ArtifactsService/BuildSetup.
 //
 // Prepare the build for artifact building.
 message PrepareForToolchainBuildRequest {
@@ -220,7 +220,7 @@ service ToolchainService {
     service_chroot_assert: OUTSIDE,
   };
 
-  // TODO(crbug/1034529): Migrate this to ArtifactsService/BuildSetup.
+  // TODO(b/187790484): Migrate this to ArtifactsService/BuildSetup.
   // Prepare to build toolchain artifacts.  This will be called twice:
   // Once with chroot and sysroot = None, before the chroot is created, and
   // again at the start of the 'install packages' step, if the build gets that
@@ -228,7 +228,7 @@ service ToolchainService {
   rpc PrepareForBuild(PrepareForToolchainBuildRequest)
     returns (PrepareForToolchainBuildResponse);
 
-  // TODO(crbug/1034529): Migrate this to ArtifactsService/Get.
+  // TODO(b/187790484): Migrate this to ArtifactsService/Get.
   // Bundle toolchain artifacts.  Added in R80.
   rpc BundleArtifacts(BundleToolchainRequest)
     returns (BundleToolchainResponse);

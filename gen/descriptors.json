@@ -3706,6 +3706,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.Sysroot"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "BundleRequest"

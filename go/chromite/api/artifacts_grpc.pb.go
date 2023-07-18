@@ -30,51 +30,51 @@ type ArtifactsServiceClient interface {
 	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
 	// Fetch the paths for any metadata files.  Added in R94.
 	FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create the ChromeOS Config JSON payload.  Added in R78.
 	BundleChromeOSConfig(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive of debug symbols.  Added in R90.
 	BundleDebugSymbols(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with ebuild logs.
 	BundleEbuildLogs(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with unsigned firmware images.
 	BundleFirmware(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar.xz archive for each image that has been created.
 	// Added in R79.
 	BundleImageArchives(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Generate zip containing all built images for the target.
 	BundleImageZip(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all guest images test bundles.
 	BundlePinnedGuestImages(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create the simple chrome artifacts.
 	BundleSimpleChromeArtifacts(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all files needed for Tast HW testing.
 	BundleTastFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Generate minimal update payloads to be used in HW testing.
 	BundleTestUpdatePayloads(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(ctx context.Context, in *BundleVmFilesRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Generate a CPE report to a file.  Added in R78.
 	ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with fingerprint MCU on-device unittest binaries.
 	// Added in R88.
 	BundleFpmcuUnittests(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tarball from the test image suitable for importing into GCE.
 	// Added in R89.
 	BundleGceTarball(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
@@ -271,51 +271,51 @@ type ArtifactsServiceServer interface {
 	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
 	// Fetch the paths for any metadata files.  Added in R94.
 	FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create the ChromeOS Config JSON payload.  Added in R78.
 	BundleChromeOSConfig(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive of debug symbols.  Added in R90.
 	BundleDebugSymbols(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with ebuild logs.
 	BundleEbuildLogs(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with unsigned firmware images.
 	BundleFirmware(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar.xz archive for each image that has been created.
 	// Added in R79.
 	BundleImageArchives(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Generate zip containing all built images for the target.
 	BundleImageZip(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all guest images test bundles.
 	BundlePinnedGuestImages(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create the simple chrome artifacts.
 	BundleSimpleChromeArtifacts(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all files needed for Tast HW testing.
 	BundleTastFiles(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Generate minimal update payloads to be used in HW testing.
 	BundleTestUpdatePayloads(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(context.Context, *BundleVmFilesRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Generate a CPE report to a file.  Added in R78.
 	ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with fingerprint MCU on-device unittest binaries.
 	// Added in R88.
 	BundleFpmcuUnittests(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(crbug/1034529): DEPRECATED use Get
+	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tarball from the test image suitable for importing into GCE.
 	// Added in R89.
 	BundleGceTarball(context.Context, *BundleRequest) (*BundleResponse, error)

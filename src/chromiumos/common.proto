@@ -393,59 +393,59 @@ message ArtifactsByService {
     CodeCoverageType coverage_type = 1;
   }
 
-  // TODO(crbug/1034529): Drop this message.
+  // TODO(b/187790484): Drop this message.
   // Artifacts handled within the ArtifactsService endpoints directly.
   message Legacy {
     // Legacy artifacts, handled in cros_artifacts. DO NOT ADD TO THIS.
     enum ArtifactType {
       UNSPECIFIED = 0;
       // Indicates wanting a zip file of everything in the image directory.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Image
+      // TODO(b/187790484): moves to ArtifactsByService.Image
       IMAGE_ZIP = 1;
       // Indicates wanting update payloads.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Test
+      // TODO(b/187790484): moves to ArtifactsByService.Test
       TEST_UPDATE_PAYLOAD = 2;
       // Indicates wanting the autotest tarballs.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Test
+      // TODO(b/187790484): moves to ArtifactsByService.Test
       AUTOTEST_FILES = 3;
       // Indicates wanting a tarball containing private TAST test bundles.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Test
+      // TODO(b/187790484): moves to ArtifactsByService.Test
       TAST_FILES = 4;
       // Indicates wanting a tarball containing guest images and test bundles.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Test
+      // TODO(b/187790484): moves to ArtifactsByService.Test
       PINNED_GUEST_IMAGES = 5;
       // Indicates wanting an archive of firmware images built from source.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Package
+      // TODO(b/187790484): moves to ArtifactsByService.Package
       FIRMWARE = 6;
       // Indicates wanting a tarball of the Ebuilds logs.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
+      // TODO(b/187790484): moves to ArtifactsByService.Sysroot
       EBUILD_LOGS = 7;
       // Indicates wanting an archive of the ChromeOS Config.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
+      // TODO(b/187790484): moves to ArtifactsByService.Sysroot
       CHROMEOS_CONFIG = 8;
       // Indicates wanting the CPE report.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Package
+      // TODO(b/187790484): moves to ArtifactsByService.Package
       CPE_REPORT = 9;
       // Indicates wanting a tar.xz archive for each image created.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Image
+      // TODO(b/187790484): moves to ArtifactsByService.Image
       IMAGE_ARCHIVES = 10;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 11 to 26;
 
       // Indicates wanting a tarball containing fingerprint MCU test binaries.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Test
+      // TODO(b/187790484): moves to ArtifactsByService.Test
       FPMCU_UNITTESTS = 27;
       // Indicates wanting a test image tarball suitable for importing into GCE.
-      // TODO(crbug/1034529): moves to ArtifactsByService.Image
+      // TODO(b/187790484): moves to ArtifactsByService.Image
       GCE_TARBALL = 28;
 
       reserved 29 to 31;
 
       // Indicates wanting the Bundled debug symbol files.
-      // TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
+      // TODO(b/187790484): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
       reserved 33 to 52;
@@ -497,7 +497,7 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 10;
@@ -543,7 +543,7 @@ message ArtifactsByService {
       // Indicates diagnoses for Clang crashes
       CLANG_CRASH_DIAGNOSES = 26;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 27 to 28;
@@ -551,7 +551,7 @@ message ArtifactsByService {
       // Indicates Rusage logs from Compiler Invocations
       COMPILER_RUSAGE_LOG = 29;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 30 to 51;
@@ -604,11 +604,11 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
-      // TODO(crbug/1034529): once an IMAGE_ZIP value is added here, please
+      // TODO(b/187790484): once an IMAGE_ZIP value is added here, please
       // update the build planner (in chromiumos/infra/go), where it says
       // "use the new output artifacts IMAGE_ZIP"
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 33;
@@ -683,7 +683,7 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 52;
@@ -733,7 +733,7 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 31;
@@ -830,7 +830,7 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 36;
@@ -909,7 +909,7 @@ message ArtifactsByService {
     enum ArtifactType {
       UNSPECIFIED = 0;
 
-      // TODO(crbug/1034529): BuilderConfig.Artifacts.ArtifactTypes is a common
+      // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
       reserved 1 to 29;
@@ -1089,7 +1089,7 @@ message ArtifactsByService {
 message UploadedArtifactsByService {
   // Legacy artifacts, handled directly ArtifactsService.
   // Artifacts handled within the ArtifactsService endpoints directly.
-  // TODO(crbug/1034529): Drop this message.
+  // TODO(b/187790484): Drop this message.
   message Legacy {
     message ArtifactPaths {
       // The ArtifactType.

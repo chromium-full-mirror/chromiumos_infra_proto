@@ -27,7 +27,7 @@ message DockerBuild {
   string build_context_path = 3;
 }
 
-// TODO(crbug/1034529): PrepareForBuild has never existed in chromite, and is
+// TODO(b/187790484): PrepareForBuild has never existed in chromite, and is
 // being renamed to BuildSetup.  PrepareForBuildResponse is still used by
 // ToolchainService.
 message PrepareForBuildResponse {
@@ -104,7 +104,7 @@ message BundleArtifactsRequest {
   chromiumos.ArtifactsByService artifact_info = 3;
 
   // Absolute path to the directory in which artifacts should be dropped.
-  // TODO(crbug/1034529): Switch the recipes code to use result_path.
+  // TODO(b/187790484): Switch the recipes code to use result_path.
   string output_dir = 4;
 
   // Result path for artifacts.  If present this overrides output_dir.
@@ -118,7 +118,7 @@ message BundleArtifactsResponse {
 
 // Request describing where build artifact bundles for a given build target
 // should be dumped.
-// TODO(crbug/1034529): BundleRequest and BundleResponse are being deprecated
+// TODO(b/187790484): BundleRequest and BundleResponse are being deprecated
 // (along with most of this file).  See BundleArtifactsRequest/Response
 message BundleRequest {
   // The build target to bundle artifacts for.
@@ -132,6 +132,9 @@ message BundleRequest {
   chromiumos.Chroot chroot = 3;
   // The sysroot where the files live.
   chromite.api.Sysroot sysroot = 4;
+
+  // Result path for artifacts. If present this overrides output_dir.
+  chromiumos.ResultPath result_path = 5;
 }
 
 // Response describing which bundles were dumped to the given output directory.
@@ -213,69 +216,69 @@ service ArtifactsService {
 
   //
   // Everything that follows this line is planned to be deprecated
-  // as part of a BuildAPI refactoring detailed in crbug/1034529.
+  // as part of a BuildAPI refactoring detailed in b/187790484.
   // Until that bug is closed, these endpoints are still used.
   //
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with all files needed for Autotest HW testing.
   rpc BundleAutotestFiles(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create the ChromeOS Config JSON payload.  Added in R78.
   rpc BundleChromeOSConfig(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive of debug symbols.  Added in R90.
   rpc BundleDebugSymbols(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with ebuild logs.
   rpc BundleEbuildLogs(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with unsigned firmware images.
   rpc BundleFirmware(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar.xz archive for each image that has been created.
   // Added in R79.
   rpc BundleImageArchives(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Generate zip containing all built images for the target.
   rpc BundleImageZip(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with all guest images test bundles.
   rpc BundlePinnedGuestImages(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create the simple chrome artifacts.
   rpc BundleSimpleChromeArtifacts(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with all files needed for Tast HW testing.
   rpc BundleTastFiles(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Generate minimal update payloads to be used in HW testing.
   rpc BundleTestUpdatePayloads(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with VM memory and disk images.
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Generate a CPE report to a file.  Added in R78.
   rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with fingerprint MCU on-device unittest binaries.
   // Added in R88.
   rpc BundleFpmcuUnittests(BundleRequest) returns (BundleResponse);
 
-  // TODO(crbug/1034529): DEPRECATED use Get
+  // TODO(b/187790484): DEPRECATED use Get
   // Create a tarball from the test image suitable for importing into GCE.
   // Added in R89.
   rpc BundleGceTarball(BundleRequest) returns (BundleResponse);

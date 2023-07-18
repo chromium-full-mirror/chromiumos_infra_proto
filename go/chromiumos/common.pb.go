@@ -465,43 +465,43 @@ type ArtifactsByService_Legacy_ArtifactType int32
 const (
 	ArtifactsByService_Legacy_UNSPECIFIED ArtifactsByService_Legacy_ArtifactType = 0
 	// Indicates wanting a zip file of everything in the image directory.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Image
+	// TODO(b/187790484): moves to ArtifactsByService.Image
 	ArtifactsByService_Legacy_IMAGE_ZIP ArtifactsByService_Legacy_ArtifactType = 1
 	// Indicates wanting update payloads.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Test
+	// TODO(b/187790484): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_TEST_UPDATE_PAYLOAD ArtifactsByService_Legacy_ArtifactType = 2
 	// Indicates wanting the autotest tarballs.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Test
+	// TODO(b/187790484): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_AUTOTEST_FILES ArtifactsByService_Legacy_ArtifactType = 3
 	// Indicates wanting a tarball containing private TAST test bundles.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Test
+	// TODO(b/187790484): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_TAST_FILES ArtifactsByService_Legacy_ArtifactType = 4
 	// Indicates wanting a tarball containing guest images and test bundles.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Test
+	// TODO(b/187790484): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_PINNED_GUEST_IMAGES ArtifactsByService_Legacy_ArtifactType = 5
 	// Indicates wanting an archive of firmware images built from source.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Package
+	// TODO(b/187790484): moves to ArtifactsByService.Package
 	ArtifactsByService_Legacy_FIRMWARE ArtifactsByService_Legacy_ArtifactType = 6
 	// Indicates wanting a tarball of the Ebuilds logs.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
+	// TODO(b/187790484): moves to ArtifactsByService.Sysroot
 	ArtifactsByService_Legacy_EBUILD_LOGS ArtifactsByService_Legacy_ArtifactType = 7
 	// Indicates wanting an archive of the ChromeOS Config.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Sysroot
+	// TODO(b/187790484): moves to ArtifactsByService.Sysroot
 	ArtifactsByService_Legacy_CHROMEOS_CONFIG ArtifactsByService_Legacy_ArtifactType = 8
 	// Indicates wanting the CPE report.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Package
+	// TODO(b/187790484): moves to ArtifactsByService.Package
 	ArtifactsByService_Legacy_CPE_REPORT ArtifactsByService_Legacy_ArtifactType = 9
 	// Indicates wanting a tar.xz archive for each image created.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Image
+	// TODO(b/187790484): moves to ArtifactsByService.Image
 	ArtifactsByService_Legacy_IMAGE_ARCHIVES ArtifactsByService_Legacy_ArtifactType = 10
 	// Indicates wanting a tarball containing fingerprint MCU test binaries.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Test
+	// TODO(b/187790484): moves to ArtifactsByService.Test
 	ArtifactsByService_Legacy_FPMCU_UNITTESTS ArtifactsByService_Legacy_ArtifactType = 27
 	// Indicates wanting a test image tarball suitable for importing into GCE.
-	// TODO(crbug/1034529): moves to ArtifactsByService.Image
+	// TODO(b/187790484): moves to ArtifactsByService.Image
 	ArtifactsByService_Legacy_GCE_TARBALL ArtifactsByService_Legacy_ArtifactType = 28
 	// Indicates wanting the Bundled debug symbol files.
-	// TODO(crbug/1034529): Moves from legacy to ArtifactsByService/Get.
+	// TODO(b/187790484): Moves from legacy to ArtifactsByService/Get.
 	ArtifactsByService_Legacy_DEBUG_SYMBOLS ArtifactsByService_Legacy_ArtifactType = 32
 )
 
@@ -3182,7 +3182,7 @@ func (x *ArtifactsByService_CodeCoverageUploadInfo) GetCoverageType() ArtifactsB
 	return ArtifactsByService_CodeCoverageUploadInfo_UNSPECIFIED
 }
 
-// TODO(crbug/1034529): Drop this message.
+// TODO(b/187790484): Drop this message.
 // Artifacts handled within the ArtifactsService endpoints directly.
 type ArtifactsByService_Legacy struct {
 	state         protoimpl.MessageState
@@ -4499,7 +4499,7 @@ func (x *ArtifactsByService_Sdk_ArtifactInfo) GetAclName() string {
 
 // Legacy artifacts, handled directly ArtifactsService.
 // Artifacts handled within the ArtifactsService endpoints directly.
-// TODO(crbug/1034529): Drop this message.
+// TODO(b/187790484): Drop this message.
 type UploadedArtifactsByService_Legacy struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
