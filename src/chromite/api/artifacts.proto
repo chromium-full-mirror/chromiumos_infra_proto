@@ -9,8 +9,11 @@ import "chromiumos/common.proto";
 
 // An artifact is a file generated during or after a build.
 message Artifact {
-  // Absolute path to the artifact file.
+  // Absolute path to the artifact file. Deprecated.
   string path = 1;
+
+  // Absolute path to the artifact file. Replaces |path|.
+  chromiumos.Path artifact_path = 2;
 }
 
 // For artifacts that are built via docker and pushed to a Google Cloud Registry
