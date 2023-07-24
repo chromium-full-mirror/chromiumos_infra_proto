@@ -29428,6 +29428,464 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/any.proto",
+        "chromiumos/test/api/cros_tool_runner_container_service_templates.proto",
+        "chromiumos/test/lab/api/ip_endpoint.proto",
+        "chromiumos/test/api/provision.proto",
+        "chromiumos/test/api/cros_publish_service.proto",
+        "chromiumos/test/api/cros_test_cli.proto",
+        "chromiumos/test/api/test_suite.proto",
+        "chromiumos/build/api/container_metadata.proto",
+        "test_platform/skylab_test_runner/cros_test_runner_service.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.BuildMode"
+            },
+            {
+              "jsonName": "server",
+              "label": "LABEL_OPTIONAL",
+              "name": "server",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CrosTestRunnerServerStartRequest"
+            },
+            {
+              "jsonName": "params",
+              "label": "LABEL_OPTIONAL",
+              "name": "params",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CrosTestRunnerParams"
+            },
+            {
+              "jsonName": "orderedTasks",
+              "label": "LABEL_REPEATED",
+              "name": "ordered_tasks",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CrosTestRunnerRequest.Task"
+            }
+          ],
+          "name": "CrosTestRunnerRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "orderedContainerRequests",
+                  "label": "LABEL_REPEATED",
+                  "name": "ordered_container_requests",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.ContainerRequest"
+                },
+                {
+                  "jsonName": "provision",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "provision",
+                  "number": 2,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.ProvisionRequest"
+                },
+                {
+                  "jsonName": "preTest",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pre_test",
+                  "number": 3,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.PreTestRequest"
+                },
+                {
+                  "jsonName": "test",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test",
+                  "number": 4,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.TestRequest"
+                },
+                {
+                  "jsonName": "postTest",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "post_test",
+                  "number": 5,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.PostTestRequest"
+                },
+                {
+                  "jsonName": "publish",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "publish",
+                  "number": 6,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.PublishRequest"
+                }
+              ],
+              "name": "Task",
+              "oneofDecl": [
+                {
+                  "name": "task"
+                }
+              ]
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "start_request"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testSuites",
+              "label": "LABEL_REPEATED",
+              "name": "test_suites",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.TestSuite"
+            },
+            {
+              "jsonName": "containerMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_metadata",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerMetadata"
+            },
+            {
+              "jsonName": "keyvals",
+              "label": "LABEL_REPEATED",
+              "name": "keyvals",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CrosTestRunnerParams.KeyvalsEntry"
+            }
+          ],
+          "name": "CrosTestRunnerParams",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "KeyvalsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "parentBuildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_build_id",
+              "number": 1,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "parentRequestUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_request_uid",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BuildMode"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serviceAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_address",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.IpEndpoint"
+            },
+            {
+              "jsonName": "startupRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "startup_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.ProvisionStartupRequest"
+            },
+            {
+              "jsonName": "installRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "install_request",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.InstallRequest"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            }
+          ],
+          "name": "ProvisionRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serviceAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_address",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.IpEndpoint"
+            },
+            {
+              "jsonName": "preTestRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "pre_test_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Any"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            }
+          ],
+          "name": "PreTestRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serviceAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_address",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.IpEndpoint"
+            },
+            {
+              "jsonName": "testRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CrosTestRequest"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            }
+          ],
+          "name": "TestRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serviceAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_address",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.IpEndpoint"
+            },
+            {
+              "jsonName": "postTestRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "post_test_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Any"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            }
+          ],
+          "name": "PostTestRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serviceAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_address",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.IpEndpoint"
+            },
+            {
+              "jsonName": "publishRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "publish_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.PublishRequest"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            }
+          ],
+          "name": "PublishRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dynamicIdentifier",
+              "label": "LABEL_OPTIONAL",
+              "name": "dynamic_identifier",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "container",
+              "label": "LABEL_OPTIONAL",
+              "name": "container",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.Template"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            },
+            {
+              "jsonName": "inputs",
+              "label": "LABEL_REPEATED",
+              "name": "inputs",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.ContainerRequest.FileInput"
+            },
+            {
+              "jsonName": "network",
+              "label": "LABEL_OPTIONAL",
+              "name": "network",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "containerImageKey",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_image_key",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ContainerRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "identifier",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "identifier",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "content",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "content",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.Any"
+                },
+                {
+                  "jsonName": "dynamicDeps",
+                  "label": "LABEL_REPEATED",
+                  "name": "dynamic_deps",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+                }
+              ],
+              "name": "FileInput"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DynamicDep"
+        }
+      ],
+      "name": "test_platform/skylab_test_runner/cros_test_runner_request.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner"
+      },
+      "package": "test_platform.skylab_test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "test_platform/skylab_test_runner/config.proto",
         "test_platform/skylab_test_runner/request.proto",
         "test_platform/skylab_test_runner/cft_request.proto",
