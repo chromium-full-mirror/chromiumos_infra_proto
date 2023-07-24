@@ -74,6 +74,8 @@ message BuilderConfig {
       INCREMENTAL = 8;
       // SDK build.
       SDK = 9;
+      // SNAPSHOT build.
+      SNAPSHOT = 10;
     }
     Type type = 3;
     // The name of the bucket the builder lives in.
