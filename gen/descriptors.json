@@ -3954,11 +3954,6 @@
             {
               "inputType": ".chromite.api.BundleRequest",
               "name": "BundleTestUpdatePayloads",
-              "options": {
-                "[chromite.api.method_options]": {
-                  "methodChrootAssert": "INSIDE"
-                }
-              },
               "outputType": ".chromite.api.BundleResponse"
             },
             {

@@ -266,11 +266,7 @@ service ArtifactsService {
 
   // TODO(b/187790484): DEPRECATED use Get
   // Generate minimal update payloads to be used in HW testing.
-  rpc BundleTestUpdatePayloads(BundleRequest) returns (BundleResponse) {
-    option (method_options) = {
-      method_chroot_assert: INSIDE,
-    };
-  }
+  rpc BundleTestUpdatePayloads(BundleRequest) returns (BundleResponse);
 
   // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with VM memory and disk images.
