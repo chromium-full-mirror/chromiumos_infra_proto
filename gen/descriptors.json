@@ -31001,6 +31001,113 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "test_platform/config/config.proto",
+        "test_platform/request.proto",
+        "chromiumos/test/api/ctp2.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "request",
+              "label": "LABEL_OPTIONAL",
+              "name": "request",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request"
+            },
+            {
+              "jsonName": "requests",
+              "label": "LABEL_REPEATED",
+              "name": "requests",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.CTPv2BinaryBuildInput.RequestsEntry"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.config.Config"
+            },
+            {
+              "jsonName": "ctpv2Request",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctpv2_request",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CTPv2Request"
+            }
+          ],
+          "name": "CTPv2BinaryBuildInput",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request"
+                }
+              ],
+              "name": "RequestsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "errorSummaryMarkdown",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_summary_markdown",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "compressed_responses",
+              "label": "LABEL_OPTIONAL",
+              "name": "compressed_responses",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "compressed_json_responses",
+              "label": "LABEL_OPTIONAL",
+              "name": "compressed_json_responses",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CTPv2BinaryBuildOutput"
+        }
+      ],
+      "name": "test_platform/steps/ctpv2_binary.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps"
+      },
+      "package": "test_platform.steps",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/artifacts.proto",
         "chromiumos/common.proto",
         "chromiumos/branch.proto",
