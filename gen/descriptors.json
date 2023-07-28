@@ -4029,6 +4029,10 @@
             {
               "name": "INFORMATIONAL_BINHOST",
               "number": 6
+            },
+            {
+              "name": "SNAPSHOT_BINHOST",
+              "number": 7
             }
           ]
         },
