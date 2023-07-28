@@ -29536,6 +29536,13 @@
                   "oneofIndex": 0,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.skylab_test_runner.PublishRequest"
+                },
+                {
+                  "jsonName": "required",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "required",
+                  "number": 7,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Task",

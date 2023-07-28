@@ -40,6 +40,7 @@ message CrosTestRunnerRequest {
             PostTestRequest post_test = 5;
             PublishRequest publish = 6;
         }
+        bool required = 7;
     }
 
     CrosTestRunnerParams params = 3;
