@@ -271,8 +271,9 @@ message BuilderConfig {
       UNVERIFIED_CHROME_LLVM_ORDERFILE = 11;
       // Indicates a vetted orderfile for Chrome.
       VERIFIED_CHROME_LLVM_ORDERFILE = 12;
-      // Indicates a clang-tidy artifact.
-      CHROME_CLANG_WARNINGS_FILE = 13;
+      // This value was previously used by clang-tidy builders, but is no longer
+      // used.
+      reserved 13;
       // Indicates a PGO artifact for the compiler.
       UNVERIFIED_LLVM_PGO_FILE = 14;
 
@@ -517,8 +518,7 @@ message BuilderConfig {
       // Packages to build, or empty to build all packages.
       repeated PackageInfo packages = 3;
 
-      // Certain builders (e.g., clang-tidy-toolchain) need to build Chrome with
-      // goma disabled.
+      // Some builders need to build Chrome with goma disabled.
       // This is ignored if `user_remoteexec` is true.
       bool disable_goma = 4;
 
