@@ -84,6 +84,8 @@ message UpdateRequest {
   repeated chromiumos.BuildTarget toolchain_targets = 2;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 3;
+  // Directory where results (logs, etc.) should be stored.
+  chromiumos.ResultPath result_path = 4;
 }
 
 // Chroot update response message.
