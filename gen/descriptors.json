@@ -25101,6 +25101,22 @@
                       "number": 6,
                       "oneofIndex": 0,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "androidImageVersion",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "android_image_version",
+                      "number": 8,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "gmsCorePackage",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "gms_core_package",
+                      "number": 9,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
                     }
                   ],
                   "name": "SoftwareDependency",

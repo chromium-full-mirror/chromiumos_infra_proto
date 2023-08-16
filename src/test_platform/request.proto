@@ -83,6 +83,12 @@ message Request {
         // Unlike chromeos/ro_firmware/rw_firmware, this is full Google Cloud
         // Storage path (e.g. gs://shiny-lacros/builds/M56/for-pupr/1.2.3.4).
         string lacros_gcs_path = 6;
+
+        // The android image version for android provisioning
+        string android_image_version = 8;
+
+        // gms core cipd package for android provisioning
+        string gms_core_package = 9;
       }
     }
 
