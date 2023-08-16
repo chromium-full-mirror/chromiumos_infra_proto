@@ -38,6 +38,9 @@ message CreateRequest {
   // Optional. Whether or not to pass --skip-chroot-upgrade to `cros_sdk`.
   // This option is unofficially supported and is not guaranteed to work.
   bool skip_chroot_upgrade = 4;
+  // Optional. If provided and true, the chroot will be created with ccache
+  // fully disabled. Otherwise, the user can expect ccache to be enabled.
+  bool ccache_disable = 5;
 }
 
 // Create response message.

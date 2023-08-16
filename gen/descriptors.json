@@ -6766,6 +6766,13 @@
               "name": "skip_chroot_upgrade",
               "number": 4,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "ccacheDisable",
+              "label": "LABEL_OPTIONAL",
+              "name": "ccache_disable",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CreateRequest",
