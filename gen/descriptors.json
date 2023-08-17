@@ -490,9 +490,29 @@
               "name": "reproxy_cfg_file",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "logDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_dir",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.SyncedDir"
             }
           ],
           "name": "RemoteexecConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "logFiles",
+              "label": "LABEL_REPEATED",
+              "name": "log_files",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RemoteexecArtifacts"
         },
         {
           "enumType": [
@@ -3282,6 +3302,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.FailedPackageData"
+            },
+            {
+              "jsonName": "remoteexecArtifacts",
+              "label": "LABEL_OPTIONAL",
+              "name": "remoteexec_artifacts",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.RemoteexecArtifacts"
             }
           ],
           "name": "InstallPackagesResponse",

@@ -64,6 +64,13 @@ message RemoteexecConfig {
   string reclient_dir = 1;
   // The config file to pass in to reproxy.
   string reproxy_cfg_file = 2;
+  // The directory where the logs will be extracted.
+  SyncedDir log_dir = 3;
+}
+
+message RemoteexecArtifacts {
+  // List of log files.
+  repeated string log_files = 1;
 }
 
 message GomaConfig {

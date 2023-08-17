@@ -169,6 +169,8 @@ message InstallPackagesResponse {
   chromiumos.GomaArtifacts goma_artifacts = 3;
   // Additional data about the packages that failed to build.
   repeated FailedPackageData failed_package_data = 4;
+  // Remoteexec artifacts (logs).
+  chromiumos.RemoteexecArtifacts remoteexec_artifacts = 5;
 
   reserved 1;
   reserved "failed_packages";
