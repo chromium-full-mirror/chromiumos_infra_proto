@@ -9898,6 +9898,105 @@
       "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            }
+          ],
+          "name": "GenerateDlcArtifactsListRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dlcArtifacts",
+              "label": "LABEL_REPEATED",
+              "name": "dlc_artifacts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.GenerateDlcArtifactsListResponse.DlcArtifact"
+            }
+          ],
+          "name": "GenerateDlcArtifactsListResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "imageHash",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "image_hash",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "imageName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "image_name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "gsUriPath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "gs_uri_path",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "DlcArtifact"
+            }
+          ]
+        }
+      ],
+      "name": "chromite/api/dlc.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.GenerateDlcArtifactsListRequest",
+              "name": "GenerateDlcArtifactsList",
+              "outputType": ".chromite.api.GenerateDlcArtifactsListResponse"
+            }
+          ],
+          "name": "DlcService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "dlc",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromite/api/sysroot.proto",
         "chromiumos/common.proto",
         "chromiumos/build/api/system_image.proto"
       ],
