@@ -9602,6 +9602,115 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chromeSrc",
+              "label": "LABEL_OPTIONAL",
+              "name": "chrome_src",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "cacheDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "cache_dir",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "fallbackVersions",
+              "label": "LABEL_OPTIONAL",
+              "name": "fallback_versions",
+              "number": 4,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "useExternalConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_external_config",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "FindLkgmRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chromeosLkgm",
+              "label": "LABEL_OPTIONAL",
+              "name": "chromeos_lkgm",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "fullVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "full_version",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "error",
+              "label": "LABEL_OPTIONAL",
+              "name": "error",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FindLkgmResponse"
+        }
+      ],
+      "name": "chromite/api/chrome_lkgm.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.FindLkgmRequest",
+              "name": "FindLkgm",
+              "outputType": ".chromite.api.FindLkgmResponse"
+            }
+          ],
+          "name": "ChromeLkgmService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "chrome_lkgm"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/build_api.proto"
       ],
       "messageType": [
