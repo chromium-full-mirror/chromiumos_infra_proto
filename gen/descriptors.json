@@ -12608,6 +12608,69 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            }
+          ],
+          "name": "BuildSDKSubtoolsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "failedPackageData",
+              "label": "LABEL_REPEATED",
+              "name": "failed_package_data",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FailedPackageData"
+            }
+          ],
+          "name": "BuildSDKSubtoolsResponse"
+        }
+      ],
+      "name": "chromite/api/sdk_subtools.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.BuildSDKSubtoolsRequest",
+              "name": "BuildSDKSubtools",
+              "outputType": ".chromite.api.BuildSDKSubtoolsResponse"
+            }
+          ],
+          "name": "BuildSDKSubtoolsService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "sdk_subtools",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromite/api/sysroot.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
             },
             {
               "jsonName": "sysroot",

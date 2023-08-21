@@ -1,0 +1,38 @@
+// Copyright 2023 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+import "chromite/api/sysroot.proto";
+import "chromiumos/common.proto";
+
+// Installs and/or updates additional "subtools" packages into an SDK along with
+// their dependencies (rebuilding if dependencies have changed). All available
+// subtools that are configured are then bundled to be relocatable. Bundles are
+// then exported to a storage bucket (e.g., CIPD), only if they have changed.
+message BuildSDKSubtoolsRequest {
+  // The chroot to use to execute the endpoint. If this chroot is not already
+  // set up as a "subtools" chroot, it will be converted into one.
+  chromiumos.Chroot chroot = 1;
+}
+
+message BuildSDKSubtoolsResponse {
+  // Packages that failed to install or update during the update phase.
+  repeated FailedPackageData failed_package_data = 1;
+}
+
+service BuildSDKSubtoolsService {
+  option (service_options) = {
+      module: "sdk_subtools",
+      service_chroot_assert: INSIDE,
+  };
+
+  // Executes the BuildSDKSubtoolsRequest.
+  rpc BuildSDKSubtools(BuildSDKSubtoolsRequest)
+      returns (BuildSDKSubtoolsResponse);
+}
