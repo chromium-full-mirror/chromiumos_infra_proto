@@ -74,6 +74,9 @@ message ProvisionRequest {
     chromiumos.test.api.ProvisionStartupRequest startup_request = 2;
     chromiumos.test.api.InstallRequest install_request = 3;
     repeated DynamicDep dynamic_deps = 4;
+    // target refers to the device targeted for provision.
+    // i.e. primaryDevice, companionDevice_brya, companionDevice_brya_2
+    string target = 5;
 }
 
 // PreTestRequest targets requests towards services that implement

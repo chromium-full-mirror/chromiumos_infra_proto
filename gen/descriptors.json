@@ -29984,6 +29984,13 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            },
+            {
+              "jsonName": "target",
+              "label": "LABEL_OPTIONAL",
+              "name": "target",
+              "number": 5,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ProvisionRequest"
@@ -30220,7 +30227,8 @@
         "test_platform/skylab_test_runner/config.proto",
         "test_platform/skylab_test_runner/request.proto",
         "test_platform/skylab_test_runner/cft_request.proto",
-        "test_platform/skylab_test_runner/common_config.proto"
+        "test_platform/skylab_test_runner/common_config.proto",
+        "test_platform/skylab_test_runner/cros_test_runner_request.proto"
       ],
       "messageType": [
         {
@@ -30256,6 +30264,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.CommonConfig"
+            },
+            {
+              "jsonName": "crosTestRunnerRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "cros_test_runner_request",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CrosTestRunnerRequest"
             }
           ],
           "name": "RunTestsRequest"
