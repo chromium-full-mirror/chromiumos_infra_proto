@@ -8,6 +8,9 @@ include chromiumos/owners:v1:/infra/OWNERS.build
 # ChromeOS CI Team
 include chromiumos/owners:v1:/infra/OWNERS.ci
 
+# ChromeOS Test Scheduling team
+include chromiumos/owners:v1:/infra/OWNERS.tse
+
 # Fleet team.
 ayatane@chromium.org
 xixuan@chromium.org
