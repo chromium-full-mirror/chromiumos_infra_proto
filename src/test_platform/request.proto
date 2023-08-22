@@ -267,6 +267,10 @@ message Request {
     // will be executed by default. Will only be passed on to trv2 if
     // run_via_cft & run_via_trv2 is true.
     test_platform.common.CftStepsConfig trv2_steps_config = 19;
+
+    // If set the suite will be run using CTPv2, using the 3D solver to determine hardware
+    // Note all tests within this suite/group *must* have a 3d expression set in the respective harness
+    bool ddd_suite = 20;
   }
 
   Params params = 1;

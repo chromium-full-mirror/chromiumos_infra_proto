@@ -25181,6 +25181,13 @@
                   "number": 19,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.common.CftStepsConfig"
+                },
+                {
+                  "jsonName": "dddSuite",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ddd_suite",
+                  "number": 20,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",
