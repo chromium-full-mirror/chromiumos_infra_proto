@@ -40,6 +40,7 @@ message URI {
 message DlcArtifact {
     URI    uri    = 1; // URI of the DLC artifact.
     string sha256 = 2; // SHA256 of the DLC artifact.
+    string id     = 3; // The id of the DLC.
 }
 
 // next: 17
