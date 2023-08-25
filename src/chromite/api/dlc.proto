@@ -26,6 +26,8 @@ message GenerateDlcArtifactsListResponse {
     string image_name = 2;
     // GS uri of the DLCs directory.
     string gs_uri_path = 3;
+    // The identifier of the DLC.
+    string id = 4;
   }
 
   // List of DLC paths.
