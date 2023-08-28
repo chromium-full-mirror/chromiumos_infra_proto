@@ -3968,11 +3968,6 @@
             },
             {
               "inputType": ".chromite.api.BundleRequest",
-              "name": "ExportCpeReport",
-              "outputType": ".chromite.api.BundleResponse"
-            },
-            {
-              "inputType": ".chromite.api.BundleRequest",
               "name": "BundleFpmcuUnittests",
               "outputType": ".chromite.api.BundleResponse"
             },

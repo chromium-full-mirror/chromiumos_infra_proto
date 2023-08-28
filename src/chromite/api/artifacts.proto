@@ -281,10 +281,6 @@ service ArtifactsService {
   rpc BundleVmFiles(BundleVmFilesRequest) returns (BundleResponse);
 
   // TODO(b/187790484): DEPRECATED use Get
-  // Generate a CPE report to a file.  Added in R78.
-  rpc ExportCpeReport(BundleRequest) returns (BundleResponse);
-
-  // TODO(b/187790484): DEPRECATED use Get
   // Create a tar archive with fingerprint MCU on-device unittest binaries.
   // Added in R88.
   rpc BundleFpmcuUnittests(BundleRequest) returns (BundleResponse);

@@ -68,9 +68,6 @@ type ArtifactsServiceClient interface {
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(ctx context.Context, in *BundleVmFilesRequest, opts ...grpc.CallOption) (*BundleResponse, error)
 	// TODO(b/187790484): DEPRECATED use Get
-	// Generate a CPE report to a file.  Added in R78.
-	ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
-	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with fingerprint MCU on-device unittest binaries.
 	// Added in R88.
 	BundleFpmcuUnittests(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
@@ -232,15 +229,6 @@ func (c *artifactsServiceClient) BundleVmFiles(ctx context.Context, in *BundleVm
 	return out, nil
 }
 
-func (c *artifactsServiceClient) ExportCpeReport(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
-	out := new(BundleResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/ExportCpeReport", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactsServiceClient) BundleFpmcuUnittests(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error) {
 	out := new(BundleResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/BundleFpmcuUnittests", in, out, opts...)
@@ -309,9 +297,6 @@ type ArtifactsServiceServer interface {
 	// Create a tar archive with VM memory and disk images.
 	BundleVmFiles(context.Context, *BundleVmFilesRequest) (*BundleResponse, error)
 	// TODO(b/187790484): DEPRECATED use Get
-	// Generate a CPE report to a file.  Added in R78.
-	ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error)
-	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with fingerprint MCU on-device unittest binaries.
 	// Added in R88.
 	BundleFpmcuUnittests(context.Context, *BundleRequest) (*BundleResponse, error)
@@ -373,9 +358,6 @@ func (UnimplementedArtifactsServiceServer) BundleTestUpdatePayloads(context.Cont
 }
 func (UnimplementedArtifactsServiceServer) BundleVmFiles(context.Context, *BundleVmFilesRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleVmFiles not implemented")
-}
-func (UnimplementedArtifactsServiceServer) ExportCpeReport(context.Context, *BundleRequest) (*BundleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExportCpeReport not implemented")
 }
 func (UnimplementedArtifactsServiceServer) BundleFpmcuUnittests(context.Context, *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleFpmcuUnittests not implemented")
@@ -684,24 +666,6 @@ func _ArtifactsService_BundleVmFiles_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactsService_ExportCpeReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BundleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServiceServer).ExportCpeReport(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.ArtifactsService/ExportCpeReport",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServiceServer).ExportCpeReport(ctx, req.(*BundleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactsService_BundleFpmcuUnittests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BundleRequest)
 	if err := dec(in); err != nil {
@@ -808,10 +772,6 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BundleVmFiles",
 			Handler:    _ArtifactsService_BundleVmFiles_Handler,
-		},
-		{
-			MethodName: "ExportCpeReport",
-			Handler:    _ArtifactsService_ExportCpeReport_Handler,
 		},
 		{
 			MethodName: "BundleFpmcuUnittests",
