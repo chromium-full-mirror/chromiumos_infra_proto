@@ -17770,10 +17770,7 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false,
-        "unusedDependency": [
-          0
-        ]
+        "isSyntaxUnspecified": false
       },
       "dependency": [
         "chromiumos/common.proto"
@@ -17796,17 +17793,25 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "imageTypes",
+              "label": "LABEL_REPEATED",
+              "name": "image_types",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
               "jsonName": "ensureNoPassword",
               "label": "LABEL_OPTIONAL",
               "name": "ensure_no_password",
-              "number": 3,
+              "number": 4,
               "type": "TYPE_BOOL"
             },
             {
               "jsonName": "firmwareUpdate",
               "label": "LABEL_OPTIONAL",
               "name": "firmware_update",
-              "number": 4,
+              "number": 5,
               "type": "TYPE_BOOL"
             }
           ],

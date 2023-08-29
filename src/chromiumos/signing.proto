@@ -19,11 +19,15 @@ message SigningConfig {
     // more information.
     string keyset = 2;
 
+    // Image types that this signing config applies to.
+    // If not set, assumed to be IMAGE_TYPE_BASE and IMAGE_TYPE_RECOVERY.
+    repeated chromiumos.ImageType image_types = 3;
+
     // Miscellaneous signing parameters.
     // TODO(b/298026507): Figure out what these do and whether we need to keep
     // them.
-    bool ensure_no_password = 3;
-    bool firmware_update = 4;
+    bool ensure_no_password = 4;
+    bool firmware_update = 5;
 
     // TODO(b/298026507): Support input_files and output_names.
     // See go/cros-signer-docs for more information on these fields and
