@@ -427,9 +427,9 @@ message ArtifactsByService {
       // Indicates wanting an archive of the ChromeOS Config.
       // TODO(b/187790484): moves to ArtifactsByService.Sysroot
       CHROMEOS_CONFIG = 8;
-      // Indicates wanting the CPE report.
-      // TODO(b/187790484): moves to ArtifactsByService.Package
-      CPE_REPORT = 9;
+
+      reserved 9;
+
       // Indicates wanting a tar.xz archive for each image created.
       // TODO(b/187790484): moves to ArtifactsByService.Image
       IMAGE_ARCHIVES = 10;

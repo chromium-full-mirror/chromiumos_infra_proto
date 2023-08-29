@@ -259,8 +259,7 @@ message BuilderConfig {
       EBUILD_LOGS = 7;
       // Indicates wanting an archive of the ChromeOS Config.
       CHROMEOS_CONFIG = 8;
-      // Indicates wanting the CPE report.
-      CPE_REPORT = 9;
+      reserved 9;
       // Indicates wanting a tar.xz archive for each image that has been
       // created.
       IMAGE_ARCHIVES = 10;

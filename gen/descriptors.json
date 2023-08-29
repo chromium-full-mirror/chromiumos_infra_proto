@@ -1225,6 +1225,10 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
+                      "end": 9,
+                      "start": 9
+                    },
+                    {
                       "end": 26,
                       "start": 11
                     },
@@ -1273,10 +1277,6 @@
                     {
                       "name": "CHROMEOS_CONFIG",
                       "number": 8
-                    },
-                    {
-                      "name": "CPE_REPORT",
-                      "number": 9
                     },
                     {
                       "name": "IMAGE_ARCHIVES",
@@ -10706,6 +10706,10 @@
                   "name": "ArtifactTypes",
                   "reservedRange": [
                     {
+                      "end": 9,
+                      "start": 9
+                    },
+                    {
                       "end": 13,
                       "start": 13
                     }
@@ -10746,10 +10750,6 @@
                     {
                       "name": "CHROMEOS_CONFIG",
                       "number": 8
-                    },
-                    {
-                      "name": "CPE_REPORT",
-                      "number": 9
                     },
                     {
                       "name": "IMAGE_ARCHIVES",
