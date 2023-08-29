@@ -1,0 +1,41 @@
+// Copyright 2023 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package chromiumos;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
+option java_package = "com.google.chrome.crosinfra.proto";
+
+import "chromiumos/common.proto";
+
+message SigningConfig {
+    // Display / logical name of this signing config, if any.
+    string display_name = 1;
+
+    // Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
+    // more information.
+    string keyset = 2;
+
+    // Miscellaneous signing parameters.
+    // TODO(b/298026507): Figure out what these do and whether we need to keep
+    // them.
+    bool ensure_no_password = 3;
+    bool firmware_update = 4;
+
+    // TODO(b/298026507): Support input_files and output_names.
+    // See go/cros-signer-docs for more information on these fields and
+    // the templating they must support.
+}
+
+message BuildTargetSigningConfig {
+    // Signing config(s) for a specific build target.
+    string build_target = 1;
+    repeated SigningConfig signing_configs = 2;
+}
+
+message BuildTargetSigningConfigs {
+    repeated BuildTargetSigningConfig build_target_signing_configs = 1;
+}

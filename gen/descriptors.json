@@ -17770,6 +17770,93 @@
     {
       "bufExtension": {
         "isImport": false,
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          0
+        ]
+      },
+      "dependency": [
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "displayName",
+              "label": "LABEL_OPTIONAL",
+              "name": "display_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ensureNoPassword",
+              "label": "LABEL_OPTIONAL",
+              "name": "ensure_no_password",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "firmwareUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_update",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "SigningConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signingConfigs",
+              "label": "LABEL_REPEATED",
+              "name": "signing_configs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.SigningConfig"
+            }
+          ],
+          "name": "BuildTargetSigningConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargetSigningConfigs",
+              "label": "LABEL_REPEATED",
+              "name": "build_target_signing_configs",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTargetSigningConfig"
+            }
+          ],
+          "name": "BuildTargetSigningConfigs"
+        }
+      ],
+      "name": "chromiumos/signing.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
         "isSyntaxUnspecified": false
       },
       "messageType": [
