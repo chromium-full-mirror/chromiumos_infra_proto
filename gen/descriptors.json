@@ -12726,7 +12726,7 @@
               "typeName": ".chromiumos.Chroot"
             }
           ],
-          "name": "BuildSDKSubtoolsRequest"
+          "name": "BuildSdkSubtoolsRequest"
         },
         {
           "field": [
@@ -12739,7 +12739,7 @@
               "typeName": ".chromite.api.FailedPackageData"
             }
           ],
-          "name": "BuildSDKSubtoolsResponse"
+          "name": "BuildSdkSubtoolsResponse"
         }
       ],
       "name": "chromite/api/sdk_subtools.proto",
@@ -12751,12 +12751,12 @@
         {
           "method": [
             {
-              "inputType": ".chromite.api.BuildSDKSubtoolsRequest",
-              "name": "BuildSDKSubtools",
-              "outputType": ".chromite.api.BuildSDKSubtoolsResponse"
+              "inputType": ".chromite.api.BuildSdkSubtoolsRequest",
+              "name": "BuildSdkSubtools",
+              "outputType": ".chromite.api.BuildSdkSubtoolsResponse"
             }
           ],
-          "name": "BuildSDKSubtoolsService",
+          "name": "BuildSdkSubtoolsService",
           "options": {
             "[chromite.api.service_options]": {
               "module": "sdk_subtools",

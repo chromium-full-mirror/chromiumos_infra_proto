@@ -15,24 +15,24 @@ import "chromiumos/common.proto";
 // their dependencies (rebuilding if dependencies have changed). All available
 // subtools that are configured are then bundled to be relocatable. Bundles are
 // then exported to a storage bucket (e.g., CIPD), only if they have changed.
-message BuildSDKSubtoolsRequest {
+message BuildSdkSubtoolsRequest {
   // The chroot to use to execute the endpoint. If this chroot is not already
   // set up as a "subtools" chroot, it will be converted into one.
   chromiumos.Chroot chroot = 1;
 }
 
-message BuildSDKSubtoolsResponse {
+message BuildSdkSubtoolsResponse {
   // Packages that failed to install or update during the update phase.
   repeated FailedPackageData failed_package_data = 1;
 }
 
-service BuildSDKSubtoolsService {
+service BuildSdkSubtoolsService {
   option (service_options) = {
       module: "sdk_subtools",
       service_chroot_assert: INSIDE,
   };
 
-  // Executes the BuildSDKSubtoolsRequest.
-  rpc BuildSDKSubtools(BuildSDKSubtoolsRequest)
-      returns (BuildSDKSubtoolsResponse);
+  // Executes the BuildSdkSubtoolsRequest.
+  rpc BuildSdkSubtools(BuildSdkSubtoolsRequest)
+      returns (BuildSdkSubtoolsResponse);
 }
