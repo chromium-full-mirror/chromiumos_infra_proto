@@ -87,8 +87,19 @@ message LookupBinhostsRequest {
   // build_target profile of the binhosts.
   string profile = 4;
 
-  // Bool to indicate if the binhosts are private.
+  // Bool to indicate if the snapshot SHAs are private (internal).
   bool private = 5;
+
+  // Bool to indicate if the corresponding binhosts should also be returned.
+  // For example, if private=True (internal snapshot SHAs), also return the
+  // public binhosts (for the public, external snapshot SHAs).
+  bool get_corresponding_binhosts = 6;
+
+  // The base architecture board for the build target (e.g. amd64-generic).
+  string generic_build_target = 7;
+
+  // The profile of the base architecture board.
+  string generic_profile = 8;
 }
 
 // Response sent by the cloud function defined in the `chromeos-prebuilts`

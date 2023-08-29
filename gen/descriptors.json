@@ -17462,6 +17462,27 @@
               "name": "private",
               "number": 5,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "getCorrespondingBinhosts",
+              "label": "LABEL_OPTIONAL",
+              "name": "get_corresponding_binhosts",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "genericBuildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "generic_build_target",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "genericProfile",
+              "label": "LABEL_OPTIONAL",
+              "name": "generic_profile",
+              "number": 8,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "LookupBinhostsRequest"
