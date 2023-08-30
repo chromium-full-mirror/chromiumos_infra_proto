@@ -17817,18 +17817,39 @@
               "typeName": ".chromiumos.ImageType"
             },
             {
+              "jsonName": "recoveryZip",
+              "label": "LABEL_OPTIONAL",
+              "name": "recovery_zip",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
               "jsonName": "ensureNoPassword",
               "label": "LABEL_OPTIONAL",
               "name": "ensure_no_password",
-              "number": 4,
+              "number": 5,
               "type": "TYPE_BOOL"
             },
             {
               "jsonName": "firmwareUpdate",
               "label": "LABEL_OPTIONAL",
               "name": "firmware_update",
-              "number": 5,
+              "number": 6,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "inputFiles",
+              "label": "LABEL_REPEATED",
+              "name": "input_files",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "outputNames",
+              "label": "LABEL_REPEATED",
+              "name": "output_names",
+              "number": 8,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "SigningConfig"

@@ -26,12 +26,26 @@ message SigningConfig {
     // Miscellaneous signing parameters.
     // TODO(b/298026507): Figure out what these do and whether we need to keep
     // them.
-    bool ensure_no_password = 4;
-    bool firmware_update = 5;
+    bool recovery_zip = 4;
+    bool ensure_no_password = 5;
+    bool firmware_update = 6;
 
-    // TODO(b/298026507): Support input_files and output_names.
-    // See go/cros-signer-docs for more information on these fields and
-    // the templating they must support.
+    // See go/cros-signer-docs for more information on `input_files` and
+    // `output_names` and the templating they must support.
+
+    // Specific files to sign within the given archive.
+    // If not set, defaults will be used.
+    // Legacy defaults: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=600
+    repeated string input_files = 7;
+
+    // Templates for naming the output files for files specified in `input_files`.
+    // See go/cros-signer-docs for a description of templating.
+    // Must either be the same length as `input_files`, length 1 (assuming
+    // a templating directive like @BASENAME@ is used to properly disambiguate
+    // outputs), or length 0 (in which case a default template will be used,
+    // which has no guarantee wrt disambiguation/clobbering).
+    // Legacy behavior: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=933
+    repeated string output_names = 8;
 }
 
 message BuildTargetSigningConfig {
