@@ -12,6 +12,7 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
+import "chromiumos/signing.proto";
 
 // Image argument - encapsulate data about an image.
 message Image {
@@ -159,6 +160,21 @@ message PushImageResponse {
   repeated Instructions instructions = 1;
 }
 
+// Request artifacts to be signed.
+message SignImageRequest {
+  // The chroot used to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+
+  // Signing configs.
+  chromiumos.BuildTargetSigningConfigs signing_configs = 2;
+
+  // TODO(b/296089271): Do we need to separately pass artifact types or paths?
+}
+
+message SignImageResponse {
+
+}
+
 // The image service.
 service ImageService {
   option (service_options) = {
@@ -206,4 +222,28 @@ service ImageService {
   //   "sign_types": [1, 6]
   // }
   rpc PushImage(PushImageRequest) returns (PushImageResponse);
+
+  // Sign images based on the given config.
+  // Example json:
+  // {
+  //   "signing_configs": {
+  //     "build_target_signing_configs": [
+  //       {
+  //         "build_target": "eve",
+  //         "signing_configs": [
+  //           {
+  //             "keyset": "eve-foo-bar",
+  //             "ensure_no_password": true,
+  //             "firmware_update": true,
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   }
+  // }
+  rpc SignImage(SignImageRequest) returns (SignImageResponse) {
+    option (method_options) = {
+      method_branched_execution: EXECUTE_TOT,
+    };
+  };
 }

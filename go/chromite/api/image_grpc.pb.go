@@ -58,6 +58,25 @@ type ImageServiceClient interface {
 	//   "sign_types": [1, 6]
 	// }
 	PushImage(ctx context.Context, in *PushImageRequest, opts ...grpc.CallOption) (*PushImageResponse, error)
+	// Sign images based on the given config.
+	// Example json:
+	// {
+	//   "signing_configs": {
+	//     "build_target_signing_configs": [
+	//       {
+	//         "build_target": "eve",
+	//         "signing_configs": [
+	//           {
+	//             "keyset": "eve-foo-bar",
+	//             "ensure_no_password": true,
+	//             "firmware_update": true,
+	//           }
+	//         ]
+	//       }
+	//     ]
+	//   }
+	// }
+	SignImage(ctx context.Context, in *SignImageRequest, opts ...grpc.CallOption) (*SignImageResponse, error)
 }
 
 type imageServiceClient struct {
@@ -113,6 +132,15 @@ func (c *imageServiceClient) PushImage(ctx context.Context, in *PushImageRequest
 	return out, nil
 }
 
+func (c *imageServiceClient) SignImage(ctx context.Context, in *SignImageRequest, opts ...grpc.CallOption) (*SignImageResponse, error) {
+	out := new(SignImageResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ImageService/SignImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ImageServiceServer is the server API for ImageService service.
 // All implementations must embed UnimplementedImageServiceServer
 // for forward compatibility
@@ -153,6 +181,25 @@ type ImageServiceServer interface {
 	//   "sign_types": [1, 6]
 	// }
 	PushImage(context.Context, *PushImageRequest) (*PushImageResponse, error)
+	// Sign images based on the given config.
+	// Example json:
+	// {
+	//   "signing_configs": {
+	//     "build_target_signing_configs": [
+	//       {
+	//         "build_target": "eve",
+	//         "signing_configs": [
+	//           {
+	//             "keyset": "eve-foo-bar",
+	//             "ensure_no_password": true,
+	//             "firmware_update": true,
+	//           }
+	//         ]
+	//       }
+	//     ]
+	//   }
+	// }
+	SignImage(context.Context, *SignImageRequest) (*SignImageResponse, error)
 	mustEmbedUnimplementedImageServiceServer()
 }
 
@@ -174,6 +221,9 @@ func (UnimplementedImageServiceServer) SignerTest(context.Context, *TestImageReq
 }
 func (UnimplementedImageServiceServer) PushImage(context.Context, *PushImageRequest) (*PushImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushImage not implemented")
+}
+func (UnimplementedImageServiceServer) SignImage(context.Context, *SignImageRequest) (*SignImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignImage not implemented")
 }
 func (UnimplementedImageServiceServer) mustEmbedUnimplementedImageServiceServer() {}
 
@@ -278,6 +328,24 @@ func _ImageService_PushImage_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ImageService_SignImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImageServiceServer).SignImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ImageService/SignImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImageServiceServer).SignImage(ctx, req.(*SignImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ImageService_ServiceDesc is the grpc.ServiceDesc for ImageService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +372,10 @@ var ImageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PushImage",
 			Handler:    _ImageService_PushImage_Handler,
+		},
+		{
+			MethodName: "SignImage",
+			Handler:    _ImageService_SignImage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

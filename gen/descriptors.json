@@ -5464,10 +5464,124 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "displayName",
+              "label": "LABEL_OPTIONAL",
+              "name": "display_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "imageTypes",
+              "label": "LABEL_REPEATED",
+              "name": "image_types",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
+              "jsonName": "recoveryZip",
+              "label": "LABEL_OPTIONAL",
+              "name": "recovery_zip",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "ensureNoPassword",
+              "label": "LABEL_OPTIONAL",
+              "name": "ensure_no_password",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "firmwareUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_update",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "inputFiles",
+              "label": "LABEL_REPEATED",
+              "name": "input_files",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "outputNames",
+              "label": "LABEL_REPEATED",
+              "name": "output_names",
+              "number": 8,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SigningConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signingConfigs",
+              "label": "LABEL_REPEATED",
+              "name": "signing_configs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.SigningConfig"
+            }
+          ],
+          "name": "BuildTargetSigningConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargetSigningConfigs",
+              "label": "LABEL_REPEATED",
+              "name": "build_target_signing_configs",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTargetSigningConfig"
+            }
+          ],
+          "name": "BuildTargetSigningConfigs"
+        }
+      ],
+      "name": "chromiumos/signing.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
         "chromiumos/common.proto",
-        "chromiumos/metrics.proto"
+        "chromiumos/metrics.proto",
+        "chromiumos/signing.proto"
       ],
       "messageType": [
         {
@@ -5804,6 +5918,30 @@
               "name": "Instructions"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "signingConfigs",
+              "label": "LABEL_OPTIONAL",
+              "name": "signing_configs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTargetSigningConfigs"
+            }
+          ],
+          "name": "SignImageRequest"
+        },
+        {
+          "name": "SignImageResponse"
         }
       ],
       "name": "chromite/api/image.proto",
@@ -5838,6 +5976,16 @@
               "inputType": ".chromite.api.PushImageRequest",
               "name": "PushImage",
               "outputType": ".chromite.api.PushImageResponse"
+            },
+            {
+              "inputType": ".chromite.api.SignImageRequest",
+              "name": "SignImage",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodBranchedExecution": "EXECUTE_TOT"
+                }
+              },
+              "outputType": ".chromite.api.SignImageResponse"
             }
           ],
           "name": "ImageService",
@@ -17776,119 +17924,6 @@
         }
       ],
       "name": "chromiumos/sign_image.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
-        "javaPackage": "com.google.chrome.crosinfra.proto"
-      },
-      "package": "chromiumos",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromiumos/common.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "displayName",
-              "label": "LABEL_OPTIONAL",
-              "name": "display_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "keyset",
-              "label": "LABEL_OPTIONAL",
-              "name": "keyset",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "imageTypes",
-              "label": "LABEL_REPEATED",
-              "name": "image_types",
-              "number": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ImageType"
-            },
-            {
-              "jsonName": "recoveryZip",
-              "label": "LABEL_OPTIONAL",
-              "name": "recovery_zip",
-              "number": 4,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "ensureNoPassword",
-              "label": "LABEL_OPTIONAL",
-              "name": "ensure_no_password",
-              "number": 5,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "firmwareUpdate",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_update",
-              "number": 6,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "inputFiles",
-              "label": "LABEL_REPEATED",
-              "name": "input_files",
-              "number": 7,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "outputNames",
-              "label": "LABEL_REPEATED",
-              "name": "output_names",
-              "number": 8,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "SigningConfig"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "signingConfigs",
-              "label": "LABEL_REPEATED",
-              "name": "signing_configs",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.SigningConfig"
-            }
-          ],
-          "name": "BuildTargetSigningConfig"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "buildTargetSigningConfigs",
-              "label": "LABEL_REPEATED",
-              "name": "build_target_signing_configs",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.BuildTargetSigningConfig"
-            }
-          ],
-          "name": "BuildTargetSigningConfigs"
-        }
-      ],
-      "name": "chromiumos/signing.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
         "javaPackage": "com.google.chrome.crosinfra.proto"
