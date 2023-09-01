@@ -26,7 +26,7 @@ message BuildSdkSubtoolsResponse {
   repeated FailedPackageData failed_package_data = 1;
 }
 
-service BuildSdkSubtoolsService {
+service SdkSubtoolsService {
   option (service_options) = {
       module: "sdk_subtools",
       service_chroot_assert: INSIDE,

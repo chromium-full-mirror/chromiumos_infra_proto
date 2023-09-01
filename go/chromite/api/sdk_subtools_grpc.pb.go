@@ -18,89 +18,88 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// BuildSdkSubtoolsServiceClient is the client API for BuildSdkSubtoolsService service.
+// SdkSubtoolsServiceClient is the client API for SdkSubtoolsService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type BuildSdkSubtoolsServiceClient interface {
+type SdkSubtoolsServiceClient interface {
 	// Executes the BuildSdkSubtoolsRequest.
 	BuildSdkSubtools(ctx context.Context, in *BuildSdkSubtoolsRequest, opts ...grpc.CallOption) (*BuildSdkSubtoolsResponse, error)
 }
 
-type buildSdkSubtoolsServiceClient struct {
+type sdkSubtoolsServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewBuildSdkSubtoolsServiceClient(cc grpc.ClientConnInterface) BuildSdkSubtoolsServiceClient {
-	return &buildSdkSubtoolsServiceClient{cc}
+func NewSdkSubtoolsServiceClient(cc grpc.ClientConnInterface) SdkSubtoolsServiceClient {
+	return &sdkSubtoolsServiceClient{cc}
 }
 
-func (c *buildSdkSubtoolsServiceClient) BuildSdkSubtools(ctx context.Context, in *BuildSdkSubtoolsRequest, opts ...grpc.CallOption) (*BuildSdkSubtoolsResponse, error) {
+func (c *sdkSubtoolsServiceClient) BuildSdkSubtools(ctx context.Context, in *BuildSdkSubtoolsRequest, opts ...grpc.CallOption) (*BuildSdkSubtoolsResponse, error) {
 	out := new(BuildSdkSubtoolsResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.BuildSdkSubtoolsService/BuildSdkSubtools", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkSubtoolsService/BuildSdkSubtools", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// BuildSdkSubtoolsServiceServer is the server API for BuildSdkSubtoolsService service.
-// All implementations must embed UnimplementedBuildSdkSubtoolsServiceServer
+// SdkSubtoolsServiceServer is the server API for SdkSubtoolsService service.
+// All implementations must embed UnimplementedSdkSubtoolsServiceServer
 // for forward compatibility
-type BuildSdkSubtoolsServiceServer interface {
+type SdkSubtoolsServiceServer interface {
 	// Executes the BuildSdkSubtoolsRequest.
 	BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error)
-	mustEmbedUnimplementedBuildSdkSubtoolsServiceServer()
+	mustEmbedUnimplementedSdkSubtoolsServiceServer()
 }
 
-// UnimplementedBuildSdkSubtoolsServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedBuildSdkSubtoolsServiceServer struct {
+// UnimplementedSdkSubtoolsServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSdkSubtoolsServiceServer struct {
 }
 
-func (UnimplementedBuildSdkSubtoolsServiceServer) BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error) {
+func (UnimplementedSdkSubtoolsServiceServer) BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildSdkSubtools not implemented")
 }
-func (UnimplementedBuildSdkSubtoolsServiceServer) mustEmbedUnimplementedBuildSdkSubtoolsServiceServer() {
-}
+func (UnimplementedSdkSubtoolsServiceServer) mustEmbedUnimplementedSdkSubtoolsServiceServer() {}
 
-// UnsafeBuildSdkSubtoolsServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to BuildSdkSubtoolsServiceServer will
+// UnsafeSdkSubtoolsServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SdkSubtoolsServiceServer will
 // result in compilation errors.
-type UnsafeBuildSdkSubtoolsServiceServer interface {
-	mustEmbedUnimplementedBuildSdkSubtoolsServiceServer()
+type UnsafeSdkSubtoolsServiceServer interface {
+	mustEmbedUnimplementedSdkSubtoolsServiceServer()
 }
 
-func RegisterBuildSdkSubtoolsServiceServer(s grpc.ServiceRegistrar, srv BuildSdkSubtoolsServiceServer) {
-	s.RegisterService(&BuildSdkSubtoolsService_ServiceDesc, srv)
+func RegisterSdkSubtoolsServiceServer(s grpc.ServiceRegistrar, srv SdkSubtoolsServiceServer) {
+	s.RegisterService(&SdkSubtoolsService_ServiceDesc, srv)
 }
 
-func _BuildSdkSubtoolsService_BuildSdkSubtools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SdkSubtoolsService_BuildSdkSubtools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BuildSdkSubtoolsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BuildSdkSubtoolsServiceServer).BuildSdkSubtools(ctx, in)
+		return srv.(SdkSubtoolsServiceServer).BuildSdkSubtools(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/chromite.api.BuildSdkSubtoolsService/BuildSdkSubtools",
+		FullMethod: "/chromite.api.SdkSubtoolsService/BuildSdkSubtools",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BuildSdkSubtoolsServiceServer).BuildSdkSubtools(ctx, req.(*BuildSdkSubtoolsRequest))
+		return srv.(SdkSubtoolsServiceServer).BuildSdkSubtools(ctx, req.(*BuildSdkSubtoolsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// BuildSdkSubtoolsService_ServiceDesc is the grpc.ServiceDesc for BuildSdkSubtoolsService service.
+// SdkSubtoolsService_ServiceDesc is the grpc.ServiceDesc for SdkSubtoolsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var BuildSdkSubtoolsService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "chromite.api.BuildSdkSubtoolsService",
-	HandlerType: (*BuildSdkSubtoolsServiceServer)(nil),
+var SdkSubtoolsService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "chromite.api.SdkSubtoolsService",
+	HandlerType: (*SdkSubtoolsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "BuildSdkSubtools",
-			Handler:    _BuildSdkSubtoolsService_BuildSdkSubtools_Handler,
+			Handler:    _SdkSubtoolsService_BuildSdkSubtools_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

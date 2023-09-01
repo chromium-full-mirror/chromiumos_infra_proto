@@ -12899,7 +12899,7 @@
               "outputType": ".chromite.api.BuildSdkSubtoolsResponse"
             }
           ],
-          "name": "BuildSdkSubtoolsService",
+          "name": "SdkSubtoolsService",
           "options": {
             "[chromite.api.service_options]": {
               "module": "sdk_subtools",
