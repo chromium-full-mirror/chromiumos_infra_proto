@@ -46,6 +46,11 @@ message SigningConfig {
     // which has no guarantee wrt disambiguation/clobbering).
     // Legacy behavior: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=933
     repeated string output_names = 8;
+
+    // Path of the archive to sign.
+    // Not intended for specification in config files -- this field is populated
+    // at run time.
+    string archive_path = 9;
 }
 
 message BuildTargetSigningConfig {
