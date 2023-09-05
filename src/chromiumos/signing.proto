@@ -19,11 +19,8 @@ message SigningConfig {
     // more information.
     string keyset = 2;
 
-    // Deprecated.
-    repeated chromiumos.ImageType image_types = 3;
-
     // Image type that this signing config applies to.
-    chromiumos.ImageType image_type = 10;
+    chromiumos.ImageType image_type = 3;
 
     // Miscellaneous signing parameters.
     // TODO(b/298026507): Figure out what these do and whether we need to keep

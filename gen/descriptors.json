@@ -5512,18 +5512,10 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "imageTypes",
-              "label": "LABEL_REPEATED",
-              "name": "image_types",
-              "number": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ImageType"
-            },
-            {
               "jsonName": "imageType",
               "label": "LABEL_OPTIONAL",
               "name": "image_type",
-              "number": 10,
+              "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.ImageType"
             },
