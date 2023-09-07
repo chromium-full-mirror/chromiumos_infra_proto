@@ -52,6 +52,15 @@ message CommonConfig {
   // If this is enabled and an invalid board-model realm is determined, it's
   // likely the result will not be visible to anyone.
   bool skip_board_model_realm_check = 4;
+
+  // RdbConfig determines any configuration around ResultDB uploads.
+  message RdbConfig {
+    // If request.results_upload_config.TestResultsUploadVisibility is
+    // CUSTOM_REALM this value will be the realm the configs are uploaded to.
+   string custom_realm_name = 1;
+  }
+
+  RdbConfig rdb_config = 6;
 }
 
 // b/267268890: Config to control trv2 gradual rollout in prod. Should be

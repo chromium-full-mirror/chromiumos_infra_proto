@@ -26502,6 +26502,14 @@
               "name": "retry_number",
               "number": 10,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "resultsUploadConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "results_upload_config",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.Params.ResultsUploadConfig"
             }
           ],
           "name": "Request",
@@ -29368,6 +29376,14 @@
               "name": "skip_board_model_realm_check",
               "number": 4,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "rdbConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "rdb_config",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CommonConfig.RdbConfig"
             }
           ],
           "name": "CommonConfig",
@@ -29427,6 +29443,18 @@
                   "name": "cros_firmware_update_selector"
                 }
               ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "customRealmName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "custom_realm_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "RdbConfig"
             }
           ]
         },
