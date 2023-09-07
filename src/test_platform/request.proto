@@ -23,7 +23,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 17
+  // NEXT_TAG: 22
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -271,6 +271,30 @@ message Request {
     // If set the suite will be run using CTPv2, using the 3D solver to determine hardware
     // Note all tests within this suite/group *must* have a 3d expression set in the respective harness
     bool ddd_suite = 20;
+
+    // ResultsUploadConfig controls behavior around post test uploads.
+    message ResultsUploadConfig {
+      // TestResultsUploadVisibility controls access to results of the test run.
+      enum TestResultsUploadVisibility {
+        // TEST_RESULTS_VISIBILITY_UNSPECIFIED should result in behavior
+        // acceptable for main lab test results. As of Sept. 2023 that means
+        // publishing to board/model realms.
+        TEST_RESULTS_VISIBILITY_UNSPECIFIED = 0;
+        // TEST_RESULTS_VISIBILITY_BOARD_MODEL gives access to test results on
+        // a user's access to a board/model.
+        TEST_RESULTS_VISIBILITY_BOARD_MODEL = 1;
+        // TEST_RESULTS_VISIBILITY_CUSTOM_REALM publishes test results to a
+        // realm determined by the TestRunner bucket (set in CommonConfig).
+        // Visibility is determined by LUCI configs.
+        TEST_RESULTS_VISIBILITY_CUSTOM_REALM = 2;
+      }
+
+      // TestResultsUploadVisibility sets the visibility of all test results
+      // triggered by this cros_test_platform request.
+      TestResultsUploadVisibility mode = 1;
+    }
+
+    ResultsUploadConfig results = 21;
   }
 
   Params params = 1;

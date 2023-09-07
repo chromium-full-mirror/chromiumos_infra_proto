@@ -25518,6 +25518,14 @@
                   "name": "ddd_suite",
                   "number": 20,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "results",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "results",
+                  "number": 21,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.ResultsUploadConfig"
                 }
               ],
               "name": "Params",
@@ -25898,6 +25906,38 @@
                       "start": 3
                     }
                   ]
+                },
+                {
+                  "enumType": [
+                    {
+                      "name": "TestResultsUploadVisibility",
+                      "value": [
+                        {
+                          "name": "TEST_RESULTS_VISIBILITY_UNSPECIFIED",
+                          "number": 0
+                        },
+                        {
+                          "name": "TEST_RESULTS_VISIBILITY_BOARD_MODEL",
+                          "number": 1
+                        },
+                        {
+                          "name": "TEST_RESULTS_VISIBILITY_CUSTOM_REALM",
+                          "number": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "field": [
+                    {
+                      "jsonName": "mode",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "mode",
+                      "number": 1,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".test_platform.Request.Params.ResultsUploadConfig.TestResultsUploadVisibility"
+                    }
+                  ],
+                  "name": "ResultsUploadConfig"
                 }
               ],
               "reservedName": [
