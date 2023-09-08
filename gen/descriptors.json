@@ -11368,6 +11368,14 @@
                       "name": "compile_source",
                       "number": 1,
                       "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "sdkUpdateRunSpec",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "sdk_update_run_spec",
+                      "number": 2,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".chromiumos.BuilderConfig.RunSpec"
                     }
                   ],
                   "name": "SdkUpdate"

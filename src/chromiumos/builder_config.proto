@@ -496,6 +496,11 @@ message BuilderConfig {
     message SdkUpdate {
       // Whether to compile from source (vs using prebuilts when able.)
       bool compile_source = 1;
+
+      // Controls whether or not to run the SdkService.Update step.
+      // TODO(b/299638415): For now, keep this in-sync with
+      // update_chroot.run_spec.
+      RunSpec sdk_update_run_spec = 2;
     }
     SdkUpdate sdk_update = 12;
 
@@ -586,6 +591,8 @@ message BuilderConfig {
   }
   UnitTests unit_tests = 7;
 
+  // TODO(b/299638415): This is redundant with SdkUpdate. Remove, once all
+  // fields have been merged into SdkUpdate.
   message UpdateChroot {
     // Controls whether or not this build will update the chroot immediately
     // after it is initialized (unless explicitly overridden by the recipe).
