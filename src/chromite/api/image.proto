@@ -162,8 +162,7 @@ message PushImageResponse {
 
 // Request artifacts to be signed.
 message SignImageRequest {
-  // The chroot used to execute the endpoint.
-  chromiumos.Chroot chroot = 1;
+  reserved 1;
 
   // Signing configs.
   chromiumos.BuildTargetSigningConfigs signing_configs = 2;
@@ -245,6 +244,7 @@ service ImageService {
   rpc SignImage(SignImageRequest) returns (SignImageResponse) {
     option (method_options) = {
       method_branched_execution: EXECUTE_TOT,
+      method_chroot_assert: OUTSIDE,
     };
   };
 }

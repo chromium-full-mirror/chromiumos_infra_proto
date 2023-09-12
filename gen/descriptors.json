@@ -5957,14 +5957,6 @@
         {
           "field": [
             {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            },
-            {
               "jsonName": "signingConfigs",
               "label": "LABEL_OPTIONAL",
               "name": "signing_configs",
@@ -5981,7 +5973,13 @@
               "typeName": ".chromiumos.ResultPath"
             }
           ],
-          "name": "SignImageRequest"
+          "name": "SignImageRequest",
+          "reservedRange": [
+            {
+              "end": 2,
+              "start": 1
+            }
+          ]
         },
         {
           "name": "SignImageResponse"
@@ -6025,7 +6023,8 @@
               "name": "SignImage",
               "options": {
                 "[chromite.api.method_options]": {
-                  "methodBranchedExecution": "EXECUTE_TOT"
+                  "methodBranchedExecution": "EXECUTE_TOT",
+                  "methodChrootAssert": "OUTSIDE"
                 }
               },
               "outputType": ".chromite.api.SignImageResponse"
