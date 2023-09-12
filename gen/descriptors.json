@@ -25533,6 +25533,13 @@
                   "number": 21,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.Request.Params.ResultsUploadConfig"
+                },
+                {
+                  "jsonName": "translateTrv2Request",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "translate_trv2_request",
+                  "number": 22,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",

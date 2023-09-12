@@ -23,7 +23,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 22
+  // NEXT_TAG: 23
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -295,6 +295,10 @@ message Request {
     }
 
     ResultsUploadConfig results = 21;
+
+    // If true, thus suite will translate from a CftTestRequest into a CrosTestRequest.
+    // Must have run_via_trv2 set to true to have an effect.
+    bool translate_trv2_request = 22;
   }
 
   Params params = 1;
