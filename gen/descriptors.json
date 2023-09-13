@@ -1390,7 +1390,7 @@
                     },
                     {
                       "end": 13,
-                      "start": 13
+                      "start": 11
                     },
                     {
                       "end": 28,
@@ -1409,14 +1409,6 @@
                     {
                       "name": "UNSPECIFIED",
                       "number": 0
-                    },
-                    {
-                      "name": "UNVERIFIED_CHROME_LLVM_ORDERFILE",
-                      "number": 11
-                    },
-                    {
-                      "name": "VERIFIED_CHROME_LLVM_ORDERFILE",
-                      "number": 12
                     },
                     {
                       "name": "UNVERIFIED_LLVM_PGO_FILE",
@@ -10940,7 +10932,7 @@
                     },
                     {
                       "end": 13,
-                      "start": 13
+                      "start": 11
                     }
                   ],
                   "value": [
@@ -10983,14 +10975,6 @@
                     {
                       "name": "IMAGE_ARCHIVES",
                       "number": 10
-                    },
-                    {
-                      "name": "UNVERIFIED_CHROME_LLVM_ORDERFILE",
-                      "number": 11
-                    },
-                    {
-                      "name": "VERIFIED_CHROME_LLVM_ORDERFILE",
-                      "number": 12
                     },
                     {
                       "name": "UNVERIFIED_LLVM_PGO_FILE",
