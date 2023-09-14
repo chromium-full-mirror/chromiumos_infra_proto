@@ -513,9 +513,13 @@ message ArtifactsByService {
       // gone.
       reserved 1 to 10;
 
-      // These values were previously used by now-turned-down orderfile and
-      // clang-tidy builders.
-      reserved 11 to 13;
+      // Indicates an unvetted orderfile for Chrome.
+      UNVERIFIED_CHROME_LLVM_ORDERFILE = 11;
+      // Indicates a vetted orderfile for Chrome.
+      VERIFIED_CHROME_LLVM_ORDERFILE = 12;
+      // This value was previously used by clang-tidy builders, but is no longer
+      // used.
+      reserved 13;
       // Indicates a PGO artifact for the compiler.
       UNVERIFIED_LLVM_PGO_FILE = 14;
 
