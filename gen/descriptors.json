@@ -1257,7 +1257,7 @@
                       "start": 29
                     },
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 33
                     }
                   ],
@@ -1399,6 +1399,10 @@
                     {
                       "end": 51,
                       "start": 30
+                    },
+                    {
+                      "end": 53,
+                      "start": 53
                     }
                   ],
                   "value": [
@@ -1558,7 +1562,7 @@
                       "start": 46
                     },
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 50
                     }
                   ],
@@ -1651,7 +1655,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 1
                     }
                   ],
@@ -1776,6 +1780,10 @@
                     {
                       "name": "SYSROOT_ARCHIVE",
                       "number": 50
+                    },
+                    {
+                      "name": "BAZEL_PERFORMANCE_ARTIFACTS",
+                      "number": 53
                     }
                   ]
                 },
@@ -1901,7 +1909,7 @@
                       "start": 47
                     },
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 49
                     }
                   ],
@@ -2014,7 +2022,7 @@
                       "start": 34
                     },
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 45
                     }
                   ],
@@ -2123,7 +2131,7 @@
                       "start": 1
                     },
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 37
                     }
                   ],
@@ -2204,7 +2212,7 @@
                       "start": 1
                     },
                     {
-                      "end": 52,
+                      "end": 53,
                       "start": 52
                     }
                   ],
