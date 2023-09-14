@@ -7333,11 +7333,37 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "BuildPrebuiltsRequest"
         },
         {
+          "field": [
+            {
+              "jsonName": "hostPrebuiltsPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "host_prebuilts_path",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "targetPrebuiltsPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_prebuilts_path",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
           "name": "BuildPrebuiltsResponse"
         },
         {
@@ -7594,6 +7620,11 @@
             {
               "inputType": ".chromite.api.BuildPrebuiltsRequest",
               "name": "BuildPrebuilts",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
               "outputType": ".chromite.api.BuildPrebuiltsResponse"
             },
             {

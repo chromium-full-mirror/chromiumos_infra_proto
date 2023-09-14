@@ -197,9 +197,17 @@ message BuildPrebuiltsRequest {
 
   // The host build target to build packages for.
   chromiumos.BuildTarget build_target = 2;
+
+  // Path into which generated files will be extracted.
+  chromiumos.ResultPath result_path = 3;
 }
 
 message BuildPrebuiltsResponse {
+  // Directory containing generated host prebuilts for the SDK board.
+  chromiumos.Path host_prebuilts_path = 1;
+
+  // Directory containing generated target prebuilts for the SDK board.
+  chromiumos.Path target_prebuilts_path = 2;
 }
 
 // Create a tarball from a previously built SDK.
@@ -311,7 +319,11 @@ service SdkService {
 
   // Builds the binary packages that comprise the SDK.
   rpc BuildPrebuilts(BuildPrebuiltsRequest)
-      returns (BuildPrebuiltsResponse);
+      returns (BuildPrebuiltsResponse) {
+          option (method_options) = {
+            method_chroot_assert: INSIDE,
+          };
+      };
 
   // Creates a tarball from a previously built SDK.
   rpc BuildSdkTarball(BuildSdkTarballRequest) returns (BuildSdkTarballResponse);
