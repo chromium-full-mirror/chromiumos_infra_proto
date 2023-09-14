@@ -22609,6 +22609,156 @@
         {
           "field": [
             {
+              "jsonName": "projectId",
+              "label": "LABEL_OPTIONAL",
+              "name": "project_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "accountId",
+              "label": "LABEL_OPTIONAL",
+              "name": "account_id",
+              "number": 2,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "accountName",
+              "label": "LABEL_OPTIONAL",
+              "name": "account_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "chromeOsDevices",
+              "label": "LABEL_REPEATED",
+              "name": "chrome_os_devices",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".partners.ChromeOSDevice"
+            },
+            {
+              "jsonName": "ctpBuilderBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctp_builder_bucket",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deployBuilderBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "deploy_builder_bucket",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ufsNamespace",
+              "label": "LABEL_OPTIONAL",
+              "name": "ufs_namespace",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ufsZone",
+              "label": "LABEL_OPTIONAL",
+              "name": "ufs_zone",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ufsRealm",
+              "label": "LABEL_OPTIONAL",
+              "name": "ufs_realm",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gsBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_bucket",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "serviceAccount",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_account",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "botPrefix",
+              "label": "LABEL_OPTIONAL",
+              "name": "bot_prefix",
+              "number": 12,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "partnerPrivateRealm",
+              "label": "LABEL_OPTIONAL",
+              "name": "partner_private_realm",
+              "number": 13,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "luciAccessGroups",
+              "label": "LABEL_REPEATED",
+              "name": "luci_access_groups",
+              "number": 14,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PartnerConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ChromeOSDevice"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "value",
+              "label": "LABEL_REPEATED",
+              "name": "value",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".partners.PartnerConfig"
+            }
+          ],
+          "name": "PartnerConfigList"
+        }
+      ],
+      "name": "partners/config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/partners"
+      },
+      "package": "partners",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "buildbucketReaders",
               "label": "LABEL_REPEATED",
               "name": "buildbucket_readers",
