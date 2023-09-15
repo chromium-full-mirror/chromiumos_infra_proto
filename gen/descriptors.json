@@ -7340,14 +7340,6 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildTarget"
-            },
-            {
-              "jsonName": "resultPath",
-              "label": "LABEL_OPTIONAL",
-              "name": "result_path",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "BuildPrebuiltsRequest"
@@ -7627,11 +7619,6 @@
             {
               "inputType": ".chromite.api.BuildPrebuiltsRequest",
               "name": "BuildPrebuilts",
-              "options": {
-                "[chromite.api.method_options]": {
-                  "methodChrootAssert": "INSIDE"
-                }
-              },
               "outputType": ".chromite.api.BuildPrebuiltsResponse"
             },
             {
