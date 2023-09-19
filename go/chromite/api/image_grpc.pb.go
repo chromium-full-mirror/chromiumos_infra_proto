@@ -73,7 +73,8 @@ type ImageServiceClient interface {
 	//           }
 	//         ]
 	//       }
-	//     ]
+	//     ],
+	//     "docker_image": "signing:latest"
 	//   }
 	// }
 	SignImage(ctx context.Context, in *SignImageRequest, opts ...grpc.CallOption) (*SignImageResponse, error)
@@ -196,7 +197,8 @@ type ImageServiceServer interface {
 	//           }
 	//         ]
 	//       }
-	//     ]
+	//     ],
+	//     "docker_image": "signing:latest"
 	//   }
 	// }
 	SignImage(context.Context, *SignImageRequest) (*SignImageResponse, error)

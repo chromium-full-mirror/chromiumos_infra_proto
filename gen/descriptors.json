@@ -5971,6 +5971,13 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "SignImageRequest",

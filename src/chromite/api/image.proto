@@ -169,6 +169,11 @@ message SignImageRequest {
 
   // Directory where signed artifacts should be placed.
   chromiumos.ResultPath result_path = 3;
+
+  // Docker image to use for signing. Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  string docker_image = 4;
 }
 
 message SignImageResponse {
@@ -238,7 +243,8 @@ service ImageService {
   //           }
   //         ]
   //       }
-  //     ]
+  //     ],
+  //     "docker_image": "signing:latest"
   //   }
   // }
   rpc SignImage(SignImageRequest) returns (SignImageResponse) {
