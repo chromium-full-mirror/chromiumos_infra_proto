@@ -33995,6 +33995,20 @@
               "name": "analytics_name",
               "number": 10,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "androidImageVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_image_version",
+              "number": 15,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gmsCorePackage",
+              "label": "LABEL_OPTIONAL",
+              "name": "gms_core_package",
+              "number": 16,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "SchedulerConfig",

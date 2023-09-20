@@ -232,6 +232,12 @@ message SchedulerConfig {
 
     // Name of the config, used for analytics. Does not have to be unique.
     string analytics_name = 10;
+
+    // The android image version for android provisioning
+    string android_image_version = 15;
+
+    // GMSCORE cipd package ref for android provisioning
+    string gms_core_package = 16;
 }
 
 // A proto to contain all the configs.
