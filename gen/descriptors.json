@@ -12947,9 +12947,40 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.FailedPackageData"
+            },
+            {
+              "jsonName": "bundlePaths",
+              "label": "LABEL_REPEATED",
+              "name": "bundle_paths",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             }
           ],
           "name": "BuildSdkSubtoolsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "useProduction",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_production",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "bundlePaths",
+              "label": "LABEL_REPEATED",
+              "name": "bundle_paths",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "ExportSdkSubtoolsRequest"
+        },
+        {
+          "name": "ExportSdkSubtoolsResponse"
         }
       ],
       "name": "chromite/api/sdk_subtools.proto",
@@ -12964,6 +12995,16 @@
               "inputType": ".chromite.api.BuildSdkSubtoolsRequest",
               "name": "BuildSdkSubtools",
               "outputType": ".chromite.api.BuildSdkSubtoolsResponse"
+            },
+            {
+              "inputType": ".chromite.api.ExportSdkSubtoolsRequest",
+              "name": "ExportSdkSubtools",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.ExportSdkSubtoolsResponse"
             }
           ],
           "name": "SdkSubtoolsService",

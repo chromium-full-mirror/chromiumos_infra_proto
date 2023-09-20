@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type SdkSubtoolsServiceClient interface {
 	// Executes the BuildSdkSubtoolsRequest.
 	BuildSdkSubtools(ctx context.Context, in *BuildSdkSubtoolsRequest, opts ...grpc.CallOption) (*BuildSdkSubtoolsResponse, error)
+	// Executes the ExportSdkSubtoolsRequest.
+	ExportSdkSubtools(ctx context.Context, in *ExportSdkSubtoolsRequest, opts ...grpc.CallOption) (*ExportSdkSubtoolsResponse, error)
 }
 
 type sdkSubtoolsServiceClient struct {
@@ -43,12 +45,23 @@ func (c *sdkSubtoolsServiceClient) BuildSdkSubtools(ctx context.Context, in *Bui
 	return out, nil
 }
 
+func (c *sdkSubtoolsServiceClient) ExportSdkSubtools(ctx context.Context, in *ExportSdkSubtoolsRequest, opts ...grpc.CallOption) (*ExportSdkSubtoolsResponse, error) {
+	out := new(ExportSdkSubtoolsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkSubtoolsService/ExportSdkSubtools", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SdkSubtoolsServiceServer is the server API for SdkSubtoolsService service.
 // All implementations must embed UnimplementedSdkSubtoolsServiceServer
 // for forward compatibility
 type SdkSubtoolsServiceServer interface {
 	// Executes the BuildSdkSubtoolsRequest.
 	BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error)
+	// Executes the ExportSdkSubtoolsRequest.
+	ExportSdkSubtools(context.Context, *ExportSdkSubtoolsRequest) (*ExportSdkSubtoolsResponse, error)
 	mustEmbedUnimplementedSdkSubtoolsServiceServer()
 }
 
@@ -58,6 +71,9 @@ type UnimplementedSdkSubtoolsServiceServer struct {
 
 func (UnimplementedSdkSubtoolsServiceServer) BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildSdkSubtools not implemented")
+}
+func (UnimplementedSdkSubtoolsServiceServer) ExportSdkSubtools(context.Context, *ExportSdkSubtoolsRequest) (*ExportSdkSubtoolsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportSdkSubtools not implemented")
 }
 func (UnimplementedSdkSubtoolsServiceServer) mustEmbedUnimplementedSdkSubtoolsServiceServer() {}
 
@@ -90,6 +106,24 @@ func _SdkSubtoolsService_BuildSdkSubtools_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SdkSubtoolsService_ExportSdkSubtools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportSdkSubtoolsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SdkSubtoolsServiceServer).ExportSdkSubtools(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SdkSubtoolsService/ExportSdkSubtools",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SdkSubtoolsServiceServer).ExportSdkSubtools(ctx, req.(*ExportSdkSubtoolsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SdkSubtoolsService_ServiceDesc is the grpc.ServiceDesc for SdkSubtoolsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +134,10 @@ var SdkSubtoolsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BuildSdkSubtools",
 			Handler:    _SdkSubtoolsService_BuildSdkSubtools_Handler,
+		},
+		{
+			MethodName: "ExportSdkSubtools",
+			Handler:    _SdkSubtoolsService_ExportSdkSubtools_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
