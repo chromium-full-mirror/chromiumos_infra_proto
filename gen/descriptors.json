@@ -19589,6 +19589,42 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "powerunitName",
+              "label": "LABEL_OPTIONAL",
+              "name": "powerunit_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "powerunitOutlet",
+              "label": "LABEL_OPTIONAL",
+              "name": "powerunit_outlet",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "OSRPM"
+        }
+      ],
+      "name": "lab/rpm.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/lab"
+      },
+      "package": "lab",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "lab/rpm.proto"
+      ],
       "enumType": [
         {
           "name": "ChameleonType",
@@ -19613,21 +19649,79 @@
             },
             {
               "name": "CHAMELEON_TYPE_DP_HDMI",
-              "number": 3
+              "number": 3,
+              "options": {
+                "deprecated": true
+              }
             },
             {
               "name": "CHAMELEON_TYPE_VGA",
-              "number": 4
+              "number": 4,
+              "options": {
+                "deprecated": true
+              }
             },
             {
               "name": "CHAMELEON_TYPE_HDMI",
               "number": 5
+            },
+            {
+              "name": "CHAMELEON_TYPE_V2",
+              "number": 9
+            },
+            {
+              "name": "CHAMELEON_TYPE_V3",
+              "number": 10
+            },
+            {
+              "name": "CHAMELEON_TYPE_RPI",
+              "number": 11
             }
           ]
         }
       ],
       "messageType": [
         {
+          "enumType": [
+            {
+              "name": "AudioBoxJackPlugger",
+              "value": [
+                {
+                  "name": "AUDIOBOX_JACKPLUGGER_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "AUDIOBOX_JACKPLUGGER_WORKING",
+                  "number": 1
+                },
+                {
+                  "name": "AUDIOBOX_JACKPLUGGER_BROKEN",
+                  "number": 2
+                },
+                {
+                  "name": "AUDIOBOX_JACKPLUGGER_NOT_APPLICABLE",
+                  "number": 3
+                }
+              ]
+            },
+            {
+              "name": "TRRSType",
+              "value": [
+                {
+                  "name": "TRRS_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TRRS_TYPE_CTIA",
+                  "number": 1
+                },
+                {
+                  "name": "TRRS_TYPE_OMTP",
+                  "number": 2
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "chameleonPeripherals",
@@ -19643,6 +19737,37 @@
               "name": "audio_board",
               "number": 2,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "rpm",
+              "label": "LABEL_OPTIONAL",
+              "name": "rpm",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".lab.OSRPM"
+            },
+            {
+              "jsonName": "audioboxJackplugger",
+              "label": "LABEL_OPTIONAL",
+              "name": "audiobox_jackplugger",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab.Chameleon.AudioBoxJackPlugger"
+            },
+            {
+              "jsonName": "trrsType",
+              "label": "LABEL_OPTIONAL",
+              "name": "trrs_type",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab.Chameleon.TRRSType"
             }
           ],
           "name": "Chameleon",
@@ -21512,6 +21637,14 @@
             {
               "name": "POWER_BUTTON_PIN_ISSUE",
               "number": 25
+            },
+            {
+              "name": "NOT_APPLICABLE",
+              "number": 26
+            },
+            {
+              "name": "DEBUG_HEADER_SERVO_MISSING",
+              "number": 27
             }
           ]
         },
