@@ -18,6 +18,10 @@ message SigningConfig {
     // Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
     // more information.
     string keyset = 2;
+    // The channel to sign for.
+    // Not intended for specification in config files -- this field is populated
+    // at run time.
+    chromiumos.Channel channel = 10;
 
     // Image type that this signing config applies to.
     chromiumos.ImageType image_type = 3;
