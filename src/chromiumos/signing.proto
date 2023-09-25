@@ -22,6 +22,10 @@ message SigningConfig {
     // Not intended for specification in config files -- this field is populated
     // at run time.
     chromiumos.Channel channel = 10;
+    // The ChromeOS version for the artifact we're signing. Used in generating
+    // output names. Not intended for specification in config files -- this
+    // field is populated at run time.
+    string version = 11;
 
     // Image type that this signing config applies to.
     chromiumos.ImageType image_type = 3;
