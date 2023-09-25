@@ -25,6 +25,7 @@ message SigningConfig {
     // The ChromeOS version for the artifact we're signing. Used in generating
     // output names. Not intended for specification in config files -- this
     // field is populated at run time.
+    // Just the platform version, e.g. "15603.0.0".
     string version = 11;
 
     // Image type that this signing config applies to.

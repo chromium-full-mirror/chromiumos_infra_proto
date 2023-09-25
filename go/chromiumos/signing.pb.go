@@ -41,6 +41,7 @@ type SigningConfig struct {
 	// The ChromeOS version for the artifact we're signing. Used in generating
 	// output names. Not intended for specification in config files -- this
 	// field is populated at run time.
+	// Just the platform version, e.g. "15603.0.0".
 	Version string `protobuf:"bytes,11,opt,name=version,proto3" json:"version,omitempty"`
 	// Image type that this signing config applies to.
 	ImageType ImageType `protobuf:"varint,3,opt,name=image_type,json=imageType,proto3,enum=chromiumos.ImageType" json:"image_type,omitempty"`
