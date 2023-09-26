@@ -119,6 +119,14 @@ message GenerationRequest {
 
   // Target directory where output artifacts should be stored.
   chromiumos.ResultPath result_path = 14;
+
+  // If set, will use the local signing flow (currently a prototype).
+  bool use_local_signing = 15;
+
+  // Docker image to use for local signing. Must already be pulled down on the
+  // host. This consists of the name of the docker image, followed by the tag,
+  // i.e. "signing:1234".
+  string docker_image = 16;
 }
 
 // Result of a payload generation.

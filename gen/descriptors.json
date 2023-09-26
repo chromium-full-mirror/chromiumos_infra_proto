@@ -12339,6 +12339,20 @@
               "number": 14,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "useLocalSigning",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_local_signing",
+              "number": 15,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 16,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "GenerationRequest",
