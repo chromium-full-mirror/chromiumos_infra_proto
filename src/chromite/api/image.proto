@@ -167,6 +167,9 @@ message SignImageRequest {
   // Signing configs.
   chromiumos.BuildTargetSigningConfigs signing_configs = 2;
 
+  // Directory where input (unsigned) artifacts are placed.
+  string archive_dir = 5;
+
   // Directory where signed artifacts should be placed.
   chromiumos.ResultPath result_path = 3;
 

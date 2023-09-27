@@ -5980,6 +5980,13 @@
               "typeName": ".chromiumos.BuildTargetSigningConfigs"
             },
             {
+              "jsonName": "archiveDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "archive_dir",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "resultPath",
               "label": "LABEL_OPTIONAL",
               "name": "result_path",
