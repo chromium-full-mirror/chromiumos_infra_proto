@@ -24,22 +24,22 @@ message BuildSdkSubtoolsResponse {
   // Packages that failed to install or update during the update phase.
   repeated FailedPackageData failed_package_data = 1;
 
-  // The bundled paths, each with export metadata.
+  // The bundled paths, each with upload metadata.
   repeated chromiumos.Path bundle_paths = 2;
 }
 
-// Bundles previously created by a BuildSdkSubtoolsRequest are exported to a
+// Bundles previously created by a BuildSdkSubtoolsRequest are uploaded to a
 // storage bucket (e.g., CIPD), after verifying whether they have changed.
-message ExportSdkSubtoolsRequest {
-  // Whether to export to production environments. When false, exports will be
+message UploadSdkSubtoolsRequest {
+  // Whether to upload to production environments. When false, uploads will be
   // done to staging environments instead.
   bool use_production = 1;
 
-  // The pre-bundled paths to export, each with export metadata.
+  // The pre-bundled paths to upload, each with upload metadata.
   repeated chromiumos.Path bundle_paths = 2;
 }
 
-message ExportSdkSubtoolsResponse {
+message UploadSdkSubtoolsResponse {
 }
 
 
@@ -53,9 +53,9 @@ service SdkSubtoolsService {
   rpc BuildSdkSubtools(BuildSdkSubtoolsRequest)
       returns (BuildSdkSubtoolsResponse);
 
-  // Executes the ExportSdkSubtoolsRequest.
-  rpc ExportSdkSubtools(ExportSdkSubtoolsRequest)
-      returns (ExportSdkSubtoolsResponse)  {
+  // Executes the UploadSdkSubtoolsRequest.
+  rpc UploadSdkSubtools(UploadSdkSubtoolsRequest)
+      returns (UploadSdkSubtoolsResponse)  {
           option (method_options) = {
               method_chroot_assert: OUTSIDE,
           };

@@ -13006,10 +13006,10 @@
               "typeName": ".chromiumos.Path"
             }
           ],
-          "name": "ExportSdkSubtoolsRequest"
+          "name": "UploadSdkSubtoolsRequest"
         },
         {
-          "name": "ExportSdkSubtoolsResponse"
+          "name": "UploadSdkSubtoolsResponse"
         }
       ],
       "name": "chromite/api/sdk_subtools.proto",
@@ -13026,14 +13026,14 @@
               "outputType": ".chromite.api.BuildSdkSubtoolsResponse"
             },
             {
-              "inputType": ".chromite.api.ExportSdkSubtoolsRequest",
-              "name": "ExportSdkSubtools",
+              "inputType": ".chromite.api.UploadSdkSubtoolsRequest",
+              "name": "UploadSdkSubtools",
               "options": {
                 "[chromite.api.method_options]": {
                   "methodChrootAssert": "OUTSIDE"
                 }
               },
-              "outputType": ".chromite.api.ExportSdkSubtoolsResponse"
+              "outputType": ".chromite.api.UploadSdkSubtoolsResponse"
             }
           ],
           "name": "SdkSubtoolsService",

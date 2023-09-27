@@ -84,7 +84,7 @@ type BuildSdkSubtoolsResponse struct {
 
 	// Packages that failed to install or update during the update phase.
 	FailedPackageData []*FailedPackageData `protobuf:"bytes,1,rep,name=failed_package_data,json=failedPackageData,proto3" json:"failed_package_data,omitempty"`
-	// The bundled paths, each with export metadata.
+	// The bundled paths, each with upload metadata.
 	BundlePaths []*chromiumos.Path `protobuf:"bytes,2,rep,name=bundle_paths,json=bundlePaths,proto3" json:"bundle_paths,omitempty"`
 }
 
@@ -134,22 +134,22 @@ func (x *BuildSdkSubtoolsResponse) GetBundlePaths() []*chromiumos.Path {
 	return nil
 }
 
-// Bundles previously created by a BuildSdkSubtoolsRequest are exported to a
+// Bundles previously created by a BuildSdkSubtoolsRequest are uploaded to a
 // storage bucket (e.g., CIPD), after verifying whether they have changed.
-type ExportSdkSubtoolsRequest struct {
+type UploadSdkSubtoolsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Whether to export to production environments. When false, exports will be
+	// Whether to upload to production environments. When false, uploads will be
 	// done to staging environments instead.
 	UseProduction bool `protobuf:"varint,1,opt,name=use_production,json=useProduction,proto3" json:"use_production,omitempty"`
-	// The pre-bundled paths to export, each with export metadata.
+	// The pre-bundled paths to upload, each with upload metadata.
 	BundlePaths []*chromiumos.Path `protobuf:"bytes,2,rep,name=bundle_paths,json=bundlePaths,proto3" json:"bundle_paths,omitempty"`
 }
 
-func (x *ExportSdkSubtoolsRequest) Reset() {
-	*x = ExportSdkSubtoolsRequest{}
+func (x *UploadSdkSubtoolsRequest) Reset() {
+	*x = UploadSdkSubtoolsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_chromite_api_sdk_subtools_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -157,13 +157,13 @@ func (x *ExportSdkSubtoolsRequest) Reset() {
 	}
 }
 
-func (x *ExportSdkSubtoolsRequest) String() string {
+func (x *UploadSdkSubtoolsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ExportSdkSubtoolsRequest) ProtoMessage() {}
+func (*UploadSdkSubtoolsRequest) ProtoMessage() {}
 
-func (x *ExportSdkSubtoolsRequest) ProtoReflect() protoreflect.Message {
+func (x *UploadSdkSubtoolsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_chromite_api_sdk_subtools_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -175,33 +175,33 @@ func (x *ExportSdkSubtoolsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ExportSdkSubtoolsRequest.ProtoReflect.Descriptor instead.
-func (*ExportSdkSubtoolsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UploadSdkSubtoolsRequest.ProtoReflect.Descriptor instead.
+func (*UploadSdkSubtoolsRequest) Descriptor() ([]byte, []int) {
 	return file_chromite_api_sdk_subtools_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ExportSdkSubtoolsRequest) GetUseProduction() bool {
+func (x *UploadSdkSubtoolsRequest) GetUseProduction() bool {
 	if x != nil {
 		return x.UseProduction
 	}
 	return false
 }
 
-func (x *ExportSdkSubtoolsRequest) GetBundlePaths() []*chromiumos.Path {
+func (x *UploadSdkSubtoolsRequest) GetBundlePaths() []*chromiumos.Path {
 	if x != nil {
 		return x.BundlePaths
 	}
 	return nil
 }
 
-type ExportSdkSubtoolsResponse struct {
+type UploadSdkSubtoolsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ExportSdkSubtoolsResponse) Reset() {
-	*x = ExportSdkSubtoolsResponse{}
+func (x *UploadSdkSubtoolsResponse) Reset() {
+	*x = UploadSdkSubtoolsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_chromite_api_sdk_subtools_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -209,13 +209,13 @@ func (x *ExportSdkSubtoolsResponse) Reset() {
 	}
 }
 
-func (x *ExportSdkSubtoolsResponse) String() string {
+func (x *UploadSdkSubtoolsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ExportSdkSubtoolsResponse) ProtoMessage() {}
+func (*UploadSdkSubtoolsResponse) ProtoMessage() {}
 
-func (x *ExportSdkSubtoolsResponse) ProtoReflect() protoreflect.Message {
+func (x *UploadSdkSubtoolsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_chromite_api_sdk_subtools_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -227,8 +227,8 @@ func (x *ExportSdkSubtoolsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ExportSdkSubtoolsResponse.ProtoReflect.Descriptor instead.
-func (*ExportSdkSubtoolsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UploadSdkSubtoolsResponse.ProtoReflect.Descriptor instead.
+func (*UploadSdkSubtoolsResponse) Descriptor() ([]byte, []int) {
 	return file_chromite_api_sdk_subtools_proto_rawDescGZIP(), []int{3}
 }
 
@@ -258,14 +258,14 @@ var file_chromite_api_sdk_subtools_proto_rawDesc = []byte{
 	0x65, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e,
 	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x50, 0x61, 0x74, 0x68, 0x52,
 	0x0b, 0x62, 0x75, 0x6e, 0x64, 0x6c, 0x65, 0x50, 0x61, 0x74, 0x68, 0x73, 0x22, 0x76, 0x0a, 0x18,
-	0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c,
+	0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c,
 	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x0e, 0x75, 0x73, 0x65, 0x5f,
 	0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
 	0x52, 0x0d, 0x75, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12,
 	0x33, 0x0a, 0x0c, 0x62, 0x75, 0x6e, 0x64, 0x6c, 0x65, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x73, 0x18,
 	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
 	0x6f, 0x73, 0x2e, 0x50, 0x61, 0x74, 0x68, 0x52, 0x0b, 0x62, 0x75, 0x6e, 0x64, 0x6c, 0x65, 0x50,
-	0x61, 0x74, 0x68, 0x73, 0x22, 0x1b, 0x0a, 0x19, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x64,
+	0x61, 0x74, 0x68, 0x73, 0x22, 0x1b, 0x0a, 0x19, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x64,
 	0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x32, 0xfb, 0x01, 0x0a, 0x12, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c,
 	0x73, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x61, 0x0a, 0x10, 0x42, 0x75, 0x69, 0x6c,
@@ -274,12 +274,12 @@ var file_chromite_api_sdk_subtools_proto_rawDesc = []byte{
 	0x64, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61,
 	0x70, 0x69, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f,
-	0x6f, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6c, 0x0a, 0x11, 0x45,
-	0x78, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
+	0x6f, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6c, 0x0a, 0x11, 0x55,
+	0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
 	0x12, 0x26, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
-	0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c,
+	0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x64, 0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c,
 	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
-	0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x64,
+	0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x64,
 	0x6b, 0x53, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x22, 0x06, 0xc2, 0xed, 0x1a, 0x02, 0x10, 0x02, 0x1a, 0x14, 0xc2, 0xed, 0x1a, 0x10, 0x0a,
 	0x0c, 0x73, 0x64, 0x6b, 0x5f, 0x73, 0x75, 0x62, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x10, 0x01, 0x42,
@@ -306,8 +306,8 @@ var file_chromite_api_sdk_subtools_proto_msgTypes = make([]protoimpl.MessageInfo
 var file_chromite_api_sdk_subtools_proto_goTypes = []interface{}{
 	(*BuildSdkSubtoolsRequest)(nil),   // 0: chromite.api.BuildSdkSubtoolsRequest
 	(*BuildSdkSubtoolsResponse)(nil),  // 1: chromite.api.BuildSdkSubtoolsResponse
-	(*ExportSdkSubtoolsRequest)(nil),  // 2: chromite.api.ExportSdkSubtoolsRequest
-	(*ExportSdkSubtoolsResponse)(nil), // 3: chromite.api.ExportSdkSubtoolsResponse
+	(*UploadSdkSubtoolsRequest)(nil),  // 2: chromite.api.UploadSdkSubtoolsRequest
+	(*UploadSdkSubtoolsResponse)(nil), // 3: chromite.api.UploadSdkSubtoolsResponse
 	(*chromiumos.Chroot)(nil),         // 4: chromiumos.Chroot
 	(*FailedPackageData)(nil),         // 5: chromite.api.FailedPackageData
 	(*chromiumos.Path)(nil),           // 6: chromiumos.Path
@@ -316,11 +316,11 @@ var file_chromite_api_sdk_subtools_proto_depIdxs = []int32{
 	4, // 0: chromite.api.BuildSdkSubtoolsRequest.chroot:type_name -> chromiumos.Chroot
 	5, // 1: chromite.api.BuildSdkSubtoolsResponse.failed_package_data:type_name -> chromite.api.FailedPackageData
 	6, // 2: chromite.api.BuildSdkSubtoolsResponse.bundle_paths:type_name -> chromiumos.Path
-	6, // 3: chromite.api.ExportSdkSubtoolsRequest.bundle_paths:type_name -> chromiumos.Path
+	6, // 3: chromite.api.UploadSdkSubtoolsRequest.bundle_paths:type_name -> chromiumos.Path
 	0, // 4: chromite.api.SdkSubtoolsService.BuildSdkSubtools:input_type -> chromite.api.BuildSdkSubtoolsRequest
-	2, // 5: chromite.api.SdkSubtoolsService.ExportSdkSubtools:input_type -> chromite.api.ExportSdkSubtoolsRequest
+	2, // 5: chromite.api.SdkSubtoolsService.UploadSdkSubtools:input_type -> chromite.api.UploadSdkSubtoolsRequest
 	1, // 6: chromite.api.SdkSubtoolsService.BuildSdkSubtools:output_type -> chromite.api.BuildSdkSubtoolsResponse
-	3, // 7: chromite.api.SdkSubtoolsService.ExportSdkSubtools:output_type -> chromite.api.ExportSdkSubtoolsResponse
+	3, // 7: chromite.api.SdkSubtoolsService.UploadSdkSubtools:output_type -> chromite.api.UploadSdkSubtoolsResponse
 	6, // [6:8] is the sub-list for method output_type
 	4, // [4:6] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -361,7 +361,7 @@ func file_chromite_api_sdk_subtools_proto_init() {
 			}
 		}
 		file_chromite_api_sdk_subtools_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExportSdkSubtoolsRequest); i {
+			switch v := v.(*UploadSdkSubtoolsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -373,7 +373,7 @@ func file_chromite_api_sdk_subtools_proto_init() {
 			}
 		}
 		file_chromite_api_sdk_subtools_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExportSdkSubtoolsResponse); i {
+			switch v := v.(*UploadSdkSubtoolsResponse); i {
 			case 0:
 				return &v.state
 			case 1:

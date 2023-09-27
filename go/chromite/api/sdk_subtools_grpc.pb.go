@@ -24,8 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type SdkSubtoolsServiceClient interface {
 	// Executes the BuildSdkSubtoolsRequest.
 	BuildSdkSubtools(ctx context.Context, in *BuildSdkSubtoolsRequest, opts ...grpc.CallOption) (*BuildSdkSubtoolsResponse, error)
-	// Executes the ExportSdkSubtoolsRequest.
-	ExportSdkSubtools(ctx context.Context, in *ExportSdkSubtoolsRequest, opts ...grpc.CallOption) (*ExportSdkSubtoolsResponse, error)
+	// Executes the UploadSdkSubtoolsRequest.
+	UploadSdkSubtools(ctx context.Context, in *UploadSdkSubtoolsRequest, opts ...grpc.CallOption) (*UploadSdkSubtoolsResponse, error)
 }
 
 type sdkSubtoolsServiceClient struct {
@@ -45,9 +45,9 @@ func (c *sdkSubtoolsServiceClient) BuildSdkSubtools(ctx context.Context, in *Bui
 	return out, nil
 }
 
-func (c *sdkSubtoolsServiceClient) ExportSdkSubtools(ctx context.Context, in *ExportSdkSubtoolsRequest, opts ...grpc.CallOption) (*ExportSdkSubtoolsResponse, error) {
-	out := new(ExportSdkSubtoolsResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.SdkSubtoolsService/ExportSdkSubtools", in, out, opts...)
+func (c *sdkSubtoolsServiceClient) UploadSdkSubtools(ctx context.Context, in *UploadSdkSubtoolsRequest, opts ...grpc.CallOption) (*UploadSdkSubtoolsResponse, error) {
+	out := new(UploadSdkSubtoolsResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SdkSubtoolsService/UploadSdkSubtools", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,8 +60,8 @@ func (c *sdkSubtoolsServiceClient) ExportSdkSubtools(ctx context.Context, in *Ex
 type SdkSubtoolsServiceServer interface {
 	// Executes the BuildSdkSubtoolsRequest.
 	BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error)
-	// Executes the ExportSdkSubtoolsRequest.
-	ExportSdkSubtools(context.Context, *ExportSdkSubtoolsRequest) (*ExportSdkSubtoolsResponse, error)
+	// Executes the UploadSdkSubtoolsRequest.
+	UploadSdkSubtools(context.Context, *UploadSdkSubtoolsRequest) (*UploadSdkSubtoolsResponse, error)
 	mustEmbedUnimplementedSdkSubtoolsServiceServer()
 }
 
@@ -72,8 +72,8 @@ type UnimplementedSdkSubtoolsServiceServer struct {
 func (UnimplementedSdkSubtoolsServiceServer) BuildSdkSubtools(context.Context, *BuildSdkSubtoolsRequest) (*BuildSdkSubtoolsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuildSdkSubtools not implemented")
 }
-func (UnimplementedSdkSubtoolsServiceServer) ExportSdkSubtools(context.Context, *ExportSdkSubtoolsRequest) (*ExportSdkSubtoolsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExportSdkSubtools not implemented")
+func (UnimplementedSdkSubtoolsServiceServer) UploadSdkSubtools(context.Context, *UploadSdkSubtoolsRequest) (*UploadSdkSubtoolsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadSdkSubtools not implemented")
 }
 func (UnimplementedSdkSubtoolsServiceServer) mustEmbedUnimplementedSdkSubtoolsServiceServer() {}
 
@@ -106,20 +106,20 @@ func _SdkSubtoolsService_BuildSdkSubtools_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SdkSubtoolsService_ExportSdkSubtools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ExportSdkSubtoolsRequest)
+func _SdkSubtoolsService_UploadSdkSubtools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadSdkSubtoolsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SdkSubtoolsServiceServer).ExportSdkSubtools(ctx, in)
+		return srv.(SdkSubtoolsServiceServer).UploadSdkSubtools(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/chromite.api.SdkSubtoolsService/ExportSdkSubtools",
+		FullMethod: "/chromite.api.SdkSubtoolsService/UploadSdkSubtools",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SdkSubtoolsServiceServer).ExportSdkSubtools(ctx, req.(*ExportSdkSubtoolsRequest))
+		return srv.(SdkSubtoolsServiceServer).UploadSdkSubtools(ctx, req.(*UploadSdkSubtoolsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -136,8 +136,8 @@ var SdkSubtoolsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SdkSubtoolsService_BuildSdkSubtools_Handler,
 		},
 		{
-			MethodName: "ExportSdkSubtools",
-			Handler:    _SdkSubtoolsService_ExportSdkSubtools_Handler,
+			MethodName: "UploadSdkSubtools",
+			Handler:    _SdkSubtoolsService_UploadSdkSubtools_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
