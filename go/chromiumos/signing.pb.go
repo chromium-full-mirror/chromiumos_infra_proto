@@ -24,6 +24,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SigningStatus int32
+
+const (
+	SigningStatus_STATUS_UNDEFINED SigningStatus = 0
+	SigningStatus_STATUS_SUCCESS   SigningStatus = 1
+	SigningStatus_STATUS_FAILURE   SigningStatus = 2
+)
+
+// Enum value maps for SigningStatus.
+var (
+	SigningStatus_name = map[int32]string{
+		0: "STATUS_UNDEFINED",
+		1: "STATUS_SUCCESS",
+		2: "STATUS_FAILURE",
+	}
+	SigningStatus_value = map[string]int32{
+		"STATUS_UNDEFINED": 0,
+		"STATUS_SUCCESS":   1,
+		"STATUS_FAILURE":   2,
+	}
+)
+
+func (x SigningStatus) Enum() *SigningStatus {
+	p := new(SigningStatus)
+	*p = x
+	return p
+}
+
+func (x SigningStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SigningStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_chromiumos_signing_proto_enumTypes[0].Descriptor()
+}
+
+func (SigningStatus) Type() protoreflect.EnumType {
+	return &file_chromiumos_signing_proto_enumTypes[0]
+}
+
+func (x SigningStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SigningStatus.Descriptor instead.
+func (SigningStatus) EnumDescriptor() ([]byte, []int) {
+	return file_chromiumos_signing_proto_rawDescGZIP(), []int{0}
+}
+
 type SigningConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -281,6 +330,186 @@ func (x *BuildTargetSigningConfigs) GetBuildTargetSigningConfigs() []*BuildTarge
 	return nil
 }
 
+type SignedArtifact struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Status of the signing operation.
+	Status SigningStatus `protobuf:"varint,1,opt,name=status,proto3,enum=chromiumos.SigningStatus" json:"status,omitempty"`
+	// The versioned name of the signed artifact.
+	SignedArtifactName string `protobuf:"bytes,2,opt,name=signed_artifact_name,json=signedArtifactName,proto3" json:"signed_artifact_name,omitempty"`
+}
+
+func (x *SignedArtifact) Reset() {
+	*x = SignedArtifact{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromiumos_signing_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SignedArtifact) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignedArtifact) ProtoMessage() {}
+
+func (x *SignedArtifact) ProtoReflect() protoreflect.Message {
+	mi := &file_chromiumos_signing_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignedArtifact.ProtoReflect.Descriptor instead.
+func (*SignedArtifact) Descriptor() ([]byte, []int) {
+	return file_chromiumos_signing_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SignedArtifact) GetStatus() SigningStatus {
+	if x != nil {
+		return x.Status
+	}
+	return SigningStatus_STATUS_UNDEFINED
+}
+
+func (x *SignedArtifact) GetSignedArtifactName() string {
+	if x != nil {
+		return x.SignedArtifactName
+	}
+	return ""
+}
+
+type ArchiveArtifacts struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The name of the unsigned archive.
+	InputArchiveName string `protobuf:"bytes,1,opt,name=input_archive_name,json=inputArchiveName,proto3" json:"input_archive_name,omitempty"`
+	// Keyset used to sign the archive artifacts.
+	Keyset string `protobuf:"bytes,2,opt,name=keyset,proto3" json:"keyset,omitempty"`
+	// The resulting signed artifacts.
+	SignedArtifacts []*SignedArtifact `protobuf:"bytes,3,rep,name=signed_artifacts,json=signedArtifacts,proto3" json:"signed_artifacts,omitempty"`
+}
+
+func (x *ArchiveArtifacts) Reset() {
+	*x = ArchiveArtifacts{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromiumos_signing_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArchiveArtifacts) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArchiveArtifacts) ProtoMessage() {}
+
+func (x *ArchiveArtifacts) ProtoReflect() protoreflect.Message {
+	mi := &file_chromiumos_signing_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArchiveArtifacts.ProtoReflect.Descriptor instead.
+func (*ArchiveArtifacts) Descriptor() ([]byte, []int) {
+	return file_chromiumos_signing_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ArchiveArtifacts) GetInputArchiveName() string {
+	if x != nil {
+		return x.InputArchiveName
+	}
+	return ""
+}
+
+func (x *ArchiveArtifacts) GetKeyset() string {
+	if x != nil {
+		return x.Keyset
+	}
+	return ""
+}
+
+func (x *ArchiveArtifacts) GetSignedArtifacts() []*SignedArtifact {
+	if x != nil {
+		return x.SignedArtifacts
+	}
+	return nil
+}
+
+type BuildTargetSignedArtifacts struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Signed artifacts for a specific build target.
+	BuildTarget string `protobuf:"bytes,1,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
+	// Signed artifacts, grouped by input_archive.
+	ArchiveArtifacts []*ArchiveArtifacts `protobuf:"bytes,2,rep,name=archive_artifacts,json=archiveArtifacts,proto3" json:"archive_artifacts,omitempty"`
+}
+
+func (x *BuildTargetSignedArtifacts) Reset() {
+	*x = BuildTargetSignedArtifacts{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromiumos_signing_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BuildTargetSignedArtifacts) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuildTargetSignedArtifacts) ProtoMessage() {}
+
+func (x *BuildTargetSignedArtifacts) ProtoReflect() protoreflect.Message {
+	mi := &file_chromiumos_signing_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BuildTargetSignedArtifacts.ProtoReflect.Descriptor instead.
+func (*BuildTargetSignedArtifacts) Descriptor() ([]byte, []int) {
+	return file_chromiumos_signing_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *BuildTargetSignedArtifacts) GetBuildTarget() string {
+	if x != nil {
+		return x.BuildTarget
+	}
+	return ""
+}
+
+func (x *BuildTargetSignedArtifacts) GetArchiveArtifacts() []*ArchiveArtifacts {
+	if x != nil {
+		return x.ArchiveArtifacts
+	}
+	return nil
+}
+
 var File_chromiumos_signing_proto protoreflect.FileDescriptor
 
 var file_chromiumos_signing_proto_rawDesc = []byte{
@@ -331,13 +560,44 @@ var file_chromiumos_signing_proto_rawDesc = []byte{
 	0x73, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x53, 0x69, 0x67,
 	0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x19, 0x62, 0x75, 0x69, 0x6c,
 	0x64, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x53, 0x69, 0x67, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x73, 0x42, 0x59, 0x0a, 0x21, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x65, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x69,
-	0x6e, 0x66, 0x72, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x34, 0x67, 0x6f, 0x2e, 0x63,
-	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f,
-	0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x66, 0x69, 0x67, 0x73, 0x22, 0x75, 0x0a, 0x0e, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x41,
+	0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x12, 0x31, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
+	0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x30, 0x0a, 0x14, 0x73, 0x69,
+	0x67, 0x6e, 0x65, 0x64, 0x5f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x5f, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64,
+	0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x9f, 0x01, 0x0a,
+	0x10, 0x41, 0x72, 0x63, 0x68, 0x69, 0x76, 0x65, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74,
+	0x73, 0x12, 0x2c, 0x0a, 0x12, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x5f, 0x61, 0x72, 0x63, 0x68, 0x69,
+	0x76, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x69,
+	0x6e, 0x70, 0x75, 0x74, 0x41, 0x72, 0x63, 0x68, 0x69, 0x76, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x6b, 0x65, 0x79, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x6b, 0x65, 0x79, 0x73, 0x65, 0x74, 0x12, 0x45, 0x0a, 0x10, 0x73, 0x69, 0x67, 0x6e, 0x65,
+	0x64, 0x5f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x53,
+	0x69, 0x67, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x52, 0x0f, 0x73,
+	0x69, 0x67, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x22, 0x8a,
+	0x01, 0x0a, 0x1a, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x53, 0x69,
+	0x67, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x12, 0x21, 0x0a,
+	0x0c, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0b, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74,
+	0x12, 0x49, 0x0a, 0x11, 0x61, 0x72, 0x63, 0x68, 0x69, 0x76, 0x65, 0x5f, 0x61, 0x72, 0x74, 0x69,
+	0x66, 0x61, 0x63, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x72, 0x63, 0x68, 0x69, 0x76, 0x65,
+	0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x52, 0x10, 0x61, 0x72, 0x63, 0x68, 0x69,
+	0x76, 0x65, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x2a, 0x4d, 0x0a, 0x0d, 0x53,
+	0x69, 0x67, 0x6e, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x14, 0x0a, 0x10,
+	0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x44, 0x45, 0x46, 0x49, 0x4e, 0x45, 0x44,
+	0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x53, 0x55, 0x43,
+	0x43, 0x45, 0x53, 0x53, 0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53,
+	0x5f, 0x46, 0x41, 0x49, 0x4c, 0x55, 0x52, 0x45, 0x10, 0x02, 0x42, 0x59, 0x0a, 0x21, 0x63, 0x6f,
+	0x6d, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x65, 0x2e,
+	0x63, 0x72, 0x6f, 0x73, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x5a,
+	0x34, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67,
+	0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72,
+	0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d,
+	0x69, 0x75, 0x6d, 0x6f, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -352,24 +612,32 @@ func file_chromiumos_signing_proto_rawDescGZIP() []byte {
 	return file_chromiumos_signing_proto_rawDescData
 }
 
-var file_chromiumos_signing_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_chromiumos_signing_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_chromiumos_signing_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_chromiumos_signing_proto_goTypes = []interface{}{
-	(*SigningConfig)(nil),             // 0: chromiumos.SigningConfig
-	(*BuildTargetSigningConfig)(nil),  // 1: chromiumos.BuildTargetSigningConfig
-	(*BuildTargetSigningConfigs)(nil), // 2: chromiumos.BuildTargetSigningConfigs
-	(Channel)(0),                      // 3: chromiumos.Channel
-	(ImageType)(0),                    // 4: chromiumos.ImageType
+	(SigningStatus)(0),                 // 0: chromiumos.SigningStatus
+	(*SigningConfig)(nil),              // 1: chromiumos.SigningConfig
+	(*BuildTargetSigningConfig)(nil),   // 2: chromiumos.BuildTargetSigningConfig
+	(*BuildTargetSigningConfigs)(nil),  // 3: chromiumos.BuildTargetSigningConfigs
+	(*SignedArtifact)(nil),             // 4: chromiumos.SignedArtifact
+	(*ArchiveArtifacts)(nil),           // 5: chromiumos.ArchiveArtifacts
+	(*BuildTargetSignedArtifacts)(nil), // 6: chromiumos.BuildTargetSignedArtifacts
+	(Channel)(0),                       // 7: chromiumos.Channel
+	(ImageType)(0),                     // 8: chromiumos.ImageType
 }
 var file_chromiumos_signing_proto_depIdxs = []int32{
-	3, // 0: chromiumos.SigningConfig.channel:type_name -> chromiumos.Channel
-	4, // 1: chromiumos.SigningConfig.image_type:type_name -> chromiumos.ImageType
-	0, // 2: chromiumos.BuildTargetSigningConfig.signing_configs:type_name -> chromiumos.SigningConfig
-	1, // 3: chromiumos.BuildTargetSigningConfigs.build_target_signing_configs:type_name -> chromiumos.BuildTargetSigningConfig
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	7, // 0: chromiumos.SigningConfig.channel:type_name -> chromiumos.Channel
+	8, // 1: chromiumos.SigningConfig.image_type:type_name -> chromiumos.ImageType
+	1, // 2: chromiumos.BuildTargetSigningConfig.signing_configs:type_name -> chromiumos.SigningConfig
+	2, // 3: chromiumos.BuildTargetSigningConfigs.build_target_signing_configs:type_name -> chromiumos.BuildTargetSigningConfig
+	0, // 4: chromiumos.SignedArtifact.status:type_name -> chromiumos.SigningStatus
+	4, // 5: chromiumos.ArchiveArtifacts.signed_artifacts:type_name -> chromiumos.SignedArtifact
+	5, // 6: chromiumos.BuildTargetSignedArtifacts.archive_artifacts:type_name -> chromiumos.ArchiveArtifacts
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_chromiumos_signing_proto_init() }
@@ -415,19 +683,56 @@ func file_chromiumos_signing_proto_init() {
 				return nil
 			}
 		}
+		file_chromiumos_signing_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SignedArtifact); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromiumos_signing_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArchiveArtifacts); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromiumos_signing_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BuildTargetSignedArtifacts); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromiumos_signing_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   3,
+			NumEnums:      1,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_chromiumos_signing_proto_goTypes,
 		DependencyIndexes: file_chromiumos_signing_proto_depIdxs,
+		EnumInfos:         file_chromiumos_signing_proto_enumTypes,
 		MessageInfos:      file_chromiumos_signing_proto_msgTypes,
 	}.Build()
 	File_chromiumos_signing_proto = out.File

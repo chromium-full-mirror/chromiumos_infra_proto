@@ -5494,6 +5494,25 @@
       "dependency": [
         "chromiumos/common.proto"
       ],
+      "enumType": [
+        {
+          "name": "SigningStatus",
+          "value": [
+            {
+              "name": "STATUS_UNDEFINED",
+              "number": 0
+            },
+            {
+              "name": "STATUS_SUCCESS",
+              "number": 1
+            },
+            {
+              "name": "STATUS_FAILURE",
+              "number": 2
+            }
+          ]
+        }
+      ],
       "messageType": [
         {
           "field": [
@@ -5611,6 +5630,73 @@
             }
           ],
           "name": "BuildTargetSigningConfigs"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.SigningStatus"
+            },
+            {
+              "jsonName": "signedArtifactName",
+              "label": "LABEL_OPTIONAL",
+              "name": "signed_artifact_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SignedArtifact"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "inputArchiveName",
+              "label": "LABEL_OPTIONAL",
+              "name": "input_archive_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signedArtifacts",
+              "label": "LABEL_REPEATED",
+              "name": "signed_artifacts",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.SignedArtifact"
+            }
+          ],
+          "name": "ArchiveArtifacts"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "archiveArtifacts",
+              "label": "LABEL_REPEATED",
+              "name": "archive_artifacts",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ArchiveArtifacts"
+            }
+          ],
+          "name": "BuildTargetSignedArtifacts"
         }
       ],
       "name": "chromiumos/signing.proto",
@@ -6011,6 +6097,23 @@
           ]
         },
         {
+          "field": [
+            {
+              "jsonName": "signedArtifacts",
+              "label": "LABEL_OPTIONAL",
+              "name": "signed_artifacts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTargetSignedArtifacts"
+            },
+            {
+              "jsonName": "outputArchiveDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "output_archive_dir",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
           "name": "SignImageResponse"
         }
       ],

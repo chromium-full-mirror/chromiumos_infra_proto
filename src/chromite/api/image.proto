@@ -180,7 +180,10 @@ message SignImageRequest {
 }
 
 message SignImageResponse {
+  chromiumos.BuildTargetSignedArtifacts signed_artifacts = 1;
 
+  // Directory where signed artifacts have been placed.
+  string output_archive_dir = 2;
 }
 
 // The image service.
