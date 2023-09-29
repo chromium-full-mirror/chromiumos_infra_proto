@@ -8,24 +8,15 @@ package testplans;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
-import "chromiumos/build/api/container_metadata.proto";
 import "chromiumos/common.proto";
 import "google/protobuf/struct.proto";
 import "testplans/common.proto";
 import "testplans/target_test_requirements_config.proto";
 
 message GenerateTestPlanRequest {
-  reserved 1 to 4, 6;
-
   // Serialized buildbucket Build protos that are part of this orchestrator run.
   // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/build.proto
   repeated ProtoBytes buildbucket_protos = 5;
-
-  // ContainerMetadata aggregated by this orchestrator run. This is only used
-  // when the testplan tool is being run in ctpv1 compatibility mode.
-  // ContainerMetadata are needed for all builds that are being tested with
-  // CFT.
-  chromiumos.build.api.ContainerMetadata container_metadata = 10;
 
   // The manifest-internal snapshot commit hash that's being used for the current build.
   // Note that manifest_commit will be soon replaced with gitiles_commit below.
