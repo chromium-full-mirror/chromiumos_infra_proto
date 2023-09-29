@@ -33670,6 +33670,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromiumos/build/api/container_metadata.proto",
         "chromiumos/common.proto",
         "google/protobuf/struct.proto",
         "testplans/common.proto",
@@ -33685,6 +33686,14 @@
               "number": 5,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.ProtoBytes"
+            },
+            {
+              "jsonName": "containerMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_metadata",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerMetadata"
             },
             {
               "jsonName": "manifestCommit",
@@ -33710,7 +33719,17 @@
               "typeName": ".testplans.ProtoBytes"
             }
           ],
-          "name": "GenerateTestPlanRequest"
+          "name": "GenerateTestPlanRequest",
+          "reservedRange": [
+            {
+              "end": 5,
+              "start": 1
+            },
+            {
+              "end": 7,
+              "start": 6
+            }
+          ]
         },
         {
           "field": [
