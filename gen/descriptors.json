@@ -5674,6 +5674,13 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.SignedArtifact"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ArchiveArtifacts"
@@ -5681,17 +5688,10 @@
         {
           "field": [
             {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "archiveArtifacts",
               "label": "LABEL_REPEATED",
               "name": "archive_artifacts",
-              "number": 2,
+              "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ArchiveArtifacts"
             }

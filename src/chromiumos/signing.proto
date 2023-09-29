@@ -94,12 +94,13 @@ message ArchiveArtifacts {
 
   // The resulting signed artifacts.
   repeated SignedArtifact signed_artifacts = 3;
+
+  // Signed artifacts for a specific build target.
+  string build_target = 4;
 }
 
 message BuildTargetSignedArtifacts {
-  // Signed artifacts for a specific build target.
-  string build_target = 1;
 
   // Signed artifacts, grouped by input_archive.
-  repeated ArchiveArtifacts archive_artifacts = 2;
+  repeated ArchiveArtifacts archive_artifacts = 1;
 }
