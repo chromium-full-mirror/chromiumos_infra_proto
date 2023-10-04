@@ -22912,9 +22912,9 @@
         {
           "field": [
             {
-              "jsonName": "value",
+              "jsonName": "values",
               "label": "LABEL_REPEATED",
-              "name": "value",
+              "name": "values",
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".partners.PartnerConfig"

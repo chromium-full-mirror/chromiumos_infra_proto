@@ -73,5 +73,5 @@ message ChromeOSDevice {
 // Used to simplify the export/read process.
 message PartnerConfigList {
     // List of PartnerConfigs.
-    repeated PartnerConfig value = 1;
+    repeated PartnerConfig values = 1;
 }
