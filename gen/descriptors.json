@@ -10594,6 +10594,19 @@
                   "number": 2
                 }
               ]
+            },
+            {
+              "name": "BazelTargets",
+              "value": [
+                {
+                  "name": "BAZEL_TARGETS_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "LITE",
+                  "number": 1
+                }
+              ]
             }
           ],
           "field": [
@@ -11595,6 +11608,14 @@
                       "number": 7,
                       "type": "TYPE_ENUM",
                       "typeName": ".chromiumos.BuilderConfig.BuildOrchestrator"
+                    },
+                    {
+                      "jsonName": "bazelTargets",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "bazel_targets",
+                      "number": 8,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".chromiumos.BuilderConfig.BazelTargets"
                     }
                   ],
                   "name": "InstallPackages"

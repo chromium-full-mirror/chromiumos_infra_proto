@@ -47,6 +47,16 @@ message BuilderConfig {
     BAZEL = 2;
   }
 
+  // Which packages should a Bazel-based build target.
+  enum BazelTargets {
+    // If unspecified, all packages will be build.
+    BAZEL_TARGETS_UNSPECIFIED = 0;
+    // Lite bazel builds cover only a limited set of packages
+    // to execute faster. The details of what exectly is built
+    // and what is skipped is left for Build API to decide.
+    LITE = 1;
+  }
+
   // Unique identifier of the builder configuration.
   message Id {
     // The name of the configuration such as "arm-generic-postsubmit".
@@ -531,6 +541,9 @@ message BuilderConfig {
 
       // What software system should install packages.
       BuildOrchestrator install_packages_orchestrator = 7;
+
+      // Which bazel targets should be installed.
+      BazelTargets bazel_targets = 8;
     }
     reserved 14;
     InstallPackages install_packages = 16;
