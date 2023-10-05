@@ -19473,6 +19473,10 @@
                 {
                   "name": "SOC_MENDOCINO",
                   "number": 46
+                },
+                {
+                  "name": "SOC_RAPTOR_LAKE",
+                  "number": 47
                 }
               ]
             },
