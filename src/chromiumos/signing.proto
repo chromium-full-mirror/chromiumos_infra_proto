@@ -97,6 +97,9 @@ message ArchiveArtifacts {
 
   // Signed artifacts for a specific build target.
   string build_target = 4;
+
+  // Channel the artifact was signed for.
+  chromiumos.Channel channel = 5;
 }
 
 message BuildTargetSignedArtifacts {

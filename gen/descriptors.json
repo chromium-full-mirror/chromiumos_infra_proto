@@ -5681,6 +5681,14 @@
               "name": "build_target",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "channel",
+              "label": "LABEL_OPTIONAL",
+              "name": "channel",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.Channel"
             }
           ],
           "name": "ArchiveArtifacts"
