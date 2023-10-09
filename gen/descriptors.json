@@ -15896,76 +15896,28 @@
                       "number": 0
                     },
                     {
-                      "name": "IMAGE_TYPES",
+                      "name": "BASE_IMAGE_ZIP",
                       "number": 1
                     },
                     {
-                      "name": "FIRMWARE_TYPES",
+                      "name": "FACTORY_IMAGE_ZIP",
                       "number": 2
                     },
                     {
-                      "name": "AFDO_TYPES",
+                      "name": "FIRWARE_IMAGE_ARCHIVE",
                       "number": 3
                     },
                     {
-                      "name": "PAYLOAD_TYPES",
+                      "name": "TEST_IMAGE_ARCHIVE",
                       "number": 4
                     },
                     {
-                      "name": "RELEASE_IMAGE",
-                      "number": 100
-                    },
-                    {
-                      "name": "RECOVERY_IMAGE",
+                      "name": "HWQUAL_ARCHIVE",
                       "number": 101
                     },
                     {
-                      "name": "DLC_IMAGE",
+                      "name": "DEBUG_ARCHIVE",
                       "number": 102
-                    },
-                    {
-                      "name": "DEBUG_SYMBOL_IMAGE",
-                      "number": 103
-                    },
-                    {
-                      "name": "HWQUAL_IMAGE",
-                      "number": 104
-                    },
-                    {
-                      "name": "TEST_IMAGE",
-                      "number": 105
-                    },
-                    {
-                      "name": "FIRMWARE_TARBALL",
-                      "number": 200
-                    },
-                    {
-                      "name": "FIRMWARE_TARBALL_INFO",
-                      "number": 201
-                    },
-                    {
-                      "name": "FIRMWARE_LCOV",
-                      "number": 202
-                    },
-                    {
-                      "name": "CODE_COVERAGE_HTML",
-                      "number": 203
-                    },
-                    {
-                      "name": "AFDO_ORDERFILE",
-                      "number": 300
-                    },
-                    {
-                      "name": "AFDO_BENCHMARK",
-                      "number": 301
-                    },
-                    {
-                      "name": "AFDO_KERNEL",
-                      "number": 302
-                    },
-                    {
-                      "name": "AFDO_CHROME",
-                      "number": 303
                     },
                     {
                       "name": "PAYLOAD_FULL",
