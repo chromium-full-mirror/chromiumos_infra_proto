@@ -7530,6 +7530,13 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sdkVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_version",
+              "number": 2,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "BuildSdkTarballRequest"

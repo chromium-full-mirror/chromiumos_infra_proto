@@ -211,6 +211,9 @@ message BuildPrebuiltsResponse {
 message BuildSdkTarballRequest {
   // The chroot which contains the built SDK.
   chromiumos.Chroot chroot = 1;
+
+  // The SDK version to stamp in /etc/os-release.
+  string sdk_version = 2;
 }
 
 message BuildSdkTarballResponse {
