@@ -186,37 +186,25 @@ message BuildReport {
     //   define our own artifact types for reporting.
     message BuildArtifact {
         enum Type {
+            // TODO(b/303704765): Add more artifact types as needed.
+
             UNDEFINED = 0;
 
-            // User can divide enums by 100 to find the 'Kind' of artifact.
-            IMAGE_TYPES           = 1;
-            FIRMWARE_TYPES        = 2;
-            AFDO_TYPES            = 3;
-            PAYLOAD_TYPES         = 4;
+            // Image archives.
+            // Typically named "image.zip".
+            BASE_IMAGE_ZIP = 1;
+            // Typically named "factory_image.zip".
+            FACTORY_IMAGE_ZIP = 2;
+            // Typically named "firmware_from_source.tar.bz2".
+            FIRWARE_IMAGE_ARCHIVE = 3;
+            // Typically named "chromiumos_test_image.tar.xz".
+            TEST_IMAGE_ARCHIVE = 4;
 
-            // Image types
-            RELEASE_IMAGE         = 100;
-            RECOVERY_IMAGE        = 101;
-            DLC_IMAGE             = 102;
-            DEBUG_SYMBOL_IMAGE    = 103;
-            HWQUAL_IMAGE          = 104;
-            TEST_IMAGE            = 105;
-
-            // Firmware types
-            FIRMWARE_TARBALL      = 200;
-            FIRMWARE_TARBALL_INFO = 201;
-            FIRMWARE_LCOV         = 202;
-            CODE_COVERAGE_HTML    = 203;
-
-            // AFDO types
-            AFDO_ORDERFILE        = 300;
-            AFDO_BENCHMARK        = 301;
-            AFDO_KERNEL           = 302;
-            AFDO_CHROME           = 303;
-
-            // Payload types
-            PAYLOAD_FULL          = 400;
-            PAYLOAD_DELTA         = 401;
+            // Other Chrome OS artifacts, not necessarily an image.
+            // Typically named something like "chromeos-hwqual-ambassador-R120-15638.0.0.tar.bz2".
+            HWQUAL_ARCHIVE = 101;
+            // Typically named "debug.tgz".
+            DEBUG_ARCHIVE = 102;
         }
 
         Type   type   = 1; // The artifact type.
