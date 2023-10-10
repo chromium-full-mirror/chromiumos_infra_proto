@@ -15955,6 +15955,13 @@
                   "type": "TYPE_STRING"
                 },
                 {
+                  "jsonName": "size",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "size",
+                  "number": 5,
+                  "type": "TYPE_INT64"
+                },
+                {
                   "jsonName": "created",
                   "label": "LABEL_OPTIONAL",
                   "name": "created",

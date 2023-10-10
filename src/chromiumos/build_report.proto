@@ -214,6 +214,7 @@ message BuildReport {
         Type   type   = 1; // The artifact type.
         URI    uri    = 2; // URI of the artifact.
         string sha256 = 3; // SHA256 hash of the artifact.
+        int64 size = 5; // Size of the artifact (in bytes).
 
         // Time of artifact creation.
         google.protobuf.Timestamp created = 4;
