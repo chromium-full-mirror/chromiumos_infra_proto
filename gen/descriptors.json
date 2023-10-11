@@ -29753,6 +29753,13 @@
               "name": "translate_trv2_request",
               "number": 13,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "filteredTestCaseIds",
+              "label": "LABEL_REPEATED",
+              "name": "filtered_test_case_ids",
+              "number": 14,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "CFTTestRequest",

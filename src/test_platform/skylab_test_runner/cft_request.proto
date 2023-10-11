@@ -69,6 +69,10 @@ message CFTTestRequest {
  // Requires run_via_trv2 set to true.
  bool translate_trv2_request = 13;
 
+ // Test case ids that have been filtered by CTP.
+ // Uploaded to results as SKIPPED.
+ repeated string filtered_test_case_ids = 14;
+
  message Device {
    // DUT model to be provisioned.
    chromiumos.test.lab.api.DutModel dut_model = 1;
