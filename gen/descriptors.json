@@ -15917,7 +15917,7 @@
                       "number": 0
                     },
                     {
-                      "name": "BASE_IMAGE_ZIP",
+                      "name": "IMAGE_ZIP",
                       "number": 1
                     },
                     {
@@ -15925,7 +15925,7 @@
                       "number": 2
                     },
                     {
-                      "name": "FIRWARE_IMAGE_ARCHIVE",
+                      "name": "FIRMWARE_IMAGE_ARCHIVE",
                       "number": 3
                     },
                     {

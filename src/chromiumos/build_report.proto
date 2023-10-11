@@ -192,11 +192,11 @@ message BuildReport {
 
             // Image archives.
             // Typically named "image.zip".
-            BASE_IMAGE_ZIP = 1;
+            IMAGE_ZIP = 1;
             // Typically named "factory_image.zip".
             FACTORY_IMAGE_ZIP = 2;
             // Typically named "firmware_from_source.tar.bz2".
-            FIRWARE_IMAGE_ARCHIVE = 3;
+            FIRMWARE_IMAGE_ARCHIVE = 3;
             // Typically named "chromiumos_test_image.tar.xz".
             TEST_IMAGE_ARCHIVE = 4;
 
