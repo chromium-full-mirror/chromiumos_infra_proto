@@ -137,6 +137,14 @@ message InstallPackagesRequest {
     bool bazel = 8;
   }
 
+  // Which packages should a Bazel-based build target.
+  enum BazelTargets {
+    // If unspecified, all packages will be build.
+    BAZEL_TARGETS_UNSPECIFIED = 0;
+    // Lite builds target a limited set of packages for performance.
+    LITE = 1;
+  }
+
   // The sysroot into which the packages are being installed.
   // The path and build target are required.
   Sysroot sysroot = 1;
@@ -159,6 +167,8 @@ message InstallPackagesRequest {
   chromiumos.RemoteexecConfig remoteexec_config = 8;
   // Directory where results (logs, etc.) should be stored.
   chromiumos.ResultPath result_path = 9;
+  // Which packages should a Bazel-based build target.
+  BazelTargets bazel_targets = 10;
 }
 
 message InstallPackagesResponse {

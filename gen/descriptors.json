@@ -3138,6 +3138,21 @@
           ]
         },
         {
+          "enumType": [
+            {
+              "name": "BazelTargets",
+              "value": [
+                {
+                  "name": "BAZEL_TARGETS_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "LITE",
+                  "number": 1
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "sysroot",
@@ -3210,6 +3225,14 @@
               "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "bazelTargets",
+              "label": "LABEL_OPTIONAL",
+              "name": "bazel_targets",
+              "number": 10,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.InstallPackagesRequest.BazelTargets"
             }
           ],
           "name": "InstallPackagesRequest",
