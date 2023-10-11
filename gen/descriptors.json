@@ -8156,6 +8156,12 @@
           "name": "ChromitePytestResponse"
         },
         {
+          "name": "BazelTestRequest"
+        },
+        {
+          "name": "BazelTestResponse"
+        },
+        {
           "field": [
             {
               "jsonName": "chroot",
@@ -8384,6 +8390,16 @@
               "inputType": ".chromite.api.ChromitePytestRequest",
               "name": "ChromitePytest",
               "outputType": ".chromite.api.ChromitePytestResponse"
+            },
+            {
+              "inputType": ".chromite.api.BazelTestRequest",
+              "name": "BazelTest",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.BazelTestResponse"
             },
             {
               "inputType": ".chromite.api.CrosSigningTestRequest",

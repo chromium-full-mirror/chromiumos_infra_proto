@@ -34,6 +34,8 @@ type TestServiceClient interface {
 	ChromiteUnitTest(ctx context.Context, in *ChromiteUnitTestRequest, opts ...grpc.CallOption) (*ChromiteUnitTestResponse, error)
 	// Run Pytest in chromite.
 	ChromitePytest(ctx context.Context, in *ChromitePytestRequest, opts ...grpc.CallOption) (*ChromitePytestResponse, error)
+	// Run Bazel tests.
+	BazelTest(ctx context.Context, in *BazelTestRequest, opts ...grpc.CallOption) (*BazelTestResponse, error)
 	// Run the cros-signing unit tests.
 	CrosSigningTest(ctx context.Context, in *CrosSigningTestRequest, opts ...grpc.CallOption) (*CrosSigningTestResponse, error)
 	// Run the debug info tests on a sysroot.
@@ -84,6 +86,15 @@ func (c *testServiceClient) ChromiteUnitTest(ctx context.Context, in *ChromiteUn
 func (c *testServiceClient) ChromitePytest(ctx context.Context, in *ChromitePytestRequest, opts ...grpc.CallOption) (*ChromitePytestResponse, error) {
 	out := new(ChromitePytestResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.TestService/ChromitePytest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *testServiceClient) BazelTest(ctx context.Context, in *BazelTestRequest, opts ...grpc.CallOption) (*BazelTestResponse, error) {
+	out := new(BazelTestResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.TestService/BazelTest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -151,6 +162,8 @@ type TestServiceServer interface {
 	ChromiteUnitTest(context.Context, *ChromiteUnitTestRequest) (*ChromiteUnitTestResponse, error)
 	// Run Pytest in chromite.
 	ChromitePytest(context.Context, *ChromitePytestRequest) (*ChromitePytestResponse, error)
+	// Run Bazel tests.
+	BazelTest(context.Context, *BazelTestRequest) (*BazelTestResponse, error)
 	// Run the cros-signing unit tests.
 	CrosSigningTest(context.Context, *CrosSigningTestRequest) (*CrosSigningTestResponse, error)
 	// Run the debug info tests on a sysroot.
@@ -179,6 +192,9 @@ func (UnimplementedTestServiceServer) ChromiteUnitTest(context.Context, *Chromit
 }
 func (UnimplementedTestServiceServer) ChromitePytest(context.Context, *ChromitePytestRequest) (*ChromitePytestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChromitePytest not implemented")
+}
+func (UnimplementedTestServiceServer) BazelTest(context.Context, *BazelTestRequest) (*BazelTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BazelTest not implemented")
 }
 func (UnimplementedTestServiceServer) CrosSigningTest(context.Context, *CrosSigningTestRequest) (*CrosSigningTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CrosSigningTest not implemented")
@@ -276,6 +292,24 @@ func _TestService_ChromitePytest_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TestServiceServer).ChromitePytest(ctx, req.(*ChromitePytestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TestService_BazelTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BazelTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServiceServer).BazelTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.TestService/BazelTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServiceServer).BazelTest(ctx, req.(*BazelTestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -392,6 +426,10 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChromitePytest",
 			Handler:    _TestService_ChromitePytest_Handler,
+		},
+		{
+			MethodName: "BazelTest",
+			Handler:    _TestService_BazelTest_Handler,
 		},
 		{
 			MethodName: "CrosSigningTest",

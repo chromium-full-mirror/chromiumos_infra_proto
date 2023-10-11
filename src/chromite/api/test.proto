@@ -137,6 +137,12 @@ message ChromitePytestRequest {
 message ChromitePytestResponse {
 }
 
+message BazelTestRequest {
+}
+
+message BazelTestResponse {
+}
+
 message CrosSigningTestRequest {
   // Required if not in default location.
   // The chroot where the tests should be executed.
@@ -261,6 +267,13 @@ service TestService {
 
   // Run Pytest in chromite.
   rpc ChromitePytest(ChromitePytestRequest) returns (ChromitePytestResponse);
+
+  // Run Bazel tests.
+  rpc BazelTest(BazelTestRequest) returns (BazelTestResponse) {
+    option (method_options) = {
+      method_chroot_assert: OUTSIDE,
+    };
+  }
 
   // Run the cros-signing unit tests.
   rpc CrosSigningTest(CrosSigningTestRequest) returns (CrosSigningTestResponse);
