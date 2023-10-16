@@ -1389,7 +1389,7 @@
                       "start": 1
                     },
                     {
-                      "end": 13,
+                      "end": 14,
                       "start": 11
                     },
                     {
@@ -1409,10 +1409,6 @@
                     {
                       "name": "UNSPECIFIED",
                       "number": 0
-                    },
-                    {
-                      "name": "UNVERIFIED_LLVM_PGO_FILE",
-                      "number": 14
                     },
                     {
                       "name": "UNVERIFIED_CHROME_BENCHMARK_AFDO_FILE",
@@ -11117,7 +11113,7 @@
                       "start": 9
                     },
                     {
-                      "end": 13,
+                      "end": 14,
                       "start": 11
                     }
                   ],
@@ -11161,10 +11157,6 @@
                     {
                       "name": "IMAGE_ARCHIVES",
                       "number": 10
-                    },
-                    {
-                      "name": "UNVERIFIED_LLVM_PGO_FILE",
-                      "number": 14
                     },
                     {
                       "name": "UNVERIFIED_CHROME_BENCHMARK_AFDO_FILE",
