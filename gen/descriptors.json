@@ -8182,6 +8182,15 @@
           "name": "ChromitePytestResponse"
         },
         {
+          "field": [
+            {
+              "jsonName": "bazelOutputUserRoot",
+              "label": "LABEL_OPTIONAL",
+              "name": "bazel_output_user_root",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
           "name": "BazelTestRequest"
         },
         {

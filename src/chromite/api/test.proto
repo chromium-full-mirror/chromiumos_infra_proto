@@ -138,6 +138,12 @@ message ChromitePytestResponse {
 }
 
 message BazelTestRequest {
+  // Path to the Bazel's output user directory where Bazel stores cache of Bazel
+  // installation manifests and build outputs. If it is empty, the default path
+  // is used ($HOME/.cache/bazel/_bazel_$USER). Specify this field if the
+  // default location is not desirable (e.g. the disk space is limited).
+  // https://bazel.build/remote/output-directories?hl=en#layout
+  string bazel_output_user_root = 1;
 }
 
 message BazelTestResponse {
