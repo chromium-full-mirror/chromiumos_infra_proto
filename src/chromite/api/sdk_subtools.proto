@@ -18,6 +18,9 @@ message BuildSdkSubtoolsRequest {
   // The chroot to use to execute the endpoint. If this chroot is not already
   // set up as a "subtools" chroot, it will be converted into one.
   chromiumos.Chroot chroot = 1;
+
+  // A ResultPath to communicate to the build API how to map paths.
+  chromiumos.ResultPath result_path = 3;
 }
 
 message BuildSdkSubtoolsResponse {

@@ -745,6 +745,25 @@
           "name": "Path"
         },
         {
+          "enumType": [
+            {
+              "name": "Transfer",
+              "value": [
+                {
+                  "name": "TRANSFER_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TRANSFER_COPY",
+                  "number": 1
+                },
+                {
+                  "name": "TRANSFER_TRANSLATE",
+                  "number": 2
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "path",
@@ -753,6 +772,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "transfer",
+              "label": "LABEL_OPTIONAL",
+              "name": "transfer",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ResultPath.Transfer"
             }
           ],
           "name": "ResultPath"
@@ -13149,6 +13176,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "BuildSdkSubtoolsRequest"

@@ -176,9 +176,25 @@ message Path {
 // this is used to automatically transfer files out of the chroot when needed.
 // Note: No more than one ResultPath per message can be supported.
 message ResultPath {
-  // Required.
+  // Required unless type is TRANSFER_TRANSLATE.
   // The result directory information.
   Path path = 1;
+
+  // Transfer enum; how Paths in the response are transferred out of the chroot.
+  enum Transfer {
+    TRANSFER_UNSPECIFIED = 0;
+
+    // Paths are copied to ResultPath.path.  Default when unspecifed.
+    TRANSFER_COPY = 1;
+
+    // Path messages are updated from Path.Location.INSIDE to
+    // Path.Location.OUTSIDE in place without copying, based on knowledge of the
+    // chroot structure. Note that such resulting artifacts may be modified or
+    // removed by future API calls, so callers should exercise care regarding
+    // their longevity. ResultPath.path must be empty.
+    TRANSFER_TRANSLATE = 2;
+  }
+  Transfer transfer = 2;
 }
 
 // A SyncedDir will have all of its contents transferred into a tmp directory
