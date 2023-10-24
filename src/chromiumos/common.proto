@@ -887,6 +887,9 @@ message ArtifactsByService {
       CODE_COVERAGE_GOLANG = 48;
 
       reserved 49 to 53;
+
+      // Code coverage artifacts for E2E coverage.
+      CODE_COVERAGE_E2E = 54;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having

@@ -389,6 +389,12 @@ message BuilderConfig {
 
       // Tarball of cross-compiling toolchain prebuilts.
       SDK_TOOLCHAIN_PREBUILTS = 52;
+
+      // Reserving 53 to keep it consistent with common.proto.
+      reserved 53;
+
+      // Code coverage artifacts for E2E coverage.
+      CODE_COVERAGE_E2E = 54;
     }
     repeated ArtifactTypes artifact_types = 2;
 

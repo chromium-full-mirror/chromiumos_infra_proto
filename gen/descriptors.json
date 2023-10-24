@@ -1952,6 +1952,10 @@
                     {
                       "name": "CODE_COVERAGE_GOLANG",
                       "number": 48
+                    },
+                    {
+                      "name": "CODE_COVERAGE_E2E",
+                      "number": 54
                     }
                   ]
                 }
@@ -11151,6 +11155,10 @@
                     {
                       "end": 14,
                       "start": 11
+                    },
+                    {
+                      "end": 53,
+                      "start": 53
                     }
                   ],
                   "value": [
@@ -11345,6 +11353,10 @@
                     {
                       "name": "SDK_TOOLCHAIN_PREBUILTS",
                       "number": 52
+                    },
+                    {
+                      "name": "CODE_COVERAGE_E2E",
+                      "number": 54
                     }
                   ]
                 }
