@@ -26,13 +26,15 @@ const (
 )
 
 // TestPlatformArgs defines the input format used by autotest's dynamic suite
-// (see https://chromium.googlesource.com/chromiumos/third_party/autotest/+/refs/heads/master/server/cros/dynamic_suite/dynamic_suite.py)
+// (see
+// https://chromium.googlesource.com/chromiumos/third_party/autotest/+/refs/heads/master/server/cros/dynamic_suite/dynamic_suite.py)
 // This argument is available to the control.cros_test_platform suite, as an
 // autotest entry point for cros_test_platform.
 //
 // These arguments are in addition to the standard dynamic_suite arguments
 // passed in via the run_suite command line
-// (see https://chromium.googlesource.com/chromiumos/third_party/autotest/+/refs/heads/master/site_utils/run_suite.py).
+// (see
+// https://chromium.googlesource.com/chromiumos/third_party/autotest/+/refs/heads/master/site_utils/run_suite.py).
 type TestPlatformArgs struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -127,8 +127,8 @@ message RunSpidersResponse {
 
 service PortageExplorerService {
   option (service_options) = {
-      module: "portage_explorer",
-      service_chroot_assert: INSIDE,
+    module : "portage_explorer",
+    service_chroot_assert : INSIDE,
   };
 
   // Run each individual spider to record data.

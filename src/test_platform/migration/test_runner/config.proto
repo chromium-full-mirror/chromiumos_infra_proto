@@ -12,9 +12,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/mig
 // test_runner and skylab_swarming_worker.
 // The CTP requests directed to test_runner via
 // request.migrations.use_test_runner are not affected by this config.
-message Config {
-  repeated RedirectInstruction redirect_instructions = 1;
-}
+message Config { repeated RedirectInstruction redirect_instructions = 1; }
 
 // RedirectInstruction describes the fraction and the type of traffic to
 // send to test_runner.

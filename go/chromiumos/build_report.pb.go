@@ -237,10 +237,11 @@ func (BuildReport_BuildConfig_VersionKind) EnumDescriptor() ([]byte, []int) {
 type BuildReport_BuildConfig_Model_ModelVersionKind int32
 
 const (
-	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_UNDEFINED               BuildReport_BuildConfig_Model_ModelVersionKind = 0 // do not use.
-	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_EC_FIRMWARE             BuildReport_BuildConfig_Model_ModelVersionKind = 1 // EC firmware version (e.g. coral_v1.1.7292-04956f5df).
-	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_MAIN_READONLY_FIRMWARE  BuildReport_BuildConfig_Model_ModelVersionKind = 2 // Main read-only firmware version (e.g. Google_Coral.10068.82.0).
-	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_MAIN_READWRITE_FIRMWARE BuildReport_BuildConfig_Model_ModelVersionKind = 3 // Main read-write firmware version (e.g. Google_Coral.10068.82.0).
+	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_UNDEFINED              BuildReport_BuildConfig_Model_ModelVersionKind = 0 // do not use.
+	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_EC_FIRMWARE            BuildReport_BuildConfig_Model_ModelVersionKind = 1 // EC firmware version (e.g. coral_v1.1.7292-04956f5df).
+	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_MAIN_READONLY_FIRMWARE BuildReport_BuildConfig_Model_ModelVersionKind = 2 // Main read-only firmware version (e.g.
+	// Google_Coral.10068.82.0).
+	BuildReport_BuildConfig_Model_MODEL_VERSION_KIND_MAIN_READWRITE_FIRMWARE BuildReport_BuildConfig_Model_ModelVersionKind = 3 // Main read-write firmware version (e.g.
 )
 
 // Enum value maps for BuildReport_BuildConfig_Model_ModelVersionKind.
@@ -300,7 +301,8 @@ const (
 	// Typically named "chromiumos_test_image.tar.xz".
 	BuildReport_BuildArtifact_TEST_IMAGE_ARCHIVE BuildReport_BuildArtifact_Type = 4
 	// Other Chrome OS artifacts, not necessarily an image.
-	// Typically named something like "chromeos-hwqual-ambassador-R120-15638.0.0.tar.bz2".
+	// Typically named something like
+	// "chromeos-hwqual-ambassador-R120-15638.0.0.tar.bz2".
 	BuildReport_BuildArtifact_HWQUAL_ARCHIVE BuildReport_BuildArtifact_Type = 101
 	// Typically named "debug.tgz".
 	BuildReport_BuildArtifact_DEBUG_ARCHIVE BuildReport_BuildArtifact_Type = 102
@@ -1445,15 +1447,16 @@ type BuildReport_SignedBuildMetadata struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReleaseDirectory string                                            `protobuf:"bytes,1,opt,name=release_directory,json=releaseDirectory,proto3" json:"release_directory,omitempty"`                    // Directory of the release (eg: "rubik-channel/kevin-kernelnext/14545.0.0/").
-	Status           BuildReport_SignedBuildMetadata_SigningStatus     `protobuf:"varint,2,opt,name=status,proto3,enum=chromiumos.BuildReport_SignedBuildMetadata_SigningStatus" json:"status,omitempty"` // Status of signing.
-	Board            string                                            `protobuf:"bytes,3,opt,name=board,proto3" json:"board,omitempty"`                                                                  // The board the image is for.
-	Type             ImageType                                         `protobuf:"varint,4,opt,name=type,proto3,enum=chromiumos.ImageType" json:"type,omitempty"`                                         // The type of image (eg: "recovery").
-	Channel          Channel                                           `protobuf:"varint,5,opt,name=channel,proto3,enum=chromiumos.Channel" json:"channel,omitempty"`                                     // The channel of the image (eg: "stable").
-	Keyset           string                                            `protobuf:"bytes,6,opt,name=keyset,proto3" json:"keyset,omitempty"`
-	KeysetIsMp       bool                                              `protobuf:"varint,7,opt,name=keyset_is_mp,json=keysetIsMp,proto3" json:"keyset_is_mp,omitempty"`
-	Files            []*BuildReport_SignedBuildMetadata_FileWithHashes `protobuf:"bytes,8,rep,name=files,proto3" json:"files,omitempty"`
-	Versions         []*BuildReport_SignedBuildMetadata_Version        `protobuf:"bytes,9,rep,name=versions,proto3" json:"versions,omitempty"`
+	ReleaseDirectory string `protobuf:"bytes,1,opt,name=release_directory,json=releaseDirectory,proto3" json:"release_directory,omitempty"` // Directory of the release (eg:
+	// "rubik-channel/kevin-kernelnext/14545.0.0/").
+	Status     BuildReport_SignedBuildMetadata_SigningStatus     `protobuf:"varint,2,opt,name=status,proto3,enum=chromiumos.BuildReport_SignedBuildMetadata_SigningStatus" json:"status,omitempty"` // Status of signing.
+	Board      string                                            `protobuf:"bytes,3,opt,name=board,proto3" json:"board,omitempty"`                                                                  // The board the image is for.
+	Type       ImageType                                         `protobuf:"varint,4,opt,name=type,proto3,enum=chromiumos.ImageType" json:"type,omitempty"`                                         // The type of image (eg: "recovery").
+	Channel    Channel                                           `protobuf:"varint,5,opt,name=channel,proto3,enum=chromiumos.Channel" json:"channel,omitempty"`                                     // The channel of the image (eg: "stable").
+	Keyset     string                                            `protobuf:"bytes,6,opt,name=keyset,proto3" json:"keyset,omitempty"`
+	KeysetIsMp bool                                              `protobuf:"varint,7,opt,name=keyset_is_mp,json=keysetIsMp,proto3" json:"keyset_is_mp,omitempty"`
+	Files      []*BuildReport_SignedBuildMetadata_FileWithHashes `protobuf:"bytes,8,rep,name=files,proto3" json:"files,omitempty"`
+	Versions   []*BuildReport_SignedBuildMetadata_Version        `protobuf:"bytes,9,rep,name=versions,proto3" json:"versions,omitempty"`
 }
 
 func (x *BuildReport_SignedBuildMetadata) Reset() {

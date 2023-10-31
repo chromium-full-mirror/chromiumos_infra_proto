@@ -21,9 +21,7 @@ message AssembleRequest {
   chromiumos.ResultPath target_dir = 2;
 }
 
-message AssembleResponse {
-  repeated RemoteTestDriver remote_test_drivers = 1;
-}
+message AssembleResponse { repeated RemoteTestDriver remote_test_drivers = 1; }
 
 message RemoteTestDriver {
   // A folder containing the files needed to build a docker image for
@@ -33,13 +31,14 @@ message RemoteTestDriver {
   chromiumos.Path build_context = 1;
   // Metadata about the RTD.
   // TODO(https://crbug.com/1151028): fix dependency for chromite protoc
-  // repeated chromiumos.config.api.test.metadata.v1.Specification specifications = 2;
+  // repeated chromiumos.config.api.test.metadata.v1.Specification
+  // specifications = 2;
 }
 
 service RemoteTestDriverService {
   option (service_options) = {
-    module: "remote_test_driver",
-    service_chroot_assert: INSIDE,
+    module : "remote_test_driver",
+    service_chroot_assert : INSIDE,
   };
 
   // Build RTDs (Tauto, Tast, etc.) and put them into a folder containing

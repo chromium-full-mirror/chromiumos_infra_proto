@@ -13,48 +13,46 @@ option java_package = "com.google.chrome.crosinfra.proto";
 // details.
 
 enum RetryStep {
-    // Numbering guide:
-    // Orchestrator steps live [1, 100).
-    // Child builder steps live in [100, 800).
-    // Paygen orchestrator steps live in [800, 1000).
-    // Paygenie steps live in [1000, ...).
-    UNDEFINED = 0;
+  // Numbering guide:
+  // Orchestrator steps live [1, 100).
+  // Child builder steps live in [100, 800).
+  // Paygen orchestrator steps live in [800, 1000).
+  // Paygenie steps live in [1000, ...).
+  UNDEFINED = 0;
 
-    // Orchestrator steps.
-    CREATE_BUILDSPEC = 10;
+  // Orchestrator steps.
+  CREATE_BUILDSPEC = 10;
 
-    PUBLIC_BUILD_LKGM = 20;
+  PUBLIC_BUILD_LKGM = 20;
 
-    RUN_CHILDREN = 30;
-    RUN_FAILED_CHILDREN = 31;
+  RUN_CHILDREN = 30;
+  RUN_FAILED_CHILDREN = 31;
 
-    LAUNCH_TESTS = 40;
+  LAUNCH_TESTS = 40;
 
+  // Child builder steps.
+  STAGE_ARTIFACTS = 150;
 
-    // Child builder steps.
-    STAGE_ARTIFACTS = 150;
+  // Push images to the release bucket (and thus initiate signing).
+  PUSH_IMAGES = 160;
 
-    // Push images to the release bucket (and thus initiate signing).
-    PUSH_IMAGES = 160;
+  // Upload debug symbols.
+  DEBUG_SYMBOLS = 165;
 
-    // Upload debug symbols.
-    DEBUG_SYMBOLS = 165;
+  // Run ebuild tests.
+  // Currently unsupported.
+  EBUILD_TESTS = 170;
 
-    // Run ebuild tests.
-    // Currently unsupported.
-    EBUILD_TESTS = 170;
+  // Collect the results of signing.
+  // Used if the build fails after it initiates signing requests
+  // (in PUSH_IMAGES) but before it collects and reports signing results.
+  COLLECT_SIGNING = 180;
 
-    // Collect the results of signing.
-    // Used if the build fails after it initiates signing requests
-    // (in PUSH_IMAGES) but before it collects and reports signing results.
-    COLLECT_SIGNING = 180;
+  // Do payload generation.
+  PAYGEN = 190;
 
-    // Do payload generation.
-    PAYGEN = 190;
+  // Paygenie steps.
+  UPLOAD_PAYLOAD = 1000;
 
-
-    // Paygenie steps.
-    UPLOAD_PAYLOAD = 1000;
-
-    TEST_PAYLOAD = 1010;
+  TEST_PAYLOAD = 1010;
 }

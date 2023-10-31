@@ -63,9 +63,7 @@ message FwBuildMetric {
   }
 
   // Optional information related to a specific target type.
-  oneof image_type {
-    ZephyrTarget zephyr = 4;
-  }
+  oneof image_type { ZephyrTarget zephyr = 4; }
 
   // Zephyr-base firmware target related build metrics.
   message ZephyrTarget {
@@ -78,9 +76,7 @@ message FwBuildMetric {
 // Implementation note, this is a separate message since it serves as the
 // serialization base between the build_api end point and the entry point
 // in the firmware_builder.py.
-message FwBuildMetricList {
-  repeated FwBuildMetric value = 1;
-}
+message FwBuildMetricList { repeated FwBuildMetric value = 1; }
 
 // Metrics collect on successful firmware unit test runs.
 message FwTestMetric {
@@ -98,9 +94,7 @@ message FwTestMetric {
 // Implementation note, this is a separate message since it serves as the
 // serialization base between the build_api end point and the entry point
 // in the firmware_builder.py.
-message FwTestMetricList {
-  repeated FwTestMetric value = 1;
-}
+message FwTestMetricList { repeated FwTestMetric value = 1; }
 
 message BuildAllFirmwareRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
@@ -158,7 +152,7 @@ message BundleFirmwareArtifactsRequest {
 
   // The ChromeOS style version to use in FirmwareArtifactInfo.
   // Added and deprecated in R91.
-  string bcs_version = 5 [deprecated = true];
+  string bcs_version = 5 [ deprecated = true ];
 
   // BcsVersionInfo to use in (copy into) FirmwareArtifactInfo.TarballInfo.
   BcsVersionInfo bcs_version_info = 6;
@@ -174,53 +168,52 @@ message FirmwareArtifactInfo {
   // TODO(crbug/1176305): Use types from
   // chromiumos/config/api/software/firmware_config.proto
   message TarballInfo {
-      // The ChromeOS style version.
-      // Use bcs_version_info.version_string instead.
-      // Deprecated since R91.
-      string bcs_version = 1 [deprecated = true];
+    // The ChromeOS style version.
+    // Use bcs_version_info.version_string instead.
+    // Deprecated since R91.
+    string bcs_version = 1 [ deprecated = true ];
 
-      // The name of the firmware image used by the firmware updater. Typically
-      // the device name, but can differ when a device may have two or more
-      // different firmware images.
-      string firmware_image_name = 2;
+    // The name of the firmware image used by the firmware updater. Typically
+    // the device name, but can differ when a device may have two or more
+    // different firmware images.
+    string firmware_image_name = 2;
 
-      // The type of a firmware binary.
-      message FirmwareType {
-        enum Type {
-            UNKNOWN = 0;
-            MAIN = 1;
-            EC = 2;
-            PD = 3;
-        }
+    // The type of a firmware binary.
+    message FirmwareType {
+      enum Type {
+        UNKNOWN = 0;
+        MAIN = 1;
+        EC = 2;
+        PD = 3;
       }
-      FirmwareType.Type type = 3;
+    }
+    FirmwareType.Type type = 3;
 
-      // The firmware version from chromeos-firmwareupdate --manifest.
-      message Version {
-        int32 major = 1;
-        int32 minor = 2;
-      }
-      // Use firmware_version_info instead.
-      // Deprecated since R91.
-      Version version = 4 [deprecated = true];
+    // The firmware version from chromeos-firmwareupdate --manifest.
+    message Version {
+      int32 major = 1;
+      int32 minor = 2;
+    }
+    // Use firmware_version_info instead.
+    // Deprecated since R91.
+    Version version = 4 [ deprecated = true ];
 
-      // Added in R91.  Required.
-      FirmwareVersionInfo firmware_version_info = 5;
+    // Added in R91.  Required.
+    FirmwareVersionInfo firmware_version_info = 5;
   }
 
   message LcovTarballInfo {
-      // The type of LCOV info.
-      message LcovType {
-        enum Type {
-            UNKNOWN = 0;
-            LCOV = 1;
-        }
+    // The type of LCOV info.
+    message LcovType {
+      enum Type {
+        UNKNOWN = 0;
+        LCOV = 1;
       }
-      LcovType.Type type = 1;
+    }
+    LcovType.Type type = 1;
   }
 
-  message CoverageHtmlInfo {
-  }
+  message CoverageHtmlInfo {}
 
   message ObjectInfo {
     // The name of the file.
@@ -245,12 +238,11 @@ message FirmwareArtifactInfo {
   BcsVersionInfo bcs_version_info = 2;
 }
 
-
 // The Firmware service.  Added in R88.
 service FirmwareService {
   option (service_options) = {
-    module: "firmware",
-    service_chroot_assert: INSIDE,
+    module : "firmware",
+    service_chroot_assert : INSIDE,
   };
 
   // Builds all of the firmware targets at specified location. Added in R90.
@@ -258,8 +250,7 @@ service FirmwareService {
       returns (BuildAllFirmwareResponse);
 
   // Runs all of the firmware tests at specified location. Added in R90.
-  rpc TestAllFirmware(TestAllFirmwareRequest)
-      returns (TestAllFirmwareResponse);
+  rpc TestAllFirmware(TestAllFirmwareRequest) returns (TestAllFirmwareResponse);
 
   // Bundles any firmware images and other artifacts. Added in R90.
   rpc BundleFirmwareArtifacts(BundleFirmwareArtifactsRequest)

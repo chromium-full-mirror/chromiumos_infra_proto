@@ -15,7 +15,7 @@ import "test_platform/phosphorus/common.proto";
 message UploadToGSRequest {
   // Deprecated in favor of local_directory, which is the only thing it's used
   // for. Assembling that directory is moving to the 'callers'.
-  Config config = 1 [deprecated = true];
+  Config config = 1 [ deprecated = true ];
 
   // GS path to upload to, e.g. gs://foo/bar/baz/
   string gs_directory = 2;

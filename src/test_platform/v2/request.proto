@@ -21,7 +21,6 @@ message TestSpec {
   }
 }
 
-
 message Request {
   // Required, specify the path to a GCS folder containing build artifacts
   chromiumos.GcsPath build_directory = 1;

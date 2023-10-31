@@ -11,7 +11,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
-
 // Defines a single build directory in storage.
 message Build {
   // The board of the image "x86-mario", etc.
@@ -58,7 +57,6 @@ message SignedImage {
   string key = 3;
 }
 
-
 // Define a unsigned ChromeOS image archived.
 message UnsignedImage {
   // An instance of Build that defines the build artifacts directory.
@@ -70,7 +68,6 @@ message UnsignedImage {
   // The most recent branch corresponding to the version; "R19" etc.
   string milestone = 3;
 }
-
 
 // Request payload generation to be done with a source and target image.
 message GenerationRequest {
@@ -145,7 +142,7 @@ message GenerationResponse {
     // Version of the payload (eg. 1).
     uint32 version = 1;
     // Local artifact path. Deprecated since R117. Use file_path.
-    string local_path = 2 [deprecated = true];
+    string local_path = 2 [ deprecated = true ];
     // If successful we may have uploaded an artifact to google storage.
     string remote_uri = 3;
     // If successful we may have a local artifact available. Generally this
@@ -171,8 +168,8 @@ message GenerationResponse {
 // The image service definition.
 service PayloadService {
   option (service_options) = {
-    module: "payload",
-    service_chroot_assert: INSIDE,
+    module : "payload",
+    service_chroot_assert : INSIDE,
   };
 
   // Added in R79.

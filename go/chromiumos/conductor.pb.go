@@ -40,7 +40,8 @@ type RetryRule struct {
 	Insufficient bool `protobuf:"varint,10,opt,name=insufficient,proto3" json:"insufficient,omitempty"`
 	// Will be converted to the Status enum, but passed as an int here to
 	// prevent a dependency on the luci-go repo.
-	// See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+	// See
+	// https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
 	Status            []int32   `protobuf:"varint,1,rep,packed,name=status,proto3" json:"status,omitempty"`
 	BuilderNameRe     []string  `protobuf:"bytes,2,rep,name=builder_name_re,json=builderNameRe,proto3" json:"builder_name_re,omitempty"`
 	SummaryMarkdownRe []string  `protobuf:"bytes,3,rep,name=summary_markdown_re,json=summaryMarkdownRe,proto3" json:"summary_markdown_re,omitempty"`
@@ -48,7 +49,8 @@ type RetryRule struct {
 	BeforeCheckpoint  RetryStep `protobuf:"varint,11,opt,name=before_checkpoint,json=beforeCheckpoint,proto3,enum=chromiumos.RetryStep" json:"before_checkpoint,omitempty"`
 	// If more than a certain percent of builds fail, we'll stop retrying.
 	CutoffPercent float32 `protobuf:"fixed32,5,opt,name=cutoff_percent,json=cutoffPercent,proto3" json:"cutoff_percent,omitempty"`
-	// If we're more than this many seconds into this build collection, don't retry.
+	// If we're more than this many seconds into this build collection, don't
+	// retry.
 	CutoffSeconds int32 `protobuf:"varint,6,opt,name=cutoff_seconds,json=cutoffSeconds,proto3" json:"cutoff_seconds,omitempty"`
 	// Don't retry builds that have been running for more than build_runtime
 	// seconds.

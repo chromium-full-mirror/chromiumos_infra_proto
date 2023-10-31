@@ -57,7 +57,7 @@ message CommonConfig {
   message RdbConfig {
     // If request.results_upload_config.TestResultsUploadVisibility is
     // CUSTOM_REALM this value will be the realm the configs are uploaded to.
-   string custom_realm_name = 1;
+    string custom_realm_name = 1;
   }
 
   RdbConfig rdb_config = 6;
@@ -97,9 +97,7 @@ message IleDeFranceConfig {
   bool enabled = 1;
 
   // A list of models to allow or deny, as appropriate.
-  message ModelList {
-    repeated string models = 1;
-  }
+  message ModelList { repeated string models = 1; }
 
   // Determine whether ile-de-france runs are permitted or not by specifying an
   // allowlist or a denylist.

@@ -10,6 +10,4 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/project_mgmt";
 
 import "project_mgmt/program.proto";
 
-message Config {
-  ProgramList programs = 1;
-}
+message Config { ProgramList programs = 1; }

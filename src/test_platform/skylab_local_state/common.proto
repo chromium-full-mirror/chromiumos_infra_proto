@@ -29,4 +29,3 @@ message Config {
   // If left empty, should be handled as if it were `os`
   string ufs_namespace = 6;
 }
-

@@ -45,26 +45,26 @@ import "google/protobuf/timestamp.proto";
 //   ltr_last_refresh_date: 2023-03-09T00:00:00
 // }
 message Milestone {
-    google.protobuf.Timestamp final_beta_cut = 1;
-    google.protobuf.Timestamp final_beta = 2;
-    google.protobuf.Timestamp feature_freeze = 3;
-    google.protobuf.Timestamp earliest_beta = 4;
-    google.protobuf.Timestamp stable_refresh_first = 5;
-    google.protobuf.Timestamp latest_beta = 6;
-    // This maps product portion to the owners real _name_, not 'ldap'.
-    map<string, string> owners = 7;
-    google.protobuf.Timestamp stable_cut = 8;
-    google.protobuf.Timestamp stable_refresh_second = 9;
-    int32 mstone = 10;
-    google.protobuf.Timestamp late_stable_date = 11;
-    google.protobuf.Timestamp stable_date = 12;
-    map<string, string> ldaps = 13;
-    google.protobuf.Timestamp earliest_beta_ios = 14;
-    google.protobuf.Timestamp branch_point = 15;
-    google.protobuf.Timestamp stable_refresh_third = 16;
-    google.protobuf.Timestamp ltc_date = 17;
-    google.protobuf.Timestamp ltr_date = 18;
-    google.protobuf.Timestamp ltr_last_refresh_date = 19;
+  google.protobuf.Timestamp final_beta_cut = 1;
+  google.protobuf.Timestamp final_beta = 2;
+  google.protobuf.Timestamp feature_freeze = 3;
+  google.protobuf.Timestamp earliest_beta = 4;
+  google.protobuf.Timestamp stable_refresh_first = 5;
+  google.protobuf.Timestamp latest_beta = 6;
+  // This maps product portion to the owners real _name_, not 'ldap'.
+  map<string, string> owners = 7;
+  google.protobuf.Timestamp stable_cut = 8;
+  google.protobuf.Timestamp stable_refresh_second = 9;
+  int32 mstone = 10;
+  google.protobuf.Timestamp late_stable_date = 11;
+  google.protobuf.Timestamp stable_date = 12;
+  map<string, string> ldaps = 13;
+  google.protobuf.Timestamp earliest_beta_ios = 14;
+  google.protobuf.Timestamp branch_point = 15;
+  google.protobuf.Timestamp stable_refresh_third = 16;
+  google.protobuf.Timestamp ltc_date = 17;
+  google.protobuf.Timestamp ltr_date = 18;
+  google.protobuf.Timestamp ltr_last_refresh_date = 19;
 }
 
 // A response to fetch_milestone_schedule.
@@ -82,6 +82,4 @@ message Milestone {
 //      }
 //   ]
 // }
-message FetchMilestoneScheduleResponse {
-  repeated Milestone mstones = 1;
-}
+message FetchMilestoneScheduleResponse { repeated Milestone mstones = 1; }

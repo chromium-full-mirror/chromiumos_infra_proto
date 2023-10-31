@@ -328,8 +328,8 @@ type AutotestTest struct {
 	ExecutionEnvironment AutotestTest_ExecutionEnvironment `protobuf:"varint,7,opt,name=execution_environment,json=executionEnvironment,proto3,enum=chromite.api.AutotestTest_ExecutionEnvironment" json:"execution_environment,omitempty"`
 	// List of tests.
 	// 'name' captures a single name representing a shard of tests
-	// whereas 'names' removes the encapsulation on the shard of tests by listing out their individual names.
-	// 'name' will be ignored if 'names' is provided.
+	// whereas 'names' removes the encapsulation on the shard of tests by listing
+	// out their individual names. 'name' will be ignored if 'names' is provided.
 	Names []string `protobuf:"bytes,8,rep,name=names,proto3" json:"names,omitempty"`
 }
 

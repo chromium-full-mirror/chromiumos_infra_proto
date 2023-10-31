@@ -12,7 +12,6 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
-
 // The chroot version information.
 message ChrootVersion {
   // The version number.
@@ -60,8 +59,7 @@ message DeleteRequest {
 }
 
 // Delete request message.
-message DeleteResponse {
-}
+message DeleteResponse {}
 
 // Deprecated.
 message UnmountRequest {
@@ -70,8 +68,7 @@ message UnmountRequest {
 }
 
 // Deprecated.
-message UnmountResponse {
-}
+message UnmountResponse {}
 
 // Chroot update request message.
 // Example json:
@@ -163,17 +160,11 @@ message CleanRequest {
 message CleanResponse {}
 
 // An opaque key to a chroot snapshot state.
-message SnapshotToken {
-  string value = 1;
-}
+message SnapshotToken { string value = 1; }
 
-message CreateSnapshotRequest {
-  chromiumos.Chroot chroot = 1;
-}
+message CreateSnapshotRequest { chromiumos.Chroot chroot = 1; }
 
-message CreateSnapshotResponse {
-  SnapshotToken snapshot_token = 1;
-}
+message CreateSnapshotResponse { SnapshotToken snapshot_token = 1; }
 
 message RestoreSnapshotRequest {
   chromiumos.Chroot chroot = 1;
@@ -187,8 +178,7 @@ message UnmountPathRequest {
   chromiumos.Path path = 1;
 }
 
-message UnmountPathResponse {
-}
+message UnmountPathResponse {}
 
 // Build prebuilt packages for the SDK.
 message BuildPrebuiltsRequest {
@@ -228,9 +218,7 @@ message CreateManifestFromSdkRequest {
   chromiumos.Path dest_dir = 3;
 }
 
-message CreateManifestFromSdkResponse {
-  chromiumos.Path manifest_path = 1;
-}
+message CreateManifestFromSdkResponse { chromiumos.Path manifest_path = 1; }
 
 // Create CLs to point the binhost at a given SDK version.
 message CreateBinhostCLsRequest {
@@ -256,8 +244,7 @@ message UploadPrebuiltPackagesRequest {
   string upload_location = 4;
 }
 
-message UploadPrebuiltPackagesResponse {
-}
+message UploadPrebuiltPackagesResponse {}
 
 // Request info for building toolchain packages for the SDK.
 message BuildSdkToolchainRequest {
@@ -279,8 +266,8 @@ message BuildSdkToolchainResponse {
 service SdkService {
   // The service options (see build_api.proto).
   option (service_options) = {
-    module: "sdk",
-    service_chroot_assert: OUTSIDE,
+    module : "sdk",
+    service_chroot_assert : OUTSIDE,
   };
 
   // Create method, supports replacing an existing chroot.
@@ -299,7 +286,7 @@ service SdkService {
   // Update the chroot.
   rpc Update(UpdateRequest) returns (UpdateResponse) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   }
 
@@ -314,8 +301,7 @@ service SdkService {
   rpc RestoreSnapshot(RestoreSnapshotRequest) returns (RestoreSnapshotResponse);
 
   // Unmount a filesystem path and any submounts under it.  Added in R86.
-  rpc UnmountPath(UnmountPathRequest)
-      returns (UnmountPathResponse);
+  rpc UnmountPath(UnmountPathRequest) returns (UnmountPathResponse);
 
   // Builds the binary packages that comprise the SDK.
   rpc BuildPrebuilts(BuildPrebuiltsRequest) returns (BuildPrebuiltsResponse);
@@ -338,8 +324,8 @@ service SdkService {
   // Build toolchain cross-compilers for the SDK.
   rpc BuildSdkToolchain(BuildSdkToolchainRequest)
       returns (BuildSdkToolchainResponse) {
-          option (method_options) = {
-            method_chroot_assert: INSIDE,
-          };
+    option (method_options) = {
+      method_chroot_assert : INSIDE,
     };
+  };
 }

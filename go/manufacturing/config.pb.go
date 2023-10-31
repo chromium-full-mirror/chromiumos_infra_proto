@@ -192,8 +192,8 @@ func (Config_CR50KeyEnv) EnumDescriptor() ([]byte, []int) {
 	return file_manufacturing_config_proto_rawDescGZIP(), []int{0, 2}
 }
 
-// These are the configs that's provided in manufacture stage of a ChromeOS device.
-// Next Tag: 7
+// These are the configs that's provided in manufacture stage of a ChromeOS
+// device. Next Tag: 7
 type Config struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

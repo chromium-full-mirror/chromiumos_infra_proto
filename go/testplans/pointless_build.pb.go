@@ -94,7 +94,8 @@ type PointlessBuildCheckRequest struct {
 	// Serialized buildbucket GerritChanges, or none if this is a postsubmit run
 	// or similar. Explicit proto import is avoided here to prevent a dependency
 	// on the luci-go repo.
-	// See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+	// See
+	// https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
 	//
 	// Must be used in conjunction with gitiles_commit.
 	// If affected_paths is passed in, this field is ignored.
@@ -107,8 +108,9 @@ type PointlessBuildCheckRequest struct {
 	GitilesCommit *ProtoBytes `protobuf:"bytes,8,opt,name=gitiles_commit,json=gitilesCommit,proto3" json:"gitiles_commit,omitempty"`
 	// DEPRECATED use gitiles_commit instead.
 	//
-	// The manifest-internal snapshot commit hash that's being used for the current build.
-	// Note that manifest_commit will be soon replaced with gitiles_commit below.
+	// The manifest-internal snapshot commit hash that's being used for the
+	// current build. Note that manifest_commit will be soon replaced with
+	// gitiles_commit below.
 	//
 	// Deprecated: Do not use.
 	ManifestCommit string `protobuf:"bytes,6,opt,name=manifest_commit,json=manifestCommit,proto3" json:"manifest_commit,omitempty"`
@@ -117,9 +119,9 @@ type PointlessBuildCheckRequest struct {
 	// relevency. A specific case here is that manifest changes force relevancy
 	// but shouldn't force a toolchain update.
 	//
-	// TODO(b/186002205): Improve this such that manifest changes are treated treated via
-	// introspection. We know the paths being changed in the manifest, and we
-	// should be able to surface that.
+	// TODO(b/186002205): Improve this such that manifest changes are treated
+	// treated via introspection. We know the paths being changed in the manifest,
+	// and we should be able to surface that.
 	IgnoreKnownNonPortageDirectories bool `protobuf:"varint,10,opt,name=ignore_known_non_portage_directories,json=ignoreKnownNonPortageDirectories,proto3" json:"ignore_known_non_portage_directories,omitempty"`
 }
 

@@ -71,9 +71,7 @@ message Result {
   }
 
   // Which test harness was used.
-  oneof harness {
-      Autotest autotest_result = 1;
-  }
+  oneof harness { Autotest autotest_result = 1; }
 
   // Prejob contains all preparatory operations that run before the actual
   // test cases.
@@ -123,4 +121,3 @@ message Result {
   reserved 5;
   reserved "async_results";
 }
-

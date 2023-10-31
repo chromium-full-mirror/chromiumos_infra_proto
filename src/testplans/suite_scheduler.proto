@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
 // WARNING: DO NOT USE these protos outside of suite scheduler. This is
 // only intended to help the transition to starlark configs. It will
 // be deprecated once the new replacement is in place.
@@ -16,231 +15,225 @@ import "chromiumos/test/api/test_suite.proto";
 
 // Defines a board, its variants and its models.
 message Board {
-    // Name of the board. Eg: eve.
-    string name = 1;
+  // Name of the board. Eg: eve.
+  string name = 1;
 
-    // List of variants assiciated with the board.
-    // This should only be the suffixes. Eg: ['-kernelnext'].
-    repeated string variants = 2;
+  // List of variants assiciated with the board.
+  // This should only be the suffixes. Eg: ['-kernelnext'].
+  repeated string variants = 2;
 
-    // List of models of the boards to test on.
-    repeated string models = 3;
+  // List of models of the boards to test on.
+  repeated string models = 3;
 }
 
 // Aims to reflect data in lab_config.ini.
 message LabConfig {
-    // List of board definitions for ChromeOS.
-    repeated Board boards = 1;
-    // List of board definitions for Android.
-    repeated Board android_boards = 2;
+  // List of board definitions for ChromeOS.
+  repeated Board boards = 1;
+  // List of board definitions for Android.
+  repeated Board android_boards = 2;
 }
 
 // Specify a Board and Variant pair.
 message BoardVariant {
-    string board = 1;
-    string variant = 2;
+  string board = 1;
+  string variant = 2;
 }
 
 // Branches that can be targeted.
 enum Branch {
-    BRANCH_UNSPECIFIED = 0;
-    // Canary Branch or ToT.
-    CANARY = 1;
-    // Dev Branch or ToT-1.
-    DEV = 2;
-    // Beta Branch or ToT-2.
-    BETA = 3;
-    // Stable Branch or ToT-3.
-    STABLE = 4;
+  BRANCH_UNSPECIFIED = 0;
+  // Canary Branch or ToT.
+  CANARY = 1;
+  // Dev Branch or ToT-1.
+  DEV = 2;
+  // Beta Branch or ToT-2.
+  BETA = 3;
+  // Stable Branch or ToT-3.
+  STABLE = 4;
 }
 
 // Most fields are the same as suite_scheduler.ini just better organized.
-// The entries will be used to generate a suite_scheduler.ini in starlark scripts.
-// next: 14
+// The entries will be used to generate a suite_scheduler.ini in starlark
+// scripts. next: 14
 message SchedulerConfig {
-    // Name of the config. Needs to be unique.
-    string name = 1;
+  // Name of the config. Needs to be unique.
+  string name = 1;
 
-    // Name of the suite to run.
-    string suite = 2;
+  // Name of the suite to run.
+  string suite = 2;
 
-    // Contact emails will one day be paged in case of problems with the config.
-    message Contact {
-        string email = 1;
+  // Contact emails will one day be paged in case of problems with the config.
+  message Contact { string email = 1; }
+  repeated Contact contacts = 3;
+
+  // LaunchCriteria specifies when the suite should be launched.
+  message LaunchCriteria {
+    // LaunchProfile defines how often the suite is launched.
+    enum LaunchProfile {
+      UNSPECIFIED = 0;
+      // Run on every new release build of the boards/variants targeted.
+      NEW_BUILD = 1;
+      // Run once a day at the specified hour. Used to be "NIGHTLY".
+      DAILY = 2;
+      // Run once a week at the specified time.
+      WEEKLY = 3;
+      // NOT SUPPORTED. Will be supported in the redesign.
+      CRON_BASED = 4;
+      // Run once every other week at the specified time
+      FORTNIGHTLY = 5;
     }
-    repeated Contact contacts = 3;
+    LaunchProfile launch_profile = 1;
+    // Hour at which to run. Needs to be specified for nightly and weekly
+    // profiles. Has to be [0, 23].
+    int32 hour = 2;
+    // Day on which to run. Needs to be specified for weekly AND fortnightly
+    // profile. Has to be [0, 6].
+    int32 day = 3;
+    // NOT SUPPORTED. Cron compatible schedule eg: "* * 1,3,5 * *".
+    string cron_schedule = 4;
+  }
+  LaunchCriteria launch_criteria = 4;
 
-    // LaunchCriteria specifies when the suite should be launched.
-    message LaunchCriteria {
-        // LaunchProfile defines how often the suite is launched.
-        enum LaunchProfile {
-            UNSPECIFIED = 0;
-            // Run on every new release build of the boards/variants targeted.
-            NEW_BUILD = 1;
-            // Run once a day at the specified hour. Used to be "NIGHTLY".
-            DAILY = 2;
-            // Run once a week at the specified time.
-            WEEKLY = 3;
-            // NOT SUPPORTED. Will be supported in the redesign.
-            CRON_BASED = 4;
-            // Run once every other week at the specified time
-            FORTNIGHTLY = 5;
-        }
-        LaunchProfile launch_profile = 1;
-        // Hour at which to run. Needs to be specified for nightly and weekly profiles.
-        // Has to be [0, 23].
-        int32 hour = 2;
-        // Day on which to run. Needs to be specified for weekly AND fortnightly profile.
-        // Has to be [0, 6].
-        int32 day = 3;
-        // NOT SUPPORTED. Cron compatible schedule eg: "* * 1,3,5 * *".
-        string cron_schedule = 4;
+  // Branches to target.
+  repeated Branch branches = 5;
+
+  // Set of boards, variants and models to target.
+  // next tag: 12
+  message TargetOptions {
+    // Use at the most one among the two fields below. If boards_list is empty,
+    // all boards are targeted. exclude_boards will exclude those boards from
+    // the all boards list.
+    repeated string boards_list = 1;
+    repeated string exclude_boards = 2;
+
+    // To specify variants, either all variants can be skipped.
+    bool skip_variants = 8;
+    // OR use at the most one among the two fields below. If variants_list is
+    // empty, all variants are targeted. exclude_variants will exclude those
+    // variants from the all variants list.
+    repeated BoardVariant variants_list = 3;
+    repeated BoardVariant exclude_variants = 4;
+
+    // There's two ways of specifying models. If all of these fields are empty,
+    // all possible models are targeted.
+    // Models to be targeted can be listed explicitly in models_list.
+    repeated string models_list = 5;
+    // OR start with the complete list and exclude some specific models.
+    // any_model only tests the suite on a single model.
+    bool any_model = 6;
+    repeated string exclude_models = 7;
+
+    // next tag: 3
+    message MultiDutsByBoard {
+      string primary_board = 1;
+      repeated string secondary_boards = 2;
     }
-    LaunchCriteria launch_criteria = 4;
-
-    // Branches to target.
-    repeated Branch branches = 5;
-
-    // Set of boards, variants and models to target.
-    // next tag: 12
-    message TargetOptions {
-        // Use at the most one among the two fields below. If boards_list is empty,
-        // all boards are targeted. exclude_boards will exclude those boards from
-        // the all boards list.
-        repeated string boards_list = 1;
-        repeated string exclude_boards = 2;
-
-        // To specify variants, either all variants can be skipped.
-        bool skip_variants = 8;
-        // OR use at the most one among the two fields below. If variants_list is empty,
-        // all variants are targeted. exclude_variants will exclude those variants
-        // from the all variants list.
-        repeated BoardVariant variants_list = 3;
-        repeated BoardVariant exclude_variants = 4;
-
-        // There's two ways of specifying models. If all of these fields are empty,
-        // all possible models are targeted.
-        // Models to be targeted can be listed explicitly in models_list.
-        repeated string models_list = 5;
-        // OR start with the complete list and exclude some specific models.
-        // any_model only tests the suite on a single model.
-        bool any_model = 6;
-        repeated string exclude_models = 7;
-
-        // next tag: 3
-        message MultiDutsByBoard {
-            string primary_board = 1;
-            repeated string secondary_boards = 2;
-        }
-        // next tag: 3
-        message MultiDutsByModel {
-            string primary_model = 1;
-            repeated string secondary_models = 2;
-        }
-        // Option to speicify Mult-DUTs testing board/model, use only one of
-        // below options. When below multi-DUTs options are invoked, boards_list
-        // models_list, variants, and exclude control above will be ignored.
-        repeated MultiDutsByBoard multi_duts_boards_list = 9;
-	reserved 10;
-        repeated MultiDutsByModel multi_duts_models_list = 11;
+    // next tag: 3
+    message MultiDutsByModel {
+      string primary_model = 1;
+      repeated string secondary_models = 2;
     }
-    TargetOptions target_options = 6;
+    // Option to speicify Mult-DUTs testing board/model, use only one of
+    // below options. When below multi-DUTs options are invoked, boards_list
+    // models_list, variants, and exclude control above will be ignored.
+    repeated MultiDutsByBoard multi_duts_boards_list = 9;
+    reserved 10;
+    repeated MultiDutsByModel multi_duts_models_list = 11;
+  }
+  TargetOptions target_options = 6;
 
-    // Aggregate of options related to DUT pool.
-    message PoolOptions {
-        // Quota Scheduler account to use.
-        string qs_account = 1;
-        // Pool to schedule on.
-        string pool = 2;
-        // Integer priority to assign. Only used by CTS. Quota scheduler takes care of
-        // priorities for the rest. Has to be [20, 255].
-        int32 priority = 3;
+  // Aggregate of options related to DUT pool.
+  message PoolOptions {
+    // Quota Scheduler account to use.
+    string qs_account = 1;
+    // Pool to schedule on.
+    string pool = 2;
+    // Integer priority to assign. Only used by CTS. Quota scheduler takes care
+    // of priorities for the rest. Has to be [20, 255].
+    int32 priority = 3;
+  }
+  PoolOptions pool_options = 7;
+
+  // Whether to use firmware from ToT or firmware branch.
+  enum FirmwareBranch {
+    UNSPECIFIED = 0;
+    // ToT branch.
+    CROS = 1;
+    // Firmware branch.
+    FIRMWARE = 2;
+  }
+
+  oneof firmware_ro {
+    FirmwareBranch firmware_ro_build_spec = 8;
+    // Pinned RO firmware path (e.g. coral-firmware/R64-10068.106.0)
+    // Uses firmware_from_source.tar.bz2 from this archive path
+    // instead of pulling from latest firmware-branch or cros-tot build.
+    string firmware_ro_version = 11;
+  }
+
+  oneof firmware_rw {
+    FirmwareBranch firmware_rw_build_spec = 12;
+    // Pinned RW firmware path (e.g. coral-firmware/R64-10068.106.0)
+    // Uses firmware_from_source.tar.bz2 from this archive path
+    // instead of pulling from latest firmware-branch or cros-tot build.
+    string firmware_rw_version = 13;
+  }
+
+  // The name of the firmware branch to use for firmware_ro_build_spec
+  // and firmware_rw_build_spec is normally the derived from the board.
+  // Set firmware_board_name to override this.
+  string firmware_board_name = 14;
+
+  enum TriggerType {
+    TRIGGER_UNSPECIFIED = 0;
+    // Trigger test whenever there is a new build for the primary board.
+    PRIMARY = 1;
+    // Trigger test when every board in the group has a new build.
+    ALL = 2;
+  }
+  // Execution related options.
+  message RunOptions {
+    // Whether to retry if the task fails.
+    bool retry = 1;
+
+    // A list of extra labels/dimensions to attach.
+    // Extra Swarming Dimensions that can be specified.
+    message SwarmingDimension {
+      string key = 1;
+      string value = 2;
     }
-    PoolOptions pool_options = 7;
+    repeated SwarmingDimension dimensions = 2;
 
-    // Whether to use firmware from ToT or firmware branch.
-    enum FirmwareBranch {
-        UNSPECIFIED = 0;
-        // ToT branch.
-        CROS = 1;
-        // Firmware branch.
-        FIRMWARE = 2;
-    }
+    // Timeout of the task.
+    int32 timeout_mins = 3;
 
-    oneof firmware_ro {
-      FirmwareBranch firmware_ro_build_spec = 8;
-      // Pinned RO firmware path (e.g. coral-firmware/R64-10068.106.0)
-      // Uses firmware_from_source.tar.bz2 from this archive path
-      // instead of pulling from latest firmware-branch or cros-tot build.
-      string firmware_ro_version = 11;
-    }
+    // Use only_successful_build_required instead.
+    bool only_sanity_test_required = 4 [ deprecated = true ];
 
-    oneof firmware_rw {
-      FirmwareBranch firmware_rw_build_spec = 12;
-      // Pinned RW firmware path (e.g. coral-firmware/R64-10068.106.0)
-      // Uses firmware_from_source.tar.bz2 from this archive path
-      // instead of pulling from latest firmware-branch or cros-tot build.
-      string firmware_rw_version = 13;
-    }
+    TriggerType trigger_type = 5;
 
-    // The name of the firmware branch to use for firmware_ro_build_spec
-    // and firmware_rw_build_spec is normally the derived from the board.
-    // Set firmware_board_name to override this.
-    string firmware_board_name = 14;
+    // If build passed and was uploaded, launch this test.
+    bool only_successful_build_required = 6;
 
-    enum TriggerType {
-      TRIGGER_UNSPECIFIED = 0;
-      // Trigger test whenever there is a new build for the primary board.
-      PRIMARY = 1;
-      // Trigger test when every board in the group has a new build.
-      ALL = 2;
-    }
-    // Execution related options.
-    message RunOptions {
-        // Whether to retry if the task fails.
-        bool retry = 1;
+    // If set, suite will be executed through CFT execution path.
+    bool run_via_cft = 7;
 
-        // A list of extra labels/dimensions to attach.
-        // Extra Swarming Dimensions that can be specified.
-        message SwarmingDimension {
-            string key = 1;
-            string value = 2;
-        }
-        repeated SwarmingDimension dimensions = 2;
+    // Tags criteria that will be used to enumerate tests for CFT test execution
+    // workflow. Will only be used if run_via_cft is true.
+    chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 8;
+  }
+  RunOptions run_options = 9;
 
-        // Timeout of the task.
-        int32 timeout_mins = 3;
+  // Name of the config, used for analytics. Does not have to be unique.
+  string analytics_name = 10;
 
-        // Use only_successful_build_required instead.
-        bool only_sanity_test_required = 4 [deprecated = true];
+  // The android image version for android provisioning
+  string android_image_version = 15;
 
-        TriggerType trigger_type = 5;
-
-        // If build passed and was uploaded, launch this test.
-        bool only_successful_build_required = 6;
-
-        // If set, suite will be executed through CFT execution path.
-        bool run_via_cft = 7;
-
-        // Tags criteria that will be used to enumerate tests for CFT test execution workflow.
-        // Will only be used if run_via_cft is true.
-        chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 8;
-
-
-    }
-    RunOptions run_options = 9;
-
-    // Name of the config, used for analytics. Does not have to be unique.
-    string analytics_name = 10;
-
-    // The android image version for android provisioning
-    string android_image_version = 15;
-
-    // GMSCORE cipd package ref for android provisioning
-    string gms_core_package = 16;
+  // GMSCORE cipd package ref for android provisioning
+  string gms_core_package = 16;
 }
 
 // A proto to contain all the configs.
-message SchedulerCfg {
-    repeated SchedulerConfig configs = 1;
-}
+message SchedulerCfg { repeated SchedulerConfig configs = 1; }

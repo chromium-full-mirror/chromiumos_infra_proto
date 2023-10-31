@@ -8,9 +8,7 @@ package testplans;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
-message ProtoBytes {
-  bytes serialized_proto = 1;
-}
+message ProtoBytes { bytes serialized_proto = 1; }
 
 message FilePattern {
   // Bash pattern for matching a file in the chromiumos checkout.

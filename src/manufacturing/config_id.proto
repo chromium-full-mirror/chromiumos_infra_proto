@@ -9,6 +9,7 @@ package manufacturing;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/manufacturing";
 
 message ConfigID {
-  // The ID that uniquely identifies the hardware configuration of a ChromeOS device.
+  // The ID that uniquely identifies the hardware configuration of a ChromeOS
+  // device.
   string value = 1;
 }

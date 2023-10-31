@@ -47,7 +47,8 @@ message BuildTestServiceContainersRequest {
 
   // Build version number, which matches the build artifact version
   // number that will be tested ultimately.
-  // NOTE: deprecated, remove once we migrate requests to new tag/label semantics
+  // NOTE: deprecated, remove once we migrate requests to new tag/label
+  // semantics
   string version = 3;
 
   // Repository to push to
@@ -126,16 +127,14 @@ message ChromiteUnitTestRequest {
   chromiumos.Chroot chroot = 1;
 }
 
-message ChromiteUnitTestResponse {
-}
+message ChromiteUnitTestResponse {}
 
 message ChromitePytestRequest {
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 1;
 }
 
-message ChromitePytestResponse {
-}
+message ChromitePytestResponse {}
 
 message BazelTestRequest {
   // Path to the Bazel's output user directory where Bazel stores cache of Bazel
@@ -146,8 +145,7 @@ message BazelTestRequest {
   string bazel_output_user_root = 1;
 }
 
-message BazelTestResponse {
-}
+message BazelTestResponse {}
 
 message CrosSigningTestRequest {
   // Required if not in default location.
@@ -155,8 +153,7 @@ message CrosSigningTestRequest {
   chromiumos.Chroot chroot = 1;
 }
 
-message CrosSigningTestResponse {
-}
+message CrosSigningTestResponse {}
 
 // Run the debug_info_test script.
 message DebugInfoTestRequest {
@@ -166,8 +163,7 @@ message DebugInfoTestRequest {
   chromiumos.Chroot chroot = 2;
 }
 
-message DebugInfoTestResponse {
-}
+message DebugInfoTestResponse {}
 
 message VmTestRequest {
   // The build target under test. Required.
@@ -217,8 +213,7 @@ message VmTestRequest {
   repeated VmTest vm_tests = 6;
 }
 
-message VmTestResponse {
-}
+message VmTestResponse {}
 
 // rules_cros UnitTest request.
 message RulesCrosUnitTestRequest {
@@ -226,8 +221,7 @@ message RulesCrosUnitTestRequest {
   chromiumos.Chroot chroot = 1;
 }
 
-message RulesCrosUnitTestResponse {
-}
+message RulesCrosUnitTestResponse {}
 
 message SimpleChromeWorkflowTestRequest {
   // The sysroot for which SimpleChrome flow will be run.
@@ -243,14 +237,13 @@ message SimpleChromeWorkflowTestRequest {
   chromiumos.GomaConfig goma_config = 3;
 }
 
-message SimpleChromeWorkflowTestResponse {
-}
+message SimpleChromeWorkflowTestResponse {}
 
 // The test service.
 service TestService {
   option (service_options) = {
-    module: "test",
-    service_chroot_assert: INSIDE,
+    module : "test",
+    service_chroot_assert : INSIDE,
   };
 
   // Build all of the container micro-services used for testing in various lab
@@ -259,17 +252,19 @@ service TestService {
   // hosted container registry gcr.io for using the current chromeos version
   // being build as the container image tag.
   rpc BuildTestServiceContainers(BuildTestServiceContainersRequest)
-    returns (BuildTestServiceContainersResponse) {
+      returns (BuildTestServiceContainersResponse) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 
   // Run a build target's ebuild unit tests.
-  rpc BuildTargetUnitTest(BuildTargetUnitTestRequest) returns (BuildTargetUnitTestResponse);
+  rpc BuildTargetUnitTest(BuildTargetUnitTestRequest)
+      returns (BuildTargetUnitTestResponse);
 
   // Run the chromite unit tests.
-  rpc ChromiteUnitTest(ChromiteUnitTestRequest) returns (ChromiteUnitTestResponse);
+  rpc ChromiteUnitTest(ChromiteUnitTestRequest)
+      returns (ChromiteUnitTestResponse);
 
   // Run Pytest in chromite.
   rpc ChromitePytest(ChromitePytestRequest) returns (ChromitePytestResponse);
@@ -277,7 +272,7 @@ service TestService {
   // Run Bazel tests.
   rpc BazelTest(BazelTestRequest) returns (BazelTestResponse) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 
@@ -292,13 +287,13 @@ service TestService {
 
   // Run the rules_cros unit tests.
   rpc RulesCrosUnitTest(RulesCrosUnitTestRequest)
-    returns (RulesCrosUnitTestResponse);
+      returns (RulesCrosUnitTestResponse);
 
   // Run the Simple Chrome workflow unit tests.
   rpc SimpleChromeWorkflowTest(SimpleChromeWorkflowTestRequest)
-    returns (SimpleChromeWorkflowTestResponse) {
+      returns (SimpleChromeWorkflowTestResponse) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 }

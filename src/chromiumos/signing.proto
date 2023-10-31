@@ -12,69 +12,71 @@ option java_package = "com.google.chrome.crosinfra.proto";
 import "chromiumos/common.proto";
 
 message SigningConfig {
-    // Display / logical name of this signing config, if any.
-    string display_name = 1;
+  // Display / logical name of this signing config, if any.
+  string display_name = 1;
 
-    // Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
-    // more information.
-    string keyset = 2;
-    // The channel to sign for.
-    // Not intended for specification in config files -- this field is populated
-    // at run time.
-    chromiumos.Channel channel = 10;
-    // The ChromeOS version for the artifact we're signing. Used in generating
-    // output names. Not intended for specification in config files -- this
-    // field is populated at run time.
-    // Just the platform version, e.g. "15603.0.0".
-    string version = 11;
+  // Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
+  // more information.
+  string keyset = 2;
+  // The channel to sign for.
+  // Not intended for specification in config files -- this field is populated
+  // at run time.
+  chromiumos.Channel channel = 10;
+  // The ChromeOS version for the artifact we're signing. Used in generating
+  // output names. Not intended for specification in config files -- this
+  // field is populated at run time.
+  // Just the platform version, e.g. "15603.0.0".
+  string version = 11;
 
-    // Image type that this signing config applies to.
-    chromiumos.ImageType image_type = 3;
+  // Image type that this signing config applies to.
+  chromiumos.ImageType image_type = 3;
 
-    // Miscellaneous signing parameters.
-    // TODO(b/298026507): Figure out what these do and whether we need to keep
-    // them.
-    bool recovery_zip = 4;
-    bool ensure_no_password = 5;
-    bool firmware_update = 6;
+  // Miscellaneous signing parameters.
+  // TODO(b/298026507): Figure out what these do and whether we need to keep
+  // them.
+  bool recovery_zip = 4;
+  bool ensure_no_password = 5;
+  bool firmware_update = 6;
 
-    // See go/cros-signer-docs for more information on `input_files` and
-    // `output_names` and the templating they must support.
+  // See go/cros-signer-docs for more information on `input_files` and
+  // `output_names` and the templating they must support.
 
-    // Specific files to sign within the given archive.
-    // If not set, defaults will be used.
-    // Legacy defaults: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=600
-    repeated string input_files = 7;
+  // Specific files to sign within the given archive.
+  // If not set, defaults will be used.
+  // Legacy defaults:
+  // https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=600
+  repeated string input_files = 7;
 
-    // Templates for naming the output files for files specified in `input_files`.
-    // See go/cros-signer-docs for a description of templating.
-    // Must either be the same length as `input_files`, length 1 (assuming
-    // a templating directive like @BASENAME@ is used to properly disambiguate
-    // outputs), or length 0 (in which case a default template will be used,
-    // which has no guarantee wrt disambiguation/clobbering).
-    // Legacy behavior: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=933
-    repeated string output_names = 8;
+  // Templates for naming the output files for files specified in `input_files`.
+  // See go/cros-signer-docs for a description of templating.
+  // Must either be the same length as `input_files`, length 1 (assuming
+  // a templating directive like @BASENAME@ is used to properly disambiguate
+  // outputs), or length 0 (in which case a default template will be used,
+  // which has no guarantee wrt disambiguation/clobbering).
+  // Legacy behavior:
+  // https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=933
+  repeated string output_names = 8;
 
-    // Path of the archive to sign.
-    // Not intended for specification in config files -- this field is populated
-    // at run time.
-    string archive_path = 9;
+  // Path of the archive to sign.
+  // Not intended for specification in config files -- this field is populated
+  // at run time.
+  string archive_path = 9;
 }
 
 message BuildTargetSigningConfig {
-    // Signing config(s) for a specific build target.
-    string build_target = 1;
-    repeated SigningConfig signing_configs = 2;
+  // Signing config(s) for a specific build target.
+  string build_target = 1;
+  repeated SigningConfig signing_configs = 2;
 }
 
 message BuildTargetSigningConfigs {
-    repeated BuildTargetSigningConfig build_target_signing_configs = 1;
+  repeated BuildTargetSigningConfig build_target_signing_configs = 1;
 }
 
 enum SigningStatus {
   STATUS_UNDEFINED = 0;
-  STATUS_SUCCESS   = 1;
-  STATUS_FAILURE   = 2;
+  STATUS_SUCCESS = 1;
+  STATUS_FAILURE = 2;
 }
 
 message SignedArtifact {

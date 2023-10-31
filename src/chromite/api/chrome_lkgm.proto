@@ -25,7 +25,7 @@ message FindLkgmResponse {
 
 service ChromeLkgmService {
   option (service_options) = {
-    module: "chrome_lkgm",
+    module : "chrome_lkgm",
   };
   rpc FindLkgm(FindLkgmRequest) returns (FindLkgmResponse);
 }

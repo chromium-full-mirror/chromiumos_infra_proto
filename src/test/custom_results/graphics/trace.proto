@@ -46,6 +46,4 @@ message Trace {
   // TODO(davidriley): Add compressed size?
 }
 
-message TraceList {
-  repeated Trace value = 1;
-}
+message TraceList { repeated Trace value = 1; }

@@ -19,9 +19,7 @@ message RunCopybotRequest {
   }
 
   // A username or email of a gerrit account.
-  message GerritUser {
-    string user = 1;
-  }
+  message GerritUser { string user = 1; }
 
   // The upstream repo to copy from.
   Repo upstream = 1;
@@ -33,9 +31,7 @@ message RunCopybotRequest {
   string topic = 3;
 
   // Any labels to set while uploading (e.g., "Verified+1").
-  message GerritLabel {
-    string label = 1;
-  }
+  message GerritLabel { string label = 1; }
   repeated GerritLabel labels = 4;
 
   // Any reviewers to add while uploading to Gerrit.
@@ -62,16 +58,12 @@ message RunCopybotRequest {
 
   // A list of paths which should not be copied.  Interpreted as a
   // Python regex.
-  message Pattern {
-    string pattern = 1;
-  }
+  message Pattern { string pattern = 1; }
   repeated Pattern exclude_file_patterns = 9;
 
   // A list of pseudoheaders which should be preserved (and not
   // prefixed with "Original-").
-  message Pseudoheader {
-    string name = 1;
-  }
+  message Pseudoheader { string name = 1; }
   repeated Pseudoheader keep_pseudoheaders = 10;
 
   // Should CopyBot add a "Signed-off-by" pseudoheader, even though a
@@ -86,9 +78,7 @@ message RunCopybotRequest {
 
   // Allows specifying push options to be passed along when pushing commits to
   // the downstream repo.
-  message PushOption {
-    string opt = 1;
-  }
+  message PushOption { string opt = 1; }
   repeated PushOption push_options = 13;
 }
 
@@ -115,15 +105,13 @@ message RunCopybotResponse {
 
   // If there were merge conflicts, a list of the upstream commit
   // hashes which conflicted.
-  message MergeConflictCommit {
-    string hash = 1;
-  }
+  message MergeConflictCommit { string hash = 1; }
   repeated MergeConflictCommit merge_conflicts = 2;
 }
 
 service CopybotService {
   option (service_options) = {
-    module: "copybot",
+    module : "copybot",
   };
 
   // Run CopyBot.

@@ -50,12 +50,13 @@ message TestPlanRun {
   // Use create_time/start_time/end_time below.
   // Timestamp inside a struct can not be used to
   // partition a Bigquery table.
-  Timeline timeline = 9 [deprecated = true];
+  Timeline timeline = 9 [ deprecated = true ];
 
   // Time the CTP build was requested.
   //
   // Current CTP implementation does not report a single CTP request's timeline
-  // Thus, we use the CTP build's timeline to preent a Test Plan Run's lifecycle.
+  // Thus, we use the CTP build's timeline to preent a Test Plan Run's
+  // lifecycle.
   //
   // BigQuery: Table partitioned on this field.
   google.protobuf.Timestamp create_time = 10;
@@ -95,7 +96,7 @@ message TestRun {
   // Use create_time/start_time/end_time below.
   // Timestamp inside a struct can not be used to
   // partition a Bigquery table.
-  Timeline timeline = 6 [deprecated = true];
+  Timeline timeline = 6 [ deprecated = true ];
 
   Status status = 7;
 
@@ -104,9 +105,7 @@ message TestRun {
   // The URL for the entire logs of this run.
   string full_log_url = 9;
 
-  message Prejob {
-    Verdict verdict = 1;
-  }
+  message Prejob { Verdict verdict = 1; }
   Prejob prejob = 10;
 
   // Time the test runner build was requested.

@@ -22,9 +22,9 @@ message AggregateGreenness {
 
     // Specifies context for greenness score if needed.
     enum Context {
-        UNSPECIFIED = 0;
-        // The target was not relevant.
-        IRRELEVANT = 1;
+      UNSPECIFIED = 0;
+      // The target was not relevant.
+      IRRELEVANT = 1;
     }
     Context context = 3;
 

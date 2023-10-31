@@ -8,7 +8,6 @@ package test_platform.skylab_local_state;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_local_state";
 
-
 // ReceiveRequest defines the input of `skylab_local_state receive`.
 message ReceiveRequest {
   // The path to the directory where host info file(s) will be placed. It will
@@ -19,6 +18,4 @@ message ReceiveRequest {
 }
 
 // ReceiveResponse defines the output of `skylab_local_state receive`.
-message ReceiveResponse {
-  int32 received_messages = 1;
-}
+message ReceiveResponse { int32 received_messages = 1; }

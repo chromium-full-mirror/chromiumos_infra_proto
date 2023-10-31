@@ -692,7 +692,8 @@ type HwTestCfg_HwTest struct {
 	// If true, then run test via CFT workflow.
 	// This allows opt-in to the CFT execution path.
 	RunViaCft bool `protobuf:"varint,18,opt,name=run_via_cft,json=runViaCft,proto3" json:"run_via_cft,omitempty"`
-	// Tags criteria that will be used to enumerate tests for CFT test execution workflow.
+	// Tags criteria that will be used to enumerate tests for CFT test execution
+	// workflow.
 	TagCriteria *api.TestSuite_TestCaseTagCriteria `protobuf:"bytes,19,opt,name=tag_criteria,json=tagCriteria,proto3" json:"tag_criteria,omitempty"`
 	// The total number of shards to be used in a test run. Only used when
 	// tag_criteria is also set.

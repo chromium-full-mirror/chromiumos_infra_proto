@@ -67,7 +67,8 @@ type TestPlanRun struct {
 	// Time the CTP build was requested.
 	//
 	// Current CTP implementation does not report a single CTP request's timeline
-	// Thus, we use the CTP build's timeline to preent a Test Plan Run's lifecycle.
+	// Thus, we use the CTP build's timeline to preent a Test Plan Run's
+	// lifecycle.
 	//
 	// BigQuery: Table partitioned on this field.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`

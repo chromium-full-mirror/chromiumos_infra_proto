@@ -126,15 +126,16 @@ type PrejobRequest struct {
 	// migration is complete, all prejobs will use the TLS API and this argument
 	// will be dropped.
 	UseTls bool `protobuf:"varint,7,opt,name=use_tls,json=useTls,proto3" json:"use_tls,omitempty"`
-	// This field provide metadata to provision secondary devices in a multi-DUTs test.
+	// This field provide metadata to provision secondary devices in a multi-DUTs
+	// test.
 	AddtionalTargets []*PrejobRequest_ProvisionTarget `protobuf:"bytes,9,rep,name=addtional_targets,json=addtionalTargets,proto3" json:"addtional_targets,omitempty"`
-	// This field served as a flag to decide if we should update OS bundled firmware(RW)
-	// during the provision step.
+	// This field served as a flag to decide if we should update OS bundled
+	// firmware(RW) during the provision step.
 	UpdateFirmware bool `protobuf:"varint,10,opt,name=update_firmware,json=updateFirmware,proto3" json:"update_firmware,omitempty"`
 	// This field controls whether to provision googler ssh key only.
 	// If set, provision will only enable googler ssh key on the DUT.
-	// Otherwise, provision will enable external ssh key (which is the current status)
-	// on the DUT.
+	// Otherwise, provision will enable external ssh key (which is the current
+	// status) on the DUT.
 	ProvisionGooglerSshKey bool `protobuf:"varint,11,opt,name=provision_googler_ssh_key,json=provisionGooglerSshKey,proto3" json:"provision_googler_ssh_key,omitempty"`
 }
 
@@ -300,8 +301,9 @@ func (x *PrejobResponse) GetState() PrejobResponse_State {
 	return PrejobResponse_STATE_UNSPECIFIED
 }
 
-// ProvisionTarget defines an addtional provision target and its software dependencies.
-// Addtional provision target will share other config(e.g. use_tls) from the primary DUT.
+// ProvisionTarget defines an addtional provision target and its software
+// dependencies. Addtional provision target will share other config(e.g.
+// use_tls) from the primary DUT.
 type PrejobRequest_ProvisionTarget struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -309,8 +311,8 @@ type PrejobRequest_ProvisionTarget struct {
 
 	DutHostname          string                                             `protobuf:"bytes,1,opt,name=dut_hostname,json=dutHostname,proto3" json:"dut_hostname,omitempty"`
 	SoftwareDependencies []*test_platform.Request_Params_SoftwareDependency `protobuf:"bytes,2,rep,name=software_dependencies,json=softwareDependencies,proto3" json:"software_dependencies,omitempty"`
-	// Provision OS bundled firmware is controlled at each DUT level, so we need this flag
-	// for secondary devices as well.
+	// Provision OS bundled firmware is controlled at each DUT level, so we need
+	// this flag for secondary devices as well.
 	UpdateFirmware bool `protobuf:"varint,3,opt,name=update_firmware,json=updateFirmware,proto3" json:"update_firmware,omitempty"`
 	// Provision googler ssh key or not is controlled at each DUT level.
 	ProvisionGooglerSshKey bool `protobuf:"varint,4,opt,name=provision_googler_ssh_key,json=provisionGooglerSshKey,proto3" json:"provision_googler_ssh_key,omitempty"`

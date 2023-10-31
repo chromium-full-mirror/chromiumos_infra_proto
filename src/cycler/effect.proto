@@ -31,11 +31,13 @@ message MoveEffectConfiguration {
 // exist in whole or in part at the time the prefix is iterated.
 message DuplicateEffectConfiguration {
 
-  // The destination bucket for the copied objects (e.g. 'engeg-testing-bucket').
+  // The destination bucket for the copied objects (e.g.
+  // 'engeg-testing-bucket').
   string destination_bucket = 1;
 
-  // The destination prefix for the copied objects (e.g. 'copied-files-prefix/').
-  // Note: Prefixes are literal, and no '/' will be infered/appended.
+  // The destination prefix for the copied objects (e.g.
+  // 'copied-files-prefix/'). Note: Prefixes are literal, and no '/' will be
+  // infered/appended.
   string destination_prefix = 2;
 }
 
@@ -56,4 +58,4 @@ message ChillEffectConfiguration {
 }
 
 // Delete the objects that match the configuration.
-message DeleteEffectConfiguration { }
+message DeleteEffectConfiguration {}

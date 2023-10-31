@@ -24,7 +24,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// WaitTaskResult describes the format returned by the `skylab wait-task` subcommand.
+// WaitTaskResult describes the format returned by the `skylab wait-task`
+// subcommand.
 type WaitTaskResult struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -96,14 +97,16 @@ func (x *WaitTaskResult) GetLogDataUrl() *WaitTaskResult_LogDataURL {
 	return nil
 }
 
-// WaitTasksResult describes the format returned by the `skylab wait-tasks` subcommand.
+// WaitTasksResult describes the format returned by the `skylab wait-tasks`
+// subcommand.
 type WaitTasksResult struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	Results []*WaitTaskResult `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	// True if an error or timeout was encountered while waiting for tasks to complete.
+	// True if an error or timeout was encountered while waiting for tasks to
+	// complete.
 	Incomplete bool `protobuf:"varint,2,opt,name=incomplete,proto3" json:"incomplete,omitempty"`
 }
 
@@ -163,13 +166,14 @@ type WaitTaskResult_Task struct {
 	// TODO(crbug.com/964573): Deprecate this field.
 	Failure bool `protobuf:"varint,3,opt,name=failure,proto3" json:"failure,omitempty"`
 	Success bool `protobuf:"varint,4,opt,name=success,proto3" json:"success,omitempty"`
-	// Note: These fields are a little problematic, because they are not independently
-	// meaningful to the caller; their meaning depends on the namespace (buildbucket vs. swarming)
-	// and, in the case of swarming, environment (dev vs. prod).
-	// Still, they are used by some clients, so preserved for now.
-	// Note the distinction between TaskRunID and TaskRequestID: in buildbucket runs,
-	// these will be equal. In swarming runs, they will differ in the last character
-	// (this is the difference between a swarming run id and request id).
+	// Note: These fields are a little problematic, because they are not
+	// independently meaningful to the caller; their meaning depends on the
+	// namespace (buildbucket vs. swarming) and, in the case of swarming,
+	// environment (dev vs. prod). Still, they are used by some clients, so
+	// preserved for now. Note the distinction between TaskRunID and
+	// TaskRequestID: in buildbucket runs, these will be equal. In swarming
+	// runs, they will differ in the last character (this is the difference
+	// between a swarming run id and request id).
 	TaskRunId     string `protobuf:"bytes,5,opt,name=task_run_id,json=task-run-id,proto3" json:"task_run_id,omitempty"`
 	TaskRequestId string `protobuf:"bytes,6,opt,name=task_request_id,json=task-request-id,proto3" json:"task_request_id,omitempty"`
 	// Note: these URL fields are only populated for -bb runs; eventually,

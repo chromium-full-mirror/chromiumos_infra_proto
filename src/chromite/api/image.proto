@@ -83,9 +83,7 @@ message CreateNetbootRequest {
   string factory_shim_path = 3;
 }
 
-message CreateNetbootResponse {
-
-}
+message CreateNetbootResponse {}
 
 // The image test arguments.
 message TestImageRequest {
@@ -189,8 +187,8 @@ message SignImageResponse {
 // The image service.
 service ImageService {
   option (service_options) = {
-    module: "image",
-    service_chroot_assert: INSIDE,
+    module : "image",
+    service_chroot_assert : INSIDE,
   };
 
   // Build an image.
@@ -224,8 +222,8 @@ service ImageService {
   // Example json:
   // {
   //   "dryrun": true,
-  //   "gs_image_dir": "gs://chromeos-image-archive/atlas-release/R89-13604.0.0",
-  //   "sysroot": {
+  //   "gs_image_dir":
+  //   "gs://chromeos-image-archive/atlas-release/R89-13604.0.0", "sysroot": {
   //       "build_target": {
   //           "name": "atlas"
   //       }
@@ -255,8 +253,8 @@ service ImageService {
   // }
   rpc SignImage(SignImageRequest) returns (SignImageResponse) {
     option (method_options) = {
-      method_branched_execution: EXECUTE_TOT,
-      method_chroot_assert: OUTSIDE,
+      method_branched_execution : EXECUTE_TOT,
+      method_chroot_assert : OUTSIDE,
     };
   };
 }

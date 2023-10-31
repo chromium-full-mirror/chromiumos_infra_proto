@@ -29,6 +29,7 @@ message TestRunnerRequest {
 message TestRunnerResponse {
   // `result_flow test_runner` exits with exit code 0 unless there is an
   // infrastructure failure. When the exit code is 0, `state` indicates the
-  // best known state of the test_runner command execution (see comments on State enum).
+  // best known state of the test_runner command execution (see comments on
+  // State enum).
   State state = 1;
 }

@@ -49,8 +49,8 @@ type ImageServiceClient interface {
 	// Example json:
 	// {
 	//   "dryrun": true,
-	//   "gs_image_dir": "gs://chromeos-image-archive/atlas-release/R89-13604.0.0",
-	//   "sysroot": {
+	//   "gs_image_dir":
+	//   "gs://chromeos-image-archive/atlas-release/R89-13604.0.0", "sysroot": {
 	//       "build_target": {
 	//           "name": "atlas"
 	//       }
@@ -173,8 +173,8 @@ type ImageServiceServer interface {
 	// Example json:
 	// {
 	//   "dryrun": true,
-	//   "gs_image_dir": "gs://chromeos-image-archive/atlas-release/R89-13604.0.0",
-	//   "sysroot": {
+	//   "gs_image_dir":
+	//   "gs://chromeos-image-archive/atlas-release/R89-13604.0.0", "sysroot": {
 	//       "build_target": {
 	//           "name": "atlas"
 	//       }

@@ -46,9 +46,7 @@ message Binhost {
 }
 
 // Local package index file message.
-message PackageIndex {
-  chromiumos.Path path = 1;
-}
+message PackageIndex { chromiumos.Path path = 1; }
 
 // Get the private prebuilts' ACL args for a build target.
 message AclArgsRequest {
@@ -265,9 +263,7 @@ message RegenBuildCacheRequest {
 
 message RegenBuildCacheResponse {
   // Message to encapsulate the modified overlays.
-  message Overlay {
-    string path = 1;
-  }
+  message Overlay { string path = 1; }
 
   // The overlays that have outstanding cache updates.
   repeated Overlay modified_overlays = 1;
@@ -296,15 +292,15 @@ message GetBinhostConfPathResponse {
 // Service for reading and writing to Portage package index.
 service BinhostService {
   option (service_options) = {
-    module: "binhost",
-    service_chroot_assert: OUTSIDE,
+    module : "binhost",
+    service_chroot_assert : OUTSIDE,
   };
 
   // Get the binhosts for a build target.  Added in R77.
   rpc Get(BinhostGetRequest) returns (BinhostGetResponse) {
     option (method_options) = {
-      implementation_name: "GetBinhosts",
-      method_chroot_assert: INSIDE,
+      implementation_name : "GetBinhosts",
+      method_chroot_assert : INSIDE,
     };
   }
 
@@ -316,26 +312,26 @@ service BinhostService {
   // on the remote disk as they do on the remote disk. E.g., package foo/bar,
   // stored locally at /mnt/bin/foo/bar, must be uploaded to <uri>/foo/bar.
   rpc PrepareBinhostUploads(PrepareBinhostUploadsRequest)
-    returns (PrepareBinhostUploadsResponse);
+      returns (PrepareBinhostUploadsResponse);
 
   // Return a list of dev-install files to upload to the binhost. Like
   // PrepareBinhostUploads, this method assumes that all files, once uploaded,
   // will share the same relative path on the remote disk as they do on the
   // remote disk.  Added in R78.
   rpc PrepareDevInstallBinhostUploads(PrepareDevInstallBinhostUploadsRequest)
-    returns (PrepareDevInstallBinhostUploadsResponse);
+      returns (PrepareDevInstallBinhostUploadsResponse);
 
   // Return a list of Chrome files to upload to the binhost. Like
   // PrepareBinhostUploads, this method assumes that all files, once uploaded,
   // will share the same relative path on the remote disk as they do on the
   // local disk.
   rpc PrepareChromeBinhostUploads(PrepareChromeBinhostUploadsRequest)
-    returns (PrepareChromeBinhostUploadsResponse);
+      returns (PrepareChromeBinhostUploadsResponse);
 
   // UpdatePackageIndex modifies the package index (the file called 'Packages'
   // in the binhost) in-place.
   rpc UpdatePackageIndex(UpdatePackageIndexRequest)
-    returns (UpdatePackageIndexResponse);
+      returns (UpdatePackageIndexResponse);
 
   // Update the binhost key for a build targets.
   rpc SetBinhost(SetBinhostRequest) returns (SetBinhostResponse);
@@ -344,5 +340,6 @@ service BinhostService {
   rpc RegenBuildCache(RegenBuildCacheRequest) returns (RegenBuildCacheResponse);
 
   // Get the file path for the binhost conf file.
-  rpc GetBinhostConfPath(GetBinhostConfPathRequest) returns (GetBinhostConfPathResponse);
+  rpc GetBinhostConfPath(GetBinhostConfPathRequest)
+      returns (GetBinhostConfPathResponse);
 }

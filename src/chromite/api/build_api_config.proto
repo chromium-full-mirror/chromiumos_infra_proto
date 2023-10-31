@@ -27,7 +27,6 @@ enum CallType {
   CALL_TYPE_MOCK_INVALID = 5;
 }
 
-
 // The config message itself. This is the message passed to the Build API's
 // config option.
 message BuildApiConfig {

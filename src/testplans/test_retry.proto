@@ -10,8 +10,7 @@ import "test_platform/taskstate.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
-
-//Defines a config for tests to be retried automatically.
+// Defines a config for tests to be retried automatically.
 message SuiteRetryCfg {
   // Tag defines which suite this config set should apply.
   string test_suite = 1;
@@ -35,7 +34,7 @@ message SuiteRetryCfg {
   // Scenarios to retry for each build_target.
   repeated Scenario suite_scenarios = 3;
 
-  message BuilderScenario{
+  message BuilderScenario {
     // Tag defines which builders this config set should apply.
     repeated string builders = 1;
 

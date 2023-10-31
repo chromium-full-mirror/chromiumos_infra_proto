@@ -14,7 +14,6 @@ import "google/protobuf/duration.proto";
 import "test_platform/execution/param.proto";
 import "test_platform/common/cft_steps_config.proto";
 
-
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 
 // Request represents a request to the ChromeOS Test Platform to run a test,
@@ -42,9 +41,7 @@ message Request {
 
     // SoftwareAttributes defines software characteristics that are strongly
     // associated with a device, though not immutable or hardware-bound.
-    message SoftwareAttributes {
-      chromiumos.BuildTarget build_target = 2;
-    }
+    message SoftwareAttributes { chromiumos.BuildTarget build_target = 2; }
 
     SoftwareAttributes software_attributes = 2;
 
@@ -216,7 +213,6 @@ message Request {
 
     Decorations decorations = 8;
 
-
     // Migrations defines parameters that facilitate gradual migrations between
     // different implementations of downstream components.
     message Migrations {
@@ -268,8 +264,9 @@ message Request {
     // run_via_cft & run_via_trv2 is true.
     test_platform.common.CftStepsConfig trv2_steps_config = 19;
 
-    // If set the suite will be run using CTPv2, using the 3D solver to determine hardware
-    // Note all tests within this suite/group *must* have a 3d expression set in the respective harness
+    // If set the suite will be run using CTPv2, using the 3D solver to
+    // determine hardware Note all tests within this suite/group *must* have a
+    // 3d expression set in the respective harness
     bool ddd_suite = 20;
 
     // ResultsUploadConfig controls behavior around post test uploads.
@@ -296,16 +293,14 @@ message Request {
 
     ResultsUploadConfig results = 21;
 
-    // If true, thus suite will translate from a CftTestRequest into a CrosTestRequest.
-    // Must have run_via_trv2 set to true to have an effect.
+    // If true, thus suite will translate from a CftTestRequest into a
+    // CrosTestRequest. Must have run_via_trv2 set to true to have an effect.
     bool translate_trv2_request = 22;
   }
 
   Params params = 1;
 
-  message Tag {
-    string value = 1;
-  }
+  message Tag { string value = 1; }
 
   // SuiteRequest defines an individual named suite.
   message Suite {
@@ -327,9 +322,7 @@ message Request {
       string display_name = 3;
     }
 
-    oneof harness {
-      Autotest autotest = 1;
-    }
+    oneof harness { Autotest autotest = 1; }
   }
 
   // Enumeration is a previously enumerated test plan.
@@ -345,8 +338,6 @@ message Request {
     }
     repeated AutotestInvocation autotest_invocations = 2;
   }
-
-
 
   message TestPlan {
     repeated Suite suite = 1;

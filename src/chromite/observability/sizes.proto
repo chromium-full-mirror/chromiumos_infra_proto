@@ -83,4 +83,3 @@ message PackageVersion {
   uint32 revision = 5;
   string full_version = 6;
 }
-

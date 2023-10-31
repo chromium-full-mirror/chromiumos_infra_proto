@@ -49,7 +49,6 @@ message Model {
   int32 stable_target_milestone = 9;
   // Whether a build for this model is considered experimental only.
   bool is_experimental = 10;
-
 }
 
 // Enum for various type of builders
@@ -110,7 +109,7 @@ message BuildBoard {
   string name = 1;
   repeated Config configs = 2;
 
-    // TODO: remove when LegacyRelease is fully deleted.
+  // TODO: remove when LegacyRelease is fully deleted.
   int32 rubik_target_milestone = 3;
 
   // The first milestone that this board will be released to stable
@@ -121,8 +120,8 @@ message BuildBoard {
 // Message to represent a build configuration.
 // The JSON file from GE is this proto.
 message GEConfig {
-    string metadata_version = 1;
-    repeated BuildBoard boards = 2;
-    bool release_branch = 3;
-    repeated ReferenceBoardUnifiedBuildConfig reference_board_unified_builds = 4;
+  string metadata_version = 1;
+  repeated BuildBoard boards = 2;
+  bool release_branch = 3;
+  repeated ReferenceBoardUnifiedBuildConfig reference_board_unified_builds = 4;
 }

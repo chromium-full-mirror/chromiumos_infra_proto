@@ -25,8 +25,8 @@ const (
 )
 
 // StableVersions is a structure containing all of the versions for various
-// components: CrOS itself, the firmware image, and the testing firmware image (faft).
-// Next Tag: 4
+// components: CrOS itself, the firmware image, and the testing firmware image
+// (faft). Next Tag: 4
 type StableVersions struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

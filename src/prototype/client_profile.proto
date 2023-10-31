@@ -64,7 +64,6 @@ message SchedulerProfile {
     // the lowest priority.
     string quota_account = 3;
   }
-
 }
 
 // RetryPrfoile defines parameters that affect how failed tests within

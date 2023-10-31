@@ -199,10 +199,12 @@ type FileReplicationRule struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Path to the original file. Should be relative to the source root,
-	// e.g. "src/private-overlays/overlay-coral-private/chromeos-base/chromeos-config-bsp-coral-private/files/build_config.json"
+	// e.g.
+	// "src/private-overlays/overlay-coral-private/chromeos-base/chromeos-config-bsp-coral-private/files/build_config.json"
 	SourcePath string `protobuf:"bytes,1,opt,name=source_path,json=sourcePath,proto3" json:"source_path,omitempty"`
 	// Path to output the file. Should be relative to the source root,
-	// e.g. "src/overlays/overlay-coral/chromeos-base/chromeos-config-bsp-coral/files/build_config.json"
+	// e.g.
+	// "src/overlays/overlay-coral/chromeos-base/chromeos-config-bsp-coral/files/build_config.json"
 	DestinationPath string `protobuf:"bytes,2,opt,name=destination_path,json=destinationPath,proto3" json:"destination_path,omitempty"`
 	// The type of file being replicated.
 	FileType FileType `protobuf:"varint,3,opt,name=file_type,json=fileType,proto3,enum=config.FileType" json:"file_type,omitempty"`

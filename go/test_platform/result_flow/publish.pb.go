@@ -33,8 +33,8 @@ type PublishRequest struct {
 
 	// Subscribers call Buildbucket to fetch the build information via this ID.
 	BuildId int64 `protobuf:"varint,1,opt,name=build_id,json=buildId,proto3" json:"build_id,omitempty"`
-	// Should not be used, as the parent CTP build may contain multiple TestPlanRuns.
-	// Use parent_uid below.
+	// Should not be used, as the parent CTP build may contain multiple
+	// TestPlanRuns. Use parent_uid below.
 	//
 	// Deprecated: Do not use.
 	ParentBuildId int64 `protobuf:"varint,2,opt,name=parent_build_id,json=parentBuildId,proto3" json:"parent_build_id,omitempty"`

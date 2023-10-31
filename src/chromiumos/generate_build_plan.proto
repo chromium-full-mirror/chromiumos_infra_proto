@@ -16,9 +16,7 @@ import "chromiumos/common.proto";
 // Next: 6
 message GenerateBuildPlanRequest {
 
-  message Path {
-    string path = 1;
-  }
+  message Path { string path = 1; }
 
   // A list of source paths affected by the changes in the CQ run.
   //
@@ -27,8 +25,9 @@ message GenerateBuildPlanRequest {
 
   // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
   // or similar.
-  // Explicit proto import is avoided here to prevent a dependency on the luci-go repo.
-  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+  // Explicit proto import is avoided here to prevent a dependency on the
+  // luci-go repo. See
+  // https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
   //
   // Must be used in conjunction with gitiles_commit.
   // If affected_paths is passed in, this field is ignored.
@@ -43,8 +42,9 @@ message GenerateBuildPlanRequest {
 
   // DEPRECATED use gitiles_commit instead.
   //
-  // The manifest-internal snapshot commit hash that's being used for the current build.
-  string manifest_commit = 2 [deprecated = true];
+  // The manifest-internal snapshot commit hash that's being used for the
+  // current build.
+  string manifest_commit = 2 [ deprecated = true ];
 
   // The BuilderConfigs to consider for skipping.
   repeated BuilderConfig builder_configs = 3;

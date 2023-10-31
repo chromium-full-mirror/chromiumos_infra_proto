@@ -11,6 +11,4 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/pho
 import "test_platform/phosphorus/common.proto";
 
 // UploadToTkoRequest defines the input of `phosphorus upload-to-tko`.
-message UploadToTkoRequest {
-  Config config = 1;
-}
+message UploadToTkoRequest { Config config = 1; }

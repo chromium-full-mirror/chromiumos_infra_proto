@@ -25,7 +25,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ProvisionRequest defines the input of `phosphorus build-parallels-image-provision`.
+// ProvisionRequest defines the input of `phosphorus
+// build-parallels-image-provision`.
 type ProvisionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

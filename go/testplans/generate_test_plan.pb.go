@@ -32,10 +32,12 @@ type GenerateTestPlanRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Serialized buildbucket Build protos that are part of this orchestrator run.
-	// See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/build.proto
+	// See
+	// https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/build.proto
 	BuildbucketProtos []*ProtoBytes `protobuf:"bytes,5,rep,name=buildbucket_protos,json=buildbucketProtos,proto3" json:"buildbucket_protos,omitempty"`
-	// The manifest-internal snapshot commit hash that's being used for the current build.
-	// Note that manifest_commit will be soon replaced with gitiles_commit below.
+	// The manifest-internal snapshot commit hash that's being used for the
+	// current build. Note that manifest_commit will be soon replaced with
+	// gitiles_commit below.
 	ManifestCommit string `protobuf:"bytes,7,opt,name=manifest_commit,json=manifestCommit,proto3" json:"manifest_commit,omitempty"`
 	// Serialized buildbucket GitilesCommit, representing the manifest or
 	// manifest-internal commit to which the build is synced.
@@ -43,7 +45,8 @@ type GenerateTestPlanRequest struct {
 	// Serialized buildbucket GerritChanges, or none if this is a postsubmit run
 	// or similar. Explicit proto import is avoided here to prevent a dependency
 	// on the luci-go repo.
-	// See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+	// See
+	// https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
 	GerritChanges []*ProtoBytes `protobuf:"bytes,8,rep,name=gerrit_changes,json=gerritChanges,proto3" json:"gerrit_changes,omitempty"`
 }
 

@@ -37,10 +37,11 @@ message GenerateDlcArtifactsListResponse {
 // DLC Service definition.
 service DlcService {
   option (service_options) = {
-    module: "dlc",
-    service_chroot_assert: INSIDE,
+    module : "dlc",
+    service_chroot_assert : INSIDE,
   };
 
   // Generates the list of DLCs prebuilt for this target.
-  rpc GenerateDlcArtifactsList(GenerateDlcArtifactsListRequest) returns (GenerateDlcArtifactsListResponse);
+  rpc GenerateDlcArtifactsList(GenerateDlcArtifactsListRequest)
+      returns (GenerateDlcArtifactsListResponse);
 }

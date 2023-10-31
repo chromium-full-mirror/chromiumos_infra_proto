@@ -10,8 +10,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/manufacturing";
 
 import "manufacturing/config_id.proto";
 
-// These are the configs that's provided in manufacture stage of a ChromeOS device.
-// Next Tag: 7
+// These are the configs that's provided in manufacture stage of a ChromeOS
+// device. Next Tag: 7
 message Config {
   ConfigID manufacturing_id = 1;
 
@@ -55,6 +55,4 @@ message Config {
 }
 
 // Message contains all ChromeOS manufacturing configs.
-message ConfigList {
-  repeated Config value = 1;
-}
+message ConfigList { repeated Config value = 1; }

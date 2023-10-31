@@ -12,16 +12,17 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/sid
 message TKOConfig {
   // The connection to the TKO CloudSQL instance is done via cloud_sql_proxy.
   // proxy_socket is the UNIX socket used by the cloud_sql_proxy.
-  string proxy_socket = 1 [json_name = "proxy_socket"];
+  string proxy_socket = 1 [ json_name = "proxy_socket" ];
 
-  string mysql_user = 2 [json_name = "mysql_user"];
+  string mysql_user = 2 [ json_name = "mysql_user" ];
 
   // File containing the MySQL password. Populated from the encrypted password.
-  string mysql_password_file = 3 [json_name = "mysql_password_file"];
+  string mysql_password_file = 3 [ json_name = "mysql_password_file" ];
 
   // MySQL password encrypted using the Cloud KMS key and encoded as base64
   // string.
-  string encrypted_mysql_password = 4 [json_name = "encrypted_mysql_password"];
+  string encrypted_mysql_password = 4
+      [ json_name = "encrypted_mysql_password" ];
 }
 
 // GoogleStorageConfig describes GS offloading params.
@@ -32,9 +33,8 @@ message GoogleStorageConfig {
 
   // File containing the gsutil credentials, e.g. a key file of a service
   // acccount.
-  string credentials_file = 2 [json_name = "credentials_file"];
+  string credentials_file = 2 [ json_name = "credentials_file" ];
 }
-
 
 // ChromePerfConfig describes the params for uploading Chrome performance
 // results to https://chromeperf.appspot.com. These results are displayed on
@@ -56,10 +56,9 @@ message CTSConfig {
 message Config {
   TKOConfig tko = 1;
 
-  GoogleStorageConfig google_storage = 2 [json_name = "google_storage"];
+  GoogleStorageConfig google_storage = 2 [ json_name = "google_storage" ];
 
-  ChromePerfConfig chrome_perf = 3 [json_name = "chrome_perf"];
+  ChromePerfConfig chrome_perf = 3 [ json_name = "chrome_perf" ];
 
   CTSConfig cts = 4;
 }
-

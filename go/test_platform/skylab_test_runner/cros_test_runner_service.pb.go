@@ -116,15 +116,17 @@ type ExecuteRequest struct {
 
 	// Only one suite will be supported inside testplans.
 	// Different suites will have to make separate rpc calls.
-	// If test_plan provided, cft_test_request.test_suites will be constructed from it.
+	// If test_plan provided, cft_test_request.test_suites will be constructed
+	// from it.
 	TestPlan *test_platform.Request_TestPlan `protobuf:"bytes,1,opt,name=test_plan,json=testPlan,proto3" json:"test_plan,omitempty"`
 	// cft_test_request is always required. This also includes steps config
-	// which will provide clients maximum freedom to choose which steps to execute.
+	// which will provide clients maximum freedom to choose which steps to
+	// execute.
 	CftTestRequest *CFTTestRequest `protobuf:"bytes,2,opt,name=cft_test_request,json=cftTestRequest,proto3" json:"cft_test_request,omitempty"`
 	// Cros-tool-runner cipd version to use.
 	CtrCipdVersion string `protobuf:"bytes,3,opt,name=ctr_cipd_version,json=ctrCipdVersion,proto3" json:"ctr_cipd_version,omitempty"`
-	// Local path to cros-tool-runner binary to run with; this field is meant to be
-	// an alternative to ctr_cipd_version and will take priority over it
+	// Local path to cros-tool-runner binary to run with; this field is meant to
+	// be an alternative to ctr_cipd_version and will take priority over it
 	PathToCipdBin string `protobuf:"bytes,5,opt,name=path_to_cipd_bin,json=pathToCipdBin,proto3" json:"path_to_cipd_bin,omitempty"`
 	// Path to where the test artifacts are going to be stored. It's callers
 	// responsibility to make sure this path is valid and unique per execution.

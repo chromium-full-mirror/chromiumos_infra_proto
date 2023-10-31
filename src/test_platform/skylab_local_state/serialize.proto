@@ -8,7 +8,6 @@ package test_platform.skylab_local_state;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_local_state";
 
-
 // SerializeRequest defines the input of `skylab_local_state serialize`.
 message SerializeRequest {
   // The name of the DUT whose host info will be serialized

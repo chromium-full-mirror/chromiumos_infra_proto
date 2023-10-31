@@ -12,7 +12,6 @@ import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 import "chromiumos/build/api/system_image.proto";
 
-
 message SystemImageMetadataRequest {
   // Required if not default.
   chromiumos.Chroot chroot = 1;
@@ -26,10 +25,10 @@ message SystemImageMetadataResponse {
 
 service MetadataService {
   option (service_options) = {
-    module: "metadata",
-    service_chroot_assert: INSIDE,
+    module : "metadata",
+    service_chroot_assert : INSIDE,
   };
 
   rpc SystemImageMetadata(SystemImageMetadataRequest)
-    returns (SystemImageMetadataResponse);
+      returns (SystemImageMetadataResponse);
 }

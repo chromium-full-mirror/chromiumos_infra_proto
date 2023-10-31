@@ -24,7 +24,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Config defines configuration parameters of `phosphorus build-parallels-image-*` commands.
+// Config defines configuration parameters of `phosphorus
+// build-parallels-image-*` commands.
 type Config struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

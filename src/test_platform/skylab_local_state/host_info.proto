@@ -16,5 +16,5 @@ message AutotestHostInfo {
 
   repeated string labels = 2;
 
-  int32 serializer_version = 3 [json_name = "serializer_version"];
+  int32 serializer_version = 3 [ json_name = "serializer_version" ];
 }

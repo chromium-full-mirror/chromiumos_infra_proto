@@ -42,14 +42,12 @@ message UploadSdkSubtoolsRequest {
   repeated chromiumos.Path bundle_paths = 2;
 }
 
-message UploadSdkSubtoolsResponse {
-}
-
+message UploadSdkSubtoolsResponse {}
 
 service SdkSubtoolsService {
   option (service_options) = {
-      module: "sdk_subtools",
-      service_chroot_assert: INSIDE,
+    module : "sdk_subtools",
+    service_chroot_assert : INSIDE,
   };
 
   // Executes the BuildSdkSubtoolsRequest.
@@ -58,9 +56,9 @@ service SdkSubtoolsService {
 
   // Executes the UploadSdkSubtoolsRequest.
   rpc UploadSdkSubtools(UploadSdkSubtoolsRequest)
-      returns (UploadSdkSubtoolsResponse)  {
-          option (method_options) = {
-              method_chroot_assert: OUTSIDE,
-          };
-      };
+      returns (UploadSdkSubtoolsResponse) {
+    option (method_options) = {
+      method_chroot_assert : OUTSIDE,
+    };
+  };
 }

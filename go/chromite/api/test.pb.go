@@ -179,7 +179,8 @@ type BuildTestServiceContainersRequest struct {
 	Chroot *chromiumos.Chroot `protobuf:"bytes,2,opt,name=chroot,proto3" json:"chroot,omitempty"`
 	// Build version number, which matches the build artifact version
 	// number that will be tested ultimately.
-	// NOTE: deprecated, remove once we migrate requests to new tag/label semantics
+	// NOTE: deprecated, remove once we migrate requests to new tag/label
+	// semantics
 	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
 	// Repository to push to
 	Repository *api.GcrRepository `protobuf:"bytes,4,opt,name=repository,proto3" json:"repository,omitempty"`

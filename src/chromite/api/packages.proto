@@ -12,7 +12,6 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
-
 // This can easily be generalized to a Builds method if necessary, but
 // currently we have no use case for anything but Chrome, and making this
 // specifically for Chrome simplifies the calling code significantly.
@@ -129,7 +128,6 @@ message GetBuilderMetadataRequest {
   // Required.
   chromiumos.BuildTarget build_target = 2;
 }
-
 
 message GetBuilderMetadataResponse {
 
@@ -274,7 +272,6 @@ message UprevPackagesRequest {
   bool ignore_missing_projects = 5;
 }
 
-
 // TODO(evanhernandez): Support build-target specific uprevs once needed.
 message UprevVersionedPackageRequest {
   // The chroot path. Required.
@@ -301,11 +298,8 @@ message UprevVersionedPackageRequest {
   repeated chromiumos.BuildTarget build_targets = 4;
 }
 
-
 message UprevPackagesResponse {
-  message Ebuild {
-    string path = 1;
-  }
+  message Ebuild { string path = 1; }
 
   // The list of ebuilds that were modified. Contains added and deleted files.
   repeated Ebuild modified_ebuilds = 1;
@@ -330,12 +324,11 @@ message RevBumpChromeRequest {
   // Rev bumps can change the revision, but not the version, of a package.
 }
 
-
 // Service for package-centric functionality.
 service PackageService {
   option (service_options) = {
-    module: "packages",
-    service_chroot_assert: INSIDE,
+    module : "packages",
+    service_chroot_assert : INSIDE,
   };
 
   // Check if the build target has chrome in its depgraph.  Added in R79.
@@ -358,22 +351,22 @@ service PackageService {
   // Portage, so it cannot be directly fetched by GetBestVisible.
   // Added in R79.
   rpc GetChromeVersion(GetChromeVersionRequest)
-    returns (GetChromeVersionResponse);
+      returns (GetChromeVersionResponse);
 
   // Return the various build version fields that can be stored (e.g. in
   // metadata.json).  Added in R79.
   rpc GetTargetVersions(GetTargetVersionsRequest)
-    returns (GetTargetVersionsResponse);
+      returns (GetTargetVersionsResponse);
 
   // Return the various metabuilder fields for a release builder.
   // This can be run after InstallPackages. Added in R84.
   rpc GetBuilderMetadata(GetBuilderMetadataRequest)
-    returns (GetBuilderMetadataResponse);
+      returns (GetBuilderMetadataResponse);
 
   // Check if there is an available chrome prebuilt for the most recent
   // version of chrome.  Added in R79.
   rpc HasChromePrebuilt(HasChromePrebuiltRequest)
-    returns (HasChromePrebuiltResponse);
+      returns (HasChromePrebuiltResponse);
 
   // Check if there is an available prebuilt for the most recent version of the
   // package.  Added in R83.
@@ -382,15 +375,15 @@ service PackageService {
   // Check whether the Chrome source tree is needed.  Does not compile nor
   // install any packages.
   rpc NeedsChromeSource(NeedsChromeSourceRequest)
-    returns (NeedsChromeSourceResponse);
+      returns (NeedsChromeSourceResponse);
 
   // Rev bump Chrome.
   // Revision bumps can change a pacakges revision, but not its version.
   // e.g. 1.2.3.4_rc-r5 -> 1.2.3.4_rc-r6.
   rpc RevBumpChrome(RevBumpChromeRequest)
-    returns (UprevVersionedPackageResponse) {
+      returns (UprevVersionedPackageResponse) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 
@@ -400,7 +393,7 @@ service PackageService {
   // uprev process.  Added in R79.
   rpc Uprev(UprevPackagesRequest) returns (UprevPackagesResponse) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 
@@ -410,9 +403,9 @@ service PackageService {
   // if such a version is found. The exact behavior depends on the package.
   // Added in R79.
   rpc UprevVersionedPackage(UprevVersionedPackageRequest)
-    returns (UprevVersionedPackageResponse) {
+      returns (UprevVersionedPackageResponse) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 }

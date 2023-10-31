@@ -62,27 +62,19 @@ message TestDisablement {
   repeated string bug_ids = 6;
 }
 
-
 // Defines a configuration proto that encapsulates the individual
 // disablements.
-message TestDisablementCfg {
-    repeated TestDisablement disablements = 1;
-}
+message TestDisablementCfg { repeated TestDisablement disablements = 1; }
 
 // Defines a config proto that captures the suites and tests to be
 // excluded from exoneration/disablement.
 message ExcludeCfg {
-    // Define exclude test config.
-    message ExcludeTest {
-        string name = 1;
-    }
+  // Define exclude test config.
+  message ExcludeTest { string name = 1; }
 
-    // Define exclude suite config.
-    message ExcludeSuite {
-        string name = 1;
-    }
+  // Define exclude suite config.
+  message ExcludeSuite { string name = 1; }
 
-    repeated ExcludeTest exclude_tests = 1;
-    repeated ExcludeSuite exclude_suites = 2;
+  repeated ExcludeTest exclude_tests = 1;
+  repeated ExcludeSuite exclude_suites = 2;
 }
-

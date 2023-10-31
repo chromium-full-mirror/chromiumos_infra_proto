@@ -306,12 +306,13 @@ type Request_Params struct {
 	// will be executed by default. Will only be passed on to trv2 if
 	// run_via_cft & run_via_trv2 is true.
 	Trv2StepsConfig *common.CftStepsConfig `protobuf:"bytes,19,opt,name=trv2_steps_config,json=trv2StepsConfig,proto3" json:"trv2_steps_config,omitempty"`
-	// If set the suite will be run using CTPv2, using the 3D solver to determine hardware
-	// Note all tests within this suite/group *must* have a 3d expression set in the respective harness
+	// If set the suite will be run using CTPv2, using the 3D solver to
+	// determine hardware Note all tests within this suite/group *must* have a
+	// 3d expression set in the respective harness
 	DddSuite bool                                `protobuf:"varint,20,opt,name=ddd_suite,json=dddSuite,proto3" json:"ddd_suite,omitempty"`
 	Results  *Request_Params_ResultsUploadConfig `protobuf:"bytes,21,opt,name=results,proto3" json:"results,omitempty"`
-	// If true, thus suite will translate from a CftTestRequest into a CrosTestRequest.
-	// Must have run_via_trv2 set to true to have an effect.
+	// If true, thus suite will translate from a CftTestRequest into a
+	// CrosTestRequest. Must have run_via_trv2 set to true to have an effect.
 	TranslateTrv2Request bool `protobuf:"varint,22,opt,name=translate_trv2_request,json=translateTrv2Request,proto3" json:"translate_trv2_request,omitempty"`
 }
 

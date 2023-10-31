@@ -36,7 +36,7 @@ message RunTestRequest {
 
     // Key:value pairs added to the autoserv command. These are metadata which
     // should not affect code execution.
-    map<string,string> keyvals = 5;
+    map<string, string> keyvals = 5;
 
     // Hostname of peer DUTs in a multi-DUTs task.
     repeated string peer_duts = 6;
@@ -46,9 +46,7 @@ message RunTestRequest {
     string image_storage_server = 7;
   }
 
-  oneof test {
-    Autotest autotest = 3;
-  }
+  oneof test { Autotest autotest = 3; }
 
   // Hard deadline for execution.
   //
@@ -56,7 +54,7 @@ message RunTestRequest {
   google.protobuf.Timestamp deadline = 5;
 
   // If set, a Docker container to use to run autoserv. The container must
-  // contain autoserv under the same path as the host (e.g. 
+  // contain autoserv under the same path as the host (e.g.
   // "/usr/local/autotest/server/autoserv").
   //
   // Results will be in the same results dir on the host.

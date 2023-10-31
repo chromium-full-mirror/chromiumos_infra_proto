@@ -39,7 +39,7 @@ message TaskEnvironment {
 }
 
 // Knobs specific to the step that runs tasks to prepare the DUT for test.
-message PrejobStep{
+message PrejobStep {
   ProvisionDutExperiment provision_dut_experiment = 1;
   DutTopologyExperiment dut_topology_experiment = 2;
 }
@@ -75,7 +75,7 @@ message DutTopologyExperiment {
 }
 
 // Knobs specific to the step that uploads log-data to Google Storage.
-message LogDataUploadStep{
+message LogDataUploadStep {
   // Controls the maximum number of files that may be uploaded concurrently.
   // If unset, a hard-coded constant is used to limit concurrency (i.e., there
   // is no way to request unlimited concurrent uploads).

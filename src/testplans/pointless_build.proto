@@ -15,9 +15,7 @@ import "google/protobuf/wrappers.proto";
 // Next: 12
 message PointlessBuildCheckRequest {
 
-  message Path {
-    string path = 1;
-  }
+  message Path { string path = 1; }
 
   // A list of paths to be considered as relevant to the current build. Can
   // be used instead of passing a full DepGraph.
@@ -31,7 +29,8 @@ message PointlessBuildCheckRequest {
   // Serialized buildbucket GerritChanges, or none if this is a postsubmit run
   // or similar. Explicit proto import is avoided here to prevent a dependency
   // on the luci-go repo.
-  // See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+  // See
+  // https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
   //
   // Must be used in conjunction with gitiles_commit.
   // If affected_paths is passed in, this field is ignored.
@@ -46,23 +45,23 @@ message PointlessBuildCheckRequest {
 
   // DEPRECATED use gitiles_commit instead.
   //
-  // The manifest-internal snapshot commit hash that's being used for the current build.
-  // Note that manifest_commit will be soon replaced with gitiles_commit below.
-  string manifest_commit = 6 [deprecated = true];
+  // The manifest-internal snapshot commit hash that's being used for the
+  // current build. Note that manifest_commit will be soon replaced with
+  // gitiles_commit below.
+  string manifest_commit = 6 [ deprecated = true ];
 
   // In some cases (e.g. when pointless build checker is called for toolchain
   // update detection) we don't want known non-portage paths to trigger
   // relevency. A specific case here is that manifest changes force relevancy
   // but shouldn't force a toolchain update.
   //
-  // TODO(b/186002205): Improve this such that manifest changes are treated treated via
-  // introspection. We know the paths being changed in the manifest, and we
-  // should be able to surface that.
+  // TODO(b/186002205): Improve this such that manifest changes are treated
+  // treated via introspection. We know the paths being changed in the manifest,
+  // and we should be able to surface that.
   bool ignore_known_non_portage_directories = 10;
 
   reserved 5;
 }
-
 
 // The output proto for invocations of the Pointless Build Checker program.
 message PointlessBuildCheckResponse {

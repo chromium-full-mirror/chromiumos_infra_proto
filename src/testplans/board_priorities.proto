@@ -13,17 +13,15 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 // are used to choose a plan. Usually based off factors such as DUT
 // availability.
 message BoardPriority {
-    // Key to identify a group of DUTs. Must align with keys used as
-    // HwTest.skylab_board, see that field for more detailed definition of this
-    // field.
-    string skylab_board = 1;
+  // Key to identify a group of DUTs. Must align with keys used as
+  // HwTest.skylab_board, see that field for more detailed definition of this
+  // field.
+  string skylab_board = 1;
 
-    // Relative preference for a board. A board with a lower priority will be
-    // chosen over a board with a higher priority. Priorities may be negative.
-    // If a board does not have a BoardPriority, it is implicitly 0.
-    int32 priority = 2;
+  // Relative preference for a board. A board with a lower priority will be
+  // chosen over a board with a higher priority. Priorities may be negative.
+  // If a board does not have a BoardPriority, it is implicitly 0.
+  int32 priority = 2;
 }
 
-message BoardPriorityList {
-    repeated BoardPriority board_priorities = 1;
-}
+message BoardPriorityList { repeated BoardPriority board_priorities = 1; }

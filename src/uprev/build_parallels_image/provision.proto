@@ -11,7 +11,8 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/uprev/build_paral
 import "google/protobuf/timestamp.proto";
 import "uprev/build_parallels_image/common.proto";
 
-// ProvisionRequest defines the input of `phosphorus build-parallels-image-provision`.
+// ProvisionRequest defines the input of `phosphorus
+// build-parallels-image-provision`.
 message ProvisionRequest {
   Config config = 1;
 
@@ -27,4 +28,3 @@ message ProvisionRequest {
   // All provisioning should abort beyond this deadline.
   google.protobuf.Timestamp deadline = 4;
 }
-

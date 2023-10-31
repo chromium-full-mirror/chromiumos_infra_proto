@@ -190,8 +190,8 @@ type Request_Prejob struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// What needs to be installed onto the DUT at the end of prejob, as specified
-	// in the cros_test_platform request.
+	// What needs to be installed onto the DUT at the end of prejob, as
+	// specified in the cros_test_platform request.
 	SoftwareDependencies []*test_platform.Request_Params_SoftwareDependency `protobuf:"bytes,1,rep,name=software_dependencies,json=softwareDependencies,proto3" json:"software_dependencies,omitempty"`
 	// Mutable software prerequisites. Are installed before running the test if
 	// necessary. E.g. {"cros-version" : "reef-release/R77-12345.0.0"}
@@ -211,8 +211,8 @@ type Request_Prejob struct {
 	SoftwareAttributes *test_platform.Request_Params_SoftwareAttributes `protobuf:"bytes,4,opt,name=software_attributes,json=softwareAttributes,proto3" json:"software_attributes,omitempty"`
 	HardwareAttributes *test_platform.Request_Params_HardwareAttributes `protobuf:"bytes,5,opt,name=hardware_attributes,json=hardwareAttributes,proto3" json:"hardware_attributes,omitempty"`
 	// Will present in a multi-DUTs test request, it includes necessary metadata
-	// to help us determine DUT topology(primary/secondaries), as well as software
-	// dependencies to run prejob for secondary DUTs.
+	// to help us determine DUT topology(primary/secondaries), as well as
+	// software dependencies to run prejob for secondary DUTs.
 	SecondaryDevices []*test_platform.Request_Params_SecondaryDevice `protobuf:"bytes,6,rep,name=secondary_devices,json=secondaryDevices,proto3" json:"secondary_devices,omitempty"`
 }
 

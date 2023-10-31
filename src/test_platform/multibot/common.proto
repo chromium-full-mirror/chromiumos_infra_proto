@@ -24,7 +24,6 @@ message HostInfoStore {
   map<string, skylab_local_state.AutotestHostInfo> host_infos = 1;
 }
 
-
 // FollowerSpec contains the provisionable and nonprovisionable attributes for a
 // follower swarming task.
 message FollowerSpec {

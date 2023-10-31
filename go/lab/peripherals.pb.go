@@ -230,8 +230,8 @@ func (Wifi_Router) EnumDescriptor() ([]byte, []int) {
 	return file_lab_peripherals_proto_rawDescGZIP(), []int{5, 1}
 }
 
-// Facing of DUT's camera to be tested whose FOV should cover chart tablet's screen.
-// Next Tag: 3
+// Facing of DUT's camera to be tested whose FOV should cover chart tablet's
+// screen. Next Tag: 3
 type Camerabox_Facing int32
 
 const (
@@ -352,16 +352,18 @@ type Peripherals struct {
 	Touch           *Touch    `protobuf:"bytes,7,opt,name=touch,proto3" json:"touch,omitempty"`
 	// e.g: "att", "verizon",.. It's a manual label set by lab, varies dut by dut.
 	Carrier string `protobuf:"bytes,8,opt,name=carrier,proto3" json:"carrier,omitempty"`
-	// Indicate if the device is setup in a steady and controllable camera box environment for camera test automation.
-	// http://go/cros-camera-box
+	// Indicate if the device is setup in a steady and controllable camera box
+	// environment for camera test automation. http://go/cros-camera-box
 	Camerabox bool `protobuf:"varint,9,opt,name=camerabox,proto3" json:"camerabox,omitempty"`
-	// Indicate if the device is setup in a chaos environment. It's a special settings for running wifi interop tests.
+	// Indicate if the device is setup in a chaos environment. It's a special
+	// settings for running wifi interop tests.
 	Chaos bool `protobuf:"varint,10,opt,name=chaos,proto3" json:"chaos,omitempty"`
 	// Indicate the cables that connect audio, printer to the device in ACS lab.
 	Cable []*Cable `protobuf:"bytes,11,rep,name=cable,proto3" json:"cable,omitempty"`
 	// Incompatible upgraded type from bool camerabox=9.
 	CameraboxInfo *Camerabox `protobuf:"bytes,12,opt,name=camerabox_info,json=cameraboxInfo,proto3" json:"camerabox_info,omitempty"`
-	// Indicate if device is connected to a smart usb hub, detected in AdminRepair task.
+	// Indicate if device is connected to a smart usb hub, detected in AdminRepair
+	// task.
 	SmartUsbhub bool `protobuf:"varint,13,opt,name=smart_usbhub,json=smartUsbhub,proto3" json:"smart_usbhub,omitempty"`
 }
 

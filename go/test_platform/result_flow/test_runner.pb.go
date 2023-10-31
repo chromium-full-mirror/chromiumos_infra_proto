@@ -111,7 +111,8 @@ type TestRunnerResponse struct {
 
 	// `result_flow test_runner` exits with exit code 0 unless there is an
 	// infrastructure failure. When the exit code is 0, `state` indicates the
-	// best known state of the test_runner command execution (see comments on State enum).
+	// best known state of the test_runner command execution (see comments on
+	// State enum).
 	State State `protobuf:"varint,1,opt,name=state,proto3,enum=test_platform.result_flow.State" json:"state,omitempty"`
 }
 

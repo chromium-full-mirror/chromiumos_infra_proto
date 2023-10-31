@@ -15,15 +15,15 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/sui
 
 // The build information queried from BuildBucket DB.
 message BuildInfo {
-    // The name of the build target (a.k.a. board name), e.g., "gale", "eve".
-    chromiumos.BuildTarget build_target = 1;
-    // The milestone number (e.g. 73).
-    uint32 milestone = 2;
-    // The ChromeOS version (e.g. "12240.0.0" or "").
-    string chrome_os_version = 3;
-    // Build type with the board name as the prefix, e.g.
-    // "RELEASE" or "FIRMWARE".
-    chromiumos.Branch.BranchType type = 4;
+  // The name of the build target (a.k.a. board name), e.g., "gale", "eve".
+  chromiumos.BuildTarget build_target = 1;
+  // The milestone number (e.g. 73).
+  uint32 milestone = 2;
+  // The ChromeOS version (e.g. "12240.0.0" or "").
+  string chrome_os_version = 3;
+  // Build type with the board name as the prefix, e.g.
+  // "RELEASE" or "FIRMWARE".
+  chromiumos.Branch.BranchType type = 4;
 }
 
 // The firmware build information queried from BuildBucket DB.
@@ -54,10 +54,10 @@ message BranchFilter {
   }
   Channel channel = 1;
   enum Operator {
-      UNDEFINED = 0;
-      EQ = 1; // "=="
-      GE = 2; // ">="
-      LE = 3; // "<="
+    UNDEFINED = 0;
+    EQ = 1; // "=="
+    GE = 2; // ">="
+    LE = 3; // "<="
   }
   Operator operator = 2;
   // Number of minor versions behind tip-of-tree on channel.
@@ -67,7 +67,7 @@ message BranchFilter {
 // BuildFilters defines on which build to run a suite test.
 message BuildFilters {
   // Use only_successful_build_required instead.
-  bool only_hwtest_sanity_required = 1 [deprecated = true];
+  bool only_hwtest_sanity_required = 1 [ deprecated = true ];
   // BranchFilter defines the target branch of the new build.
   // Note, the final result is "AND" of each single filter.
   repeated BranchFilter branch_filters = 2;
@@ -87,14 +87,10 @@ message BuildFilters {
 message ScheduleJobTrigger {
   // WeeklyTrigger is for the suite test running every week.
   // "day" is from 0 to 6.
-  message WeeklyTrigger {
-    uint32 day = 1;
-  }
+  message WeeklyTrigger { uint32 day = 1; }
   // NightlyTrigger is for the suite test running every day.
   // "hour" is from 0 to 23.
-  message NightlyTrigger {
-    uint32 hour = 1;
-  }
+  message NightlyTrigger { uint32 hour = 1; }
   // IntervalTrigger is for the suite test running every N times the
   // scheduler operates.
   message IntervalTrigger {
@@ -105,7 +101,7 @@ message ScheduleJobTrigger {
   }
   oneof trigger {
     WeeklyTrigger weekly = 1;
-    NightlyTrigger nightly =  2;
+    NightlyTrigger nightly = 2;
     // TODO: This feature is not implemented to suite scheduler yet. So
     // if IntervalTrigger is configured, pause should be zero all the time.
     IntervalTrigger interval = 3;
@@ -175,9 +171,7 @@ message ExecutionResponse {
 }
 
 // The error message received from cros_test_platform.
-message ExecutionError {
-  string error_message = 1;
-}
+message ExecutionError { string error_message = 1; }
 
 // ExecutionTask bridges suite scheduler and cros_test_platform. With it,
 // we could track the execution reuslt for a scheduled test.

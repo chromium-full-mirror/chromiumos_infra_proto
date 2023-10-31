@@ -10,9 +10,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 
 // Compile Build API proto endpoint request.
-message CompileProtoRequest {
-
-}
+message CompileProtoRequest {}
 
 // Compile Build API proto endpoint response.
 message CompileProtoResponse {
@@ -26,9 +24,7 @@ message CompileProtoResponse {
 }
 
 // Request for the method discovery endpoint.
-message MethodGetRequest {
-
-}
+message MethodGetRequest {}
 
 // Response from the method discovery endpoint.
 message MethodGetResponse {
@@ -42,9 +38,7 @@ message MethodGetResponse {
 }
 
 // Request for the API (major) version number.
-message VersionGetRequest {
-
-}
+message VersionGetRequest {}
 
 // Response with the API (major) version number.
 message VersionGetResponse {
@@ -58,11 +52,10 @@ message VersionGetResponse {
   Version version = 1;
 }
 
-
 service ApiService {
   option (service_options) = {
-    module: "api",
-    service_chroot_assert: OUTSIDE,
+    module : "api",
+    service_chroot_assert : OUTSIDE,
   };
 
   // Added in R90.
@@ -72,14 +65,14 @@ service ApiService {
 // Service to handle retrieving the registered methods in the API.
 service MethodService {
   option (service_options) = {
-    module: "api",
-    service_chroot_assert: OUTSIDE,
+    module : "api",
+    service_chroot_assert : OUTSIDE,
   };
 
   // Added in R77.
   rpc Get(MethodGetRequest) returns (MethodGetResponse) {
     option (method_options) = {
-      implementation_name: "GetMethods",
+      implementation_name : "GetMethods",
     };
   }
 }
@@ -87,14 +80,14 @@ service MethodService {
 // Service for the API version information.
 service VersionService {
   option (service_options) = {
-    module: "api",
-    service_chroot_assert: OUTSIDE,
+    module : "api",
+    service_chroot_assert : OUTSIDE,
   };
 
   // Added in R77.
   rpc Get(VersionGetRequest) returns (VersionGetResponse) {
     option (method_options) = {
-      implementation_name: "GetVersion",
+      implementation_name : "GetVersion",
     };
   }
 }

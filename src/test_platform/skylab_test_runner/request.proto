@@ -19,14 +19,15 @@ message Request {
   // Prejob defines parameters that affect the steps before the actual test
   // (e.g. provision).
   message Prejob {
-    // What needs to be installed onto the DUT at the end of prejob, as specified
-    // in the cros_test_platform request.
-    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 1;
+    // What needs to be installed onto the DUT at the end of prejob, as
+    // specified in the cros_test_platform request.
+    repeated test_platform.Request.Params.SoftwareDependency
+        software_dependencies = 1;
 
     // Mutable software prerequisites. Are installed before running the test if
     // necessary. E.g. {"cros-version" : "reef-release/R77-12345.0.0"}
     // TODO(crbug.com/1162347): Delete this post-migration.
-    map<string, string> provisionable_labels = 2 [deprecated = true];
+    map<string, string> provisionable_labels = 2 [ deprecated = true ];
 
     // If set, use the Provision TLS API for the prejob.
     // See go/cros-prover go/cros-tls
@@ -40,8 +41,8 @@ message Request {
     test_platform.Request.Params.SoftwareAttributes software_attributes = 4;
     test_platform.Request.Params.HardwareAttributes hardware_attributes = 5;
     // Will present in a multi-DUTs test request, it includes necessary metadata
-    // to help us determine DUT topology(primary/secondaries), as well as software
-    // dependencies to run prejob for secondary DUTs.
+    // to help us determine DUT topology(primary/secondaries), as well as
+    // software dependencies to run prejob for secondary DUTs.
     repeated test_platform.Request.Params.SecondaryDevice secondary_devices = 6;
   }
 
@@ -54,7 +55,7 @@ message Request {
       string test_args = 2;
 
       // Keyvals are key:value pairs added to the autoserv command.
-      map <string, string> keyvals = 3;
+      map<string, string> keyvals = 3;
 
       // If true, run the test as a client-side test: the test logic is
       // executed in its entirety on the DUT itself.
@@ -71,9 +72,7 @@ message Request {
       string display_name = 5;
     }
 
-    oneof harness {
-      Autotest autotest = 1;
-    }
+    oneof harness { Autotest autotest = 1; }
 
     // User-specified options for how results are served to clients
     message OffloadOptions {
@@ -113,12 +112,14 @@ message Request {
   // "/usr/local/autotest/server/autoserv").
   //
   // The container will be pulled if needed.
-  chromiumos.build.api.ContainerImageInfo container_image_info = 8 [deprecated=true];
+  chromiumos.build.api.ContainerImageInfo container_image_info = 8
+      [ deprecated = true ];
 
   // TestExecutionBehavior specifies how tests should be run.
   // This can include information about whether the tests should run and
   // if failures should be exonerated.
-  test_platform.Request.Params.TestExecutionBehavior default_test_execution_behavior = 9;
+  test_platform.Request.Params.TestExecutionBehavior
+      default_test_execution_behavior = 9;
 
   // The retry attempt identifier. Details how many retries
   // this build has performed.

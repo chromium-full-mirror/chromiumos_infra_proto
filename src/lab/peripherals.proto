@@ -25,16 +25,18 @@ message Peripherals {
   Touch touch = 7;
   // e.g: "att", "verizon",.. It's a manual label set by lab, varies dut by dut.
   string carrier = 8;
-  // Indicate if the device is setup in a steady and controllable camera box environment for camera test automation.
-  // http://go/cros-camera-box
+  // Indicate if the device is setup in a steady and controllable camera box
+  // environment for camera test automation. http://go/cros-camera-box
   bool camerabox = 9;
-  // Indicate if the device is setup in a chaos environment. It's a special settings for running wifi interop tests.
+  // Indicate if the device is setup in a chaos environment. It's a special
+  // settings for running wifi interop tests.
   bool chaos = 10;
   // Indicate the cables that connect audio, printer to the device in ACS lab.
   repeated Cable cable = 11;
   // Incompatible upgraded type from bool camerabox=9.
   Camerabox camerabox_info = 12;
-  // Indicate if device is connected to a smart usb hub, detected in AdminRepair task.
+  // Indicate if device is connected to a smart usb hub, detected in AdminRepair
+  // task.
   bool smart_usbhub = 13;
 }
 
@@ -55,9 +57,7 @@ enum CameraType {
 }
 
 // Next Tag: 2
-message Camera {
-  CameraType camera_type = 1;
-}
+message Camera { CameraType camera_type = 1; }
 
 enum CableType {
   CABLE_INVALID = 0;
@@ -67,9 +67,7 @@ enum CableType {
   CABLE_HDMIAUDIO = 4;
 }
 
-message Cable {
-  CableType type = 1;
-}
+message Cable { CableType type = 1; }
 
 // Next Tag: 4
 message Audio {
@@ -115,8 +113,8 @@ message Touch {
 
 // Next Tag: 3
 message Camerabox {
-  // Facing of DUT's camera to be tested whose FOV should cover chart tablet's screen.
-  // Next Tag: 3
+  // Facing of DUT's camera to be tested whose FOV should cover chart tablet's
+  // screen. Next Tag: 3
   enum Facing {
     FACING_UNKNOWN = 0;
     // DUT's back camera is facing to chart tablet.

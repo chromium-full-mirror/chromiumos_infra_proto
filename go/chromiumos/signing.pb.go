@@ -102,7 +102,8 @@ type SigningConfig struct {
 	FirmwareUpdate   bool `protobuf:"varint,6,opt,name=firmware_update,json=firmwareUpdate,proto3" json:"firmware_update,omitempty"`
 	// Specific files to sign within the given archive.
 	// If not set, defaults will be used.
-	// Legacy defaults: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=600
+	// Legacy defaults:
+	// https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=600
 	InputFiles []string `protobuf:"bytes,7,rep,name=input_files,json=inputFiles,proto3" json:"input_files,omitempty"`
 	// Templates for naming the output files for files specified in `input_files`.
 	// See go/cros-signer-docs for a description of templating.
@@ -110,7 +111,8 @@ type SigningConfig struct {
 	// a templating directive like @BASENAME@ is used to properly disambiguate
 	// outputs), or length 0 (in which case a default template will be used,
 	// which has no guarantee wrt disambiguation/clobbering).
-	// Legacy behavior: https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=933
+	// Legacy behavior:
+	// https://source.corp.google.com/h/chrome-internal/chromeos/codesearch/+/main:src/platform/signing/signer-staging/signer/signing_poller.py;drc=0a0d9436f754f6e8c244e5bf1d6370c59316852b;l=933
 	OutputNames []string `protobuf:"bytes,8,rep,name=output_names,json=outputNames,proto3" json:"output_names,omitempty"`
 	// Path of the archive to sign.
 	// Not intended for specification in config files -- this field is populated

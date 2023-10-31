@@ -580,7 +580,7 @@ type LeaseManagedDutRequest struct {
 	MfgConfigId          *api1.MfgConfigId     `protobuf:"bytes,8,opt,name=mfg_config_id,json=mfgConfigId,proto3" json:"mfg_config_id,omitempty"`
 	MinDuts              int32                 `protobuf:"varint,9,opt,name=min_duts,json=minDuts,proto3" json:"min_duts,omitempty"`                                           // Minimum number of Duts requested, for multi dut
 	MaxDuts              int32                 `protobuf:"varint,10,opt,name=max_duts,json=maxDuts,proto3" json:"max_duts,omitempty"`                                          // Maximum number of Duts requested, for multi dut
-	NumberAssociatedDuts int32                 `protobuf:"varint,11,opt,name=number_associated_duts,json=numberAssociatedDuts,proto3" json:"number_associated_duts,omitempty"` // Get a lease on a Dut that is associated with another DUT and not generally available for lease.
+	NumberAssociatedDuts int32                 `protobuf:"varint,11,opt,name=number_associated_duts,json=numberAssociatedDuts,proto3" json:"number_associated_duts,omitempty"` // Get a lease on a Dut that is associated with another DUT and not
 }
 
 func (x *LeaseManagedDutRequest) Reset() {

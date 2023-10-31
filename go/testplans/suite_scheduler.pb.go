@@ -439,8 +439,8 @@ func (x *BoardVariant) GetVariant() string {
 }
 
 // Most fields are the same as suite_scheduler.ini just better organized.
-// The entries will be used to generate a suite_scheduler.ini in starlark scripts.
-// next: 14
+// The entries will be used to generate a suite_scheduler.ini in starlark
+// scripts. next: 14
 type SchedulerConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -776,11 +776,11 @@ type SchedulerConfig_LaunchCriteria struct {
 	unknownFields protoimpl.UnknownFields
 
 	LaunchProfile SchedulerConfig_LaunchCriteria_LaunchProfile `protobuf:"varint,1,opt,name=launch_profile,json=launchProfile,proto3,enum=testplans.SchedulerConfig_LaunchCriteria_LaunchProfile" json:"launch_profile,omitempty"`
-	// Hour at which to run. Needs to be specified for nightly and weekly profiles.
-	// Has to be [0, 23].
+	// Hour at which to run. Needs to be specified for nightly and weekly
+	// profiles. Has to be [0, 23].
 	Hour int32 `protobuf:"varint,2,opt,name=hour,proto3" json:"hour,omitempty"`
-	// Day on which to run. Needs to be specified for weekly AND fortnightly profile.
-	// Has to be [0, 6].
+	// Day on which to run. Needs to be specified for weekly AND fortnightly
+	// profile. Has to be [0, 6].
 	Day int32 `protobuf:"varint,3,opt,name=day,proto3" json:"day,omitempty"`
 	// NOT SUPPORTED. Cron compatible schedule eg: "* * 1,3,5 * *".
 	CronSchedule string `protobuf:"bytes,4,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
@@ -860,9 +860,9 @@ type SchedulerConfig_TargetOptions struct {
 	ExcludeBoards []string `protobuf:"bytes,2,rep,name=exclude_boards,json=excludeBoards,proto3" json:"exclude_boards,omitempty"`
 	// To specify variants, either all variants can be skipped.
 	SkipVariants bool `protobuf:"varint,8,opt,name=skip_variants,json=skipVariants,proto3" json:"skip_variants,omitempty"`
-	// OR use at the most one among the two fields below. If variants_list is empty,
-	// all variants are targeted. exclude_variants will exclude those variants
-	// from the all variants list.
+	// OR use at the most one among the two fields below. If variants_list is
+	// empty, all variants are targeted. exclude_variants will exclude those
+	// variants from the all variants list.
 	VariantsList    []*BoardVariant `protobuf:"bytes,3,rep,name=variants_list,json=variantsList,proto3" json:"variants_list,omitempty"`
 	ExcludeVariants []*BoardVariant `protobuf:"bytes,4,rep,name=exclude_variants,json=excludeVariants,proto3" json:"exclude_variants,omitempty"`
 	// There's two ways of specifying models. If all of these fields are empty,
@@ -992,8 +992,8 @@ type SchedulerConfig_PoolOptions struct {
 	QsAccount string `protobuf:"bytes,1,opt,name=qs_account,json=qsAccount,proto3" json:"qs_account,omitempty"`
 	// Pool to schedule on.
 	Pool string `protobuf:"bytes,2,opt,name=pool,proto3" json:"pool,omitempty"`
-	// Integer priority to assign. Only used by CTS. Quota scheduler takes care of
-	// priorities for the rest. Has to be [20, 255].
+	// Integer priority to assign. Only used by CTS. Quota scheduler takes care
+	// of priorities for the rest. Has to be [20, 255].
 	Priority int32 `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
 }
 
@@ -1070,8 +1070,8 @@ type SchedulerConfig_RunOptions struct {
 	OnlySuccessfulBuildRequired bool `protobuf:"varint,6,opt,name=only_successful_build_required,json=onlySuccessfulBuildRequired,proto3" json:"only_successful_build_required,omitempty"`
 	// If set, suite will be executed through CFT execution path.
 	RunViaCft bool `protobuf:"varint,7,opt,name=run_via_cft,json=runViaCft,proto3" json:"run_via_cft,omitempty"`
-	// Tags criteria that will be used to enumerate tests for CFT test execution workflow.
-	// Will only be used if run_via_cft is true.
+	// Tags criteria that will be used to enumerate tests for CFT test execution
+	// workflow. Will only be used if run_via_cft is true.
 	TagCriteria *api.TestSuite_TestCaseTagCriteria `protobuf:"bytes,8,opt,name=tag_criteria,json=tagCriteria,proto3" json:"tag_criteria,omitempty"`
 }
 

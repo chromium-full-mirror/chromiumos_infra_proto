@@ -15,7 +15,8 @@ message BuildbucketAcls {
 }
 
 // Describes the location of a local manifest file.
-// See https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#local-manifests.
+// See
+// https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#local-manifests.
 message LocalManifest {
   // URL of the repo with the local manifest. E.g.
   // https://chrome-internal.googlesource.com/chromeos/project/...
@@ -65,6 +66,4 @@ message Project {
   HWIDInfo hwid_info = 8;
 }
 
-message ProjectList {
-  repeated Project value = 1;
-}
+message ProjectList { repeated Project value = 1; }

@@ -50,8 +50,8 @@ type LabpackInput struct {
 	Configuration string `protobuf:"bytes,8,opt,name=configuration,proto3" json:"configuration,omitempty"`
 	// Namespace to use when fetching/updating DUT information
 	InventoryNamespace string `protobuf:"bytes,10,opt,name=inventory_namespace,json=inventoryNamespace,proto3" json:"inventory_namespace,omitempty"`
-	// bbid is the buildbucket id of the task that invoked us, primarily intended for the ile-de-france
-	// use case.
+	// bbid is the buildbucket id of the task that invoked us, primarily intended
+	// for the ile-de-france use case.
 	Bbid string `protobuf:"bytes,11,opt,name=bbid,proto3" json:"bbid,omitempty"`
 	// swarming_task_id is the ID of the swarming task.
 	SwarmingTaskId string `protobuf:"bytes,12,opt,name=swarming_task_id,json=swarmingTaskId,proto3" json:"swarming_task_id,omitempty"`

@@ -10,7 +10,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/cycler";
 
 import "cycler/effect.proto";
 
-
 // Closure of all config for a single cycler run.
 message RunConfig {
 

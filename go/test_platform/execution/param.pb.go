@@ -44,7 +44,8 @@ type Param struct {
 	// "/usr/local/autotest/server/autoserv").
 	//
 	// The container will be pulled if needed.
-	// TODO(b/227666105): Will be deprecated once CFT workflow is enabled and stable.
+	// TODO(b/227666105): Will be deprecated once CFT workflow is enabled and
+	// stable.
 	ContainerImageInfo *api.ContainerImageInfo `protobuf:"bytes,8,opt,name=container_image_info,json=containerImageInfo,proto3" json:"container_image_info,omitempty"`
 }
 

@@ -32,7 +32,7 @@ type ManagedDut_ManagedState int32
 
 const (
 	ManagedDut_UNKNOWN   ManagedDut_ManagedState = 0
-	ManagedDut_READY     ManagedDut_ManagedState = 1 //AIP says use ACTIVE - but in this context I disagree.
+	ManagedDut_READY     ManagedDut_ManagedState = 1 // AIP says use ACTIVE - but in this context I disagree.
 	ManagedDut_PROVISION ManagedDut_ManagedState = 2
 	ManagedDut_VERIFY    ManagedDut_ManagedState = 3
 	ManagedDut_LEASED    ManagedDut_ManagedState = 4
@@ -371,10 +371,10 @@ type ManagedDut struct {
 	OperatorNotes              string                  `protobuf:"bytes,10,opt,name=operator_notes,json=operatorNotes,proto3" json:"operator_notes,omitempty"`                                          // Lock reason or any other free text information.
 	ProvisionedFirmwareVersion string                  `protobuf:"bytes,11,opt,name=provisioned_firmware_version,json=provisionedFirmwareVersion,proto3" json:"provisioned_firmware_version,omitempty"` // Current Dut RW firmware.
 	History                    []*HistoryRecord        `protobuf:"bytes,12,rep,name=history,proto3" json:"history,omitempty"`                                                                           // State changes over time.
-	// DUT's that are associated ( close by ) this DUT, the string should be a network identifier and
-	// the DUT should be known to the DUT Manager.
-	// Schedulers that wish to give the assoiciated Dut to a test must obtain a
-	// lease on that Dut.
+	// DUT's that are associated ( close by ) this DUT, the string should
+	// be a network identifier and the DUT should be known to the DUT
+	// Manager. Schedulers that wish to give the assoiciated Dut to a test
+	// must obtain a lease on that Dut.
 	AssociatedDut   []*NetworkIdentifier `protobuf:"bytes,13,rep,name=associated_dut,json=associatedDut,proto3" json:"associated_dut,omitempty"`
 	IsAssociatedDut bool                 `protobuf:"varint,14,opt,name=is_associated_dut,json=isAssociatedDut,proto3" json:"is_associated_dut,omitempty"` // Associated DUT's should be excluded from general lease requests ?
 }

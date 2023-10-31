@@ -35,29 +35,28 @@ message ChromeOSProvision {
   // Status defines the result for each step or the whole provision process to
   // be reported.
   enum Status {
-      STATUS_UNKNOWN = 0;
-      STATUS_PASS = 1;
-      STATUS_FAIL = 2;
-      STATUS_ABORT = 3;
+    STATUS_UNKNOWN = 0;
+    STATUS_PASS = 1;
+    STATUS_FAIL = 2;
+    STATUS_ABORT = 3;
   }
 
   // Step defines the detail operations in a provision.
   message Step {
     enum Name {
       NAME_UNDEFINED = 0;
-      NAME_PRE_PROVISION = 1;  // Operations to prepare DUT before provision.
-      NAME_ON_KERNEL = 2;  // Write to kernel.
-      NAME_ON_ROOT_FS = 3;  // Write to root file system.
-      NAME_ON_STATEFUL = 4;  // Write to stateful partition.
+      NAME_PRE_PROVISION = 1; // Operations to prepare DUT before provision.
+      NAME_ON_KERNEL = 2;     // Write to kernel.
+      NAME_ON_ROOT_FS = 3;    // Write to root file system.
+      NAME_ON_STATEFUL = 4;   // Write to stateful partition.
       // Post-install process, e.g. update firmware, set next kernel, etc.
       NAME_POST_INST = 5;
-      NAME_POST_PROVISION = 6;  // Operations to verify if provision is good.
+      NAME_POST_PROVISION = 6; // Operations to verify if provision is good.
     }
     Name name = 1;
 
     google.protobuf.Timestamp started_time = 2;
     google.protobuf.Timestamp finished_time = 3;
-
 
     Status status = 4;
     string reason = 5;

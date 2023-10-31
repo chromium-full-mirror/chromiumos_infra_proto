@@ -204,8 +204,8 @@ message FetchMetadataResponse {
 // Service for bundling build artifacts and dumping them somewhere on disk.
 service ArtifactsService {
   option (service_options) = {
-    module: "artifacts",
-    service_chroot_assert: OUTSIDE,
+    module : "artifacts",
+    service_chroot_assert : OUTSIDE,
   };
 
   // Perform pre-build setup for artifact builds.  Added in R90.
@@ -216,7 +216,7 @@ service ArtifactsService {
 
   // Fetch the pinned guest image locations.  Added in R77.
   rpc FetchPinnedGuestImageUris(PinnedGuestImageUriRequest)
-    returns (PinnedGuestImageUriResponse);
+      returns (PinnedGuestImageUriResponse);
 
   // Fetch the paths for any metadata files.  Added in R94.
   rpc FetchMetadata(FetchMetadataRequest) returns (FetchMetadataResponse);
@@ -272,7 +272,7 @@ service ArtifactsService {
   // Generate minimal update payloads to be used in HW testing.
   rpc BundleTestUpdatePayloads(BundleRequest) returns (BundleResponse) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   }
 

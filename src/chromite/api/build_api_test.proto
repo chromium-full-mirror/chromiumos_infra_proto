@@ -14,9 +14,7 @@ import "chromiumos/metrics.proto";
 
 // Messages used to test build_api message and service handling.
 
-message NestedPath {
-  chromiumos.Path path = 1;
-}
+message NestedPath { chromiumos.Path path = 1; }
 
 enum TestEnum {
   TEST_ENUM_UNSPECIFIED = 0;
@@ -68,13 +66,12 @@ message TestResultMessage {
   repeated chromiumos.MetricEvent events = 5;
 }
 
-
 // The test service.
 service TestApiService {
   // Mocking the method returns means we don't have an implementation of this
   // module, but we do require it.
   option (service_options) = {
-    module: "build_api_test",
+    module : "build_api_test",
   };
 
   // Method that has input and output messages.
@@ -82,12 +79,12 @@ service TestApiService {
   // Method name override.
   rpc RenamedMethod(TestRequestMessage) returns (TestResultMessage) {
     option (method_options) = {
-      implementation_name: "CorrectName",
+      implementation_name : "CorrectName",
     };
   }
   rpc HiddenMethod(TestRequestMessage) returns (TestResultMessage) {
     option (method_options) = {
-      method_visibility: LV_HIDDEN,
+      method_visibility : LV_HIDDEN,
     };
   }
 }
@@ -97,8 +94,8 @@ service InsideChrootApiService {
   // Mocking the method returns means we don't have an implementation of this
   // module, but we do require it.
   option (service_options) = {
-    module: "build_api_test",
-    service_chroot_assert: INSIDE,
+    module : "build_api_test",
+    service_chroot_assert : INSIDE,
   };
 
   // No override of service level inside assertion.
@@ -106,9 +103,9 @@ service InsideChrootApiService {
 
   // Override service level inside assertion with outside assertion.
   rpc InsideServiceOutsideMethod(TestRequestMessage)
-    returns (TestResultMessage) {
+      returns (TestResultMessage) {
     option (method_options) = {
-      method_chroot_assert: OUTSIDE,
+      method_chroot_assert : OUTSIDE,
     };
   }
 }
@@ -118,28 +115,28 @@ service OutsideChrootApiService {
   // Mocking the method returns means we don't have an implementation of this
   // module, but we do require it.
   option (service_options) = {
-    module: "build_api_test",
-    service_chroot_assert: OUTSIDE,
+    module : "build_api_test",
+    service_chroot_assert : OUTSIDE,
   };
 
   // No override of service level outside assertion.
   rpc OutsideServiceOutsideMethod(TestRequestMessage)
-    returns (TestResultMessage);
+      returns (TestResultMessage);
 
   // Override service level outside assertion with inside assertion.
   rpc OutsideServiceInsideMethod(TestRequestMessage)
-    returns (TestResultMessage) {
+      returns (TestResultMessage) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   }
 }
 
 service HiddenService {
   option (service_options) = {
-    module: "build_api_test",
-    service_chroot_assert: OUTSIDE,
-    service_visibility: LV_HIDDEN,
+    module : "build_api_test",
+    service_chroot_assert : OUTSIDE,
+    service_visibility : LV_HIDDEN,
   };
 
   rpc HiddenMethod(TestRequestMessage) returns (TestResultMessage);
@@ -147,30 +144,31 @@ service HiddenService {
 
 service TotExecutionService {
   option (service_options) = {
-    module: "build_api_test",
-    service_branched_execution: EXECUTE_TOT,
-    service_chroot_assert: OUTSIDE,
+    module : "build_api_test",
+    service_branched_execution : EXECUTE_TOT,
+    service_chroot_assert : OUTSIDE,
   };
 
   rpc TotServiceTotMethod(TestRequestMessage) returns (TestResultMessage);
 
   // This is not a valid combination.
   rpc TotServiceTotMethodInside(TestRequestMessage)
-    returns (TestResultMessage) {
+      returns (TestResultMessage) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   }
 
   rpc TotServiceBranchedMethod(TestRequestMessage) returns (TestResultMessage) {
     option (method_options) = {
-      method_branched_execution: EXECUTE_BRANCHED,
+      method_branched_execution : EXECUTE_BRANCHED,
     };
   }
 
-  rpc TotServiceBranchedMethodInside(TestRequestMessage) returns (TestResultMessage) {
+  rpc TotServiceBranchedMethodInside(TestRequestMessage)
+      returns (TestResultMessage) {
     option (method_options) = {
-      method_branched_execution: EXECUTE_BRANCHED,
+      method_branched_execution : EXECUTE_BRANCHED,
     };
   }
 }

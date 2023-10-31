@@ -475,9 +475,7 @@ message BuilderConfig {
     repeated UseFlag use_flags = 1;
 
     // The profile of the variant to set up and build.
-    message PortageProfile {
-      string profile = 1;
-    }
+    message PortageProfile { string profile = 1; }
     PortageProfile portage_profile = 2;
 
     reserved 3 to 5;
@@ -616,6 +614,4 @@ message BuilderConfig {
 }
 
 // List of builder configs. Intended to be serialized to / from disk.
-message BuilderConfigs {
-  repeated BuilderConfig builder_configs = 1;
-}
+message BuilderConfigs { repeated BuilderConfig builder_configs = 1; }

@@ -144,8 +144,10 @@ type Servo struct {
 	ServoHostname string `protobuf:"bytes,2,opt,name=servo_hostname,json=servoHostname,proto3" json:"servo_hostname,omitempty"`
 	ServoPort     int32  `protobuf:"varint,3,opt,name=servo_port,json=servoPort,proto3" json:"servo_port,omitempty"`
 	ServoSerial   string `protobuf:"bytes,4,opt,name=servo_serial,json=servoSerial,proto3" json:"servo_serial,omitempty"`
-	// Based on https://docs.google.com/document/d/1TPp7yp-uwFUh5xOnBLI4jPYtYD7IcdyQ1dgqFqtcJEU/edit?ts=5d8eafb7#heading=h.csdfk1i6g0l
-	// servo_type will contain different setup of servos. So string is recommended than enum.
+	// Based on
+	// https://docs.google.com/document/d/1TPp7yp-uwFUh5xOnBLI4jPYtYD7IcdyQ1dgqFqtcJEU/edit?ts=5d8eafb7#heading=h.csdfk1i6g0l
+	// servo_type will contain different setup of servos. So string is recommended
+	// than enum.
 	ServoType  string         `protobuf:"bytes,5,opt,name=servo_type,json=servoType,proto3" json:"servo_type,omitempty"`
 	ServoSetup ServoSetupType `protobuf:"varint,7,opt,name=servo_setup,json=servoSetup,proto3,enum=lab.ServoSetupType" json:"servo_setup,omitempty"`
 	// Based on http://go/fleet-servo-topology
@@ -234,8 +236,8 @@ func (x *Servo) GetServoFwChannel() ServoFwChannel {
 	return ServoFwChannel_SERVO_FW_STABLE
 }
 
-// Servo Topology describe connected servo devices on DUT set-up to provide Servo functionality.
-// Next Tag : 3
+// Servo Topology describe connected servo devices on DUT set-up to provide
+// Servo functionality. Next Tag : 3
 type ServoTopology struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -298,9 +300,11 @@ type ServoTopologyItem struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// type provides the type of servo device. Keeping as String to avoid issue with introduce new type.
+	// type provides the type of servo device. Keeping as String to avoid issue
+	// with introduce new type.
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	// sysfs_product provides the product name of the device recorded in File System.
+	// sysfs_product provides the product name of the device recorded in File
+	// System.
 	SysfsProduct string `protobuf:"bytes,2,opt,name=sysfs_product,json=sysfsProduct,proto3" json:"sysfs_product,omitempty"`
 	// serial provides the serial number of the device.
 	Serial string `protobuf:"bytes,3,opt,name=serial,proto3" json:"serial,omitempty"`
@@ -308,8 +312,10 @@ type ServoTopologyItem struct {
 	// e.g. '1-6.2.2' where
 	//   '1-6'  - port on the labstation
 	//   '2'    - port on smart-hub connected to the labstation
-	//   '2'    - port on servo hub (part of servo_v4 or servo_v4.1) connected to the smart-hub
-	// The same path will look '1-6.2' if connected servo_v4 directly to the labstation.
+	//   '2'    - port on servo hub (part of servo_v4 or servo_v4.1) connected to
+	//   the smart-hub
+	// The same path will look '1-6.2' if connected servo_v4 directly to the
+	// labstation.
 	UsbHubPort string `protobuf:"bytes,4,opt,name=usb_hub_port,json=usbHubPort,proto3" json:"usb_hub_port,omitempty"`
 	// This is the firmware version of servo device.
 	FwVersion string `protobuf:"bytes,5,opt,name=fw_version,json=fwVersion,proto3" json:"fw_version,omitempty"`

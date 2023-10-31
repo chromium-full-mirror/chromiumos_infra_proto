@@ -26,34 +26,33 @@ message CrosTestRunnerServerStartRequest {
 
 // CrosTestRunnerService represents cros test runner service.
 service CrosTestRunnerService {
- rpc Execute(ExecuteRequest)
-   returns (ExecuteResponse);
+  rpc Execute(ExecuteRequest) returns (ExecuteResponse);
 }
 
 // ExecuteRequest represents the request for cros test runner service.
 message ExecuteRequest {
   // Only one suite will be supported inside testplans.
   // Different suites will have to make separate rpc calls.
-  // If test_plan provided, cft_test_request.test_suites will be constructed from it.
+  // If test_plan provided, cft_test_request.test_suites will be constructed
+  // from it.
   test_platform.Request.TestPlan test_plan = 1;
 
   // cft_test_request is always required. This also includes steps config
-  // which will provide clients maximum freedom to choose which steps to execute.
+  // which will provide clients maximum freedom to choose which steps to
+  // execute.
   test_platform.skylab_test_runner.CFTTestRequest cft_test_request = 2;
 
   // Cros-tool-runner cipd version to use.
   string ctr_cipd_version = 3;
 
-  // Local path to cros-tool-runner binary to run with; this field is meant to be
-  // an alternative to ctr_cipd_version and will take priority over it
+  // Local path to cros-tool-runner binary to run with; this field is meant to
+  // be an alternative to ctr_cipd_version and will take priority over it
   string path_to_cipd_bin = 5;
 
   // Path to where the test artifacts are going to be stored. It's callers
   // responsibility to make sure this path is valid and unique per execution.
   string artifacts_path = 4;
- }
+}
 
 // ExecuteResponse represents the response for cros test runner service.
-message ExecuteResponse {
- test_platform.skylab_test_runner.Result result = 1;
-}
+message ExecuteResponse { test_platform.skylab_test_runner.Result result = 1; }

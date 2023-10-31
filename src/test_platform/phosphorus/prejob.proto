@@ -19,20 +19,21 @@ message PrejobRequest {
   string dut_hostname = 2;
 
   // TODO(crbug.com/1162347): Delete this post-migration.
-  map<string,string> provisionable_labels = 3 [deprecated = true];
+  map<string, string> provisionable_labels = 3 [ deprecated = true ];
 
   // What needs to be installed onto the DUT at the end of prejob, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
   // TODO(crbug.com/1162347): Delete this post-migration.
-  map<string,string> desired_provisionable_labels = 4 [deprecated = true];
+  map<string, string> desired_provisionable_labels = 4 [ deprecated = true ];
 
   // What needs to be installed onto the DUT at the end of prejob, as specified
   // in the cros_test_platform request.
-  repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 8;
+  repeated test_platform.Request.Params.SoftwareDependency
+      software_dependencies = 8;
 
   // What is installed on the DUT before the prejob, e.g.
   // "cros-version": "reef-release/R77-12345.0.0".
-  map<string,string> existing_provisionable_labels = 5;
+  map<string, string> existing_provisionable_labels = 5;
 
   // Hard deadline for execution.
   //
@@ -47,29 +48,32 @@ message PrejobRequest {
   // will be dropped.
   bool use_tls = 7;
 
-  // ProvisionTarget defines an addtional provision target and its software dependencies.
-  // Addtional provision target will share other config(e.g. use_tls) from the primary DUT.
+  // ProvisionTarget defines an addtional provision target and its software
+  // dependencies. Addtional provision target will share other config(e.g.
+  // use_tls) from the primary DUT.
   message ProvisionTarget {
     string dut_hostname = 1;
-    repeated test_platform.Request.Params.SoftwareDependency software_dependencies = 2;
-    // Provision OS bundled firmware is controlled at each DUT level, so we need this flag
-    // for secondary devices as well.
+    repeated test_platform.Request.Params.SoftwareDependency
+        software_dependencies = 2;
+    // Provision OS bundled firmware is controlled at each DUT level, so we need
+    // this flag for secondary devices as well.
     bool update_firmware = 3;
     // Provision googler ssh key or not is controlled at each DUT level.
     bool provision_googler_ssh_key = 4;
   }
 
-  // This field provide metadata to provision secondary devices in a multi-DUTs test.
+  // This field provide metadata to provision secondary devices in a multi-DUTs
+  // test.
   repeated ProvisionTarget addtional_targets = 9;
 
-  // This field served as a flag to decide if we should update OS bundled firmware(RW)
-  // during the provision step.
+  // This field served as a flag to decide if we should update OS bundled
+  // firmware(RW) during the provision step.
   bool update_firmware = 10;
 
   // This field controls whether to provision googler ssh key only.
   // If set, provision will only enable googler ssh key on the DUT.
-  // Otherwise, provision will enable external ssh key (which is the current status)
-  // on the DUT.
+  // Otherwise, provision will enable external ssh key (which is the current
+  // status) on the DUT.
   bool provision_googler_ssh_key = 11;
 }
 

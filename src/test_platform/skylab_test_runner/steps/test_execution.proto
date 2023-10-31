@@ -20,7 +20,8 @@ message RunTestsRequest {
   test_platform.skylab_test_runner.Config config = 2;
   test_platform.skylab_test_runner.CFTTestRequest cft_test_request = 3;
   test_platform.skylab_test_runner.CommonConfig common_config = 4;
-  test_platform.skylab_test_runner.CrosTestRunnerRequest cros_test_runner_request = 5;
+  test_platform.skylab_test_runner.CrosTestRunnerRequest
+      cros_test_runner_request = 5;
 }
 
 // RunTestsResponse is the output from the Go-based replacement of test_runner.
@@ -30,5 +31,5 @@ message RunTestsResponse {
   string error_summary_markdown = 1;
 
   // compressed result that will be read by CTP.
-  string compressed_result = 2[json_name="compressed_result"];
+  string compressed_result = 2 [ json_name = "compressed_result" ];
 }

@@ -32,7 +32,7 @@ message ChromeOSDevice {
 }
 
 // Next Tag: 6
-message DeviceUnderTest{
+message DeviceUnderTest {
   string hostname = 1;
   Peripherals peripherals = 2;
 

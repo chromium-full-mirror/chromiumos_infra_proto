@@ -12,7 +12,6 @@ import "chromite/api/build_api.proto";
 import "chromite/api/sysroot.proto";
 import "chromiumos/common.proto";
 
-
 // Depgraph messages and service.
 
 // Message contains data about the portage dependency graph and the packages'
@@ -43,9 +42,7 @@ message PackageDepInfo {
 }
 
 // Message describes a source path.
-message SourcePath {
-  string path = 1;
-}
+message SourcePath { string path = 1; }
 
 // Message for creating dependency graph json map.
 // Example Json:
@@ -104,26 +101,24 @@ message ListRequest {
 }
 
 // Response for getting a list of package dependencies.
-message ListResponse {
-  repeated chromiumos.PackageInfo package_deps = 1;
-}
+message ListResponse { repeated chromiumos.PackageInfo package_deps = 1; }
 
 // Service to create a variety of package dependency graphs.
 service DependencyService {
   // The module implementing the service.
   option (service_options) = {
-    module: "dependency",
-    service_chroot_assert: INSIDE,
+    module : "dependency",
+    service_chroot_assert : INSIDE,
   };
 
   // Get the build dependency graph.
   rpc GetBuildDependencyGraph(GetBuildDependencyGraphRequest)
-    returns (GetBuildDependencyGraphResponse);
+      returns (GetBuildDependencyGraphResponse);
 
   // Get the list of source paths that are relevant to the toolchain.
   // Added in R81.
   rpc GetToolchainPaths(GetToolchainPathsRequest)
-    returns (GetToolchainPathsResponse);
+      returns (GetToolchainPathsResponse);
 
   // Get the list of package dependencies.  Added in R87.
   rpc List(ListRequest) returns (ListResponse);

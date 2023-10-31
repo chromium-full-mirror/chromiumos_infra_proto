@@ -101,6 +101,4 @@ message Result {
   SoftwareOverridesConfig overrides = 18;
 }
 
-message ResultList {
-  repeated Result value = 1;
-}
+message ResultList { repeated Result value = 1; }

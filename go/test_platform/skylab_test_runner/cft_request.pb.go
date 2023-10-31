@@ -44,7 +44,8 @@ type CFTTestRequest struct {
 	// Test suites to run by tag or explicit list of tests.
 	TestSuites []*api.TestSuite `protobuf:"bytes,3,rep,name=test_suites,json=testSuites,proto3" json:"test_suites,omitempty"`
 	// Provision/Test execution will need to be invoked before this.
-	// Currently CTR do not take any deadline. But in future, if it does, this should be passed in.
+	// Currently CTR do not take any deadline. But in future, if it does, this
+	// should be passed in.
 	Deadline *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deadline,proto3" json:"deadline,omitempty"`
 	// The UID of the individual CTP request which kicked off this test run.
 	// Note that distinct requests inside a multi-request CTP build will have

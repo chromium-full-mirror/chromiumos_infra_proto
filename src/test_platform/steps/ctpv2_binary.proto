@@ -15,21 +15,21 @@ import "chromiumos/test/api/ctp2.proto";
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps";
 
 message CTPv2BinaryBuildInput {
- .test_platform.Request request = 1;
- map<string, .test_platform.Request> requests = 2;
- test_platform.config.Config config = 3;
- chromiumos.test.api.CTPv2Request ctpv2_request = 4;
+  .test_platform.Request request = 1;
+  map<string, .test_platform.Request> requests = 2;
+  test_platform.config.Config config = 3;
+  chromiumos.test.api.CTPv2Request ctpv2_request = 4;
 }
 
-
 message CTPv2BinaryBuildOutput {
- // A markdown string that should be used in Buildbucket as a summary of the
- // test_runner build.
- string error_summary_markdown = 1;
+  // A markdown string that should be used in Buildbucket as a summary of the
+  // test_runner build.
+  string error_summary_markdown = 1;
 
- // compressed result that will be read by upstream.
- string compressed_responses = 2[json_name="compressed_responses"];
+  // compressed result that will be read by upstream.
+  string compressed_responses = 2 [ json_name = "compressed_responses" ];
 
- // compressed json result that will be read by upstream.
- string compressed_json_responses = 3[json_name="compressed_json_responses"];
+  // compressed json result that will be read by upstream.
+  string compressed_json_responses = 3
+      [ json_name = "compressed_json_responses" ];
 }

@@ -94,9 +94,9 @@ type TrafficSplit struct {
 	// Rules are expected to be exhaustive. If an incoming request does not match
 	// any available rule, the traffic splitter will fail.
 	//
-	// This policy prevents requests for newly deployed models / pools from getting
-	// scheduled on the incorrect scheduler and then timing out due to lack of
-	// devices.
+	// This policy prevents requests for newly deployed models / pools from
+	// getting scheduled on the incorrect scheduler and then timing out due to
+	// lack of devices.
 	Rules []*Rule `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`
 	// Unlike rules, suite overrides are only specified for suites that need
 	// different handling from the rule that otherwise matches the request.

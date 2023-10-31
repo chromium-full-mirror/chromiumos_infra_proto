@@ -190,10 +190,12 @@ type DuplicateEffectConfiguration struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The destination bucket for the copied objects (e.g. 'engeg-testing-bucket').
+	// The destination bucket for the copied objects (e.g.
+	// 'engeg-testing-bucket').
 	DestinationBucket string `protobuf:"bytes,1,opt,name=destination_bucket,json=destinationBucket,proto3" json:"destination_bucket,omitempty"`
-	// The destination prefix for the copied objects (e.g. 'copied-files-prefix/').
-	// Note: Prefixes are literal, and no '/' will be infered/appended.
+	// The destination prefix for the copied objects (e.g.
+	// 'copied-files-prefix/'). Note: Prefixes are literal, and no '/' will be
+	// infered/appended.
 	DestinationPrefix string `protobuf:"bytes,2,opt,name=destination_prefix,json=destinationPrefix,proto3" json:"destination_prefix,omitempty"`
 }
 

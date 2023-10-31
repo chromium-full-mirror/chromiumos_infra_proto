@@ -31,6 +31,4 @@ message Program {
   string gs_bucket = 6;
 }
 
-message ProgramList {
-  repeated Program value = 1;
-}
+message ProgramList { repeated Program value = 1; }

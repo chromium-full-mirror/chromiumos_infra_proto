@@ -41,7 +41,8 @@ message PrepareForToolchainBuildRequest {
   chromite.api.Sysroot sysroot = 3;
 
   // Information about artifacts available when preparing.
-  repeated chromiumos.BuilderConfig.Artifacts.InputArtifactInfo input_artifacts = 4;
+  repeated chromiumos.BuilderConfig.Artifacts.InputArtifactInfo
+      input_artifacts = 4;
 
   // Additional arguments used in PrepareForBuild.
   // TODO(crbug/1019868): Transition to artifact_profile_info.
@@ -176,9 +177,7 @@ message LinterRequest {
 }
 
 // Linter findings generated when emerging some package.
-message LinterResponse {
-  repeated LinterFinding findings = 1;
-}
+message LinterResponse { repeated LinterFinding findings = 1; }
 
 // Request lints to be uploaded to GS for all packages.
 message DashboardLintRequest {
@@ -188,14 +187,10 @@ message DashboardLintRequest {
 }
 
 // GS path where lints were uploaded.
-message DashboardLintResponse {
-  string gs_path = 1;
-}
+message DashboardLintResponse { string gs_path = 1; }
 
 // Request toolchains info for a board.
-message ToolchainsRequest {
-  string board = 1;
-}
+message ToolchainsRequest { string board = 1; }
 
 // Toolchains info for a board.
 message ToolchainsResponse {
@@ -220,8 +215,8 @@ message SetupToolchainsResponse {}
 // Service for toolchain-related functionality: compilers, linkers, runtimes.
 service ToolchainService {
   option (service_options) = {
-    module: "toolchain",
-    service_chroot_assert: OUTSIDE,
+    module : "toolchain",
+    service_chroot_assert : OUTSIDE,
   };
 
   // TODO(b/187790484): Migrate this to ArtifactsService/BuildSetup.
@@ -230,49 +225,49 @@ service ToolchainService {
   // again at the start of the 'install packages' step, if the build gets that
   // far.  Added in R80.
   rpc PrepareForBuild(PrepareForToolchainBuildRequest)
-    returns (PrepareForToolchainBuildResponse);
+      returns (PrepareForToolchainBuildResponse);
 
   // TODO(b/187790484): Migrate this to ArtifactsService/Get.
   // Bundle toolchain artifacts.  Added in R80.
-  rpc BundleArtifacts(BundleToolchainRequest)
-    returns (BundleToolchainResponse);
+  rpc BundleArtifacts(BundleToolchainRequest) returns (BundleToolchainResponse);
 
   // Added in R90.
-  rpc GetUpdatedFiles(GetUpdatedFilesRequest)
-    returns (GetUpdatedFilesResponse);
+  rpc GetUpdatedFiles(GetUpdatedFilesRequest) returns (GetUpdatedFilesResponse);
 
-  rpc EmergeAndUploadLints(DashboardLintRequest) returns (DashboardLintResponse) {
+  rpc EmergeAndUploadLints(DashboardLintRequest)
+      returns (DashboardLintResponse) {
     option (method_options) = {
-      method_chroot_assert: INSIDE
+      method_chroot_assert : INSIDE
     };
   };
 
   // Emerge the given packages and retrieve any findings from linters.
   rpc EmergeWithLinting(LinterRequest) returns (LinterResponse) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   };
 
   // Emerge the given Rust packages and retrieve any findings from Cargo Clippy.
   // FIXME(b/187790543): remove this endpoint oboleted by "EmergeWithLinting".
   // This refactor has the following dependency chain:
-  //  1) Create EmergeWithLinting endpoint 
+  //  1) Create EmergeWithLinting endpoint
   //  2) Let Recipe Roller update the Build API for recipes
   //  3) Update the recipe to use EmergeWithLinting
   //  4) Delete GetClippyLints endpoint
   rpc GetClippyLints(LinterRequest) returns (LinterResponse) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   };
 
   // Get the default and non-default toolchains for a board.
   rpc GetToolchainsForBoard(ToolchainsRequest) returns (ToolchainsResponse);
 
-  rpc SetupToolchains(SetupToolchainsRequest) returns (SetupToolchainsResponse) {
+  rpc SetupToolchains(SetupToolchainsRequest)
+      returns (SetupToolchainsResponse) {
     option (method_options) = {
-      method_chroot_assert: INSIDE,
+      method_chroot_assert : INSIDE,
     };
   };
 }

@@ -12,8 +12,8 @@ import "google/protobuf/field_mask.proto";
 
 import "lab/managed_dut.proto";
 
-// DutManagerStorageService is the service that the provides persistant storage for
-// ManagedDut information in an TLE.
+// DutManagerStorageService is the service that the provides persistant storage
+// for ManagedDut information in an TLE.
 
 // The only customer of this contract is the DutManager - it allows the
 // business logic of the DutManager to be re-used no matter how the
@@ -27,39 +27,25 @@ service DutManagerStorageService {
   rpc UpdateDut(UpdateDutRequest) returns (UpdateDutResponse);
 }
 
-message CreateDutRequest {
-    lab.ManagedDut dut = 1;
-}
+message CreateDutRequest { lab.ManagedDut dut = 1; }
 
-message CreateDutResponse {
-}
+message CreateDutResponse {}
 
-message DeleteDutRequest {
-    string name = 1;
-}
+message DeleteDutRequest { string name = 1; }
 
-message DeleteDutResponse {
-}
+message DeleteDutResponse {}
 
-message ListDutRequest {
-}
+message ListDutRequest {}
 
-message ListDutResponse {
-    repeated lab.ManagedDut duts = 1;
-}
+message ListDutResponse { repeated lab.ManagedDut duts = 1; }
 
-message GetDutRequest {
-    string name = 1;
-}
+message GetDutRequest { string name = 1; }
 
-message GetDutResponse {
-    lab.ManagedDut dut = 1;
-}
+message GetDutResponse { lab.ManagedDut dut = 1; }
 
 message UpdateDutRequest {
-    lab.ManagedDut dut = 1;
-    google.protobuf.FieldMask update_mask = 2;
+  lab.ManagedDut dut = 1;
+  google.protobuf.FieldMask update_mask = 2;
 }
 
-message UpdateDutResponse {
-}
+message UpdateDutResponse {}

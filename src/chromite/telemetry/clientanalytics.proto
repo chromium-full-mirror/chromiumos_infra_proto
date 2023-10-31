@@ -39,5 +39,5 @@ message LogRequest {
 // Response from log http api
 message LogResponse {
   // The number of milliseconds to wait before the next request
-  optional int64 next_request_wait_millis = 1 ;
+  optional int64 next_request_wait_millis = 1;
 }

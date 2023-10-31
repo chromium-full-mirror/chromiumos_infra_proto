@@ -18,7 +18,7 @@ message TestResult {
 
   string pkg = 2;
 
-  int64 additional_time_ns = 3 [json_name = "additionalTime"];
+  int64 additional_time_ns = 3 [ json_name = "additionalTime" ];
 
   string desc = 4;
 
@@ -30,9 +30,9 @@ message TestResult {
 
   repeated string vars = 8;
 
-  repeated string software_deps = 9 [json_name = "softwareDeps"];
+  repeated string software_deps = 9 [ json_name = "softwareDeps" ];
 
-  int64 timeout_ns = 10 [json_name = "timeout"];
+  int64 timeout_ns = 10 [ json_name = "timeout" ];
 
   repeated TestError errors = 11;
 
@@ -40,9 +40,9 @@ message TestResult {
 
   string end = 13;
 
-  string out_dir = 14 [json_name = "outDir"];
+  string out_dir = 14 [ json_name = "outDir" ];
 
-  string skip_reason = 15 [json_name = "skipReason"];
+  string skip_reason = 15 [ json_name = "skipReason" ];
 }
 
 message TestError {

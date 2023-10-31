@@ -11,9 +11,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 import "testplans/common.proto";
 
 // A list of test groups.
-message TestGroups {
-  repeated string name = 1;
-}
+message TestGroups { repeated string name = 1; }
 
 // A description of how to remove test suites from the default set of test
 // suites in ChromeOS CQ, as a result of source configuration.

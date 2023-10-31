@@ -146,13 +146,15 @@ const (
 	Config_HARDWARE_FEATURE_UNSPECIFIED Config_HardwareFeature = 0
 	Config_HARDWARE_FEATURE_BLUETOOTH   Config_HardwareFeature = 1
 	Config_HARDWARE_FEATURE_FLASHROM    Config_HardwareFeature = 2
-	// Indicate if the device support audio hotwording, an audio listening module
-	// included with Google Chrome and Chromium to support Google Assistant.
+	// Indicate if the device support audio hotwording, an audio listening
+	// module included with Google Chrome and Chromium to support Google
+	// Assistant.
 	// https://chromeos.google.com/partner/dlm/docs/latest-requirements/chromebook.html#audio-hotwording-always-on-listening
 	Config_HARDWARE_FEATURE_HOTWORDING       Config_HardwareFeature = 3
 	Config_HARDWARE_FEATURE_INTERNAL_DISPLAY Config_HardwareFeature = 4
-	// Indicate if the device has support for lucid sleep (a connected lower power state,
-	// in which the device should still has some network communications)
+	// Indicate if the device has support for lucid sleep (a connected lower
+	// power state, in which the device should still has some network
+	// communications)
 	// https://chromeos.google.com/partner/dlm/docs/p-hardware-specs/lucidsleep.html
 	Config_HARDWARE_FEATURE_LUCID_SLEEP Config_HardwareFeature = 5
 	Config_HARDWARE_FEATURE_WEBCAM      Config_HardwareFeature = 6
@@ -858,13 +860,16 @@ type Config struct {
 	Ee []string `protobuf:"bytes,13,rep,name=ee,proto3" json:"ee,omitempty"`
 	// ODM for device
 	Odm Config_ODM `protobuf:"varint,14,opt,name=odm,proto3,enum=device.Config_ODM" json:"odm,omitempty"`
-	// Group email address for this device's odm contact in buganizer (@google.com)
+	// Group email address for this device's odm contact in buganizer
+	// (@google.com)
 	OdmEmailGroup string `protobuf:"bytes,15,opt,name=odm_email_group,json=odmEmailGroup,proto3" json:"odm_email_group,omitempty"`
 	// OEM for device
 	Oem Config_OEM `protobuf:"varint,16,opt,name=oem,proto3,enum=device.Config_OEM" json:"oem,omitempty"`
-	// Group email address for this device's oem contact in buganizer (@google.com)
+	// Group email address for this device's oem contact in buganizer
+	// (@google.com)
 	OemEmailGroup string `protobuf:"bytes,17,opt,name=oem_email_group,json=oemEmailGroup,proto3" json:"oem_email_group,omitempty"`
-	// Group email address for this device's SoC contact in buganizer (@google.com)
+	// Group email address for this device's SoC contact in buganizer
+	// (@google.com)
 	SocEmailGroup string `protobuf:"bytes,18,opt,name=soc_email_group,json=socEmailGroup,proto3" json:"soc_email_group,omitempty"`
 	// A bit field used by firmware to make decisions. The definition of this
 	// firmware configuration field is per firmware build. This does not have

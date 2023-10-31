@@ -37,8 +37,9 @@ type GenerateBuildPlanRequest struct {
 	AffectedPaths []*GenerateBuildPlanRequest_Path `protobuf:"bytes,5,rep,name=affected_paths,json=affectedPaths,proto3" json:"affected_paths,omitempty"`
 	// Serialized buildbucket GerritChanges, or none if this is a postsubmit run
 	// or similar.
-	// Explicit proto import is avoided here to prevent a dependency on the luci-go repo.
-	// See https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
+	// Explicit proto import is avoided here to prevent a dependency on the
+	// luci-go repo. See
+	// https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/common.proto
 	//
 	// Must be used in conjunction with gitiles_commit.
 	// If affected_paths is passed in, this field is ignored.
@@ -51,7 +52,8 @@ type GenerateBuildPlanRequest struct {
 	GitilesCommit *ProtoBytes `protobuf:"bytes,4,opt,name=gitiles_commit,json=gitilesCommit,proto3" json:"gitiles_commit,omitempty"`
 	// DEPRECATED use gitiles_commit instead.
 	//
-	// The manifest-internal snapshot commit hash that's being used for the current build.
+	// The manifest-internal snapshot commit hash that's being used for the
+	// current build.
 	//
 	// Deprecated: Do not use.
 	ManifestCommit string `protobuf:"bytes,2,opt,name=manifest_commit,json=manifestCommit,proto3" json:"manifest_commit,omitempty"`

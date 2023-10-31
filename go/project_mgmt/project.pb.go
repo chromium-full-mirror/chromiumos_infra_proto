@@ -74,7 +74,8 @@ func (x *BuildbucketAcls) GetBuildbucketReaders() []string {
 }
 
 // Describes the location of a local manifest file.
-// See https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#local-manifests.
+// See
+// https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#local-manifests.
 type LocalManifest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

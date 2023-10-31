@@ -610,7 +610,8 @@ type ContainerRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Identifier for DynamicDependencies to inject this container's IpEnpoint, eg cros-provision, cros-dut, etc.
+	// Identifier for DynamicDependencies to inject this container's IpEnpoint, eg
+	// cros-provision, cros-dut, etc.
 	DynamicIdentifier string        `protobuf:"bytes,1,opt,name=dynamic_identifier,json=dynamicIdentifier,proto3" json:"dynamic_identifier,omitempty"`
 	Container         *api.Template `protobuf:"bytes,2,opt,name=container,proto3" json:"container,omitempty"`
 	// Dynamic dependencies for the templated container.
@@ -698,9 +699,9 @@ func (x *ContainerRequest) GetContainerImageKey() string {
 
 // Some information within TestRunnerV2 is required by the services it runs.
 // This information is not known at the time of request, and thus needs to be
-// dynamically injected within the request. This provides the definition required
-// to handle the injection, however, the exact object being injected is unknown to this
-// proto and must be handled by the implementation.
+// dynamically injected within the request. This provides the definition
+// required to handle the injection, however, the exact object being injected is
+// unknown to this proto and must be handled by the implementation.
 type DynamicDep struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

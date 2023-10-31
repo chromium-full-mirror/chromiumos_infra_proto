@@ -212,8 +212,8 @@ message CreateSimpleChromeSysrootResponse {
 // Service to manipulate a sysroot.
 service SysrootService {
   option (service_options) = {
-    module: "sysroot",
-    service_chroot_assert: INSIDE,
+    module : "sysroot",
+    service_chroot_assert : INSIDE,
   };
 
   // Create the base sysroot structure.
@@ -221,16 +221,16 @@ service SysrootService {
 
   // Generate sysroot archive.  Added in R83.
   rpc GenerateArchive(SysrootGenerateArchiveRequest)
-    returns (SysrootGenerateArchiveResponse);
+      returns (SysrootGenerateArchiveResponse);
 
   // Install the toolchain into the sysroot.
   rpc InstallToolchain(InstallToolchainRequest)
-    returns (InstallToolchainResponse);
+      returns (InstallToolchainResponse);
 
   // Install packages into the sysroot. By default will install all packages.
   rpc InstallPackages(InstallPackagesRequest) returns (InstallPackagesResponse);
 
   // Install SimpleChrome sysroot.  Added in R79.
   rpc CreateSimpleChromeSysroot(CreateSimpleChromeSysrootRequest)
-    returns (CreateSimpleChromeSysrootResponse);
+      returns (CreateSimpleChromeSysrootResponse);
 }
