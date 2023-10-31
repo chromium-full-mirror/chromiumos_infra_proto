@@ -67,7 +67,7 @@ which is read via mosys/cros_config in order to make runtime decisions about
 configuration usage.
 
 __Device Variant (aka Device SKU previously)__: This is every unique
-specification configuration that will be manufactured for a given Device Model. 
+specification configuration that will be manufactured for a given Device Model.
 
 The following defines the criteria for different device variants.
 *   SoC speed grade
@@ -126,7 +126,7 @@ that is used across the architecture to reference a given instance of a
 component.
 
 __Qualified Component__: This is a specific component from a given vendor that
-has met Google’s minimum quality standards for a given SoC Family. 
+has met Google’s minimum quality standards for a given SoC Family.
 Partners are required to complete component qualification testing before
 components can be used with a given SoC Family.  For context, see Component
 Qualification and AVL.
