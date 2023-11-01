@@ -34867,6 +34867,14 @@
                   "number": 8,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
+                },
+                {
+                  "jsonName": "builderId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "builder_id",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.RunOptions.BuilderID"
                 }
               ],
               "name": "RunOptions",
@@ -34889,6 +34897,32 @@
                     }
                   ],
                   "name": "SwarmingDimension"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "project",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "project",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "bucket",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "bucket",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "builder",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "builder",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "BuilderID"
                 }
               ]
             }

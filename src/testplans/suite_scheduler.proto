@@ -222,6 +222,20 @@ message SchedulerConfig {
     // Tags criteria that will be used to enumerate tests for CFT test execution
     // workflow. Will only be used if run_via_cft is true.
     chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 8;
+
+    // Identifies a unique buildbucket builder.
+    message BuilderID {
+      // Project that the builder exists in.
+      string project = 1;
+      // Bucket that the builder exists in.
+      string bucket = 2;
+      // Name of the builder.
+      string builder = 3;
+    }
+
+    // Bucket to schedule tasks in. If not provided, suite scheduler should
+    // assign the task to an appropriate "mainlab" builder.
+    BuilderID builder_id = 9;
   }
   RunOptions run_options = 9;
 
