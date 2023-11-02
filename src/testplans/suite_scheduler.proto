@@ -12,6 +12,7 @@ package testplans;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "chromiumos/test/api/test_suite.proto";
+import "chromiumos/test/api/ctp2.proto";
 
 // Defines a board, its variants and its models.
 message Board {
@@ -55,7 +56,7 @@ enum Branch {
 
 // Most fields are the same as suite_scheduler.ini just better organized.
 // The entries will be used to generate a suite_scheduler.ini in starlark
-// scripts. next: 14
+// scripts. next: 19
 message SchedulerConfig {
   // Name of the config. Needs to be unique.
   string name = 1;
@@ -236,6 +237,9 @@ message SchedulerConfig {
     // Bucket to schedule tasks in. If not provided, suite scheduler should
     // assign the task to an appropriate "mainlab" builder.
     BuilderID builder_id = 9;
+
+    // If set, suite will be executed through ctpv2.
+    bool run_via_ctpv2 = 10;
   }
   RunOptions run_options = 9;
 
@@ -247,6 +251,14 @@ message SchedulerConfig {
 
   // GMSCORE cipd package ref for android provisioning
   string gms_core_package = 16;
+
+  // List of Karbon Filters for the ctpv2 request object.
+  // To be converted to json str for config generation.
+  repeated chromiumos.test.api.CTPFilter karbon_filters = 17;
+
+  // List of Koffee Filters for the ctpv2 request object.
+  // To be converted to json str for config generation.
+  repeated chromiumos.test.api.CTPFilter koffee_filters = 18;
 }
 
 // A proto to contain all the configs.
