@@ -11162,10 +11162,6 @@
                     {
                       "end": 14,
                       "start": 11
-                    },
-                    {
-                      "end": 53,
-                      "start": 53
                     }
                   ],
                   "value": [
@@ -11360,6 +11356,10 @@
                     {
                       "name": "SDK_TOOLCHAIN_PREBUILTS",
                       "number": 52
+                    },
+                    {
+                      "name": "BAZEL_PERFORMANCE_ARTIFACTS",
+                      "number": 53
                     },
                     {
                       "name": "CODE_COVERAGE_E2E",
