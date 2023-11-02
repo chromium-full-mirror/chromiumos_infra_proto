@@ -24,6 +24,10 @@ const _ = grpc.SupportPackageIsVersion7
 type PayloadServiceClient interface {
 	// Added in R79.
 	GeneratePayload(ctx context.Context, in *GenerationRequest, opts ...grpc.CallOption) (*GenerationResponse, error)
+	// Added in R121.
+	GenerateUnsignedPayload(ctx context.Context, in *GenerateUnsignedPayloadRequest, opts ...grpc.CallOption) (*GenerateUnsignedPayloadResponse, error)
+	// Added in R121.
+	FinalizePayload(ctx context.Context, in *FinalizePayloadRequest, opts ...grpc.CallOption) (*FinalizePayloadResponse, error)
 }
 
 type payloadServiceClient struct {
@@ -43,12 +47,34 @@ func (c *payloadServiceClient) GeneratePayload(ctx context.Context, in *Generati
 	return out, nil
 }
 
+func (c *payloadServiceClient) GenerateUnsignedPayload(ctx context.Context, in *GenerateUnsignedPayloadRequest, opts ...grpc.CallOption) (*GenerateUnsignedPayloadResponse, error) {
+	out := new(GenerateUnsignedPayloadResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PayloadService/GenerateUnsignedPayload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payloadServiceClient) FinalizePayload(ctx context.Context, in *FinalizePayloadRequest, opts ...grpc.CallOption) (*FinalizePayloadResponse, error) {
+	out := new(FinalizePayloadResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PayloadService/FinalizePayload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayloadServiceServer is the server API for PayloadService service.
 // All implementations must embed UnimplementedPayloadServiceServer
 // for forward compatibility
 type PayloadServiceServer interface {
 	// Added in R79.
 	GeneratePayload(context.Context, *GenerationRequest) (*GenerationResponse, error)
+	// Added in R121.
+	GenerateUnsignedPayload(context.Context, *GenerateUnsignedPayloadRequest) (*GenerateUnsignedPayloadResponse, error)
+	// Added in R121.
+	FinalizePayload(context.Context, *FinalizePayloadRequest) (*FinalizePayloadResponse, error)
 	mustEmbedUnimplementedPayloadServiceServer()
 }
 
@@ -58,6 +84,12 @@ type UnimplementedPayloadServiceServer struct {
 
 func (UnimplementedPayloadServiceServer) GeneratePayload(context.Context, *GenerationRequest) (*GenerationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GeneratePayload not implemented")
+}
+func (UnimplementedPayloadServiceServer) GenerateUnsignedPayload(context.Context, *GenerateUnsignedPayloadRequest) (*GenerateUnsignedPayloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateUnsignedPayload not implemented")
+}
+func (UnimplementedPayloadServiceServer) FinalizePayload(context.Context, *FinalizePayloadRequest) (*FinalizePayloadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinalizePayload not implemented")
 }
 func (UnimplementedPayloadServiceServer) mustEmbedUnimplementedPayloadServiceServer() {}
 
@@ -90,6 +122,42 @@ func _PayloadService_GeneratePayload_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PayloadService_GenerateUnsignedPayload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateUnsignedPayloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayloadServiceServer).GenerateUnsignedPayload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PayloadService/GenerateUnsignedPayload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayloadServiceServer).GenerateUnsignedPayload(ctx, req.(*GenerateUnsignedPayloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayloadService_FinalizePayload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinalizePayloadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayloadServiceServer).FinalizePayload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PayloadService/FinalizePayload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayloadServiceServer).FinalizePayload(ctx, req.(*FinalizePayloadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PayloadService_ServiceDesc is the grpc.ServiceDesc for PayloadService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +168,14 @@ var PayloadService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GeneratePayload",
 			Handler:    _PayloadService_GeneratePayload_Handler,
+		},
+		{
+			MethodName: "GenerateUnsignedPayload",
+			Handler:    _PayloadService_GenerateUnsignedPayload_Handler,
+		},
+		{
+			MethodName: "FinalizePayload",
+			Handler:    _PayloadService_FinalizePayload_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

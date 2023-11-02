@@ -109,6 +109,7 @@ message GenerationRequest {
   // Required.
   chromiumos.Chroot chroot = 12;
 
+  // TODO(b/299105459): Don't special-case minios.
   // Whether the request is for a miniOS payload.
   // This is only meaningful if the src and tgt images are either
   // both SignedImage or both UnsignedImage.
@@ -165,6 +166,106 @@ message GenerationResponse {
   reserved "success";
 }
 
+// Request payload generation to be done with a source and target image.
+message GenerateUnsignedPayloadRequest {
+  // Source image properties, must be either full_update or the same type as
+  // the included tgt_image_oneof. full_update indicates the lack of a source.
+  oneof src_image_oneof {
+    bool full_update = 1;
+    SignedImage src_signed_image = 2;
+    UnsignedImage src_unsigned_image = 3;
+    DLCImage src_dlc_image = 4;
+  }
+
+  // Target image properties.
+  oneof tgt_image_oneof {
+    SignedImage tgt_signed_image = 5;
+    UnsignedImage tgt_unsigned_image = 6;
+    DLCImage tgt_dlc_image = 7;
+  }
+
+  // The chroot where the operations will be executed.
+  // Required.
+  chromiumos.Chroot chroot = 8;
+
+  // TODO(b/299105459): Don't special-case minios.
+  // Whether the request is for a miniOS payload.
+  // This is only meaningful if the src and tgt images are either
+  // both SignedImage or both UnsignedImage.
+  bool minios = 9;
+
+  // Target directory where output artifacts should be stored.
+  chromiumos.ResultPath result_path = 10;
+}
+
+// Result of a payload generation.
+message GenerateUnsignedPayloadResponse {
+  // Remote and local artifacts along with a version ID (if successful).
+  message VersionedArtifact {
+    // Version of the payload (eg. 1).
+    uint32 version = 1;
+    // If successful we may have a local artifact available. Generally this
+    // takes the form of '/path/to/tmp/ioadwjoawjd/delta.bin'.
+    chromiumos.Path file_path = 2;
+  }
+  repeated VersionedArtifact versioned_artifacts = 1;
+
+  // If no payload was generated, we may be able to report the reason why.
+  enum FailureReason {
+    UNSPECIFIED = 0;
+    NOT_MINIOS_COMPATIBLE = 1;
+    // This occurs when the source and target builds do not support the same
+    // number of recovery keys.
+    MINIOS_COUNT_MISMATCH = 2;
+  }
+  FailureReason failure_reason = 2;
+}
+
+// Request signing, validation, and uploading for an unsigned payload.
+message FinalizePayloadRequest {
+  // Path to the payload file.
+  chromiumos.Path payload_file = 1;
+
+  // Do not sign images or upload artifacts.
+  bool dryrun = 2;
+
+  // Target directory where output artifacts should be stored.
+  chromiumos.ResultPath result_path = 3;
+
+  // The keyset to sign with (e.g. "coral-mp-v16"), if empty do not sign,
+  // and may be ignored for certain request types (e.g. dlc).
+  string keyset = 4;
+
+  // If set, will use the local signing flow (currently a prototype).
+  bool use_local_signing = 5;
+
+  // Should we run verification?
+  bool verify = 6;
+
+  // TODO(engeg@): We could override the output build artifacts location via
+  //               specifying an additional parameter build and supplying it to
+  //               paygen_payload_lib.py but have chosen not to implement yet.
+
+  // The destination bucket (defaults to "chromeos-releases").
+  string bucket = 7;
+}
+
+// Response for a FinalizePayloadRequest
+// (which does signing, validation, uploading).
+message FinalizePayloadResponse {
+  // Remote and local artifacts along with a version ID (if successful).
+  message VersionedArtifact {
+    // Version of the payload (eg. 1).
+    uint32 version = 1;
+    // If successful we may have uploaded an artifact to google storage.
+    string remote_uri = 2;
+    // If successful we may have a local artifact available. Generally this
+    // takes the form of '/path/to/tmp/ioadwjoawjd/delta.bin'.
+    chromiumos.Path file_path = 3;
+  }
+  repeated VersionedArtifact versioned_artifacts = 1;
+}
+
 // The image service definition.
 service PayloadService {
   option (service_options) = {
@@ -174,4 +275,17 @@ service PayloadService {
 
   // Added in R79.
   rpc GeneratePayload(GenerationRequest) returns (GenerationResponse);
+
+  // Added in R121.
+  rpc GenerateUnsignedPayload(GenerateUnsignedPayloadRequest)
+      returns (GenerateUnsignedPayloadResponse);
+
+  // Added in R121.
+  rpc FinalizePayload(FinalizePayloadRequest)
+      returns (FinalizePayloadResponse) {
+    option (method_options) = {
+      method_branched_execution : EXECUTE_TOT,
+      method_chroot_assert : OUTSIDE,
+    };
+  };
 }

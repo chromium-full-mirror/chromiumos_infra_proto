@@ -12698,6 +12698,264 @@
               "start": 1
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "fullUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "full_update",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "srcSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_signed_image",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SignedImage"
+            },
+            {
+              "jsonName": "srcUnsignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_unsigned_image",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UnsignedImage"
+            },
+            {
+              "jsonName": "srcDlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_dlc_image",
+              "number": 4,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DLCImage"
+            },
+            {
+              "jsonName": "tgtSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_signed_image",
+              "number": 5,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SignedImage"
+            },
+            {
+              "jsonName": "tgtUnsignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_unsigned_image",
+              "number": 6,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UnsignedImage"
+            },
+            {
+              "jsonName": "tgtDlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_dlc_image",
+              "number": 7,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DLCImage"
+            },
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "minios",
+              "label": "LABEL_OPTIONAL",
+              "name": "minios",
+              "number": 9,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            }
+          ],
+          "name": "GenerateUnsignedPayloadRequest",
+          "oneofDecl": [
+            {
+              "name": "src_image_oneof"
+            },
+            {
+              "name": "tgt_image_oneof"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "FailureReason",
+              "value": [
+                {
+                  "name": "UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "NOT_MINIOS_COMPATIBLE",
+                  "number": 1
+                },
+                {
+                  "name": "MINIOS_COUNT_MISMATCH",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "versionedArtifacts",
+              "label": "LABEL_REPEATED",
+              "name": "versioned_artifacts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.GenerateUnsignedPayloadResponse.VersionedArtifact"
+            },
+            {
+              "jsonName": "failureReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_reason",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.GenerateUnsignedPayloadResponse.FailureReason"
+            }
+          ],
+          "name": "GenerateUnsignedPayloadResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "filePath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "file_path",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.Path"
+                }
+              ],
+              "name": "VersionedArtifact"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "payloadFile",
+              "label": "LABEL_OPTIONAL",
+              "name": "payload_file",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "dryrun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dryrun",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "useLocalSigning",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_local_signing",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "verify",
+              "label": "LABEL_OPTIONAL",
+              "name": "verify",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "bucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "bucket",
+              "number": 7,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FinalizePayloadRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "versionedArtifacts",
+              "label": "LABEL_REPEATED",
+              "name": "versioned_artifacts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FinalizePayloadResponse.VersionedArtifact"
+            }
+          ],
+          "name": "FinalizePayloadResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "version",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "version",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "remoteUri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "remote_uri",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "filePath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "file_path",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.Path"
+                }
+              ],
+              "name": "VersionedArtifact"
+            }
+          ]
         }
       ],
       "name": "chromite/api/payload.proto",
@@ -12712,6 +12970,22 @@
               "inputType": ".chromite.api.GenerationRequest",
               "name": "GeneratePayload",
               "outputType": ".chromite.api.GenerationResponse"
+            },
+            {
+              "inputType": ".chromite.api.GenerateUnsignedPayloadRequest",
+              "name": "GenerateUnsignedPayload",
+              "outputType": ".chromite.api.GenerateUnsignedPayloadResponse"
+            },
+            {
+              "inputType": ".chromite.api.FinalizePayloadRequest",
+              "name": "FinalizePayload",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodBranchedExecution": "EXECUTE_TOT",
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.FinalizePayloadResponse"
             }
           ],
           "name": "PayloadService",

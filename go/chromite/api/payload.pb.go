@@ -77,6 +77,58 @@ func (GenerationResponse_FailureReason) EnumDescriptor() ([]byte, []int) {
 	return file_chromite_api_payload_proto_rawDescGZIP(), []int{5, 0}
 }
 
+// If no payload was generated, we may be able to report the reason why.
+type GenerateUnsignedPayloadResponse_FailureReason int32
+
+const (
+	GenerateUnsignedPayloadResponse_UNSPECIFIED           GenerateUnsignedPayloadResponse_FailureReason = 0
+	GenerateUnsignedPayloadResponse_NOT_MINIOS_COMPATIBLE GenerateUnsignedPayloadResponse_FailureReason = 1
+	// This occurs when the source and target builds do not support the same
+	// number of recovery keys.
+	GenerateUnsignedPayloadResponse_MINIOS_COUNT_MISMATCH GenerateUnsignedPayloadResponse_FailureReason = 2
+)
+
+// Enum value maps for GenerateUnsignedPayloadResponse_FailureReason.
+var (
+	GenerateUnsignedPayloadResponse_FailureReason_name = map[int32]string{
+		0: "UNSPECIFIED",
+		1: "NOT_MINIOS_COMPATIBLE",
+		2: "MINIOS_COUNT_MISMATCH",
+	}
+	GenerateUnsignedPayloadResponse_FailureReason_value = map[string]int32{
+		"UNSPECIFIED":           0,
+		"NOT_MINIOS_COMPATIBLE": 1,
+		"MINIOS_COUNT_MISMATCH": 2,
+	}
+)
+
+func (x GenerateUnsignedPayloadResponse_FailureReason) Enum() *GenerateUnsignedPayloadResponse_FailureReason {
+	p := new(GenerateUnsignedPayloadResponse_FailureReason)
+	*p = x
+	return p
+}
+
+func (x GenerateUnsignedPayloadResponse_FailureReason) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (GenerateUnsignedPayloadResponse_FailureReason) Descriptor() protoreflect.EnumDescriptor {
+	return file_chromite_api_payload_proto_enumTypes[1].Descriptor()
+}
+
+func (GenerateUnsignedPayloadResponse_FailureReason) Type() protoreflect.EnumType {
+	return &file_chromite_api_payload_proto_enumTypes[1]
+}
+
+func (x GenerateUnsignedPayloadResponse_FailureReason) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use GenerateUnsignedPayloadResponse_FailureReason.Descriptor instead.
+func (GenerateUnsignedPayloadResponse_FailureReason) EnumDescriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{7, 0}
+}
+
 // Defines a single build directory in storage.
 type Build struct {
 	state         protoimpl.MessageState
@@ -407,6 +459,7 @@ type GenerationRequest struct {
 	// The chroot where the operations will be executed.
 	// Required.
 	Chroot *chromiumos.Chroot `protobuf:"bytes,12,opt,name=chroot,proto3" json:"chroot,omitempty"`
+	// TODO(b/299105459): Don't special-case minios.
 	// Whether the request is for a miniOS payload.
 	// This is only meaningful if the src and tgt images are either
 	// both SignedImage or both UnsignedImage.
@@ -706,6 +759,419 @@ func (x *GenerationResponse) GetFailureReason() GenerationResponse_FailureReason
 	return GenerationResponse_UNSPECIFIED
 }
 
+// Request payload generation to be done with a source and target image.
+type GenerateUnsignedPayloadRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Source image properties, must be either full_update or the same type as
+	// the included tgt_image_oneof. full_update indicates the lack of a source.
+	//
+	// Types that are assignable to SrcImageOneof:
+	//	*GenerateUnsignedPayloadRequest_FullUpdate
+	//	*GenerateUnsignedPayloadRequest_SrcSignedImage
+	//	*GenerateUnsignedPayloadRequest_SrcUnsignedImage
+	//	*GenerateUnsignedPayloadRequest_SrcDlcImage
+	SrcImageOneof isGenerateUnsignedPayloadRequest_SrcImageOneof `protobuf_oneof:"src_image_oneof"`
+	// Target image properties.
+	//
+	// Types that are assignable to TgtImageOneof:
+	//	*GenerateUnsignedPayloadRequest_TgtSignedImage
+	//	*GenerateUnsignedPayloadRequest_TgtUnsignedImage
+	//	*GenerateUnsignedPayloadRequest_TgtDlcImage
+	TgtImageOneof isGenerateUnsignedPayloadRequest_TgtImageOneof `protobuf_oneof:"tgt_image_oneof"`
+	// The chroot where the operations will be executed.
+	// Required.
+	Chroot *chromiumos.Chroot `protobuf:"bytes,8,opt,name=chroot,proto3" json:"chroot,omitempty"`
+	// TODO(b/299105459): Don't special-case minios.
+	// Whether the request is for a miniOS payload.
+	// This is only meaningful if the src and tgt images are either
+	// both SignedImage or both UnsignedImage.
+	Minios bool `protobuf:"varint,9,opt,name=minios,proto3" json:"minios,omitempty"`
+	// Target directory where output artifacts should be stored.
+	ResultPath *chromiumos.ResultPath `protobuf:"bytes,10,opt,name=result_path,json=resultPath,proto3" json:"result_path,omitempty"`
+}
+
+func (x *GenerateUnsignedPayloadRequest) Reset() {
+	*x = GenerateUnsignedPayloadRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_payload_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GenerateUnsignedPayloadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GenerateUnsignedPayloadRequest) ProtoMessage() {}
+
+func (x *GenerateUnsignedPayloadRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_payload_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GenerateUnsignedPayloadRequest.ProtoReflect.Descriptor instead.
+func (*GenerateUnsignedPayloadRequest) Descriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{6}
+}
+
+func (m *GenerateUnsignedPayloadRequest) GetSrcImageOneof() isGenerateUnsignedPayloadRequest_SrcImageOneof {
+	if m != nil {
+		return m.SrcImageOneof
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetFullUpdate() bool {
+	if x, ok := x.GetSrcImageOneof().(*GenerateUnsignedPayloadRequest_FullUpdate); ok {
+		return x.FullUpdate
+	}
+	return false
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetSrcSignedImage() *SignedImage {
+	if x, ok := x.GetSrcImageOneof().(*GenerateUnsignedPayloadRequest_SrcSignedImage); ok {
+		return x.SrcSignedImage
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetSrcUnsignedImage() *UnsignedImage {
+	if x, ok := x.GetSrcImageOneof().(*GenerateUnsignedPayloadRequest_SrcUnsignedImage); ok {
+		return x.SrcUnsignedImage
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetSrcDlcImage() *DLCImage {
+	if x, ok := x.GetSrcImageOneof().(*GenerateUnsignedPayloadRequest_SrcDlcImage); ok {
+		return x.SrcDlcImage
+	}
+	return nil
+}
+
+func (m *GenerateUnsignedPayloadRequest) GetTgtImageOneof() isGenerateUnsignedPayloadRequest_TgtImageOneof {
+	if m != nil {
+		return m.TgtImageOneof
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetTgtSignedImage() *SignedImage {
+	if x, ok := x.GetTgtImageOneof().(*GenerateUnsignedPayloadRequest_TgtSignedImage); ok {
+		return x.TgtSignedImage
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetTgtUnsignedImage() *UnsignedImage {
+	if x, ok := x.GetTgtImageOneof().(*GenerateUnsignedPayloadRequest_TgtUnsignedImage); ok {
+		return x.TgtUnsignedImage
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetTgtDlcImage() *DLCImage {
+	if x, ok := x.GetTgtImageOneof().(*GenerateUnsignedPayloadRequest_TgtDlcImage); ok {
+		return x.TgtDlcImage
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetChroot() *chromiumos.Chroot {
+	if x != nil {
+		return x.Chroot
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetMinios() bool {
+	if x != nil {
+		return x.Minios
+	}
+	return false
+}
+
+func (x *GenerateUnsignedPayloadRequest) GetResultPath() *chromiumos.ResultPath {
+	if x != nil {
+		return x.ResultPath
+	}
+	return nil
+}
+
+type isGenerateUnsignedPayloadRequest_SrcImageOneof interface {
+	isGenerateUnsignedPayloadRequest_SrcImageOneof()
+}
+
+type GenerateUnsignedPayloadRequest_FullUpdate struct {
+	FullUpdate bool `protobuf:"varint,1,opt,name=full_update,json=fullUpdate,proto3,oneof"`
+}
+
+type GenerateUnsignedPayloadRequest_SrcSignedImage struct {
+	SrcSignedImage *SignedImage `protobuf:"bytes,2,opt,name=src_signed_image,json=srcSignedImage,proto3,oneof"`
+}
+
+type GenerateUnsignedPayloadRequest_SrcUnsignedImage struct {
+	SrcUnsignedImage *UnsignedImage `protobuf:"bytes,3,opt,name=src_unsigned_image,json=srcUnsignedImage,proto3,oneof"`
+}
+
+type GenerateUnsignedPayloadRequest_SrcDlcImage struct {
+	SrcDlcImage *DLCImage `protobuf:"bytes,4,opt,name=src_dlc_image,json=srcDlcImage,proto3,oneof"`
+}
+
+func (*GenerateUnsignedPayloadRequest_FullUpdate) isGenerateUnsignedPayloadRequest_SrcImageOneof() {}
+
+func (*GenerateUnsignedPayloadRequest_SrcSignedImage) isGenerateUnsignedPayloadRequest_SrcImageOneof() {
+}
+
+func (*GenerateUnsignedPayloadRequest_SrcUnsignedImage) isGenerateUnsignedPayloadRequest_SrcImageOneof() {
+}
+
+func (*GenerateUnsignedPayloadRequest_SrcDlcImage) isGenerateUnsignedPayloadRequest_SrcImageOneof() {}
+
+type isGenerateUnsignedPayloadRequest_TgtImageOneof interface {
+	isGenerateUnsignedPayloadRequest_TgtImageOneof()
+}
+
+type GenerateUnsignedPayloadRequest_TgtSignedImage struct {
+	TgtSignedImage *SignedImage `protobuf:"bytes,5,opt,name=tgt_signed_image,json=tgtSignedImage,proto3,oneof"`
+}
+
+type GenerateUnsignedPayloadRequest_TgtUnsignedImage struct {
+	TgtUnsignedImage *UnsignedImage `protobuf:"bytes,6,opt,name=tgt_unsigned_image,json=tgtUnsignedImage,proto3,oneof"`
+}
+
+type GenerateUnsignedPayloadRequest_TgtDlcImage struct {
+	TgtDlcImage *DLCImage `protobuf:"bytes,7,opt,name=tgt_dlc_image,json=tgtDlcImage,proto3,oneof"`
+}
+
+func (*GenerateUnsignedPayloadRequest_TgtSignedImage) isGenerateUnsignedPayloadRequest_TgtImageOneof() {
+}
+
+func (*GenerateUnsignedPayloadRequest_TgtUnsignedImage) isGenerateUnsignedPayloadRequest_TgtImageOneof() {
+}
+
+func (*GenerateUnsignedPayloadRequest_TgtDlcImage) isGenerateUnsignedPayloadRequest_TgtImageOneof() {}
+
+// Result of a payload generation.
+type GenerateUnsignedPayloadResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	VersionedArtifacts []*GenerateUnsignedPayloadResponse_VersionedArtifact `protobuf:"bytes,1,rep,name=versioned_artifacts,json=versionedArtifacts,proto3" json:"versioned_artifacts,omitempty"`
+	FailureReason      GenerateUnsignedPayloadResponse_FailureReason        `protobuf:"varint,2,opt,name=failure_reason,json=failureReason,proto3,enum=chromite.api.GenerateUnsignedPayloadResponse_FailureReason" json:"failure_reason,omitempty"`
+}
+
+func (x *GenerateUnsignedPayloadResponse) Reset() {
+	*x = GenerateUnsignedPayloadResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_payload_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GenerateUnsignedPayloadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GenerateUnsignedPayloadResponse) ProtoMessage() {}
+
+func (x *GenerateUnsignedPayloadResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_payload_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GenerateUnsignedPayloadResponse.ProtoReflect.Descriptor instead.
+func (*GenerateUnsignedPayloadResponse) Descriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GenerateUnsignedPayloadResponse) GetVersionedArtifacts() []*GenerateUnsignedPayloadResponse_VersionedArtifact {
+	if x != nil {
+		return x.VersionedArtifacts
+	}
+	return nil
+}
+
+func (x *GenerateUnsignedPayloadResponse) GetFailureReason() GenerateUnsignedPayloadResponse_FailureReason {
+	if x != nil {
+		return x.FailureReason
+	}
+	return GenerateUnsignedPayloadResponse_UNSPECIFIED
+}
+
+// Request signing, validation, and uploading for an unsigned payload.
+type FinalizePayloadRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Path to the payload file.
+	PayloadFile *chromiumos.Path `protobuf:"bytes,1,opt,name=payload_file,json=payloadFile,proto3" json:"payload_file,omitempty"`
+	// Do not sign images or upload artifacts.
+	Dryrun bool `protobuf:"varint,2,opt,name=dryrun,proto3" json:"dryrun,omitempty"`
+	// Target directory where output artifacts should be stored.
+	ResultPath *chromiumos.ResultPath `protobuf:"bytes,3,opt,name=result_path,json=resultPath,proto3" json:"result_path,omitempty"`
+	// The keyset to sign with (e.g. "coral-mp-v16"), if empty do not sign,
+	// and may be ignored for certain request types (e.g. dlc).
+	Keyset string `protobuf:"bytes,4,opt,name=keyset,proto3" json:"keyset,omitempty"`
+	// If set, will use the local signing flow (currently a prototype).
+	UseLocalSigning bool `protobuf:"varint,5,opt,name=use_local_signing,json=useLocalSigning,proto3" json:"use_local_signing,omitempty"`
+	// Should we run verification?
+	Verify bool `protobuf:"varint,6,opt,name=verify,proto3" json:"verify,omitempty"`
+	// The destination bucket (defaults to "chromeos-releases").
+	Bucket string `protobuf:"bytes,7,opt,name=bucket,proto3" json:"bucket,omitempty"`
+}
+
+func (x *FinalizePayloadRequest) Reset() {
+	*x = FinalizePayloadRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_payload_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FinalizePayloadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FinalizePayloadRequest) ProtoMessage() {}
+
+func (x *FinalizePayloadRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_payload_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FinalizePayloadRequest.ProtoReflect.Descriptor instead.
+func (*FinalizePayloadRequest) Descriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *FinalizePayloadRequest) GetPayloadFile() *chromiumos.Path {
+	if x != nil {
+		return x.PayloadFile
+	}
+	return nil
+}
+
+func (x *FinalizePayloadRequest) GetDryrun() bool {
+	if x != nil {
+		return x.Dryrun
+	}
+	return false
+}
+
+func (x *FinalizePayloadRequest) GetResultPath() *chromiumos.ResultPath {
+	if x != nil {
+		return x.ResultPath
+	}
+	return nil
+}
+
+func (x *FinalizePayloadRequest) GetKeyset() string {
+	if x != nil {
+		return x.Keyset
+	}
+	return ""
+}
+
+func (x *FinalizePayloadRequest) GetUseLocalSigning() bool {
+	if x != nil {
+		return x.UseLocalSigning
+	}
+	return false
+}
+
+func (x *FinalizePayloadRequest) GetVerify() bool {
+	if x != nil {
+		return x.Verify
+	}
+	return false
+}
+
+func (x *FinalizePayloadRequest) GetBucket() string {
+	if x != nil {
+		return x.Bucket
+	}
+	return ""
+}
+
+// Response for a FinalizePayloadRequest
+// (which does signing, validation, uploading).
+type FinalizePayloadResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	VersionedArtifacts []*FinalizePayloadResponse_VersionedArtifact `protobuf:"bytes,1,rep,name=versioned_artifacts,json=versionedArtifacts,proto3" json:"versioned_artifacts,omitempty"`
+}
+
+func (x *FinalizePayloadResponse) Reset() {
+	*x = FinalizePayloadResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_payload_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FinalizePayloadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FinalizePayloadResponse) ProtoMessage() {}
+
+func (x *FinalizePayloadResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_payload_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FinalizePayloadResponse.ProtoReflect.Descriptor instead.
+func (*FinalizePayloadResponse) Descriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FinalizePayloadResponse) GetVersionedArtifacts() []*FinalizePayloadResponse_VersionedArtifact {
+	if x != nil {
+		return x.VersionedArtifacts
+	}
+	return nil
+}
+
 // Remote and local artifacts along with a version ID (if successful).
 type GenerationResponse_VersionedArtifact struct {
 	state         protoimpl.MessageState
@@ -728,7 +1194,7 @@ type GenerationResponse_VersionedArtifact struct {
 func (x *GenerationResponse_VersionedArtifact) Reset() {
 	*x = GenerationResponse_VersionedArtifact{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_payload_proto_msgTypes[6]
+		mi := &file_chromite_api_payload_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -741,7 +1207,7 @@ func (x *GenerationResponse_VersionedArtifact) String() string {
 func (*GenerationResponse_VersionedArtifact) ProtoMessage() {}
 
 func (x *GenerationResponse_VersionedArtifact) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_payload_proto_msgTypes[6]
+	mi := &file_chromite_api_payload_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -780,6 +1246,133 @@ func (x *GenerationResponse_VersionedArtifact) GetRemoteUri() string {
 }
 
 func (x *GenerationResponse_VersionedArtifact) GetFilePath() *chromiumos.Path {
+	if x != nil {
+		return x.FilePath
+	}
+	return nil
+}
+
+// Remote and local artifacts along with a version ID (if successful).
+type GenerateUnsignedPayloadResponse_VersionedArtifact struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Version of the payload (eg. 1).
+	Version uint32 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	// If successful we may have a local artifact available. Generally this
+	// takes the form of '/path/to/tmp/ioadwjoawjd/delta.bin'.
+	FilePath *chromiumos.Path `protobuf:"bytes,2,opt,name=file_path,json=filePath,proto3" json:"file_path,omitempty"`
+}
+
+func (x *GenerateUnsignedPayloadResponse_VersionedArtifact) Reset() {
+	*x = GenerateUnsignedPayloadResponse_VersionedArtifact{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_payload_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GenerateUnsignedPayloadResponse_VersionedArtifact) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GenerateUnsignedPayloadResponse_VersionedArtifact) ProtoMessage() {}
+
+func (x *GenerateUnsignedPayloadResponse_VersionedArtifact) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_payload_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GenerateUnsignedPayloadResponse_VersionedArtifact.ProtoReflect.Descriptor instead.
+func (*GenerateUnsignedPayloadResponse_VersionedArtifact) Descriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *GenerateUnsignedPayloadResponse_VersionedArtifact) GetVersion() uint32 {
+	if x != nil {
+		return x.Version
+	}
+	return 0
+}
+
+func (x *GenerateUnsignedPayloadResponse_VersionedArtifact) GetFilePath() *chromiumos.Path {
+	if x != nil {
+		return x.FilePath
+	}
+	return nil
+}
+
+// Remote and local artifacts along with a version ID (if successful).
+type FinalizePayloadResponse_VersionedArtifact struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Version of the payload (eg. 1).
+	Version uint32 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
+	// If successful we may have uploaded an artifact to google storage.
+	RemoteUri string `protobuf:"bytes,2,opt,name=remote_uri,json=remoteUri,proto3" json:"remote_uri,omitempty"`
+	// If successful we may have a local artifact available. Generally this
+	// takes the form of '/path/to/tmp/ioadwjoawjd/delta.bin'.
+	FilePath *chromiumos.Path `protobuf:"bytes,3,opt,name=file_path,json=filePath,proto3" json:"file_path,omitempty"`
+}
+
+func (x *FinalizePayloadResponse_VersionedArtifact) Reset() {
+	*x = FinalizePayloadResponse_VersionedArtifact{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_payload_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FinalizePayloadResponse_VersionedArtifact) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FinalizePayloadResponse_VersionedArtifact) ProtoMessage() {}
+
+func (x *FinalizePayloadResponse_VersionedArtifact) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_payload_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FinalizePayloadResponse_VersionedArtifact.ProtoReflect.Descriptor instead.
+func (*FinalizePayloadResponse_VersionedArtifact) Descriptor() ([]byte, []int) {
+	return file_chromite_api_payload_proto_rawDescGZIP(), []int{9, 0}
+}
+
+func (x *FinalizePayloadResponse_VersionedArtifact) GetVersion() uint32 {
+	if x != nil {
+		return x.Version
+	}
+	return 0
+}
+
+func (x *FinalizePayloadResponse_VersionedArtifact) GetRemoteUri() string {
+	if x != nil {
+		return x.RemoteUri
+	}
+	return ""
+}
+
+func (x *FinalizePayloadResponse_VersionedArtifact) GetFilePath() *chromiumos.Path {
 	if x != nil {
 		return x.FilePath
 	}
@@ -918,18 +1511,134 @@ var file_chromite_api_payload_proto_rawDesc = []byte{
 	0x41, 0x54, 0x49, 0x42, 0x4c, 0x45, 0x10, 0x01, 0x12, 0x19, 0x0a, 0x15, 0x4d, 0x49, 0x4e, 0x49,
 	0x4f, 0x53, 0x5f, 0x43, 0x4f, 0x55, 0x4e, 0x54, 0x5f, 0x4d, 0x49, 0x53, 0x4d, 0x41, 0x54, 0x43,
 	0x48, 0x10, 0x02, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65,
-	0x73, 0x73, 0x32, 0x77, 0x0a, 0x0e, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x54, 0x0a, 0x0f, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65,
-	0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x1f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
-	0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
-	0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x0f, 0xc2, 0xed, 0x1a, 0x0b,
-	0x0a, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x10, 0x01, 0x42, 0x38, 0x5a, 0x36, 0x67,
-	0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63,
-	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74,
-	0x65, 0x2f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x73, 0x22, 0x8a, 0x05, 0x0a, 0x1e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x55,
+	0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x0b, 0x66, 0x75, 0x6c, 0x6c, 0x5f, 0x75, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x0a, 0x66, 0x75,
+	0x6c, 0x6c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x12, 0x45, 0x0a, 0x10, 0x73, 0x72, 0x63, 0x5f,
+	0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70,
+	0x69, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x48, 0x00, 0x52,
+	0x0e, 0x73, 0x72, 0x63, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x12,
+	0x4b, 0x0a, 0x12, 0x73, 0x72, 0x63, 0x5f, 0x75, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x5f,
+	0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x55, 0x6e, 0x73, 0x69, 0x67,
+	0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x48, 0x00, 0x52, 0x10, 0x73, 0x72, 0x63, 0x55,
+	0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x3c, 0x0a, 0x0d,
+	0x73, 0x72, 0x63, 0x5f, 0x64, 0x6c, 0x63, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61,
+	0x70, 0x69, 0x2e, 0x44, 0x4c, 0x43, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x48, 0x00, 0x52, 0x0b, 0x73,
+	0x72, 0x63, 0x44, 0x6c, 0x63, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x45, 0x0a, 0x10, 0x74, 0x67,
+	0x74, 0x5f, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x48,
+	0x01, 0x52, 0x0e, 0x74, 0x67, 0x74, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x12, 0x4b, 0x0a, 0x12, 0x74, 0x67, 0x74, 0x5f, 0x75, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65,
+	0x64, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e,
+	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x55, 0x6e, 0x73,
+	0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x48, 0x01, 0x52, 0x10, 0x74, 0x67,
+	0x74, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x3c,
+	0x0a, 0x0d, 0x74, 0x67, 0x74, 0x5f, 0x64, 0x6c, 0x63, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65,
+	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x44, 0x4c, 0x43, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x48, 0x01, 0x52,
+	0x0b, 0x74, 0x67, 0x74, 0x44, 0x6c, 0x63, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x2a, 0x0a, 0x06,
+	0x63, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x63,
+	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x43, 0x68, 0x72, 0x6f, 0x6f, 0x74,
+	0x52, 0x06, 0x63, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x69, 0x6e, 0x69,
+	0x6f, 0x73, 0x18, 0x09, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x6d, 0x69, 0x6e, 0x69, 0x6f, 0x73,
+	0x12, 0x37, 0x0a, 0x0b, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18,
+	0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
+	0x6f, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x61, 0x74, 0x68, 0x52, 0x0a, 0x72,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x61, 0x74, 0x68, 0x42, 0x11, 0x0a, 0x0f, 0x73, 0x72, 0x63,
+	0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x42, 0x11, 0x0a, 0x0f,
+	0x74, 0x67, 0x74, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x22,
+	0xad, 0x03, 0x0a, 0x1f, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x55, 0x6e, 0x73, 0x69,
+	0x67, 0x6e, 0x65, 0x64, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x70, 0x0a, 0x13, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64,
+	0x5f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x3f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64,
+	0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
+	0x74, 0x52, 0x12, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69,
+	0x66, 0x61, 0x63, 0x74, 0x73, 0x12, 0x62, 0x0a, 0x0e, 0x66, 0x61, 0x69, 0x6c, 0x75, 0x72, 0x65,
+	0x5f, 0x72, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x3b, 0x2e,
+	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x6e,
+	0x65, 0x72, 0x61, 0x74, 0x65, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x50, 0x61, 0x79,
+	0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x46, 0x61, 0x69,
+	0x6c, 0x75, 0x72, 0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x52, 0x0d, 0x66, 0x61, 0x69, 0x6c,
+	0x75, 0x72, 0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x1a, 0x5c, 0x0a, 0x11, 0x56, 0x65, 0x72,
+	0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x12, 0x18,
+	0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52,
+	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x2d, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65,
+	0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x50, 0x61, 0x74, 0x68, 0x52, 0x08, 0x66,
+	0x69, 0x6c, 0x65, 0x50, 0x61, 0x74, 0x68, 0x22, 0x56, 0x0a, 0x0d, 0x46, 0x61, 0x69, 0x6c, 0x75,
+	0x72, 0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x12, 0x0f, 0x0a, 0x0b, 0x55, 0x4e, 0x53, 0x50,
+	0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x19, 0x0a, 0x15, 0x4e, 0x4f, 0x54,
+	0x5f, 0x4d, 0x49, 0x4e, 0x49, 0x4f, 0x53, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x41, 0x54, 0x49, 0x42,
+	0x4c, 0x45, 0x10, 0x01, 0x12, 0x19, 0x0a, 0x15, 0x4d, 0x49, 0x4e, 0x49, 0x4f, 0x53, 0x5f, 0x43,
+	0x4f, 0x55, 0x4e, 0x54, 0x5f, 0x4d, 0x49, 0x53, 0x4d, 0x41, 0x54, 0x43, 0x48, 0x10, 0x02, 0x22,
+	0x92, 0x02, 0x0a, 0x16, 0x46, 0x69, 0x6e, 0x61, 0x6c, 0x69, 0x7a, 0x65, 0x50, 0x61, 0x79, 0x6c,
+	0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x0c, 0x70, 0x61,
+	0x79, 0x6c, 0x6f, 0x61, 0x64, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x10, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x50, 0x61,
+	0x74, 0x68, 0x52, 0x0b, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x69, 0x6c, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x64, 0x72, 0x79, 0x72, 0x75, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x06, 0x64, 0x72, 0x79, 0x72, 0x75, 0x6e, 0x12, 0x37, 0x0a, 0x0b, 0x72, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63,
+	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x50, 0x61, 0x74, 0x68, 0x52, 0x0a, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x61, 0x74, 0x68,
+	0x12, 0x16, 0x0a, 0x06, 0x6b, 0x65, 0x79, 0x73, 0x65, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x6b, 0x65, 0x79, 0x73, 0x65, 0x74, 0x12, 0x2a, 0x0a, 0x11, 0x75, 0x73, 0x65, 0x5f,
+	0x6c, 0x6f, 0x63, 0x61, 0x6c, 0x5f, 0x73, 0x69, 0x67, 0x6e, 0x69, 0x6e, 0x67, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x0f, 0x75, 0x73, 0x65, 0x4c, 0x6f, 0x63, 0x61, 0x6c, 0x53, 0x69, 0x67,
+	0x6e, 0x69, 0x6e, 0x67, 0x12, 0x16, 0x0a, 0x06, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x18, 0x06,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x12, 0x16, 0x0a, 0x06,
+	0x62, 0x75, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x62, 0x75,
+	0x63, 0x6b, 0x65, 0x74, 0x22, 0x80, 0x02, 0x0a, 0x17, 0x46, 0x69, 0x6e, 0x61, 0x6c, 0x69, 0x7a,
+	0x65, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x68, 0x0a, 0x13, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64, 0x5f, 0x61, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x37, 0x2e,
+	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x6e,
+	0x61, 0x6c, 0x69, 0x7a, 0x65, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64, 0x41, 0x72,
+	0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x52, 0x12, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65,
+	0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x1a, 0x7b, 0x0a, 0x11, 0x56, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x65, 0x64, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x12,
+	0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d,
+	0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x72, 0x65, 0x6d,
+	0x6f, 0x74, 0x65, 0x5f, 0x75, 0x72, 0x69, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x72,
+	0x65, 0x6d, 0x6f, 0x74, 0x65, 0x55, 0x72, 0x69, 0x12, 0x2d, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65,
+	0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x50, 0x61, 0x74, 0x68, 0x52, 0x08, 0x66,
+	0x69, 0x6c, 0x65, 0x50, 0x61, 0x74, 0x68, 0x32, 0xd9, 0x02, 0x0a, 0x0e, 0x50, 0x61, 0x79, 0x6c,
+	0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x54, 0x0a, 0x0f, 0x47, 0x65,
+	0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x1f, 0x2e,
+	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x6e,
+	0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20,
+	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65,
+	0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x76, 0x0a, 0x17, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x55, 0x6e, 0x73, 0x69,
+	0x67, 0x6e, 0x65, 0x64, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x2c, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72,
+	0x61, 0x74, 0x65, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x50, 0x61, 0x79, 0x6c, 0x6f,
+	0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x63, 0x68, 0x72, 0x6f,
+	0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74,
+	0x65, 0x55, 0x6e, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x0f, 0x46, 0x69, 0x6e, 0x61,
+	0x6c, 0x69, 0x7a, 0x65, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x24, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6c,
+	0x69, 0x7a, 0x65, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x25, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69,
+	0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6c, 0x69, 0x7a, 0x65, 0x50, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x08, 0xc2, 0xed, 0x1a, 0x04, 0x10, 0x02,
+	0x20, 0x02, 0x1a, 0x0f, 0xc2, 0xed, 0x1a, 0x0b, 0x0a, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61,
+	0x64, 0x10, 0x01, 0x42, 0x38, 0x5a, 0x36, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
+	0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f,
+	0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f,
+	0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -944,49 +1653,75 @@ func file_chromite_api_payload_proto_rawDescGZIP() []byte {
 	return file_chromite_api_payload_proto_rawDescData
 }
 
-var file_chromite_api_payload_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_chromite_api_payload_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_chromite_api_payload_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_chromite_api_payload_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_chromite_api_payload_proto_goTypes = []interface{}{
-	(GenerationResponse_FailureReason)(0),        // 0: chromite.api.GenerationResponse.FailureReason
-	(*Build)(nil),                                // 1: chromite.api.Build
-	(*DLCImage)(nil),                             // 2: chromite.api.DLCImage
-	(*SignedImage)(nil),                          // 3: chromite.api.SignedImage
-	(*UnsignedImage)(nil),                        // 4: chromite.api.UnsignedImage
-	(*GenerationRequest)(nil),                    // 5: chromite.api.GenerationRequest
-	(*GenerationResponse)(nil),                   // 6: chromite.api.GenerationResponse
-	(*GenerationResponse_VersionedArtifact)(nil), // 7: chromite.api.GenerationResponse.VersionedArtifact
-	(*chromiumos.BuildTarget)(nil),               // 8: chromiumos.BuildTarget
-	(chromiumos.ImageType)(0),                    // 9: chromiumos.ImageType
-	(*chromiumos.Chroot)(nil),                    // 10: chromiumos.Chroot
-	(*chromiumos.ResultPath)(nil),                // 11: chromiumos.ResultPath
-	(*chromiumos.Path)(nil),                      // 12: chromiumos.Path
+	(GenerationResponse_FailureReason)(0),              // 0: chromite.api.GenerationResponse.FailureReason
+	(GenerateUnsignedPayloadResponse_FailureReason)(0), // 1: chromite.api.GenerateUnsignedPayloadResponse.FailureReason
+	(*Build)(nil),                                             // 2: chromite.api.Build
+	(*DLCImage)(nil),                                          // 3: chromite.api.DLCImage
+	(*SignedImage)(nil),                                       // 4: chromite.api.SignedImage
+	(*UnsignedImage)(nil),                                     // 5: chromite.api.UnsignedImage
+	(*GenerationRequest)(nil),                                 // 6: chromite.api.GenerationRequest
+	(*GenerationResponse)(nil),                                // 7: chromite.api.GenerationResponse
+	(*GenerateUnsignedPayloadRequest)(nil),                    // 8: chromite.api.GenerateUnsignedPayloadRequest
+	(*GenerateUnsignedPayloadResponse)(nil),                   // 9: chromite.api.GenerateUnsignedPayloadResponse
+	(*FinalizePayloadRequest)(nil),                            // 10: chromite.api.FinalizePayloadRequest
+	(*FinalizePayloadResponse)(nil),                           // 11: chromite.api.FinalizePayloadResponse
+	(*GenerationResponse_VersionedArtifact)(nil),              // 12: chromite.api.GenerationResponse.VersionedArtifact
+	(*GenerateUnsignedPayloadResponse_VersionedArtifact)(nil), // 13: chromite.api.GenerateUnsignedPayloadResponse.VersionedArtifact
+	(*FinalizePayloadResponse_VersionedArtifact)(nil),         // 14: chromite.api.FinalizePayloadResponse.VersionedArtifact
+	(*chromiumos.BuildTarget)(nil),                            // 15: chromiumos.BuildTarget
+	(chromiumos.ImageType)(0),                                 // 16: chromiumos.ImageType
+	(*chromiumos.Chroot)(nil),                                 // 17: chromiumos.Chroot
+	(*chromiumos.ResultPath)(nil),                             // 18: chromiumos.ResultPath
+	(*chromiumos.Path)(nil),                                   // 19: chromiumos.Path
 }
 var file_chromite_api_payload_proto_depIdxs = []int32{
-	8,  // 0: chromite.api.Build.build_target:type_name -> chromiumos.BuildTarget
-	1,  // 1: chromite.api.DLCImage.build:type_name -> chromite.api.Build
-	9,  // 2: chromite.api.DLCImage.image_type:type_name -> chromiumos.ImageType
-	1,  // 3: chromite.api.SignedImage.build:type_name -> chromite.api.Build
-	9,  // 4: chromite.api.SignedImage.image_type:type_name -> chromiumos.ImageType
-	1,  // 5: chromite.api.UnsignedImage.build:type_name -> chromite.api.Build
-	9,  // 6: chromite.api.UnsignedImage.image_type:type_name -> chromiumos.ImageType
-	3,  // 7: chromite.api.GenerationRequest.src_signed_image:type_name -> chromite.api.SignedImage
-	4,  // 8: chromite.api.GenerationRequest.src_unsigned_image:type_name -> chromite.api.UnsignedImage
-	2,  // 9: chromite.api.GenerationRequest.src_dlc_image:type_name -> chromite.api.DLCImage
-	3,  // 10: chromite.api.GenerationRequest.tgt_signed_image:type_name -> chromite.api.SignedImage
-	4,  // 11: chromite.api.GenerationRequest.tgt_unsigned_image:type_name -> chromite.api.UnsignedImage
-	2,  // 12: chromite.api.GenerationRequest.tgt_dlc_image:type_name -> chromite.api.DLCImage
-	10, // 13: chromite.api.GenerationRequest.chroot:type_name -> chromiumos.Chroot
-	11, // 14: chromite.api.GenerationRequest.result_path:type_name -> chromiumos.ResultPath
-	7,  // 15: chromite.api.GenerationResponse.versioned_artifacts:type_name -> chromite.api.GenerationResponse.VersionedArtifact
+	15, // 0: chromite.api.Build.build_target:type_name -> chromiumos.BuildTarget
+	2,  // 1: chromite.api.DLCImage.build:type_name -> chromite.api.Build
+	16, // 2: chromite.api.DLCImage.image_type:type_name -> chromiumos.ImageType
+	2,  // 3: chromite.api.SignedImage.build:type_name -> chromite.api.Build
+	16, // 4: chromite.api.SignedImage.image_type:type_name -> chromiumos.ImageType
+	2,  // 5: chromite.api.UnsignedImage.build:type_name -> chromite.api.Build
+	16, // 6: chromite.api.UnsignedImage.image_type:type_name -> chromiumos.ImageType
+	4,  // 7: chromite.api.GenerationRequest.src_signed_image:type_name -> chromite.api.SignedImage
+	5,  // 8: chromite.api.GenerationRequest.src_unsigned_image:type_name -> chromite.api.UnsignedImage
+	3,  // 9: chromite.api.GenerationRequest.src_dlc_image:type_name -> chromite.api.DLCImage
+	4,  // 10: chromite.api.GenerationRequest.tgt_signed_image:type_name -> chromite.api.SignedImage
+	5,  // 11: chromite.api.GenerationRequest.tgt_unsigned_image:type_name -> chromite.api.UnsignedImage
+	3,  // 12: chromite.api.GenerationRequest.tgt_dlc_image:type_name -> chromite.api.DLCImage
+	17, // 13: chromite.api.GenerationRequest.chroot:type_name -> chromiumos.Chroot
+	18, // 14: chromite.api.GenerationRequest.result_path:type_name -> chromiumos.ResultPath
+	12, // 15: chromite.api.GenerationResponse.versioned_artifacts:type_name -> chromite.api.GenerationResponse.VersionedArtifact
 	0,  // 16: chromite.api.GenerationResponse.failure_reason:type_name -> chromite.api.GenerationResponse.FailureReason
-	12, // 17: chromite.api.GenerationResponse.VersionedArtifact.file_path:type_name -> chromiumos.Path
-	5,  // 18: chromite.api.PayloadService.GeneratePayload:input_type -> chromite.api.GenerationRequest
-	6,  // 19: chromite.api.PayloadService.GeneratePayload:output_type -> chromite.api.GenerationResponse
-	19, // [19:20] is the sub-list for method output_type
-	18, // [18:19] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	4,  // 17: chromite.api.GenerateUnsignedPayloadRequest.src_signed_image:type_name -> chromite.api.SignedImage
+	5,  // 18: chromite.api.GenerateUnsignedPayloadRequest.src_unsigned_image:type_name -> chromite.api.UnsignedImage
+	3,  // 19: chromite.api.GenerateUnsignedPayloadRequest.src_dlc_image:type_name -> chromite.api.DLCImage
+	4,  // 20: chromite.api.GenerateUnsignedPayloadRequest.tgt_signed_image:type_name -> chromite.api.SignedImage
+	5,  // 21: chromite.api.GenerateUnsignedPayloadRequest.tgt_unsigned_image:type_name -> chromite.api.UnsignedImage
+	3,  // 22: chromite.api.GenerateUnsignedPayloadRequest.tgt_dlc_image:type_name -> chromite.api.DLCImage
+	17, // 23: chromite.api.GenerateUnsignedPayloadRequest.chroot:type_name -> chromiumos.Chroot
+	18, // 24: chromite.api.GenerateUnsignedPayloadRequest.result_path:type_name -> chromiumos.ResultPath
+	13, // 25: chromite.api.GenerateUnsignedPayloadResponse.versioned_artifacts:type_name -> chromite.api.GenerateUnsignedPayloadResponse.VersionedArtifact
+	1,  // 26: chromite.api.GenerateUnsignedPayloadResponse.failure_reason:type_name -> chromite.api.GenerateUnsignedPayloadResponse.FailureReason
+	19, // 27: chromite.api.FinalizePayloadRequest.payload_file:type_name -> chromiumos.Path
+	18, // 28: chromite.api.FinalizePayloadRequest.result_path:type_name -> chromiumos.ResultPath
+	14, // 29: chromite.api.FinalizePayloadResponse.versioned_artifacts:type_name -> chromite.api.FinalizePayloadResponse.VersionedArtifact
+	19, // 30: chromite.api.GenerationResponse.VersionedArtifact.file_path:type_name -> chromiumos.Path
+	19, // 31: chromite.api.GenerateUnsignedPayloadResponse.VersionedArtifact.file_path:type_name -> chromiumos.Path
+	19, // 32: chromite.api.FinalizePayloadResponse.VersionedArtifact.file_path:type_name -> chromiumos.Path
+	6,  // 33: chromite.api.PayloadService.GeneratePayload:input_type -> chromite.api.GenerationRequest
+	8,  // 34: chromite.api.PayloadService.GenerateUnsignedPayload:input_type -> chromite.api.GenerateUnsignedPayloadRequest
+	10, // 35: chromite.api.PayloadService.FinalizePayload:input_type -> chromite.api.FinalizePayloadRequest
+	7,  // 36: chromite.api.PayloadService.GeneratePayload:output_type -> chromite.api.GenerationResponse
+	9,  // 37: chromite.api.PayloadService.GenerateUnsignedPayload:output_type -> chromite.api.GenerateUnsignedPayloadResponse
+	11, // 38: chromite.api.PayloadService.FinalizePayload:output_type -> chromite.api.FinalizePayloadResponse
+	36, // [36:39] is the sub-list for method output_type
+	33, // [33:36] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_payload_proto_init() }
@@ -1069,7 +1804,79 @@ func file_chromite_api_payload_proto_init() {
 			}
 		}
 		file_chromite_api_payload_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GenerateUnsignedPayloadRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_payload_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GenerateUnsignedPayloadResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_payload_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FinalizePayloadRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_payload_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FinalizePayloadResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_payload_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerationResponse_VersionedArtifact); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_payload_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GenerateUnsignedPayloadResponse_VersionedArtifact); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_payload_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FinalizePayloadResponse_VersionedArtifact); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1090,13 +1897,22 @@ func file_chromite_api_payload_proto_init() {
 		(*GenerationRequest_TgtUnsignedImage)(nil),
 		(*GenerationRequest_TgtDlcImage)(nil),
 	}
+	file_chromite_api_payload_proto_msgTypes[6].OneofWrappers = []interface{}{
+		(*GenerateUnsignedPayloadRequest_FullUpdate)(nil),
+		(*GenerateUnsignedPayloadRequest_SrcSignedImage)(nil),
+		(*GenerateUnsignedPayloadRequest_SrcUnsignedImage)(nil),
+		(*GenerateUnsignedPayloadRequest_SrcDlcImage)(nil),
+		(*GenerateUnsignedPayloadRequest_TgtSignedImage)(nil),
+		(*GenerateUnsignedPayloadRequest_TgtUnsignedImage)(nil),
+		(*GenerateUnsignedPayloadRequest_TgtDlcImage)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromite_api_payload_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   7,
+			NumEnums:      2,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
