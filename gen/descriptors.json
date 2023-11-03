@@ -34813,6 +34813,40 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "firmwareEcRoBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_ro_build_spec",
+              "number": 19,
+              "oneofIndex": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
+            },
+            {
+              "jsonName": "firmwareEcRoVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_ro_version",
+              "number": 20,
+              "oneofIndex": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firmwareEcRwBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_rw_build_spec",
+              "number": 21,
+              "oneofIndex": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
+            },
+            {
+              "jsonName": "firmwareEcRwVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_rw_version",
+              "number": 22,
+              "oneofIndex": 3,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "firmwareBoardName",
               "label": "LABEL_OPTIONAL",
               "name": "firmware_board_name",
@@ -35231,6 +35265,12 @@
             },
             {
               "name": "firmware_rw"
+            },
+            {
+              "name": "firmware_ec_ro"
+            },
+            {
+              "name": "firmware_ec_rw"
             }
           ]
         },
