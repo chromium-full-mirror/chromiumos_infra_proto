@@ -2,8 +2,6 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-# Do not inherit parents from top-level OWNERS
-set noparent
-
 # ChromeOS Test Scheduling team
-include chromiumos/owners:v1:/infra/OWNERS.tse
+per-file suite_scheduler.proto=set noparent
+per-file suite_scheduler.proto=file:/OWNERS.tse
