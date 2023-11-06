@@ -9,6 +9,7 @@ package testplans;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/testplans";
 
 import "google/protobuf/wrappers.proto";
+import "chromiumos/test/api/provision_state.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "test_platform/common/cft_steps_config.proto";
 
@@ -29,6 +30,18 @@ message TestSuiteCommon {
   // Whether this suite should be disabled by default. It will only be enabled
   // if some other rule forces it to be put into the test plan.
   bool disable_by_default = 4;
+}
+
+// Specs for a companion DUT in multi-dut tests.
+message TestCompanion {
+  // Board means Cros board or an Android phone family (e.g. pixel7, which
+  // includes pixel7a, pixel7 and pixel7pro models) following the same naming
+  // convention as in suite scheduler: http://shortn/_Xphologdnc
+  // The initial implementation of multi-dut in CQ only support board-level.
+  // Future improvements may add model and other specs.
+  string board = 1;
+  // Provision config for the companion.
+  chromiumos.test.api.CompanionConfig config = 2;
 }
 
 message TastTestShard {
@@ -100,6 +113,9 @@ message HwTestCfg {
     test_platform.common.CftStepsConfig trv2_steps_config = 21;
 
     reserved 2 to 10;
+
+    // Optional companion DUTs for multi-dut tests.
+    repeated TestCompanion companions = 23;
   }
 
   repeated HwTest hw_test = 1;

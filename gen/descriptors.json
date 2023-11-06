@@ -33483,6 +33483,7 @@
       },
       "dependency": [
         "google/protobuf/wrappers.proto",
+        "chromiumos/test/api/provision_state.proto",
         "chromiumos/test/api/test_suite.proto",
         "test_platform/common/cft_steps_config.proto",
         "lab/license.proto"
@@ -33536,6 +33537,26 @@
               "name": "TestSuiteGroup"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CompanionConfig"
+            }
+          ],
+          "name": "TestCompanion"
         },
         {
           "field": [
@@ -33685,6 +33706,14 @@
                   "number": 21,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.common.CftStepsConfig"
+                },
+                {
+                  "jsonName": "companions",
+                  "label": "LABEL_REPEATED",
+                  "name": "companions",
+                  "number": 23,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.TestCompanion"
                 }
               ],
               "name": "HwTest",
