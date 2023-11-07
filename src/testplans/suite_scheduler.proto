@@ -258,6 +258,10 @@ message SchedulerConfig {
 
     // If set, suite will be executed through ctpv2.
     bool run_via_ctpv2 = 10;
+
+    // GCS Bucket to fetch CrOS images from. If not provided, will be
+    // "chromeos-image-archive"
+    string cros_image_bucket = 11;
   }
   RunOptions run_options = 9;
 

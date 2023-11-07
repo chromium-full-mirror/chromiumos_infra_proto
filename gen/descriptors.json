@@ -35207,6 +35207,13 @@
                   "name": "run_via_ctpv2",
                   "number": 10,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "crosImageBucket",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "cros_image_bucket",
+                  "number": 11,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "RunOptions",
