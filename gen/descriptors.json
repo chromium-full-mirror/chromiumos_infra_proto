@@ -33438,6 +33438,213 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/timestamp.proto"
+      ],
+      "enumType": [
+        {
+          "name": "DecisionType",
+          "value": [
+            {
+              "name": "UNKNOWN",
+              "number": 0
+            },
+            {
+              "name": "SCHEDULED",
+              "number": 1
+            },
+            {
+              "name": "BUILD_NOT_FOUND",
+              "number": 3
+            },
+            {
+              "name": "NO_PASSING_BUILD",
+              "number": 4
+            }
+          ]
+        }
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UID"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "type",
+              "label": "LABEL_OPTIONAL",
+              "name": "type",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.suite_scheduler.v15.DecisionType"
+            },
+            {
+              "jsonName": "scheduled",
+              "label": "LABEL_OPTIONAL",
+              "name": "scheduled",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "failedReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failed_reason",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SchedulingDecision"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "runUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_uid",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            },
+            {
+              "jsonName": "eventUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "event_uid",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            },
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suiteName",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite_name",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "eventTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "event_time",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "decision",
+              "label": "LABEL_OPTIONAL",
+              "name": "decision",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.SchedulingDecision"
+            },
+            {
+              "jsonName": "bbid",
+              "label": "LABEL_REPEATED",
+              "name": "bbid",
+              "number": 7,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "SchedulingEvent"
+        }
+      ],
+      "name": "test_platform/suite_scheduler/v15/events.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/suite_scheduler/v15"
+      },
+      "package": "test_platform.suite_scheduler.v15",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "google/protobuf/timestamp.proto",
+        "test_platform/suite_scheduler/v15/events.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "runUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_uid",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "endTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "end_time",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "configNames",
+              "label": "LABEL_REPEATED",
+              "name": "config_names",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "scheduledSuites",
+              "label": "LABEL_REPEATED",
+              "name": "scheduled_suites",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            },
+            {
+              "jsonName": "rejectedSuites",
+              "label": "LABEL_REPEATED",
+              "name": "rejected_suites",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            }
+          ],
+          "name": "SchedulingMetric"
+        }
+      ],
+      "name": "test_platform/suite_scheduler/v15/metrics.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/suite_scheduler/v15"
+      },
+      "package": "test_platform.suite_scheduler.v15",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromiumos/common.proto",
         "chromiumos/test/api/v1/plan.proto"
       ],

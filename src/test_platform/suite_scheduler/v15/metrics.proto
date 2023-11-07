@@ -1,0 +1,32 @@
+// Copyright 2023 The Chromium Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Define a schema for debugging events in  SuiteScheduler V1.5.
+
+syntax = "proto3";
+
+package test_platform.suite_scheduler.v15;
+
+import "google/protobuf/timestamp.proto";
+import "test_platform/suite_scheduler/v15/events.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/suite_scheduler/v15";
+
+message SchedulingMetric {
+  // run_uid represents the unique identifier of the SuiteScheduler run.
+  test_platform.suite_scheduler.v15.UID run_uid = 1;
+
+  // Timestamps used to deduce the runtime of application invocations.
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+
+  // config_names contains the list of suites acted upon in this invocation of
+  // the application.
+  repeated string config_names = 4;
+
+  // The following two fields will be filled with the event UIDs of the
+  // respective scheduling decision event.
+  repeated test_platform.suite_scheduler.v15.UID scheduled_suites = 5;
+  repeated test_platform.suite_scheduler.v15.UID rejected_suites = 6;
+}
