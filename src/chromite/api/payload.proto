@@ -88,10 +88,6 @@ message GenerationRequest {
     DLCImage tgt_dlc_image = 11;
   }
 
-  // TODO(engeg@): We could override the output build artifacts location via
-  //               specifying an additional parameter build and supplying it to
-  //               paygen_payload_lib.py but have chosen not to implement yet.
-
   // The destination bucket (defaults to "chromeos-releases").
   string bucket = 6;
 
@@ -198,17 +194,29 @@ message GenerateUnsignedPayloadRequest {
   chromiumos.ResultPath result_path = 10;
 }
 
+// Information about an unsigned payload.
+message UnsignedPayload {
+  // Version of the payload (eg. 1).
+  uint32 version = 1;
+  // Path of the payload file, e.g. '/path/to/tmp/ioadwjoawjd/delta.bin'.
+  chromiumos.Path payload_file_path = 2;
+  // Path of the description file, e.g. '/path/to/tmp/ioadwjoawjd/delta.json'.
+  chromiumos.Path description_file_path = 3;
+  // Names of the partitions.
+  repeated string partition_names = 4;
+  // Names of the source partition files.
+  repeated string src_partitions = 5;
+  // Names of the target partition files.
+  repeated string tgt_partitions = 6;
+}
+
 // Result of a payload generation.
 message GenerateUnsignedPayloadResponse {
-  // Remote and local artifacts along with a version ID (if successful).
-  message VersionedArtifact {
-    // Version of the payload (eg. 1).
-    uint32 version = 1;
-    // If successful we may have a local artifact available. Generally this
-    // takes the form of '/path/to/tmp/ioadwjoawjd/delta.bin'.
-    chromiumos.Path file_path = 2;
-  }
-  repeated VersionedArtifact versioned_artifacts = 1;
+  reserved 1;
+
+  // Unsigned payloads.
+  // Only multiple in the case of a minios payload.
+  repeated UnsignedPayload unsigned_payloads = 3;
 
   // If no payload was generated, we may be able to report the reason why.
   enum FailureReason {
@@ -223,8 +231,11 @@ message GenerateUnsignedPayloadResponse {
 
 // Request signing, validation, and uploading for an unsigned payload.
 message FinalizePayloadRequest {
-  // Path to the payload file.
-  chromiumos.Path payload_file = 1;
+  reserved 1;
+
+  // Individual payloads to finalize.
+  // Only multiple in the case of a minios payload.
+  repeated UnsignedPayload payloads = 8;
 
   // Do not sign images or upload artifacts.
   bool dryrun = 2;
@@ -242,15 +253,11 @@ message FinalizePayloadRequest {
   // Should we run verification?
   bool verify = 6;
 
-  // TODO(engeg@): We could override the output build artifacts location via
-  //               specifying an additional parameter build and supplying it to
-  //               paygen_payload_lib.py but have chosen not to implement yet.
-
   // The destination bucket (defaults to "chromeos-releases").
   string bucket = 7;
 }
 
-// Response for a FinalizePayloadRequest
+// Response for a FinalizePayloadsRequest
 // (which does signing, validation, uploading).
 message FinalizePayloadResponse {
   // Remote and local artifacts along with a version ID (if successful).

@@ -12798,6 +12798,55 @@
           ]
         },
         {
+          "field": [
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "payloadFilePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "payload_file_path",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "descriptionFilePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "description_file_path",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "partitionNames",
+              "label": "LABEL_REPEATED",
+              "name": "partition_names",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "srcPartitions",
+              "label": "LABEL_REPEATED",
+              "name": "src_partitions",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tgtPartitions",
+              "label": "LABEL_REPEATED",
+              "name": "tgt_partitions",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UnsignedPayload"
+        },
+        {
           "enumType": [
             {
               "name": "FailureReason",
@@ -12819,12 +12868,12 @@
           ],
           "field": [
             {
-              "jsonName": "versionedArtifacts",
+              "jsonName": "unsignedPayloads",
               "label": "LABEL_REPEATED",
-              "name": "versioned_artifacts",
-              "number": 1,
+              "name": "unsigned_payloads",
+              "number": 3,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.GenerateUnsignedPayloadResponse.VersionedArtifact"
+              "typeName": ".chromite.api.UnsignedPayload"
             },
             {
               "jsonName": "failureReason",
@@ -12836,38 +12885,22 @@
             }
           ],
           "name": "GenerateUnsignedPayloadResponse",
-          "nestedType": [
+          "reservedRange": [
             {
-              "field": [
-                {
-                  "jsonName": "version",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "version",
-                  "number": 1,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "filePath",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "file_path",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.Path"
-                }
-              ],
-              "name": "VersionedArtifact"
+              "end": 2,
+              "start": 1
             }
           ]
         },
         {
           "field": [
             {
-              "jsonName": "payloadFile",
-              "label": "LABEL_OPTIONAL",
-              "name": "payload_file",
-              "number": 1,
+              "jsonName": "payloads",
+              "label": "LABEL_REPEATED",
+              "name": "payloads",
+              "number": 8,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Path"
+              "typeName": ".chromite.api.UnsignedPayload"
             },
             {
               "jsonName": "dryrun",
@@ -12913,7 +12946,13 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "FinalizePayloadRequest"
+          "name": "FinalizePayloadRequest",
+          "reservedRange": [
+            {
+              "end": 2,
+              "start": 1
+            }
+          ]
         },
         {
           "field": [
