@@ -12815,14 +12815,6 @@
               "typeName": ".chromiumos.Path"
             },
             {
-              "jsonName": "descriptionFilePath",
-              "label": "LABEL_OPTIONAL",
-              "name": "description_file_path",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Path"
-            },
-            {
               "jsonName": "partitionNames",
               "label": "LABEL_REPEATED",
               "name": "partition_names",
@@ -12834,17 +12826,25 @@
               "label": "LABEL_REPEATED",
               "name": "src_partitions",
               "number": 5,
-              "type": "TYPE_STRING"
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             },
             {
               "jsonName": "tgtPartitions",
               "label": "LABEL_REPEATED",
               "name": "tgt_partitions",
               "number": 6,
-              "type": "TYPE_STRING"
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             }
           ],
-          "name": "UnsignedPayload"
+          "name": "UnsignedPayload",
+          "reservedRange": [
+            {
+              "end": 4,
+              "start": 3
+            }
+          ]
         },
         {
           "enumType": [

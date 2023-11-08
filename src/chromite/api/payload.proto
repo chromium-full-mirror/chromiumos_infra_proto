@@ -200,14 +200,15 @@ message UnsignedPayload {
   uint32 version = 1;
   // Path of the payload file, e.g. '/path/to/tmp/ioadwjoawjd/delta.bin'.
   chromiumos.Path payload_file_path = 2;
-  // Path of the description file, e.g. '/path/to/tmp/ioadwjoawjd/delta.json'.
-  chromiumos.Path description_file_path = 3;
+
+  reserved 3;
+
   // Names of the partitions.
   repeated string partition_names = 4;
-  // Names of the source partition files.
-  repeated string src_partitions = 5;
-  // Names of the target partition files.
-  repeated string tgt_partitions = 6;
+  // Paths of the source partition files.
+  repeated chromiumos.Path src_partitions = 5;
+  // Paths of the target partition files.
+  repeated chromiumos.Path tgt_partitions = 6;
 }
 
 // Result of a payload generation.
