@@ -12815,6 +12815,13 @@
               "typeName": ".chromiumos.Path"
             },
             {
+              "jsonName": "randSuffix",
+              "label": "LABEL_OPTIONAL",
+              "name": "rand_suffix",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "partitionNames",
               "label": "LABEL_REPEATED",
               "name": "partition_names",
@@ -12895,6 +12902,75 @@
         {
           "field": [
             {
+              "jsonName": "fullUpdate",
+              "label": "LABEL_OPTIONAL",
+              "name": "full_update",
+              "number": 10,
+              "oneofIndex": 0,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "srcSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_signed_image",
+              "number": 11,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SignedImage"
+            },
+            {
+              "jsonName": "srcUnsignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_unsigned_image",
+              "number": 12,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UnsignedImage"
+            },
+            {
+              "jsonName": "srcDlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "src_dlc_image",
+              "number": 13,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DLCImage"
+            },
+            {
+              "jsonName": "tgtSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_signed_image",
+              "number": 14,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SignedImage"
+            },
+            {
+              "jsonName": "tgtUnsignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_unsigned_image",
+              "number": 15,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UnsignedImage"
+            },
+            {
+              "jsonName": "tgtDlcImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "tgt_dlc_image",
+              "number": 16,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.DLCImage"
+            },
+            {
+              "jsonName": "minios",
+              "label": "LABEL_OPTIONAL",
+              "name": "minios",
+              "number": 9,
+              "type": "TYPE_BOOL"
+            },
+            {
               "jsonName": "payloads",
               "label": "LABEL_REPEATED",
               "name": "payloads",
@@ -12947,6 +13023,14 @@
             }
           ],
           "name": "FinalizePayloadRequest",
+          "oneofDecl": [
+            {
+              "name": "src_image_oneof"
+            },
+            {
+              "name": "tgt_image_oneof"
+            }
+          ],
           "reservedRange": [
             {
               "end": 2,

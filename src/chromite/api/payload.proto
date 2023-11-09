@@ -202,6 +202,8 @@ message UnsignedPayload {
   chromiumos.Path payload_file_path = 2;
 
   reserved 3;
+  // Suffix used for this particular payload.
+  string rand_suffix = 7;
 
   // Names of the partitions.
   repeated string partition_names = 4;
@@ -233,6 +235,28 @@ message GenerateUnsignedPayloadResponse {
 // Request signing, validation, and uploading for an unsigned payload.
 message FinalizePayloadRequest {
   reserved 1;
+
+  // Source image properties, must be either full_update or the same type as
+  // the included tgt_image_oneof. full_update indicates the lack of a source.
+  oneof src_image_oneof {
+    bool full_update = 10;
+    SignedImage src_signed_image = 11;
+    UnsignedImage src_unsigned_image = 12;
+    DLCImage src_dlc_image = 13;
+  }
+
+  // Target image properties.
+  oneof tgt_image_oneof {
+    SignedImage tgt_signed_image = 14;
+    UnsignedImage tgt_unsigned_image = 15;
+    DLCImage tgt_dlc_image = 16;
+  }
+
+  // TODO(b/299105459): Don't special-case minios.
+  // Whether the request is for a miniOS payload.
+  // This is only meaningful if the src and tgt images are either
+  // both SignedImage or both UnsignedImage.
+  bool minios = 9;
 
   // Individual payloads to finalize.
   // Only multiple in the case of a minios payload.
