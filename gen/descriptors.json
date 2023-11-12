@@ -3087,6 +3087,48 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "sysrootArchive",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot_archive",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "SysrootExtractArchiveRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "sysrootArchive",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot_archive",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "SysrootExtractArchiveResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "sysroot",
               "label": "LABEL_OPTIONAL",
               "name": "sysroot",
@@ -3461,6 +3503,11 @@
               "inputType": ".chromite.api.SysrootGenerateArchiveRequest",
               "name": "GenerateArchive",
               "outputType": ".chromite.api.SysrootGenerateArchiveResponse"
+            },
+            {
+              "inputType": ".chromite.api.SysrootExtractArchiveRequest",
+              "name": "ExtractArchive",
+              "outputType": ".chromite.api.SysrootExtractArchiveResponse"
             },
             {
               "inputType": ".chromite.api.InstallToolchainRequest",

@@ -26,6 +26,8 @@ type SysrootServiceClient interface {
 	Create(ctx context.Context, in *SysrootCreateRequest, opts ...grpc.CallOption) (*SysrootCreateResponse, error)
 	// Generate sysroot archive.  Added in R83.
 	GenerateArchive(ctx context.Context, in *SysrootGenerateArchiveRequest, opts ...grpc.CallOption) (*SysrootGenerateArchiveResponse, error)
+	// Extract archive to sysroot.
+	ExtractArchive(ctx context.Context, in *SysrootExtractArchiveRequest, opts ...grpc.CallOption) (*SysrootExtractArchiveResponse, error)
 	// Install the toolchain into the sysroot.
 	InstallToolchain(ctx context.Context, in *InstallToolchainRequest, opts ...grpc.CallOption) (*InstallToolchainResponse, error)
 	// Install packages into the sysroot. By default will install all packages.
@@ -54,6 +56,15 @@ func (c *sysrootServiceClient) Create(ctx context.Context, in *SysrootCreateRequ
 func (c *sysrootServiceClient) GenerateArchive(ctx context.Context, in *SysrootGenerateArchiveRequest, opts ...grpc.CallOption) (*SysrootGenerateArchiveResponse, error) {
 	out := new(SysrootGenerateArchiveResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/GenerateArchive", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysrootServiceClient) ExtractArchive(ctx context.Context, in *SysrootExtractArchiveRequest, opts ...grpc.CallOption) (*SysrootExtractArchiveResponse, error) {
+	out := new(SysrootExtractArchiveResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/ExtractArchive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,6 +106,8 @@ type SysrootServiceServer interface {
 	Create(context.Context, *SysrootCreateRequest) (*SysrootCreateResponse, error)
 	// Generate sysroot archive.  Added in R83.
 	GenerateArchive(context.Context, *SysrootGenerateArchiveRequest) (*SysrootGenerateArchiveResponse, error)
+	// Extract archive to sysroot.
+	ExtractArchive(context.Context, *SysrootExtractArchiveRequest) (*SysrootExtractArchiveResponse, error)
 	// Install the toolchain into the sysroot.
 	InstallToolchain(context.Context, *InstallToolchainRequest) (*InstallToolchainResponse, error)
 	// Install packages into the sysroot. By default will install all packages.
@@ -113,6 +126,9 @@ func (UnimplementedSysrootServiceServer) Create(context.Context, *SysrootCreateR
 }
 func (UnimplementedSysrootServiceServer) GenerateArchive(context.Context, *SysrootGenerateArchiveRequest) (*SysrootGenerateArchiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateArchive not implemented")
+}
+func (UnimplementedSysrootServiceServer) ExtractArchive(context.Context, *SysrootExtractArchiveRequest) (*SysrootExtractArchiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExtractArchive not implemented")
 }
 func (UnimplementedSysrootServiceServer) InstallToolchain(context.Context, *InstallToolchainRequest) (*InstallToolchainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InstallToolchain not implemented")
@@ -168,6 +184,24 @@ func _SysrootService_GenerateArchive_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SysrootServiceServer).GenerateArchive(ctx, req.(*SysrootGenerateArchiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SysrootService_ExtractArchive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SysrootExtractArchiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysrootServiceServer).ExtractArchive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SysrootService/ExtractArchive",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysrootServiceServer).ExtractArchive(ctx, req.(*SysrootExtractArchiveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -240,6 +274,10 @@ var SysrootService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateArchive",
 			Handler:    _SysrootService_GenerateArchive_Handler,
+		},
+		{
+			MethodName: "ExtractArchive",
+			Handler:    _SysrootService_ExtractArchive_Handler,
 		},
 		{
 			MethodName: "InstallToolchain",

@@ -81,6 +81,22 @@ message SysrootGenerateArchiveResponse {
   chromiumos.Path sysroot_archive = 1;
 }
 
+// Sysroot extract archive request.
+message SysrootExtractArchiveRequest {
+  // The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 1;
+  // Archive will be extracted to default sysroot path of this target.
+  chromiumos.BuildTarget build_target = 2;
+  // The archive tarball path.
+  chromiumos.Path sysroot_archive = 3;
+}
+
+// Sysroot extract archive response.
+message SysrootExtractArchiveResponse {
+  // Path where the sysroot tarball is written.
+  chromiumos.Path sysroot_archive = 1;
+}
+
 // Request to install the toolchain into the sysroot.
 message InstallToolchainRequest {
   // The install toolchain flags.
@@ -222,6 +238,10 @@ service SysrootService {
   // Generate sysroot archive.  Added in R83.
   rpc GenerateArchive(SysrootGenerateArchiveRequest)
       returns (SysrootGenerateArchiveResponse);
+
+  // Extract archive to sysroot.
+  rpc ExtractArchive(SysrootExtractArchiveRequest)
+      returns (SysrootExtractArchiveResponse);
 
   // Install the toolchain into the sysroot.
   rpc InstallToolchain(InstallToolchainRequest)
