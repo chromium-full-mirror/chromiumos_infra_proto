@@ -182,6 +182,9 @@ message SignImageResponse {
 
   // Directory where signed artifacts have been placed.
   string output_archive_dir = 2;
+
+  // Keyset versions.
+  chromiumos.KeysetVersions keyset_versions = 3;
 }
 
 // The image service.

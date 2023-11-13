@@ -5763,6 +5763,39 @@
             }
           ],
           "name": "BuildTargetSignedArtifacts"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "firmwareKeyVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_key_version",
+              "number": 1,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "firmwareVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_version",
+              "number": 2,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "kernelKeyVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "kernel_key_version",
+              "number": 3,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "kernelVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "kernel_version",
+              "number": 4,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "KeysetVersions"
         }
       ],
       "name": "chromiumos/signing.proto",
@@ -6178,6 +6211,14 @@
               "name": "output_archive_dir",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "keysetVersions",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset_versions",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.KeysetVersions"
             }
           ],
           "name": "SignImageResponse"
