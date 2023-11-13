@@ -91,6 +91,9 @@ message ArchiveArtifacts {
   // The name of the unsigned archive.
   string input_archive_name = 1;
 
+  // Image type of the archive.
+  chromiumos.ImageType image_type = 7;
+
   // Keyset used to sign the archive artifacts.
   string keyset = 2;
 

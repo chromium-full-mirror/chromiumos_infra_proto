@@ -5711,6 +5711,14 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "imageType",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_type",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ImageType"
+            },
+            {
               "jsonName": "keyset",
               "label": "LABEL_OPTIONAL",
               "name": "keyset",
