@@ -102,6 +102,9 @@ message ArchiveArtifacts {
 
   // Channel the artifact was signed for.
   chromiumos.Channel channel = 5;
+
+  // Status of the signing operation.
+  SigningStatus status = 6;
 }
 
 message BuildTargetSignedArtifacts {
