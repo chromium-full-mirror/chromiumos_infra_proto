@@ -108,6 +108,9 @@ message ArchiveArtifacts {
 
   // Status of the signing operation.
   SigningStatus status = 6;
+
+  // Keyset versions.
+  chromiumos.KeysetVersions keyset_versions = 8;
 }
 
 message BuildTargetSignedArtifacts {

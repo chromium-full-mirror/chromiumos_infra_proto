@@ -5755,6 +5755,14 @@
               "number": 6,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.SigningStatus"
+            },
+            {
+              "jsonName": "keysetVersions",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset_versions",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.KeysetVersions"
             }
           ],
           "name": "ArchiveArtifacts"
@@ -6219,14 +6227,6 @@
               "name": "output_archive_dir",
               "number": 2,
               "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "keysetVersions",
-              "label": "LABEL_OPTIONAL",
-              "name": "keyset_versions",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.KeysetVersions"
             }
           ],
           "name": "SignImageResponse"
