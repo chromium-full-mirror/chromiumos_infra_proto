@@ -234,7 +234,10 @@ message GenerateUnsignedPayloadResponse {
 
 // Request signing, validation, and uploading for an unsigned payload.
 message FinalizePayloadRequest {
-  reserved 1;
+  // The chroot where certain operations will be executed
+  // (the endpoint as a whole is still executed outside of the chroot).
+  // Required.
+  chromiumos.Chroot chroot = 1;
 
   // Source image properties, must be either full_update or the same type as
   // the included tgt_image_oneof. full_update indicates the lack of a source.
