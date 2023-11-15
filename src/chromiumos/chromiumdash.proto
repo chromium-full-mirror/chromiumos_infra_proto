@@ -49,6 +49,8 @@ message Milestone {
   google.protobuf.Timestamp final_beta = 2;
   google.protobuf.Timestamp feature_freeze = 3;
   google.protobuf.Timestamp earliest_beta = 4;
+  // Was added and is authoritative for ChromeOS: crbug.com/1500733.
+  google.protobuf.Timestamp earliest_beta_chromeos = 20;
   google.protobuf.Timestamp stable_refresh_first = 5;
   google.protobuf.Timestamp latest_beta = 6;
   // This maps product portion to the owners real _name_, not 'ldap'.

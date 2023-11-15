@@ -17239,6 +17239,14 @@
               "typeName": ".google.protobuf.Timestamp"
             },
             {
+              "jsonName": "earliestBetaChromeos",
+              "label": "LABEL_OPTIONAL",
+              "name": "earliest_beta_chromeos",
+              "number": 20,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
               "jsonName": "stableRefreshFirst",
               "label": "LABEL_OPTIONAL",
               "name": "stable_refresh_first",
