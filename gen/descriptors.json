@@ -2041,7 +2041,7 @@
                       "start": 34
                     },
                     {
-                      "end": 53,
+                      "end": 54,
                       "start": 45
                     }
                   ],
@@ -2065,6 +2065,10 @@
                     {
                       "name": "CODE_COVERAGE_HTML",
                       "number": 44
+                    },
+                    {
+                      "name": "FIRMWARE_TOKEN_DATABASE",
+                      "number": 55
                     }
                   ]
                 }
@@ -5504,6 +5508,39 @@
             {
               "field": [
                 {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.TokenDatabaseInfo.TokenDatabaseType.Type"
+                }
+              ],
+              "name": "TokenDatabaseInfo",
+              "nestedType": [
+                {
+                  "enumType": [
+                    {
+                      "name": "Type",
+                      "value": [
+                        {
+                          "name": "UNKNOWN",
+                          "number": 0
+                        },
+                        {
+                          "name": "EC",
+                          "number": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "TokenDatabaseType"
+                }
+              ]
+            },
+            {
+              "field": [
+                {
                   "jsonName": "fileName",
                   "label": "LABEL_OPTIONAL",
                   "name": "file_name",
@@ -5536,6 +5573,15 @@
                   "oneofIndex": 0,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromite.api.FirmwareArtifactInfo.CoverageHtmlInfo"
+                },
+                {
+                  "jsonName": "tokenInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "token_info",
+                  "number": 5,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.TokenDatabaseInfo"
                 }
               ],
               "name": "ObjectInfo",
@@ -11468,6 +11514,10 @@
                     {
                       "name": "CODE_COVERAGE_E2E",
                       "number": 54
+                    },
+                    {
+                      "name": "FIRMWARE_TOKEN_DATABASE",
+                      "number": 55
                     }
                   ]
                 }

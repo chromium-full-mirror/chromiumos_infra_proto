@@ -395,6 +395,9 @@ message BuilderConfig {
 
       // Code coverage artifacts for E2E coverage.
       CODE_COVERAGE_E2E = 54;
+
+      // FirmwareService: Token Database.
+      FIRMWARE_TOKEN_DATABASE = 55;
     }
     repeated ArtifactTypes artifact_types = 2;
 

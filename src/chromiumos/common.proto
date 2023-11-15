@@ -963,7 +963,10 @@ message ArtifactsByService {
       // Code coverage HTML report tar archive.
       CODE_COVERAGE_HTML = 44;
 
-      reserved 45 to 53;
+      reserved 45 to 54;
+
+      // FirmwareService: Token Database.
+      FIRMWARE_TOKEN_DATABASE = 55;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
