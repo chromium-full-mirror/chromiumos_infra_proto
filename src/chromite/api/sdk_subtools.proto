@@ -42,7 +42,13 @@ message UploadSdkSubtoolsRequest {
   repeated chromiumos.Path bundle_paths = 2;
 }
 
-message UploadSdkSubtoolsResponse {}
+message UploadSdkSubtoolsResponse {
+  // Text to associate with the step in the luci UI.
+  string step_text = 1;
+
+  // Summary text in markdown format to use for the overall subtools build.
+  string summary_markdown = 2;
+}
 
 service SdkSubtoolsService {
   option (service_options) = {

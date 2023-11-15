@@ -14982,6 +14982,22 @@
           "name": "UploadSdkSubtoolsRequest"
         },
         {
+          "field": [
+            {
+              "jsonName": "stepText",
+              "label": "LABEL_OPTIONAL",
+              "name": "step_text",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "summaryMarkdown",
+              "label": "LABEL_OPTIONAL",
+              "name": "summary_markdown",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
           "name": "UploadSdkSubtoolsResponse"
         }
       ],
