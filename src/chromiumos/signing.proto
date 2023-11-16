@@ -9,6 +9,7 @@ package chromiumos;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 option java_package = "com.google.chrome.crosinfra.proto";
 
+import "chromiumos/build_report.proto";
 import "chromiumos/common.proto";
 
 message SigningConfig {
@@ -111,6 +112,9 @@ message ArchiveArtifacts {
 
   // Keyset versions.
   chromiumos.KeysetVersions keyset_versions = 8;
+
+  // Status of the signing operation.
+  BuildReport.SignedBuildMetadata.SigningStatus signing_status = 9;
 }
 
 message BuildTargetSignedArtifacts {
