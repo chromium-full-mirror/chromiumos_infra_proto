@@ -33699,9 +33699,9 @@
               "typeName": ".test_platform.suite_scheduler.v15.SchedulingDecision"
             },
             {
-              "jsonName": "bbid",
+              "jsonName": "bbids",
               "label": "LABEL_REPEATED",
-              "name": "bbid",
+              "name": "bbids",
               "number": 7,
               "type": "TYPE_INT64"
             }
@@ -33776,7 +33776,7 @@
               "typeName": ".test_platform.suite_scheduler.v15.UID"
             }
           ],
-          "name": "SchedulingMetric"
+          "name": "SchedulingRun"
         }
       ],
       "name": "test_platform/suite_scheduler/v15/metrics.proto",

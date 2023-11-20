@@ -57,5 +57,5 @@ message SchedulingEvent {
 
   // If the config led to a a scheduled suite, attach all bbid's that were fired
   // off as a result.
-  repeated int64 bbid = 7;
+  repeated int64 bbids = 7;
 }

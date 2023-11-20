@@ -13,7 +13,7 @@ import "test_platform/suite_scheduler/v15/events.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/suite_scheduler/v15";
 
-message SchedulingMetric {
+message SchedulingRun {
   // run_uid represents the unique identifier of the SuiteScheduler run.
   test_platform.suite_scheduler.v15.UID run_uid = 1;
 
