@@ -18165,6 +18165,14 @@
               "name": "aggregate_build_metric",
               "number": 3,
               "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "builderGreenness",
+              "label": "LABEL_REPEATED",
+              "name": "builder_greenness",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.AggregateGreenness.Greenness"
             }
           ],
           "name": "AggregateGreenness",
@@ -18214,6 +18222,13 @@
                   "name": "build_metric",
                   "number": 4,
                   "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "builder",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "builder",
+                  "number": 5,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "Greenness"
