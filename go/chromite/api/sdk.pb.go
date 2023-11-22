@@ -534,10 +534,9 @@ type UprevRequest struct {
 	// Required. The Google Storage bucket containing binhosts to point to.
 	// Example: "gs://chromeos-prebuilt/"
 	BinhostGsBucket string `protobuf:"bytes,3,opt,name=binhost_gs_bucket,json=binhostGsBucket,proto3" json:"binhost_gs_bucket,omitempty"`
-	// Optional. The SDK/prebuilt version to uprev to, formatted as
+	// Required. The SDK/prebuilt version to uprev to, formatted as
 	// "%Y.%m.%d.%H%M%S".
 	// Example: "2023.02.12.144623"
-	// If not provided, the latest available SDK/prebuilts will be used.
 	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
 	// Required. Template string for locating toolchain tarballs on GS://.
 	// This is the value that will go into the TC_PATH field in

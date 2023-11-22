@@ -110,10 +110,9 @@ message UprevRequest {
   // Example: "gs://chromeos-prebuilt/"
   string binhost_gs_bucket = 3;
 
-  // Optional. The SDK/prebuilt version to uprev to, formatted as
+  // Required. The SDK/prebuilt version to uprev to, formatted as
   // "%Y.%m.%d.%H%M%S".
   // Example: "2023.02.12.144623"
-  // If not provided, the latest available SDK/prebuilts will be used.
   string version = 4;
 
   // Required. Template string for locating toolchain tarballs on GS://.
