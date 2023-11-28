@@ -33984,6 +33984,26 @@
         {
           "field": [
             {
+              "jsonName": "filePattern",
+              "label": "LABEL_OPTIONAL",
+              "name": "file_pattern",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.FilePattern"
+            },
+            {
+              "jsonName": "builderNameRegex",
+              "label": "LABEL_OPTIONAL",
+              "name": "builder_name_regex",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FilePatternWithBuilderRegex"
+        },
+        {
+          "field": [
+            {
               "jsonName": "irrelevantFilePatterns",
               "label": "LABEL_REPEATED",
               "name": "irrelevant_file_patterns",
@@ -33998,6 +34018,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".testplans.FilePattern"
+            },
+            {
+              "jsonName": "relevantFilePatternsForBuilders",
+              "label": "LABEL_REPEATED",
+              "name": "relevant_file_patterns_for_builders",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.FilePatternWithBuilderRegex"
             }
           ],
           "name": "BuildIrrelevanceCfg"
@@ -34907,6 +34935,13 @@
               "name": "ignore_known_non_portage_directories",
               "number": 10,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "builderName",
+              "label": "LABEL_OPTIONAL",
+              "name": "builder_name",
+              "number": 12,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "PointlessBuildCheckRequest",

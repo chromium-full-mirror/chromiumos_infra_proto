@@ -12,7 +12,7 @@ import "testplans/common.proto";
 import "google/protobuf/wrappers.proto";
 
 // The input proto for invocations of the Pointless Build Checker program.
-// Next: 12
+// Next: 13
 message PointlessBuildCheckRequest {
 
   message Path { string path = 1; }
@@ -59,6 +59,13 @@ message PointlessBuildCheckRequest {
   // treated via introspection. We know the paths being changed in the manifest,
   // and we should be able to surface that.
   bool ignore_known_non_portage_directories = 10;
+
+  // The name of the builder for which we're evaluating build relevance, to
+  // allow for relevance to be applied differently for different builders. Note
+  // that we pass the builder name not the build target because the initial use
+  // case is for Bazel builds vs. Portage builds, which have the same build
+  // target but different builder names.
+  string builder_name = 12;
 
   reserved 5;
 }
