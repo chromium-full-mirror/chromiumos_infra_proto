@@ -14838,6 +14838,228 @@
         {
           "field": [
             {
+              "jsonName": "path",
+              "label": "LABEL_OPTIONAL",
+              "name": "path",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Path"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "build_targets",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "affectedPaths",
+              "label": "LABEL_REPEATED",
+              "name": "affected_paths",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Path"
+            }
+          ],
+          "name": "GetRelevantBuildTargetsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "build_targets",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget"
+            }
+          ],
+          "name": "GetRelevantBuildTargetsResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "buildTarget",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "build_target",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.BuildTarget"
+                },
+                {
+                  "jsonName": "reason",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "reason",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason"
+                }
+              ],
+              "name": "RelevantTarget",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "trigger",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "trigger",
+                      "number": 1,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.Path"
+                    },
+                    {
+                      "jsonName": "buildToolAffected",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "build_tool_affected",
+                      "number": 2,
+                      "oneofIndex": 0,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason.BuildToolAffected"
+                    },
+                    {
+                      "jsonName": "profileAffected",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "profile_affected",
+                      "number": 3,
+                      "oneofIndex": 0,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason.ProfileAffected"
+                    },
+                    {
+                      "jsonName": "overlayAffected",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "overlay_affected",
+                      "number": 4,
+                      "oneofIndex": 0,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason.OverlayAffected"
+                    },
+                    {
+                      "jsonName": "packageAffected",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "package_affected",
+                      "number": 5,
+                      "oneofIndex": 0,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason.PackageAffected"
+                    }
+                  ],
+                  "name": "Reason",
+                  "nestedType": [
+                    {
+                      "field": [
+                        {
+                          "jsonName": "subtree",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "subtree",
+                          "number": 1,
+                          "type": "TYPE_MESSAGE",
+                          "typeName": ".chromite.api.Path"
+                        }
+                      ],
+                      "name": "BuildToolAffected"
+                    },
+                    {
+                      "field": [
+                        {
+                          "jsonName": "profile",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "profile",
+                          "number": 1,
+                          "type": "TYPE_MESSAGE",
+                          "typeName": ".chromite.api.Path"
+                        }
+                      ],
+                      "name": "ProfileAffected"
+                    },
+                    {
+                      "field": [
+                        {
+                          "jsonName": "overlay",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "overlay",
+                          "number": 1,
+                          "type": "TYPE_MESSAGE",
+                          "typeName": ".chromite.api.Path"
+                        }
+                      ],
+                      "name": "OverlayAffected"
+                    },
+                    {
+                      "field": [
+                        {
+                          "jsonName": "packageInfo",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "package_info",
+                          "number": 1,
+                          "type": "TYPE_MESSAGE",
+                          "typeName": ".chromiumos.PackageInfo"
+                        },
+                        {
+                          "jsonName": "ebuild",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "ebuild",
+                          "number": 2,
+                          "type": "TYPE_MESSAGE",
+                          "typeName": ".chromite.api.Path"
+                        }
+                      ],
+                      "name": "PackageAffected"
+                    }
+                  ],
+                  "oneofDecl": [
+                    {
+                      "name": "reason"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "chromite/api/relevancy.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.GetRelevantBuildTargetsRequest",
+              "name": "GetRelevantBuildTargets",
+              "outputType": ".chromite.api.GetRelevantBuildTargetsResponse"
+            }
+          ],
+          "name": "RelevancyService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "relevancy"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "chroot",
               "label": "LABEL_OPTIONAL",
               "name": "chroot",
