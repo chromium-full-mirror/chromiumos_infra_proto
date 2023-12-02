@@ -367,6 +367,14 @@
               "name": "name",
               "number": 1,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "profile",
+              "label": "LABEL_OPTIONAL",
+              "name": "profile",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Profile"
             }
           ],
           "name": "BuildTarget"
