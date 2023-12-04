@@ -24749,6 +24749,2703 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "chromiumos/build/api/container_metadata.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "uploadCrashes",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_crashes",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "containerMetadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_metadata",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerMetadata"
+            },
+            {
+              "jsonName": "containerImageInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_image_info",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.build.api.ContainerImageInfo"
+            }
+          ],
+          "name": "Param"
+        }
+      ],
+      "name": "test_platform/execution/param.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/execution"
+      },
+      "package": "test_platform.execution",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "hwTestConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "hw_test_config",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.common.HwTestConfig"
+            }
+          ],
+          "name": "CftStepsConfig",
+          "oneofDecl": [
+            {
+              "name": "config_type"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "skipLoadingDutTopology",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_loading_dut_topology",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipStartingDutService",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_starting_dut_service",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipProvision",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_provision",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipTestExecution",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_test_execution",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipAllResultPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_all_result_publish",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipGcsPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_gcs_publish",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipRdbPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_rdb_publish",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipTkoPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_tko_publish",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "runCpconPublish",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_cpcon_publish",
+              "number": 9,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "HwTestConfig"
+        }
+      ],
+      "name": "test_platform/common/cft_steps_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/common"
+      },
+      "package": "test_platform.common",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/test_metadata.proto",
+        "chromiumos/common.proto",
+        "chromiumos/test/api/test_suite.proto",
+        "chromiumos/test/api/test_execution_metadata.proto",
+        "google/protobuf/duration.proto",
+        "test_platform/execution/param.proto",
+        "test_platform/common/cft_steps_config.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "params",
+              "label": "LABEL_OPTIONAL",
+              "name": "params",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.Params"
+            },
+            {
+              "jsonName": "testPlan",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.TestPlan"
+            }
+          ],
+          "name": "Request",
+          "nestedType": [
+            {
+              "enumType": [
+                {
+                  "name": "TestExecutionBehavior",
+                  "value": [
+                    {
+                      "name": "BEHAVIOR_UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "CRITICAL",
+                      "number": 1
+                    },
+                    {
+                      "name": "NON_CRITICAL",
+                      "number": 2
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "hardwareAttributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hardware_attributes",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.HardwareAttributes"
+                },
+                {
+                  "jsonName": "softwareAttributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "software_attributes",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SoftwareAttributes"
+                },
+                {
+                  "jsonName": "freeformAttributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "freeform_attributes",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.FreeformAttributes"
+                },
+                {
+                  "jsonName": "softwareDependencies",
+                  "label": "LABEL_REPEATED",
+                  "name": "software_dependencies",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SoftwareDependency"
+                },
+                {
+                  "jsonName": "secondaryDevices",
+                  "label": "LABEL_REPEATED",
+                  "name": "secondary_devices",
+                  "number": 14,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.SecondaryDevice"
+                },
+                {
+                  "jsonName": "scheduling",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "scheduling",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.Scheduling"
+                },
+                {
+                  "jsonName": "retry",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "retry",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.Retry"
+                },
+                {
+                  "jsonName": "metadata",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "metadata",
+                  "number": 6,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.Metadata"
+                },
+                {
+                  "jsonName": "time",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "time",
+                  "number": 7,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.Time"
+                },
+                {
+                  "jsonName": "decorations",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "decorations",
+                  "number": 8,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.Decorations"
+                },
+                {
+                  "jsonName": "migrations",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "migrations",
+                  "number": 12,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.Migrations"
+                },
+                {
+                  "jsonName": "executionParam",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "execution_param",
+                  "number": 13,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.execution.Param"
+                },
+                {
+                  "jsonName": "testExecutionBehavior",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_execution_behavior",
+                  "number": 15,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
+                },
+                {
+                  "jsonName": "runViaCft",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_cft",
+                  "number": 16,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "scheduleViaScheduke",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "schedule_via_scheduke",
+                  "number": 17,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "runViaTrv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_trv2",
+                  "number": 18,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "trv2StepsConfig",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "trv2_steps_config",
+                  "number": 19,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.common.CftStepsConfig"
+                },
+                {
+                  "jsonName": "dddSuite",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ddd_suite",
+                  "number": 20,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "results",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "results",
+                  "number": 21,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.ResultsUploadConfig"
+                },
+                {
+                  "jsonName": "translateTrv2Request",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "translate_trv2_request",
+                  "number": 22,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "Params",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "model",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "model",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "requireStableDevice",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "require_stable_device",
+                      "number": 2,
+                      "type": "TYPE_BOOL"
+                    }
+                  ],
+                  "name": "HardwareAttributes"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "buildTarget",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "build_target",
+                      "number": 2,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromiumos.BuildTarget"
+                    }
+                  ],
+                  "name": "SoftwareAttributes"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "swarmingDimensions",
+                      "label": "LABEL_REPEATED",
+                      "name": "swarming_dimensions",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "FreeformAttributes"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "chromeosBuild",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "chromeos_build",
+                      "number": 3,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "chromeosBuildGcsBucket",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "chromeos_build_gcs_bucket",
+                      "number": 7,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "roFirmwareBuild",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "ro_firmware_build",
+                      "number": 4,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "rwFirmwareBuild",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "rw_firmware_build",
+                      "number": 5,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "lacrosGcsPath",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "lacros_gcs_path",
+                      "number": 6,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "androidImageVersion",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "android_image_version",
+                      "number": 8,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "gmsCorePackage",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "gms_core_package",
+                      "number": 9,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "SoftwareDependency",
+                  "oneofDecl": [
+                    {
+                      "name": "dep"
+                    }
+                  ]
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "softwareAttributes",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "software_attributes",
+                      "number": 1,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.SoftwareAttributes"
+                    },
+                    {
+                      "jsonName": "hardwareAttributes",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "hardware_attributes",
+                      "number": 2,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.HardwareAttributes"
+                    },
+                    {
+                      "jsonName": "softwareDependencies",
+                      "label": "LABEL_REPEATED",
+                      "name": "software_dependencies",
+                      "number": 3,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.SoftwareDependency"
+                    }
+                  ],
+                  "name": "SecondaryDevice"
+                },
+                {
+                  "enumType": [
+                    {
+                      "name": "ManagedPool",
+                      "value": [
+                        {
+                          "name": "MANAGED_POOL_UNSPECIFIED",
+                          "number": 0
+                        },
+                        {
+                          "name": "MANAGED_POOL_CQ",
+                          "number": 1
+                        },
+                        {
+                          "name": "MANAGED_POOL_BVT",
+                          "number": 2
+                        },
+                        {
+                          "name": "MANAGED_POOL_SUITES",
+                          "number": 3
+                        },
+                        {
+                          "name": "MANAGED_POOL_CTS",
+                          "number": 4
+                        },
+                        {
+                          "name": "MANAGED_POOL_CTS_PERBUILD",
+                          "number": 5
+                        },
+                        {
+                          "name": "MANAGED_POOL_CONTINUOUS",
+                          "number": 6
+                        },
+                        {
+                          "name": "MANAGED_POOL_ARC_PRESUBMIT",
+                          "number": 7
+                        },
+                        {
+                          "name": "MANAGED_POOL_QUOTA",
+                          "number": 8
+                        }
+                      ]
+                    }
+                  ],
+                  "field": [
+                    {
+                      "jsonName": "managedPool",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "managed_pool",
+                      "number": 1,
+                      "oneofIndex": 0,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".test_platform.Request.Params.Scheduling.ManagedPool"
+                    },
+                    {
+                      "jsonName": "unmanagedPool",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "unmanaged_pool",
+                      "number": 2,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "priority",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "priority",
+                      "number": 4,
+                      "type": "TYPE_INT64"
+                    },
+                    {
+                      "jsonName": "qsAccount",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "qs_account",
+                      "number": 5,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "Scheduling",
+                  "oneofDecl": [
+                    {
+                      "name": "pool"
+                    }
+                  ]
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "allow",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "allow",
+                      "number": 1,
+                      "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "max",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "max",
+                      "number": 2,
+                      "type": "TYPE_INT32"
+                    }
+                  ],
+                  "name": "Retry"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "testMetadataUrl",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "test_metadata_url",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "debugSymbolsArchiveUrl",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "debug_symbols_archive_url",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "containerMetadataUrl",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "container_metadata_url",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "Metadata"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "maximumDuration",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "maximum_duration",
+                      "number": 1,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".google.protobuf.Duration"
+                    }
+                  ],
+                  "name": "Time"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "autotestKeyvals",
+                      "label": "LABEL_REPEATED",
+                      "name": "autotest_keyvals",
+                      "number": 1,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.Decorations.AutotestKeyvalsEntry"
+                    },
+                    {
+                      "jsonName": "tags",
+                      "label": "LABEL_REPEATED",
+                      "name": "tags",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "testArgs",
+                      "label": "LABEL_REPEATED",
+                      "name": "test_args",
+                      "number": 3,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Params.Decorations.TestArgsEntry"
+                    }
+                  ],
+                  "name": "Decorations",
+                  "nestedType": [
+                    {
+                      "field": [
+                        {
+                          "jsonName": "key",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "key",
+                          "number": 1,
+                          "type": "TYPE_STRING"
+                        },
+                        {
+                          "jsonName": "value",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "value",
+                          "number": 2,
+                          "type": "TYPE_STRING"
+                        }
+                      ],
+                      "name": "AutotestKeyvalsEntry",
+                      "options": {
+                        "mapEntry": true
+                      }
+                    },
+                    {
+                      "field": [
+                        {
+                          "jsonName": "key",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "key",
+                          "number": 1,
+                          "type": "TYPE_STRING"
+                        },
+                        {
+                          "jsonName": "value",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "value",
+                          "number": 2,
+                          "type": "TYPE_STRING"
+                        }
+                      ],
+                      "name": "TestArgsEntry",
+                      "options": {
+                        "mapEntry": true
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Migrations",
+                  "reservedName": [
+                    "use_test_runner",
+                    "enable_synchronous_offload",
+                    "notificationless_offload"
+                  ],
+                  "reservedRange": [
+                    {
+                      "end": 2,
+                      "start": 1
+                    },
+                    {
+                      "end": 3,
+                      "start": 2
+                    },
+                    {
+                      "end": 4,
+                      "start": 3
+                    }
+                  ]
+                },
+                {
+                  "enumType": [
+                    {
+                      "name": "TestResultsUploadVisibility",
+                      "value": [
+                        {
+                          "name": "TEST_RESULTS_VISIBILITY_UNSPECIFIED",
+                          "number": 0
+                        },
+                        {
+                          "name": "TEST_RESULTS_VISIBILITY_BOARD_MODEL",
+                          "number": 1
+                        },
+                        {
+                          "name": "TEST_RESULTS_VISIBILITY_CUSTOM_REALM",
+                          "number": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "field": [
+                    {
+                      "jsonName": "mode",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "mode",
+                      "number": 1,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".test_platform.Request.Params.ResultsUploadConfig.TestResultsUploadVisibility"
+                    }
+                  ],
+                  "name": "ResultsUploadConfig"
+                }
+              ],
+              "reservedName": [
+                "notifications",
+                "legacy"
+              ],
+              "reservedRange": [
+                {
+                  "end": 12,
+                  "start": 11
+                },
+                {
+                  "end": 11,
+                  "start": 10
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Tag"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Suite",
+              "reservedName": [
+                "run_via_cft"
+              ],
+              "reservedRange": [
+                {
+                  "end": 3,
+                  "start": 2
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "autotest",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "autotest",
+                  "number": 1,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Test.Autotest"
+                }
+              ],
+              "name": "Test",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "name",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "name",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "testArgs",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "test_args",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "displayName",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "display_name",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "Autotest"
+                }
+              ],
+              "oneofDecl": [
+                {
+                  "name": "harness"
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "autotestInvocations",
+                  "label": "LABEL_REPEATED",
+                  "name": "autotest_invocations",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Enumeration.AutotestInvocation"
+                }
+              ],
+              "name": "Enumeration",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "test",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "test",
+                      "number": 1,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.AutotestTest"
+                    },
+                    {
+                      "jsonName": "testArgs",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "test_args",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "displayName",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "display_name",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "resultKeyvals",
+                      "label": "LABEL_REPEATED",
+                      "name": "result_keyvals",
+                      "number": 4,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.Request.Enumeration.AutotestInvocation.ResultKeyvalsEntry"
+                    }
+                  ],
+                  "name": "AutotestInvocation",
+                  "nestedType": [
+                    {
+                      "field": [
+                        {
+                          "jsonName": "key",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "key",
+                          "number": 1,
+                          "type": "TYPE_STRING"
+                        },
+                        {
+                          "jsonName": "value",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "value",
+                          "number": 2,
+                          "type": "TYPE_STRING"
+                        }
+                      ],
+                      "name": "ResultKeyvalsEntry",
+                      "options": {
+                        "mapEntry": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "suite",
+                  "label": "LABEL_REPEATED",
+                  "name": "suite",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Suite"
+                },
+                {
+                  "jsonName": "test",
+                  "label": "LABEL_REPEATED",
+                  "name": "test",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Test"
+                },
+                {
+                  "jsonName": "enumeration",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "enumeration",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Enumeration"
+                },
+                {
+                  "jsonName": "tagCriteria",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tag_criteria",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
+                },
+                {
+                  "jsonName": "seed",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "seed",
+                  "number": 5,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "testArgs",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_args",
+                  "number": 6,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.AutotestExecutionMetadata"
+                },
+                {
+                  "jsonName": "totalShards",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "total_shards",
+                  "number": 7,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "maxInShard",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "max_in_shard",
+                  "number": 8,
+                  "type": "TYPE_INT64"
+                }
+              ],
+              "name": "TestPlan"
+            }
+          ],
+          "reservedRange": [
+            {
+              "end": 7,
+              "start": 6
+            },
+            {
+              "end": 8,
+              "start": 7
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/request.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
+      },
+      "package": "test_platform",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "google/protobuf/timestamp.proto",
+        "test_platform/request.proto",
+        "chromiumos/longrunning/operations.proto",
+        "chromiumos/test/api/servod_service.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "success",
+              "label": "LABEL_OPTIONAL",
+              "name": "success",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.StartServodResponse.Success"
+            },
+            {
+              "jsonName": "failure",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.StartServodResponse.Failure"
+            }
+          ],
+          "name": "StartServodResponse",
+          "nestedType": [
+            {
+              "name": "Success"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "errorMessage",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "error_message",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Failure"
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        {
+          "name": "StartServodMetadata"
+        },
+        {
+          "name": "ListBuildTargetsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "build_targets",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListBuildTargetsResponse"
+        },
+        {
+          "enumType": [
+            {
+              "name": "BuildStatus",
+              "value": [
+                {
+                  "name": "BUILD_STATUS_PASS",
+                  "number": 0
+                },
+                {
+                  "name": "BUILD_STATUS_FAIL",
+                  "number": 1
+                },
+                {
+                  "name": "BUILD_STATUS_RUNNING",
+                  "number": 2
+                },
+                {
+                  "name": "BUILD_STATUS_ABORTED",
+                  "number": 3
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isStaged",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_staged",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.BuildItem.BuildStatus"
+            }
+          ],
+          "name": "BuildItem"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListMilestonesRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "milestones",
+              "label": "LABEL_REPEATED",
+              "name": "milestones",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.BuildItem"
+            }
+          ],
+          "name": "ListMilestonesResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAccessibleModelsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "boards",
+              "label": "LABEL_REPEATED",
+              "name": "boards",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Model"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "models",
+              "label": "LABEL_REPEATED",
+              "name": "models",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Model"
+            }
+          ],
+          "name": "ListAccessibleModelsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 3,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "ListBuildVersionsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildVersions",
+              "label": "LABEL_REPEATED",
+              "name": "build_versions",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.BuildItem"
+            }
+          ],
+          "name": "ListBuildVersionsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_version",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "StageBuildRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_bucket",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "StageBuildResponse"
+        },
+        {
+          "name": "ListConnectedDutsFirmwareRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ip",
+              "label": "LABEL_OPTIONAL",
+              "name": "ip",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "currentFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "current_firmware",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "updateFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_firmware",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ConnectedDutFirmwareInfo"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.ConnectedDutFirmwareInfo"
+            }
+          ],
+          "name": "ListConnectedDutsFirmwareResponse"
+        },
+        {
+          "name": "GetSystemInfoRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "cpuTemperature",
+              "label": "LABEL_OPTIONAL",
+              "name": "cpu_temperature",
+              "number": 1,
+              "type": "TYPE_FLOAT"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            }
+          ],
+          "name": "GetSystemInfoResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dutHostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut_hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetPeripheralInformationRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "jsonInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "json_info",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetPeripheralInformationResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ips",
+              "label": "LABEL_REPEATED",
+              "name": "ips",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UpdateDutsFirmwareRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ip",
+              "label": "LABEL_OPTIONAL",
+              "name": "ip",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "commandOutput",
+              "label": "LABEL_OPTIONAL",
+              "name": "command_output",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FirmwareUpdateCommandOutput"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "outputs",
+              "label": "LABEL_REPEATED",
+              "name": "outputs",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.FirmwareUpdateCommandOutput"
+            }
+          ],
+          "name": "UpdateDutsFirmwareResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Dim"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "suite",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_version",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            }
+          ],
+          "name": "RunSuiteRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunSuiteResponse"
+        },
+        {
+          "name": "GetVersionInfoRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "chromeosVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "chromeos_version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "track",
+              "label": "LABEL_OPTIONAL",
+              "name": "track",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "description",
+              "label": "LABEL_OPTIONAL",
+              "name": "description",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hostId",
+              "label": "LABEL_OPTIONAL",
+              "name": "host_id",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetVersionInfoResponse",
+          "reservedRange": [
+            {
+              "end": 6,
+              "start": 5
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "addresses",
+              "label": "LABEL_REPEATED",
+              "name": "addresses",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AddPoolRequest"
+        },
+        {
+          "name": "AddPoolResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "items",
+              "label": "LABEL_REPEATED",
+              "name": "items",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.UpdatePoolRequest.Item"
+            }
+          ],
+          "name": "UpdatePoolRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "address",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "address",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pools",
+                  "label": "LABEL_REPEATED",
+                  "name": "pools",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Item"
+            }
+          ]
+        },
+        {
+          "name": "UpdatePoolResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "address",
+              "label": "LABEL_OPTIONAL",
+              "name": "address",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetDutDetailRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "values",
+              "label": "LABEL_REPEATED",
+              "name": "values",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "StringListPair"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "botId",
+              "label": "LABEL_OPTIONAL",
+              "name": "bot_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "taskId",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "externalIp",
+              "label": "LABEL_OPTIONAL",
+              "name": "external_ip",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "authenticatedAs",
+              "label": "LABEL_OPTIONAL",
+              "name": "authenticated_as",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firstSeenTs",
+              "label": "LABEL_OPTIONAL",
+              "name": "first_seen_ts",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "isDead",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_dead",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "lastSeenTs",
+              "label": "LABEL_OPTIONAL",
+              "name": "last_seen_ts",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "quarantined",
+              "label": "LABEL_OPTIONAL",
+              "name": "quarantined",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "maintenanceMsg",
+              "label": "LABEL_OPTIONAL",
+              "name": "maintenance_msg",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dimensions",
+              "label": "LABEL_REPEATED",
+              "name": "dimensions",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.StringListPair"
+            },
+            {
+              "jsonName": "taskName",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_name",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 12,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetDutDetailResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "address",
+              "label": "LABEL_OPTIONAL",
+              "name": "address",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_token",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pageSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_size",
+              "number": 3,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "ListDutTasksRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "startAt",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_at",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "duration",
+              "label": "LABEL_OPTIONAL",
+              "name": "duration",
+              "number": 3,
+              "type": "TYPE_FLOAT"
+            },
+            {
+              "jsonName": "url",
+              "label": "LABEL_OPTIONAL",
+              "name": "url",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isSuccess",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_success",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Task"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "nextPageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "next_page_token",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tasks",
+              "label": "LABEL_REPEATED",
+              "name": "tasks",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Task"
+            }
+          ],
+          "name": "ListDutTasksResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "address",
+              "label": "LABEL_OPTIONAL",
+              "name": "address",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_token",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pageSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_size",
+              "number": 3,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "ListDutEventsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "msg",
+              "label": "LABEL_OPTIONAL",
+              "name": "msg",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "eventType",
+              "label": "LABEL_OPTIONAL",
+              "name": "event_type",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "createdAt",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_at",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "taskId",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_id",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "taskLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_link",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BotEvent"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "nextPageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "next_page_token",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "events",
+              "label": "LABEL_REPEATED",
+              "name": "events",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.BotEvent"
+            }
+          ],
+          "name": "ListDutEventsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "tests",
+              "label": "LABEL_REPEATED",
+              "name": "tests",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testArgs",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_args",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            }
+          ],
+          "name": "RunTestRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunTestResponse"
+        },
+        {
+          "name": "ListEnrolledDutsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "address",
+              "label": "LABEL_OPTIONAL",
+              "name": "address",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pools",
+              "label": "LABEL_REPEATED",
+              "name": "pools",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "macAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "mac_address",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isConnected",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_connected",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "servoSerial",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_serial",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "servoType",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_type",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "servoPort",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_port",
+              "number": 11,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "state",
+              "label": "LABEL_OPTIONAL",
+              "name": "state",
+              "number": 12,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Dut"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dut"
+            }
+          ],
+          "name": "ListEnrolledDutsResponse"
+        },
+        {
+          "name": "ListDutsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dut"
+            }
+          ],
+          "name": "ListDutsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostnames",
+              "label": "LABEL_REPEATED",
+              "name": "hostnames",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeleteDutsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "pass",
+              "label": "LABEL_REPEATED",
+              "name": "pass",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "fail",
+              "label": "LABEL_REPEATED",
+              "name": "fail",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeleteDutsResponse",
+          "reservedRange": [
+            {
+              "end": 4,
+              "start": 3
+            }
+          ]
+        },
+        {
+          "name": "GetNetworkInfoRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "macAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "mac_address",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isConnected",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_connected",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "GetNetworkInfoResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.AddDutsRequest.Param"
+            }
+          ],
+          "name": "AddDutsRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "address",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "address",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "hostname",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hostname",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "board",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "board",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "model",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "model",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pools",
+                  "label": "LABEL_REPEATED",
+                  "name": "pools",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "servoSerial",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "servo_serial",
+                  "number": 6,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Param"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "pass",
+              "label": "LABEL_REPEATED",
+              "name": "pass",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.AddDutsResponse.PassedData"
+            },
+            {
+              "jsonName": "fail",
+              "label": "LABEL_REPEATED",
+              "name": "fail",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.AddDutsResponse.FailedData"
+            }
+          ],
+          "name": "AddDutsResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "hostname",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hostname",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "url",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "url",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "PassedData"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "hostname",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hostname",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "reason",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "reason",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "FailedData"
+            }
+          ]
+        },
+        {
+          "name": "ListTestPlansRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "names",
+              "label": "LABEL_REPEATED",
+              "name": "names",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListTestPlansResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testPlanName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            }
+          ],
+          "name": "RunTestPlanRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunTestPlanResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetTestPlanRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "plan",
+              "label": "LABEL_OPTIONAL",
+              "name": "plan",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.TestPlan"
+            }
+          ],
+          "name": "GetTestPlanResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "botoKeyId",
+              "label": "LABEL_OPTIONAL",
+              "name": "boto_key_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "botoKeySecret",
+              "label": "LABEL_OPTIONAL",
+              "name": "boto_key_secret",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gcsBucketUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "gcs_bucket_url",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SetCloudConfigurationRequest"
+        },
+        {
+          "name": "SetCloudConfigurationResponse"
+        },
+        {
+          "name": "GetCloudConfigurationRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "botoKeyId",
+              "label": "LABEL_OPTIONAL",
+              "name": "boto_key_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gcsBucketUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "gcs_bucket_url",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetCloudConfigurationResponse"
+        },
+        {
+          "name": "RebootRequest"
+        },
+        {
+          "name": "RebootResponse"
+        },
+        {
+          "name": "UploadLogRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "bucketLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "bucket_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UploadLogResponse"
+        },
+        {
+          "name": "DownloadLogRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "fileChunk",
+              "label": "LABEL_OPTIONAL",
+              "name": "file_chunk",
+              "number": 1,
+              "type": "TYPE_BYTES"
+            }
+          ],
+          "name": "DownloadLogResponse"
+        }
+      ],
+      "name": "satlabrpcserver/satlabrpcserver.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/satlabrpcserver"
+      },
+      "package": "satlabrpcserver",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".satlabrpcserver.ListAccessibleModelsRequest",
+              "name": "ListAccessibleModels",
+              "outputType": ".satlabrpcserver.ListAccessibleModelsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListBuildVersionsRequest",
+              "name": "ListBuildVersions",
+              "outputType": ".satlabrpcserver.ListBuildVersionsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.StageBuildRequest",
+              "name": "StageBuild",
+              "outputType": ".satlabrpcserver.StageBuildResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListConnectedDutsFirmwareRequest",
+              "name": "ListConnectedDutsFirmware",
+              "outputType": ".satlabrpcserver.ListConnectedDutsFirmwareResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetSystemInfoRequest",
+              "name": "GetSystemInfo",
+              "outputType": ".satlabrpcserver.GetSystemInfoResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetVersionInfoRequest",
+              "name": "GetVersionInfo",
+              "outputType": ".satlabrpcserver.GetVersionInfoResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetNetworkInfoRequest",
+              "name": "GetNetworkInfo",
+              "outputType": ".satlabrpcserver.GetNetworkInfoResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetPeripheralInformationRequest",
+              "name": "GetPeripheralInformation",
+              "outputType": ".satlabrpcserver.GetPeripheralInformationResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.UpdateDutsFirmwareRequest",
+              "name": "UpdateDutsFirmware",
+              "outputType": ".satlabrpcserver.UpdateDutsFirmwareResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListBuildTargetsRequest",
+              "name": "ListBuildTargets",
+              "outputType": ".satlabrpcserver.ListBuildTargetsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListMilestonesRequest",
+              "name": "ListMilestones",
+              "outputType": ".satlabrpcserver.ListMilestonesResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListTestPlansRequest",
+              "name": "ListTestPlans",
+              "outputType": ".satlabrpcserver.ListTestPlansResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetTestPlanRequest",
+              "name": "GetTestPlan",
+              "outputType": ".satlabrpcserver.GetTestPlanResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunSuiteRequest",
+              "name": "RunSuite",
+              "outputType": ".satlabrpcserver.RunSuiteResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunTestRequest",
+              "name": "RunTest",
+              "outputType": ".satlabrpcserver.RunTestResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunTestPlanRequest",
+              "name": "RunTestPlan",
+              "outputType": ".satlabrpcserver.RunTestPlanResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.AddPoolRequest",
+              "name": "AddPool",
+              "outputType": ".satlabrpcserver.AddPoolResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.UpdatePoolRequest",
+              "name": "UpdatePool",
+              "outputType": ".satlabrpcserver.UpdatePoolResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.DeleteDutsRequest",
+              "name": "DeleteDuts",
+              "outputType": ".satlabrpcserver.DeleteDutsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.AddDutsRequest",
+              "name": "AddDuts",
+              "outputType": ".satlabrpcserver.AddDutsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetDutDetailRequest",
+              "name": "GetDutDetail",
+              "outputType": ".satlabrpcserver.GetDutDetailResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListDutTasksRequest",
+              "name": "ListDutTasks",
+              "outputType": ".satlabrpcserver.ListDutTasksResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListDutEventsRequest",
+              "name": "ListDutEvents",
+              "outputType": ".satlabrpcserver.ListDutEventsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListEnrolledDutsRequest",
+              "name": "ListEnrolledDuts",
+              "outputType": ".satlabrpcserver.ListEnrolledDutsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListDutsRequest",
+              "name": "ListDuts",
+              "outputType": ".satlabrpcserver.ListDutsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.SetCloudConfigurationRequest",
+              "name": "SetCloudConfiguration",
+              "outputType": ".satlabrpcserver.SetCloudConfigurationResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetCloudConfigurationRequest",
+              "name": "GetCloudConfiguration",
+              "outputType": ".satlabrpcserver.GetCloudConfigurationResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RebootRequest",
+              "name": "Reboot",
+              "outputType": ".satlabrpcserver.RebootResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.UploadLogRequest",
+              "name": "UploadLog",
+              "outputType": ".satlabrpcserver.UploadLogResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.DownloadLogRequest",
+              "name": "DownloadLog",
+              "outputType": ".satlabrpcserver.DownloadLogResponse",
+              "serverStreaming": true
+            },
+            {
+              "inputType": ".chromiumos.test.api.StartServodRequest",
+              "name": "StartServod",
+              "options": {
+                "[chromiumos.longrunning.operation_info]": {
+                  "metadataType": "StartServodMetadata",
+                  "responseType": "StartServodResponse"
+                }
+              },
+              "outputType": ".chromiumos.longrunning.Operation"
+            }
+          ],
+          "name": "SatlabRpcService"
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [
@@ -26198,107 +28895,6 @@
         {
           "field": [
             {
-              "jsonName": "hwTestConfig",
-              "label": "LABEL_OPTIONAL",
-              "name": "hw_test_config",
-              "number": 1,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.common.HwTestConfig"
-            }
-          ],
-          "name": "CftStepsConfig",
-          "oneofDecl": [
-            {
-              "name": "config_type"
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "skipLoadingDutTopology",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_loading_dut_topology",
-              "number": 1,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipStartingDutService",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_starting_dut_service",
-              "number": 2,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipProvision",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_provision",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipTestExecution",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_test_execution",
-              "number": 4,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipAllResultPublish",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_all_result_publish",
-              "number": 5,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipGcsPublish",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_gcs_publish",
-              "number": 6,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipRdbPublish",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_rdb_publish",
-              "number": 7,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "skipTkoPublish",
-              "label": "LABEL_OPTIONAL",
-              "name": "skip_tko_publish",
-              "number": 8,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "runCpconPublish",
-              "label": "LABEL_OPTIONAL",
-              "name": "run_cpcon_publish",
-              "number": 9,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "HwTestConfig"
-        }
-      ],
-      "name": "test_platform/common/cft_steps_config.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/common"
-      },
-      "package": "test_platform.common",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "messageType": [
-        {
-          "field": [
-            {
               "jsonName": "gsUrl",
               "label": "LABEL_OPTIONAL",
               "name": "gs_url",
@@ -26678,931 +29274,6 @@
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/config"
       },
       "package": "test_platform.config",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromiumos/build/api/container_metadata.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "uploadCrashes",
-              "label": "LABEL_OPTIONAL",
-              "name": "upload_crashes",
-              "number": 1,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "containerMetadata",
-              "label": "LABEL_OPTIONAL",
-              "name": "container_metadata",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.build.api.ContainerMetadata"
-            },
-            {
-              "jsonName": "containerImageInfo",
-              "label": "LABEL_OPTIONAL",
-              "name": "container_image_info",
-              "number": 8,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.build.api.ContainerImageInfo"
-            }
-          ],
-          "name": "Param"
-        }
-      ],
-      "name": "test_platform/execution/param.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/execution"
-      },
-      "package": "test_platform.execution",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromite/api/test_metadata.proto",
-        "chromiumos/common.proto",
-        "chromiumos/test/api/test_suite.proto",
-        "chromiumos/test/api/test_execution_metadata.proto",
-        "google/protobuf/duration.proto",
-        "test_platform/execution/param.proto",
-        "test_platform/common/cft_steps_config.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "params",
-              "label": "LABEL_OPTIONAL",
-              "name": "params",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.Request.Params"
-            },
-            {
-              "jsonName": "testPlan",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_plan",
-              "number": 5,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.Request.TestPlan"
-            }
-          ],
-          "name": "Request",
-          "nestedType": [
-            {
-              "enumType": [
-                {
-                  "name": "TestExecutionBehavior",
-                  "value": [
-                    {
-                      "name": "BEHAVIOR_UNSPECIFIED",
-                      "number": 0
-                    },
-                    {
-                      "name": "CRITICAL",
-                      "number": 1
-                    },
-                    {
-                      "name": "NON_CRITICAL",
-                      "number": 2
-                    }
-                  ]
-                }
-              ],
-              "field": [
-                {
-                  "jsonName": "hardwareAttributes",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "hardware_attributes",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.HardwareAttributes"
-                },
-                {
-                  "jsonName": "softwareAttributes",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "software_attributes",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.SoftwareAttributes"
-                },
-                {
-                  "jsonName": "freeformAttributes",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "freeform_attributes",
-                  "number": 9,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.FreeformAttributes"
-                },
-                {
-                  "jsonName": "softwareDependencies",
-                  "label": "LABEL_REPEATED",
-                  "name": "software_dependencies",
-                  "number": 3,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.SoftwareDependency"
-                },
-                {
-                  "jsonName": "secondaryDevices",
-                  "label": "LABEL_REPEATED",
-                  "name": "secondary_devices",
-                  "number": 14,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.SecondaryDevice"
-                },
-                {
-                  "jsonName": "scheduling",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "scheduling",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.Scheduling"
-                },
-                {
-                  "jsonName": "retry",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "retry",
-                  "number": 5,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.Retry"
-                },
-                {
-                  "jsonName": "metadata",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "metadata",
-                  "number": 6,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.Metadata"
-                },
-                {
-                  "jsonName": "time",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "time",
-                  "number": 7,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.Time"
-                },
-                {
-                  "jsonName": "decorations",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "decorations",
-                  "number": 8,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.Decorations"
-                },
-                {
-                  "jsonName": "migrations",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "migrations",
-                  "number": 12,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.Migrations"
-                },
-                {
-                  "jsonName": "executionParam",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "execution_param",
-                  "number": 13,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.execution.Param"
-                },
-                {
-                  "jsonName": "testExecutionBehavior",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "test_execution_behavior",
-                  "number": 15,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".test_platform.Request.Params.TestExecutionBehavior"
-                },
-                {
-                  "jsonName": "runViaCft",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "run_via_cft",
-                  "number": 16,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "scheduleViaScheduke",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "schedule_via_scheduke",
-                  "number": 17,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "runViaTrv2",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "run_via_trv2",
-                  "number": 18,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "trv2StepsConfig",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "trv2_steps_config",
-                  "number": 19,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.common.CftStepsConfig"
-                },
-                {
-                  "jsonName": "dddSuite",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "ddd_suite",
-                  "number": 20,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "results",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "results",
-                  "number": 21,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Params.ResultsUploadConfig"
-                },
-                {
-                  "jsonName": "translateTrv2Request",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "translate_trv2_request",
-                  "number": 22,
-                  "type": "TYPE_BOOL"
-                }
-              ],
-              "name": "Params",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "model",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "model",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "requireStableDevice",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "require_stable_device",
-                      "number": 2,
-                      "type": "TYPE_BOOL"
-                    }
-                  ],
-                  "name": "HardwareAttributes"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "buildTarget",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "build_target",
-                      "number": 2,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".chromiumos.BuildTarget"
-                    }
-                  ],
-                  "name": "SoftwareAttributes"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "swarmingDimensions",
-                      "label": "LABEL_REPEATED",
-                      "name": "swarming_dimensions",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "FreeformAttributes"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "chromeosBuild",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "chromeos_build",
-                      "number": 3,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "chromeosBuildGcsBucket",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "chromeos_build_gcs_bucket",
-                      "number": 7,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "roFirmwareBuild",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "ro_firmware_build",
-                      "number": 4,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "rwFirmwareBuild",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "rw_firmware_build",
-                      "number": 5,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "lacrosGcsPath",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "lacros_gcs_path",
-                      "number": 6,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "androidImageVersion",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "android_image_version",
-                      "number": 8,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "gmsCorePackage",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "gms_core_package",
-                      "number": 9,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "SoftwareDependency",
-                  "oneofDecl": [
-                    {
-                      "name": "dep"
-                    }
-                  ]
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "softwareAttributes",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "software_attributes",
-                      "number": 1,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".test_platform.Request.Params.SoftwareAttributes"
-                    },
-                    {
-                      "jsonName": "hardwareAttributes",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "hardware_attributes",
-                      "number": 2,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".test_platform.Request.Params.HardwareAttributes"
-                    },
-                    {
-                      "jsonName": "softwareDependencies",
-                      "label": "LABEL_REPEATED",
-                      "name": "software_dependencies",
-                      "number": 3,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".test_platform.Request.Params.SoftwareDependency"
-                    }
-                  ],
-                  "name": "SecondaryDevice"
-                },
-                {
-                  "enumType": [
-                    {
-                      "name": "ManagedPool",
-                      "value": [
-                        {
-                          "name": "MANAGED_POOL_UNSPECIFIED",
-                          "number": 0
-                        },
-                        {
-                          "name": "MANAGED_POOL_CQ",
-                          "number": 1
-                        },
-                        {
-                          "name": "MANAGED_POOL_BVT",
-                          "number": 2
-                        },
-                        {
-                          "name": "MANAGED_POOL_SUITES",
-                          "number": 3
-                        },
-                        {
-                          "name": "MANAGED_POOL_CTS",
-                          "number": 4
-                        },
-                        {
-                          "name": "MANAGED_POOL_CTS_PERBUILD",
-                          "number": 5
-                        },
-                        {
-                          "name": "MANAGED_POOL_CONTINUOUS",
-                          "number": 6
-                        },
-                        {
-                          "name": "MANAGED_POOL_ARC_PRESUBMIT",
-                          "number": 7
-                        },
-                        {
-                          "name": "MANAGED_POOL_QUOTA",
-                          "number": 8
-                        }
-                      ]
-                    }
-                  ],
-                  "field": [
-                    {
-                      "jsonName": "managedPool",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "managed_pool",
-                      "number": 1,
-                      "oneofIndex": 0,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".test_platform.Request.Params.Scheduling.ManagedPool"
-                    },
-                    {
-                      "jsonName": "unmanagedPool",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "unmanaged_pool",
-                      "number": 2,
-                      "oneofIndex": 0,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "priority",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "priority",
-                      "number": 4,
-                      "type": "TYPE_INT64"
-                    },
-                    {
-                      "jsonName": "qsAccount",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "qs_account",
-                      "number": 5,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "Scheduling",
-                  "oneofDecl": [
-                    {
-                      "name": "pool"
-                    }
-                  ]
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "allow",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "allow",
-                      "number": 1,
-                      "type": "TYPE_BOOL"
-                    },
-                    {
-                      "jsonName": "max",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "max",
-                      "number": 2,
-                      "type": "TYPE_INT32"
-                    }
-                  ],
-                  "name": "Retry"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "testMetadataUrl",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "test_metadata_url",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "debugSymbolsArchiveUrl",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "debug_symbols_archive_url",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "containerMetadataUrl",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "container_metadata_url",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "Metadata"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "maximumDuration",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "maximum_duration",
-                      "number": 1,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".google.protobuf.Duration"
-                    }
-                  ],
-                  "name": "Time"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "autotestKeyvals",
-                      "label": "LABEL_REPEATED",
-                      "name": "autotest_keyvals",
-                      "number": 1,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".test_platform.Request.Params.Decorations.AutotestKeyvalsEntry"
-                    },
-                    {
-                      "jsonName": "tags",
-                      "label": "LABEL_REPEATED",
-                      "name": "tags",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "testArgs",
-                      "label": "LABEL_REPEATED",
-                      "name": "test_args",
-                      "number": 3,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".test_platform.Request.Params.Decorations.TestArgsEntry"
-                    }
-                  ],
-                  "name": "Decorations",
-                  "nestedType": [
-                    {
-                      "field": [
-                        {
-                          "jsonName": "key",
-                          "label": "LABEL_OPTIONAL",
-                          "name": "key",
-                          "number": 1,
-                          "type": "TYPE_STRING"
-                        },
-                        {
-                          "jsonName": "value",
-                          "label": "LABEL_OPTIONAL",
-                          "name": "value",
-                          "number": 2,
-                          "type": "TYPE_STRING"
-                        }
-                      ],
-                      "name": "AutotestKeyvalsEntry",
-                      "options": {
-                        "mapEntry": true
-                      }
-                    },
-                    {
-                      "field": [
-                        {
-                          "jsonName": "key",
-                          "label": "LABEL_OPTIONAL",
-                          "name": "key",
-                          "number": 1,
-                          "type": "TYPE_STRING"
-                        },
-                        {
-                          "jsonName": "value",
-                          "label": "LABEL_OPTIONAL",
-                          "name": "value",
-                          "number": 2,
-                          "type": "TYPE_STRING"
-                        }
-                      ],
-                      "name": "TestArgsEntry",
-                      "options": {
-                        "mapEntry": true
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Migrations",
-                  "reservedName": [
-                    "use_test_runner",
-                    "enable_synchronous_offload",
-                    "notificationless_offload"
-                  ],
-                  "reservedRange": [
-                    {
-                      "end": 2,
-                      "start": 1
-                    },
-                    {
-                      "end": 3,
-                      "start": 2
-                    },
-                    {
-                      "end": 4,
-                      "start": 3
-                    }
-                  ]
-                },
-                {
-                  "enumType": [
-                    {
-                      "name": "TestResultsUploadVisibility",
-                      "value": [
-                        {
-                          "name": "TEST_RESULTS_VISIBILITY_UNSPECIFIED",
-                          "number": 0
-                        },
-                        {
-                          "name": "TEST_RESULTS_VISIBILITY_BOARD_MODEL",
-                          "number": 1
-                        },
-                        {
-                          "name": "TEST_RESULTS_VISIBILITY_CUSTOM_REALM",
-                          "number": 2
-                        }
-                      ]
-                    }
-                  ],
-                  "field": [
-                    {
-                      "jsonName": "mode",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "mode",
-                      "number": 1,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".test_platform.Request.Params.ResultsUploadConfig.TestResultsUploadVisibility"
-                    }
-                  ],
-                  "name": "ResultsUploadConfig"
-                }
-              ],
-              "reservedName": [
-                "notifications",
-                "legacy"
-              ],
-              "reservedRange": [
-                {
-                  "end": 12,
-                  "start": 11
-                },
-                {
-                  "end": 11,
-                  "start": 10
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Tag"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Suite",
-              "reservedName": [
-                "run_via_cft"
-              ],
-              "reservedRange": [
-                {
-                  "end": 3,
-                  "start": 2
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "autotest",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "autotest",
-                  "number": 1,
-                  "oneofIndex": 0,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Test.Autotest"
-                }
-              ],
-              "name": "Test",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "name",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "name",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "testArgs",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "test_args",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "displayName",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "display_name",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "Autotest"
-                }
-              ],
-              "oneofDecl": [
-                {
-                  "name": "harness"
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "autotestInvocations",
-                  "label": "LABEL_REPEATED",
-                  "name": "autotest_invocations",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Enumeration.AutotestInvocation"
-                }
-              ],
-              "name": "Enumeration",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "test",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "test",
-                      "number": 1,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".chromite.api.AutotestTest"
-                    },
-                    {
-                      "jsonName": "testArgs",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "test_args",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "displayName",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "display_name",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "resultKeyvals",
-                      "label": "LABEL_REPEATED",
-                      "name": "result_keyvals",
-                      "number": 4,
-                      "type": "TYPE_MESSAGE",
-                      "typeName": ".test_platform.Request.Enumeration.AutotestInvocation.ResultKeyvalsEntry"
-                    }
-                  ],
-                  "name": "AutotestInvocation",
-                  "nestedType": [
-                    {
-                      "field": [
-                        {
-                          "jsonName": "key",
-                          "label": "LABEL_OPTIONAL",
-                          "name": "key",
-                          "number": 1,
-                          "type": "TYPE_STRING"
-                        },
-                        {
-                          "jsonName": "value",
-                          "label": "LABEL_OPTIONAL",
-                          "name": "value",
-                          "number": 2,
-                          "type": "TYPE_STRING"
-                        }
-                      ],
-                      "name": "ResultKeyvalsEntry",
-                      "options": {
-                        "mapEntry": true
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "suite",
-                  "label": "LABEL_REPEATED",
-                  "name": "suite",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Suite"
-                },
-                {
-                  "jsonName": "test",
-                  "label": "LABEL_REPEATED",
-                  "name": "test",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Test"
-                },
-                {
-                  "jsonName": "enumeration",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "enumeration",
-                  "number": 3,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.Request.Enumeration"
-                },
-                {
-                  "jsonName": "tagCriteria",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "tag_criteria",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
-                },
-                {
-                  "jsonName": "seed",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "seed",
-                  "number": 5,
-                  "type": "TYPE_INT64"
-                },
-                {
-                  "jsonName": "testArgs",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "test_args",
-                  "number": 6,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.test.api.AutotestExecutionMetadata"
-                },
-                {
-                  "jsonName": "totalShards",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "total_shards",
-                  "number": 7,
-                  "type": "TYPE_INT64"
-                },
-                {
-                  "jsonName": "maxInShard",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "max_in_shard",
-                  "number": 8,
-                  "type": "TYPE_INT64"
-                }
-              ],
-              "name": "TestPlan"
-            }
-          ],
-          "reservedRange": [
-            {
-              "end": 7,
-              "start": 6
-            },
-            {
-              "end": 8,
-              "start": 7
-            }
-          ]
-        }
-      ],
-      "name": "test_platform/request.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
-      },
-      "package": "test_platform",
       "syntax": "proto3"
     },
     {

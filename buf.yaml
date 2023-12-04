@@ -20,9 +20,13 @@ lint:
     RPC_RESPONSE_STANDARD_NAME:
       - chromite
       - lab
+      # TODO (b/314774067): Remove after StartServod is removed
+      - satlabrpcserver
     RPC_REQUEST_RESPONSE_UNIQUE:
       - chromite
       - lab
+      # TODO (b/314774067): Remove after StartServod is removed
+      - satlabrpcserver
     DIRECTORY_SAME_PACKAGE:
       - chromite
     PACKAGE_DEFINED:
