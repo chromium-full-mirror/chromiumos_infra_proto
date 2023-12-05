@@ -35637,6 +35637,109 @@
         {
           "field": [
             {
+              "jsonName": "buildUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_uid",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            },
+            {
+              "jsonName": "runUid",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_uid",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.UID"
+            },
+            {
+              "jsonName": "createTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "create_time",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "bbid",
+              "label": "LABEL_OPTIONAL",
+              "name": "bbid",
+              "number": 4,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 6,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "imagePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_path",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "variant",
+              "label": "LABEL_OPTIONAL",
+              "name": "variant",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 11,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BuildInformation"
+        }
+      ],
+      "name": "test_platform/suite_scheduler/v15/builds.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/suite_scheduler/v15"
+      },
+      "package": "test_platform.suite_scheduler.v15",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "google/protobuf/timestamp.proto",
+        "test_platform/suite_scheduler/v15/events.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "runUid",
               "label": "LABEL_OPTIONAL",
               "name": "run_uid",
