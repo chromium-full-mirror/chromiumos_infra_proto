@@ -275,14 +275,19 @@ message FinalizePayloadRequest {
   // and may be ignored for certain request types (e.g. dlc).
   string keyset = 4;
 
-  // If set, will use the local signing flow (currently a prototype).
-  bool use_local_signing = 5;
-
   // Should we run verification?
   bool verify = 6;
 
   // The destination bucket (defaults to "chromeos-releases").
   string bucket = 7;
+
+  // If set, will use the local signing flow (currently a prototype).
+  bool use_local_signing = 5;
+
+  // Docker image to use for local signing. Must already be pulled down on the
+  // host. This consists of the name of the docker image, followed by the tag,
+  // i.e. "signing:1234".
+  string docker_image = 17;
 }
 
 // Response for a FinalizePayloadsRequest

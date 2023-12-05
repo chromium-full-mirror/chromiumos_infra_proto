@@ -14343,13 +14343,6 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "useLocalSigning",
-              "label": "LABEL_OPTIONAL",
-              "name": "use_local_signing",
-              "number": 5,
-              "type": "TYPE_BOOL"
-            },
-            {
               "jsonName": "verify",
               "label": "LABEL_OPTIONAL",
               "name": "verify",
@@ -14361,6 +14354,20 @@
               "label": "LABEL_OPTIONAL",
               "name": "bucket",
               "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "useLocalSigning",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_local_signing",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 17,
               "type": "TYPE_STRING"
             }
           ],
