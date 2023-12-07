@@ -14189,6 +14189,13 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "appid",
+              "label": "LABEL_OPTIONAL",
+              "name": "appid",
+              "number": 8,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "UnsignedPayload",

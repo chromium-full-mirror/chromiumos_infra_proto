@@ -211,6 +211,9 @@ message UnsignedPayload {
   repeated chromiumos.Path src_partitions = 5;
   // Paths of the target partition files.
   repeated chromiumos.Path tgt_partitions = 6;
+
+  // AppID. Need this in FinalizePayloadRequest.
+  string appid = 8;
 }
 
 // Result of a payload generation.
