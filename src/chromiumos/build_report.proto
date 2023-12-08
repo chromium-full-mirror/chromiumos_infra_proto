@@ -41,7 +41,7 @@ message DlcArtifact {
   string id = 3;     // The id of the DLC.
 }
 
-// next: 17
+// next: 18
 message BuildReport {
   // Id serves as the primary key for the metadata and will be constant even
   // when sending multiple partial messages.  Oneof to keep open changing the
@@ -70,6 +70,10 @@ message BuildReport {
   // List of standalone toolchains, e.g.
   // ["x86_64-cros-linux-gnu", "i686-cros-linux-gnu"].
   repeated string toolchains = 15;
+  // The Google Storage bucket containing this build's SDK and toolchains.
+  // Should not include the "gs://" prefix.
+  // If not given, a default will be assumed, most likely chromiumos-sdk.
+  string sdk_bucket = 17;
 
   // Artifacts from the build.
   repeated BuildArtifact artifacts = 7;

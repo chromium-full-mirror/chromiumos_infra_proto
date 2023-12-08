@@ -5876,6 +5876,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "sdkBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_bucket",
+              "number": 17,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "artifacts",
               "label": "LABEL_REPEATED",
               "name": "artifacts",
