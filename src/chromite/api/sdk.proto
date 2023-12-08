@@ -120,6 +120,11 @@ message UprevRequest {
   // src/third_party/chromiumos-overlay/chromeos/binhost/host/sdk_version.conf.
   // Example: "2023/04/%(target)s-2023.02.12.144623.tar.xz"
   string toolchain_tarball_template = 5;
+
+  // Optional. The Google Storage bucket containing the SDK and toolchains.
+  // Example: "gs://chromiumos-sdk".
+  // If not given, a default will be assumed, most likely gs://chromiumos-sdk.
+  string sdk_gs_bucket = 6;
 }
 
 // Uprev SDK response.

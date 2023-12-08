@@ -8675,6 +8675,13 @@
               "name": "toolchain_tarball_template",
               "number": 5,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sdkGsBucket",
+              "label": "LABEL_OPTIONAL",
+              "name": "sdk_gs_bucket",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "UprevRequest",
