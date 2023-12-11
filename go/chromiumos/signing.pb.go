@@ -407,6 +407,8 @@ type ArchiveArtifacts struct {
 	// Channel the artifact was signed for.
 	Channel Channel `protobuf:"varint,5,opt,name=channel,proto3,enum=chromiumos.Channel" json:"channel,omitempty"`
 	// Status of the signing operation.
+	// Deprecated, use `signing_status` instead.
+	// TODO(b/310258180): Remove.
 	Status SigningStatus `protobuf:"varint,6,opt,name=status,proto3,enum=chromiumos.SigningStatus" json:"status,omitempty"`
 	// Keyset versions.
 	KeysetVersions *KeysetVersions `protobuf:"bytes,8,opt,name=keyset_versions,json=keysetVersions,proto3" json:"keyset_versions,omitempty"`
