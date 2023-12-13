@@ -12454,6 +12454,13 @@
                       "name": "bucket",
                       "number": 3,
                       "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "runOn",
+                      "label": "LABEL_REPEATED",
+                      "name": "run_on",
+                      "number": 4,
+                      "type": "TYPE_INT32"
                     }
                   ],
                   "name": "ChildSpec"

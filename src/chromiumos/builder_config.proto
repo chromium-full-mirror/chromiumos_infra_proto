@@ -206,6 +206,9 @@ message BuilderConfig {
       // If not present, it is assumed that the child builder lives in the
       // same bucket as its parent.
       string bucket = 3;
+
+      // Which days of the week to run the child builder on. 0 is Sunday.
+      repeated int32 run_on = 4;
     }
     repeated ChildSpec child_specs = 5;
 
