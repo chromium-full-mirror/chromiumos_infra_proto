@@ -12118,6 +12118,14 @@
               "number": 8,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuilderConfig.UpdateChroot"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
             }
           ],
           "name": "BuilderConfig",

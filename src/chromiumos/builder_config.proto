@@ -617,6 +617,9 @@ message BuilderConfig {
     RunSpec run_spec = 1;
   }
   UpdateChroot update_chroot = 8;
+
+  // If this builder is associated with a build target, the build target.
+  chromiumos.BuildTarget build_target = 9;
 }
 
 // List of builder configs. Intended to be serialized to / from disk.
