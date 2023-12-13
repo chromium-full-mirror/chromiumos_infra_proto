@@ -18034,6 +18034,27 @@
               "number": 2
             }
           ]
+        },
+        {
+          "name": "BuildCadence",
+          "value": [
+            {
+              "name": "UNKNOWN_CADENCE",
+              "number": 0
+            },
+            {
+              "name": "ONCE_PER_WEEK_CADENCE",
+              "number": 1
+            },
+            {
+              "name": "THRICE_PER_WEEK_CADENCE",
+              "number": 2
+            },
+            {
+              "name": "DAILY_CADENCE",
+              "number": 3
+            }
+          ]
         }
       ],
       "messageType": [
@@ -18172,6 +18193,21 @@
               "name": "stable_target_milestone",
               "number": 8,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "boardVariant",
+              "label": "LABEL_OPTIONAL",
+              "name": "board_variant",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildCadence",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_cadence",
+              "number": 10,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.BuildCadence"
             }
           ],
           "name": "ReferenceBoardUnifiedBuildConfig"
@@ -18214,6 +18250,21 @@
               "number": 5,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.Architecture"
+            },
+            {
+              "jsonName": "boardVariant",
+              "label": "LABEL_OPTIONAL",
+              "name": "board_variant",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildCadence",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_cadence",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.BuildCadence"
             }
           ],
           "name": "Config"

@@ -63,6 +63,13 @@ enum Architecture {
   ARM_INTERNAL = 2;
 }
 
+enum BuildCadence {
+  UNKNOWN_CADENCE = 0;
+  ONCE_PER_WEEK_CADENCE = 1;
+  THRICE_PER_WEEK_CADENCE = 2;
+  DAILY_CADENCE = 3;
+}
+
 // Configuration required by BuildBot in order to generate a unified release
 // builder with the appropriate model specific hardware test coverage.
 // For context, see: go/cros-unibuild-hw-test
@@ -92,6 +99,11 @@ message ReferenceBoardUnifiedBuildConfig {
   // The first milestone that this board will be released to stable
   // on.
   int32 stable_target_milestone = 8;
+
+  string board_variant = 9;
+
+  // The cadence (days/week) we should build this builder at.
+  BuildCadence build_cadence = 10;
 }
 
 // Message to represent a build config for a given builder
@@ -102,6 +114,10 @@ message Config {
   string board_group = 4;
 
   Architecture arch = 5;
+  string board_variant = 6;
+
+  // The cadence (days/week) we should build this builder at.
+  BuildCadence build_cadence = 7;
 }
 
 // Message to represent a board in build configuration
