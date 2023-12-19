@@ -26943,9 +26943,9 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "isConnected",
+              "jsonName": "isPingable",
               "label": "LABEL_OPTIONAL",
-              "name": "is_connected",
+              "name": "is_pingable",
               "number": 8,
               "type": "TYPE_BOOL"
             },
@@ -26976,6 +26976,13 @@
               "name": "state",
               "number": 12,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hasTestImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_test_image",
+              "number": 13,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "Dut"
