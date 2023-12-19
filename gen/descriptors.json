@@ -6942,6 +6942,28 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "channel",
+              "label": "LABEL_OPTIONAL",
+              "name": "channel",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.Channel"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "signingConfigs",
               "label": "LABEL_REPEATED",
               "name": "signing_configs",
