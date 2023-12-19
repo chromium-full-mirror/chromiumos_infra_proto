@@ -27397,6 +27397,73 @@
             }
           ],
           "name": "DownloadLogResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostnames",
+              "label": "LABEL_REPEATED",
+              "name": "hostnames",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deep",
+              "label": "LABEL_OPTIONAL",
+              "name": "deep",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "RepairDutsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "result",
+              "label": "LABEL_REPEATED",
+              "name": "result",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.RepairDutsResponse.RepairResult"
+            }
+          ],
+          "name": "RepairDutsResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "hostname",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hostname",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "buildLink",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "build_link",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "taskLink",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "task_link",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "isSuccess",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "is_success",
+                  "number": 4,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "RepairResult"
+            }
+          ]
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -27506,6 +27573,11 @@
               "inputType": ".satlabrpcserver.AddDutsRequest",
               "name": "AddDuts",
               "outputType": ".satlabrpcserver.AddDutsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RepairDutsRequest",
+              "name": "RepairDuts",
+              "outputType": ".satlabrpcserver.RepairDutsResponse"
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",

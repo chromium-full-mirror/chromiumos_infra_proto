@@ -47,6 +47,7 @@ type SatlabRpcServiceClient interface {
 	UpdatePool(ctx context.Context, in *UpdatePoolRequest, opts ...grpc.CallOption) (*UpdatePoolResponse, error)
 	DeleteDuts(ctx context.Context, in *DeleteDutsRequest, opts ...grpc.CallOption) (*DeleteDutsResponse, error)
 	AddDuts(ctx context.Context, in *AddDutsRequest, opts ...grpc.CallOption) (*AddDutsResponse, error)
+	RepairDuts(ctx context.Context, in *RepairDutsRequest, opts ...grpc.CallOption) (*RepairDutsResponse, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -252,6 +253,15 @@ func (c *satlabRpcServiceClient) AddDuts(ctx context.Context, in *AddDutsRequest
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) RepairDuts(ctx context.Context, in *RepairDutsRequest, opts ...grpc.CallOption) (*RepairDutsResponse, error) {
+	out := new(RepairDutsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RepairDuts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -401,6 +411,7 @@ type SatlabRpcServiceServer interface {
 	UpdatePool(context.Context, *UpdatePoolRequest) (*UpdatePoolResponse, error)
 	DeleteDuts(context.Context, *DeleteDutsRequest) (*DeleteDutsResponse, error)
 	AddDuts(context.Context, *AddDutsRequest) (*AddDutsResponse, error)
+	RepairDuts(context.Context, *RepairDutsRequest) (*RepairDutsResponse, error)
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -482,6 +493,9 @@ func (UnimplementedSatlabRpcServiceServer) DeleteDuts(context.Context, *DeleteDu
 }
 func (UnimplementedSatlabRpcServiceServer) AddDuts(context.Context, *AddDutsRequest) (*AddDutsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDuts not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) RepairDuts(context.Context, *RepairDutsRequest) (*RepairDutsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RepairDuts not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -889,6 +903,24 @@ func _SatlabRpcService_AddDuts_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_RepairDuts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RepairDutsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).RepairDuts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/RepairDuts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).RepairDuts(ctx, req.(*RepairDutsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -1176,6 +1208,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddDuts",
 			Handler:    _SatlabRpcService_AddDuts_Handler,
+		},
+		{
+			MethodName: "RepairDuts",
+			Handler:    _SatlabRpcService_RepairDuts_Handler,
 		},
 		{
 			MethodName: "GetDutDetail",
