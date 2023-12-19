@@ -29416,6 +29416,915 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromite/api/test_metadata.proto",
+        "test_platform/request.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "requests",
+              "label": "LABEL_REPEATED",
+              "name": "requests",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.EnumerationRequest"
+            },
+            {
+              "jsonName": "taggedRequests",
+              "label": "LABEL_REPEATED",
+              "name": "tagged_requests",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.EnumerationRequests.TaggedRequestsEntry"
+            }
+          ],
+          "name": "EnumerationRequests",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.EnumerationRequest"
+                }
+              ],
+              "name": "TaggedRequestsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "responses",
+              "label": "LABEL_REPEATED",
+              "name": "responses",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.EnumerationResponse"
+            },
+            {
+              "jsonName": "taggedResponses",
+              "label": "LABEL_REPEATED",
+              "name": "tagged_responses",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.EnumerationResponses.TaggedResponsesEntry"
+            }
+          ],
+          "name": "EnumerationResponses",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.EnumerationResponse"
+                }
+              ],
+              "name": "TaggedResponsesEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "metadata",
+              "label": "LABEL_OPTIONAL",
+              "name": "metadata",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.Params.Metadata"
+            },
+            {
+              "jsonName": "testPlan",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.TestPlan"
+            }
+          ],
+          "name": "EnumerationRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "autotestInvocations",
+              "label": "LABEL_REPEATED",
+              "name": "autotest_invocations",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.EnumerationResponse.AutotestInvocation"
+            },
+            {
+              "jsonName": "errorSummary",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_summary",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "EnumerationResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "test",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.AutotestTest"
+                },
+                {
+                  "jsonName": "testArgs",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_args",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "displayName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "display_name",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "resultKeyvals",
+                  "label": "LABEL_REPEATED",
+                  "name": "result_keyvals",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.EnumerationResponse.AutotestInvocation.ResultKeyvalsEntry"
+                }
+              ],
+              "name": "AutotestInvocation",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "key",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "key",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "value",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "value",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "ResultKeyvalsEntry",
+                  "options": {
+                    "mapEntry": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/steps/enumeration.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps"
+      },
+      "package": "test_platform.steps",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "google/protobuf/timestamp.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "createTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "create_time",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 2,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "Build"
+        }
+      ],
+      "name": "test_platform/steps/execute/build.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps/execute"
+      },
+      "package": "test_platform.steps.execute",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "LifeCycleMask",
+              "value": [
+                {
+                  "name": "LIFE_CYCLE_MASK_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "LIFE_CYCLE_MASK_STARTED",
+                  "number": 16
+                },
+                {
+                  "name": "LIFE_CYCLE_MASK_COMPLETED",
+                  "number": 32
+                },
+                {
+                  "name": "LIFE_CYCLE_MASK_FINAL",
+                  "number": 64
+                }
+              ]
+            },
+            {
+              "name": "LifeCycle",
+              "value": [
+                {
+                  "name": "LIFE_CYCLE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "LIFE_CYCLE_PENDING",
+                  "number": 1
+                },
+                {
+                  "name": "LIFE_CYCLE_RUNNING",
+                  "number": 16
+                },
+                {
+                  "name": "LIFE_CYCLE_COMPLETED",
+                  "number": 112
+                },
+                {
+                  "name": "LIFE_CYCLE_CANCELLED",
+                  "number": 65
+                },
+                {
+                  "name": "LIFE_CYCLE_REJECTED",
+                  "number": 66
+                },
+                {
+                  "name": "LIFE_CYCLE_ABORTED",
+                  "number": 80
+                }
+              ]
+            },
+            {
+              "name": "Verdict",
+              "value": [
+                {
+                  "name": "VERDICT_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "VERDICT_PASSED",
+                  "number": 1
+                },
+                {
+                  "name": "VERDICT_FAILED",
+                  "number": 2
+                },
+                {
+                  "name": "VERDICT_NO_VERDICT",
+                  "number": 3
+                },
+                {
+                  "name": "VERDICT_PASSED_ON_RETRY",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "lifeCycle",
+              "label": "LABEL_OPTIONAL",
+              "name": "life_cycle",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.TaskState.LifeCycle"
+            },
+            {
+              "jsonName": "verdict",
+              "label": "LABEL_OPTIONAL",
+              "name": "verdict",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.TaskState.Verdict"
+            }
+          ],
+          "name": "TaskState"
+        }
+      ],
+      "name": "test_platform/taskstate.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
+      },
+      "package": "test_platform",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "test_platform/common/task.proto",
+        "test_platform/config/config.proto",
+        "test_platform/request.proto",
+        "test_platform/steps/enumeration.proto",
+        "test_platform/steps/execute/build.proto",
+        "test_platform/taskstate.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "requests",
+              "label": "LABEL_REPEATED",
+              "name": "requests",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteRequest"
+            },
+            {
+              "jsonName": "taggedRequests",
+              "label": "LABEL_REPEATED",
+              "name": "tagged_requests",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteRequests.TaggedRequestsEntry"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.execute.Build"
+            }
+          ],
+          "name": "ExecuteRequests",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteRequest"
+                }
+              ],
+              "name": "TaggedRequestsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "responses",
+              "label": "LABEL_REPEATED",
+              "name": "responses",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteResponse"
+            },
+            {
+              "jsonName": "taggedResponses",
+              "label": "LABEL_REPEATED",
+              "name": "tagged_responses",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteResponses.TaggedResponsesEntry"
+            }
+          ],
+          "name": "ExecuteResponses",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse"
+                }
+              ],
+              "name": "TaggedResponsesEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "requestParams",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_params",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.Params"
+            },
+            {
+              "jsonName": "enumeration",
+              "label": "LABEL_OPTIONAL",
+              "name": "enumeration",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.EnumerationResponse"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.config.Config"
+            }
+          ],
+          "name": "ExecuteRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "taskResults",
+              "label": "LABEL_REPEATED",
+              "name": "task_results",
+              "number": 1,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteResponse.TaskResult"
+            },
+            {
+              "jsonName": "consolidatedResults",
+              "label": "LABEL_REPEATED",
+              "name": "consolidated_results",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteResponse.ConsolidatedResult"
+            },
+            {
+              "jsonName": "state",
+              "label": "LABEL_OPTIONAL",
+              "name": "state",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.TaskState"
+            }
+          ],
+          "name": "ExecuteResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "taskUrl",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "task_url",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "state",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "state",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.TaskState"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "logUrl",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "log_url",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "attempt",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "attempt",
+                  "number": 6,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "testCases",
+                  "label": "LABEL_REPEATED",
+                  "name": "test_cases",
+                  "number": 7,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.TestCaseResult"
+                },
+                {
+                  "jsonName": "prejobSteps",
+                  "label": "LABEL_REPEATED",
+                  "name": "prejob_steps",
+                  "number": 8,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.TestCaseResult"
+                },
+                {
+                  "jsonName": "logData",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "log_data",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.common.TaskLogData"
+                },
+                {
+                  "jsonName": "rejectedTaskDimensions",
+                  "label": "LABEL_REPEATED",
+                  "name": "rejected_task_dimensions",
+                  "number": 11,
+                  "options": {
+                    "deprecated": true
+                  },
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.RejectedTaskDimensionsEntry"
+                },
+                {
+                  "jsonName": "rejectedDimensions",
+                  "label": "LABEL_REPEATED",
+                  "name": "rejected_dimensions",
+                  "number": 12,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.RejectedTaskDimension"
+                }
+              ],
+              "name": "TaskResult",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "name",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "name",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "verdict",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "verdict",
+                      "number": 2,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".test_platform.TaskState.Verdict"
+                    },
+                    {
+                      "jsonName": "humanReadableSummary",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "human_readable_summary",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "TestCaseResult"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "key",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "key",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "value",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "value",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "RejectedTaskDimensionsEntry",
+                  "options": {
+                    "mapEntry": true
+                  }
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "key",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "key",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "value",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "value",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "RejectedTaskDimension"
+                }
+              ],
+              "reservedName": [
+                "synchronous_log_data_url"
+              ],
+              "reservedRange": [
+                {
+                  "end": 11,
+                  "start": 10
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "attempts",
+                  "label": "LABEL_REPEATED",
+                  "name": "attempts",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult"
+                }
+              ],
+              "name": "ConsolidatedResult"
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/steps/execution.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps"
+      },
+      "package": "test_platform.steps",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "test_platform/request.proto",
+        "test_platform/steps/execution.proto",
+        "test_platform/config/config.proto",
+        "chromiumos/test/api/ctp2.proto"
+      ],
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "LUCIExperiments",
+              "value": [
+                {
+                  "name": "SUITE_EXECUTION_LIMIT",
+                  "number": 0
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "request",
+              "label": "LABEL_OPTIONAL",
+              "name": "request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request"
+            },
+            {
+              "jsonName": "requests",
+              "label": "LABEL_REPEATED",
+              "name": "requests",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.cros_test_platform.CrosTestPlatformProperties.RequestsEntry"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.config.Config"
+            },
+            {
+              "jsonName": "response",
+              "label": "LABEL_OPTIONAL",
+              "name": "response",
+              "number": 4,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.steps.ExecuteResponse"
+            },
+            {
+              "jsonName": "responses",
+              "label": "LABEL_REPEATED",
+              "name": "responses",
+              "number": 6,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.cros_test_platform.CrosTestPlatformProperties.ResponsesEntry"
+            },
+            {
+              "jsonName": "compressedResponses",
+              "label": "LABEL_OPTIONAL",
+              "name": "compressed_responses",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "compressedJsonResponses",
+              "label": "LABEL_OPTIONAL",
+              "name": "compressed_json_responses",
+              "number": 9,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "forceExport",
+              "label": "LABEL_OPTIONAL",
+              "name": "force_export",
+              "number": 10,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "experiments",
+              "label": "LABEL_REPEATED",
+              "name": "experiments",
+              "number": 11,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.cros_test_platform.CrosTestPlatformProperties.LUCIExperiments"
+            },
+            {
+              "jsonName": "partnerConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "partner_config",
+              "number": 12,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "ctpv2Request",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctpv2_request",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CTPv2Request"
+            }
+          ],
+          "name": "CrosTestPlatformProperties",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request"
+                }
+              ],
+              "name": "RequestsEntry",
+              "options": {
+                "mapEntry": true
+              }
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.steps.ExecuteResponse"
+                }
+              ],
+              "name": "ResponsesEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ],
+          "reservedRange": [
+            {
+              "end": 2,
+              "start": 1
+            }
+          ]
+        }
+      ],
+      "name": "test_platform/cros_test_platform/properties.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
+      },
+      "package": "test_platform.cros_test_platform",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromiumos/common.proto",
         "test_platform/request.proto"
       ],
@@ -34083,732 +34992,6 @@
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_tool"
       },
       "package": "test_platform.skylab_tool",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromite/api/test_metadata.proto",
-        "test_platform/request.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "requests",
-              "label": "LABEL_REPEATED",
-              "name": "requests",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.EnumerationRequest"
-            },
-            {
-              "jsonName": "taggedRequests",
-              "label": "LABEL_REPEATED",
-              "name": "tagged_requests",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.EnumerationRequests.TaggedRequestsEntry"
-            }
-          ],
-          "name": "EnumerationRequests",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.EnumerationRequest"
-                }
-              ],
-              "name": "TaggedRequestsEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "responses",
-              "label": "LABEL_REPEATED",
-              "name": "responses",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.EnumerationResponse"
-            },
-            {
-              "jsonName": "taggedResponses",
-              "label": "LABEL_REPEATED",
-              "name": "tagged_responses",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.EnumerationResponses.TaggedResponsesEntry"
-            }
-          ],
-          "name": "EnumerationResponses",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.EnumerationResponse"
-                }
-              ],
-              "name": "TaggedResponsesEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "metadata",
-              "label": "LABEL_OPTIONAL",
-              "name": "metadata",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.Request.Params.Metadata"
-            },
-            {
-              "jsonName": "testPlan",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_plan",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.Request.TestPlan"
-            }
-          ],
-          "name": "EnumerationRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "autotestInvocations",
-              "label": "LABEL_REPEATED",
-              "name": "autotest_invocations",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.EnumerationResponse.AutotestInvocation"
-            },
-            {
-              "jsonName": "errorSummary",
-              "label": "LABEL_OPTIONAL",
-              "name": "error_summary",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "EnumerationResponse",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "test",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "test",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromite.api.AutotestTest"
-                },
-                {
-                  "jsonName": "testArgs",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "test_args",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "displayName",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "display_name",
-                  "number": 3,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "resultKeyvals",
-                  "label": "LABEL_REPEATED",
-                  "name": "result_keyvals",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.EnumerationResponse.AutotestInvocation.ResultKeyvalsEntry"
-                }
-              ],
-              "name": "AutotestInvocation",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "key",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "key",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "value",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "value",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "ResultKeyvalsEntry",
-                  "options": {
-                    "mapEntry": true
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "name": "test_platform/steps/enumeration.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps"
-      },
-      "package": "test_platform.steps",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "google/protobuf/timestamp.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "createTime",
-              "label": "LABEL_OPTIONAL",
-              "name": "create_time",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".google.protobuf.Timestamp"
-            },
-            {
-              "jsonName": "id",
-              "label": "LABEL_OPTIONAL",
-              "name": "id",
-              "number": 2,
-              "type": "TYPE_INT64"
-            }
-          ],
-          "name": "Build"
-        }
-      ],
-      "name": "test_platform/steps/execute/build.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps/execute"
-      },
-      "package": "test_platform.steps.execute",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "messageType": [
-        {
-          "enumType": [
-            {
-              "name": "LifeCycleMask",
-              "value": [
-                {
-                  "name": "LIFE_CYCLE_MASK_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "LIFE_CYCLE_MASK_STARTED",
-                  "number": 16
-                },
-                {
-                  "name": "LIFE_CYCLE_MASK_COMPLETED",
-                  "number": 32
-                },
-                {
-                  "name": "LIFE_CYCLE_MASK_FINAL",
-                  "number": 64
-                }
-              ]
-            },
-            {
-              "name": "LifeCycle",
-              "value": [
-                {
-                  "name": "LIFE_CYCLE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "LIFE_CYCLE_PENDING",
-                  "number": 1
-                },
-                {
-                  "name": "LIFE_CYCLE_RUNNING",
-                  "number": 16
-                },
-                {
-                  "name": "LIFE_CYCLE_COMPLETED",
-                  "number": 112
-                },
-                {
-                  "name": "LIFE_CYCLE_CANCELLED",
-                  "number": 65
-                },
-                {
-                  "name": "LIFE_CYCLE_REJECTED",
-                  "number": 66
-                },
-                {
-                  "name": "LIFE_CYCLE_ABORTED",
-                  "number": 80
-                }
-              ]
-            },
-            {
-              "name": "Verdict",
-              "value": [
-                {
-                  "name": "VERDICT_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "VERDICT_PASSED",
-                  "number": 1
-                },
-                {
-                  "name": "VERDICT_FAILED",
-                  "number": 2
-                },
-                {
-                  "name": "VERDICT_NO_VERDICT",
-                  "number": 3
-                },
-                {
-                  "name": "VERDICT_PASSED_ON_RETRY",
-                  "number": 4
-                }
-              ]
-            }
-          ],
-          "field": [
-            {
-              "jsonName": "lifeCycle",
-              "label": "LABEL_OPTIONAL",
-              "name": "life_cycle",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".test_platform.TaskState.LifeCycle"
-            },
-            {
-              "jsonName": "verdict",
-              "label": "LABEL_OPTIONAL",
-              "name": "verdict",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".test_platform.TaskState.Verdict"
-            }
-          ],
-          "name": "TaskState"
-        }
-      ],
-      "name": "test_platform/taskstate.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
-      },
-      "package": "test_platform",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "test_platform/common/task.proto",
-        "test_platform/config/config.proto",
-        "test_platform/request.proto",
-        "test_platform/steps/enumeration.proto",
-        "test_platform/steps/execute/build.proto",
-        "test_platform/taskstate.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "requests",
-              "label": "LABEL_REPEATED",
-              "name": "requests",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.ExecuteRequest"
-            },
-            {
-              "jsonName": "taggedRequests",
-              "label": "LABEL_REPEATED",
-              "name": "tagged_requests",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.ExecuteRequests.TaggedRequestsEntry"
-            },
-            {
-              "jsonName": "build",
-              "label": "LABEL_OPTIONAL",
-              "name": "build",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.execute.Build"
-            }
-          ],
-          "name": "ExecuteRequests",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteRequest"
-                }
-              ],
-              "name": "TaggedRequestsEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "responses",
-              "label": "LABEL_REPEATED",
-              "name": "responses",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.ExecuteResponse"
-            },
-            {
-              "jsonName": "taggedResponses",
-              "label": "LABEL_REPEATED",
-              "name": "tagged_responses",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.ExecuteResponses.TaggedResponsesEntry"
-            }
-          ],
-          "name": "ExecuteResponses",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "key",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "key",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "value",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "value",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteResponse"
-                }
-              ],
-              "name": "TaggedResponsesEntry",
-              "options": {
-                "mapEntry": true
-              }
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "requestParams",
-              "label": "LABEL_OPTIONAL",
-              "name": "request_params",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.Request.Params"
-            },
-            {
-              "jsonName": "enumeration",
-              "label": "LABEL_OPTIONAL",
-              "name": "enumeration",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.EnumerationResponse"
-            },
-            {
-              "jsonName": "config",
-              "label": "LABEL_OPTIONAL",
-              "name": "config",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.config.Config"
-            }
-          ],
-          "name": "ExecuteRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "taskResults",
-              "label": "LABEL_REPEATED",
-              "name": "task_results",
-              "number": 1,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.ExecuteResponse.TaskResult"
-            },
-            {
-              "jsonName": "consolidatedResults",
-              "label": "LABEL_REPEATED",
-              "name": "consolidated_results",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.steps.ExecuteResponse.ConsolidatedResult"
-            },
-            {
-              "jsonName": "state",
-              "label": "LABEL_OPTIONAL",
-              "name": "state",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".test_platform.TaskState"
-            }
-          ],
-          "name": "ExecuteResponse",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "taskUrl",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "task_url",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "state",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "state",
-                  "number": 3,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.TaskState"
-                },
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 4,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "logUrl",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "log_url",
-                  "number": 5,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "attempt",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "attempt",
-                  "number": 6,
-                  "type": "TYPE_INT32"
-                },
-                {
-                  "jsonName": "testCases",
-                  "label": "LABEL_REPEATED",
-                  "name": "test_cases",
-                  "number": 7,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.TestCaseResult"
-                },
-                {
-                  "jsonName": "prejobSteps",
-                  "label": "LABEL_REPEATED",
-                  "name": "prejob_steps",
-                  "number": 8,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.TestCaseResult"
-                },
-                {
-                  "jsonName": "logData",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "log_data",
-                  "number": 9,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.common.TaskLogData"
-                },
-                {
-                  "jsonName": "rejectedTaskDimensions",
-                  "label": "LABEL_REPEATED",
-                  "name": "rejected_task_dimensions",
-                  "number": 11,
-                  "options": {
-                    "deprecated": true
-                  },
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.RejectedTaskDimensionsEntry"
-                },
-                {
-                  "jsonName": "rejectedDimensions",
-                  "label": "LABEL_REPEATED",
-                  "name": "rejected_dimensions",
-                  "number": 12,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult.RejectedTaskDimension"
-                }
-              ],
-              "name": "TaskResult",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "name",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "name",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "verdict",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "verdict",
-                      "number": 2,
-                      "type": "TYPE_ENUM",
-                      "typeName": ".test_platform.TaskState.Verdict"
-                    },
-                    {
-                      "jsonName": "humanReadableSummary",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "human_readable_summary",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "TestCaseResult"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "key",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "key",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "value",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "value",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "RejectedTaskDimensionsEntry",
-                  "options": {
-                    "mapEntry": true
-                  }
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "key",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "key",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "value",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "value",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "RejectedTaskDimension"
-                }
-              ],
-              "reservedName": [
-                "synchronous_log_data_url"
-              ],
-              "reservedRange": [
-                {
-                  "end": 11,
-                  "start": 10
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "attempts",
-                  "label": "LABEL_REPEATED",
-                  "name": "attempts",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".test_platform.steps.ExecuteResponse.TaskResult"
-                }
-              ],
-              "name": "ConsolidatedResult"
-            }
-          ]
-        }
-      ],
-      "name": "test_platform/steps/execution.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps"
-      },
-      "package": "test_platform.steps",
       "syntax": "proto3"
     },
     {
