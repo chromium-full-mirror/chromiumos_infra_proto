@@ -18,6 +18,8 @@ message SigningConfig {
 
   // Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
   // more information.
+
+  // If set, overrides the keyset set at the BuildTargetSigningConfig level.
   string keyset = 2;
 
   // The channel to sign for.
@@ -71,6 +73,7 @@ message BuildTargetSigningConfig {
 
   // Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
   // more information.
+  // Can be overridden at the individual artifact config level.
   string keyset = 3;
 
   // The channel to sign for.

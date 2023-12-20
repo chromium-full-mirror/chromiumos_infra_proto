@@ -80,8 +80,7 @@ type SigningConfig struct {
 
 	// Display / logical name of this signing config, if any.
 	DisplayName string `protobuf:"bytes,1,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	// Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
-	// more information.
+	// If set, overrides the keyset set at the BuildTargetSigningConfig level.
 	Keyset string `protobuf:"bytes,2,opt,name=keyset,proto3" json:"keyset,omitempty"`
 	// The channel to sign for.
 	// Not intended for specification in config files -- this field is populated
@@ -238,6 +237,7 @@ type BuildTargetSigningConfig struct {
 	BuildTarget string `protobuf:"bytes,1,opt,name=build_target,json=buildTarget,proto3" json:"build_target,omitempty"`
 	// Keyset to sign with. Corresponds to TODO in CloudKMS, see go/TODO for
 	// more information.
+	// Can be overridden at the individual artifact config level.
 	Keyset string `protobuf:"bytes,3,opt,name=keyset,proto3" json:"keyset,omitempty"`
 	// The channel to sign for.
 	// Not intended for specification in config files -- this field is populated
