@@ -6873,13 +6873,6 @@
               "typeName": ".chromiumos.Channel"
             },
             {
-              "jsonName": "version",
-              "label": "LABEL_OPTIONAL",
-              "name": "version",
-              "number": 11,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "imageType",
               "label": "LABEL_OPTIONAL",
               "name": "image_type",
@@ -6930,7 +6923,13 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "SigningConfig"
+          "name": "SigningConfig",
+          "reservedRange": [
+            {
+              "end": 12,
+              "start": 11
+            }
+          ]
         },
         {
           "field": [
