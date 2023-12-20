@@ -76,16 +76,11 @@ message BuildTargetSigningConfig {
   // Can be overridden at the individual artifact config level.
   string keyset = 3;
 
-  // The channel to sign for.
-  // Not intended for specification in config files -- this field is populated
-  // at run time.
-  chromiumos.Channel channel = 4;
-
   // The ChromeOS version for the artifact we're signing. Used in generating
   // output names. Just the platform version, e.g. "15603.0.0".
   // Not intended for specification in config files -- this
   // field is populated at run time.
-  string version = 5;
+  string version = 4;
 
   repeated SigningConfig signing_configs = 2;
 }
