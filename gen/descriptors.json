@@ -25873,6 +25873,13 @@
                   "name": "max_in_shard",
                   "number": 8,
                   "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "enableAutotestSharding",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "enable_autotest_sharding",
+                  "number": 9,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "TestPlan"

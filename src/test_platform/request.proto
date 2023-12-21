@@ -360,6 +360,8 @@ message Request {
     // Total_shards takes priority over max_in_shard.
     // Only used when tag_criteria is also set.
     int64 max_in_shard = 8;
+    // if enable_autotest_sharding is True, then autotest tests will be sharded
+    bool enable_autotest_sharding = 9;
   }
 
   TestPlan test_plan = 5;
