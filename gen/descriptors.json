@@ -30314,7 +30314,7 @@
       ],
       "name": "test_platform/cros_test_platform/properties.proto",
       "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform"
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/cros_test_platform"
       },
       "package": "test_platform.cros_test_platform",
       "syntax": "proto3"

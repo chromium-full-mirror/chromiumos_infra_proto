@@ -11,7 +11,7 @@ import "test_platform/steps/execution.proto";
 import "test_platform/config/config.proto";
 import "chromiumos/test/api/ctp2.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/cros_test_platform";
 
 message CrosTestPlatformProperties {
   reserved 1;

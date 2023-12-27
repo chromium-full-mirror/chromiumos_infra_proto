@@ -8,10 +8,11 @@
 // 	protoc        v3.17.1
 // source: test_platform/cros_test_platform/properties.proto
 
-package test_platform
+package cros_test_platform
 
 import (
 	api "go.chromium.org/chromiumos/config/go/test/api"
+	test_platform "go.chromium.org/chromiumos/infra/proto/go/test_platform"
 	config "go.chromium.org/chromiumos/infra/proto/go/test_platform/config"
 	steps "go.chromium.org/chromiumos/infra/proto/go/test_platform/steps"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -79,13 +80,13 @@ type CrosTestPlatformProperties struct {
 	// described by a caller.
 	//
 	// Exactly one of request or requests must be set.
-	Request *Request `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
+	Request *test_platform.Request `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
 	// requests describes a set of requests to the cros_test_platform recipe, as
 	// described by a caller. The key in the dictionary is an opaque tag used to
 	// group the responses for the individual requests.
 	//
 	// Exactly one of request or requests must be set.
-	Requests map[string]*Request `protobuf:"bytes,5,rep,name=requests,proto3" json:"requests,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Requests map[string]*test_platform.Request `protobuf:"bytes,5,rep,name=requests,proto3" json:"requests,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// config describes configuration information for the cros_test_platform
 	// recipe.
 	//
@@ -161,14 +162,14 @@ func (*CrosTestPlatformProperties) Descriptor() ([]byte, []int) {
 	return file_test_platform_cros_test_platform_properties_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CrosTestPlatformProperties) GetRequest() *Request {
+func (x *CrosTestPlatformProperties) GetRequest() *test_platform.Request {
 	if x != nil {
 		return x.Request
 	}
 	return nil
 }
 
-func (x *CrosTestPlatformProperties) GetRequests() map[string]*Request {
+func (x *CrosTestPlatformProperties) GetRequests() map[string]*test_platform.Request {
 	if x != nil {
 		return x.Requests
 	}
@@ -322,11 +323,12 @@ var file_test_platform_cros_test_platform_properties_proto_rawDesc = []byte{
 	0x4c, 0x55, 0x43, 0x49, 0x45, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12,
 	0x19, 0x0a, 0x15, 0x53, 0x55, 0x49, 0x54, 0x45, 0x5f, 0x45, 0x58, 0x45, 0x43, 0x55, 0x54, 0x49,
 	0x4f, 0x4e, 0x5f, 0x4c, 0x49, 0x4d, 0x49, 0x54, 0x10, 0x00, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02,
-	0x42, 0x39, 0x5a, 0x37, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e,
+	0x42, 0x4c, 0x5a, 0x4a, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e,
 	0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69,
 	0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x65,
-	0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x2f, 0x63, 0x72, 0x6f, 0x73,
+	0x5f, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -348,7 +350,7 @@ var file_test_platform_cros_test_platform_properties_proto_goTypes = []interface
 	(*CrosTestPlatformProperties)(nil),              // 1: test_platform.cros_test_platform.CrosTestPlatformProperties
 	nil,                                             // 2: test_platform.cros_test_platform.CrosTestPlatformProperties.RequestsEntry
 	nil,                                             // 3: test_platform.cros_test_platform.CrosTestPlatformProperties.ResponsesEntry
-	(*Request)(nil),                                 // 4: test_platform.Request
+	(*test_platform.Request)(nil),                   // 4: test_platform.Request
 	(*config.Config)(nil),                           // 5: test_platform.config.Config
 	(*steps.ExecuteResponse)(nil),                   // 6: test_platform.steps.ExecuteResponse
 	(*api.CTPv2Request)(nil),                        // 7: chromiumos.test.api.CTPv2Request
@@ -375,7 +377,6 @@ func file_test_platform_cros_test_platform_properties_proto_init() {
 	if File_test_platform_cros_test_platform_properties_proto != nil {
 		return
 	}
-	file_test_platform_request_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_test_platform_cros_test_platform_properties_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CrosTestPlatformProperties); i {
