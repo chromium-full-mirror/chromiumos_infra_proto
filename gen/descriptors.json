@@ -27475,6 +27475,80 @@
               "name": "RepairResult"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "suite",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            },
+            {
+              "jsonName": "bugId",
+              "label": "LABEL_OPTIONAL",
+              "name": "bug_id",
+              "number": 8,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunStorageQualRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunStorageQualResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -27564,6 +27638,11 @@
               "inputType": ".satlabrpcserver.RunTestPlanRequest",
               "name": "RunTestPlan",
               "outputType": ".satlabrpcserver.RunTestPlanResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunStorageQualRequest",
+              "name": "RunStorageQual",
+              "outputType": ".satlabrpcserver.RunStorageQualResponse"
             },
             {
               "inputType": ".satlabrpcserver.AddPoolRequest",

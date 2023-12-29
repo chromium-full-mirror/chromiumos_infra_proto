@@ -42,6 +42,7 @@ type SatlabRpcServiceClient interface {
 	RunSuite(ctx context.Context, in *RunSuiteRequest, opts ...grpc.CallOption) (*RunSuiteResponse, error)
 	RunTest(ctx context.Context, in *RunTestRequest, opts ...grpc.CallOption) (*RunTestResponse, error)
 	RunTestPlan(ctx context.Context, in *RunTestPlanRequest, opts ...grpc.CallOption) (*RunTestPlanResponse, error)
+	RunStorageQual(ctx context.Context, in *RunStorageQualRequest, opts ...grpc.CallOption) (*RunStorageQualResponse, error)
 	// manage DUTs
 	AddPool(ctx context.Context, in *AddPoolRequest, opts ...grpc.CallOption) (*AddPoolResponse, error)
 	UpdatePool(ctx context.Context, in *UpdatePoolRequest, opts ...grpc.CallOption) (*UpdatePoolResponse, error)
@@ -211,6 +212,15 @@ func (c *satlabRpcServiceClient) RunTest(ctx context.Context, in *RunTestRequest
 func (c *satlabRpcServiceClient) RunTestPlan(ctx context.Context, in *RunTestPlanRequest, opts ...grpc.CallOption) (*RunTestPlanResponse, error) {
 	out := new(RunTestPlanResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunTestPlan", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) RunStorageQual(ctx context.Context, in *RunStorageQualRequest, opts ...grpc.CallOption) (*RunStorageQualResponse, error) {
+	out := new(RunStorageQualResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunStorageQual", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -406,6 +416,7 @@ type SatlabRpcServiceServer interface {
 	RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error)
 	RunTest(context.Context, *RunTestRequest) (*RunTestResponse, error)
 	RunTestPlan(context.Context, *RunTestPlanRequest) (*RunTestPlanResponse, error)
+	RunStorageQual(context.Context, *RunStorageQualRequest) (*RunStorageQualResponse, error)
 	// manage DUTs
 	AddPool(context.Context, *AddPoolRequest) (*AddPoolResponse, error)
 	UpdatePool(context.Context, *UpdatePoolRequest) (*UpdatePoolResponse, error)
@@ -481,6 +492,9 @@ func (UnimplementedSatlabRpcServiceServer) RunTest(context.Context, *RunTestRequ
 }
 func (UnimplementedSatlabRpcServiceServer) RunTestPlan(context.Context, *RunTestPlanRequest) (*RunTestPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunTestPlan not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) RunStorageQual(context.Context, *RunStorageQualRequest) (*RunStorageQualResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunStorageQual not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) AddPool(context.Context, *AddPoolRequest) (*AddPoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPool not implemented")
@@ -827,6 +841,24 @@ func _SatlabRpcService_RunTestPlan_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).RunTestPlan(ctx, req.(*RunTestPlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_RunStorageQual_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunStorageQualRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).RunStorageQual(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/RunStorageQual",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).RunStorageQual(ctx, req.(*RunStorageQualRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1192,6 +1224,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunTestPlan",
 			Handler:    _SatlabRpcService_RunTestPlan_Handler,
+		},
+		{
+			MethodName: "RunStorageQual",
+			Handler:    _SatlabRpcService_RunStorageQual_Handler,
 		},
 		{
 			MethodName: "AddPool",

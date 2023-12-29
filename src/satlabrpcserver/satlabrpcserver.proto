@@ -33,6 +33,7 @@ service SatlabRpcService {
   rpc RunSuite (RunSuiteRequest) returns (RunSuiteResponse);
   rpc RunTest (RunTestRequest) returns (RunTestResponse);
   rpc RunTestPlan (RunTestPlanRequest) returns (RunTestPlanResponse);
+  rpc RunStorageQual (RunStorageQualRequest) returns (RunStorageQualResponse);
 
   // manage DUTs
   rpc AddPool (AddPoolRequest) returns (AddPoolResponse);
@@ -575,6 +576,7 @@ message RepairDutsRequest {
   // a flag that control we want to deep repair.
   bool deep = 2;
 }
+
 // NEXT_TAG = 2
 message RepairDutsResponse {
   // NEXT_TAG = 5
@@ -586,4 +588,24 @@ message RepairDutsResponse {
     bool is_success = 4;
   }
   repeated RepairResult result = 1;
+}
+
+// NEXT_TAG = 9
+message RunStorageQualRequest {
+  string suite = 1;
+  string board = 2;
+  string model = 3;
+  string milestone = 4;
+  string build = 5;
+  string pool = 6;
+  // We use `repeated Dim` (not `map<string, string>`) in here
+  // because the generated files in Typescript do not
+  // have a setter function.
+  repeated Dim dims = 7;
+  string bug_id = 8;
+}
+
+// NEXT_TAG = 2
+message RunStorageQualResponse {
+  string build_link= 1;
 }
