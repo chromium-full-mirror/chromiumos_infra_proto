@@ -90,6 +90,8 @@ message UpdateRequest {
   chromiumos.Chroot chroot = 3;
   // Directory where results (logs, etc.) should be stored.
   chromiumos.ResultPath result_path = 4;
+  // Whether to use host binpkgs uploaded by snapshot builders.
+  bool use_snapshot_binhosts = 5;
 }
 
 // Chroot update response message.

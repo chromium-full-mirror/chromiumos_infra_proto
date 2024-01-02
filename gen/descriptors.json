@@ -8621,6 +8621,13 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "useSnapshotBinhosts",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_snapshot_binhosts",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "UpdateRequest",
