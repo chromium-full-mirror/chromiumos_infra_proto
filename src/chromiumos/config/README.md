@@ -5,7 +5,7 @@ This directory is a placeholder for protobufs imported under the name space
 `chromiumos.config.*`
 
 from
-https://chromium.googlesource.com/chromiumos/config/+/refs/heads/master/proto/chromiumos/config
+https://chromium.googlesource.com/chromiumos/config/+/HEAD/proto/chromiumos/config
 
 Adding protobuf definitions locally under this directory is strongly discouraged
 as it will lead to namespace collision.
