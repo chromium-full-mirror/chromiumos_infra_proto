@@ -118,10 +118,7 @@ message ArchiveArtifacts {
   // Channel the artifact was signed for.
   chromiumos.Channel channel = 5;
 
-  // Status of the signing operation.
-  // Deprecated, use `signing_status` instead.
-  // TODO(b/310258180): Remove.
-  SigningStatus status = 6;
+  reserved 6;
 
   // Keyset versions.
   chromiumos.KeysetVersions keyset_versions = 8;

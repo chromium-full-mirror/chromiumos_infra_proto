@@ -7046,14 +7046,6 @@
               "typeName": ".chromiumos.Channel"
             },
             {
-              "jsonName": "status",
-              "label": "LABEL_OPTIONAL",
-              "name": "status",
-              "number": 6,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.SigningStatus"
-            },
-            {
               "jsonName": "keysetVersions",
               "label": "LABEL_OPTIONAL",
               "name": "keyset_versions",
@@ -7070,7 +7062,13 @@
               "typeName": ".chromiumos.BuildReport.SignedBuildMetadata.SigningStatus"
             }
           ],
-          "name": "ArchiveArtifacts"
+          "name": "ArchiveArtifacts",
+          "reservedRange": [
+            {
+              "end": 7,
+              "start": 6
+            }
+          ]
         },
         {
           "field": [
