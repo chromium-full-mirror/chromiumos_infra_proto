@@ -10,6 +10,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
+import "chromiumos/prebuilts_cloud.proto";
 
 // Sysroot information.
 message Sysroot {
@@ -185,6 +186,8 @@ message InstallPackagesRequest {
   chromiumos.ResultPath result_path = 9;
   // Which packages should a Bazel-based build target.
   BazelTargets bazel_targets = 10;
+  // Data needed for fetching binhosts from the binhost lookup service.
+  chromiumos.BinhostLookupServiceData binhost_lookup_service_data = 11;
 }
 
 message InstallPackagesResponse {

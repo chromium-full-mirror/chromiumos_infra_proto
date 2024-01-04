@@ -123,3 +123,13 @@ message LookupBinhostsResponse {
   // List of `Binhost` objects.
   repeated Binhost binhosts = 1;
 }
+
+// Data required to fetch binhosts from the binhost lookup service.
+message BinhostLookupServiceData {
+
+  // Snapshot SHAs of the target binhosts.
+  repeated string snapshot_shas = 1;
+
+  // Bool to indicate if the snapshot SHAs are private (internal).
+  bool private = 2;
+}

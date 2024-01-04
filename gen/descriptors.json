@@ -2920,9 +2920,244 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/timestamp.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "snapshotSha",
+              "label": "LABEL_OPTIONAL",
+              "name": "snapshot_sha",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "snapshotNum",
+              "label": "LABEL_OPTIONAL",
+              "name": "snapshot_num",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "external",
+              "label": "LABEL_OPTIONAL",
+              "name": "external",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "buildbucketId",
+              "label": "LABEL_OPTIONAL",
+              "name": "buildbucket_id",
+              "number": 4,
+              "type": "TYPE_UINT64"
+            }
+          ],
+          "name": "UpdateSnapshotDataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "profile",
+              "label": "LABEL_OPTIONAL",
+              "name": "profile",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "snapshotSha",
+              "label": "LABEL_OPTIONAL",
+              "name": "snapshot_sha",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gsUri",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_uri",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gsBucketName",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_bucket_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildbucketId",
+              "label": "LABEL_OPTIONAL",
+              "name": "buildbucket_id",
+              "number": 6,
+              "type": "TYPE_UINT64"
+            },
+            {
+              "jsonName": "complete",
+              "label": "LABEL_OPTIONAL",
+              "name": "complete",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "private",
+              "label": "LABEL_OPTIONAL",
+              "name": "private",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "UpdateBinhostDataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "gsBucketName",
+              "label": "LABEL_OPTIONAL",
+              "name": "gs_bucket_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "snapshotShas",
+              "label": "LABEL_REPEATED",
+              "name": "snapshot_shas",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "profile",
+              "label": "LABEL_OPTIONAL",
+              "name": "profile",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "private",
+              "label": "LABEL_OPTIONAL",
+              "name": "private",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "getCorrespondingBinhosts",
+              "label": "LABEL_OPTIONAL",
+              "name": "get_corresponding_binhosts",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "genericBuildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "generic_build_target",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "genericProfile",
+              "label": "LABEL_OPTIONAL",
+              "name": "generic_profile",
+              "number": 8,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "LookupBinhostsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "binhosts",
+              "label": "LABEL_REPEATED",
+              "name": "binhosts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.LookupBinhostsResponse.Binhost"
+            }
+          ],
+          "name": "LookupBinhostsResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "binhostId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "binhost_id",
+                  "number": 1,
+                  "type": "TYPE_UINT64"
+                },
+                {
+                  "jsonName": "gsUri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "gs_uri",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "createdAt",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "created_at",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".google.protobuf.Timestamp"
+                }
+              ],
+              "name": "Binhost"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "snapshotShas",
+              "label": "LABEL_REPEATED",
+              "name": "snapshot_shas",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "private",
+              "label": "LABEL_OPTIONAL",
+              "name": "private",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "BinhostLookupServiceData"
+        }
+      ],
+      "name": "chromiumos/prebuilts_cloud.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto",
-        "chromiumos/metrics.proto"
+        "chromiumos/metrics.proto",
+        "chromiumos/prebuilts_cloud.proto"
       ],
       "messageType": [
         {
@@ -3318,6 +3553,14 @@
               "number": 10,
               "type": "TYPE_ENUM",
               "typeName": ".chromite.api.InstallPackagesRequest.BazelTargets"
+            },
+            {
+              "jsonName": "binhostLookupServiceData",
+              "label": "LABEL_OPTIONAL",
+              "name": "binhost_lookup_service_data",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BinhostLookupServiceData"
             }
           ],
           "name": "InstallPackagesRequest",
@@ -18747,221 +18990,6 @@
         }
       ],
       "name": "chromiumos/payload_config.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
-        "javaPackage": "com.google.chrome.crosinfra.proto"
-      },
-      "package": "chromiumos",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "google/protobuf/timestamp.proto"
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "snapshotSha",
-              "label": "LABEL_OPTIONAL",
-              "name": "snapshot_sha",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "snapshotNum",
-              "label": "LABEL_OPTIONAL",
-              "name": "snapshot_num",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "external",
-              "label": "LABEL_OPTIONAL",
-              "name": "external",
-              "number": 3,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "buildbucketId",
-              "label": "LABEL_OPTIONAL",
-              "name": "buildbucket_id",
-              "number": 4,
-              "type": "TYPE_UINT64"
-            }
-          ],
-          "name": "UpdateSnapshotDataRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "profile",
-              "label": "LABEL_OPTIONAL",
-              "name": "profile",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "snapshotSha",
-              "label": "LABEL_OPTIONAL",
-              "name": "snapshot_sha",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "gsUri",
-              "label": "LABEL_OPTIONAL",
-              "name": "gs_uri",
-              "number": 4,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "gsBucketName",
-              "label": "LABEL_OPTIONAL",
-              "name": "gs_bucket_name",
-              "number": 5,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "buildbucketId",
-              "label": "LABEL_OPTIONAL",
-              "name": "buildbucket_id",
-              "number": 6,
-              "type": "TYPE_UINT64"
-            },
-            {
-              "jsonName": "complete",
-              "label": "LABEL_OPTIONAL",
-              "name": "complete",
-              "number": 7,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "private",
-              "label": "LABEL_OPTIONAL",
-              "name": "private",
-              "number": 8,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "UpdateBinhostDataRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "gsBucketName",
-              "label": "LABEL_OPTIONAL",
-              "name": "gs_bucket_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "snapshotShas",
-              "label": "LABEL_REPEATED",
-              "name": "snapshot_shas",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "buildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "build_target",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "profile",
-              "label": "LABEL_OPTIONAL",
-              "name": "profile",
-              "number": 4,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "private",
-              "label": "LABEL_OPTIONAL",
-              "name": "private",
-              "number": 5,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "getCorrespondingBinhosts",
-              "label": "LABEL_OPTIONAL",
-              "name": "get_corresponding_binhosts",
-              "number": 6,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "genericBuildTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "generic_build_target",
-              "number": 7,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "genericProfile",
-              "label": "LABEL_OPTIONAL",
-              "name": "generic_profile",
-              "number": 8,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "LookupBinhostsRequest"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "binhosts",
-              "label": "LABEL_REPEATED",
-              "name": "binhosts",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.LookupBinhostsResponse.Binhost"
-            }
-          ],
-          "name": "LookupBinhostsResponse",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "binhostId",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "binhost_id",
-                  "number": 1,
-                  "type": "TYPE_UINT64"
-                },
-                {
-                  "jsonName": "gsUri",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "gs_uri",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "createdAt",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "created_at",
-                  "number": 3,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".google.protobuf.Timestamp"
-                }
-              ],
-              "name": "Binhost"
-            }
-          ]
-        }
-      ],
-      "name": "chromiumos/prebuilts_cloud.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
         "javaPackage": "com.google.chrome.crosinfra.proto"

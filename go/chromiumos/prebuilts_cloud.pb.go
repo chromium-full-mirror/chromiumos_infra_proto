@@ -397,6 +397,64 @@ func (x *LookupBinhostsResponse) GetBinhosts() []*LookupBinhostsResponse_Binhost
 	return nil
 }
 
+// Data required to fetch binhosts from the binhost lookup service.
+type BinhostLookupServiceData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Snapshot SHAs of the target binhosts.
+	SnapshotShas []string `protobuf:"bytes,1,rep,name=snapshot_shas,json=snapshotShas,proto3" json:"snapshot_shas,omitempty"`
+	// Bool to indicate if the snapshot SHAs are private (internal).
+	Private bool `protobuf:"varint,2,opt,name=private,proto3" json:"private,omitempty"`
+}
+
+func (x *BinhostLookupServiceData) Reset() {
+	*x = BinhostLookupServiceData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromiumos_prebuilts_cloud_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BinhostLookupServiceData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BinhostLookupServiceData) ProtoMessage() {}
+
+func (x *BinhostLookupServiceData) ProtoReflect() protoreflect.Message {
+	mi := &file_chromiumos_prebuilts_cloud_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BinhostLookupServiceData.ProtoReflect.Descriptor instead.
+func (*BinhostLookupServiceData) Descriptor() ([]byte, []int) {
+	return file_chromiumos_prebuilts_cloud_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *BinhostLookupServiceData) GetSnapshotShas() []string {
+	if x != nil {
+		return x.SnapshotShas
+	}
+	return nil
+}
+
+func (x *BinhostLookupServiceData) GetPrivate() bool {
+	if x != nil {
+		return x.Private
+	}
+	return false
+}
+
 // Metadata related to a binhost.
 type LookupBinhostsResponse_Binhost struct {
 	state         protoimpl.MessageState
@@ -414,7 +472,7 @@ type LookupBinhostsResponse_Binhost struct {
 func (x *LookupBinhostsResponse_Binhost) Reset() {
 	*x = LookupBinhostsResponse_Binhost{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromiumos_prebuilts_cloud_proto_msgTypes[4]
+		mi := &file_chromiumos_prebuilts_cloud_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -427,7 +485,7 @@ func (x *LookupBinhostsResponse_Binhost) String() string {
 func (*LookupBinhostsResponse_Binhost) ProtoMessage() {}
 
 func (x *LookupBinhostsResponse_Binhost) ProtoReflect() protoreflect.Message {
-	mi := &file_chromiumos_prebuilts_cloud_proto_msgTypes[4]
+	mi := &file_chromiumos_prebuilts_cloud_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,13 +593,18 @@ var file_chromiumos_prebuilts_cloud_proto_rawDesc = []byte{
 	0x64, 0x5f, 0x61, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d,
 	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41,
-	0x74, 0x42, 0x59, 0x0a, 0x21, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x65, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x69, 0x6e, 0x66, 0x72, 0x61,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x34, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
-	0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
-	0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67,
-	0x6f, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x22, 0x59, 0x0a, 0x18, 0x42, 0x69, 0x6e, 0x68, 0x6f, 0x73, 0x74, 0x4c, 0x6f, 0x6f, 0x6b,
+	0x75, 0x70, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x44, 0x61, 0x74, 0x61, 0x12, 0x23, 0x0a,
+	0x0d, 0x73, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x5f, 0x73, 0x68, 0x61, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x09, 0x52, 0x0c, 0x73, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x53, 0x68,
+	0x61, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x72, 0x69, 0x76, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x07, 0x70, 0x72, 0x69, 0x76, 0x61, 0x74, 0x65, 0x42, 0x59, 0x0a, 0x21,
+	0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
+	0x65, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x5a, 0x34, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f,
+	0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e,
+	0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x63, 0x68, 0x72,
+	0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -556,18 +619,19 @@ func file_chromiumos_prebuilts_cloud_proto_rawDescGZIP() []byte {
 	return file_chromiumos_prebuilts_cloud_proto_rawDescData
 }
 
-var file_chromiumos_prebuilts_cloud_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_chromiumos_prebuilts_cloud_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_chromiumos_prebuilts_cloud_proto_goTypes = []interface{}{
 	(*UpdateSnapshotDataRequest)(nil),      // 0: chromiumos.UpdateSnapshotDataRequest
 	(*UpdateBinhostDataRequest)(nil),       // 1: chromiumos.UpdateBinhostDataRequest
 	(*LookupBinhostsRequest)(nil),          // 2: chromiumos.LookupBinhostsRequest
 	(*LookupBinhostsResponse)(nil),         // 3: chromiumos.LookupBinhostsResponse
-	(*LookupBinhostsResponse_Binhost)(nil), // 4: chromiumos.LookupBinhostsResponse.Binhost
-	(*timestamppb.Timestamp)(nil),          // 5: google.protobuf.Timestamp
+	(*BinhostLookupServiceData)(nil),       // 4: chromiumos.BinhostLookupServiceData
+	(*LookupBinhostsResponse_Binhost)(nil), // 5: chromiumos.LookupBinhostsResponse.Binhost
+	(*timestamppb.Timestamp)(nil),          // 6: google.protobuf.Timestamp
 }
 var file_chromiumos_prebuilts_cloud_proto_depIdxs = []int32{
-	4, // 0: chromiumos.LookupBinhostsResponse.binhosts:type_name -> chromiumos.LookupBinhostsResponse.Binhost
-	5, // 1: chromiumos.LookupBinhostsResponse.Binhost.created_at:type_name -> google.protobuf.Timestamp
+	5, // 0: chromiumos.LookupBinhostsResponse.binhosts:type_name -> chromiumos.LookupBinhostsResponse.Binhost
+	6, // 1: chromiumos.LookupBinhostsResponse.Binhost.created_at:type_name -> google.protobuf.Timestamp
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -630,6 +694,18 @@ func file_chromiumos_prebuilts_cloud_proto_init() {
 			}
 		}
 		file_chromiumos_prebuilts_cloud_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BinhostLookupServiceData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromiumos_prebuilts_cloud_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LookupBinhostsResponse_Binhost); i {
 			case 0:
 				return &v.state
@@ -648,7 +724,7 @@ func file_chromiumos_prebuilts_cloud_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromiumos_prebuilts_cloud_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
