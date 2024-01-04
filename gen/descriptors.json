@@ -37970,6 +37970,13 @@
               "number": 18,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.test.api.CTPFilter"
+            },
+            {
+              "jsonName": "testArgs",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_args",
+              "number": 23,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "SchedulerConfig",

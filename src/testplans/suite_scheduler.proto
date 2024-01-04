@@ -281,6 +281,9 @@ message SchedulerConfig {
   // List of Koffee Filters for the ctpv2 request object.
   // To be converted to json str for config generation.
   repeated chromiumos.test.api.CTPFilter koffee_filters = 18;
+
+  // Args will be provided to the respective test harness.
+  string test_args = 23;
 }
 
 // A proto to contain all the configs.
