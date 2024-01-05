@@ -3608,6 +3608,13 @@
                   "name": "bazel",
                   "number": 8,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "skipCleanPackageDirs",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "skip_clean_package_dirs",
+                  "number": 9,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags",

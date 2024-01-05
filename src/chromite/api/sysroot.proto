@@ -152,6 +152,8 @@ message InstallPackagesRequest {
     bool workon = 7;
     // Whether to use Bazel to build packages.
     bool bazel = 8;
+    // Whether to skip cleaning the package directories, i.e. FEATURES=noclean.
+    bool skip_clean_package_dirs = 9;
   }
 
   // Which packages should a Bazel-based build target.
