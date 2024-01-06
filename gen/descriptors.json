@@ -1296,7 +1296,7 @@
                       "start": 29
                     },
                     {
-                      "end": 53,
+                      "end": 56,
                       "start": 33
                     }
                   ],
@@ -1440,7 +1440,7 @@
                       "start": 30
                     },
                     {
-                      "end": 53,
+                      "end": 56,
                       "start": 53
                     }
                   ],
@@ -1589,7 +1589,7 @@
                       "start": 46
                     },
                     {
-                      "end": 53,
+                      "end": 56,
                       "start": 50
                     }
                   ],
@@ -1682,7 +1682,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 53,
+                      "end": 56,
                       "start": 1
                     }
                   ],
@@ -1777,6 +1777,10 @@
                     {
                       "end": 52,
                       "start": 52
+                    },
+                    {
+                      "end": 55,
+                      "start": 54
                     }
                   ],
                   "value": [
@@ -1811,6 +1815,10 @@
                     {
                       "name": "BAZEL_PERFORMANCE_ARTIFACTS",
                       "number": 53
+                    },
+                    {
+                      "name": "COMPILE_COMMANDS_JSON",
+                      "number": 56
                     }
                   ]
                 },
@@ -1938,6 +1946,10 @@
                     {
                       "end": 53,
                       "start": 49
+                    },
+                    {
+                      "end": 56,
+                      "start": 55
                     }
                   ],
                   "value": [
@@ -2055,6 +2067,10 @@
                     {
                       "end": 54,
                       "start": 45
+                    },
+                    {
+                      "end": 56,
+                      "start": 56
                     }
                   ],
                   "value": [
@@ -2166,7 +2182,7 @@
                       "start": 1
                     },
                     {
-                      "end": 53,
+                      "end": 56,
                       "start": 37
                     }
                   ],
@@ -2247,7 +2263,7 @@
                       "start": 1
                     },
                     {
-                      "end": 53,
+                      "end": 56,
                       "start": 52
                     }
                   ],

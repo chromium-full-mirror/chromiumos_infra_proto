@@ -477,7 +477,7 @@ message ArtifactsByService {
       // TODO(b/187790484): Moves from legacy to ArtifactsByService/Get.
       DEBUG_SYMBOLS = 32;
 
-      reserved 33 to 53;
+      reserved 33 to 56;
     }
     // Information about one or more artifacts.
     message ArtifactInfo {
@@ -586,7 +586,7 @@ message ArtifactsByService {
       // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 53;
+      reserved 53 to 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -665,7 +665,7 @@ message ArtifactsByService {
       // image_scripts.tar.xz archive.
       IMAGE_SCRIPTS = 49;
 
-      reserved 50 to 53;
+      reserved 50 to 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -715,7 +715,7 @@ message ArtifactsByService {
       // TODO(b/187790484): BuilderConfig.Artifacts.ArtifactTypes is a common
       // namespace for all services.  We must reserve numbers until that is
       // gone.
-      reserved 1 to 53;
+      reserved 1 to 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -797,6 +797,11 @@ message ArtifactsByService {
 
       // Bazel-specific performance artifacts.
       BAZEL_PERFORMANCE_ARTIFACTS = 53;
+
+      reserved 54 to 55;
+
+      // Merged compile_commands.json.
+      COMPILE_COMMANDS_JSON = 56;
     }
 
     // Information about one or more artifacts.  This should match the rest of
@@ -892,6 +897,8 @@ message ArtifactsByService {
 
       // Code coverage artifacts for E2E coverage.
       CODE_COVERAGE_E2E = 54;
+
+      reserved 55 to 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -969,6 +976,8 @@ message ArtifactsByService {
 
       // FirmwareService: Token Database.
       FIRMWARE_TOKEN_DATABASE = 55;
+
+      reserved 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -1027,7 +1036,7 @@ message ArtifactsByService {
 
       BUILD_MANIFEST = 36;
 
-      reserved 37 to 53;
+      reserved 37 to 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
@@ -1079,7 +1088,7 @@ message ArtifactsByService {
       // A tarball containing the SDK itself.
       SDK_TARBALL = 51;
 
-      reserved 52 to 53;
+      reserved 52 to 56;
     }
     // Information about one or more artifacts.  This should match the rest of
     // the ArtifactInfo definitions in ArtifactsByService, other than having
