@@ -64,6 +64,8 @@ type SatlabRpcServiceClient interface {
 	DownloadLog(ctx context.Context, in *DownloadLogRequest, opts ...grpc.CallOption) (SatlabRpcService_DownloadLogClient, error)
 	// servo
 	StartServod(ctx context.Context, in *api.StartServodRequest, opts ...grpc.CallOption) (*longrunning.Operation, error)
+	// Jobs/Tasks information
+	ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error)
 }
 
 type satlabRpcServiceClient struct {
@@ -394,6 +396,15 @@ func (c *satlabRpcServiceClient) StartServod(ctx context.Context, in *api.StartS
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error) {
+	out := new(ListJobsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListJobs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SatlabRpcServiceServer is the server API for SatlabRpcService service.
 // All implementations must embed UnimplementedSatlabRpcServiceServer
 // for forward compatibility
@@ -438,6 +449,8 @@ type SatlabRpcServiceServer interface {
 	DownloadLog(*DownloadLogRequest, SatlabRpcService_DownloadLogServer) error
 	// servo
 	StartServod(context.Context, *api.StartServodRequest) (*longrunning.Operation, error)
+	// Jobs/Tasks information
+	ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)
 	mustEmbedUnimplementedSatlabRpcServiceServer()
 }
 
@@ -543,6 +556,9 @@ func (UnimplementedSatlabRpcServiceServer) DownloadLog(*DownloadLogRequest, Satl
 }
 func (UnimplementedSatlabRpcServiceServer) StartServod(context.Context, *api.StartServodRequest) (*longrunning.Operation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartServod not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListJobs not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) mustEmbedUnimplementedSatlabRpcServiceServer() {}
 
@@ -1154,6 +1170,24 @@ func _SatlabRpcService_StartServod_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_ListJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListJobs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListJobs(ctx, req.(*ListJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SatlabRpcService_ServiceDesc is the grpc.ServiceDesc for SatlabRpcService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1288,6 +1322,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StartServod",
 			Handler:    _SatlabRpcService_StartServod_Handler,
+		},
+		{
+			MethodName: "ListJobs",
+			Handler:    _SatlabRpcService_ListJobs_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

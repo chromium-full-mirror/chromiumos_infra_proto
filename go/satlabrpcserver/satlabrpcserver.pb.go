@@ -28,6 +28,149 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// NEXT_TAG = 11
+type StateQuery int32
+
+const (
+	// Query for all tasks currently TaskState.PENDING.
+	StateQuery_QUERY_PENDING StateQuery = 0
+	// Query for all tasks currently TaskState.RUNNING. This includes tasks
+	// currently in the overhead phase; mapping input files or archiving outputs
+	// back to the server.
+	StateQuery_QUERY_RUNNING StateQuery = 1
+	// Query for all tasks currently TaskState.PENDING or TaskState.RUNNING. This
+	// is the query for the 'active' tasks.
+	StateQuery_QUERY_PENDING_RUNNING StateQuery = 2
+	// Query for all tasks that completed normally as TaskState.COMPLETED,
+	// independent of the process exit code.
+	StateQuery_QUERY_COMPLETED StateQuery = 3
+	// Query for all tasks that completed normally as TaskState.COMPLETED and that
+	// had exit code 0.
+	StateQuery_QUERY_COMPLETED_SUCCESS StateQuery = 4
+	// Query for all tasks that completed normally as TaskState.COMPLETED and that
+	// had exit code not 0.
+	StateQuery_QUERY_COMPLETED_FAILURE StateQuery = 5
+	// Query for all tasks that are TaskState.EXPIRED.
+	StateQuery_QUERY_EXPIRED StateQuery = 6
+	// Query for all tasks that are TaskState.TIMED_OUT.
+	StateQuery_QUERY_TIMED_OUT StateQuery = 7
+	// Query for all tasks that are TaskState.CANCELED.
+	StateQuery_QUERY_CANCELED StateQuery = 9
+	// Query for all tasks, independent of the task state.
+	//
+	// In hindsight, this constant should have been the value 0. Sorry, the
+	// original author was young and foolish.
+	StateQuery_QUERY_ALL StateQuery = 10
+)
+
+// Enum value maps for StateQuery.
+var (
+	StateQuery_name = map[int32]string{
+		0:  "QUERY_PENDING",
+		1:  "QUERY_RUNNING",
+		2:  "QUERY_PENDING_RUNNING",
+		3:  "QUERY_COMPLETED",
+		4:  "QUERY_COMPLETED_SUCCESS",
+		5:  "QUERY_COMPLETED_FAILURE",
+		6:  "QUERY_EXPIRED",
+		7:  "QUERY_TIMED_OUT",
+		9:  "QUERY_CANCELED",
+		10: "QUERY_ALL",
+	}
+	StateQuery_value = map[string]int32{
+		"QUERY_PENDING":           0,
+		"QUERY_RUNNING":           1,
+		"QUERY_PENDING_RUNNING":   2,
+		"QUERY_COMPLETED":         3,
+		"QUERY_COMPLETED_SUCCESS": 4,
+		"QUERY_COMPLETED_FAILURE": 5,
+		"QUERY_EXPIRED":           6,
+		"QUERY_TIMED_OUT":         7,
+		"QUERY_CANCELED":          9,
+		"QUERY_ALL":               10,
+	}
+)
+
+func (x StateQuery) Enum() *StateQuery {
+	p := new(StateQuery)
+	*p = x
+	return p
+}
+
+func (x StateQuery) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StateQuery) Descriptor() protoreflect.EnumDescriptor {
+	return file_satlabrpcserver_satlabrpcserver_proto_enumTypes[0].Descriptor()
+}
+
+func (StateQuery) Type() protoreflect.EnumType {
+	return &file_satlabrpcserver_satlabrpcserver_proto_enumTypes[0]
+}
+
+func (x StateQuery) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StateQuery.Descriptor instead.
+func (StateQuery) EnumDescriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{0}
+}
+
+// NEXT_TAG = 5
+type SortBy int32
+
+const (
+	SortBy_CREATED_TS   SortBy = 0
+	SortBy_COMPLETED_TS SortBy = 2
+	SortBy_ABANDONED_TS SortBy = 3
+	SortBy_STARTED_TS   SortBy = 4
+)
+
+// Enum value maps for SortBy.
+var (
+	SortBy_name = map[int32]string{
+		0: "CREATED_TS",
+		2: "COMPLETED_TS",
+		3: "ABANDONED_TS",
+		4: "STARTED_TS",
+	}
+	SortBy_value = map[string]int32{
+		"CREATED_TS":   0,
+		"COMPLETED_TS": 2,
+		"ABANDONED_TS": 3,
+		"STARTED_TS":   4,
+	}
+)
+
+func (x SortBy) Enum() *SortBy {
+	p := new(SortBy)
+	*p = x
+	return p
+}
+
+func (x SortBy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SortBy) Descriptor() protoreflect.EnumDescriptor {
+	return file_satlabrpcserver_satlabrpcserver_proto_enumTypes[1].Descriptor()
+}
+
+func (SortBy) Type() protoreflect.EnumType {
+	return &file_satlabrpcserver_satlabrpcserver_proto_enumTypes[1]
+}
+
+func (x SortBy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SortBy.Descriptor instead.
+func (SortBy) EnumDescriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{1}
+}
+
 // NEXT_TAG = 4
 type BuildItem_BuildStatus int32
 
@@ -65,11 +208,11 @@ func (x BuildItem_BuildStatus) String() string {
 }
 
 func (BuildItem_BuildStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_satlabrpcserver_satlabrpcserver_proto_enumTypes[0].Descriptor()
+	return file_satlabrpcserver_satlabrpcserver_proto_enumTypes[2].Descriptor()
 }
 
 func (BuildItem_BuildStatus) Type() protoreflect.EnumType {
-	return &file_satlabrpcserver_satlabrpcserver_proto_enumTypes[0]
+	return &file_satlabrpcserver_satlabrpcserver_proto_enumTypes[2]
 }
 
 func (x BuildItem_BuildStatus) Number() protoreflect.EnumNumber {
@@ -79,6 +222,135 @@ func (x BuildItem_BuildStatus) Number() protoreflect.EnumNumber {
 // Deprecated: Use BuildItem_BuildStatus.Descriptor instead.
 func (BuildItem_BuildStatus) EnumDescriptor() ([]byte, []int) {
 	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{4, 0}
+}
+
+// NEXT_TAG = 4
+type Job_JobType int32
+
+const (
+	Job_TYPE_NOT_SET Job_JobType = 0
+	Job_SUITE        Job_JobType = 1
+	Job_TESTPLAN     Job_JobType = 2
+	Job_TEST         Job_JobType = 3
+)
+
+// Enum value maps for Job_JobType.
+var (
+	Job_JobType_name = map[int32]string{
+		0: "TYPE_NOT_SET",
+		1: "SUITE",
+		2: "TESTPLAN",
+		3: "TEST",
+	}
+	Job_JobType_value = map[string]int32{
+		"TYPE_NOT_SET": 0,
+		"SUITE":        1,
+		"TESTPLAN":     2,
+		"TEST":         3,
+	}
+)
+
+func (x Job_JobType) Enum() *Job_JobType {
+	p := new(Job_JobType)
+	*p = x
+	return p
+}
+
+func (x Job_JobType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Job_JobType) Descriptor() protoreflect.EnumDescriptor {
+	return file_satlabrpcserver_satlabrpcserver_proto_enumTypes[3].Descriptor()
+}
+
+func (Job_JobType) Type() protoreflect.EnumType {
+	return &file_satlabrpcserver_satlabrpcserver_proto_enumTypes[3]
+}
+
+func (x Job_JobType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Job_JobType.Descriptor instead.
+func (Job_JobType) EnumDescriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{75, 0}
+}
+
+// NEXT_TAG = 9
+type Job_JobStatus int32
+
+const (
+	Job_STATUS_NOT_SET Job_JobStatus = 0
+	Job_PENDING        Job_JobStatus = 1
+	Job_RUNNING        Job_JobStatus = 2
+	// Job ran and completed normally irrespective of swarming task exit code
+	// This should be sure for CTP (suite/testplan) tasks, as these task
+	// don't indicate actual test status.
+	Job_COMPLETE Job_JobStatus = 3
+	// Job ran and completed nomarlly with swarming exit code = 0
+	Job_COMPLETE_SUCCESS Job_JobStatus = 4
+	// Job ran and completed nomarlly with swarming exit code != 0
+	Job_COMPLETE_FAILURE Job_JobStatus = 5
+	// Job ran longer than allowed time
+	Job_TIMED_OUT Job_JobStatus = 6
+	// Job never ran due to lack of bot availablity
+	Job_EXPIRED Job_JobStatus = 7
+	// Job manually canceled or killed or aborted
+	Job_ABORTED Job_JobStatus = 8
+)
+
+// Enum value maps for Job_JobStatus.
+var (
+	Job_JobStatus_name = map[int32]string{
+		0: "STATUS_NOT_SET",
+		1: "PENDING",
+		2: "RUNNING",
+		3: "COMPLETE",
+		4: "COMPLETE_SUCCESS",
+		5: "COMPLETE_FAILURE",
+		6: "TIMED_OUT",
+		7: "EXPIRED",
+		8: "ABORTED",
+	}
+	Job_JobStatus_value = map[string]int32{
+		"STATUS_NOT_SET":   0,
+		"PENDING":          1,
+		"RUNNING":          2,
+		"COMPLETE":         3,
+		"COMPLETE_SUCCESS": 4,
+		"COMPLETE_FAILURE": 5,
+		"TIMED_OUT":        6,
+		"EXPIRED":          7,
+		"ABORTED":          8,
+	}
+)
+
+func (x Job_JobStatus) Enum() *Job_JobStatus {
+	p := new(Job_JobStatus)
+	*p = x
+	return p
+}
+
+func (x Job_JobStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Job_JobStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_satlabrpcserver_satlabrpcserver_proto_enumTypes[4].Descriptor()
+}
+
+func (Job_JobStatus) Type() protoreflect.EnumType {
+	return &file_satlabrpcserver_satlabrpcserver_proto_enumTypes[4]
+}
+
+func (x Job_JobStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Job_JobStatus.Descriptor instead.
+func (Job_JobStatus) EnumDescriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{75, 1}
 }
 
 type StartServodResponse struct {
@@ -4331,6 +4603,365 @@ func (x *RunStorageQualResponse) GetBuildLink() string {
 	return ""
 }
 
+// NEXT_TAG = 13
+type Job struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	JobId        string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	Name         string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CreatedTime  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_time,json=createdTime,proto3" json:"created_time,omitempty"`
+	StartTime    *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	FinishedTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=finished_time,json=finishedTime,proto3" json:"finished_time,omitempty"`
+	Status       Job_JobStatus          `protobuf:"varint,6,opt,name=status,proto3,enum=satlabrpcserver.Job_JobStatus" json:"status,omitempty"`
+	ParentJobId  string                 `protobuf:"bytes,7,opt,name=parent_job_id,json=parentJobId,proto3" json:"parent_job_id,omitempty"`
+	Hostname     string                 `protobuf:"bytes,8,opt,name=hostname,proto3" json:"hostname,omitempty"`
+	LabelPool    string                 `protobuf:"bytes,9,opt,name=label_pool,json=labelPool,proto3" json:"label_pool,omitempty"`
+	SatlabId     string                 `protobuf:"bytes,10,opt,name=satlab_id,json=satlabId,proto3" json:"satlab_id,omitempty"`
+	TaskUrl      string                 `protobuf:"bytes,11,opt,name=task_url,json=taskUrl,proto3" json:"task_url,omitempty"`
+	ResultsUrl   string                 `protobuf:"bytes,12,opt,name=results_url,json=resultsUrl,proto3" json:"results_url,omitempty"`
+}
+
+func (x *Job) Reset() {
+	*x = Job{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[75]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Job) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Job) ProtoMessage() {}
+
+func (x *Job) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[75]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Job.ProtoReflect.Descriptor instead.
+func (*Job) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{75}
+}
+
+func (x *Job) GetJobId() string {
+	if x != nil {
+		return x.JobId
+	}
+	return ""
+}
+
+func (x *Job) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Job) GetCreatedTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedTime
+	}
+	return nil
+}
+
+func (x *Job) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *Job) GetFinishedTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.FinishedTime
+	}
+	return nil
+}
+
+func (x *Job) GetStatus() Job_JobStatus {
+	if x != nil {
+		return x.Status
+	}
+	return Job_STATUS_NOT_SET
+}
+
+func (x *Job) GetParentJobId() string {
+	if x != nil {
+		return x.ParentJobId
+	}
+	return ""
+}
+
+func (x *Job) GetHostname() string {
+	if x != nil {
+		return x.Hostname
+	}
+	return ""
+}
+
+func (x *Job) GetLabelPool() string {
+	if x != nil {
+		return x.LabelPool
+	}
+	return ""
+}
+
+func (x *Job) GetSatlabId() string {
+	if x != nil {
+		return x.SatlabId
+	}
+	return ""
+}
+
+func (x *Job) GetTaskUrl() string {
+	if x != nil {
+		return x.TaskUrl
+	}
+	return ""
+}
+
+func (x *Job) GetResultsUrl() string {
+	if x != nil {
+		return x.ResultsUrl
+	}
+	return ""
+}
+
+// NEXT_TAG = 3
+type Tag struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *Tag) Reset() {
+	*x = Tag{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[76]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Tag) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Tag) ProtoMessage() {}
+
+func (x *Tag) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[76]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Tag.ProtoReflect.Descriptor instead.
+func (*Tag) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{76}
+}
+
+func (x *Tag) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *Tag) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+// NEXT_TAG = 9
+type ListJobsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CreatedTimeGt *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_time_gt,json=createdTimeGt,proto3" json:"created_time_gt,omitempty"`
+	CreatedTimeLt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_time_lt,json=createdTimeLt,proto3" json:"created_time_lt,omitempty"`
+	// Job type is one of test/testplan/suite.
+	JobType Job_JobType `protobuf:"varint,3,opt,name=job_type,json=jobType,proto3,enum=satlabrpcserver.Job_JobType" json:"job_type,omitempty"`
+	// This are different filters that we want to query jobs
+	// eg: label-pool:abc or satlab-id:xyz etc
+	Tags        []*Tag     `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+	SortBy      SortBy     `protobuf:"varint,5,opt,name=sort_by,json=sortBy,proto3,enum=satlabrpcserver.SortBy" json:"sort_by,omitempty"`
+	QueryStatus StateQuery `protobuf:"varint,6,opt,name=query_status,json=queryStatus,proto3,enum=satlabrpcserver.StateQuery" json:"query_status,omitempty"`
+	PageToken   string     `protobuf:"bytes,7,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	// No. of records, max 1000
+	Limit int64 `protobuf:"varint,8,opt,name=limit,proto3" json:"limit,omitempty"`
+}
+
+func (x *ListJobsRequest) Reset() {
+	*x = ListJobsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[77]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListJobsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListJobsRequest) ProtoMessage() {}
+
+func (x *ListJobsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[77]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListJobsRequest.ProtoReflect.Descriptor instead.
+func (*ListJobsRequest) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{77}
+}
+
+func (x *ListJobsRequest) GetCreatedTimeGt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedTimeGt
+	}
+	return nil
+}
+
+func (x *ListJobsRequest) GetCreatedTimeLt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedTimeLt
+	}
+	return nil
+}
+
+func (x *ListJobsRequest) GetJobType() Job_JobType {
+	if x != nil {
+		return x.JobType
+	}
+	return Job_TYPE_NOT_SET
+}
+
+func (x *ListJobsRequest) GetTags() []*Tag {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *ListJobsRequest) GetSortBy() SortBy {
+	if x != nil {
+		return x.SortBy
+	}
+	return SortBy_CREATED_TS
+}
+
+func (x *ListJobsRequest) GetQueryStatus() StateQuery {
+	if x != nil {
+		return x.QueryStatus
+	}
+	return StateQuery_QUERY_PENDING
+}
+
+func (x *ListJobsRequest) GetPageToken() string {
+	if x != nil {
+		return x.PageToken
+	}
+	return ""
+}
+
+func (x *ListJobsRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+// NEXT_TAG = 3
+type ListJobsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// A page token, the next token for retrieving the subsequent page.
+	// if it is empty, means it is at the end, no more plans
+	// that we can read from the bucket
+	NextPageToken string `protobuf:"bytes,1,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	Jobs          []*Job `protobuf:"bytes,2,rep,name=jobs,proto3" json:"jobs,omitempty"`
+}
+
+func (x *ListJobsResponse) Reset() {
+	*x = ListJobsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[78]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListJobsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListJobsResponse) ProtoMessage() {}
+
+func (x *ListJobsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[78]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListJobsResponse.ProtoReflect.Descriptor instead.
+func (*ListJobsResponse) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{78}
+}
+
+func (x *ListJobsResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *ListJobsResponse) GetJobs() []*Job {
+	if x != nil {
+		return x.Jobs
+	}
+	return nil
+}
+
 // Empty response for success.
 type StartServodResponse_Success struct {
 	state         protoimpl.MessageState
@@ -4341,7 +4972,7 @@ type StartServodResponse_Success struct {
 func (x *StartServodResponse_Success) Reset() {
 	*x = StartServodResponse_Success{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[75]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[79]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4354,7 +4985,7 @@ func (x *StartServodResponse_Success) String() string {
 func (*StartServodResponse_Success) ProtoMessage() {}
 
 func (x *StartServodResponse_Success) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[75]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[79]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4382,7 +5013,7 @@ type StartServodResponse_Failure struct {
 func (x *StartServodResponse_Failure) Reset() {
 	*x = StartServodResponse_Failure{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[76]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[80]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4395,7 +5026,7 @@ func (x *StartServodResponse_Failure) String() string {
 func (*StartServodResponse_Failure) ProtoMessage() {}
 
 func (x *StartServodResponse_Failure) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[76]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[80]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4431,7 +5062,7 @@ type UpdatePoolRequest_Item struct {
 func (x *UpdatePoolRequest_Item) Reset() {
 	*x = UpdatePoolRequest_Item{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[77]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[81]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4444,7 +5075,7 @@ func (x *UpdatePoolRequest_Item) String() string {
 func (*UpdatePoolRequest_Item) ProtoMessage() {}
 
 func (x *UpdatePoolRequest_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[77]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[81]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4497,7 +5128,7 @@ type AddDutsRequest_Param struct {
 func (x *AddDutsRequest_Param) Reset() {
 	*x = AddDutsRequest_Param{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[78]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[82]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4510,7 +5141,7 @@ func (x *AddDutsRequest_Param) String() string {
 func (*AddDutsRequest_Param) ProtoMessage() {}
 
 func (x *AddDutsRequest_Param) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[78]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[82]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4582,7 +5213,7 @@ type AddDutsResponse_PassedData struct {
 func (x *AddDutsResponse_PassedData) Reset() {
 	*x = AddDutsResponse_PassedData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[79]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[83]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4595,7 +5226,7 @@ func (x *AddDutsResponse_PassedData) String() string {
 func (*AddDutsResponse_PassedData) ProtoMessage() {}
 
 func (x *AddDutsResponse_PassedData) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[79]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[83]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4639,7 +5270,7 @@ type AddDutsResponse_FailedData struct {
 func (x *AddDutsResponse_FailedData) Reset() {
 	*x = AddDutsResponse_FailedData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[80]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[84]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4652,7 +5283,7 @@ func (x *AddDutsResponse_FailedData) String() string {
 func (*AddDutsResponse_FailedData) ProtoMessage() {}
 
 func (x *AddDutsResponse_FailedData) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[80]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[84]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4698,7 +5329,7 @@ type RepairDutsResponse_RepairResult struct {
 func (x *RepairDutsResponse_RepairResult) Reset() {
 	*x = RepairDutsResponse_RepairResult{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[81]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[85]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4711,7 +5342,7 @@ func (x *RepairDutsResponse_RepairResult) String() string {
 func (*RepairDutsResponse_RepairResult) ProtoMessage() {}
 
 func (x *RepairDutsResponse_RepairResult) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[81]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[85]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5236,7 +5867,106 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x51, 0x75, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x6c, 0x69, 0x6e,
 	0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x4c, 0x69,
-	0x6e, 0x6b, 0x32, 0xb2, 0x19, 0x0a, 0x10, 0x53, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x52, 0x70, 0x63,
+	0x6e, 0x6b, 0x22, 0xba, 0x05, 0x0a, 0x03, 0x4a, 0x6f, 0x62, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f,
+	0x62, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49,
+	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x3d, 0x0a, 0x0c, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64,
+	0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0b, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64,
+	0x54, 0x69, 0x6d, 0x65, 0x12, 0x39, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x12,
+	0x3f, 0x0a, 0x0d, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
+	0x6d, 0x70, 0x52, 0x0c, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65,
+	0x12, 0x36, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x1e, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x2e, 0x4a, 0x6f, 0x62, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x22, 0x0a, 0x0d, 0x70, 0x61, 0x72, 0x65,
+	0x6e, 0x74, 0x5f, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0b, 0x70, 0x61, 0x72, 0x65, 0x6e, 0x74, 0x4a, 0x6f, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08,
+	0x68, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x68, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x6c, 0x61, 0x62, 0x65,
+	0x6c, 0x5f, 0x70, 0x6f, 0x6f, 0x6c, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6c, 0x61,
+	0x62, 0x65, 0x6c, 0x50, 0x6f, 0x6f, 0x6c, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x61, 0x74, 0x6c, 0x61,
+	0x62, 0x5f, 0x69, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x73, 0x61, 0x74, 0x6c,
+	0x61, 0x62, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x61, 0x73, 0x6b, 0x5f, 0x75, 0x72, 0x6c,
+	0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x61, 0x73, 0x6b, 0x55, 0x72, 0x6c, 0x12,
+	0x1f, 0x0a, 0x0b, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x5f, 0x75, 0x72, 0x6c, 0x18, 0x0c,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x55, 0x72, 0x6c,
+	0x22, 0x3e, 0x0a, 0x07, 0x4a, 0x6f, 0x62, 0x54, 0x79, 0x70, 0x65, 0x12, 0x10, 0x0a, 0x0c, 0x54,
+	0x59, 0x50, 0x45, 0x5f, 0x4e, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x54, 0x10, 0x00, 0x12, 0x09, 0x0a,
+	0x05, 0x53, 0x55, 0x49, 0x54, 0x45, 0x10, 0x01, 0x12, 0x0c, 0x0a, 0x08, 0x54, 0x45, 0x53, 0x54,
+	0x50, 0x4c, 0x41, 0x4e, 0x10, 0x02, 0x12, 0x08, 0x0a, 0x04, 0x54, 0x45, 0x53, 0x54, 0x10, 0x03,
+	0x22, 0x9c, 0x01, 0x0a, 0x09, 0x4a, 0x6f, 0x62, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x12,
+	0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x4e, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x54,
+	0x10, 0x00, 0x12, 0x0b, 0x0a, 0x07, 0x50, 0x45, 0x4e, 0x44, 0x49, 0x4e, 0x47, 0x10, 0x01, 0x12,
+	0x0b, 0x0a, 0x07, 0x52, 0x55, 0x4e, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12, 0x0c, 0x0a, 0x08,
+	0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x10, 0x03, 0x12, 0x14, 0x0a, 0x10, 0x43, 0x4f,
+	0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x5f, 0x53, 0x55, 0x43, 0x43, 0x45, 0x53, 0x53, 0x10, 0x04,
+	0x12, 0x14, 0x0a, 0x10, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x5f, 0x46, 0x41, 0x49,
+	0x4c, 0x55, 0x52, 0x45, 0x10, 0x05, 0x12, 0x0d, 0x0a, 0x09, 0x54, 0x49, 0x4d, 0x45, 0x44, 0x5f,
+	0x4f, 0x55, 0x54, 0x10, 0x06, 0x12, 0x0b, 0x0a, 0x07, 0x45, 0x58, 0x50, 0x49, 0x52, 0x45, 0x44,
+	0x10, 0x07, 0x12, 0x0b, 0x0a, 0x07, 0x41, 0x42, 0x4f, 0x52, 0x54, 0x45, 0x44, 0x10, 0x08, 0x22,
+	0x2d, 0x0a, 0x03, 0x54, 0x61, 0x67, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xa3,
+	0x03, 0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x42, 0x0a, 0x0f, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x5f, 0x67, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0d, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64,
+	0x54, 0x69, 0x6d, 0x65, 0x47, 0x74, 0x12, 0x42, 0x0a, 0x0f, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x6c, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0d, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x4c, 0x74, 0x12, 0x37, 0x0a, 0x08, 0x6a, 0x6f,
+	0x62, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1c, 0x2e, 0x73,
+	0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4a,
+	0x6f, 0x62, 0x2e, 0x4a, 0x6f, 0x62, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x6a, 0x6f, 0x62, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x28, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x14, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x30, 0x0a,
+	0x07, 0x73, 0x6f, 0x72, 0x74, 0x5f, 0x62, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17,
+	0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x2e, 0x53, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x52, 0x06, 0x73, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x12,
+	0x3e, 0x0a, 0x0c, 0x71, 0x75, 0x65, 0x72, 0x79, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
+	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x52, 0x0b, 0x71, 0x75, 0x65, 0x72, 0x79, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12,
+	0x1d, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x14,
+	0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x6c,
+	0x69, 0x6d, 0x69, 0x74, 0x22, 0x64, 0x0a, 0x10, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x78, 0x74,
+	0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0d, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x12, 0x28, 0x0a, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x2e, 0x4a, 0x6f, 0x62, 0x52, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x2a, 0xe7, 0x01, 0x0a, 0x0a, 0x53,
+	0x74, 0x61, 0x74, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x11, 0x0a, 0x0d, 0x51, 0x55, 0x45,
+	0x52, 0x59, 0x5f, 0x50, 0x45, 0x4e, 0x44, 0x49, 0x4e, 0x47, 0x10, 0x00, 0x12, 0x11, 0x0a, 0x0d,
+	0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x52, 0x55, 0x4e, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x01, 0x12,
+	0x19, 0x0a, 0x15, 0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x50, 0x45, 0x4e, 0x44, 0x49, 0x4e, 0x47,
+	0x5f, 0x52, 0x55, 0x4e, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12, 0x13, 0x0a, 0x0f, 0x51, 0x55,
+	0x45, 0x52, 0x59, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x44, 0x10, 0x03, 0x12,
+	0x1b, 0x0a, 0x17, 0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54,
+	0x45, 0x44, 0x5f, 0x53, 0x55, 0x43, 0x43, 0x45, 0x53, 0x53, 0x10, 0x04, 0x12, 0x1b, 0x0a, 0x17,
+	0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x44, 0x5f,
+	0x46, 0x41, 0x49, 0x4c, 0x55, 0x52, 0x45, 0x10, 0x05, 0x12, 0x11, 0x0a, 0x0d, 0x51, 0x55, 0x45,
+	0x52, 0x59, 0x5f, 0x45, 0x58, 0x50, 0x49, 0x52, 0x45, 0x44, 0x10, 0x06, 0x12, 0x13, 0x0a, 0x0f,
+	0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x54, 0x49, 0x4d, 0x45, 0x44, 0x5f, 0x4f, 0x55, 0x54, 0x10,
+	0x07, 0x12, 0x12, 0x0a, 0x0e, 0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x43, 0x41, 0x4e, 0x43, 0x45,
+	0x4c, 0x45, 0x44, 0x10, 0x09, 0x12, 0x0d, 0x0a, 0x09, 0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x41,
+	0x4c, 0x4c, 0x10, 0x0a, 0x2a, 0x4c, 0x0a, 0x06, 0x53, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x12, 0x0e,
+	0x0a, 0x0a, 0x43, 0x52, 0x45, 0x41, 0x54, 0x45, 0x44, 0x5f, 0x54, 0x53, 0x10, 0x00, 0x12, 0x10,
+	0x0a, 0x0c, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x44, 0x5f, 0x54, 0x53, 0x10, 0x02,
+	0x12, 0x10, 0x0a, 0x0c, 0x41, 0x42, 0x41, 0x4e, 0x44, 0x4f, 0x4e, 0x45, 0x44, 0x5f, 0x54, 0x53,
+	0x10, 0x03, 0x12, 0x0e, 0x0a, 0x0a, 0x53, 0x54, 0x41, 0x52, 0x54, 0x45, 0x44, 0x5f, 0x54, 0x53,
+	0x10, 0x04, 0x32, 0x83, 0x1a, 0x0a, 0x10, 0x53, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x52, 0x70, 0x63,
 	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x73, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74, 0x41,
 	0x63, 0x63, 0x65, 0x73, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12,
 	0x2c, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65,
@@ -5439,11 +6169,16 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2d, 0xd2, 0x41, 0x2a, 0x0a, 0x13, 0x53,
 	0x74, 0x61, 0x72, 0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x13, 0x53, 0x74, 0x61, 0x72, 0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x4d,
-	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x42, 0x38, 0x5a, 0x36, 0x67, 0x6f, 0x2e, 0x63, 0x68,
-	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d,
-	0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2f, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x4f, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x4a,
+	0x6f, 0x62, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
+	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x38, 0x5a, 0x36, 0x67, 0x6f, 0x2e, 0x63,
+	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f,
+	0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2f, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -5458,197 +6193,218 @@ func file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP() []byte {
 	return file_satlabrpcserver_satlabrpcserver_proto_rawDescData
 }
 
-var file_satlabrpcserver_satlabrpcserver_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_satlabrpcserver_satlabrpcserver_proto_msgTypes = make([]protoimpl.MessageInfo, 82)
+var file_satlabrpcserver_satlabrpcserver_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_satlabrpcserver_satlabrpcserver_proto_msgTypes = make([]protoimpl.MessageInfo, 86)
 var file_satlabrpcserver_satlabrpcserver_proto_goTypes = []interface{}{
-	(BuildItem_BuildStatus)(0),                // 0: satlabrpcserver.BuildItem.BuildStatus
-	(*StartServodResponse)(nil),               // 1: satlabrpcserver.StartServodResponse
-	(*StartServodMetadata)(nil),               // 2: satlabrpcserver.StartServodMetadata
-	(*ListBuildTargetsRequest)(nil),           // 3: satlabrpcserver.ListBuildTargetsRequest
-	(*ListBuildTargetsResponse)(nil),          // 4: satlabrpcserver.ListBuildTargetsResponse
-	(*BuildItem)(nil),                         // 5: satlabrpcserver.BuildItem
-	(*ListMilestonesRequest)(nil),             // 6: satlabrpcserver.ListMilestonesRequest
-	(*ListMilestonesResponse)(nil),            // 7: satlabrpcserver.ListMilestonesResponse
-	(*ListAccessibleModelsRequest)(nil),       // 8: satlabrpcserver.ListAccessibleModelsRequest
-	(*Model)(nil),                             // 9: satlabrpcserver.Model
-	(*ListAccessibleModelsResponse)(nil),      // 10: satlabrpcserver.ListAccessibleModelsResponse
-	(*ListBuildVersionsRequest)(nil),          // 11: satlabrpcserver.ListBuildVersionsRequest
-	(*ListBuildVersionsResponse)(nil),         // 12: satlabrpcserver.ListBuildVersionsResponse
-	(*StageBuildRequest)(nil),                 // 13: satlabrpcserver.StageBuildRequest
-	(*StageBuildResponse)(nil),                // 14: satlabrpcserver.StageBuildResponse
-	(*ListConnectedDutsFirmwareRequest)(nil),  // 15: satlabrpcserver.ListConnectedDutsFirmwareRequest
-	(*ConnectedDutFirmwareInfo)(nil),          // 16: satlabrpcserver.ConnectedDutFirmwareInfo
-	(*ListConnectedDutsFirmwareResponse)(nil), // 17: satlabrpcserver.ListConnectedDutsFirmwareResponse
-	(*GetSystemInfoRequest)(nil),              // 18: satlabrpcserver.GetSystemInfoRequest
-	(*GetSystemInfoResponse)(nil),             // 19: satlabrpcserver.GetSystemInfoResponse
-	(*GetPeripheralInformationRequest)(nil),   // 20: satlabrpcserver.GetPeripheralInformationRequest
-	(*GetPeripheralInformationResponse)(nil),  // 21: satlabrpcserver.GetPeripheralInformationResponse
-	(*UpdateDutsFirmwareRequest)(nil),         // 22: satlabrpcserver.UpdateDutsFirmwareRequest
-	(*FirmwareUpdateCommandOutput)(nil),       // 23: satlabrpcserver.FirmwareUpdateCommandOutput
-	(*UpdateDutsFirmwareResponse)(nil),        // 24: satlabrpcserver.UpdateDutsFirmwareResponse
-	(*Dim)(nil),                               // 25: satlabrpcserver.Dim
-	(*RunSuiteRequest)(nil),                   // 26: satlabrpcserver.RunSuiteRequest
-	(*RunSuiteResponse)(nil),                  // 27: satlabrpcserver.RunSuiteResponse
-	(*GetVersionInfoRequest)(nil),             // 28: satlabrpcserver.GetVersionInfoRequest
-	(*GetVersionInfoResponse)(nil),            // 29: satlabrpcserver.GetVersionInfoResponse
-	(*AddPoolRequest)(nil),                    // 30: satlabrpcserver.AddPoolRequest
-	(*AddPoolResponse)(nil),                   // 31: satlabrpcserver.AddPoolResponse
-	(*UpdatePoolRequest)(nil),                 // 32: satlabrpcserver.UpdatePoolRequest
-	(*UpdatePoolResponse)(nil),                // 33: satlabrpcserver.UpdatePoolResponse
-	(*GetDutDetailRequest)(nil),               // 34: satlabrpcserver.GetDutDetailRequest
-	(*StringListPair)(nil),                    // 35: satlabrpcserver.StringListPair
-	(*GetDutDetailResponse)(nil),              // 36: satlabrpcserver.GetDutDetailResponse
-	(*ListDutTasksRequest)(nil),               // 37: satlabrpcserver.ListDutTasksRequest
-	(*Task)(nil),                              // 38: satlabrpcserver.Task
-	(*ListDutTasksResponse)(nil),              // 39: satlabrpcserver.ListDutTasksResponse
-	(*ListDutEventsRequest)(nil),              // 40: satlabrpcserver.ListDutEventsRequest
-	(*BotEvent)(nil),                          // 41: satlabrpcserver.BotEvent
-	(*ListDutEventsResponse)(nil),             // 42: satlabrpcserver.ListDutEventsResponse
-	(*RunTestRequest)(nil),                    // 43: satlabrpcserver.RunTestRequest
-	(*RunTestResponse)(nil),                   // 44: satlabrpcserver.RunTestResponse
-	(*ListEnrolledDutsRequest)(nil),           // 45: satlabrpcserver.ListEnrolledDutsRequest
-	(*Dut)(nil),                               // 46: satlabrpcserver.Dut
-	(*ListEnrolledDutsResponse)(nil),          // 47: satlabrpcserver.ListEnrolledDutsResponse
-	(*ListDutsRequest)(nil),                   // 48: satlabrpcserver.ListDutsRequest
-	(*ListDutsResponse)(nil),                  // 49: satlabrpcserver.ListDutsResponse
-	(*DeleteDutsRequest)(nil),                 // 50: satlabrpcserver.DeleteDutsRequest
-	(*DeleteDutsResponse)(nil),                // 51: satlabrpcserver.DeleteDutsResponse
-	(*GetNetworkInfoRequest)(nil),             // 52: satlabrpcserver.GetNetworkInfoRequest
-	(*GetNetworkInfoResponse)(nil),            // 53: satlabrpcserver.GetNetworkInfoResponse
-	(*AddDutsRequest)(nil),                    // 54: satlabrpcserver.AddDutsRequest
-	(*AddDutsResponse)(nil),                   // 55: satlabrpcserver.AddDutsResponse
-	(*ListTestPlansRequest)(nil),              // 56: satlabrpcserver.ListTestPlansRequest
-	(*ListTestPlansResponse)(nil),             // 57: satlabrpcserver.ListTestPlansResponse
-	(*RunTestPlanRequest)(nil),                // 58: satlabrpcserver.RunTestPlanRequest
-	(*RunTestPlanResponse)(nil),               // 59: satlabrpcserver.RunTestPlanResponse
-	(*GetTestPlanRequest)(nil),                // 60: satlabrpcserver.GetTestPlanRequest
-	(*GetTestPlanResponse)(nil),               // 61: satlabrpcserver.GetTestPlanResponse
-	(*SetCloudConfigurationRequest)(nil),      // 62: satlabrpcserver.SetCloudConfigurationRequest
-	(*SetCloudConfigurationResponse)(nil),     // 63: satlabrpcserver.SetCloudConfigurationResponse
-	(*GetCloudConfigurationRequest)(nil),      // 64: satlabrpcserver.GetCloudConfigurationRequest
-	(*GetCloudConfigurationResponse)(nil),     // 65: satlabrpcserver.GetCloudConfigurationResponse
-	(*RebootRequest)(nil),                     // 66: satlabrpcserver.RebootRequest
-	(*RebootResponse)(nil),                    // 67: satlabrpcserver.RebootResponse
-	(*UploadLogRequest)(nil),                  // 68: satlabrpcserver.UploadLogRequest
-	(*UploadLogResponse)(nil),                 // 69: satlabrpcserver.UploadLogResponse
-	(*DownloadLogRequest)(nil),                // 70: satlabrpcserver.DownloadLogRequest
-	(*DownloadLogResponse)(nil),               // 71: satlabrpcserver.DownloadLogResponse
-	(*RepairDutsRequest)(nil),                 // 72: satlabrpcserver.RepairDutsRequest
-	(*RepairDutsResponse)(nil),                // 73: satlabrpcserver.RepairDutsResponse
-	(*RunStorageQualRequest)(nil),             // 74: satlabrpcserver.RunStorageQualRequest
-	(*RunStorageQualResponse)(nil),            // 75: satlabrpcserver.RunStorageQualResponse
-	(*StartServodResponse_Success)(nil),       // 76: satlabrpcserver.StartServodResponse.Success
-	(*StartServodResponse_Failure)(nil),       // 77: satlabrpcserver.StartServodResponse.Failure
-	(*UpdatePoolRequest_Item)(nil),            // 78: satlabrpcserver.UpdatePoolRequest.Item
-	(*AddDutsRequest_Param)(nil),              // 79: satlabrpcserver.AddDutsRequest.Param
-	(*AddDutsResponse_PassedData)(nil),        // 80: satlabrpcserver.AddDutsResponse.PassedData
-	(*AddDutsResponse_FailedData)(nil),        // 81: satlabrpcserver.AddDutsResponse.FailedData
-	(*RepairDutsResponse_RepairResult)(nil),   // 82: satlabrpcserver.RepairDutsResponse.RepairResult
-	(*timestamppb.Timestamp)(nil),             // 83: google.protobuf.Timestamp
-	(*test_platform.Request_TestPlan)(nil),    // 84: test_platform.Request.TestPlan
-	(*api.StartServodRequest)(nil),            // 85: chromiumos.test.api.StartServodRequest
-	(*longrunning.Operation)(nil),             // 86: chromiumos.longrunning.Operation
+	(StateQuery)(0),                           // 0: satlabrpcserver.StateQuery
+	(SortBy)(0),                               // 1: satlabrpcserver.SortBy
+	(BuildItem_BuildStatus)(0),                // 2: satlabrpcserver.BuildItem.BuildStatus
+	(Job_JobType)(0),                          // 3: satlabrpcserver.Job.JobType
+	(Job_JobStatus)(0),                        // 4: satlabrpcserver.Job.JobStatus
+	(*StartServodResponse)(nil),               // 5: satlabrpcserver.StartServodResponse
+	(*StartServodMetadata)(nil),               // 6: satlabrpcserver.StartServodMetadata
+	(*ListBuildTargetsRequest)(nil),           // 7: satlabrpcserver.ListBuildTargetsRequest
+	(*ListBuildTargetsResponse)(nil),          // 8: satlabrpcserver.ListBuildTargetsResponse
+	(*BuildItem)(nil),                         // 9: satlabrpcserver.BuildItem
+	(*ListMilestonesRequest)(nil),             // 10: satlabrpcserver.ListMilestonesRequest
+	(*ListMilestonesResponse)(nil),            // 11: satlabrpcserver.ListMilestonesResponse
+	(*ListAccessibleModelsRequest)(nil),       // 12: satlabrpcserver.ListAccessibleModelsRequest
+	(*Model)(nil),                             // 13: satlabrpcserver.Model
+	(*ListAccessibleModelsResponse)(nil),      // 14: satlabrpcserver.ListAccessibleModelsResponse
+	(*ListBuildVersionsRequest)(nil),          // 15: satlabrpcserver.ListBuildVersionsRequest
+	(*ListBuildVersionsResponse)(nil),         // 16: satlabrpcserver.ListBuildVersionsResponse
+	(*StageBuildRequest)(nil),                 // 17: satlabrpcserver.StageBuildRequest
+	(*StageBuildResponse)(nil),                // 18: satlabrpcserver.StageBuildResponse
+	(*ListConnectedDutsFirmwareRequest)(nil),  // 19: satlabrpcserver.ListConnectedDutsFirmwareRequest
+	(*ConnectedDutFirmwareInfo)(nil),          // 20: satlabrpcserver.ConnectedDutFirmwareInfo
+	(*ListConnectedDutsFirmwareResponse)(nil), // 21: satlabrpcserver.ListConnectedDutsFirmwareResponse
+	(*GetSystemInfoRequest)(nil),              // 22: satlabrpcserver.GetSystemInfoRequest
+	(*GetSystemInfoResponse)(nil),             // 23: satlabrpcserver.GetSystemInfoResponse
+	(*GetPeripheralInformationRequest)(nil),   // 24: satlabrpcserver.GetPeripheralInformationRequest
+	(*GetPeripheralInformationResponse)(nil),  // 25: satlabrpcserver.GetPeripheralInformationResponse
+	(*UpdateDutsFirmwareRequest)(nil),         // 26: satlabrpcserver.UpdateDutsFirmwareRequest
+	(*FirmwareUpdateCommandOutput)(nil),       // 27: satlabrpcserver.FirmwareUpdateCommandOutput
+	(*UpdateDutsFirmwareResponse)(nil),        // 28: satlabrpcserver.UpdateDutsFirmwareResponse
+	(*Dim)(nil),                               // 29: satlabrpcserver.Dim
+	(*RunSuiteRequest)(nil),                   // 30: satlabrpcserver.RunSuiteRequest
+	(*RunSuiteResponse)(nil),                  // 31: satlabrpcserver.RunSuiteResponse
+	(*GetVersionInfoRequest)(nil),             // 32: satlabrpcserver.GetVersionInfoRequest
+	(*GetVersionInfoResponse)(nil),            // 33: satlabrpcserver.GetVersionInfoResponse
+	(*AddPoolRequest)(nil),                    // 34: satlabrpcserver.AddPoolRequest
+	(*AddPoolResponse)(nil),                   // 35: satlabrpcserver.AddPoolResponse
+	(*UpdatePoolRequest)(nil),                 // 36: satlabrpcserver.UpdatePoolRequest
+	(*UpdatePoolResponse)(nil),                // 37: satlabrpcserver.UpdatePoolResponse
+	(*GetDutDetailRequest)(nil),               // 38: satlabrpcserver.GetDutDetailRequest
+	(*StringListPair)(nil),                    // 39: satlabrpcserver.StringListPair
+	(*GetDutDetailResponse)(nil),              // 40: satlabrpcserver.GetDutDetailResponse
+	(*ListDutTasksRequest)(nil),               // 41: satlabrpcserver.ListDutTasksRequest
+	(*Task)(nil),                              // 42: satlabrpcserver.Task
+	(*ListDutTasksResponse)(nil),              // 43: satlabrpcserver.ListDutTasksResponse
+	(*ListDutEventsRequest)(nil),              // 44: satlabrpcserver.ListDutEventsRequest
+	(*BotEvent)(nil),                          // 45: satlabrpcserver.BotEvent
+	(*ListDutEventsResponse)(nil),             // 46: satlabrpcserver.ListDutEventsResponse
+	(*RunTestRequest)(nil),                    // 47: satlabrpcserver.RunTestRequest
+	(*RunTestResponse)(nil),                   // 48: satlabrpcserver.RunTestResponse
+	(*ListEnrolledDutsRequest)(nil),           // 49: satlabrpcserver.ListEnrolledDutsRequest
+	(*Dut)(nil),                               // 50: satlabrpcserver.Dut
+	(*ListEnrolledDutsResponse)(nil),          // 51: satlabrpcserver.ListEnrolledDutsResponse
+	(*ListDutsRequest)(nil),                   // 52: satlabrpcserver.ListDutsRequest
+	(*ListDutsResponse)(nil),                  // 53: satlabrpcserver.ListDutsResponse
+	(*DeleteDutsRequest)(nil),                 // 54: satlabrpcserver.DeleteDutsRequest
+	(*DeleteDutsResponse)(nil),                // 55: satlabrpcserver.DeleteDutsResponse
+	(*GetNetworkInfoRequest)(nil),             // 56: satlabrpcserver.GetNetworkInfoRequest
+	(*GetNetworkInfoResponse)(nil),            // 57: satlabrpcserver.GetNetworkInfoResponse
+	(*AddDutsRequest)(nil),                    // 58: satlabrpcserver.AddDutsRequest
+	(*AddDutsResponse)(nil),                   // 59: satlabrpcserver.AddDutsResponse
+	(*ListTestPlansRequest)(nil),              // 60: satlabrpcserver.ListTestPlansRequest
+	(*ListTestPlansResponse)(nil),             // 61: satlabrpcserver.ListTestPlansResponse
+	(*RunTestPlanRequest)(nil),                // 62: satlabrpcserver.RunTestPlanRequest
+	(*RunTestPlanResponse)(nil),               // 63: satlabrpcserver.RunTestPlanResponse
+	(*GetTestPlanRequest)(nil),                // 64: satlabrpcserver.GetTestPlanRequest
+	(*GetTestPlanResponse)(nil),               // 65: satlabrpcserver.GetTestPlanResponse
+	(*SetCloudConfigurationRequest)(nil),      // 66: satlabrpcserver.SetCloudConfigurationRequest
+	(*SetCloudConfigurationResponse)(nil),     // 67: satlabrpcserver.SetCloudConfigurationResponse
+	(*GetCloudConfigurationRequest)(nil),      // 68: satlabrpcserver.GetCloudConfigurationRequest
+	(*GetCloudConfigurationResponse)(nil),     // 69: satlabrpcserver.GetCloudConfigurationResponse
+	(*RebootRequest)(nil),                     // 70: satlabrpcserver.RebootRequest
+	(*RebootResponse)(nil),                    // 71: satlabrpcserver.RebootResponse
+	(*UploadLogRequest)(nil),                  // 72: satlabrpcserver.UploadLogRequest
+	(*UploadLogResponse)(nil),                 // 73: satlabrpcserver.UploadLogResponse
+	(*DownloadLogRequest)(nil),                // 74: satlabrpcserver.DownloadLogRequest
+	(*DownloadLogResponse)(nil),               // 75: satlabrpcserver.DownloadLogResponse
+	(*RepairDutsRequest)(nil),                 // 76: satlabrpcserver.RepairDutsRequest
+	(*RepairDutsResponse)(nil),                // 77: satlabrpcserver.RepairDutsResponse
+	(*RunStorageQualRequest)(nil),             // 78: satlabrpcserver.RunStorageQualRequest
+	(*RunStorageQualResponse)(nil),            // 79: satlabrpcserver.RunStorageQualResponse
+	(*Job)(nil),                               // 80: satlabrpcserver.Job
+	(*Tag)(nil),                               // 81: satlabrpcserver.Tag
+	(*ListJobsRequest)(nil),                   // 82: satlabrpcserver.ListJobsRequest
+	(*ListJobsResponse)(nil),                  // 83: satlabrpcserver.ListJobsResponse
+	(*StartServodResponse_Success)(nil),       // 84: satlabrpcserver.StartServodResponse.Success
+	(*StartServodResponse_Failure)(nil),       // 85: satlabrpcserver.StartServodResponse.Failure
+	(*UpdatePoolRequest_Item)(nil),            // 86: satlabrpcserver.UpdatePoolRequest.Item
+	(*AddDutsRequest_Param)(nil),              // 87: satlabrpcserver.AddDutsRequest.Param
+	(*AddDutsResponse_PassedData)(nil),        // 88: satlabrpcserver.AddDutsResponse.PassedData
+	(*AddDutsResponse_FailedData)(nil),        // 89: satlabrpcserver.AddDutsResponse.FailedData
+	(*RepairDutsResponse_RepairResult)(nil),   // 90: satlabrpcserver.RepairDutsResponse.RepairResult
+	(*timestamppb.Timestamp)(nil),             // 91: google.protobuf.Timestamp
+	(*test_platform.Request_TestPlan)(nil),    // 92: test_platform.Request.TestPlan
+	(*api.StartServodRequest)(nil),            // 93: chromiumos.test.api.StartServodRequest
+	(*longrunning.Operation)(nil),             // 94: chromiumos.longrunning.Operation
 }
 var file_satlabrpcserver_satlabrpcserver_proto_depIdxs = []int32{
-	76, // 0: satlabrpcserver.StartServodResponse.success:type_name -> satlabrpcserver.StartServodResponse.Success
-	77, // 1: satlabrpcserver.StartServodResponse.failure:type_name -> satlabrpcserver.StartServodResponse.Failure
-	0,  // 2: satlabrpcserver.BuildItem.status:type_name -> satlabrpcserver.BuildItem.BuildStatus
-	5,  // 3: satlabrpcserver.ListMilestonesResponse.milestones:type_name -> satlabrpcserver.BuildItem
-	9,  // 4: satlabrpcserver.ListAccessibleModelsResponse.models:type_name -> satlabrpcserver.Model
-	5,  // 5: satlabrpcserver.ListBuildVersionsResponse.build_versions:type_name -> satlabrpcserver.BuildItem
-	16, // 6: satlabrpcserver.ListConnectedDutsFirmwareResponse.duts:type_name -> satlabrpcserver.ConnectedDutFirmwareInfo
-	83, // 7: satlabrpcserver.GetSystemInfoResponse.start_time:type_name -> google.protobuf.Timestamp
-	23, // 8: satlabrpcserver.UpdateDutsFirmwareResponse.outputs:type_name -> satlabrpcserver.FirmwareUpdateCommandOutput
-	25, // 9: satlabrpcserver.RunSuiteRequest.dims:type_name -> satlabrpcserver.Dim
-	78, // 10: satlabrpcserver.UpdatePoolRequest.items:type_name -> satlabrpcserver.UpdatePoolRequest.Item
-	83, // 11: satlabrpcserver.GetDutDetailResponse.first_seen_ts:type_name -> google.protobuf.Timestamp
-	83, // 12: satlabrpcserver.GetDutDetailResponse.last_seen_ts:type_name -> google.protobuf.Timestamp
-	35, // 13: satlabrpcserver.GetDutDetailResponse.dimensions:type_name -> satlabrpcserver.StringListPair
-	83, // 14: satlabrpcserver.Task.start_at:type_name -> google.protobuf.Timestamp
-	38, // 15: satlabrpcserver.ListDutTasksResponse.tasks:type_name -> satlabrpcserver.Task
-	83, // 16: satlabrpcserver.BotEvent.created_at:type_name -> google.protobuf.Timestamp
-	41, // 17: satlabrpcserver.ListDutEventsResponse.events:type_name -> satlabrpcserver.BotEvent
-	25, // 18: satlabrpcserver.RunTestRequest.dims:type_name -> satlabrpcserver.Dim
-	46, // 19: satlabrpcserver.ListEnrolledDutsResponse.duts:type_name -> satlabrpcserver.Dut
-	46, // 20: satlabrpcserver.ListDutsResponse.duts:type_name -> satlabrpcserver.Dut
-	79, // 21: satlabrpcserver.AddDutsRequest.duts:type_name -> satlabrpcserver.AddDutsRequest.Param
-	80, // 22: satlabrpcserver.AddDutsResponse.pass:type_name -> satlabrpcserver.AddDutsResponse.PassedData
-	81, // 23: satlabrpcserver.AddDutsResponse.fail:type_name -> satlabrpcserver.AddDutsResponse.FailedData
-	25, // 24: satlabrpcserver.RunTestPlanRequest.dims:type_name -> satlabrpcserver.Dim
-	84, // 25: satlabrpcserver.GetTestPlanResponse.plan:type_name -> test_platform.Request.TestPlan
-	82, // 26: satlabrpcserver.RepairDutsResponse.result:type_name -> satlabrpcserver.RepairDutsResponse.RepairResult
-	25, // 27: satlabrpcserver.RunStorageQualRequest.dims:type_name -> satlabrpcserver.Dim
-	8,  // 28: satlabrpcserver.SatlabRpcService.ListAccessibleModels:input_type -> satlabrpcserver.ListAccessibleModelsRequest
-	11, // 29: satlabrpcserver.SatlabRpcService.ListBuildVersions:input_type -> satlabrpcserver.ListBuildVersionsRequest
-	13, // 30: satlabrpcserver.SatlabRpcService.StageBuild:input_type -> satlabrpcserver.StageBuildRequest
-	15, // 31: satlabrpcserver.SatlabRpcService.ListConnectedDutsFirmware:input_type -> satlabrpcserver.ListConnectedDutsFirmwareRequest
-	18, // 32: satlabrpcserver.SatlabRpcService.GetSystemInfo:input_type -> satlabrpcserver.GetSystemInfoRequest
-	28, // 33: satlabrpcserver.SatlabRpcService.GetVersionInfo:input_type -> satlabrpcserver.GetVersionInfoRequest
-	52, // 34: satlabrpcserver.SatlabRpcService.GetNetworkInfo:input_type -> satlabrpcserver.GetNetworkInfoRequest
-	20, // 35: satlabrpcserver.SatlabRpcService.GetPeripheralInformation:input_type -> satlabrpcserver.GetPeripheralInformationRequest
-	22, // 36: satlabrpcserver.SatlabRpcService.UpdateDutsFirmware:input_type -> satlabrpcserver.UpdateDutsFirmwareRequest
-	3,  // 37: satlabrpcserver.SatlabRpcService.ListBuildTargets:input_type -> satlabrpcserver.ListBuildTargetsRequest
-	6,  // 38: satlabrpcserver.SatlabRpcService.ListMilestones:input_type -> satlabrpcserver.ListMilestonesRequest
-	56, // 39: satlabrpcserver.SatlabRpcService.ListTestPlans:input_type -> satlabrpcserver.ListTestPlansRequest
-	60, // 40: satlabrpcserver.SatlabRpcService.GetTestPlan:input_type -> satlabrpcserver.GetTestPlanRequest
-	26, // 41: satlabrpcserver.SatlabRpcService.RunSuite:input_type -> satlabrpcserver.RunSuiteRequest
-	43, // 42: satlabrpcserver.SatlabRpcService.RunTest:input_type -> satlabrpcserver.RunTestRequest
-	58, // 43: satlabrpcserver.SatlabRpcService.RunTestPlan:input_type -> satlabrpcserver.RunTestPlanRequest
-	74, // 44: satlabrpcserver.SatlabRpcService.RunStorageQual:input_type -> satlabrpcserver.RunStorageQualRequest
-	30, // 45: satlabrpcserver.SatlabRpcService.AddPool:input_type -> satlabrpcserver.AddPoolRequest
-	32, // 46: satlabrpcserver.SatlabRpcService.UpdatePool:input_type -> satlabrpcserver.UpdatePoolRequest
-	50, // 47: satlabrpcserver.SatlabRpcService.DeleteDuts:input_type -> satlabrpcserver.DeleteDutsRequest
-	54, // 48: satlabrpcserver.SatlabRpcService.AddDuts:input_type -> satlabrpcserver.AddDutsRequest
-	72, // 49: satlabrpcserver.SatlabRpcService.RepairDuts:input_type -> satlabrpcserver.RepairDutsRequest
-	34, // 50: satlabrpcserver.SatlabRpcService.GetDutDetail:input_type -> satlabrpcserver.GetDutDetailRequest
-	37, // 51: satlabrpcserver.SatlabRpcService.ListDutTasks:input_type -> satlabrpcserver.ListDutTasksRequest
-	40, // 52: satlabrpcserver.SatlabRpcService.ListDutEvents:input_type -> satlabrpcserver.ListDutEventsRequest
-	45, // 53: satlabrpcserver.SatlabRpcService.ListEnrolledDuts:input_type -> satlabrpcserver.ListEnrolledDutsRequest
-	48, // 54: satlabrpcserver.SatlabRpcService.ListDuts:input_type -> satlabrpcserver.ListDutsRequest
-	62, // 55: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:input_type -> satlabrpcserver.SetCloudConfigurationRequest
-	64, // 56: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:input_type -> satlabrpcserver.GetCloudConfigurationRequest
-	66, // 57: satlabrpcserver.SatlabRpcService.Reboot:input_type -> satlabrpcserver.RebootRequest
-	68, // 58: satlabrpcserver.SatlabRpcService.UploadLog:input_type -> satlabrpcserver.UploadLogRequest
-	70, // 59: satlabrpcserver.SatlabRpcService.DownloadLog:input_type -> satlabrpcserver.DownloadLogRequest
-	85, // 60: satlabrpcserver.SatlabRpcService.StartServod:input_type -> chromiumos.test.api.StartServodRequest
-	10, // 61: satlabrpcserver.SatlabRpcService.ListAccessibleModels:output_type -> satlabrpcserver.ListAccessibleModelsResponse
-	12, // 62: satlabrpcserver.SatlabRpcService.ListBuildVersions:output_type -> satlabrpcserver.ListBuildVersionsResponse
-	14, // 63: satlabrpcserver.SatlabRpcService.StageBuild:output_type -> satlabrpcserver.StageBuildResponse
-	17, // 64: satlabrpcserver.SatlabRpcService.ListConnectedDutsFirmware:output_type -> satlabrpcserver.ListConnectedDutsFirmwareResponse
-	19, // 65: satlabrpcserver.SatlabRpcService.GetSystemInfo:output_type -> satlabrpcserver.GetSystemInfoResponse
-	29, // 66: satlabrpcserver.SatlabRpcService.GetVersionInfo:output_type -> satlabrpcserver.GetVersionInfoResponse
-	53, // 67: satlabrpcserver.SatlabRpcService.GetNetworkInfo:output_type -> satlabrpcserver.GetNetworkInfoResponse
-	21, // 68: satlabrpcserver.SatlabRpcService.GetPeripheralInformation:output_type -> satlabrpcserver.GetPeripheralInformationResponse
-	24, // 69: satlabrpcserver.SatlabRpcService.UpdateDutsFirmware:output_type -> satlabrpcserver.UpdateDutsFirmwareResponse
-	4,  // 70: satlabrpcserver.SatlabRpcService.ListBuildTargets:output_type -> satlabrpcserver.ListBuildTargetsResponse
-	7,  // 71: satlabrpcserver.SatlabRpcService.ListMilestones:output_type -> satlabrpcserver.ListMilestonesResponse
-	57, // 72: satlabrpcserver.SatlabRpcService.ListTestPlans:output_type -> satlabrpcserver.ListTestPlansResponse
-	61, // 73: satlabrpcserver.SatlabRpcService.GetTestPlan:output_type -> satlabrpcserver.GetTestPlanResponse
-	27, // 74: satlabrpcserver.SatlabRpcService.RunSuite:output_type -> satlabrpcserver.RunSuiteResponse
-	44, // 75: satlabrpcserver.SatlabRpcService.RunTest:output_type -> satlabrpcserver.RunTestResponse
-	59, // 76: satlabrpcserver.SatlabRpcService.RunTestPlan:output_type -> satlabrpcserver.RunTestPlanResponse
-	75, // 77: satlabrpcserver.SatlabRpcService.RunStorageQual:output_type -> satlabrpcserver.RunStorageQualResponse
-	31, // 78: satlabrpcserver.SatlabRpcService.AddPool:output_type -> satlabrpcserver.AddPoolResponse
-	33, // 79: satlabrpcserver.SatlabRpcService.UpdatePool:output_type -> satlabrpcserver.UpdatePoolResponse
-	51, // 80: satlabrpcserver.SatlabRpcService.DeleteDuts:output_type -> satlabrpcserver.DeleteDutsResponse
-	55, // 81: satlabrpcserver.SatlabRpcService.AddDuts:output_type -> satlabrpcserver.AddDutsResponse
-	73, // 82: satlabrpcserver.SatlabRpcService.RepairDuts:output_type -> satlabrpcserver.RepairDutsResponse
-	36, // 83: satlabrpcserver.SatlabRpcService.GetDutDetail:output_type -> satlabrpcserver.GetDutDetailResponse
-	39, // 84: satlabrpcserver.SatlabRpcService.ListDutTasks:output_type -> satlabrpcserver.ListDutTasksResponse
-	42, // 85: satlabrpcserver.SatlabRpcService.ListDutEvents:output_type -> satlabrpcserver.ListDutEventsResponse
-	47, // 86: satlabrpcserver.SatlabRpcService.ListEnrolledDuts:output_type -> satlabrpcserver.ListEnrolledDutsResponse
-	49, // 87: satlabrpcserver.SatlabRpcService.ListDuts:output_type -> satlabrpcserver.ListDutsResponse
-	63, // 88: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:output_type -> satlabrpcserver.SetCloudConfigurationResponse
-	65, // 89: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:output_type -> satlabrpcserver.GetCloudConfigurationResponse
-	67, // 90: satlabrpcserver.SatlabRpcService.Reboot:output_type -> satlabrpcserver.RebootResponse
-	69, // 91: satlabrpcserver.SatlabRpcService.UploadLog:output_type -> satlabrpcserver.UploadLogResponse
-	71, // 92: satlabrpcserver.SatlabRpcService.DownloadLog:output_type -> satlabrpcserver.DownloadLogResponse
-	86, // 93: satlabrpcserver.SatlabRpcService.StartServod:output_type -> chromiumos.longrunning.Operation
-	61, // [61:94] is the sub-list for method output_type
-	28, // [28:61] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	84, // 0: satlabrpcserver.StartServodResponse.success:type_name -> satlabrpcserver.StartServodResponse.Success
+	85, // 1: satlabrpcserver.StartServodResponse.failure:type_name -> satlabrpcserver.StartServodResponse.Failure
+	2,  // 2: satlabrpcserver.BuildItem.status:type_name -> satlabrpcserver.BuildItem.BuildStatus
+	9,  // 3: satlabrpcserver.ListMilestonesResponse.milestones:type_name -> satlabrpcserver.BuildItem
+	13, // 4: satlabrpcserver.ListAccessibleModelsResponse.models:type_name -> satlabrpcserver.Model
+	9,  // 5: satlabrpcserver.ListBuildVersionsResponse.build_versions:type_name -> satlabrpcserver.BuildItem
+	20, // 6: satlabrpcserver.ListConnectedDutsFirmwareResponse.duts:type_name -> satlabrpcserver.ConnectedDutFirmwareInfo
+	91, // 7: satlabrpcserver.GetSystemInfoResponse.start_time:type_name -> google.protobuf.Timestamp
+	27, // 8: satlabrpcserver.UpdateDutsFirmwareResponse.outputs:type_name -> satlabrpcserver.FirmwareUpdateCommandOutput
+	29, // 9: satlabrpcserver.RunSuiteRequest.dims:type_name -> satlabrpcserver.Dim
+	86, // 10: satlabrpcserver.UpdatePoolRequest.items:type_name -> satlabrpcserver.UpdatePoolRequest.Item
+	91, // 11: satlabrpcserver.GetDutDetailResponse.first_seen_ts:type_name -> google.protobuf.Timestamp
+	91, // 12: satlabrpcserver.GetDutDetailResponse.last_seen_ts:type_name -> google.protobuf.Timestamp
+	39, // 13: satlabrpcserver.GetDutDetailResponse.dimensions:type_name -> satlabrpcserver.StringListPair
+	91, // 14: satlabrpcserver.Task.start_at:type_name -> google.protobuf.Timestamp
+	42, // 15: satlabrpcserver.ListDutTasksResponse.tasks:type_name -> satlabrpcserver.Task
+	91, // 16: satlabrpcserver.BotEvent.created_at:type_name -> google.protobuf.Timestamp
+	45, // 17: satlabrpcserver.ListDutEventsResponse.events:type_name -> satlabrpcserver.BotEvent
+	29, // 18: satlabrpcserver.RunTestRequest.dims:type_name -> satlabrpcserver.Dim
+	50, // 19: satlabrpcserver.ListEnrolledDutsResponse.duts:type_name -> satlabrpcserver.Dut
+	50, // 20: satlabrpcserver.ListDutsResponse.duts:type_name -> satlabrpcserver.Dut
+	87, // 21: satlabrpcserver.AddDutsRequest.duts:type_name -> satlabrpcserver.AddDutsRequest.Param
+	88, // 22: satlabrpcserver.AddDutsResponse.pass:type_name -> satlabrpcserver.AddDutsResponse.PassedData
+	89, // 23: satlabrpcserver.AddDutsResponse.fail:type_name -> satlabrpcserver.AddDutsResponse.FailedData
+	29, // 24: satlabrpcserver.RunTestPlanRequest.dims:type_name -> satlabrpcserver.Dim
+	92, // 25: satlabrpcserver.GetTestPlanResponse.plan:type_name -> test_platform.Request.TestPlan
+	90, // 26: satlabrpcserver.RepairDutsResponse.result:type_name -> satlabrpcserver.RepairDutsResponse.RepairResult
+	29, // 27: satlabrpcserver.RunStorageQualRequest.dims:type_name -> satlabrpcserver.Dim
+	91, // 28: satlabrpcserver.Job.created_time:type_name -> google.protobuf.Timestamp
+	91, // 29: satlabrpcserver.Job.start_time:type_name -> google.protobuf.Timestamp
+	91, // 30: satlabrpcserver.Job.finished_time:type_name -> google.protobuf.Timestamp
+	4,  // 31: satlabrpcserver.Job.status:type_name -> satlabrpcserver.Job.JobStatus
+	91, // 32: satlabrpcserver.ListJobsRequest.created_time_gt:type_name -> google.protobuf.Timestamp
+	91, // 33: satlabrpcserver.ListJobsRequest.created_time_lt:type_name -> google.protobuf.Timestamp
+	3,  // 34: satlabrpcserver.ListJobsRequest.job_type:type_name -> satlabrpcserver.Job.JobType
+	81, // 35: satlabrpcserver.ListJobsRequest.tags:type_name -> satlabrpcserver.Tag
+	1,  // 36: satlabrpcserver.ListJobsRequest.sort_by:type_name -> satlabrpcserver.SortBy
+	0,  // 37: satlabrpcserver.ListJobsRequest.query_status:type_name -> satlabrpcserver.StateQuery
+	80, // 38: satlabrpcserver.ListJobsResponse.jobs:type_name -> satlabrpcserver.Job
+	12, // 39: satlabrpcserver.SatlabRpcService.ListAccessibleModels:input_type -> satlabrpcserver.ListAccessibleModelsRequest
+	15, // 40: satlabrpcserver.SatlabRpcService.ListBuildVersions:input_type -> satlabrpcserver.ListBuildVersionsRequest
+	17, // 41: satlabrpcserver.SatlabRpcService.StageBuild:input_type -> satlabrpcserver.StageBuildRequest
+	19, // 42: satlabrpcserver.SatlabRpcService.ListConnectedDutsFirmware:input_type -> satlabrpcserver.ListConnectedDutsFirmwareRequest
+	22, // 43: satlabrpcserver.SatlabRpcService.GetSystemInfo:input_type -> satlabrpcserver.GetSystemInfoRequest
+	32, // 44: satlabrpcserver.SatlabRpcService.GetVersionInfo:input_type -> satlabrpcserver.GetVersionInfoRequest
+	56, // 45: satlabrpcserver.SatlabRpcService.GetNetworkInfo:input_type -> satlabrpcserver.GetNetworkInfoRequest
+	24, // 46: satlabrpcserver.SatlabRpcService.GetPeripheralInformation:input_type -> satlabrpcserver.GetPeripheralInformationRequest
+	26, // 47: satlabrpcserver.SatlabRpcService.UpdateDutsFirmware:input_type -> satlabrpcserver.UpdateDutsFirmwareRequest
+	7,  // 48: satlabrpcserver.SatlabRpcService.ListBuildTargets:input_type -> satlabrpcserver.ListBuildTargetsRequest
+	10, // 49: satlabrpcserver.SatlabRpcService.ListMilestones:input_type -> satlabrpcserver.ListMilestonesRequest
+	60, // 50: satlabrpcserver.SatlabRpcService.ListTestPlans:input_type -> satlabrpcserver.ListTestPlansRequest
+	64, // 51: satlabrpcserver.SatlabRpcService.GetTestPlan:input_type -> satlabrpcserver.GetTestPlanRequest
+	30, // 52: satlabrpcserver.SatlabRpcService.RunSuite:input_type -> satlabrpcserver.RunSuiteRequest
+	47, // 53: satlabrpcserver.SatlabRpcService.RunTest:input_type -> satlabrpcserver.RunTestRequest
+	62, // 54: satlabrpcserver.SatlabRpcService.RunTestPlan:input_type -> satlabrpcserver.RunTestPlanRequest
+	78, // 55: satlabrpcserver.SatlabRpcService.RunStorageQual:input_type -> satlabrpcserver.RunStorageQualRequest
+	34, // 56: satlabrpcserver.SatlabRpcService.AddPool:input_type -> satlabrpcserver.AddPoolRequest
+	36, // 57: satlabrpcserver.SatlabRpcService.UpdatePool:input_type -> satlabrpcserver.UpdatePoolRequest
+	54, // 58: satlabrpcserver.SatlabRpcService.DeleteDuts:input_type -> satlabrpcserver.DeleteDutsRequest
+	58, // 59: satlabrpcserver.SatlabRpcService.AddDuts:input_type -> satlabrpcserver.AddDutsRequest
+	76, // 60: satlabrpcserver.SatlabRpcService.RepairDuts:input_type -> satlabrpcserver.RepairDutsRequest
+	38, // 61: satlabrpcserver.SatlabRpcService.GetDutDetail:input_type -> satlabrpcserver.GetDutDetailRequest
+	41, // 62: satlabrpcserver.SatlabRpcService.ListDutTasks:input_type -> satlabrpcserver.ListDutTasksRequest
+	44, // 63: satlabrpcserver.SatlabRpcService.ListDutEvents:input_type -> satlabrpcserver.ListDutEventsRequest
+	49, // 64: satlabrpcserver.SatlabRpcService.ListEnrolledDuts:input_type -> satlabrpcserver.ListEnrolledDutsRequest
+	52, // 65: satlabrpcserver.SatlabRpcService.ListDuts:input_type -> satlabrpcserver.ListDutsRequest
+	66, // 66: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:input_type -> satlabrpcserver.SetCloudConfigurationRequest
+	68, // 67: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:input_type -> satlabrpcserver.GetCloudConfigurationRequest
+	70, // 68: satlabrpcserver.SatlabRpcService.Reboot:input_type -> satlabrpcserver.RebootRequest
+	72, // 69: satlabrpcserver.SatlabRpcService.UploadLog:input_type -> satlabrpcserver.UploadLogRequest
+	74, // 70: satlabrpcserver.SatlabRpcService.DownloadLog:input_type -> satlabrpcserver.DownloadLogRequest
+	93, // 71: satlabrpcserver.SatlabRpcService.StartServod:input_type -> chromiumos.test.api.StartServodRequest
+	82, // 72: satlabrpcserver.SatlabRpcService.ListJobs:input_type -> satlabrpcserver.ListJobsRequest
+	14, // 73: satlabrpcserver.SatlabRpcService.ListAccessibleModels:output_type -> satlabrpcserver.ListAccessibleModelsResponse
+	16, // 74: satlabrpcserver.SatlabRpcService.ListBuildVersions:output_type -> satlabrpcserver.ListBuildVersionsResponse
+	18, // 75: satlabrpcserver.SatlabRpcService.StageBuild:output_type -> satlabrpcserver.StageBuildResponse
+	21, // 76: satlabrpcserver.SatlabRpcService.ListConnectedDutsFirmware:output_type -> satlabrpcserver.ListConnectedDutsFirmwareResponse
+	23, // 77: satlabrpcserver.SatlabRpcService.GetSystemInfo:output_type -> satlabrpcserver.GetSystemInfoResponse
+	33, // 78: satlabrpcserver.SatlabRpcService.GetVersionInfo:output_type -> satlabrpcserver.GetVersionInfoResponse
+	57, // 79: satlabrpcserver.SatlabRpcService.GetNetworkInfo:output_type -> satlabrpcserver.GetNetworkInfoResponse
+	25, // 80: satlabrpcserver.SatlabRpcService.GetPeripheralInformation:output_type -> satlabrpcserver.GetPeripheralInformationResponse
+	28, // 81: satlabrpcserver.SatlabRpcService.UpdateDutsFirmware:output_type -> satlabrpcserver.UpdateDutsFirmwareResponse
+	8,  // 82: satlabrpcserver.SatlabRpcService.ListBuildTargets:output_type -> satlabrpcserver.ListBuildTargetsResponse
+	11, // 83: satlabrpcserver.SatlabRpcService.ListMilestones:output_type -> satlabrpcserver.ListMilestonesResponse
+	61, // 84: satlabrpcserver.SatlabRpcService.ListTestPlans:output_type -> satlabrpcserver.ListTestPlansResponse
+	65, // 85: satlabrpcserver.SatlabRpcService.GetTestPlan:output_type -> satlabrpcserver.GetTestPlanResponse
+	31, // 86: satlabrpcserver.SatlabRpcService.RunSuite:output_type -> satlabrpcserver.RunSuiteResponse
+	48, // 87: satlabrpcserver.SatlabRpcService.RunTest:output_type -> satlabrpcserver.RunTestResponse
+	63, // 88: satlabrpcserver.SatlabRpcService.RunTestPlan:output_type -> satlabrpcserver.RunTestPlanResponse
+	79, // 89: satlabrpcserver.SatlabRpcService.RunStorageQual:output_type -> satlabrpcserver.RunStorageQualResponse
+	35, // 90: satlabrpcserver.SatlabRpcService.AddPool:output_type -> satlabrpcserver.AddPoolResponse
+	37, // 91: satlabrpcserver.SatlabRpcService.UpdatePool:output_type -> satlabrpcserver.UpdatePoolResponse
+	55, // 92: satlabrpcserver.SatlabRpcService.DeleteDuts:output_type -> satlabrpcserver.DeleteDutsResponse
+	59, // 93: satlabrpcserver.SatlabRpcService.AddDuts:output_type -> satlabrpcserver.AddDutsResponse
+	77, // 94: satlabrpcserver.SatlabRpcService.RepairDuts:output_type -> satlabrpcserver.RepairDutsResponse
+	40, // 95: satlabrpcserver.SatlabRpcService.GetDutDetail:output_type -> satlabrpcserver.GetDutDetailResponse
+	43, // 96: satlabrpcserver.SatlabRpcService.ListDutTasks:output_type -> satlabrpcserver.ListDutTasksResponse
+	46, // 97: satlabrpcserver.SatlabRpcService.ListDutEvents:output_type -> satlabrpcserver.ListDutEventsResponse
+	51, // 98: satlabrpcserver.SatlabRpcService.ListEnrolledDuts:output_type -> satlabrpcserver.ListEnrolledDutsResponse
+	53, // 99: satlabrpcserver.SatlabRpcService.ListDuts:output_type -> satlabrpcserver.ListDutsResponse
+	67, // 100: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:output_type -> satlabrpcserver.SetCloudConfigurationResponse
+	69, // 101: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:output_type -> satlabrpcserver.GetCloudConfigurationResponse
+	71, // 102: satlabrpcserver.SatlabRpcService.Reboot:output_type -> satlabrpcserver.RebootResponse
+	73, // 103: satlabrpcserver.SatlabRpcService.UploadLog:output_type -> satlabrpcserver.UploadLogResponse
+	75, // 104: satlabrpcserver.SatlabRpcService.DownloadLog:output_type -> satlabrpcserver.DownloadLogResponse
+	94, // 105: satlabrpcserver.SatlabRpcService.StartServod:output_type -> chromiumos.longrunning.Operation
+	83, // 106: satlabrpcserver.SatlabRpcService.ListJobs:output_type -> satlabrpcserver.ListJobsResponse
+	73, // [73:107] is the sub-list for method output_type
+	39, // [39:73] is the sub-list for method input_type
+	39, // [39:39] is the sub-list for extension type_name
+	39, // [39:39] is the sub-list for extension extendee
+	0,  // [0:39] is the sub-list for field type_name
 }
 
 func init() { file_satlabrpcserver_satlabrpcserver_proto_init() }
@@ -6558,7 +7314,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StartServodResponse_Success); i {
+			switch v := v.(*Job); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6570,7 +7326,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StartServodResponse_Failure); i {
+			switch v := v.(*Tag); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6582,7 +7338,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdatePoolRequest_Item); i {
+			switch v := v.(*ListJobsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6594,7 +7350,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDutsRequest_Param); i {
+			switch v := v.(*ListJobsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6606,7 +7362,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDutsResponse_PassedData); i {
+			switch v := v.(*StartServodResponse_Success); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6618,7 +7374,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDutsResponse_FailedData); i {
+			switch v := v.(*StartServodResponse_Failure); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6630,6 +7386,54 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdatePoolRequest_Item); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[82].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddDutsRequest_Param); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[83].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddDutsResponse_PassedData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[84].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddDutsResponse_FailedData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[85].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RepairDutsResponse_RepairResult); i {
 			case 0:
 				return &v.state
@@ -6651,8 +7455,8 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_satlabrpcserver_satlabrpcserver_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   82,
+			NumEnums:      5,
+			NumMessages:   86,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -25970,6 +25970,74 @@
         "chromiumos/longrunning/operations.proto",
         "chromiumos/test/api/servod_service.proto"
       ],
+      "enumType": [
+        {
+          "name": "StateQuery",
+          "value": [
+            {
+              "name": "QUERY_PENDING",
+              "number": 0
+            },
+            {
+              "name": "QUERY_RUNNING",
+              "number": 1
+            },
+            {
+              "name": "QUERY_PENDING_RUNNING",
+              "number": 2
+            },
+            {
+              "name": "QUERY_COMPLETED",
+              "number": 3
+            },
+            {
+              "name": "QUERY_COMPLETED_SUCCESS",
+              "number": 4
+            },
+            {
+              "name": "QUERY_COMPLETED_FAILURE",
+              "number": 5
+            },
+            {
+              "name": "QUERY_EXPIRED",
+              "number": 6
+            },
+            {
+              "name": "QUERY_TIMED_OUT",
+              "number": 7
+            },
+            {
+              "name": "QUERY_CANCELED",
+              "number": 9
+            },
+            {
+              "name": "QUERY_ALL",
+              "number": 10
+            }
+          ]
+        },
+        {
+          "name": "SortBy",
+          "value": [
+            {
+              "name": "CREATED_TS",
+              "number": 0
+            },
+            {
+              "name": "COMPLETED_TS",
+              "number": 2
+            },
+            {
+              "name": "ABANDONED_TS",
+              "number": 3
+            },
+            {
+              "name": "STARTED_TS",
+              "number": 4
+            }
+          ]
+        }
+      ],
       "messageType": [
         {
           "field": [
@@ -27600,6 +27668,269 @@
             }
           ],
           "name": "RunStorageQualResponse"
+        },
+        {
+          "enumType": [
+            {
+              "name": "JobType",
+              "value": [
+                {
+                  "name": "TYPE_NOT_SET",
+                  "number": 0
+                },
+                {
+                  "name": "SUITE",
+                  "number": 1
+                },
+                {
+                  "name": "TESTPLAN",
+                  "number": 2
+                },
+                {
+                  "name": "TEST",
+                  "number": 3
+                }
+              ]
+            },
+            {
+              "name": "JobStatus",
+              "value": [
+                {
+                  "name": "STATUS_NOT_SET",
+                  "number": 0
+                },
+                {
+                  "name": "PENDING",
+                  "number": 1
+                },
+                {
+                  "name": "RUNNING",
+                  "number": 2
+                },
+                {
+                  "name": "COMPLETE",
+                  "number": 3
+                },
+                {
+                  "name": "COMPLETE_SUCCESS",
+                  "number": 4
+                },
+                {
+                  "name": "COMPLETE_FAILURE",
+                  "number": 5
+                },
+                {
+                  "name": "TIMED_OUT",
+                  "number": 6
+                },
+                {
+                  "name": "EXPIRED",
+                  "number": 7
+                },
+                {
+                  "name": "ABORTED",
+                  "number": 8
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "jobId",
+              "label": "LABEL_OPTIONAL",
+              "name": "job_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "createdTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_time",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "finishedTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "finished_time",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.Job.JobStatus"
+            },
+            {
+              "jsonName": "parentJobId",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_job_id",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "labelPool",
+              "label": "LABEL_OPTIONAL",
+              "name": "label_pool",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "satlabId",
+              "label": "LABEL_OPTIONAL",
+              "name": "satlab_id",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "taskUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_url",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "resultsUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "results_url",
+              "number": 12,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Job"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Tag"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "createdTimeGt",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_time_gt",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "createdTimeLt",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_time_lt",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "jobType",
+              "label": "LABEL_OPTIONAL",
+              "name": "job_type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.Job.JobType"
+            },
+            {
+              "jsonName": "tags",
+              "label": "LABEL_REPEATED",
+              "name": "tags",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Tag"
+            },
+            {
+              "jsonName": "sortBy",
+              "label": "LABEL_OPTIONAL",
+              "name": "sort_by",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.SortBy"
+            },
+            {
+              "jsonName": "queryStatus",
+              "label": "LABEL_OPTIONAL",
+              "name": "query_status",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.StateQuery"
+            },
+            {
+              "jsonName": "pageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_token",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "limit",
+              "label": "LABEL_OPTIONAL",
+              "name": "limit",
+              "number": 8,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "ListJobsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "nextPageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "next_page_token",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "jobs",
+              "label": "LABEL_REPEATED",
+              "name": "jobs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Job"
+            }
+          ],
+          "name": "ListJobsResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -27781,6 +28112,11 @@
                 }
               },
               "outputType": ".chromiumos.longrunning.Operation"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListJobsRequest",
+              "name": "ListJobs",
+              "outputType": ".satlabrpcserver.ListJobsResponse"
             }
           ],
           "name": "SatlabRpcService"
