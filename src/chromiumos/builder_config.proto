@@ -552,6 +552,9 @@ message BuilderConfig {
 
       // Which bazel targets should be installed.
       BazelTargets bazel_targets = 8;
+
+      // Skip package temp directory cleanup (useful for debug/postprocessing).
+      bool skip_clean_package_dirs = 9;
     }
     reserved 14;
     InstallPackages install_packages = 16;
