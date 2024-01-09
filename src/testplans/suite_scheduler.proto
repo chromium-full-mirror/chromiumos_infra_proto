@@ -284,6 +284,9 @@ message SchedulerConfig {
 
   // Args will be provided to the respective test harness.
   string test_args = 23;
+
+  // if enable_autotest_sharding is True, then autotest tests will be sharded.
+  bool enable_autotest_sharding = 24;
 }
 
 // A proto to contain all the configs.

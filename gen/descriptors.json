@@ -38371,6 +38371,13 @@
               "name": "test_args",
               "number": 23,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "enableAutotestSharding",
+              "label": "LABEL_OPTIONAL",
+              "name": "enable_autotest_sharding",
+              "number": 24,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "SchedulerConfig",
