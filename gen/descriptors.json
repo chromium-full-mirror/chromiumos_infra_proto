@@ -34851,6 +34851,7 @@
         "chromiumos/test/api/cros_publish_service.proto",
         "chromiumos/test/api/cros_test_cli.proto",
         "chromiumos/test/api/test_suite.proto",
+        "chromiumos/test/api/post_test_service.proto",
         "chromiumos/build/api/container_metadata.proto",
         "test_platform/skylab_test_runner/cros_test_runner_service.proto"
       ],
@@ -35170,6 +35171,14 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            },
+            {
+              "jsonName": "runActivityRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_activity_request",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.RunActivityRequest"
             }
           ],
           "name": "PostTestRequest"

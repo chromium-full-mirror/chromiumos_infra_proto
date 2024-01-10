@@ -15,6 +15,7 @@ import "chromiumos/test/api/provision.proto";
 import "chromiumos/test/api/cros_publish_service.proto";
 import "chromiumos/test/api/cros_test_cli.proto";
 import "chromiumos/test/api/test_suite.proto";
+import "chromiumos/test/api/post_test_service.proto";
 import "chromiumos/build/api/container_metadata.proto";
 import "test_platform/skylab_test_runner/cros_test_runner_service.proto";
 
@@ -102,6 +103,9 @@ message PostTestRequest {
   chromiumos.test.lab.api.IpEndpoint service_address = 1;
   google.protobuf.Any post_test_request = 2;
   repeated DynamicDep dynamic_deps = 3;
+  // RunActivityRequest will trigger a call to RunActivity
+  // within the rpc service `PostTestService`.
+  chromiumos.test.api.RunActivityRequest run_activity_request = 4;
 }
 
 // PublishRequest targets requests towards services that implement
