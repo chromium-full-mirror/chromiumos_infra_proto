@@ -27123,9 +27123,68 @@
               "name": "has_test_image",
               "number": 13,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "botInfo",
+              "label": "LABEL_OPTIONAL",
+              "name": "bot_info",
+              "number": 14,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.BotInfo"
             }
           ],
           "name": "Dut"
+        },
+        {
+          "enumType": [
+            {
+              "name": "BotState",
+              "value": [
+                {
+                  "name": "NO_STATE_SET",
+                  "number": 0
+                },
+                {
+                  "name": "ALIVE",
+                  "number": 1
+                },
+                {
+                  "name": "BUSY",
+                  "number": 2
+                },
+                {
+                  "name": "DEAD",
+                  "number": 3
+                },
+                {
+                  "name": "QUARANTINED",
+                  "number": 4
+                },
+                {
+                  "name": "IDLE",
+                  "number": 5
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "botState",
+              "label": "LABEL_OPTIONAL",
+              "name": "bot_state",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.BotInfo.BotState"
+            },
+            {
+              "jsonName": "currentTask",
+              "label": "LABEL_OPTIONAL",
+              "name": "current_task",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BotInfo"
         },
         {
           "field": [
