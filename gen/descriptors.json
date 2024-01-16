@@ -27182,6 +27182,13 @@
               "name": "current_task",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "taskName",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_name",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "BotInfo"

@@ -410,7 +410,7 @@ message Dut {
   BotInfo bot_info = 14;
 }
 
-// NEXT_TAG = 3
+// NEXT_TAG = 4
 message BotInfo {
   // NEXT_TAG = 6
   enum BotState {
@@ -423,7 +423,10 @@ message BotInfo {
   }
 
   BotState bot_state = 1;
+  // Link to the current running task.
   string current_task = 2;
+  // Name of the task currently running (Test/Repair/Deploy).
+  string task_name = 3;
 }
 
 // NEXT_TAG = 2
