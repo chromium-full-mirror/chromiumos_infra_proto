@@ -757,3 +757,9 @@ message ListJobsResponse {
   string next_page_token = 1;
   repeated Job jobs = 2;
 }
+
+// NEXT_TAG = 3
+message CftMixTestplan {
+  test_platform.Request.TestPlan cft = 1;
+  test_platform.Request.TestPlan non_cft = 2;
+}

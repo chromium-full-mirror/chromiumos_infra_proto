@@ -28015,6 +28015,27 @@
             }
           ],
           "name": "ListJobsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "cft",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.TestPlan"
+            },
+            {
+              "jsonName": "nonCft",
+              "label": "LABEL_OPTIONAL",
+              "name": "non_cft",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.TestPlan"
+            }
+          ],
+          "name": "CftMixTestplan"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
