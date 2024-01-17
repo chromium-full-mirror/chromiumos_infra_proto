@@ -109,6 +109,9 @@ message ArchiveArtifacts {
   // Keyset used to sign the archive artifacts.
   string keyset = 2;
 
+  // Whether the keyset used to sign the artifacts is an MP keyset.
+  bool keyset_is_mp = 10;
+
   // The resulting signed artifacts.
   repeated SignedArtifact signed_artifacts = 3;
 
