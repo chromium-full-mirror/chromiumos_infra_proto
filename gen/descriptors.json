@@ -27906,6 +27906,14 @@
               "name": "results_url",
               "number": 12,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "childStatusCount",
+              "label": "LABEL_OPTIONAL",
+              "name": "child_status_count",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TasksStatusCount"
             }
           ],
           "name": "Job"
@@ -28036,6 +28044,41 @@
             }
           ],
           "name": "CftMixTestplan"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "taskCount",
+              "label": "LABEL_REPEATED",
+              "name": "task_count",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TasksStatusCount.TaskCount"
+            }
+          ],
+          "name": "TasksStatusCount",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "state",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "state",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".satlabrpcserver.StateQuery"
+                },
+                {
+                  "jsonName": "count",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "count",
+                  "number": 2,
+                  "type": "TYPE_INT32"
+                }
+              ],
+              "name": "TaskCount"
+            }
+          ]
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
