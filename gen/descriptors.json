@@ -7929,6 +7929,11 @@
             {
               "inputType": ".chromite.api.PushImageRequest",
               "name": "PushImage",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
               "outputType": ".chromite.api.PushImageResponse"
             },
             {

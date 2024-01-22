@@ -230,7 +230,11 @@ service ImageService {
   //   },
   //   "sign_types": [1, 6]
   // }
-  rpc PushImage(PushImageRequest) returns (PushImageResponse);
+  rpc PushImage(PushImageRequest) returns (PushImageResponse) {
+    option (method_options) = {
+      method_chroot_assert : OUTSIDE,
+    };
+  }
 
   // Sign images based on the given config.
   // Example json:
