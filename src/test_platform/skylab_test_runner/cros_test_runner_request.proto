@@ -16,6 +16,7 @@ import "chromiumos/test/api/cros_publish_service.proto";
 import "chromiumos/test/api/cros_test_cli.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "chromiumos/test/api/post_test_service.proto";
+import "chromiumos/test/api/generic_service.proto";
 import "chromiumos/build/api/container_metadata.proto";
 import "test_platform/skylab_test_runner/cros_test_runner_service.proto";
 
@@ -41,6 +42,7 @@ message CrosTestRunnerRequest {
       TestRequest test = 4;
       PostTestRequest post_test = 5;
       PublishRequest publish = 6;
+      GenericRequest generic = 8;
     }
     bool required = 7;
   }
@@ -114,6 +116,16 @@ message PublishRequest {
   chromiumos.test.lab.api.IpEndpoint service_address = 1;
   chromiumos.test.api.PublishRequest publish_request = 2;
   repeated DynamicDep dynamic_deps = 3;
+}
+
+// GenericRequest targets request towards services that implement
+// the GenericService.
+message GenericRequest {
+  chromiumos.test.lab.api.IpEndpoint service_address = 1;
+  chromiumos.test.api.GenericStartRequest start_request = 2;
+  chromiumos.test.api.GenericRunRequest run_request = 3;
+  chromiumos.test.api.GenericStopRequest stop_request = 4;
+  repeated DynamicDep dynamic_deps = 5;
 }
 
 // Starts a container and uploads its IpEndpoint to TestRunnerV2's

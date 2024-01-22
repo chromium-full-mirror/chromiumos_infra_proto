@@ -34993,6 +34993,7 @@
         "chromiumos/test/api/cros_test_cli.proto",
         "chromiumos/test/api/test_suite.proto",
         "chromiumos/test/api/post_test_service.proto",
+        "chromiumos/test/api/generic_service.proto",
         "chromiumos/build/api/container_metadata.proto",
         "test_platform/skylab_test_runner/cros_test_runner_service.proto"
       ],
@@ -35090,6 +35091,15 @@
                   "oneofIndex": 0,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.skylab_test_runner.PublishRequest"
+                },
+                {
+                  "jsonName": "generic",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "generic",
+                  "number": 8,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.GenericRequest"
                 },
                 {
                   "jsonName": "required",
@@ -35352,6 +35362,51 @@
             }
           ],
           "name": "PublishRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serviceAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "service_address",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.lab.api.IpEndpoint"
+            },
+            {
+              "jsonName": "startRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_request",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.GenericStartRequest"
+            },
+            {
+              "jsonName": "runRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_request",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.GenericRunRequest"
+            },
+            {
+              "jsonName": "stopRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "stop_request",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.GenericStopRequest"
+            },
+            {
+              "jsonName": "dynamicDeps",
+              "label": "LABEL_REPEATED",
+              "name": "dynamic_deps",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.DynamicDep"
+            }
+          ],
+          "name": "GenericRequest"
         },
         {
           "field": [
