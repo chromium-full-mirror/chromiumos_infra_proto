@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package chromiumos;
 
+import "google/protobuf/descriptor.proto";
+
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 option java_package = "com.google.chrome.crosinfra.proto";
 
@@ -1303,3 +1305,7 @@ message UploadedArtifactsByService {
   }
   Sdk sdk = 9;
 }
+
+// Field extension that indicates if the field
+// can be removed from logging services
+extend google.protobuf.FieldOptions { optional bool logging_optional = 54444; }

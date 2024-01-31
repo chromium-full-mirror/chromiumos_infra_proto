@@ -166,6 +166,9 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "google/protobuf/descriptor.proto"
+      ],
       "enumType": [
         {
           "name": "ImageType",
@@ -364,6 +367,17 @@
               "number": 5
             }
           ]
+        }
+      ],
+      "extension": [
+        {
+          "extendee": ".google.protobuf.FieldOptions",
+          "jsonName": "loggingOptional",
+          "label": "LABEL_OPTIONAL",
+          "name": "logging_optional",
+          "number": 54444,
+          "proto3Optional": true,
+          "type": "TYPE_BOOL"
         }
       ],
       "messageType": [
@@ -5089,6 +5103,9 @@
               "label": "LABEL_REPEATED",
               "name": "dependency_source_paths",
               "number": 3,
+              "options": {
+                "[chromiumos.logging_optional]": true
+              },
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.SourcePath"
             }

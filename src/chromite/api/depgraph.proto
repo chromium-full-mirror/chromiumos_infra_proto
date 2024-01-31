@@ -38,7 +38,8 @@ message PackageDepInfo {
   repeated chromiumos.PackageInfo dependency_packages = 2;
 
   // List of source paths the package depends on.
-  repeated SourcePath dependency_source_paths = 3;
+  repeated SourcePath dependency_source_paths = 3
+      [ (chromiumos.logging_optional) = true ];
 }
 
 // Message describes a source path.
