@@ -16435,9 +16435,38 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "targets",
+              "label": "LABEL_REPEATED",
+              "name": "targets",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.SetupToolchainsRequest.ToolchainTarget"
+            },
+            {
+              "jsonName": "sysrootPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot_path",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
-          "name": "SetupToolchainsRequest"
+          "name": "SetupToolchainsRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "target",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "target",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "ToolchainTarget"
+            }
+          ]
         },
         {
           "name": "SetupToolchainsResponse"

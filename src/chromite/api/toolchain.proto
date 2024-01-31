@@ -208,6 +208,17 @@ message SetupToolchainsRequest {
 
   // The chroot to run the command in.
   chromiumos.Chroot chroot = 2;
+
+  // Tuples or keywords to setup toolchains for.
+  // Corresponds to --targets of cros_setup_toolchains.
+  message ToolchainTarget { string target = 1; };
+  repeated ToolchainTarget targets = 3;
+
+  // Sysroot to install in (inside the SDK).
+  // Note: you don't want to pass this for regular board builds.  The sysroot
+  // we want toolchains in is almost always "/".  This parameter gets used by
+  // the SDK builder to install in the new SDK at /build/amd64-host.
+  string sysroot_path = 4;
 }
 
 message SetupToolchainsResponse {}
