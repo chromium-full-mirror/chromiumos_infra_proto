@@ -4296,6 +4296,40 @@
             }
           ],
           "name": "FetchMetadataResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            }
+          ],
+          "name": "FetchCentralizedSuitesRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "filepaths",
+              "label": "LABEL_REPEATED",
+              "name": "filepaths",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            }
+          ],
+          "name": "FetchCentralizedSuitesResponse"
         }
       ],
       "name": "chromite/api/artifacts.proto",
@@ -4325,6 +4359,11 @@
               "inputType": ".chromite.api.FetchMetadataRequest",
               "name": "FetchMetadata",
               "outputType": ".chromite.api.FetchMetadataResponse"
+            },
+            {
+              "inputType": ".chromite.api.FetchCentralizedSuitesRequest",
+              "name": "FetchCentralizedSuites",
+              "outputType": ".chromite.api.FetchCentralizedSuitesResponse"
             },
             {
               "inputType": ".chromite.api.BundleRequest",

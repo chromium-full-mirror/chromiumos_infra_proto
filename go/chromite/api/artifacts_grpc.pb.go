@@ -30,6 +30,8 @@ type ArtifactsServiceClient interface {
 	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
 	// Fetch the paths for any metadata files.  Added in R94.
 	FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error)
+	// Fetch the paths for any centralized suite files.  Added in R123.
+	FetchCentralizedSuites(ctx context.Context, in *FetchCentralizedSuitesRequest, opts ...grpc.CallOption) (*FetchCentralizedSuitesResponse, error)
 	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(ctx context.Context, in *BundleRequest, opts ...grpc.CallOption) (*BundleResponse, error)
@@ -115,6 +117,15 @@ func (c *artifactsServiceClient) FetchPinnedGuestImageUris(ctx context.Context, 
 func (c *artifactsServiceClient) FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error) {
 	out := new(FetchMetadataResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) FetchCentralizedSuites(ctx context.Context, in *FetchCentralizedSuitesRequest, opts ...grpc.CallOption) (*FetchCentralizedSuitesResponse, error) {
+	out := new(FetchCentralizedSuitesResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchCentralizedSuites", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -259,6 +270,8 @@ type ArtifactsServiceServer interface {
 	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
 	// Fetch the paths for any metadata files.  Added in R94.
 	FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error)
+	// Fetch the paths for any centralized suite files.  Added in R123.
+	FetchCentralizedSuites(context.Context, *FetchCentralizedSuitesRequest) (*FetchCentralizedSuitesResponse, error)
 	// TODO(b/187790484): DEPRECATED use Get
 	// Create a tar archive with all files needed for Autotest HW testing.
 	BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error)
@@ -322,6 +335,9 @@ func (UnimplementedArtifactsServiceServer) FetchPinnedGuestImageUris(context.Con
 }
 func (UnimplementedArtifactsServiceServer) FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchMetadata not implemented")
+}
+func (UnimplementedArtifactsServiceServer) FetchCentralizedSuites(context.Context, *FetchCentralizedSuitesRequest) (*FetchCentralizedSuitesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchCentralizedSuites not implemented")
 }
 func (UnimplementedArtifactsServiceServer) BundleAutotestFiles(context.Context, *BundleRequest) (*BundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BundleAutotestFiles not implemented")
@@ -446,6 +462,24 @@ func _ArtifactsService_FetchMetadata_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactsServiceServer).FetchMetadata(ctx, req.(*FetchMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_FetchCentralizedSuites_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FetchCentralizedSuitesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).FetchCentralizedSuites(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/FetchCentralizedSuites",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).FetchCentralizedSuites(ctx, req.(*FetchCentralizedSuitesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -724,6 +758,10 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FetchMetadata",
 			Handler:    _ArtifactsService_FetchMetadata_Handler,
+		},
+		{
+			MethodName: "FetchCentralizedSuites",
+			Handler:    _ArtifactsService_FetchCentralizedSuites_Handler,
 		},
 		{
 			MethodName: "BundleAutotestFiles",

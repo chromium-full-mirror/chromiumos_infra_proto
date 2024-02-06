@@ -201,6 +201,21 @@ message FetchMetadataResponse {
   repeated chromiumos.ResultPath filepaths = 1;
 }
 
+// Request to fetch centralized suite files.
+message FetchCentralizedSuitesRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+  // The sysroot where the files live.
+  // Absolute path within chroot.
+  chromite.api.Sysroot sysroot = 2;
+}
+
+// Response containing the locations of centralized suite files.
+message FetchCentralizedSuitesResponse {
+  // The absolute path to each suite protobuf file.
+  repeated chromiumos.ResultPath filepaths = 1;
+}
+
 // Service for bundling build artifacts and dumping them somewhere on disk.
 service ArtifactsService {
   option (service_options) = {
@@ -220,6 +235,10 @@ service ArtifactsService {
 
   // Fetch the paths for any metadata files.  Added in R94.
   rpc FetchMetadata(FetchMetadataRequest) returns (FetchMetadataResponse);
+
+  // Fetch the paths for any centralized suite files.  Added in R123.
+  rpc FetchCentralizedSuites(FetchCentralizedSuitesRequest)
+      returns (FetchCentralizedSuitesResponse);
 
   //
   // Everything that follows this line is planned to be deprecated
