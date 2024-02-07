@@ -62,6 +62,18 @@ message SysrootCreateResponse {
   Sysroot sysroot = 1;
 }
 
+// GetTargetArchitecture request.
+message GetTargetArchitectureRequest {
+  // Required. The build target to query about.
+  chromiumos.BuildTarget build_target = 1;
+}
+
+// GetTargetArchitecture response.
+message GetTargetArchitectureResponse {
+  // The architecture of the build target, such as "amd64" or "arm64".
+  string architecture = 1;
+}
+
 // Sysroot generate archive request.
 message SysrootGenerateArchiveRequest {
   // The target whose sysroot is being created.
@@ -239,6 +251,10 @@ service SysrootService {
 
   // Create the base sysroot structure.
   rpc Create(SysrootCreateRequest) returns (SysrootCreateResponse);
+
+  // Get the build target's architecture.
+  rpc GetTargetArchitecture(GetTargetArchitectureRequest)
+      returns (GetTargetArchitectureResponse);
 
   // Generate sysroot archive.  Added in R83.
   rpc GenerateArchive(SysrootGenerateArchiveRequest)

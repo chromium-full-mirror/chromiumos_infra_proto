@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type SysrootServiceClient interface {
 	// Create the base sysroot structure.
 	Create(ctx context.Context, in *SysrootCreateRequest, opts ...grpc.CallOption) (*SysrootCreateResponse, error)
+	// Get the build target's architecture.
+	GetTargetArchitecture(ctx context.Context, in *GetTargetArchitectureRequest, opts ...grpc.CallOption) (*GetTargetArchitectureResponse, error)
 	// Generate sysroot archive.  Added in R83.
 	GenerateArchive(ctx context.Context, in *SysrootGenerateArchiveRequest, opts ...grpc.CallOption) (*SysrootGenerateArchiveResponse, error)
 	// Extract archive to sysroot.
@@ -47,6 +49,15 @@ func NewSysrootServiceClient(cc grpc.ClientConnInterface) SysrootServiceClient {
 func (c *sysrootServiceClient) Create(ctx context.Context, in *SysrootCreateRequest, opts ...grpc.CallOption) (*SysrootCreateResponse, error) {
 	out := new(SysrootCreateResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysrootServiceClient) GetTargetArchitecture(ctx context.Context, in *GetTargetArchitectureRequest, opts ...grpc.CallOption) (*GetTargetArchitectureResponse, error) {
+	out := new(GetTargetArchitectureResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SysrootService/GetTargetArchitecture", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -104,6 +115,8 @@ func (c *sysrootServiceClient) CreateSimpleChromeSysroot(ctx context.Context, in
 type SysrootServiceServer interface {
 	// Create the base sysroot structure.
 	Create(context.Context, *SysrootCreateRequest) (*SysrootCreateResponse, error)
+	// Get the build target's architecture.
+	GetTargetArchitecture(context.Context, *GetTargetArchitectureRequest) (*GetTargetArchitectureResponse, error)
 	// Generate sysroot archive.  Added in R83.
 	GenerateArchive(context.Context, *SysrootGenerateArchiveRequest) (*SysrootGenerateArchiveResponse, error)
 	// Extract archive to sysroot.
@@ -123,6 +136,9 @@ type UnimplementedSysrootServiceServer struct {
 
 func (UnimplementedSysrootServiceServer) Create(context.Context, *SysrootCreateRequest) (*SysrootCreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedSysrootServiceServer) GetTargetArchitecture(context.Context, *GetTargetArchitectureRequest) (*GetTargetArchitectureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTargetArchitecture not implemented")
 }
 func (UnimplementedSysrootServiceServer) GenerateArchive(context.Context, *SysrootGenerateArchiveRequest) (*SysrootGenerateArchiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateArchive not implemented")
@@ -166,6 +182,24 @@ func _SysrootService_Create_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SysrootServiceServer).Create(ctx, req.(*SysrootCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SysrootService_GetTargetArchitecture_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTargetArchitectureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysrootServiceServer).GetTargetArchitecture(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SysrootService/GetTargetArchitecture",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysrootServiceServer).GetTargetArchitecture(ctx, req.(*GetTargetArchitectureRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -270,6 +304,10 @@ var SysrootService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _SysrootService_Create_Handler,
+		},
+		{
+			MethodName: "GetTargetArchitecture",
+			Handler:    _SysrootService_GetTargetArchitecture_Handler,
 		},
 		{
 			MethodName: "GenerateArchive",

@@ -3328,6 +3328,31 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BuildTarget"
+            }
+          ],
+          "name": "GetTargetArchitectureRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "architecture",
+              "label": "LABEL_OPTIONAL",
+              "name": "architecture",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetTargetArchitectureResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
             },
             {
               "jsonName": "chroot",
@@ -3798,6 +3823,11 @@
               "inputType": ".chromite.api.SysrootCreateRequest",
               "name": "Create",
               "outputType": ".chromite.api.SysrootCreateResponse"
+            },
+            {
+              "inputType": ".chromite.api.GetTargetArchitectureRequest",
+              "name": "GetTargetArchitecture",
+              "outputType": ".chromite.api.GetTargetArchitectureResponse"
             },
             {
               "inputType": ".chromite.api.SysrootGenerateArchiveRequest",
