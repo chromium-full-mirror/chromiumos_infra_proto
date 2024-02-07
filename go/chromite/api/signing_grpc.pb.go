@@ -28,7 +28,7 @@ type SigningServiceClient interface {
 	//   "board": "foo",
 	//   "uefi": true,
 	// }
-	CreatePreMPKeys(ctx context.Context, in *CreatePreMPKeysRequest, opts ...grpc.CallOption) (*CreatePreMpKeysResponse, error)
+	CreatePreMPKeys(ctx context.Context, in *CreatePreMPKeysRequest, opts ...grpc.CallOption) (*CreatePreMPKeysResponse, error)
 }
 
 type signingServiceClient struct {
@@ -39,8 +39,8 @@ func NewSigningServiceClient(cc grpc.ClientConnInterface) SigningServiceClient {
 	return &signingServiceClient{cc}
 }
 
-func (c *signingServiceClient) CreatePreMPKeys(ctx context.Context, in *CreatePreMPKeysRequest, opts ...grpc.CallOption) (*CreatePreMpKeysResponse, error) {
-	out := new(CreatePreMpKeysResponse)
+func (c *signingServiceClient) CreatePreMPKeys(ctx context.Context, in *CreatePreMPKeysRequest, opts ...grpc.CallOption) (*CreatePreMPKeysResponse, error) {
+	out := new(CreatePreMPKeysResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/CreatePreMPKeys", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -58,7 +58,7 @@ type SigningServiceServer interface {
 	//   "board": "foo",
 	//   "uefi": true,
 	// }
-	CreatePreMPKeys(context.Context, *CreatePreMPKeysRequest) (*CreatePreMpKeysResponse, error)
+	CreatePreMPKeys(context.Context, *CreatePreMPKeysRequest) (*CreatePreMPKeysResponse, error)
 	mustEmbedUnimplementedSigningServiceServer()
 }
 
@@ -66,7 +66,7 @@ type SigningServiceServer interface {
 type UnimplementedSigningServiceServer struct {
 }
 
-func (UnimplementedSigningServiceServer) CreatePreMPKeys(context.Context, *CreatePreMPKeysRequest) (*CreatePreMpKeysResponse, error) {
+func (UnimplementedSigningServiceServer) CreatePreMPKeys(context.Context, *CreatePreMPKeysRequest) (*CreatePreMPKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePreMPKeys not implemented")
 }
 func (UnimplementedSigningServiceServer) mustEmbedUnimplementedSigningServiceServer() {}

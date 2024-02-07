@@ -29,7 +29,7 @@ message CreatePreMPKeysRequest {
   bool uefi = 4;
 }
 
-message CreatePreMpKeysResponse {}
+message CreatePreMPKeysResponse {}
 
 // The signing service.
 service SigningService {
@@ -46,5 +46,5 @@ service SigningService {
   //   "uefi": true,
   // }
   rpc CreatePreMPKeys(CreatePreMPKeysRequest)
-      returns (CreatePreMpKeysResponse) {};
+      returns (CreatePreMPKeysResponse) {};
 }
