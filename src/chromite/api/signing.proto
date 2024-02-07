@@ -1,0 +1,50 @@
+// Copyright 2024 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package chromite.api;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
+
+import "chromite/api/build_api.proto";
+import "chromiumos/common.proto";
+
+message CreatePreMPKeysRequest {
+  // Build target to create the PreMP keyset for.
+  chromiumos.BuildTarget build_target = 1;
+
+  // The version of the PreMP keyset, e.g. 2 in "FooPreMpKeys-v2".
+  // Should only be set if the PreMP keys need to be regenerated for some
+  // reason, e.g. if the existing keyset is broken or missing features.
+  // Usually adding a LOEM to the existing keyset is sufficient.
+  // Defaults to 1 (note that the "-v1" suffix is dropped, it is implicit).
+  int32 version = 2;
+
+  // Whether to skip generating android keys.
+  bool skip_android_keys = 3;
+
+  // Whether to generate UEFI keys.
+  bool uefi = 4;
+}
+
+message CreatePreMpKeysResponse {}
+
+// The signing service.
+service SigningService {
+  option (service_options) = {
+    module : "signing",
+    service_branched_execution : EXECUTE_TOT,
+    service_chroot_assert : OUTSIDE,
+  };
+
+  // Create a PreMP keyset for the given board.
+  // Example json:
+  // {
+  //   "board": "foo",
+  //   "uefi": true,
+  // }
+  rpc CreatePreMPKeys(CreatePreMPKeysRequest)
+      returns (CreatePreMpKeysResponse) {};
+}

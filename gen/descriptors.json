@@ -15678,6 +15678,81 @@
       },
       "dependency": [
         "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "skipAndroidKeys",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_android_keys",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "uefi",
+              "label": "LABEL_OPTIONAL",
+              "name": "uefi",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "CreatePreMPKeysRequest"
+        },
+        {
+          "name": "CreatePreMpKeysResponse"
+        }
+      ],
+      "name": "chromite/api/signing.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.CreatePreMPKeysRequest",
+              "name": "CreatePreMPKeys",
+              "options": {},
+              "outputType": ".chromite.api.CreatePreMpKeysResponse"
+            }
+          ],
+          "name": "SigningService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "signing",
+              "serviceBranchedExecution": "EXECUTE_TOT",
+              "serviceChrootAssert": "OUTSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
         "chromiumos/common.proto"
       ],
