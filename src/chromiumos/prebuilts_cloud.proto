@@ -132,4 +132,7 @@ message BinhostLookupServiceData {
 
   // Bool to indicate if the snapshot SHAs are private (internal).
   bool private = 2;
+
+  // Denote whether it is the staging environment.
+  bool is_staging = 3;
 }

@@ -3169,6 +3169,13 @@
               "name": "private",
               "number": 2,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "isStaging",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_staging",
+              "number": 3,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "BinhostLookupServiceData"
