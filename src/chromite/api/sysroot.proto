@@ -66,6 +66,9 @@ message SysrootCreateResponse {
 message GetTargetArchitectureRequest {
   // Required. The build target to query about.
   chromiumos.BuildTarget build_target = 1;
+
+  // Required. The chroot to use to execute the endpoint.
+  chromiumos.Chroot chroot = 2;
 }
 
 // GetTargetArchitecture response.
