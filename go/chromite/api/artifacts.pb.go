@@ -1201,8 +1201,10 @@ type FetchCentralizedSuitesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The absolute path to each suite protobuf file.
-	Filepaths []*chromiumos.ResultPath `protobuf:"bytes,1,rep,name=filepaths,proto3" json:"filepaths,omitempty"`
+	// The absolute path to the SuiteSet file.
+	SuiteSetFile *chromiumos.ResultPath `protobuf:"bytes,1,opt,name=suite_set_file,json=suiteSetFile,proto3" json:"suite_set_file,omitempty"`
+	// The absolute path to the Suite file.
+	SuiteFile *chromiumos.ResultPath `protobuf:"bytes,2,opt,name=suite_file,json=suiteFile,proto3" json:"suite_file,omitempty"`
 }
 
 func (x *FetchCentralizedSuitesResponse) Reset() {
@@ -1237,9 +1239,16 @@ func (*FetchCentralizedSuitesResponse) Descriptor() ([]byte, []int) {
 	return file_chromite_api_artifacts_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *FetchCentralizedSuitesResponse) GetFilepaths() []*chromiumos.ResultPath {
+func (x *FetchCentralizedSuitesResponse) GetSuiteSetFile() *chromiumos.ResultPath {
 	if x != nil {
-		return x.Filepaths
+		return x.SuiteSetFile
+	}
+	return nil
+}
+
+func (x *FetchCentralizedSuitesResponse) GetSuiteFile() *chromiumos.ResultPath {
+	if x != nil {
+		return x.SuiteFile
 	}
 	return nil
 }
@@ -1482,13 +1491,17 @@ var file_chromite_api_artifacts_proto_rawDesc = []byte{
 	0x72, 0x6f, 0x6f, 0x74, 0x52, 0x06, 0x63, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x12, 0x2f, 0x0a, 0x07,
 	0x73, 0x79, 0x73, 0x72, 0x6f, 0x6f, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e,
 	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53, 0x79, 0x73,
-	0x72, 0x6f, 0x6f, 0x74, 0x52, 0x07, 0x73, 0x79, 0x73, 0x72, 0x6f, 0x6f, 0x74, 0x22, 0x56, 0x0a,
-	0x1e, 0x46, 0x65, 0x74, 0x63, 0x68, 0x43, 0x65, 0x6e, 0x74, 0x72, 0x61, 0x6c, 0x69, 0x7a, 0x65,
-	0x64, 0x53, 0x75, 0x69, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x34, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65, 0x70, 0x61, 0x74, 0x68, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x72, 0x6f, 0x6f, 0x74, 0x52, 0x07, 0x73, 0x79, 0x73, 0x72, 0x6f, 0x6f, 0x74, 0x22, 0x95, 0x01,
+	0x0a, 0x1e, 0x46, 0x65, 0x74, 0x63, 0x68, 0x43, 0x65, 0x6e, 0x74, 0x72, 0x61, 0x6c, 0x69, 0x7a,
+	0x65, 0x64, 0x53, 0x75, 0x69, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x3c, 0x0a, 0x0e, 0x73, 0x75, 0x69, 0x74, 0x65, 0x5f, 0x73, 0x65, 0x74, 0x5f, 0x66, 0x69,
+	0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
+	0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x61, 0x74, 0x68,
+	0x52, 0x0c, 0x73, 0x75, 0x69, 0x74, 0x65, 0x53, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x35,
+	0x0a, 0x0a, 0x73, 0x75, 0x69, 0x74, 0x65, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e,
-	0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x61, 0x74, 0x68, 0x52, 0x09, 0x66, 0x69, 0x6c, 0x65,
-	0x70, 0x61, 0x74, 0x68, 0x73, 0x32, 0xf6, 0x0c, 0x0a, 0x10, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61,
+	0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x61, 0x74, 0x68, 0x52, 0x09, 0x73, 0x75, 0x69, 0x74,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x32, 0xf6, 0x0c, 0x0a, 0x10, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61,
 	0x63, 0x74, 0x73, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4f, 0x0a, 0x0a, 0x42, 0x75,
 	0x69, 0x6c, 0x64, 0x53, 0x65, 0x74, 0x75, 0x70, 0x12, 0x1f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
 	0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x65, 0x74,
@@ -1675,50 +1688,51 @@ var file_chromite_api_artifacts_proto_depIdxs = []int32{
 	25, // 29: chromite.api.FetchMetadataResponse.filepaths:type_name -> chromiumos.ResultPath
 	22, // 30: chromite.api.FetchCentralizedSuitesRequest.chroot:type_name -> chromiumos.Chroot
 	23, // 31: chromite.api.FetchCentralizedSuitesRequest.sysroot:type_name -> chromite.api.Sysroot
-	25, // 32: chromite.api.FetchCentralizedSuitesResponse.filepaths:type_name -> chromiumos.ResultPath
-	5,  // 33: chromite.api.ArtifactsService.BuildSetup:input_type -> chromite.api.BuildSetupRequest
-	7,  // 34: chromite.api.ArtifactsService.Get:input_type -> chromite.api.GetRequest
-	14, // 35: chromite.api.ArtifactsService.FetchPinnedGuestImageUris:input_type -> chromite.api.PinnedGuestImageUriRequest
-	16, // 36: chromite.api.ArtifactsService.FetchMetadata:input_type -> chromite.api.FetchMetadataRequest
-	18, // 37: chromite.api.ArtifactsService.FetchCentralizedSuites:input_type -> chromite.api.FetchCentralizedSuitesRequest
-	11, // 38: chromite.api.ArtifactsService.BundleAutotestFiles:input_type -> chromite.api.BundleRequest
-	11, // 39: chromite.api.ArtifactsService.BundleChromeOSConfig:input_type -> chromite.api.BundleRequest
-	11, // 40: chromite.api.ArtifactsService.BundleDebugSymbols:input_type -> chromite.api.BundleRequest
-	11, // 41: chromite.api.ArtifactsService.BundleEbuildLogs:input_type -> chromite.api.BundleRequest
-	11, // 42: chromite.api.ArtifactsService.BundleFirmware:input_type -> chromite.api.BundleRequest
-	11, // 43: chromite.api.ArtifactsService.BundleImageArchives:input_type -> chromite.api.BundleRequest
-	11, // 44: chromite.api.ArtifactsService.BundleImageZip:input_type -> chromite.api.BundleRequest
-	11, // 45: chromite.api.ArtifactsService.BundlePinnedGuestImages:input_type -> chromite.api.BundleRequest
-	11, // 46: chromite.api.ArtifactsService.BundleSimpleChromeArtifacts:input_type -> chromite.api.BundleRequest
-	11, // 47: chromite.api.ArtifactsService.BundleTastFiles:input_type -> chromite.api.BundleRequest
-	11, // 48: chromite.api.ArtifactsService.BundleTestUpdatePayloads:input_type -> chromite.api.BundleRequest
-	13, // 49: chromite.api.ArtifactsService.BundleVmFiles:input_type -> chromite.api.BundleVmFilesRequest
-	11, // 50: chromite.api.ArtifactsService.BundleFpmcuUnittests:input_type -> chromite.api.BundleRequest
-	11, // 51: chromite.api.ArtifactsService.BundleGceTarball:input_type -> chromite.api.BundleRequest
-	6,  // 52: chromite.api.ArtifactsService.BuildSetup:output_type -> chromite.api.BuildSetupResponse
-	8,  // 53: chromite.api.ArtifactsService.Get:output_type -> chromite.api.GetResponse
-	15, // 54: chromite.api.ArtifactsService.FetchPinnedGuestImageUris:output_type -> chromite.api.PinnedGuestImageUriResponse
-	17, // 55: chromite.api.ArtifactsService.FetchMetadata:output_type -> chromite.api.FetchMetadataResponse
-	19, // 56: chromite.api.ArtifactsService.FetchCentralizedSuites:output_type -> chromite.api.FetchCentralizedSuitesResponse
-	12, // 57: chromite.api.ArtifactsService.BundleAutotestFiles:output_type -> chromite.api.BundleResponse
-	12, // 58: chromite.api.ArtifactsService.BundleChromeOSConfig:output_type -> chromite.api.BundleResponse
-	12, // 59: chromite.api.ArtifactsService.BundleDebugSymbols:output_type -> chromite.api.BundleResponse
-	12, // 60: chromite.api.ArtifactsService.BundleEbuildLogs:output_type -> chromite.api.BundleResponse
-	12, // 61: chromite.api.ArtifactsService.BundleFirmware:output_type -> chromite.api.BundleResponse
-	12, // 62: chromite.api.ArtifactsService.BundleImageArchives:output_type -> chromite.api.BundleResponse
-	12, // 63: chromite.api.ArtifactsService.BundleImageZip:output_type -> chromite.api.BundleResponse
-	12, // 64: chromite.api.ArtifactsService.BundlePinnedGuestImages:output_type -> chromite.api.BundleResponse
-	12, // 65: chromite.api.ArtifactsService.BundleSimpleChromeArtifacts:output_type -> chromite.api.BundleResponse
-	12, // 66: chromite.api.ArtifactsService.BundleTastFiles:output_type -> chromite.api.BundleResponse
-	12, // 67: chromite.api.ArtifactsService.BundleTestUpdatePayloads:output_type -> chromite.api.BundleResponse
-	12, // 68: chromite.api.ArtifactsService.BundleVmFiles:output_type -> chromite.api.BundleResponse
-	12, // 69: chromite.api.ArtifactsService.BundleFpmcuUnittests:output_type -> chromite.api.BundleResponse
-	12, // 70: chromite.api.ArtifactsService.BundleGceTarball:output_type -> chromite.api.BundleResponse
-	52, // [52:71] is the sub-list for method output_type
-	33, // [33:52] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	25, // 32: chromite.api.FetchCentralizedSuitesResponse.suite_set_file:type_name -> chromiumos.ResultPath
+	25, // 33: chromite.api.FetchCentralizedSuitesResponse.suite_file:type_name -> chromiumos.ResultPath
+	5,  // 34: chromite.api.ArtifactsService.BuildSetup:input_type -> chromite.api.BuildSetupRequest
+	7,  // 35: chromite.api.ArtifactsService.Get:input_type -> chromite.api.GetRequest
+	14, // 36: chromite.api.ArtifactsService.FetchPinnedGuestImageUris:input_type -> chromite.api.PinnedGuestImageUriRequest
+	16, // 37: chromite.api.ArtifactsService.FetchMetadata:input_type -> chromite.api.FetchMetadataRequest
+	18, // 38: chromite.api.ArtifactsService.FetchCentralizedSuites:input_type -> chromite.api.FetchCentralizedSuitesRequest
+	11, // 39: chromite.api.ArtifactsService.BundleAutotestFiles:input_type -> chromite.api.BundleRequest
+	11, // 40: chromite.api.ArtifactsService.BundleChromeOSConfig:input_type -> chromite.api.BundleRequest
+	11, // 41: chromite.api.ArtifactsService.BundleDebugSymbols:input_type -> chromite.api.BundleRequest
+	11, // 42: chromite.api.ArtifactsService.BundleEbuildLogs:input_type -> chromite.api.BundleRequest
+	11, // 43: chromite.api.ArtifactsService.BundleFirmware:input_type -> chromite.api.BundleRequest
+	11, // 44: chromite.api.ArtifactsService.BundleImageArchives:input_type -> chromite.api.BundleRequest
+	11, // 45: chromite.api.ArtifactsService.BundleImageZip:input_type -> chromite.api.BundleRequest
+	11, // 46: chromite.api.ArtifactsService.BundlePinnedGuestImages:input_type -> chromite.api.BundleRequest
+	11, // 47: chromite.api.ArtifactsService.BundleSimpleChromeArtifacts:input_type -> chromite.api.BundleRequest
+	11, // 48: chromite.api.ArtifactsService.BundleTastFiles:input_type -> chromite.api.BundleRequest
+	11, // 49: chromite.api.ArtifactsService.BundleTestUpdatePayloads:input_type -> chromite.api.BundleRequest
+	13, // 50: chromite.api.ArtifactsService.BundleVmFiles:input_type -> chromite.api.BundleVmFilesRequest
+	11, // 51: chromite.api.ArtifactsService.BundleFpmcuUnittests:input_type -> chromite.api.BundleRequest
+	11, // 52: chromite.api.ArtifactsService.BundleGceTarball:input_type -> chromite.api.BundleRequest
+	6,  // 53: chromite.api.ArtifactsService.BuildSetup:output_type -> chromite.api.BuildSetupResponse
+	8,  // 54: chromite.api.ArtifactsService.Get:output_type -> chromite.api.GetResponse
+	15, // 55: chromite.api.ArtifactsService.FetchPinnedGuestImageUris:output_type -> chromite.api.PinnedGuestImageUriResponse
+	17, // 56: chromite.api.ArtifactsService.FetchMetadata:output_type -> chromite.api.FetchMetadataResponse
+	19, // 57: chromite.api.ArtifactsService.FetchCentralizedSuites:output_type -> chromite.api.FetchCentralizedSuitesResponse
+	12, // 58: chromite.api.ArtifactsService.BundleAutotestFiles:output_type -> chromite.api.BundleResponse
+	12, // 59: chromite.api.ArtifactsService.BundleChromeOSConfig:output_type -> chromite.api.BundleResponse
+	12, // 60: chromite.api.ArtifactsService.BundleDebugSymbols:output_type -> chromite.api.BundleResponse
+	12, // 61: chromite.api.ArtifactsService.BundleEbuildLogs:output_type -> chromite.api.BundleResponse
+	12, // 62: chromite.api.ArtifactsService.BundleFirmware:output_type -> chromite.api.BundleResponse
+	12, // 63: chromite.api.ArtifactsService.BundleImageArchives:output_type -> chromite.api.BundleResponse
+	12, // 64: chromite.api.ArtifactsService.BundleImageZip:output_type -> chromite.api.BundleResponse
+	12, // 65: chromite.api.ArtifactsService.BundlePinnedGuestImages:output_type -> chromite.api.BundleResponse
+	12, // 66: chromite.api.ArtifactsService.BundleSimpleChromeArtifacts:output_type -> chromite.api.BundleResponse
+	12, // 67: chromite.api.ArtifactsService.BundleTastFiles:output_type -> chromite.api.BundleResponse
+	12, // 68: chromite.api.ArtifactsService.BundleTestUpdatePayloads:output_type -> chromite.api.BundleResponse
+	12, // 69: chromite.api.ArtifactsService.BundleVmFiles:output_type -> chromite.api.BundleResponse
+	12, // 70: chromite.api.ArtifactsService.BundleFpmcuUnittests:output_type -> chromite.api.BundleResponse
+	12, // 71: chromite.api.ArtifactsService.BundleGceTarball:output_type -> chromite.api.BundleResponse
+	53, // [53:72] is the sub-list for method output_type
+	34, // [34:53] is the sub-list for method input_type
+	34, // [34:34] is the sub-list for extension type_name
+	34, // [34:34] is the sub-list for extension extendee
+	0,  // [0:34] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_artifacts_proto_init() }

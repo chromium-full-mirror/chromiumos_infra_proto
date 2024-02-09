@@ -4366,10 +4366,18 @@
         {
           "field": [
             {
-              "jsonName": "filepaths",
-              "label": "LABEL_REPEATED",
-              "name": "filepaths",
+              "jsonName": "suiteSetFile",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite_set_file",
               "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "suiteFile",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite_file",
+              "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ResultPath"
             }

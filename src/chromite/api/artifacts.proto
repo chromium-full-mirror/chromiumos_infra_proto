@@ -212,8 +212,10 @@ message FetchCentralizedSuitesRequest {
 
 // Response containing the locations of centralized suite files.
 message FetchCentralizedSuitesResponse {
-  // The absolute path to each suite protobuf file.
-  repeated chromiumos.ResultPath filepaths = 1;
+  // The absolute path to the SuiteSet file.
+  chromiumos.ResultPath suite_set_file = 1;
+  // The absolute path to the Suite file.
+  chromiumos.ResultPath suite_file = 2;
 }
 
 // Service for bundling build artifacts and dumping them somewhere on disk.
