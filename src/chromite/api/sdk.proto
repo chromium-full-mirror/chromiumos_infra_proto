@@ -44,6 +44,11 @@ message CreateRequest {
   // Optional. If provided and true, the chroot will be created with ccache
   // fully disabled. Otherwise, the user can expect ccache to be enabled.
   bool ccache_disable = 5;
+  // Optional. Whether or not to pass --update to `cros_sdk`. If provided and
+  // true, will update SDK via download of a new archive, rather than emerging.
+  bool update_replace = 6;
+  // Optional. Whether to keep the `out/` folder with SYSROOTs.
+  bool keep_out_dir = 7;
 }
 
 // Create response message.
