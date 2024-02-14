@@ -16,6 +16,8 @@ message RunCopybotRequest {
     string url = 1;
     // The branch (e.g., "main").
     string branch = 2;
+    // The subtree (e.g., "soc/x86").
+    string subtree = 3;
   }
 
   // A username or email of a gerrit account.

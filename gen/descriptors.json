@@ -12064,6 +12064,13 @@
                   "name": "branch",
                   "number": 2,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "subtree",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "subtree",
+                  "number": 3,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "Repo"
