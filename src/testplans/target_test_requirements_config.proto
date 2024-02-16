@@ -60,7 +60,7 @@ message HwTestCfg {
     TAST = 2;
   }
   // Configuration for a hardware test suite.
-  // NEXT ID: 23
+  // NEXT ID: 25
   message HwTest {
     TestSuiteCommon common = 12;
 
@@ -116,6 +116,9 @@ message HwTestCfg {
 
     // Optional companion DUTs for multi-dut tests.
     repeated TestCompanion companions = 23;
+
+    // If true, then autotest tests will be sharded
+    bool enable_autotest_sharding = 24;
   }
 
   repeated HwTest hw_test = 1;
