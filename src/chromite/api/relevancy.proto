@@ -58,11 +58,18 @@ message GetRelevantBuildTargetsResponse {
         Path ebuild = 2;
       };
 
+      // A special-case path rule resulted in the build target being affected.
+      message PathRuleAffected {
+        // The pattern that triggered the path rule.
+        string pattern = 1;
+      };
+
       oneof reason {
         BuildToolAffected build_tool_affected = 2;
         ProfileAffected profile_affected = 3;
         OverlayAffected overlay_affected = 4;
         PackageAffected package_affected = 5;
+        PathRuleAffected path_rule_affected = 6;
       }
     };
 

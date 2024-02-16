@@ -15439,6 +15439,15 @@
                       "oneofIndex": 0,
                       "type": "TYPE_MESSAGE",
                       "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason.PackageAffected"
+                    },
+                    {
+                      "jsonName": "pathRuleAffected",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "path_rule_affected",
+                      "number": 6,
+                      "oneofIndex": 0,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".chromite.api.GetRelevantBuildTargetsResponse.RelevantTarget.Reason.PathRuleAffected"
                     }
                   ],
                   "name": "Reason",
@@ -15502,6 +15511,18 @@
                         }
                       ],
                       "name": "PackageAffected"
+                    },
+                    {
+                      "field": [
+                        {
+                          "jsonName": "pattern",
+                          "label": "LABEL_OPTIONAL",
+                          "name": "pattern",
+                          "number": 1,
+                          "type": "TYPE_STRING"
+                        }
+                      ],
+                      "name": "PathRuleAffected"
                     }
                   ],
                   "oneofDecl": [
