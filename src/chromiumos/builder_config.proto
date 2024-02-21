@@ -145,6 +145,11 @@ message BuilderConfig {
     // of the build_config before this.
     google.protobuf.Timestamp broken_before = 4;
 
+    // SHA of the manifest snapshot until which ToT had a bug that would not manifest at the
+    // build stage. The CQ orchestrator should NOT reuse successful builds
+    // of the build_config before and including this snapshot.
+    string broken_until = 10;
+
     // If present, this version number will be written to a version file
     // alongside a bot's SDK Cache (chroot). On subsequent bot-run where an SDK
     // Cache already exists, the version number in config will be compared to
