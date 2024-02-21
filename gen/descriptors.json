@@ -18778,6 +18778,13 @@
               "number": 10,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.BuildCadence"
+            },
+            {
+              "jsonName": "hasLabResources",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_lab_resources",
+              "number": 11,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "ReferenceBoardUnifiedBuildConfig"
@@ -18835,6 +18842,13 @@
               "number": 7,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.BuildCadence"
+            },
+            {
+              "jsonName": "hasLabResources",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_lab_resources",
+              "number": 8,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "Config"

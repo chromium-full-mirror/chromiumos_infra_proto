@@ -104,6 +104,9 @@ message ReferenceBoardUnifiedBuildConfig {
 
   // The cadence (days/week) we should build this builder at.
   BuildCadence build_cadence = 10;
+
+  // Whether the build has dedicated lab resources.
+  bool has_lab_resources = 11;
 }
 
 // Message to represent a build config for a given builder
@@ -118,6 +121,9 @@ message Config {
 
   // The cadence (days/week) we should build this builder at.
   BuildCadence build_cadence = 7;
+
+  // Whether the build has dedicated lab resources.
+  bool has_lab_resources = 8;
 }
 
 // Message to represent a board in build configuration
