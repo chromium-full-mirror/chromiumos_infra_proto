@@ -28482,6 +28482,45 @@
               "name": "TaskCount"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ids",
+              "label": "LABEL_REPEATED",
+              "name": "ids",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "jobType",
+              "label": "LABEL_OPTIONAL",
+              "name": "job_type",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.Job.JobType"
+            },
+            {
+              "jsonName": "createdTimeGt",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_time_gt",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "createdTimeLt",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_time_lt",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            }
+          ],
+          "name": "AbortJobsRequest"
+        },
+        {
+          "name": "AbortJobsResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -28668,6 +28707,11 @@
               "inputType": ".satlabrpcserver.ListJobsRequest",
               "name": "ListJobs",
               "outputType": ".satlabrpcserver.ListJobsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.AbortJobsRequest",
+              "name": "AbortJobs",
+              "outputType": ".satlabrpcserver.AbortJobsResponse"
             }
           ],
           "name": "SatlabRpcService"

@@ -66,6 +66,8 @@ type SatlabRpcServiceClient interface {
 	StartServod(ctx context.Context, in *api.StartServodRequest, opts ...grpc.CallOption) (*longrunning.Operation, error)
 	// Jobs/Tasks information
 	ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error)
+	// Jobs operation
+	AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error)
 }
 
 type satlabRpcServiceClient struct {
@@ -405,6 +407,15 @@ func (c *satlabRpcServiceClient) ListJobs(ctx context.Context, in *ListJobsReque
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error) {
+	out := new(AbortJobsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/AbortJobs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SatlabRpcServiceServer is the server API for SatlabRpcService service.
 // All implementations must embed UnimplementedSatlabRpcServiceServer
 // for forward compatibility
@@ -451,6 +462,8 @@ type SatlabRpcServiceServer interface {
 	StartServod(context.Context, *api.StartServodRequest) (*longrunning.Operation, error)
 	// Jobs/Tasks information
 	ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)
+	// Jobs operation
+	AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error)
 	mustEmbedUnimplementedSatlabRpcServiceServer()
 }
 
@@ -559,6 +572,9 @@ func (UnimplementedSatlabRpcServiceServer) StartServod(context.Context, *api.Sta
 }
 func (UnimplementedSatlabRpcServiceServer) ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobs not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AbortJobs not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) mustEmbedUnimplementedSatlabRpcServiceServer() {}
 
@@ -1188,6 +1204,24 @@ func _SatlabRpcService_ListJobs_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_AbortJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AbortJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).AbortJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/AbortJobs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).AbortJobs(ctx, req.(*AbortJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SatlabRpcService_ServiceDesc is the grpc.ServiceDesc for SatlabRpcService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1326,6 +1360,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobs",
 			Handler:    _SatlabRpcService_ListJobs_Handler,
+		},
+		{
+			MethodName: "AbortJobs",
+			Handler:    _SatlabRpcService_AbortJobs_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
