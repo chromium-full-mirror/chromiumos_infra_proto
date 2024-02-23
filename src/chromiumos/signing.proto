@@ -97,6 +97,9 @@ message SignedArtifact {
 
   // The versioned name of the signed artifact.
   string signed_artifact_name = 2;
+
+  // Hashes of the signed artifact for GoldenEye.
+  ArtifactHashes artifact_hashes = 3;
 }
 
 message ArchiveArtifacts {
@@ -142,4 +145,16 @@ message KeysetVersions {
   int32 firmware_version = 2;
   int32 kernel_key_version = 3;
   int32 kernel_version = 4;
+}
+
+message ArtifactHashes {
+  // Hashes sent via pubsub to GoldenEye see b/310256594.
+  // The md5 hash of the signed artifact.
+  string signed_md5 = 1;
+
+  // The sha1 hash of the signed artifact.
+  string signed_sha1 = 2;
+
+  // The sha256 hash of the signed artifact.
+  string signed_sha256 = 3;
 }

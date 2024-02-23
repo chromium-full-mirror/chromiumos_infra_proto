@@ -7373,6 +7373,14 @@
               "name": "signed_artifact_name",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "artifactHashes",
+              "label": "LABEL_OPTIONAL",
+              "name": "artifact_hashes",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ArtifactHashes"
             }
           ],
           "name": "SignedArtifact"
@@ -7501,6 +7509,32 @@
             }
           ],
           "name": "KeysetVersions"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "signedMd5",
+              "label": "LABEL_OPTIONAL",
+              "name": "signed_md5",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signedSha1",
+              "label": "LABEL_OPTIONAL",
+              "name": "signed_sha1",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signedSha256",
+              "label": "LABEL_OPTIONAL",
+              "name": "signed_sha256",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ArtifactHashes"
         }
       ],
       "name": "chromiumos/signing.proto",
