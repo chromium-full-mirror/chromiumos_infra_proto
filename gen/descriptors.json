@@ -35735,6 +35735,13 @@
               "name": "container_image_key",
               "number": 6,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "containerImagePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "container_image_path",
+              "number": 7,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ContainerRequest",

@@ -156,6 +156,10 @@ message ContainerRequest {
   // default = "host"
   string network = 5;
   string container_image_key = 6;
+  // Location of image that can be directly pulled by docker.
+  // e.g. us-docker.pkg.dev/cros-registry/test-services/cros-dut:latest
+  // If set, ignore container_image_key.
+  string container_image_path = 7;
 }
 
 // Some information within TestRunnerV2 is required by the services it runs.
