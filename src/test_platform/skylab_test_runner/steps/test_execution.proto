@@ -13,6 +13,7 @@ import "test_platform/skylab_test_runner/request.proto";
 import "test_platform/skylab_test_runner/cft_request.proto";
 import "test_platform/skylab_test_runner/common_config.proto";
 import "test_platform/skylab_test_runner/cros_test_runner_request.proto";
+import "chromiumos/test/api/trv2_dynamic.proto";
 
 // RunTestsRequest is the input for the Go-based replacement of test_runner.
 message RunTestsRequest {
@@ -22,6 +23,8 @@ message RunTestsRequest {
   test_platform.skylab_test_runner.CommonConfig common_config = 4;
   test_platform.skylab_test_runner.CrosTestRunnerRequest
       cros_test_runner_request = 5;
+  chromiumos.test.api.CrosTestRunnerDynamicRequest
+      cros_test_runner_dynamic_request = 6;
 }
 
 // RunTestsResponse is the output from the Go-based replacement of test_runner.
