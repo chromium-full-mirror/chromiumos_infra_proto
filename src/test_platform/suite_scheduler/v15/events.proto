@@ -59,3 +59,26 @@ message SchedulingEvent {
   // off as a result.
   repeated int64 bbids = 7;
 }
+
+message Event {
+  // run_uuid is the unique identifier of the SuiteScheduler run.
+  string run_uuid = 1;
+
+  // event_uuid is the unique identifier of the event being described.
+  string event_uuid = 2;
+
+  // config_name is the name of the SuiteScheduler name, not the name of the
+  // test suite being ran.
+  string config_name = 3;
+
+  // suite_name is the name of the test suite being ran
+  string suite_name = 4;
+
+  // event_time is captured once a choice, to schedule or not, was made.
+  google.protobuf.Timestamp event_time = 5;
+
+  SchedulingDecision decision = 6;
+
+  // Attach the coorsponding BBID for this event.
+  int64 bbid = 7;
+}

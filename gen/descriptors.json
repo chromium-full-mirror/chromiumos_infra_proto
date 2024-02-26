@@ -37000,6 +37000,62 @@
             }
           ],
           "name": "SchedulingEvent"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "runUuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_uuid",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "eventUuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "event_uuid",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suiteName",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite_name",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "eventTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "event_time",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "decision",
+              "label": "LABEL_OPTIONAL",
+              "name": "decision",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_scheduler.v15.SchedulingDecision"
+            },
+            {
+              "jsonName": "bbid",
+              "label": "LABEL_OPTIONAL",
+              "name": "bbid",
+              "number": 7,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "Event"
         }
       ],
       "name": "test_platform/suite_scheduler/v15/events.proto",
@@ -37103,6 +37159,82 @@
             }
           ],
           "name": "BuildInformation"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildUuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_uuid",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "runUuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_uuid",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "createTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "create_time",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "bbid",
+              "label": "LABEL_OPTIONAL",
+              "name": "bbid",
+              "number": 4,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 6,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "imagePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "image_path",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "variant",
+              "label": "LABEL_OPTIONAL",
+              "name": "variant",
+              "number": 10,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Build"
         }
       ],
       "name": "test_platform/suite_scheduler/v15/builds.proto",
@@ -37173,6 +37305,34 @@
             }
           ],
           "name": "SchedulingRun"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "runUuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_uuid",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "endTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "end_time",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            }
+          ],
+          "name": "Run"
         }
       ],
       "name": "test_platform/suite_scheduler/v15/metrics.proto",

@@ -30,3 +30,12 @@ message SchedulingRun {
   repeated test_platform.suite_scheduler.v15.UID scheduled_suites = 5;
   repeated test_platform.suite_scheduler.v15.UID rejected_suites = 6;
 }
+
+message Run {
+  // run_uuid represents the unique identifier of the SuiteScheduler run.
+  string run_uuid = 1;
+
+  // Timestamps used to deduce the runtime of application invocations.
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+}
