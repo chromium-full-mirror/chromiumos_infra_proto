@@ -12,6 +12,13 @@ import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
 message CreatePreMPKeysRequest {
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programatically at run time, not manually.
+  string docker_image = 5;
+
   // Build target to create the PreMP keyset for.
   chromiumos.BuildTarget build_target = 1;
 

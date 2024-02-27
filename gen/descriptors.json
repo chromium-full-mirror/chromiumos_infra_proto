@@ -15825,6 +15825,13 @@
         {
           "field": [
             {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "buildTarget",
               "label": "LABEL_OPTIONAL",
               "name": "build_target",
