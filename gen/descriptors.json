@@ -15832,6 +15832,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "releaseKeysCheckout",
+              "label": "LABEL_OPTIONAL",
+              "name": "release_keys_checkout",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "buildTarget",
               "label": "LABEL_OPTIONAL",
               "name": "build_target",

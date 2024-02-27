@@ -19,6 +19,9 @@ message CreatePreMPKeysRequest {
   // This should be set programatically at run time, not manually.
   string docker_image = 5;
 
+  // Path to the local checkout of the chromiumos/platform/release-keys.
+  string release_keys_checkout = 6;
+
   // Build target to create the PreMP keyset for.
   chromiumos.BuildTarget build_target = 1;
 
