@@ -22,6 +22,10 @@ message CreatePreMPKeysRequest {
   // Path to the local checkout of the chromiumos/platform/release-keys.
   string release_keys_checkout = 6;
 
+  // If set, will use the DevPreMPKeys keyset and will run the CloudKMS exporter
+  // in dry run mode (so nothing will actually be exported to CloudKMS)..
+  bool dry_run = 7;
+
   // Build target to create the PreMP keyset for.
   chromiumos.BuildTarget build_target = 1;
 

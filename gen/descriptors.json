@@ -15839,6 +15839,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
               "jsonName": "buildTarget",
               "label": "LABEL_OPTIONAL",
               "name": "build_target",
