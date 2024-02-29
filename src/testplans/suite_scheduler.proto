@@ -265,6 +265,10 @@ message SchedulerConfig {
 
     // If true and run_via_cft is true, this suite will run via trv2.
     bool run_via_trv2 = 12;
+
+    // If set, trv2 request will be translated to the dynamic trv2 request.
+    // Requires run_via_trv2 is true.
+    bool dynamic_trv2 = 13;
   }
   RunOptions run_options = 9;
 
