@@ -38876,6 +38876,13 @@
               "name": "enable_autotest_sharding",
               "number": 24,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dddSuite",
+              "label": "LABEL_OPTIONAL",
+              "name": "ddd_suite",
+              "number": 25,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "SchedulerConfig",
@@ -39193,6 +39200,13 @@
                   "name": "cros_image_bucket",
                   "number": 11,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "runViaTrv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_trv2",
+                  "number": 12,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "RunOptions",
