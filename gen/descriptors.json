@@ -31584,6 +31584,13 @@
               "name": "bbid",
               "number": 7,
               "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "buildUuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_uuid",
+              "number": 8,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Event"

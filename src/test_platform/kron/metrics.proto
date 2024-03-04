@@ -61,4 +61,8 @@ message Event {
 
   // Attach the coorsponding BBID for this event.
   int64 bbid = 7;
+
+  // build_uuid is the unique identifier of the build used to kick off this
+  // event.
+  string build_uuid = 8;
 }
