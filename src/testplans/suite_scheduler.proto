@@ -52,6 +52,9 @@ enum Branch {
   BETA = 3;
   // Stable Branch or ToT-3.
   STABLE = 4;
+  // Long term support tracking branch. This channel does not follow a ToT-N
+  // schema.
+  LTS = 5;
 }
 
 // Most fields are the same as suite_scheduler.ini just better organized.

@@ -38587,6 +38587,10 @@
             {
               "name": "STABLE",
               "number": 4
+            },
+            {
+              "name": "LTS",
+              "number": 5
             }
           ]
         }
