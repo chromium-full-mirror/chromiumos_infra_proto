@@ -19587,6 +19587,10 @@
                 {
                   "name": "GENERAL_RELEASE",
                   "number": 4
+                },
+                {
+                  "name": "NIGHTLY",
+                  "number": 5
                 }
               ]
             }

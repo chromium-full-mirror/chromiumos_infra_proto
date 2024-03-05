@@ -43,6 +43,7 @@ message GscInstructions {
     RELEASE_CANDIDATE = 2;
     NODE_LOCKED = 3;
     GENERAL_RELEASE = 4;
+    NIGHTLY = 5;
   }
   Target target = 1;
 
