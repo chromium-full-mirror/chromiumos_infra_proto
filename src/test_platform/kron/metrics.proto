@@ -65,4 +65,12 @@ message Event {
   // build_uuid is the unique identifier of the build used to kick off this
   // event.
   string build_uuid = 8;
+
+  // board is the name of the board targeted in this event request. This must
+  // always be filled for a successful CTP request.
+  string board = 9;
+
+  // model is the made of the model targeted in this event request. This field
+  // is optional when forming a CTP request.
+  string model = 10;
 }
