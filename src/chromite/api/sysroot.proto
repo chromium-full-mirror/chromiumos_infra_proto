@@ -11,6 +11,7 @@ import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 import "chromiumos/metrics.proto";
 import "chromiumos/prebuilts_cloud.proto";
+import "google/protobuf/timestamp.proto";
 
 // Sysroot information.
 message Sysroot {
@@ -205,6 +206,10 @@ message InstallPackagesRequest {
   BazelTargets bazel_targets = 10;
   // Data needed for fetching binhosts from the binhost lookup service.
   chromiumos.BinhostLookupServiceData binhost_lookup_service_data = 11;
+  // Optional.
+  // Timestamp at which the install packages action will be timed out.
+  // Can be used to exit cleanly shortly before termination.
+  google.protobuf.Timestamp timeout_timestamp = 12;
 }
 
 message InstallPackagesResponse {

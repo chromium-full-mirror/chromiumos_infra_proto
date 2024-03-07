@@ -3198,7 +3198,8 @@
         "chromite/api/build_api.proto",
         "chromiumos/common.proto",
         "chromiumos/metrics.proto",
-        "chromiumos/prebuilts_cloud.proto"
+        "chromiumos/prebuilts_cloud.proto",
+        "google/protobuf/timestamp.proto"
       ],
       "messageType": [
         {
@@ -3635,6 +3636,14 @@
               "number": 11,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.BinhostLookupServiceData"
+            },
+            {
+              "jsonName": "timeoutTimestamp",
+              "label": "LABEL_OPTIONAL",
+              "name": "timeout_timestamp",
+              "number": 12,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
             }
           ],
           "name": "InstallPackagesRequest",
