@@ -82,6 +82,20 @@ message RunCopybotRequest {
   // the downstream repo.
   message PushOption { string opt = 1; }
   repeated PushOption push_options = 13;
+
+  // A list of hashtags which should be applied to the copied CLs.
+  message Hashtag { string hashtag = 1; }
+  repeated Hashtag hashtags = 14;
+
+  // The upstream limit of CLs to evaluate.
+  uint32 upstream_limit = 15;
+
+  // The downstream limit of CLs to evaluate.
+  uint32 downstream_limit = 16;
+
+  // A list of full file paths to include in the downstream path.
+  message IncludePath { string path = 1; }
+  repeated IncludePath include_paths = 17;
 }
 
 // The result of CopyBot being run.

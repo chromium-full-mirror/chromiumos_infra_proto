@@ -12079,6 +12079,36 @@
               "number": 13,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.PushOption"
+            },
+            {
+              "jsonName": "hashtags",
+              "label": "LABEL_REPEATED",
+              "name": "hashtags",
+              "number": 14,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.Hashtag"
+            },
+            {
+              "jsonName": "upstreamLimit",
+              "label": "LABEL_OPTIONAL",
+              "name": "upstream_limit",
+              "number": 15,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "downstreamLimit",
+              "label": "LABEL_OPTIONAL",
+              "name": "downstream_limit",
+              "number": 16,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "includePaths",
+              "label": "LABEL_REPEATED",
+              "name": "include_paths",
+              "number": 17,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.IncludePath"
             }
           ],
           "name": "RunCopybotRequest",
@@ -12168,6 +12198,30 @@
                 }
               ],
               "name": "PushOption"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "hashtag",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hashtag",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Hashtag"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "path",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "path",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "IncludePath"
             }
           ]
         },
