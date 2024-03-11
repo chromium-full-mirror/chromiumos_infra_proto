@@ -162,10 +162,16 @@ message SchedulerConfig {
   // Whether to use firmware from ToT or firmware branch.
   enum FirmwareBranch {
     UNSPECIFIED = 0;
-    // ToT branch.
+    // Canary Branch or ToT.
     CROS = 1;
     // Firmware branch.
     FIRMWARE = 2;
+    // Dev Branch or ToT-1.
+    DEV = 3;
+    // Beta Branch or ToT-2.
+    BETA = 4;
+    // Stable Branch or ToT-3.
+    STABLE = 5;
   }
 
   // Assume as AP build.

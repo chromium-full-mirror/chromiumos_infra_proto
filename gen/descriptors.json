@@ -25780,6 +25780,22 @@
                       "type": "TYPE_STRING"
                     },
                     {
+                      "jsonName": "ecRoFirmwareBuild",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "ec_ro_firmware_build",
+                      "number": 10,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "ecRwFirmwareBuild",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "ec_rw_firmware_build",
+                      "number": 11,
+                      "oneofIndex": 0,
+                      "type": "TYPE_STRING"
+                    },
+                    {
                       "jsonName": "lacrosGcsPath",
                       "label": "LABEL_OPTIONAL",
                       "name": "lacros_gcs_path",
@@ -36933,6 +36949,22 @@
               "typeName": ".chromiumos.Branch.BranchType"
             },
             {
+              "jsonName": "firmwareEcRoBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_ro_build_spec",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.Branch.BranchType"
+            },
+            {
+              "jsonName": "firmwareEcRwBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_rw_build_spec",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.Branch.BranchType"
+            },
+            {
               "jsonName": "onlySuccessfulBuildRequired",
               "label": "LABEL_OPTIONAL",
               "name": "only_successful_build_required",
@@ -37182,6 +37214,24 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "firmware_rw_build",
                   "number": 4,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.suite_scheduler.FirmwareBuildInfo"
+                },
+                {
+                  "jsonName": "firmwareEcRoBuild",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "firmware_ec_ro_build",
+                  "number": 5,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.suite_scheduler.FirmwareBuildInfo"
+                },
+                {
+                  "jsonName": "firmwareEcRwBuild",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "firmware_ec_rw_build",
+                  "number": 6,
                   "oneofIndex": 0,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.suite_scheduler.FirmwareBuildInfo"
@@ -38803,6 +38853,18 @@
                 {
                   "name": "FIRMWARE",
                   "number": 2
+                },
+                {
+                  "name": "DEV",
+                  "number": 3
+                },
+                {
+                  "name": "BETA",
+                  "number": 4
+                },
+                {
+                  "name": "STABLE",
+                  "number": 5
                 }
               ]
             },

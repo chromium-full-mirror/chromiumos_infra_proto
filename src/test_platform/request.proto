@@ -75,6 +75,14 @@ message Request {
         // "firmware-reef-9042.B-firmwarebranch/R72-11311.0.0"
         string rw_firmware_build = 5;
 
+        // Readonly EC firmware build name, e.g.
+        // "reef-release/R123-12345.0.0"
+        string ec_ro_firmware_build = 10;
+
+        // Read-write EC firmware build name, e.g.
+        // "reef-release/R123-12345.0.0"
+        string ec_rw_firmware_build = 11;
+
         // Google Cloud Storage path for obtaining LaCrOS images.
         //
         // Unlike chromeos/ro_firmware/rw_firmware, this is full Google Cloud
