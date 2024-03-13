@@ -39125,6 +39125,10 @@
                     {
                       "name": "FORTNIGHTLY",
                       "number": 5
+                    },
+                    {
+                      "name": "NEW_BUILD_3D",
+                      "number": 6
                     }
                   ]
                 }

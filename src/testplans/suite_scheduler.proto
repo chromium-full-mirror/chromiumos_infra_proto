@@ -86,6 +86,9 @@ message SchedulerConfig {
       CRON_BASED = 4;
       // Run once every other week at the specified time
       FORTNIGHTLY = 5;
+      // Run on when all release build of the boards/variants targeted in lab
+      // config have finished.
+      NEW_BUILD_3D = 6;
     }
     LaunchProfile launch_profile = 1;
     // Hour at which to run. Needs to be specified for nightly and weekly
