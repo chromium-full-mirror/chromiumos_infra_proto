@@ -27663,9 +27663,9 @@
         {
           "field": [
             {
-              "jsonName": "addresses",
+              "jsonName": "hostnames",
               "label": "LABEL_REPEATED",
-              "name": "addresses",
+              "name": "hostnames",
               "number": 1,
               "type": "TYPE_STRING"
             },
@@ -27698,9 +27698,9 @@
             {
               "field": [
                 {
-                  "jsonName": "address",
+                  "jsonName": "hostname",
                   "label": "LABEL_OPTIONAL",
-                  "name": "address",
+                  "name": "hostname",
                   "number": 1,
                   "type": "TYPE_STRING"
                 },
