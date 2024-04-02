@@ -61,6 +61,14 @@ message CommonConfig {
   }
 
   RdbConfig rdb_config = 6;
+
+  // UfsConfig determines any configuration around Ufs api calls.
+  message UfsConfig {
+    // ufs namespace to be used for talking to ufs.
+    string ufs_namespace = 1;
+  }
+
+  UfsConfig ufs_config = 7;
 }
 
 // b/267268890: Config to control trv2 gradual rollout in prod. Should be

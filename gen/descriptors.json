@@ -34940,6 +34940,14 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.CommonConfig.RdbConfig"
+            },
+            {
+              "jsonName": "ufsConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "ufs_config",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CommonConfig.UfsConfig"
             }
           ],
           "name": "CommonConfig",
@@ -35011,6 +35019,18 @@
                 }
               ],
               "name": "RdbConfig"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "ufsNamespace",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ufs_namespace",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "UfsConfig"
             }
           ]
         },
