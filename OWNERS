@@ -18,8 +18,5 @@ include chromiumos/owners:v1:/infra/OWNERS.tse
 ayatane@chromium.org
 xixuan@chromium.org
 
-# Infra leads.
-nednguyen@chromium.org
-
 # Service accounts, for rolling dependencies.
 recipe-mega-autoroller@chops-service-accounts.iam.gserviceaccount.com
