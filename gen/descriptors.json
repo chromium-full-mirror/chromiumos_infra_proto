@@ -12468,6 +12468,123 @@
       },
       "dependency": [
         "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "buildDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_dir",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "compileCommands",
+              "label": "LABEL_OPTIONAL",
+              "name": "compile_commands",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "packages",
+              "label": "LABEL_REPEATED",
+              "name": "packages",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
+            },
+            {
+              "jsonName": "flags",
+              "label": "LABEL_OPTIONAL",
+              "name": "flags",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.GenerateMergedCompilationDBRequest.Flags"
+            }
+          ],
+          "name": "GenerateMergedCompilationDBRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "failFast",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "fail_fast",
+                  "number": 1,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "withTests",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "with_tests",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "Flags"
+            }
+          ]
+        },
+        {
+          "name": "GenerateMergedCompilationDBResponse"
+        }
+      ],
+      "name": "chromite/api/ide.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.GenerateMergedCompilationDBRequest",
+              "name": "GenerateMergedCompilationDB",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.GenerateMergedCompilationDBResponse"
+            }
+          ],
+          "name": "IdeService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "ide"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
         "chromiumos/common.proto",
         "chromiumos/build/api/system_image.proto"
