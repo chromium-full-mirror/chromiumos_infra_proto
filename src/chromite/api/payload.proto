@@ -214,6 +214,9 @@ message UnsignedPayload {
 
   // AppID. Need this in FinalizePayloadRequest.
   string appid = 8;
+
+  // Path of the payload file with generation details.
+  chromiumos.Path payload_file_log_path = 9;
 }
 
 // Result of a payload generation.

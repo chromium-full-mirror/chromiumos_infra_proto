@@ -14766,6 +14766,14 @@
               "name": "appid",
               "number": 8,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "payloadFileLogPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "payload_file_log_path",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             }
           ],
           "name": "UnsignedPayload",
