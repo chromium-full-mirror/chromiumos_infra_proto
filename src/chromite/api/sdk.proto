@@ -85,6 +85,9 @@ message UpdateRequest {
     bool build_source = 1;
     // Whether a toolchain change has occurred.
     bool toolchain_changed = 2;
+    // If true, the SDK should be updated anyway when pinned SDKs are in use.
+    // build_source and toolchain_changed are also reasons to update.
+    bool force_update = 3;
   }
 
   // The flags.
