@@ -145,9 +145,9 @@ message BuilderConfig {
     // of the build_config before this.
     google.protobuf.Timestamp broken_before = 4;
 
-    // SHA of the manifest snapshot until which ToT had a bug that would not manifest at the
-    // build stage. The CQ orchestrator should NOT reuse successful builds
-    // of the build_config before and including this snapshot.
+    // SHA of the manifest snapshot until which ToT had a bug that would not
+    // manifest at the build stage. The CQ orchestrator should NOT reuse
+    // successful builds of the build_config before and including this snapshot.
     string broken_until = 10;
 
     // If present, this version number will be written to a version file
@@ -517,9 +517,18 @@ message BuilderConfig {
       bool compile_source = 1;
 
       // Controls whether or not to run the SdkService.Update step.
+      // Note that the step may not do anything unless:
+      // (1) a toolchain update is detected.
+      // (2) compile_source was specified.
+      // (3) or, sdknext is specified.
       // TODO(b/299638415): For now, keep this in-sync with
       // update_chroot.run_spec.
       RunSpec sdk_update_run_spec = 2;
+
+      // If true, this builder is considered an "sdknext" builder, and is used
+      // to test changes won't break the SDK builder.  The effect is that
+      // chromite.api.SdkService/Update will actually do an update_chroot.
+      bool sdknext = 3;
     }
     SdkUpdate sdk_update = 12;
 
