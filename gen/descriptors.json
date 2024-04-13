@@ -11991,6 +11991,10 @@
                 {
                   "name": "MERGE_CONFLICT_BEHAVIOR_FAIL",
                   "number": 2
+                },
+                {
+                  "name": "MERGE_CONFLICT_BEHAVIOR_STOP",
+                  "number": 3
                 }
               ]
             }

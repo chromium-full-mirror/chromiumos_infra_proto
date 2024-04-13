@@ -55,6 +55,9 @@ message RunCopybotRequest {
     MERGE_CONFLICT_BEHAVIOR_SKIP = 1;
     // Fail the job immediately.  Do not upload.
     MERGE_CONFLICT_BEHAVIOR_FAIL = 2;
+    // Stop the job immediately.  Upload pending changes anyway.  The
+    // job will exit with failure status.
+    MERGE_CONFLICT_BEHAVIOR_STOP = 3;
   }
   MergeConflictBehavior merge_conflict_behavior = 8;
 
