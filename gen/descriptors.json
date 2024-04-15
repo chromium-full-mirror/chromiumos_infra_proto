@@ -8982,6 +8982,13 @@
                   "name": "no_use_image",
                   "number": 3,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "noDeleteOutDir",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "no_delete_out_dir",
+                  "number": 4,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags"

@@ -29,6 +29,8 @@ message CreateRequest {
     // Whether the chroot should be mounted on a loopback image or created
     // directly inside a directory. Set to true to create in a directory.
     bool no_use_image = 3;
+    // Whether to delete `out` directory when creating chroot.
+    bool no_delete_out_dir = 4;
   }
 
   // The chroot-create flag arguments.
