@@ -111,6 +111,8 @@ message UpdateResponse {
   // Additional data about the packages that failed to build.
   // Added in R118.
   repeated FailedPackageData failed_package_data = 2;
+  // True when update_chroot was skipped (the typical case for R126 and later).
+  bool skipped = 3;
 }
 
 // Uprev SDK request.

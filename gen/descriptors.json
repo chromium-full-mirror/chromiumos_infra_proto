@@ -9129,6 +9129,13 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.FailedPackageData"
+            },
+            {
+              "jsonName": "skipped",
+              "label": "LABEL_OPTIONAL",
+              "name": "skipped",
+              "number": 3,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "UpdateResponse"
