@@ -34988,6 +34988,14 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.CommonConfig.UfsConfig"
+            },
+            {
+              "jsonName": "partnerConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "partner_config",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CommonConfig.PartnerConfig"
             }
           ],
           "name": "CommonConfig",
@@ -35071,6 +35079,18 @@
                 }
               ],
               "name": "UfsConfig"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "accountId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "account_id",
+                  "number": 1,
+                  "type": "TYPE_INT64"
+                }
+              ],
+              "name": "PartnerConfig"
             }
           ]
         },

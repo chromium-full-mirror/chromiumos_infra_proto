@@ -69,6 +69,15 @@ message CommonConfig {
   }
 
   UfsConfig ufs_config = 7;
+
+  // PartnerConfig determines any configuration around Partner settings.
+  message PartnerConfig {
+    // Account ID for the partner.
+    int64 account_id = 1;
+  }
+
+  PartnerConfig partner_config = 8;
+
 }
 
 // b/267268890: Config to control trv2 gradual rollout in prod. Should be
