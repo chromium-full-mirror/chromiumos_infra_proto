@@ -42,4 +42,7 @@ message Build {
   string board = 9;
 
   string variant = 10;
+
+  // parent orchestrator build bucket id
+  int64 release_orch_bbid = 11;
 }
