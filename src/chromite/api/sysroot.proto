@@ -172,11 +172,19 @@ message InstallPackagesRequest {
     bool bazel = 8;
     // Whether to skip cleaning the package directories, i.e. FEATURES=noclean.
     bool skip_clean_package_dirs = 9;
+    // Whether to execute Bazel actions remotely in RBE, for those actions
+    // that allow remote execution. Actions that are configured to execute
+    // only locally will do that irrespective of the value of this flag.
+    //
+    // Note that this is unrelate to the `use_remoteexec` setting, which
+    // controls whether to use reclient or goma for package-level builds of
+    // packages that support reclient/goma.
+    bool bazel_use_remote_execution = 10;
   }
 
   // Which packages should a Bazel-based build target.
   enum BazelTargets {
-    // If unspecified, all packages will be build.
+    // If unspecified, all packages will be built.
     BAZEL_TARGETS_UNSPECIFIED = 0;
     // Lite builds target a limited set of packages for performance.
     LITE = 1;
