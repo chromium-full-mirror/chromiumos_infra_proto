@@ -52,8 +52,10 @@ message SysrootCreateRequest {
   Profile profile = 3;
   // The chroot to use to execute the endpoint.
   chromiumos.Chroot chroot = 4;
-  // Package index files available for use.  Added in R86.
-  repeated chromiumos.PackageIndexInfo package_indexes = 5;
+  // Refers to PackageIndex files used for the binhost lookup service
+  // prototype that was deprecated in R114.
+  reserved 5;
+  reserved "package_indexes";
 }
 
 // Create response.
@@ -196,8 +198,10 @@ message InstallPackagesRequest {
   repeated chromiumos.UseFlag use_flags = 5;
   // Goma Config.
   chromiumos.GomaConfig goma_config = 6;
-  // Package index files available for use.
-  repeated chromiumos.PackageIndexInfo package_indexes = 7;
+  // Refers to PackageIndex files used for the binhost lookup service
+  // prototype that was deprecated in R114.
+  reserved 7;
+  reserved "package_indexes";
   // Remoteexec Config to hold info needed for remote execution.
   chromiumos.RemoteexecConfig remoteexec_config = 8;
   // Directory where results (logs, etc.) should be stored.

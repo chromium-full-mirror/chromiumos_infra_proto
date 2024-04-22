@@ -3267,14 +3267,6 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Chroot"
-            },
-            {
-              "jsonName": "packageIndexes",
-              "label": "LABEL_REPEATED",
-              "name": "package_indexes",
-              "number": 5,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.PackageIndexInfo"
             }
           ],
           "name": "SysrootCreateRequest",
@@ -3311,6 +3303,15 @@
                 }
               ],
               "name": "Flags"
+            }
+          ],
+          "reservedName": [
+            "package_indexes"
+          ],
+          "reservedRange": [
+            {
+              "end": 6,
+              "start": 5
             }
           ]
         },
@@ -3598,14 +3599,6 @@
               "typeName": ".chromiumos.GomaConfig"
             },
             {
-              "jsonName": "packageIndexes",
-              "label": "LABEL_REPEATED",
-              "name": "package_indexes",
-              "number": 7,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.PackageIndexInfo"
-            },
-            {
               "jsonName": "remoteexecConfig",
               "label": "LABEL_OPTIONAL",
               "name": "remoteexec_config",
@@ -3715,6 +3708,15 @@
                   "start": 6
                 }
               ]
+            }
+          ],
+          "reservedName": [
+            "package_indexes"
+          ],
+          "reservedRange": [
+            {
+              "end": 8,
+              "start": 7
             }
           ]
         },
