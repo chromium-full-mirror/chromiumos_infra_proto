@@ -25552,6 +25552,7 @@
         "chromiumos/common.proto",
         "chromiumos/test/api/test_suite.proto",
         "chromiumos/test/api/test_execution_metadata.proto",
+        "chromiumos/test/api/ctp2.proto",
         "google/protobuf/duration.proto",
         "test_platform/execution/param.proto",
         "test_platform/common/cft_steps_config.proto"
@@ -25753,6 +25754,14 @@
                   "name": "translate_trv2_request",
                   "number": 22,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "userDefinedFilters",
+                  "label": "LABEL_REPEATED",
+                  "name": "user_defined_filters",
+                  "number": 23,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.CTPFilter"
                 }
               ],
               "name": "Params",

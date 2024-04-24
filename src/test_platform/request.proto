@@ -10,6 +10,7 @@ import "chromite/api/test_metadata.proto";
 import "chromiumos/common.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "chromiumos/test/api/test_execution_metadata.proto";
+import "chromiumos/test/api/ctp2.proto";
 import "google/protobuf/duration.proto";
 import "test_platform/execution/param.proto";
 import "test_platform/common/cft_steps_config.proto";
@@ -22,7 +23,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 23
+  // NEXT_TAG: 24
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -304,6 +305,11 @@ message Request {
     // If true, thus suite will translate from a CftTestRequest into a
     // CrosTestRequest. Must have run_via_trv2 set to true to have an effect.
     bool translate_trv2_request = 22;
+
+    // Filter info passed along to the v2 request for ctpv2's execution.
+    // Should only be set for runs be rerouted to ctpv2, but will be no-op
+    // for ctpv1 executions.
+    repeated chromiumos.test.api.CTPFilter user_defined_filters = 23;
   }
 
   Params params = 1;
