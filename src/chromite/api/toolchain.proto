@@ -282,3 +282,18 @@ service ToolchainService {
     };
   };
 }
+
+// Request toolchain_utils presubmits to be run.
+message ToolchainUtilsPresubmitRequest {
+  // The chroot to run in.
+  chromiumos.Chroot chroot = 1;
+
+  // Modified file paths.
+  repeated string files = 2;
+}
+
+// Response from toolchain_utils presubmits.
+message ToolchainUtilsPresubmitResonse {
+  // Did presubmits pass.
+  bool success = 1;
+}

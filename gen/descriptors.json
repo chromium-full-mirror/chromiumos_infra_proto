@@ -16882,6 +16882,38 @@
         },
         {
           "name": "SetupToolchainsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "files",
+              "label": "LABEL_REPEATED",
+              "name": "files",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ToolchainUtilsPresubmitRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "success",
+              "label": "LABEL_OPTIONAL",
+              "name": "success",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "ToolchainUtilsPresubmitResonse"
         }
       ],
       "name": "chromite/api/toolchain.proto",

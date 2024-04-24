@@ -1229,6 +1229,113 @@ func (*SetupToolchainsResponse) Descriptor() ([]byte, []int) {
 	return file_chromite_api_toolchain_proto_rawDescGZIP(), []int{17}
 }
 
+// Request toolchain_utils presubmits to be run.
+type ToolchainUtilsPresubmitRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The chroot to run in.
+	Chroot *chromiumos.Chroot `protobuf:"bytes,1,opt,name=chroot,proto3" json:"chroot,omitempty"`
+	// Modified file paths.
+	Files []string `protobuf:"bytes,2,rep,name=files,proto3" json:"files,omitempty"`
+}
+
+func (x *ToolchainUtilsPresubmitRequest) Reset() {
+	*x = ToolchainUtilsPresubmitRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_toolchain_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ToolchainUtilsPresubmitRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ToolchainUtilsPresubmitRequest) ProtoMessage() {}
+
+func (x *ToolchainUtilsPresubmitRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_toolchain_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ToolchainUtilsPresubmitRequest.ProtoReflect.Descriptor instead.
+func (*ToolchainUtilsPresubmitRequest) Descriptor() ([]byte, []int) {
+	return file_chromite_api_toolchain_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ToolchainUtilsPresubmitRequest) GetChroot() *chromiumos.Chroot {
+	if x != nil {
+		return x.Chroot
+	}
+	return nil
+}
+
+func (x *ToolchainUtilsPresubmitRequest) GetFiles() []string {
+	if x != nil {
+		return x.Files
+	}
+	return nil
+}
+
+// Response from toolchain_utils presubmits.
+type ToolchainUtilsPresubmitResonse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Did presubmits pass.
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+}
+
+func (x *ToolchainUtilsPresubmitResonse) Reset() {
+	*x = ToolchainUtilsPresubmitResonse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_toolchain_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ToolchainUtilsPresubmitResonse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ToolchainUtilsPresubmitResonse) ProtoMessage() {}
+
+func (x *ToolchainUtilsPresubmitResonse) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_toolchain_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ToolchainUtilsPresubmitResonse.ProtoReflect.Descriptor instead.
+func (*ToolchainUtilsPresubmitResonse) Descriptor() ([]byte, []int) {
+	return file_chromite_api_toolchain_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ToolchainUtilsPresubmitResonse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 // We need the artifact info from BundleResponse and the profile info
 // as the input of the request.
 type GetUpdatedFilesRequest_UploadedArtifacts struct {
@@ -1243,7 +1350,7 @@ type GetUpdatedFilesRequest_UploadedArtifacts struct {
 func (x *GetUpdatedFilesRequest_UploadedArtifacts) Reset() {
 	*x = GetUpdatedFilesRequest_UploadedArtifacts{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_toolchain_proto_msgTypes[18]
+		mi := &file_chromite_api_toolchain_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1256,7 +1363,7 @@ func (x *GetUpdatedFilesRequest_UploadedArtifacts) String() string {
 func (*GetUpdatedFilesRequest_UploadedArtifacts) ProtoMessage() {}
 
 func (x *GetUpdatedFilesRequest_UploadedArtifacts) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_toolchain_proto_msgTypes[18]
+	mi := &file_chromite_api_toolchain_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1298,7 +1405,7 @@ type GetUpdatedFilesResponse_UpdatedFile struct {
 func (x *GetUpdatedFilesResponse_UpdatedFile) Reset() {
 	*x = GetUpdatedFilesResponse_UpdatedFile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_toolchain_proto_msgTypes[19]
+		mi := &file_chromite_api_toolchain_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1311,7 +1418,7 @@ func (x *GetUpdatedFilesResponse_UpdatedFile) String() string {
 func (*GetUpdatedFilesResponse_UpdatedFile) ProtoMessage() {}
 
 func (x *GetUpdatedFilesResponse_UpdatedFile) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_toolchain_proto_msgTypes[19]
+	mi := &file_chromite_api_toolchain_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1348,7 +1455,7 @@ type GetUpdatedFilesResponse_CqDependFooter struct {
 func (x *GetUpdatedFilesResponse_CqDependFooter) Reset() {
 	*x = GetUpdatedFilesResponse_CqDependFooter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_toolchain_proto_msgTypes[20]
+		mi := &file_chromite_api_toolchain_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1361,7 +1468,7 @@ func (x *GetUpdatedFilesResponse_CqDependFooter) String() string {
 func (*GetUpdatedFilesResponse_CqDependFooter) ProtoMessage() {}
 
 func (x *GetUpdatedFilesResponse_CqDependFooter) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_toolchain_proto_msgTypes[20]
+	mi := &file_chromite_api_toolchain_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1397,7 +1504,7 @@ type GetUpdatedFilesResponse_CqClTagFooter struct {
 func (x *GetUpdatedFilesResponse_CqClTagFooter) Reset() {
 	*x = GetUpdatedFilesResponse_CqClTagFooter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_toolchain_proto_msgTypes[21]
+		mi := &file_chromite_api_toolchain_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1410,7 +1517,7 @@ func (x *GetUpdatedFilesResponse_CqClTagFooter) String() string {
 func (*GetUpdatedFilesResponse_CqClTagFooter) ProtoMessage() {}
 
 func (x *GetUpdatedFilesResponse_CqClTagFooter) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_toolchain_proto_msgTypes[21]
+	mi := &file_chromite_api_toolchain_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1447,7 +1554,7 @@ type GetUpdatedFilesResponse_CommitFooter struct {
 func (x *GetUpdatedFilesResponse_CommitFooter) Reset() {
 	*x = GetUpdatedFilesResponse_CommitFooter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_toolchain_proto_msgTypes[22]
+		mi := &file_chromite_api_toolchain_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1460,7 +1567,7 @@ func (x *GetUpdatedFilesResponse_CommitFooter) String() string {
 func (*GetUpdatedFilesResponse_CommitFooter) ProtoMessage() {}
 
 func (x *GetUpdatedFilesResponse_CommitFooter) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_toolchain_proto_msgTypes[22]
+	mi := &file_chromite_api_toolchain_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1528,7 +1635,7 @@ type SetupToolchainsRequest_ToolchainTarget struct {
 func (x *SetupToolchainsRequest_ToolchainTarget) Reset() {
 	*x = SetupToolchainsRequest_ToolchainTarget{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_toolchain_proto_msgTypes[23]
+		mi := &file_chromite_api_toolchain_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1541,7 +1648,7 @@ func (x *SetupToolchainsRequest_ToolchainTarget) String() string {
 func (*SetupToolchainsRequest_ToolchainTarget) ProtoMessage() {}
 
 func (x *SetupToolchainsRequest_ToolchainTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_toolchain_proto_msgTypes[23]
+	mi := &file_chromite_api_toolchain_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1820,7 +1927,17 @@ var file_chromite_api_toolchain_proto_rawDesc = []byte{
 	0x12, 0x16, 0x0a, 0x06, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x06, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x22, 0x19, 0x0a, 0x17, 0x53, 0x65, 0x74, 0x75,
 	0x70, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x32, 0xb1, 0x06, 0x0a, 0x10, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x73, 0x65, 0x22, 0x62, 0x0a, 0x1e, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x55, 0x74, 0x69, 0x6c, 0x73, 0x50, 0x72, 0x65, 0x73, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2a, 0x0a, 0x06, 0x63, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
+	0x6f, 0x73, 0x2e, 0x43, 0x68, 0x72, 0x6f, 0x6f, 0x74, 0x52, 0x06, 0x63, 0x68, 0x72, 0x6f, 0x6f,
+	0x74, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x05, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x22, 0x3a, 0x0a, 0x1e, 0x54, 0x6f, 0x6f, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x55, 0x74, 0x69, 0x6c, 0x73, 0x50, 0x72, 0x65, 0x73, 0x75, 0x62, 0x6d,
+	0x69, 0x74, 0x52, 0x65, 0x73, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x32, 0xb1, 0x06, 0x0a, 0x10, 0x54, 0x6f, 0x6f, 0x6c, 0x63, 0x68, 0x61, 0x69,
 	0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x70, 0x0a, 0x0f, 0x50, 0x72, 0x65, 0x70,
 	0x61, 0x72, 0x65, 0x46, 0x6f, 0x72, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x12, 0x2d, 0x2e, 0x63, 0x68,
 	0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x50, 0x72, 0x65, 0x70, 0x61,
@@ -1891,7 +2008,7 @@ func file_chromite_api_toolchain_proto_rawDescGZIP() []byte {
 }
 
 var file_chromite_api_toolchain_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_chromite_api_toolchain_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_chromite_api_toolchain_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_chromite_api_toolchain_proto_goTypes = []interface{}{
 	(LinterFinding_Linters)(0),                                   // 0: chromite.api.LinterFinding.Linters
 	(*ArtifactInfo)(nil),                                         // 1: chromite.api.ArtifactInfo
@@ -1912,84 +2029,87 @@ var file_chromite_api_toolchain_proto_goTypes = []interface{}{
 	(*ToolchainsResponse)(nil),                                   // 16: chromite.api.ToolchainsResponse
 	(*SetupToolchainsRequest)(nil),                               // 17: chromite.api.SetupToolchainsRequest
 	(*SetupToolchainsResponse)(nil),                              // 18: chromite.api.SetupToolchainsResponse
-	(*GetUpdatedFilesRequest_UploadedArtifacts)(nil),             // 19: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts
-	(*GetUpdatedFilesResponse_UpdatedFile)(nil),                  // 20: chromite.api.GetUpdatedFilesResponse.UpdatedFile
-	(*GetUpdatedFilesResponse_CqDependFooter)(nil),               // 21: chromite.api.GetUpdatedFilesResponse.CqDependFooter
-	(*GetUpdatedFilesResponse_CqClTagFooter)(nil),                // 22: chromite.api.GetUpdatedFilesResponse.CqClTagFooter
-	(*GetUpdatedFilesResponse_CommitFooter)(nil),                 // 23: chromite.api.GetUpdatedFilesResponse.CommitFooter
-	(*SetupToolchainsRequest_ToolchainTarget)(nil),               // 24: chromite.api.SetupToolchainsRequest.ToolchainTarget
-	(chromiumos.BuilderConfig_Artifacts_ArtifactTypes)(0),        // 25: chromiumos.BuilderConfig.Artifacts.ArtifactTypes
-	(*Artifact)(nil),                                             // 26: chromite.api.Artifact
-	(*chromiumos.Chroot)(nil),                                    // 27: chromiumos.Chroot
-	(*Sysroot)(nil),                                              // 28: chromite.api.Sysroot
-	(*chromiumos.BuilderConfig_Artifacts_InputArtifactInfo)(nil), // 29: chromiumos.BuilderConfig.Artifacts.InputArtifactInfo
-	(*chromiumos.PrepareForBuildAdditionalArgs)(nil),             // 30: chromiumos.PrepareForBuildAdditionalArgs
-	(*chromiumos.ArtifactProfileInfo)(nil),                       // 31: chromiumos.ArtifactProfileInfo
-	(PrepareForBuildResponse_BuildRelevance)(0),                  // 32: chromite.api.PrepareForBuildResponse.BuildRelevance
-	(*chromiumos.PackageInfo)(nil),                               // 33: chromiumos.PackageInfo
-	(*chromiumos.BuildTarget)(nil),                               // 34: chromiumos.BuildTarget
-	(*chromiumos.GerritChange)(nil),                              // 35: chromiumos.GerritChange
+	(*ToolchainUtilsPresubmitRequest)(nil),                       // 19: chromite.api.ToolchainUtilsPresubmitRequest
+	(*ToolchainUtilsPresubmitResonse)(nil),                       // 20: chromite.api.ToolchainUtilsPresubmitResonse
+	(*GetUpdatedFilesRequest_UploadedArtifacts)(nil),             // 21: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts
+	(*GetUpdatedFilesResponse_UpdatedFile)(nil),                  // 22: chromite.api.GetUpdatedFilesResponse.UpdatedFile
+	(*GetUpdatedFilesResponse_CqDependFooter)(nil),               // 23: chromite.api.GetUpdatedFilesResponse.CqDependFooter
+	(*GetUpdatedFilesResponse_CqClTagFooter)(nil),                // 24: chromite.api.GetUpdatedFilesResponse.CqClTagFooter
+	(*GetUpdatedFilesResponse_CommitFooter)(nil),                 // 25: chromite.api.GetUpdatedFilesResponse.CommitFooter
+	(*SetupToolchainsRequest_ToolchainTarget)(nil),               // 26: chromite.api.SetupToolchainsRequest.ToolchainTarget
+	(chromiumos.BuilderConfig_Artifacts_ArtifactTypes)(0),        // 27: chromiumos.BuilderConfig.Artifacts.ArtifactTypes
+	(*Artifact)(nil),                                             // 28: chromite.api.Artifact
+	(*chromiumos.Chroot)(nil),                                    // 29: chromiumos.Chroot
+	(*Sysroot)(nil),                                              // 30: chromite.api.Sysroot
+	(*chromiumos.BuilderConfig_Artifacts_InputArtifactInfo)(nil), // 31: chromiumos.BuilderConfig.Artifacts.InputArtifactInfo
+	(*chromiumos.PrepareForBuildAdditionalArgs)(nil),             // 32: chromiumos.PrepareForBuildAdditionalArgs
+	(*chromiumos.ArtifactProfileInfo)(nil),                       // 33: chromiumos.ArtifactProfileInfo
+	(PrepareForBuildResponse_BuildRelevance)(0),                  // 34: chromite.api.PrepareForBuildResponse.BuildRelevance
+	(*chromiumos.PackageInfo)(nil),                               // 35: chromiumos.PackageInfo
+	(*chromiumos.BuildTarget)(nil),                               // 36: chromiumos.BuildTarget
+	(*chromiumos.GerritChange)(nil),                              // 37: chromiumos.GerritChange
 }
 var file_chromite_api_toolchain_proto_depIdxs = []int32{
-	25, // 0: chromite.api.ArtifactInfo.artifact_type:type_name -> chromiumos.BuilderConfig.Artifacts.ArtifactTypes
-	26, // 1: chromite.api.ArtifactInfo.artifacts:type_name -> chromite.api.Artifact
-	25, // 2: chromite.api.PrepareForToolchainBuildRequest.artifact_types:type_name -> chromiumos.BuilderConfig.Artifacts.ArtifactTypes
-	27, // 3: chromite.api.PrepareForToolchainBuildRequest.chroot:type_name -> chromiumos.Chroot
-	28, // 4: chromite.api.PrepareForToolchainBuildRequest.sysroot:type_name -> chromite.api.Sysroot
-	29, // 5: chromite.api.PrepareForToolchainBuildRequest.input_artifacts:type_name -> chromiumos.BuilderConfig.Artifacts.InputArtifactInfo
-	30, // 6: chromite.api.PrepareForToolchainBuildRequest.additional_args:type_name -> chromiumos.PrepareForBuildAdditionalArgs
-	31, // 7: chromite.api.PrepareForToolchainBuildRequest.profile_info:type_name -> chromiumos.ArtifactProfileInfo
-	32, // 8: chromite.api.PrepareForToolchainBuildResponse.build_relevance:type_name -> chromite.api.PrepareForBuildResponse.BuildRelevance
-	27, // 9: chromite.api.BundleToolchainRequest.chroot:type_name -> chromiumos.Chroot
-	28, // 10: chromite.api.BundleToolchainRequest.sysroot:type_name -> chromite.api.Sysroot
-	25, // 11: chromite.api.BundleToolchainRequest.artifact_types:type_name -> chromiumos.BuilderConfig.Artifacts.ArtifactTypes
-	30, // 12: chromite.api.BundleToolchainRequest.additional_args:type_name -> chromiumos.PrepareForBuildAdditionalArgs
-	31, // 13: chromite.api.BundleToolchainRequest.profile_info:type_name -> chromiumos.ArtifactProfileInfo
+	27, // 0: chromite.api.ArtifactInfo.artifact_type:type_name -> chromiumos.BuilderConfig.Artifacts.ArtifactTypes
+	28, // 1: chromite.api.ArtifactInfo.artifacts:type_name -> chromite.api.Artifact
+	27, // 2: chromite.api.PrepareForToolchainBuildRequest.artifact_types:type_name -> chromiumos.BuilderConfig.Artifacts.ArtifactTypes
+	29, // 3: chromite.api.PrepareForToolchainBuildRequest.chroot:type_name -> chromiumos.Chroot
+	30, // 4: chromite.api.PrepareForToolchainBuildRequest.sysroot:type_name -> chromite.api.Sysroot
+	31, // 5: chromite.api.PrepareForToolchainBuildRequest.input_artifacts:type_name -> chromiumos.BuilderConfig.Artifacts.InputArtifactInfo
+	32, // 6: chromite.api.PrepareForToolchainBuildRequest.additional_args:type_name -> chromiumos.PrepareForBuildAdditionalArgs
+	33, // 7: chromite.api.PrepareForToolchainBuildRequest.profile_info:type_name -> chromiumos.ArtifactProfileInfo
+	34, // 8: chromite.api.PrepareForToolchainBuildResponse.build_relevance:type_name -> chromite.api.PrepareForBuildResponse.BuildRelevance
+	29, // 9: chromite.api.BundleToolchainRequest.chroot:type_name -> chromiumos.Chroot
+	30, // 10: chromite.api.BundleToolchainRequest.sysroot:type_name -> chromite.api.Sysroot
+	27, // 11: chromite.api.BundleToolchainRequest.artifact_types:type_name -> chromiumos.BuilderConfig.Artifacts.ArtifactTypes
+	32, // 12: chromite.api.BundleToolchainRequest.additional_args:type_name -> chromiumos.PrepareForBuildAdditionalArgs
+	33, // 13: chromite.api.BundleToolchainRequest.profile_info:type_name -> chromiumos.ArtifactProfileInfo
 	1,  // 14: chromite.api.BundleToolchainResponse.artifacts_info:type_name -> chromite.api.ArtifactInfo
-	19, // 15: chromite.api.GetUpdatedFilesRequest.uploaded_artifacts:type_name -> chromite.api.GetUpdatedFilesRequest.UploadedArtifacts
-	20, // 16: chromite.api.GetUpdatedFilesResponse.updated_files:type_name -> chromite.api.GetUpdatedFilesResponse.UpdatedFile
-	23, // 17: chromite.api.GetUpdatedFilesResponse.commit_footer:type_name -> chromite.api.GetUpdatedFilesResponse.CommitFooter
+	21, // 15: chromite.api.GetUpdatedFilesRequest.uploaded_artifacts:type_name -> chromite.api.GetUpdatedFilesRequest.UploadedArtifacts
+	22, // 16: chromite.api.GetUpdatedFilesResponse.updated_files:type_name -> chromite.api.GetUpdatedFilesResponse.UpdatedFile
+	25, // 17: chromite.api.GetUpdatedFilesResponse.commit_footer:type_name -> chromite.api.GetUpdatedFilesResponse.CommitFooter
 	9,  // 18: chromite.api.LinterFinding.locations:type_name -> chromite.api.LinterFindingLocation
 	0,  // 19: chromite.api.LinterFinding.linter:type_name -> chromite.api.LinterFinding.Linters
 	10, // 20: chromite.api.LinterFinding.suggested_fixes:type_name -> chromite.api.LinterSuggestedFix
-	33, // 21: chromite.api.LinterFinding.package:type_name -> chromiumos.PackageInfo
+	35, // 21: chromite.api.LinterFinding.package:type_name -> chromiumos.PackageInfo
 	9,  // 22: chromite.api.LinterSuggestedFix.location:type_name -> chromite.api.LinterFindingLocation
-	33, // 23: chromite.api.LinterRequest.packages:type_name -> chromiumos.PackageInfo
-	28, // 24: chromite.api.LinterRequest.sysroot:type_name -> chromite.api.Sysroot
-	27, // 25: chromite.api.LinterRequest.chroot:type_name -> chromiumos.Chroot
+	35, // 23: chromite.api.LinterRequest.packages:type_name -> chromiumos.PackageInfo
+	30, // 24: chromite.api.LinterRequest.sysroot:type_name -> chromite.api.Sysroot
+	29, // 25: chromite.api.LinterRequest.chroot:type_name -> chromiumos.Chroot
 	0,  // 26: chromite.api.LinterRequest.disabled_linters:type_name -> chromite.api.LinterFinding.Linters
 	8,  // 27: chromite.api.LinterResponse.findings:type_name -> chromite.api.LinterFinding
-	28, // 28: chromite.api.DashboardLintRequest.sysroot:type_name -> chromite.api.Sysroot
-	27, // 29: chromite.api.DashboardLintRequest.chroot:type_name -> chromiumos.Chroot
-	34, // 30: chromite.api.SetupToolchainsRequest.boards:type_name -> chromiumos.BuildTarget
-	27, // 31: chromite.api.SetupToolchainsRequest.chroot:type_name -> chromiumos.Chroot
-	24, // 32: chromite.api.SetupToolchainsRequest.targets:type_name -> chromite.api.SetupToolchainsRequest.ToolchainTarget
-	1,  // 33: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.artifact_info:type_name -> chromite.api.ArtifactInfo
-	31, // 34: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.profile_info:type_name -> chromiumos.ArtifactProfileInfo
-	35, // 35: chromite.api.GetUpdatedFilesResponse.CqDependFooter.gerrit_change:type_name -> chromiumos.GerritChange
-	21, // 36: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_depend:type_name -> chromite.api.GetUpdatedFilesResponse.CqDependFooter
-	22, // 37: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_cl_tag:type_name -> chromite.api.GetUpdatedFilesResponse.CqClTagFooter
-	2,  // 38: chromite.api.ToolchainService.PrepareForBuild:input_type -> chromite.api.PrepareForToolchainBuildRequest
-	4,  // 39: chromite.api.ToolchainService.BundleArtifacts:input_type -> chromite.api.BundleToolchainRequest
-	6,  // 40: chromite.api.ToolchainService.GetUpdatedFiles:input_type -> chromite.api.GetUpdatedFilesRequest
-	13, // 41: chromite.api.ToolchainService.EmergeAndUploadLints:input_type -> chromite.api.DashboardLintRequest
-	11, // 42: chromite.api.ToolchainService.EmergeWithLinting:input_type -> chromite.api.LinterRequest
-	11, // 43: chromite.api.ToolchainService.GetClippyLints:input_type -> chromite.api.LinterRequest
-	15, // 44: chromite.api.ToolchainService.GetToolchainsForBoard:input_type -> chromite.api.ToolchainsRequest
-	17, // 45: chromite.api.ToolchainService.SetupToolchains:input_type -> chromite.api.SetupToolchainsRequest
-	3,  // 46: chromite.api.ToolchainService.PrepareForBuild:output_type -> chromite.api.PrepareForToolchainBuildResponse
-	5,  // 47: chromite.api.ToolchainService.BundleArtifacts:output_type -> chromite.api.BundleToolchainResponse
-	7,  // 48: chromite.api.ToolchainService.GetUpdatedFiles:output_type -> chromite.api.GetUpdatedFilesResponse
-	14, // 49: chromite.api.ToolchainService.EmergeAndUploadLints:output_type -> chromite.api.DashboardLintResponse
-	12, // 50: chromite.api.ToolchainService.EmergeWithLinting:output_type -> chromite.api.LinterResponse
-	12, // 51: chromite.api.ToolchainService.GetClippyLints:output_type -> chromite.api.LinterResponse
-	16, // 52: chromite.api.ToolchainService.GetToolchainsForBoard:output_type -> chromite.api.ToolchainsResponse
-	18, // 53: chromite.api.ToolchainService.SetupToolchains:output_type -> chromite.api.SetupToolchainsResponse
-	46, // [46:54] is the sub-list for method output_type
-	38, // [38:46] is the sub-list for method input_type
-	38, // [38:38] is the sub-list for extension type_name
-	38, // [38:38] is the sub-list for extension extendee
-	0,  // [0:38] is the sub-list for field type_name
+	30, // 28: chromite.api.DashboardLintRequest.sysroot:type_name -> chromite.api.Sysroot
+	29, // 29: chromite.api.DashboardLintRequest.chroot:type_name -> chromiumos.Chroot
+	36, // 30: chromite.api.SetupToolchainsRequest.boards:type_name -> chromiumos.BuildTarget
+	29, // 31: chromite.api.SetupToolchainsRequest.chroot:type_name -> chromiumos.Chroot
+	26, // 32: chromite.api.SetupToolchainsRequest.targets:type_name -> chromite.api.SetupToolchainsRequest.ToolchainTarget
+	29, // 33: chromite.api.ToolchainUtilsPresubmitRequest.chroot:type_name -> chromiumos.Chroot
+	1,  // 34: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.artifact_info:type_name -> chromite.api.ArtifactInfo
+	33, // 35: chromite.api.GetUpdatedFilesRequest.UploadedArtifacts.profile_info:type_name -> chromiumos.ArtifactProfileInfo
+	37, // 36: chromite.api.GetUpdatedFilesResponse.CqDependFooter.gerrit_change:type_name -> chromiumos.GerritChange
+	23, // 37: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_depend:type_name -> chromite.api.GetUpdatedFilesResponse.CqDependFooter
+	24, // 38: chromite.api.GetUpdatedFilesResponse.CommitFooter.cq_cl_tag:type_name -> chromite.api.GetUpdatedFilesResponse.CqClTagFooter
+	2,  // 39: chromite.api.ToolchainService.PrepareForBuild:input_type -> chromite.api.PrepareForToolchainBuildRequest
+	4,  // 40: chromite.api.ToolchainService.BundleArtifacts:input_type -> chromite.api.BundleToolchainRequest
+	6,  // 41: chromite.api.ToolchainService.GetUpdatedFiles:input_type -> chromite.api.GetUpdatedFilesRequest
+	13, // 42: chromite.api.ToolchainService.EmergeAndUploadLints:input_type -> chromite.api.DashboardLintRequest
+	11, // 43: chromite.api.ToolchainService.EmergeWithLinting:input_type -> chromite.api.LinterRequest
+	11, // 44: chromite.api.ToolchainService.GetClippyLints:input_type -> chromite.api.LinterRequest
+	15, // 45: chromite.api.ToolchainService.GetToolchainsForBoard:input_type -> chromite.api.ToolchainsRequest
+	17, // 46: chromite.api.ToolchainService.SetupToolchains:input_type -> chromite.api.SetupToolchainsRequest
+	3,  // 47: chromite.api.ToolchainService.PrepareForBuild:output_type -> chromite.api.PrepareForToolchainBuildResponse
+	5,  // 48: chromite.api.ToolchainService.BundleArtifacts:output_type -> chromite.api.BundleToolchainResponse
+	7,  // 49: chromite.api.ToolchainService.GetUpdatedFiles:output_type -> chromite.api.GetUpdatedFilesResponse
+	14, // 50: chromite.api.ToolchainService.EmergeAndUploadLints:output_type -> chromite.api.DashboardLintResponse
+	12, // 51: chromite.api.ToolchainService.EmergeWithLinting:output_type -> chromite.api.LinterResponse
+	12, // 52: chromite.api.ToolchainService.GetClippyLints:output_type -> chromite.api.LinterResponse
+	16, // 53: chromite.api.ToolchainService.GetToolchainsForBoard:output_type -> chromite.api.ToolchainsResponse
+	18, // 54: chromite.api.ToolchainService.SetupToolchains:output_type -> chromite.api.SetupToolchainsResponse
+	47, // [47:55] is the sub-list for method output_type
+	39, // [39:47] is the sub-list for method input_type
+	39, // [39:39] is the sub-list for extension type_name
+	39, // [39:39] is the sub-list for extension extendee
+	0,  // [0:39] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_toolchain_proto_init() }
@@ -2218,7 +2338,7 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 		file_chromite_api_toolchain_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUpdatedFilesRequest_UploadedArtifacts); i {
+			switch v := v.(*ToolchainUtilsPresubmitRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2230,7 +2350,7 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 		file_chromite_api_toolchain_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUpdatedFilesResponse_UpdatedFile); i {
+			switch v := v.(*ToolchainUtilsPresubmitResonse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2242,7 +2362,7 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 		file_chromite_api_toolchain_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUpdatedFilesResponse_CqDependFooter); i {
+			switch v := v.(*GetUpdatedFilesRequest_UploadedArtifacts); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2254,7 +2374,7 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 		file_chromite_api_toolchain_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUpdatedFilesResponse_CqClTagFooter); i {
+			switch v := v.(*GetUpdatedFilesResponse_UpdatedFile); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2266,7 +2386,7 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 		file_chromite_api_toolchain_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUpdatedFilesResponse_CommitFooter); i {
+			switch v := v.(*GetUpdatedFilesResponse_CqDependFooter); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2278,6 +2398,30 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 		file_chromite_api_toolchain_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetUpdatedFilesResponse_CqClTagFooter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_toolchain_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetUpdatedFilesResponse_CommitFooter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_toolchain_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetupToolchainsRequest_ToolchainTarget); i {
 			case 0:
 				return &v.state
@@ -2290,7 +2434,7 @@ func file_chromite_api_toolchain_proto_init() {
 			}
 		}
 	}
-	file_chromite_api_toolchain_proto_msgTypes[22].OneofWrappers = []interface{}{
+	file_chromite_api_toolchain_proto_msgTypes[24].OneofWrappers = []interface{}{
 		(*GetUpdatedFilesResponse_CommitFooter_CqDepend)(nil),
 		(*GetUpdatedFilesResponse_CommitFooter_CqClTag)(nil),
 	}
@@ -2300,7 +2444,7 @@ func file_chromite_api_toolchain_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromite_api_toolchain_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   24,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
