@@ -17100,6 +17100,16 @@
                 }
               },
               "outputType": ".chromite.api.SetupToolchainsResponse"
+            },
+            {
+              "inputType": ".chromite.api.ToolchainUtilsPresubmitRequest",
+              "name": "RunToolchainUtilsPresubmit",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "INSIDE"
+                }
+              },
+              "outputType": ".chromite.api.ToolchainUtilsPresubmitResonse"
             }
           ],
           "name": "ToolchainService",

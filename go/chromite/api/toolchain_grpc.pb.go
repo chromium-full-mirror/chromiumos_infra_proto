@@ -47,6 +47,7 @@ type ToolchainServiceClient interface {
 	// Get the default and non-default toolchains for a board.
 	GetToolchainsForBoard(ctx context.Context, in *ToolchainsRequest, opts ...grpc.CallOption) (*ToolchainsResponse, error)
 	SetupToolchains(ctx context.Context, in *SetupToolchainsRequest, opts ...grpc.CallOption) (*SetupToolchainsResponse, error)
+	RunToolchainUtilsPresubmit(ctx context.Context, in *ToolchainUtilsPresubmitRequest, opts ...grpc.CallOption) (*ToolchainUtilsPresubmitResonse, error)
 }
 
 type toolchainServiceClient struct {
@@ -129,6 +130,15 @@ func (c *toolchainServiceClient) SetupToolchains(ctx context.Context, in *SetupT
 	return out, nil
 }
 
+func (c *toolchainServiceClient) RunToolchainUtilsPresubmit(ctx context.Context, in *ToolchainUtilsPresubmitRequest, opts ...grpc.CallOption) (*ToolchainUtilsPresubmitResonse, error) {
+	out := new(ToolchainUtilsPresubmitResonse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/RunToolchainUtilsPresubmit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ToolchainServiceServer is the server API for ToolchainService service.
 // All implementations must embed UnimplementedToolchainServiceServer
 // for forward compatibility
@@ -158,6 +168,7 @@ type ToolchainServiceServer interface {
 	// Get the default and non-default toolchains for a board.
 	GetToolchainsForBoard(context.Context, *ToolchainsRequest) (*ToolchainsResponse, error)
 	SetupToolchains(context.Context, *SetupToolchainsRequest) (*SetupToolchainsResponse, error)
+	RunToolchainUtilsPresubmit(context.Context, *ToolchainUtilsPresubmitRequest) (*ToolchainUtilsPresubmitResonse, error)
 	mustEmbedUnimplementedToolchainServiceServer()
 }
 
@@ -188,6 +199,9 @@ func (UnimplementedToolchainServiceServer) GetToolchainsForBoard(context.Context
 }
 func (UnimplementedToolchainServiceServer) SetupToolchains(context.Context, *SetupToolchainsRequest) (*SetupToolchainsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetupToolchains not implemented")
+}
+func (UnimplementedToolchainServiceServer) RunToolchainUtilsPresubmit(context.Context, *ToolchainUtilsPresubmitRequest) (*ToolchainUtilsPresubmitResonse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunToolchainUtilsPresubmit not implemented")
 }
 func (UnimplementedToolchainServiceServer) mustEmbedUnimplementedToolchainServiceServer() {}
 
@@ -346,6 +360,24 @@ func _ToolchainService_SetupToolchains_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ToolchainService_RunToolchainUtilsPresubmit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ToolchainUtilsPresubmitRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolchainServiceServer).RunToolchainUtilsPresubmit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ToolchainService/RunToolchainUtilsPresubmit",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolchainServiceServer).RunToolchainUtilsPresubmit(ctx, req.(*ToolchainUtilsPresubmitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ToolchainService_ServiceDesc is the grpc.ServiceDesc for ToolchainService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -384,6 +416,10 @@ var ToolchainService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetupToolchains",
 			Handler:    _ToolchainService_SetupToolchains_Handler,
+		},
+		{
+			MethodName: "RunToolchainUtilsPresubmit",
+			Handler:    _ToolchainService_RunToolchainUtilsPresubmit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
