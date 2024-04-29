@@ -21486,6 +21486,459 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "enumType": [
+        {
+          "name": "Language",
+          "value": [
+            {
+              "name": "LANGUAGE_UNSPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "LANGUAGE_JAVA",
+              "number": 1
+            },
+            {
+              "name": "LANGUAGE_CPP",
+              "number": 2
+            }
+          ]
+        }
+      ],
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "Code",
+              "value": [
+                {
+                  "name": "OK",
+                  "number": 0
+                },
+                {
+                  "name": "FAILURE",
+                  "number": 1
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "code",
+              "label": "LABEL_OPTIONAL",
+              "name": "code",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".ide_query.Status.Code"
+            },
+            {
+              "jsonName": "message",
+              "label": "LABEL_OPTIONAL",
+              "name": "message",
+              "number": 2,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Status",
+          "oneofDecl": [
+            {
+              "name": "_message"
+            }
+          ],
+          "options": {
+            "deprecated": true
+          }
+        },
+        {
+          "field": [
+            {
+              "jsonName": "path",
+              "label": "LABEL_OPTIONAL",
+              "name": "path",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "contents",
+              "label": "LABEL_OPTIONAL",
+              "name": "contents",
+              "number": 2,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_BYTES"
+            }
+          ],
+          "name": "GeneratedFile",
+          "oneofDecl": [
+            {
+              "name": "_contents"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "path",
+              "label": "LABEL_OPTIONAL",
+              "name": "path",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "workingDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "working_dir",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "compilerArguments",
+              "label": "LABEL_REPEATED",
+              "name": "compiler_arguments",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "generated",
+              "label": "LABEL_REPEATED",
+              "name": "generated",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.GeneratedFile"
+            },
+            {
+              "jsonName": "deps",
+              "label": "LABEL_REPEATED",
+              "name": "deps",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 6,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.Status"
+            }
+          ],
+          "name": "SourceFile",
+          "oneofDecl": [
+            {
+              "name": "_status"
+            }
+          ],
+          "options": {
+            "deprecated": true
+          }
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildOutDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_out_dir",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "workingDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "working_dir",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "error",
+              "label": "LABEL_OPTIONAL",
+              "name": "error",
+              "number": 5,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.AnalysisError"
+            },
+            {
+              "jsonName": "results",
+              "label": "LABEL_REPEATED",
+              "name": "results",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.AnalysisResult"
+            },
+            {
+              "jsonName": "units",
+              "label": "LABEL_REPEATED",
+              "name": "units",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.BuildableUnit"
+            },
+            {
+              "jsonName": "sources",
+              "label": "LABEL_REPEATED",
+              "name": "sources",
+              "number": 2,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.SourceFile"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 3,
+              "oneofIndex": 1,
+              "options": {
+                "deprecated": true
+              },
+              "proto3Optional": true,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.Status"
+            }
+          ],
+          "name": "IdeAnalysis",
+          "oneofDecl": [
+            {
+              "name": "_error"
+            },
+            {
+              "name": "_status"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "errorMessage",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_message",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AnalysisError"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "sourceFilePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "source_file_path",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.AnalysisResult.Status"
+            },
+            {
+              "jsonName": "unitId",
+              "label": "LABEL_OPTIONAL",
+              "name": "unit_id",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "invalidation",
+              "label": "LABEL_OPTIONAL",
+              "name": "invalidation",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.Invalidation"
+            }
+          ],
+          "name": "AnalysisResult",
+          "nestedType": [
+            {
+              "enumType": [
+                {
+                  "name": "Code",
+                  "value": [
+                    {
+                      "name": "CODE_UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "CODE_OK",
+                      "number": 1
+                    },
+                    {
+                      "name": "CODE_NOT_FOUND",
+                      "number": 2
+                    },
+                    {
+                      "name": "CODE_BUILD_FAILED",
+                      "number": 3
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "code",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "code",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".ide_query.AnalysisResult.Status.Code"
+                },
+                {
+                  "jsonName": "statusMessage",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "status_message",
+                  "number": 2,
+                  "oneofIndex": 0,
+                  "proto3Optional": true,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Status",
+              "oneofDecl": [
+                {
+                  "name": "_status_message"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "language",
+              "label": "LABEL_OPTIONAL",
+              "name": "language",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".ide_query.Language"
+            },
+            {
+              "jsonName": "sourceFilePaths",
+              "label": "LABEL_REPEATED",
+              "name": "source_file_paths",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "compilerArguments",
+              "label": "LABEL_REPEATED",
+              "name": "compiler_arguments",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "generatedFiles",
+              "label": "LABEL_REPEATED",
+              "name": "generated_files",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.GeneratedFile"
+            },
+            {
+              "jsonName": "dependencyIds",
+              "label": "LABEL_REPEATED",
+              "name": "dependency_ids",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BuildableUnit"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "filePaths",
+              "label": "LABEL_REPEATED",
+              "name": "file_paths",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "wildcards",
+              "label": "LABEL_REPEATED",
+              "name": "wildcards",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".ide_query.Invalidation.Wildcard"
+            }
+          ],
+          "name": "Invalidation",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "prefix",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "prefix",
+                  "number": 1,
+                  "oneofIndex": 0,
+                  "proto3Optional": true,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "suffix",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "suffix",
+                  "number": 2,
+                  "oneofIndex": 1,
+                  "proto3Optional": true,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "canCrossFolder",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "can_cross_folder",
+                  "number": 3,
+                  "oneofIndex": 2,
+                  "proto3Optional": true,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "Wildcard",
+              "oneofDecl": [
+                {
+                  "name": "_prefix"
+                },
+                {
+                  "name": "_suffix"
+                },
+                {
+                  "name": "_can_cross_folder"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "ide_query/ide_query.proto",
+      "options": {
+        "goPackage": "ide_query/ide_query_proto"
+      },
+      "package": "ide_query",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "field": [

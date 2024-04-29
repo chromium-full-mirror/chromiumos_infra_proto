@@ -4,7 +4,7 @@ This folder contains the protobuf source files for the Chromite Build API and Re
 
 ## Making changes
 
-Before commiting any changes to this repo, make sure to run `generate.sh` one
+Before committing any changes to this repo, make sure to run `generate.sh` one
 directory up.
 
 ## Directories:
@@ -47,3 +47,7 @@ Cycler protos: go/cros-gs-lifecycler
 ### bot_scaling
 
 RoboCrop protos: go/robocrop
+
+### ide_query
+
+This directory contains the response proto for the ide_query script, defined at go/reqs-for-peep, which allows Cider to query ChromeOS for language support instructions. The proto definition should be pulled down from google3/devtools/cider/services/build/companion/ide_query.proto.
