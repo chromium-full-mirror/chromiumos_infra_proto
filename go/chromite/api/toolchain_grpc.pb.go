@@ -47,7 +47,7 @@ type ToolchainServiceClient interface {
 	// Get the default and non-default toolchains for a board.
 	GetToolchainsForBoard(ctx context.Context, in *ToolchainsRequest, opts ...grpc.CallOption) (*ToolchainsResponse, error)
 	SetupToolchains(ctx context.Context, in *SetupToolchainsRequest, opts ...grpc.CallOption) (*SetupToolchainsResponse, error)
-	RunToolchainUtilsPresubmit(ctx context.Context, in *ToolchainUtilsPresubmitRequest, opts ...grpc.CallOption) (*ToolchainUtilsPresubmitResonse, error)
+	RunToolchainUtilsPresubmit(ctx context.Context, in *ToolchainUtilsPresubmitRequest, opts ...grpc.CallOption) (*ToolchainUtilsPresubmitResponse, error)
 }
 
 type toolchainServiceClient struct {
@@ -130,8 +130,8 @@ func (c *toolchainServiceClient) SetupToolchains(ctx context.Context, in *SetupT
 	return out, nil
 }
 
-func (c *toolchainServiceClient) RunToolchainUtilsPresubmit(ctx context.Context, in *ToolchainUtilsPresubmitRequest, opts ...grpc.CallOption) (*ToolchainUtilsPresubmitResonse, error) {
-	out := new(ToolchainUtilsPresubmitResonse)
+func (c *toolchainServiceClient) RunToolchainUtilsPresubmit(ctx context.Context, in *ToolchainUtilsPresubmitRequest, opts ...grpc.CallOption) (*ToolchainUtilsPresubmitResponse, error) {
+	out := new(ToolchainUtilsPresubmitResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ToolchainService/RunToolchainUtilsPresubmit", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -168,7 +168,7 @@ type ToolchainServiceServer interface {
 	// Get the default and non-default toolchains for a board.
 	GetToolchainsForBoard(context.Context, *ToolchainsRequest) (*ToolchainsResponse, error)
 	SetupToolchains(context.Context, *SetupToolchainsRequest) (*SetupToolchainsResponse, error)
-	RunToolchainUtilsPresubmit(context.Context, *ToolchainUtilsPresubmitRequest) (*ToolchainUtilsPresubmitResonse, error)
+	RunToolchainUtilsPresubmit(context.Context, *ToolchainUtilsPresubmitRequest) (*ToolchainUtilsPresubmitResponse, error)
 	mustEmbedUnimplementedToolchainServiceServer()
 }
 
@@ -200,7 +200,7 @@ func (UnimplementedToolchainServiceServer) GetToolchainsForBoard(context.Context
 func (UnimplementedToolchainServiceServer) SetupToolchains(context.Context, *SetupToolchainsRequest) (*SetupToolchainsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetupToolchains not implemented")
 }
-func (UnimplementedToolchainServiceServer) RunToolchainUtilsPresubmit(context.Context, *ToolchainUtilsPresubmitRequest) (*ToolchainUtilsPresubmitResonse, error) {
+func (UnimplementedToolchainServiceServer) RunToolchainUtilsPresubmit(context.Context, *ToolchainUtilsPresubmitRequest) (*ToolchainUtilsPresubmitResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunToolchainUtilsPresubmit not implemented")
 }
 func (UnimplementedToolchainServiceServer) mustEmbedUnimplementedToolchainServiceServer() {}

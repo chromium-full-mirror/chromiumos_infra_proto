@@ -17030,7 +17030,7 @@
               "type": "TYPE_BOOL"
             }
           ],
-          "name": "ToolchainUtilsPresubmitResonse"
+          "name": "ToolchainUtilsPresubmitResponse"
         }
       ],
       "name": "chromite/api/toolchain.proto",
@@ -17109,7 +17109,7 @@
                   "methodChrootAssert": "INSIDE"
                 }
               },
-              "outputType": ".chromite.api.ToolchainUtilsPresubmitResonse"
+              "outputType": ".chromite.api.ToolchainUtilsPresubmitResponse"
             }
           ],
           "name": "ToolchainService",
