@@ -21200,6 +21200,10 @@
                 {
                   "name": "SOC_RAPTOR_LAKE",
                   "number": 47
+                },
+                {
+                  "name": "SOC_MT8196",
+                  "number": 48
                 }
               ]
             },
