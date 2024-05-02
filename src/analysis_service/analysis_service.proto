@@ -39,7 +39,7 @@ message StepExecutionResult {
 //
 // NEXT ID: 59;
 message AnalysisServiceEvent {
-  reserved 40, 41;
+  reserved 36, 37, 40, 41;
 
   // The Buildbucket id for the build doing the request and response.
   int64 build_id = 42;
@@ -83,7 +83,6 @@ message AnalysisServiceEvent {
     chromite.api.InstallToolchainRequest install_toolchain_request = 30;
     chromite.api.BuildTargetUnitTestRequest build_target_unit_test_request = 32;
     chromite.api.ChromiteUnitTestRequest chromite_unit_test_request = 34;
-    chromite.api.DebugInfoTestRequest debug_info_test_request = 36;
     chromite.api.VmTestRequest vm_test_request = 38;
     chromite.api.UprevPackagesRequest uprev_packages_request = 44;
     chromite.api.GetBestVisibleRequest get_best_visible_request = 46;
@@ -114,7 +113,6 @@ message AnalysisServiceEvent {
     chromite.api.BuildTargetUnitTestResponse build_target_unit_test_response =
         33;
     chromite.api.ChromiteUnitTestResponse chromite_unit_test_response = 35;
-    chromite.api.DebugInfoTestResponse debug_info_test_response = 37;
     chromite.api.VmTestResponse vm_test_response = 39;
     chromite.api.UprevPackagesResponse uprev_packages_response = 45;
     chromite.api.GetBestVisibleResponse get_best_visible_response = 47;

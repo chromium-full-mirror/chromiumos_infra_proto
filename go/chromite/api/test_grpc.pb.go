@@ -38,8 +38,6 @@ type TestServiceClient interface {
 	BazelTest(ctx context.Context, in *BazelTestRequest, opts ...grpc.CallOption) (*BazelTestResponse, error)
 	// Run the cros-signing unit tests.
 	CrosSigningTest(ctx context.Context, in *CrosSigningTestRequest, opts ...grpc.CallOption) (*CrosSigningTestResponse, error)
-	// Run the debug info tests on a sysroot.
-	DebugInfoTest(ctx context.Context, in *DebugInfoTestRequest, opts ...grpc.CallOption) (*DebugInfoTestResponse, error)
 	// Run VM tests and report failures.
 	VmTest(ctx context.Context, in *VmTestRequest, opts ...grpc.CallOption) (*VmTestResponse, error)
 	// Run the rules_cros unit tests.
@@ -110,15 +108,6 @@ func (c *testServiceClient) CrosSigningTest(ctx context.Context, in *CrosSigning
 	return out, nil
 }
 
-func (c *testServiceClient) DebugInfoTest(ctx context.Context, in *DebugInfoTestRequest, opts ...grpc.CallOption) (*DebugInfoTestResponse, error) {
-	out := new(DebugInfoTestResponse)
-	err := c.cc.Invoke(ctx, "/chromite.api.TestService/DebugInfoTest", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *testServiceClient) VmTest(ctx context.Context, in *VmTestRequest, opts ...grpc.CallOption) (*VmTestResponse, error) {
 	out := new(VmTestResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.TestService/VmTest", in, out, opts...)
@@ -166,8 +155,6 @@ type TestServiceServer interface {
 	BazelTest(context.Context, *BazelTestRequest) (*BazelTestResponse, error)
 	// Run the cros-signing unit tests.
 	CrosSigningTest(context.Context, *CrosSigningTestRequest) (*CrosSigningTestResponse, error)
-	// Run the debug info tests on a sysroot.
-	DebugInfoTest(context.Context, *DebugInfoTestRequest) (*DebugInfoTestResponse, error)
 	// Run VM tests and report failures.
 	VmTest(context.Context, *VmTestRequest) (*VmTestResponse, error)
 	// Run the rules_cros unit tests.
@@ -198,9 +185,6 @@ func (UnimplementedTestServiceServer) BazelTest(context.Context, *BazelTestReque
 }
 func (UnimplementedTestServiceServer) CrosSigningTest(context.Context, *CrosSigningTestRequest) (*CrosSigningTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CrosSigningTest not implemented")
-}
-func (UnimplementedTestServiceServer) DebugInfoTest(context.Context, *DebugInfoTestRequest) (*DebugInfoTestResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DebugInfoTest not implemented")
 }
 func (UnimplementedTestServiceServer) VmTest(context.Context, *VmTestRequest) (*VmTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VmTest not implemented")
@@ -332,24 +316,6 @@ func _TestService_CrosSigningTest_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TestService_DebugInfoTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DebugInfoTestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TestServiceServer).DebugInfoTest(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chromite.api.TestService/DebugInfoTest",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TestServiceServer).DebugInfoTest(ctx, req.(*DebugInfoTestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TestService_VmTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VmTestRequest)
 	if err := dec(in); err != nil {
@@ -434,10 +400,6 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CrosSigningTest",
 			Handler:    _TestService_CrosSigningTest_Handler,
-		},
-		{
-			MethodName: "DebugInfoTest",
-			Handler:    _TestService_DebugInfoTest_Handler,
 		},
 		{
 			MethodName: "VmTest",

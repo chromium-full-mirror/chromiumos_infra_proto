@@ -155,16 +155,6 @@ message CrosSigningTestRequest {
 
 message CrosSigningTestResponse {}
 
-// Run the debug_info_test script.
-message DebugInfoTestRequest {
-  // The sysroot to tests.
-  chromite.api.Sysroot sysroot = 1;
-  // The chroot to use to execute the endpoint.
-  chromiumos.Chroot chroot = 2;
-}
-
-message DebugInfoTestResponse {}
-
 message VmTestRequest {
   // The build target under test. Required.
   chromiumos.BuildTarget build_target = 1;
@@ -278,9 +268,6 @@ service TestService {
 
   // Run the cros-signing unit tests.
   rpc CrosSigningTest(CrosSigningTestRequest) returns (CrosSigningTestResponse);
-
-  // Run the debug info tests on a sysroot.
-  rpc DebugInfoTest(DebugInfoTestRequest) returns (DebugInfoTestResponse);
 
   // Run VM tests and report failures.
   rpc VmTest(VmTestRequest) returns (VmTestResponse);

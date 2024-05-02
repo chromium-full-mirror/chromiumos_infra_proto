@@ -10096,30 +10096,6 @@
           "name": "CrosSigningTestResponse"
         },
         {
-          "field": [
-            {
-              "jsonName": "sysroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "sysroot",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.Sysroot"
-            },
-            {
-              "jsonName": "chroot",
-              "label": "LABEL_OPTIONAL",
-              "name": "chroot",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Chroot"
-            }
-          ],
-          "name": "DebugInfoTestRequest"
-        },
-        {
-          "name": "DebugInfoTestResponse"
-        },
-        {
           "enumType": [
             {
               "name": "TestHarness",
@@ -10323,11 +10299,6 @@
               "inputType": ".chromite.api.CrosSigningTestRequest",
               "name": "CrosSigningTest",
               "outputType": ".chromite.api.CrosSigningTestResponse"
-            },
-            {
-              "inputType": ".chromite.api.DebugInfoTestRequest",
-              "name": "DebugInfoTest",
-              "outputType": ".chromite.api.DebugInfoTestResponse"
             },
             {
               "inputType": ".chromite.api.VmTestRequest",
@@ -10620,15 +10591,6 @@
               "typeName": ".chromite.api.ChromiteUnitTestRequest"
             },
             {
-              "jsonName": "debugInfoTestRequest",
-              "label": "LABEL_OPTIONAL",
-              "name": "debug_info_test_request",
-              "number": 36,
-              "oneofIndex": 0,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.DebugInfoTestRequest"
-            },
-            {
               "jsonName": "vmTestRequest",
               "label": "LABEL_OPTIONAL",
               "name": "vm_test_request",
@@ -10836,15 +10798,6 @@
               "typeName": ".chromite.api.ChromiteUnitTestResponse"
             },
             {
-              "jsonName": "debugInfoTestResponse",
-              "label": "LABEL_OPTIONAL",
-              "name": "debug_info_test_response",
-              "number": 37,
-              "oneofIndex": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.DebugInfoTestResponse"
-            },
-            {
               "jsonName": "vmTestResponse",
               "label": "LABEL_OPTIONAL",
               "name": "vm_test_response",
@@ -10918,6 +10871,14 @@
             }
           ],
           "reservedRange": [
+            {
+              "end": 37,
+              "start": 36
+            },
+            {
+              "end": 38,
+              "start": 37
+            },
             {
               "end": 41,
               "start": 40
