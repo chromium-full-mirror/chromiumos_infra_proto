@@ -15903,6 +15903,14 @@
               "typeName": ".chromiumos.Chroot"
             },
             {
+              "jsonName": "packages",
+              "label": "LABEL_REPEATED",
+              "name": "packages",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.PackageInfo"
+            },
+            {
               "jsonName": "resultPath",
               "label": "LABEL_OPTIONAL",
               "name": "result_path",

@@ -19,6 +19,10 @@ message BuildSdkSubtoolsRequest {
   // set up as a "subtools" chroot, it will be converted into one.
   chromiumos.Chroot chroot = 1;
 
+  // Which packages should be built.  The default is
+  // ["virtual/target-sdk-subtools"].
+  repeated chromiumos.PackageInfo packages = 2;
+
   // A ResultPath to communicate to the build API how to map paths.
   chromiumos.ResultPath result_path = 3;
 }
