@@ -37560,6 +37560,1378 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromiumos/test/api/test_suite.proto",
+        "chromiumos/test/api/ctp2.proto"
+      ],
+      "enumType": [
+        {
+          "name": "Branch",
+          "value": [
+            {
+              "name": "BRANCH_UNSPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "CANARY",
+              "number": 1
+            },
+            {
+              "name": "DEV",
+              "number": 2
+            },
+            {
+              "name": "BETA",
+              "number": 3
+            },
+            {
+              "name": "STABLE",
+              "number": 4
+            },
+            {
+              "name": "LTS",
+              "number": 5
+            }
+          ]
+        }
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "variants",
+              "label": "LABEL_REPEATED",
+              "name": "variants",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "models",
+              "label": "LABEL_REPEATED",
+              "name": "models",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Board"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "boards",
+              "label": "LABEL_REPEATED",
+              "name": "boards",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.Board"
+            },
+            {
+              "jsonName": "androidBoards",
+              "label": "LABEL_REPEATED",
+              "name": "android_boards",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.Board"
+            }
+          ],
+          "name": "LabConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "variant",
+              "label": "LABEL_OPTIONAL",
+              "name": "variant",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BoardVariant"
+        },
+        {
+          "enumType": [
+            {
+              "name": "FirmwareBranch",
+              "value": [
+                {
+                  "name": "UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "CROS",
+                  "number": 1
+                },
+                {
+                  "name": "FIRMWARE",
+                  "number": 2
+                },
+                {
+                  "name": "DEV",
+                  "number": 3
+                },
+                {
+                  "name": "BETA",
+                  "number": 4
+                },
+                {
+                  "name": "STABLE",
+                  "number": 5
+                }
+              ]
+            },
+            {
+              "name": "TriggerType",
+              "value": [
+                {
+                  "name": "TRIGGER_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "PRIMARY",
+                  "number": 1
+                },
+                {
+                  "name": "ALL",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suite",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "contacts",
+              "label": "LABEL_REPEATED",
+              "name": "contacts",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig.Contact"
+            },
+            {
+              "jsonName": "launchCriteria",
+              "label": "LABEL_OPTIONAL",
+              "name": "launch_criteria",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig.LaunchCriteria"
+            },
+            {
+              "jsonName": "branches",
+              "label": "LABEL_REPEATED",
+              "name": "branches",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.Branch"
+            },
+            {
+              "jsonName": "targetOptions",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_options",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig.TargetOptions"
+            },
+            {
+              "jsonName": "poolOptions",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool_options",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig.PoolOptions"
+            },
+            {
+              "jsonName": "firmwareRoBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ro_build_spec",
+              "number": 8,
+              "oneofIndex": 0,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
+            },
+            {
+              "jsonName": "firmwareRoVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ro_version",
+              "number": 11,
+              "oneofIndex": 0,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firmwareRwBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_rw_build_spec",
+              "number": 12,
+              "oneofIndex": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
+            },
+            {
+              "jsonName": "firmwareRwVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_rw_version",
+              "number": 13,
+              "oneofIndex": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firmwareEcRoBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_ro_build_spec",
+              "number": 19,
+              "oneofIndex": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
+            },
+            {
+              "jsonName": "firmwareEcRoVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_ro_version",
+              "number": 20,
+              "oneofIndex": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firmwareEcRwBuildSpec",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_rw_build_spec",
+              "number": 21,
+              "oneofIndex": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
+            },
+            {
+              "jsonName": "firmwareEcRwVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_ec_rw_version",
+              "number": 22,
+              "oneofIndex": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firmwareBoardName",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_board_name",
+              "number": 14,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "runOptions",
+              "label": "LABEL_OPTIONAL",
+              "name": "run_options",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig.RunOptions"
+            },
+            {
+              "jsonName": "analyticsName",
+              "label": "LABEL_OPTIONAL",
+              "name": "analytics_name",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "androidImageVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_image_version",
+              "number": 15,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "gmsCorePackage",
+              "label": "LABEL_OPTIONAL",
+              "name": "gms_core_package",
+              "number": 16,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "karbonFilters",
+              "label": "LABEL_REPEATED",
+              "name": "karbon_filters",
+              "number": 17,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CTPFilter"
+            },
+            {
+              "jsonName": "koffeeFilters",
+              "label": "LABEL_REPEATED",
+              "name": "koffee_filters",
+              "number": 18,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CTPFilter"
+            },
+            {
+              "jsonName": "testArgs",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_args",
+              "number": 23,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "enableAutotestSharding",
+              "label": "LABEL_OPTIONAL",
+              "name": "enable_autotest_sharding",
+              "number": 24,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dddSuite",
+              "label": "LABEL_OPTIONAL",
+              "name": "ddd_suite",
+              "number": 25,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "SchedulerConfig",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "email",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "email",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Contact"
+            },
+            {
+              "enumType": [
+                {
+                  "name": "LaunchProfile",
+                  "value": [
+                    {
+                      "name": "UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "NEW_BUILD",
+                      "number": 1
+                    },
+                    {
+                      "name": "DAILY",
+                      "number": 2
+                    },
+                    {
+                      "name": "WEEKLY",
+                      "number": 3
+                    },
+                    {
+                      "name": "CRON_BASED",
+                      "number": 4
+                    },
+                    {
+                      "name": "FORTNIGHTLY",
+                      "number": 5
+                    },
+                    {
+                      "name": "NEW_BUILD_3D",
+                      "number": 6
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "launchProfile",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "launch_profile",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".testplans.SchedulerConfig.LaunchCriteria.LaunchProfile"
+                },
+                {
+                  "jsonName": "hour",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hour",
+                  "number": 2,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "day",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "day",
+                  "number": 3,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "cronSchedule",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "cron_schedule",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "LaunchCriteria"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "boardsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "boards_list",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "excludeBoards",
+                  "label": "LABEL_REPEATED",
+                  "name": "exclude_boards",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "skipVariants",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "skip_variants",
+                  "number": 8,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "variantsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "variants_list",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.BoardVariant"
+                },
+                {
+                  "jsonName": "excludeVariants",
+                  "label": "LABEL_REPEATED",
+                  "name": "exclude_variants",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.BoardVariant"
+                },
+                {
+                  "jsonName": "modelsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "models_list",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "anyModel",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "any_model",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "excludeModels",
+                  "label": "LABEL_REPEATED",
+                  "name": "exclude_models",
+                  "number": 7,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "multiDutsBoardsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "multi_duts_boards_list",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsByBoard"
+                },
+                {
+                  "jsonName": "multiDutsModelsList",
+                  "label": "LABEL_REPEATED",
+                  "name": "multi_duts_models_list",
+                  "number": 11,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsByModel"
+                }
+              ],
+              "name": "TargetOptions",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "primaryBoard",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "primary_board",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "secondaryBoards",
+                      "label": "LABEL_REPEATED",
+                      "name": "secondary_boards",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "MultiDutsByBoard"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "primaryModel",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "primary_model",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "secondaryModels",
+                      "label": "LABEL_REPEATED",
+                      "name": "secondary_models",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "MultiDutsByModel"
+                }
+              ],
+              "reservedRange": [
+                {
+                  "end": 11,
+                  "start": 10
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "qsAccount",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "qs_account",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pool",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pool",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "priority",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "priority",
+                  "number": 3,
+                  "type": "TYPE_INT32"
+                }
+              ],
+              "name": "PoolOptions"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "retry",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "retry",
+                  "number": 1,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "dimensions",
+                  "label": "LABEL_REPEATED",
+                  "name": "dimensions",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.RunOptions.SwarmingDimension"
+                },
+                {
+                  "jsonName": "timeoutMins",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "timeout_mins",
+                  "number": 3,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "onlySanityTestRequired",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "only_sanity_test_required",
+                  "number": 4,
+                  "options": {
+                    "deprecated": true
+                  },
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "triggerType",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "trigger_type",
+                  "number": 5,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".testplans.SchedulerConfig.TriggerType"
+                },
+                {
+                  "jsonName": "onlySuccessfulBuildRequired",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "only_successful_build_required",
+                  "number": 6,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "runViaCft",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_cft",
+                  "number": 7,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "tagCriteria",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "tag_criteria",
+                  "number": 8,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
+                },
+                {
+                  "jsonName": "builderId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "builder_id",
+                  "number": 9,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig.RunOptions.BuilderID"
+                },
+                {
+                  "jsonName": "runViaCtpv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_ctpv2",
+                  "number": 10,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "crosImageBucket",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "cros_image_bucket",
+                  "number": 11,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "runViaTrv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_via_trv2",
+                  "number": 12,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "dynamicTrv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dynamic_trv2",
+                  "number": 13,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "RunOptions",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "key",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "key",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "value",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "value",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "SwarmingDimension"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "project",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "project",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "bucket",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "bucket",
+                      "number": 2,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "builder",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "builder",
+                      "number": 3,
+                      "type": "TYPE_STRING"
+                    }
+                  ],
+                  "name": "BuilderID"
+                }
+              ]
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "firmware_ro"
+            },
+            {
+              "name": "firmware_rw"
+            },
+            {
+              "name": "firmware_ec_ro"
+            },
+            {
+              "name": "firmware_ec_rw"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "configs",
+              "label": "LABEL_REPEATED",
+              "name": "configs",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            }
+          ],
+          "name": "SchedulerCfg"
+        }
+      ],
+      "name": "testplans/suite_scheduler.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/testplans"
+      },
+      "package": "testplans",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "testplans/suite_scheduler.proto",
+        "google/protobuf/field_mask.proto",
+        "google/rpc/status.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetConfigRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            }
+          ],
+          "name": "GetConfigResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "filters",
+              "label": "LABEL_OPTIONAL",
+              "name": "filters",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_manager.FetchConfigsRequest.Filters"
+            }
+          ],
+          "name": "FetchConfigsRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "suite",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "suite",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pool",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pool",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "launchProfile",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "launch_profile",
+                  "number": 4,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".testplans.SchedulerConfig.LaunchCriteria.LaunchProfile"
+                },
+                {
+                  "jsonName": "targetBranches",
+                  "label": "LABEL_REPEATED",
+                  "name": "target_branches",
+                  "number": 5,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".testplans.Branch"
+                }
+              ],
+              "name": "Filters"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "configs",
+              "label": "LABEL_REPEATED",
+              "name": "configs",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            }
+          ],
+          "name": "FetchConfigsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "configPayload",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_payload",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            }
+          ],
+          "name": "AddConfigRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            }
+          ],
+          "name": "AddConfigResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeleteConfigRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            }
+          ],
+          "name": "DeleteConfigResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "configPayload",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_payload",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            },
+            {
+              "jsonName": "updateMask",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_mask",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.FieldMask"
+            }
+          ],
+          "name": "UpdateConfigRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            }
+          ],
+          "name": "UpdateConfigResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "models",
+              "label": "LABEL_REPEATED",
+              "name": "models",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "variants",
+              "label": "LABEL_REPEATED",
+              "name": "variants",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BuildTarget"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "filters",
+              "label": "LABEL_OPTIONAL",
+              "name": "filters",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_manager.FetchBuildTargetsRequest.Filters"
+            }
+          ],
+          "name": "FetchBuildTargetsRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "board",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "board",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "model",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "model",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "includeVariants",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "include_variants",
+                  "number": 3,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "Filters"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "buildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "build_targets",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_manager.BuildTarget"
+            }
+          ],
+          "name": "FetchBuildTargetsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            },
+            {
+              "jsonName": "compareConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "compare_config",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            }
+          ],
+          "name": "EstimateImpactRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "impactHours",
+              "label": "LABEL_OPTIONAL",
+              "name": "impact_hours",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "impactHoursDifference",
+              "label": "LABEL_OPTIONAL",
+              "name": "impact_hours_difference",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "EstimateImpactResponse",
+          "oneofDecl": [
+            {
+              "name": "impact"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "requests",
+              "label": "LABEL_REPEATED",
+              "name": "requests",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_manager.BatchEstimateImpactRequest.Request"
+            }
+          ],
+          "name": "BatchEstimateImpactRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "requestUuid",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "request_uuid",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "config",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "config",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig"
+                },
+                {
+                  "jsonName": "compareConfig",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "compare_config",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".testplans.SchedulerConfig"
+                }
+              ],
+              "name": "Request"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "reponses",
+              "label": "LABEL_REPEATED",
+              "name": "reponses",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.suite_manager.BatchEstimateImpactResponse.Reponse"
+            }
+          ],
+          "name": "BatchEstimateImpactResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "requestUuid",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "request_uuid",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "impactHours",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "impact_hours",
+                  "number": 2,
+                  "oneofIndex": 0,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "impactHoursDifference",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "impact_hours_difference",
+                  "number": 3,
+                  "oneofIndex": 0,
+                  "type": "TYPE_INT64"
+                }
+              ],
+              "name": "Reponse",
+              "oneofDecl": [
+                {
+                  "name": "impact"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "configName",
+              "label": "LABEL_OPTIONAL",
+              "name": "config_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig"
+            },
+            {
+              "jsonName": "author",
+              "label": "LABEL_OPTIONAL",
+              "name": "author",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ProposeChangeRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "uuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "uuid",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ProposeChangeResponse"
+        },
+        {
+          "name": "UpdateProposalRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.rpc.Status"
+            },
+            {
+              "jsonName": "uuid",
+              "label": "LABEL_OPTIONAL",
+              "name": "uuid",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UpdateProposalResponse"
+        }
+      ],
+      "name": "test_platform/suite_manager/api.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/suite_manager"
+      },
+      "package": "test_platform.suite_manager",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".test_platform.suite_manager.GetConfigRequest",
+              "name": "GetConfig",
+              "outputType": ".test_platform.suite_manager.GetConfigResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.FetchConfigsRequest",
+              "name": "FetchConfigs",
+              "outputType": ".test_platform.suite_manager.FetchConfigsResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.AddConfigRequest",
+              "name": "AddConfig",
+              "outputType": ".test_platform.suite_manager.AddConfigResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.DeleteConfigRequest",
+              "name": "DeleteConfig",
+              "outputType": ".test_platform.suite_manager.DeleteConfigResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.UpdateConfigRequest",
+              "name": "UpdateConfig",
+              "outputType": ".test_platform.suite_manager.UpdateConfigResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.FetchBuildTargetsRequest",
+              "name": "FetchBuildTargets",
+              "outputType": ".test_platform.suite_manager.FetchBuildTargetsResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.EstimateImpactRequest",
+              "name": "EstimateImpact",
+              "outputType": ".test_platform.suite_manager.EstimateImpactResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.BatchEstimateImpactRequest",
+              "name": "BatchEstimateImpact",
+              "outputType": ".test_platform.suite_manager.BatchEstimateImpactResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.ProposeChangeRequest",
+              "name": "ProposeChange",
+              "outputType": ".test_platform.suite_manager.ProposeChangeResponse"
+            },
+            {
+              "inputType": ".test_platform.suite_manager.UpdateProposalRequest",
+              "name": "UpdateProposal",
+              "outputType": ".test_platform.suite_manager.UpdateProposalResponse"
+            }
+          ],
+          "name": "SuiteManagerService"
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/artifacts.proto",
         "chromiumos/common.proto",
         "chromiumos/branch.proto",
@@ -39519,780 +40891,6 @@
         }
       ],
       "name": "testplans/source_tree_test_config.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/testplans"
-      },
-      "package": "testplans",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "chromiumos/test/api/test_suite.proto",
-        "chromiumos/test/api/ctp2.proto"
-      ],
-      "enumType": [
-        {
-          "name": "Branch",
-          "value": [
-            {
-              "name": "BRANCH_UNSPECIFIED",
-              "number": 0
-            },
-            {
-              "name": "CANARY",
-              "number": 1
-            },
-            {
-              "name": "DEV",
-              "number": 2
-            },
-            {
-              "name": "BETA",
-              "number": 3
-            },
-            {
-              "name": "STABLE",
-              "number": 4
-            },
-            {
-              "name": "LTS",
-              "number": 5
-            }
-          ]
-        }
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "variants",
-              "label": "LABEL_REPEATED",
-              "name": "variants",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "models",
-              "label": "LABEL_REPEATED",
-              "name": "models",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "Board"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "boards",
-              "label": "LABEL_REPEATED",
-              "name": "boards",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.Board"
-            },
-            {
-              "jsonName": "androidBoards",
-              "label": "LABEL_REPEATED",
-              "name": "android_boards",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.Board"
-            }
-          ],
-          "name": "LabConfig"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "board",
-              "label": "LABEL_OPTIONAL",
-              "name": "board",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "variant",
-              "label": "LABEL_OPTIONAL",
-              "name": "variant",
-              "number": 2,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "BoardVariant"
-        },
-        {
-          "enumType": [
-            {
-              "name": "FirmwareBranch",
-              "value": [
-                {
-                  "name": "UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "CROS",
-                  "number": 1
-                },
-                {
-                  "name": "FIRMWARE",
-                  "number": 2
-                },
-                {
-                  "name": "DEV",
-                  "number": 3
-                },
-                {
-                  "name": "BETA",
-                  "number": 4
-                },
-                {
-                  "name": "STABLE",
-                  "number": 5
-                }
-              ]
-            },
-            {
-              "name": "TriggerType",
-              "value": [
-                {
-                  "name": "TRIGGER_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "PRIMARY",
-                  "number": 1
-                },
-                {
-                  "name": "ALL",
-                  "number": 2
-                }
-              ]
-            }
-          ],
-          "field": [
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "suite",
-              "label": "LABEL_OPTIONAL",
-              "name": "suite",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "contacts",
-              "label": "LABEL_REPEATED",
-              "name": "contacts",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.SchedulerConfig.Contact"
-            },
-            {
-              "jsonName": "launchCriteria",
-              "label": "LABEL_OPTIONAL",
-              "name": "launch_criteria",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.SchedulerConfig.LaunchCriteria"
-            },
-            {
-              "jsonName": "branches",
-              "label": "LABEL_REPEATED",
-              "name": "branches",
-              "number": 5,
-              "type": "TYPE_ENUM",
-              "typeName": ".testplans.Branch"
-            },
-            {
-              "jsonName": "targetOptions",
-              "label": "LABEL_OPTIONAL",
-              "name": "target_options",
-              "number": 6,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.SchedulerConfig.TargetOptions"
-            },
-            {
-              "jsonName": "poolOptions",
-              "label": "LABEL_OPTIONAL",
-              "name": "pool_options",
-              "number": 7,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.SchedulerConfig.PoolOptions"
-            },
-            {
-              "jsonName": "firmwareRoBuildSpec",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_ro_build_spec",
-              "number": 8,
-              "oneofIndex": 0,
-              "type": "TYPE_ENUM",
-              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
-            },
-            {
-              "jsonName": "firmwareRoVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_ro_version",
-              "number": 11,
-              "oneofIndex": 0,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "firmwareRwBuildSpec",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_rw_build_spec",
-              "number": 12,
-              "oneofIndex": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
-            },
-            {
-              "jsonName": "firmwareRwVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_rw_version",
-              "number": 13,
-              "oneofIndex": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "firmwareEcRoBuildSpec",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_ec_ro_build_spec",
-              "number": 19,
-              "oneofIndex": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
-            },
-            {
-              "jsonName": "firmwareEcRoVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_ec_ro_version",
-              "number": 20,
-              "oneofIndex": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "firmwareEcRwBuildSpec",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_ec_rw_build_spec",
-              "number": 21,
-              "oneofIndex": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".testplans.SchedulerConfig.FirmwareBranch"
-            },
-            {
-              "jsonName": "firmwareEcRwVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_ec_rw_version",
-              "number": 22,
-              "oneofIndex": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "firmwareBoardName",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_board_name",
-              "number": 14,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "runOptions",
-              "label": "LABEL_OPTIONAL",
-              "name": "run_options",
-              "number": 9,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.SchedulerConfig.RunOptions"
-            },
-            {
-              "jsonName": "analyticsName",
-              "label": "LABEL_OPTIONAL",
-              "name": "analytics_name",
-              "number": 10,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "androidImageVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "android_image_version",
-              "number": 15,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "gmsCorePackage",
-              "label": "LABEL_OPTIONAL",
-              "name": "gms_core_package",
-              "number": 16,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "karbonFilters",
-              "label": "LABEL_REPEATED",
-              "name": "karbon_filters",
-              "number": 17,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.CTPFilter"
-            },
-            {
-              "jsonName": "koffeeFilters",
-              "label": "LABEL_REPEATED",
-              "name": "koffee_filters",
-              "number": 18,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.test.api.CTPFilter"
-            },
-            {
-              "jsonName": "testArgs",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_args",
-              "number": 23,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "enableAutotestSharding",
-              "label": "LABEL_OPTIONAL",
-              "name": "enable_autotest_sharding",
-              "number": 24,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "dddSuite",
-              "label": "LABEL_OPTIONAL",
-              "name": "ddd_suite",
-              "number": 25,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "SchedulerConfig",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "email",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "email",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "Contact"
-            },
-            {
-              "enumType": [
-                {
-                  "name": "LaunchProfile",
-                  "value": [
-                    {
-                      "name": "UNSPECIFIED",
-                      "number": 0
-                    },
-                    {
-                      "name": "NEW_BUILD",
-                      "number": 1
-                    },
-                    {
-                      "name": "DAILY",
-                      "number": 2
-                    },
-                    {
-                      "name": "WEEKLY",
-                      "number": 3
-                    },
-                    {
-                      "name": "CRON_BASED",
-                      "number": 4
-                    },
-                    {
-                      "name": "FORTNIGHTLY",
-                      "number": 5
-                    },
-                    {
-                      "name": "NEW_BUILD_3D",
-                      "number": 6
-                    }
-                  ]
-                }
-              ],
-              "field": [
-                {
-                  "jsonName": "launchProfile",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "launch_profile",
-                  "number": 1,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".testplans.SchedulerConfig.LaunchCriteria.LaunchProfile"
-                },
-                {
-                  "jsonName": "hour",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "hour",
-                  "number": 2,
-                  "type": "TYPE_INT32"
-                },
-                {
-                  "jsonName": "day",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "day",
-                  "number": 3,
-                  "type": "TYPE_INT32"
-                },
-                {
-                  "jsonName": "cronSchedule",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "cron_schedule",
-                  "number": 4,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "LaunchCriteria"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "boardsList",
-                  "label": "LABEL_REPEATED",
-                  "name": "boards_list",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "excludeBoards",
-                  "label": "LABEL_REPEATED",
-                  "name": "exclude_boards",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "skipVariants",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "skip_variants",
-                  "number": 8,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "variantsList",
-                  "label": "LABEL_REPEATED",
-                  "name": "variants_list",
-                  "number": 3,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.BoardVariant"
-                },
-                {
-                  "jsonName": "excludeVariants",
-                  "label": "LABEL_REPEATED",
-                  "name": "exclude_variants",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.BoardVariant"
-                },
-                {
-                  "jsonName": "modelsList",
-                  "label": "LABEL_REPEATED",
-                  "name": "models_list",
-                  "number": 5,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "anyModel",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "any_model",
-                  "number": 6,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "excludeModels",
-                  "label": "LABEL_REPEATED",
-                  "name": "exclude_models",
-                  "number": 7,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "multiDutsBoardsList",
-                  "label": "LABEL_REPEATED",
-                  "name": "multi_duts_boards_list",
-                  "number": 9,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsByBoard"
-                },
-                {
-                  "jsonName": "multiDutsModelsList",
-                  "label": "LABEL_REPEATED",
-                  "name": "multi_duts_models_list",
-                  "number": 11,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.SchedulerConfig.TargetOptions.MultiDutsByModel"
-                }
-              ],
-              "name": "TargetOptions",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "primaryBoard",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "primary_board",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "secondaryBoards",
-                      "label": "LABEL_REPEATED",
-                      "name": "secondary_boards",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "MultiDutsByBoard"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "primaryModel",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "primary_model",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "secondaryModels",
-                      "label": "LABEL_REPEATED",
-                      "name": "secondary_models",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "MultiDutsByModel"
-                }
-              ],
-              "reservedRange": [
-                {
-                  "end": 11,
-                  "start": 10
-                }
-              ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "qsAccount",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "qs_account",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "pool",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "pool",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "priority",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "priority",
-                  "number": 3,
-                  "type": "TYPE_INT32"
-                }
-              ],
-              "name": "PoolOptions"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "retry",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "retry",
-                  "number": 1,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "dimensions",
-                  "label": "LABEL_REPEATED",
-                  "name": "dimensions",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.SchedulerConfig.RunOptions.SwarmingDimension"
-                },
-                {
-                  "jsonName": "timeoutMins",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "timeout_mins",
-                  "number": 3,
-                  "type": "TYPE_INT32"
-                },
-                {
-                  "jsonName": "onlySanityTestRequired",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "only_sanity_test_required",
-                  "number": 4,
-                  "options": {
-                    "deprecated": true
-                  },
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "triggerType",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "trigger_type",
-                  "number": 5,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".testplans.SchedulerConfig.TriggerType"
-                },
-                {
-                  "jsonName": "onlySuccessfulBuildRequired",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "only_successful_build_required",
-                  "number": 6,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "runViaCft",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "run_via_cft",
-                  "number": 7,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "tagCriteria",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "tag_criteria",
-                  "number": 8,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".chromiumos.test.api.TestSuite.TestCaseTagCriteria"
-                },
-                {
-                  "jsonName": "builderId",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "builder_id",
-                  "number": 9,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".testplans.SchedulerConfig.RunOptions.BuilderID"
-                },
-                {
-                  "jsonName": "runViaCtpv2",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "run_via_ctpv2",
-                  "number": 10,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "crosImageBucket",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "cros_image_bucket",
-                  "number": 11,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "runViaTrv2",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "run_via_trv2",
-                  "number": 12,
-                  "type": "TYPE_BOOL"
-                },
-                {
-                  "jsonName": "dynamicTrv2",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "dynamic_trv2",
-                  "number": 13,
-                  "type": "TYPE_BOOL"
-                }
-              ],
-              "name": "RunOptions",
-              "nestedType": [
-                {
-                  "field": [
-                    {
-                      "jsonName": "key",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "key",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "value",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "value",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "SwarmingDimension"
-                },
-                {
-                  "field": [
-                    {
-                      "jsonName": "project",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "project",
-                      "number": 1,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "bucket",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "bucket",
-                      "number": 2,
-                      "type": "TYPE_STRING"
-                    },
-                    {
-                      "jsonName": "builder",
-                      "label": "LABEL_OPTIONAL",
-                      "name": "builder",
-                      "number": 3,
-                      "type": "TYPE_STRING"
-                    }
-                  ],
-                  "name": "BuilderID"
-                }
-              ]
-            }
-          ],
-          "oneofDecl": [
-            {
-              "name": "firmware_ro"
-            },
-            {
-              "name": "firmware_rw"
-            },
-            {
-              "name": "firmware_ec_ro"
-            },
-            {
-              "name": "firmware_ec_rw"
-            }
-          ]
-        },
-        {
-          "field": [
-            {
-              "jsonName": "configs",
-              "label": "LABEL_REPEATED",
-              "name": "configs",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".testplans.SchedulerConfig"
-            }
-          ],
-          "name": "SchedulerCfg"
-        }
-      ],
-      "name": "testplans/suite_scheduler.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/testplans"
       },
