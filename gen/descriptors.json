@@ -29399,6 +29399,48 @@
         },
         {
           "name": "AbortJobsResponse"
+        },
+        {
+          "name": "ListDlmSkuIdsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "skuId",
+              "label": "LABEL_OPTIONAL",
+              "name": "sku_id",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DlmSkuInfo"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "skus",
+              "label": "LABEL_REPEATED",
+              "name": "skus",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.DlmSkuInfo"
+            }
+          ],
+          "name": "ListDlmSkuIdsResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -29473,6 +29515,11 @@
               "inputType": ".satlabrpcserver.GetTestPlanRequest",
               "name": "GetTestPlan",
               "outputType": ".satlabrpcserver.GetTestPlanResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListDlmSkuIdsRequest",
+              "name": "ListDlmSkuIds",
+              "outputType": ".satlabrpcserver.ListDlmSkuIdsResponse"
             },
             {
               "inputType": ".satlabrpcserver.RunSuiteRequest",

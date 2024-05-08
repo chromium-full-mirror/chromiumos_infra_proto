@@ -34,6 +34,7 @@ service SatlabRpcService {
   rpc ListMilestones(ListMilestonesRequest) returns (ListMilestonesResponse);
   rpc ListTestPlans(ListTestPlansRequest) returns (ListTestPlansResponse);
   rpc GetTestPlan(GetTestPlanRequest) returns (GetTestPlanResponse);
+  rpc ListDlmSkuIds(ListDlmSkuIdsRequest) returns (ListDlmSkuIdsResponse);
 
   // services to run different types of test suites
   rpc RunSuite(RunSuiteRequest) returns (RunSuiteResponse);
@@ -789,3 +790,16 @@ message AbortJobsRequest {
 
 // NEXT_TAG = 1
 message AbortJobsResponse {}
+
+// NEXT_TAG = 1
+message ListDlmSkuIdsRequest {}
+
+// NEXT_TAG = 4
+message DlmSkuInfo {
+  string board = 1;
+  string model = 2;
+  string sku_id = 3;
+}
+
+// NEXT_TAG = 2
+message ListDlmSkuIdsResponse { repeated DlmSkuInfo skus = 1; }

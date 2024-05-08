@@ -38,6 +38,7 @@ type SatlabRpcServiceClient interface {
 	ListMilestones(ctx context.Context, in *ListMilestonesRequest, opts ...grpc.CallOption) (*ListMilestonesResponse, error)
 	ListTestPlans(ctx context.Context, in *ListTestPlansRequest, opts ...grpc.CallOption) (*ListTestPlansResponse, error)
 	GetTestPlan(ctx context.Context, in *GetTestPlanRequest, opts ...grpc.CallOption) (*GetTestPlanResponse, error)
+	ListDlmSkuIds(ctx context.Context, in *ListDlmSkuIdsRequest, opts ...grpc.CallOption) (*ListDlmSkuIdsResponse, error)
 	// services to run different types of test suites
 	RunSuite(ctx context.Context, in *RunSuiteRequest, opts ...grpc.CallOption) (*RunSuiteResponse, error)
 	RunTest(ctx context.Context, in *RunTestRequest, opts ...grpc.CallOption) (*RunTestResponse, error)
@@ -190,6 +191,15 @@ func (c *satlabRpcServiceClient) ListTestPlans(ctx context.Context, in *ListTest
 func (c *satlabRpcServiceClient) GetTestPlan(ctx context.Context, in *GetTestPlanRequest, opts ...grpc.CallOption) (*GetTestPlanResponse, error) {
 	out := new(GetTestPlanResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetTestPlan", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListDlmSkuIds(ctx context.Context, in *ListDlmSkuIdsRequest, opts ...grpc.CallOption) (*ListDlmSkuIdsResponse, error) {
+	out := new(ListDlmSkuIdsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListDlmSkuIds", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -444,6 +454,7 @@ type SatlabRpcServiceServer interface {
 	ListMilestones(context.Context, *ListMilestonesRequest) (*ListMilestonesResponse, error)
 	ListTestPlans(context.Context, *ListTestPlansRequest) (*ListTestPlansResponse, error)
 	GetTestPlan(context.Context, *GetTestPlanRequest) (*GetTestPlanResponse, error)
+	ListDlmSkuIds(context.Context, *ListDlmSkuIdsRequest) (*ListDlmSkuIdsResponse, error)
 	// services to run different types of test suites
 	RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error)
 	RunTest(context.Context, *RunTestRequest) (*RunTestResponse, error)
@@ -520,6 +531,9 @@ func (UnimplementedSatlabRpcServiceServer) ListTestPlans(context.Context, *ListT
 }
 func (UnimplementedSatlabRpcServiceServer) GetTestPlan(context.Context, *GetTestPlanRequest) (*GetTestPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTestPlan not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListDlmSkuIds(context.Context, *ListDlmSkuIdsRequest) (*ListDlmSkuIdsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDlmSkuIds not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunSuite not implemented")
@@ -833,6 +847,24 @@ func _SatlabRpcService_GetTestPlan_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).GetTestPlan(ctx, req.(*GetTestPlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListDlmSkuIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDlmSkuIdsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListDlmSkuIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListDlmSkuIds",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListDlmSkuIds(ctx, req.(*ListDlmSkuIdsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1312,6 +1344,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTestPlan",
 			Handler:    _SatlabRpcService_GetTestPlan_Handler,
+		},
+		{
+			MethodName: "ListDlmSkuIds",
+			Handler:    _SatlabRpcService_ListDlmSkuIds_Handler,
 		},
 		{
 			MethodName: "RunSuite",
