@@ -29195,6 +29195,13 @@
               "name": "build",
               "number": 16,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "cpconUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "cpcon_url",
+              "number": 17,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Job"
