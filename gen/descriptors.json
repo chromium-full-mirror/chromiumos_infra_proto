@@ -27663,10 +27663,10 @@
         {
           "field": [
             {
-              "jsonName": "hostnames",
+              "jsonName": "addresses",
               "label": "LABEL_REPEATED",
-              "name": "hostnames",
-              "number": 3,
+              "name": "addresses",
+              "number": 1,
               "type": "TYPE_STRING"
             },
             {
@@ -27677,13 +27677,7 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "AddPoolRequest",
-          "reservedRange": [
-            {
-              "end": 2,
-              "start": 1
-            }
-          ]
+          "name": "AddPoolRequest"
         },
         {
           "name": "AddPoolResponse"
@@ -27704,10 +27698,10 @@
             {
               "field": [
                 {
-                  "jsonName": "hostname",
+                  "jsonName": "address",
                   "label": "LABEL_OPTIONAL",
-                  "name": "hostname",
-                  "number": 3,
+                  "name": "address",
+                  "number": 1,
                   "type": "TYPE_STRING"
                 },
                 {
@@ -27718,13 +27712,7 @@
                   "type": "TYPE_STRING"
                 }
               ],
-              "name": "Item",
-              "reservedRange": [
-                {
-                  "end": 2,
-                  "start": 1
-                }
-              ]
+              "name": "Item"
             }
           ]
         },
