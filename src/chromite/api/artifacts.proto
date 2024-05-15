@@ -201,6 +201,21 @@ message FetchMetadataResponse {
   repeated chromiumos.ResultPath filepaths = 1;
 }
 
+// Request to fetch test harness metadata files.
+message FetchTestHarnessMetadataRequest {
+  // The chroot where the sysroot lives.
+  chromiumos.Chroot chroot = 1;
+  // The sysroot where the files live.
+  // Absolute path within chroot.
+  chromite.api.Sysroot sysroot = 2;
+}
+
+// Response containing the locations of test harness metadata files.
+message FetchTestHarnessMetadataResponse {
+  // The absolute path to each metadata file.
+  repeated chromiumos.ResultPath filepaths = 1;
+}
+
 // Request to fetch centralized suite files.
 message FetchCentralizedSuitesRequest {
   // The chroot where the sysroot lives.
