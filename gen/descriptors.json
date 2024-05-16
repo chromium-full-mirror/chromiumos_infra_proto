@@ -26178,6 +26178,13 @@
               "name": "run_cpcon_publish",
               "number": 9,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipPostProcess",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_post_process",
+              "number": 10,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "HwTestConfig"

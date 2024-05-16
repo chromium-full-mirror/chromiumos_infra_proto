@@ -20,7 +20,7 @@ message CftStepsConfig {
 // Config for hw test execution. These config helps changing mainlab hw
 // test execution flow. If not provided, default mainlab hw test execution
 // flow will take place.
-// NEXT_TAG: 9
+// NEXT_TAG: 10
 message HwTestConfig {
   // Skip loading dut topology
   bool skip_loading_dut_topology = 1;
@@ -54,4 +54,8 @@ message HwTestConfig {
   // Run cpcon publish control flag. This is not part of mainlab test
   // execution flow. Hence it's a include flag, rather than exclude flag.
   bool run_cpcon_publish = 9;
+
+  // Skip post process control flag. Will only be considered if
+  // skip_all_result_publish is not true.
+  bool skip_post_process = 10;
 }
