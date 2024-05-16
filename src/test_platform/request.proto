@@ -310,6 +310,10 @@ message Request {
     // Should only be set for runs be rerouted to ctpv2, but will be no-op
     // for ctpv1 executions.
     repeated chromiumos.test.api.CTPFilter user_defined_filters = 23;
+
+    // If true and run_via_cft is true, this suite will run via ctpv2 using
+    // quota scheduler instead of scheduke.
+    bool run_ctpv2_with_qs = 24;
   }
 
   Params params = 1;

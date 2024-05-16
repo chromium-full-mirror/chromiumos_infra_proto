@@ -26410,6 +26410,13 @@
                   "number": 23,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.CTPFilter"
+                },
+                {
+                  "jsonName": "runCtpv2WithQs",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "run_ctpv2_with_qs",
+                  "number": 24,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",
