@@ -15951,9 +15951,38 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "uploadFilter",
+              "label": "LABEL_REPEATED",
+              "name": "upload_filter",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.BuildSdkSubtoolsRequest.SubtoolName"
+            },
+            {
+              "jsonName": "privateOnly",
+              "label": "LABEL_OPTIONAL",
+              "name": "private_only",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
-          "name": "BuildSdkSubtoolsRequest"
+          "name": "BuildSdkSubtoolsRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "SubtoolName"
+            }
+          ]
         },
         {
           "field": [
@@ -15972,38 +16001,9 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Path"
-            },
-            {
-              "jsonName": "uploadFilter",
-              "label": "LABEL_REPEATED",
-              "name": "upload_filter",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.BuildSdkSubtoolsResponse.SubtoolName"
-            },
-            {
-              "jsonName": "privateOnly",
-              "label": "LABEL_OPTIONAL",
-              "name": "private_only",
-              "number": 4,
-              "type": "TYPE_BOOL"
             }
           ],
-          "name": "BuildSdkSubtoolsResponse",
-          "nestedType": [
-            {
-              "field": [
-                {
-                  "jsonName": "name",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "SubtoolName"
-            }
-          ]
+          "name": "BuildSdkSubtoolsResponse"
         },
         {
           "field": [

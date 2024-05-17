@@ -25,6 +25,13 @@ message BuildSdkSubtoolsRequest {
 
   // A ResultPath to communicate to the build API how to map paths.
   chromiumos.ResultPath result_path = 3;
+
+  message SubtoolName { string name = 1; }
+  // If specified, only prepare these subtool names for upload.
+  repeated SubtoolName upload_filter = 4;
+
+  // If specified, only upload subtools created from private overlays.
+  bool private_only = 5;
 }
 
 message BuildSdkSubtoolsResponse {
@@ -33,13 +40,6 @@ message BuildSdkSubtoolsResponse {
 
   // The bundled paths, each with upload metadata.
   repeated chromiumos.Path bundle_paths = 2;
-
-  message SubtoolName { string name = 1; }
-  // If specified, only prepare these subtool names for upload.
-  repeated SubtoolName upload_filter = 3;
-
-  // If specified, only upload subtools created from private overlays.
-  bool private_only = 4;
 }
 
 // Bundles previously created by a BuildSdkSubtoolsRequest are uploaded to a
