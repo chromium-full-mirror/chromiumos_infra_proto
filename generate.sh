@@ -139,8 +139,7 @@ find go -name '*.pb.go' -exec rm '{}' \;
 for file in "${proto_files[@]}"; do
     protoc -Isrc -I"${config_dir}/${cros_config_subdir}" \
            --go_out=go/ --go_opt=paths=source_relative \
-           --go-grpc_out=go/ --go-grpc_opt=paths=source_relative "${file}" \
-           --proto_path=./extern;
+           --go-grpc_out=go/ --go-grpc_opt=paths=source_relative "${file}";
 done
 echo "== Formatting everything..."
 test -d "./go" || die 'go dir does not exist'
