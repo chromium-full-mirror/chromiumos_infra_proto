@@ -4466,6 +4466,11 @@
               "outputType": ".chromite.api.FetchMetadataResponse"
             },
             {
+              "inputType": ".chromite.api.FetchTestHarnessMetadataRequest",
+              "name": "FetchTestHarnessMetadata",
+              "outputType": ".chromite.api.FetchTestHarnessMetadataResponse"
+            },
+            {
               "inputType": ".chromite.api.FetchCentralizedSuitesRequest",
               "name": "FetchCentralizedSuites",
               "outputType": ".chromite.api.FetchCentralizedSuitesResponse"

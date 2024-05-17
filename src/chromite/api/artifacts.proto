@@ -253,6 +253,10 @@ service ArtifactsService {
   // Fetch the paths for any metadata files.  Added in R94.
   rpc FetchMetadata(FetchMetadataRequest) returns (FetchMetadataResponse);
 
+  // Fetch the paths for any metadata files.  Added in R127.
+  rpc FetchTestHarnessMetadata(FetchTestHarnessMetadataRequest)
+      returns (FetchTestHarnessMetadataResponse);
+
   // Fetch the paths for any centralized suite files.  Added in R123.
   rpc FetchCentralizedSuites(FetchCentralizedSuitesRequest)
       returns (FetchCentralizedSuitesResponse);

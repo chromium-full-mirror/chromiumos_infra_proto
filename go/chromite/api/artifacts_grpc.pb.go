@@ -30,6 +30,8 @@ type ArtifactsServiceClient interface {
 	FetchPinnedGuestImageUris(ctx context.Context, in *PinnedGuestImageUriRequest, opts ...grpc.CallOption) (*PinnedGuestImageUriResponse, error)
 	// Fetch the paths for any metadata files.  Added in R94.
 	FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error)
+	// Fetch the paths for any metadata files.  Added in R127.
+	FetchTestHarnessMetadata(ctx context.Context, in *FetchTestHarnessMetadataRequest, opts ...grpc.CallOption) (*FetchTestHarnessMetadataResponse, error)
 	// Fetch the paths for any centralized suite files.  Added in R123.
 	FetchCentralizedSuites(ctx context.Context, in *FetchCentralizedSuitesRequest, opts ...grpc.CallOption) (*FetchCentralizedSuitesResponse, error)
 	// TODO(b/187790484): DEPRECATED use Get
@@ -117,6 +119,15 @@ func (c *artifactsServiceClient) FetchPinnedGuestImageUris(ctx context.Context, 
 func (c *artifactsServiceClient) FetchMetadata(ctx context.Context, in *FetchMetadataRequest, opts ...grpc.CallOption) (*FetchMetadataResponse, error) {
 	out := new(FetchMetadataResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsServiceClient) FetchTestHarnessMetadata(ctx context.Context, in *FetchTestHarnessMetadataRequest, opts ...grpc.CallOption) (*FetchTestHarnessMetadataResponse, error) {
+	out := new(FetchTestHarnessMetadataResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.ArtifactsService/FetchTestHarnessMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -270,6 +281,8 @@ type ArtifactsServiceServer interface {
 	FetchPinnedGuestImageUris(context.Context, *PinnedGuestImageUriRequest) (*PinnedGuestImageUriResponse, error)
 	// Fetch the paths for any metadata files.  Added in R94.
 	FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error)
+	// Fetch the paths for any metadata files.  Added in R127.
+	FetchTestHarnessMetadata(context.Context, *FetchTestHarnessMetadataRequest) (*FetchTestHarnessMetadataResponse, error)
 	// Fetch the paths for any centralized suite files.  Added in R123.
 	FetchCentralizedSuites(context.Context, *FetchCentralizedSuitesRequest) (*FetchCentralizedSuitesResponse, error)
 	// TODO(b/187790484): DEPRECATED use Get
@@ -335,6 +348,9 @@ func (UnimplementedArtifactsServiceServer) FetchPinnedGuestImageUris(context.Con
 }
 func (UnimplementedArtifactsServiceServer) FetchMetadata(context.Context, *FetchMetadataRequest) (*FetchMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchMetadata not implemented")
+}
+func (UnimplementedArtifactsServiceServer) FetchTestHarnessMetadata(context.Context, *FetchTestHarnessMetadataRequest) (*FetchTestHarnessMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchTestHarnessMetadata not implemented")
 }
 func (UnimplementedArtifactsServiceServer) FetchCentralizedSuites(context.Context, *FetchCentralizedSuitesRequest) (*FetchCentralizedSuitesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchCentralizedSuites not implemented")
@@ -462,6 +478,24 @@ func _ArtifactsService_FetchMetadata_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactsServiceServer).FetchMetadata(ctx, req.(*FetchMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactsService_FetchTestHarnessMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FetchTestHarnessMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServiceServer).FetchTestHarnessMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.ArtifactsService/FetchTestHarnessMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServiceServer).FetchTestHarnessMetadata(ctx, req.(*FetchTestHarnessMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -758,6 +792,10 @@ var ArtifactsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FetchMetadata",
 			Handler:    _ArtifactsService_FetchMetadata_Handler,
+		},
+		{
+			MethodName: "FetchTestHarnessMetadata",
+			Handler:    _ArtifactsService_FetchTestHarnessMetadata_Handler,
 		},
 		{
 			MethodName: "FetchCentralizedSuites",
