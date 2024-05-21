@@ -27757,6 +27757,13 @@
               "name": "pool",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hostnames",
+              "label": "LABEL_REPEATED",
+              "name": "hostnames",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "AddPoolRequest"
@@ -27791,6 +27798,13 @@
                   "label": "LABEL_REPEATED",
                   "name": "pools",
                   "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "hostname",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hostname",
+                  "number": 3,
                   "type": "TYPE_STRING"
                 }
               ],
