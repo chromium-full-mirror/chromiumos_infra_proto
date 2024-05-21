@@ -28923,6 +28923,94 @@
               "type": "TYPE_STRING"
             }
           ],
+          "name": "RunQualificationResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "qualificationId",
+              "label": "LABEL_OPTIONAL",
+              "name": "qualification_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dlmSkuId",
+              "label": "LABEL_OPTIONAL",
+              "name": "dlm_sku_id",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "centralizedSuite",
+              "label": "LABEL_OPTIONAL",
+              "name": "centralized_suite",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isIncrementalRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_incremental_run",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            }
+          ],
+          "name": "RunQualificationRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
           "name": "RunStorageQualResponse"
         },
         {
@@ -29405,6 +29493,11 @@
               "inputType": ".satlabrpcserver.RunStorageQualRequest",
               "name": "RunStorageQual",
               "outputType": ".satlabrpcserver.RunStorageQualResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunQualificationRequest",
+              "name": "RunQualification",
+              "outputType": ".satlabrpcserver.RunQualificationResponse"
             },
             {
               "inputType": ".satlabrpcserver.AddPoolRequest",

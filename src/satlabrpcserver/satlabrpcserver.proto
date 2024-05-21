@@ -13,50 +13,61 @@ import "chromiumos/longrunning/operations.proto";
 import "chromiumos/test/api/servod_service.proto";
 
 service SatlabRpcService {
-  rpc ListAccessibleModels (ListAccessibleModelsRequest) returns (ListAccessibleModelsResponse);
-  rpc ListBuildVersions (ListBuildVersionsRequest) returns (ListBuildVersionsResponse);
-  rpc StageBuild (StageBuildRequest) returns (StageBuildResponse);
-  rpc ListConnectedDutsFirmware (ListConnectedDutsFirmwareRequest) returns (ListConnectedDutsFirmwareResponse);
-  rpc GetSystemInfo (GetSystemInfoRequest) returns (GetSystemInfoResponse);
-  rpc GetVersionInfo (GetVersionInfoRequest) returns (GetVersionInfoResponse);
-  rpc GetNetworkInfo (GetNetworkInfoRequest) returns (GetNetworkInfoResponse);
-  rpc GetPeripheralInformation (GetPeripheralInformationRequest) returns (GetPeripheralInformationResponse);
-  rpc UpdateDutsFirmware (UpdateDutsFirmwareRequest)  returns (UpdateDutsFirmwareResponse);
+  rpc ListAccessibleModels(ListAccessibleModelsRequest)
+      returns (ListAccessibleModelsResponse);
+  rpc ListBuildVersions(ListBuildVersionsRequest)
+      returns (ListBuildVersionsResponse);
+  rpc StageBuild(StageBuildRequest) returns (StageBuildResponse);
+  rpc ListConnectedDutsFirmware(ListConnectedDutsFirmwareRequest)
+      returns (ListConnectedDutsFirmwareResponse);
+  rpc GetSystemInfo(GetSystemInfoRequest) returns (GetSystemInfoResponse);
+  rpc GetVersionInfo(GetVersionInfoRequest) returns (GetVersionInfoResponse);
+  rpc GetNetworkInfo(GetNetworkInfoRequest) returns (GetNetworkInfoResponse);
+  rpc GetPeripheralInformation(GetPeripheralInformationRequest)
+      returns (GetPeripheralInformationResponse);
+  rpc UpdateDutsFirmware(UpdateDutsFirmwareRequest)
+      returns (UpdateDutsFirmwareResponse);
 
   // Run Suite
-  rpc ListBuildTargets (ListBuildTargetsRequest) returns (ListBuildTargetsResponse);
-  rpc ListMilestones (ListMilestonesRequest) returns (ListMilestonesResponse);
-  rpc ListTestPlans (ListTestPlansRequest) returns (ListTestPlansResponse);
-  rpc GetTestPlan (GetTestPlanRequest) returns (GetTestPlanResponse);
+  rpc ListBuildTargets(ListBuildTargetsRequest)
+      returns (ListBuildTargetsResponse);
+  rpc ListMilestones(ListMilestonesRequest) returns (ListMilestonesResponse);
+  rpc ListTestPlans(ListTestPlansRequest) returns (ListTestPlansResponse);
+  rpc GetTestPlan(GetTestPlanRequest) returns (GetTestPlanResponse);
 
   // services to run different types of test suites
-  rpc RunSuite (RunSuiteRequest) returns (RunSuiteResponse);
-  rpc RunTest (RunTestRequest) returns (RunTestResponse);
-  rpc RunTestPlan (RunTestPlanRequest) returns (RunTestPlanResponse);
-  rpc RunStorageQual (RunStorageQualRequest) returns (RunStorageQualResponse);
+  rpc RunSuite(RunSuiteRequest) returns (RunSuiteResponse);
+  rpc RunTest(RunTestRequest) returns (RunTestResponse);
+  rpc RunTestPlan(RunTestPlanRequest) returns (RunTestPlanResponse);
+  rpc RunStorageQual(RunStorageQualRequest) returns (RunStorageQualResponse);
+  rpc RunQualification(RunQualificationRequest)
+      returns (RunQualificationResponse);
 
   // manage DUTs
-  rpc AddPool (AddPoolRequest) returns (AddPoolResponse);
-  rpc UpdatePool (UpdatePoolRequest) returns (UpdatePoolResponse);
-  rpc DeleteDuts (DeleteDutsRequest) returns (DeleteDutsResponse);
-  rpc AddDuts (AddDutsRequest) returns (AddDutsResponse);
+  rpc AddPool(AddPoolRequest) returns (AddPoolResponse);
+  rpc UpdatePool(UpdatePoolRequest) returns (UpdatePoolResponse);
+  rpc DeleteDuts(DeleteDutsRequest) returns (DeleteDutsResponse);
+  rpc AddDuts(AddDutsRequest) returns (AddDutsResponse);
   rpc RepairDuts(RepairDutsRequest) returns (RepairDutsResponse);
 
   // get DUTs information
-  rpc GetDutDetail (GetDutDetailRequest) returns (GetDutDetailResponse);
-  rpc ListDutTasks (ListDutTasksRequest) returns (ListDutTasksResponse);
-  rpc ListDutEvents (ListDutEventsRequest) returns (ListDutEventsResponse);
-  rpc ListEnrolledDuts (ListEnrolledDutsRequest) returns (ListEnrolledDutsResponse);
-  rpc ListDuts (ListDutsRequest) returns (ListDutsResponse);
+  rpc GetDutDetail(GetDutDetailRequest) returns (GetDutDetailResponse);
+  rpc ListDutTasks(ListDutTasksRequest) returns (ListDutTasksResponse);
+  rpc ListDutEvents(ListDutEventsRequest) returns (ListDutEventsResponse);
+  rpc ListEnrolledDuts(ListEnrolledDutsRequest)
+      returns (ListEnrolledDutsResponse);
+  rpc ListDuts(ListDutsRequest) returns (ListDutsResponse);
 
   // setup
-  rpc SetCloudConfiguration (SetCloudConfigurationRequest) returns (SetCloudConfigurationResponse);
-  rpc GetCloudConfiguration (GetCloudConfigurationRequest) returns (GetCloudConfigurationResponse);
+  rpc SetCloudConfiguration(SetCloudConfigurationRequest)
+      returns (SetCloudConfigurationResponse);
+  rpc GetCloudConfiguration(GetCloudConfigurationRequest)
+      returns (GetCloudConfigurationResponse);
 
   // system
-  rpc Reboot (RebootRequest) returns (RebootResponse);
-  rpc UploadLog (UploadLogRequest) returns (UploadLogResponse);
-  rpc DownloadLog (DownloadLogRequest) returns (stream DownloadLogResponse);
+  rpc Reboot(RebootRequest) returns (RebootResponse);
+  rpc UploadLog(UploadLogRequest) returns (UploadLogResponse);
+  rpc DownloadLog(DownloadLogRequest) returns (stream DownloadLogResponse);
 
   // servo
   rpc StartServod(chromiumos.test.api.StartServodRequest)
@@ -68,21 +79,18 @@ service SatlabRpcService {
   }
 
   // Jobs/Tasks information
-  rpc ListJobs (ListJobsRequest) returns (ListJobsResponse);
+  rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
 
   // Jobs operation
-  rpc AbortJobs (AbortJobsRequest) returns (AbortJobsResponse);
+  rpc AbortJobs(AbortJobsRequest) returns (AbortJobsResponse);
 }
 
 message StartServodResponse {
   // Empty response for success.
-  message Success {
-  }
+  message Success {}
 
   // Error message for failure.
-  message Failure {
-    string error_message = 1;
-  }
+  message Failure { string error_message = 1; }
 
   oneof result {
     Success success = 1;
@@ -90,16 +98,12 @@ message StartServodResponse {
   }
 }
 
-message StartServodMetadata {
-}
+message StartServodMetadata {}
 
-message ListBuildTargetsRequest {
-}
+message ListBuildTargetsRequest {}
 
 // NEXT_TAG = 2
-message ListBuildTargetsResponse {
-  repeated string build_targets = 1;
-}
+message ListBuildTargetsResponse { repeated string build_targets = 1; }
 
 // NEXT_TAG = 4
 message BuildItem {
@@ -122,14 +126,10 @@ message ListMilestonesRequest {
 }
 
 // NEXT_TAG = 3
-message ListMilestonesResponse {
-  repeated BuildItem milestones = 1;
-}
+message ListMilestonesResponse { repeated BuildItem milestones = 1; }
 
 // NEXT_TAG = 2
-message ListAccessibleModelsRequest {
-  string board = 1;
-}
+message ListAccessibleModelsRequest { string board = 1; }
 
 // NEXT_TAG = 3
 message Model {
@@ -138,9 +138,7 @@ message Model {
 }
 
 // NEXT_TAG = 2
-message ListAccessibleModelsResponse {
-  repeated Model models = 1;
-}
+message ListAccessibleModelsResponse { repeated Model models = 1; }
 
 // NEXT_TAG = 4
 message ListBuildVersionsRequest {
@@ -150,9 +148,7 @@ message ListBuildVersionsRequest {
 }
 
 // NEXT_TAG = 2
-message ListBuildVersionsResponse {
-  repeated BuildItem build_versions = 1;
-}
+message ListBuildVersionsResponse { repeated BuildItem build_versions = 1; }
 
 // NEXT_TAG = 4
 message StageBuildRequest {
@@ -162,13 +158,10 @@ message StageBuildRequest {
 }
 
 // NEXT_TAG = 2
-message StageBuildResponse {
-  string build_bucket = 1;
-}
+message StageBuildResponse { string build_bucket = 1; }
 
 // NEXT_TAG = 1
-message ListConnectedDutsFirmwareRequest {
-}
+message ListConnectedDutsFirmwareRequest {}
 
 // NEXT_TAG = 4
 message ConnectedDutFirmwareInfo {
@@ -183,8 +176,7 @@ message ListConnectedDutsFirmwareResponse {
 }
 
 // NEXT_TAG = 1
-message GetSystemInfoRequest {
-}
+message GetSystemInfoRequest {}
 
 // NEXT_TAG = 3
 message GetSystemInfoResponse {
@@ -193,19 +185,13 @@ message GetSystemInfoResponse {
 }
 
 // NEXT_TAG = 2
-message GetPeripheralInformationRequest {
-  string dut_hostname = 1;
-}
+message GetPeripheralInformationRequest { string dut_hostname = 1; }
 
 // NEXT_TAG = 2
-message GetPeripheralInformationResponse {
-  string json_info = 1;
-}
+message GetPeripheralInformationResponse { string json_info = 1; }
 
 // NEXT_TAG = 2
-message UpdateDutsFirmwareRequest {
-  repeated string ips = 1;
-}
+message UpdateDutsFirmwareRequest { repeated string ips = 1; }
 
 // NEXT_TAG = 3
 message FirmwareUpdateCommandOutput {
@@ -239,9 +225,7 @@ message RunSuiteRequest {
 }
 
 // NEXT_TAG = 2
-message RunSuiteResponse {
-  string build_link= 1;
-}
+message RunSuiteResponse { string build_link = 1; }
 
 // NEXT_TAG = 2
 message GetVersionInfoRequest {}
@@ -282,9 +266,7 @@ message UpdatePoolRequest {
 message UpdatePoolResponse {}
 
 // NEXT_TAG = 2
-message GetDutDetailRequest {
-  string address = 1;
-}
+message GetDutDetailRequest { string address = 1; }
 
 // NEXT_TAG = 3
 message StringListPair {
@@ -391,9 +373,7 @@ message RunTestRequest {
   repeated Dim dims = 8;
 }
 // NEXT_TAG = 2
-message RunTestResponse {
-  string build_link = 1;
-}
+message RunTestResponse { string build_link = 1; }
 
 // NEXT_TAG = 1
 message ListEnrolledDutsRequest {}
@@ -437,22 +417,16 @@ message BotInfo {
 }
 
 // NEXT_TAG = 2
-message ListEnrolledDutsResponse {
-  repeated Dut duts = 1;
-}
+message ListEnrolledDutsResponse { repeated Dut duts = 1; }
 
 // NEXT_TAG = 1
 message ListDutsRequest {}
 
 // NEXT_TAG = 2
-message ListDutsResponse {
-  repeated Dut duts = 1;
-}
+message ListDutsResponse { repeated Dut duts = 1; }
 
 // NEXT_TAG = 2
-message DeleteDutsRequest {
-  repeated string hostnames = 1;
-}
+message DeleteDutsRequest { repeated string hostnames = 1; }
 
 // NEXT_TAG = 4
 message DeleteDutsResponse {
@@ -540,9 +514,7 @@ message RunTestPlanRequest {
 }
 
 // NEXT_TAG = 2
-message RunTestPlanResponse {
-  string build_link = 1;
-}
+message RunTestPlanResponse { string build_link = 1; }
 
 // NEXT_TAG = 2
 message GetTestPlanRequest {
@@ -594,9 +566,7 @@ message UploadLogResponse {
 message DownloadLogRequest {}
 
 // NEXT_TAG = 2
-message DownloadLogResponse {
-  bytes file_chunk = 1;
-}
+message DownloadLogResponse { bytes file_chunk = 1; }
 
 // NEXT_TAG = 3
 message RepairDutsRequest {
@@ -635,9 +605,33 @@ message RunStorageQualRequest {
 }
 
 // NEXT_TAG = 2
-message RunStorageQualResponse {
-  string build_link= 1;
+message RunQualificationResponse { string build_link = 1; }
+
+// NEXT_TAG = 11
+message RunQualificationRequest {
+  // Identifies the qualification
+  string qualification_id = 1;
+
+  // Specifies which device to run tests on
+  string board = 2;
+  string model = 3;
+  string dlm_sku_id = 4;
+
+  // Specifies which software to run tests against
+  string milestone = 5;
+  string version = 6;
+
+  // Specifies which tests to run
+  string centralized_suite = 7;
+  bool is_incremental_run = 8;
+
+  // Specifies further scheduling parameters
+  string pool = 9;
+  repeated Dim dims = 10;
 }
+
+// NEXT_TAG = 2
+message RunStorageQualResponse { string build_link = 1; }
 
 // NEXT_TAG = 17
 message Job {
@@ -738,10 +732,10 @@ enum StateQuery {
 
 // NEXT_TAG = 5
 enum SortBy {
-		CREATED_TS =   0;
-		COMPLETED_TS = 2;
-		ABANDONED_TS = 3;
-		STARTED_TS = 4;
+  CREATED_TS = 0;
+  COMPLETED_TS = 2;
+  ABANDONED_TS = 3;
+  STARTED_TS = 4;
 }
 
 // NEXT_TAG = 9
