@@ -243,7 +243,7 @@ message GetVersionInfoResponse {
 
 // NEXT_TAG = 4
 message AddPoolRequest {
-  repeated string addresses = 1;
+  reserved 1;
   string pool = 2;
   repeated string hostnames = 3;
 }
@@ -255,7 +255,7 @@ message AddPoolResponse {}
 message UpdatePoolRequest {
   // NEXT_TAG = 4
   message Item {
-    string address = 1;
+    reserved 1;
     repeated string pools = 2;
     string hostname = 3;
   }
