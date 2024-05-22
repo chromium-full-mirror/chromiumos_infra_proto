@@ -118,7 +118,7 @@ message RunCopybotResponse {
     // Failed to push commits to Gerrit.
     FAILURE_DOWNSTREAM_PUSH_ERROR = 3;
     // Failed due to merge conflict(s).
-    FAILURE_MERGE_CONFLITS = 4;
+    FAILURE_MERGE_CONFLICTS = 4;
   };
   FailureReason failure_reason = 1;
 
