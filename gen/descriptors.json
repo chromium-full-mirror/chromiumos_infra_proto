@@ -28370,6 +28370,14 @@
               "name": "task_name",
               "number": 3,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dimensions",
+              "label": "LABEL_REPEATED",
+              "name": "dimensions",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.StringListPair"
             }
           ],
           "name": "BotInfo"

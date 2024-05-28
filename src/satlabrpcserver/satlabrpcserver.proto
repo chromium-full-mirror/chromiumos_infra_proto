@@ -398,7 +398,7 @@ message Dut {
   string ccd_status = 15;
 }
 
-// NEXT_TAG = 4
+// NEXT_TAG = 5
 message BotInfo {
   // NEXT_TAG = 6
   enum BotState {
@@ -415,6 +415,8 @@ message BotInfo {
   string current_task = 2;
   // Name of the task currently running (Test/Repair/Deploy).
   string task_name = 3;
+  // Dimensions of the bot
+  repeated StringListPair dimensions = 4;
 }
 
 // NEXT_TAG = 2
