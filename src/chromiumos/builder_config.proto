@@ -86,6 +86,8 @@ message BuilderConfig {
       SDK = 9;
       // SNAPSHOT build.
       SNAPSHOT = 10;
+      // Codesearch build.
+      CODESEARCH = 11;
     }
     Type type = 3;
     // The name of the bucket the builder lives in.
