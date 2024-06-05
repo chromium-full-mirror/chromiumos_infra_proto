@@ -32490,6 +32490,10 @@
             {
               "name": "NO_PASSING_BUILD",
               "number": 4
+            },
+            {
+              "name": "STALE_BUILD",
+              "number": 5
             }
           ]
         }
@@ -32622,6 +32626,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "model",
               "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 11,
               "type": "TYPE_STRING"
             }
           ],
