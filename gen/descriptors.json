@@ -9756,6 +9756,21 @@
         "chromiumos/metrics.proto",
         "chromiumos/build/api/container_metadata.proto"
       ],
+      "enumType": [
+        {
+          "name": "BuilderType",
+          "value": [
+            {
+              "name": "PUBLIC",
+              "number": 0
+            },
+            {
+              "name": "PRIVATE",
+              "number": 1
+            }
+          ]
+        }
+      ],
       "messageType": [
         {
           "field": [
@@ -9873,6 +9888,14 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.BuildTestServiceContainersRequest.LabelsEntry"
+            },
+            {
+              "jsonName": "builderType",
+              "label": "LABEL_OPTIONAL",
+              "name": "builder_type",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.BuilderType"
             }
           ],
           "name": "BuildTestServiceContainersRequest",
