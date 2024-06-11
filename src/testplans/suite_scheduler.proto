@@ -89,6 +89,11 @@ message SchedulerConfig {
       // Run on when all release build of the boards/variants targeted in lab
       // config have finished.
       NEW_BUILD_3D = 6;
+      // MULTI_DUT is a variant of NEW_BUILD but has some extra considerations
+      // since it requires a secondary device to be paired. This is split since
+      // features have diverged enough that it is difficult to package them
+      // together.
+      MULTI_DUT = 7;
     }
     LaunchProfile launch_profile = 1;
     // Hour at which to run. Needs to be specified for nightly and weekly
@@ -220,8 +225,8 @@ message SchedulerConfig {
     TRIGGER_UNSPECIFIED = 0;
     // Trigger test whenever there is a new build for the primary board.
     PRIMARY = 1;
-    // Trigger test when every board in the group has a new build.
-    ALL = 2;
+    // [DO NOT USE] Trigger test when every board in the group has a new build.
+    ALL = 2 [ deprecated = true ];
   }
   // Execution related options.
   message RunOptions {

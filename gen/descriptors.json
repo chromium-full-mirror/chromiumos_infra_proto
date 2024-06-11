@@ -37875,7 +37875,10 @@
                 },
                 {
                   "name": "ALL",
-                  "number": 2
+                  "number": 2,
+                  "options": {
+                    "deprecated": true
+                  }
                 }
               ]
             }
@@ -38123,6 +38126,10 @@
                     {
                       "name": "NEW_BUILD_3D",
                       "number": 6
+                    },
+                    {
+                      "name": "MULTI_DUT",
+                      "number": 7
                     }
                   ]
                 }
