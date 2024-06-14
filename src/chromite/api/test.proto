@@ -38,14 +38,7 @@ message TestServiceContainerBuildResult {
   }
 }
 
-// BuilderType identifies builders running on private/public pool bots.
-enum BuilderType {
-  // Public builders
-  PUBLIC = 0;
 
-  // Private builders
-  PRIVATE = 1;
-}
 
 message BuildTestServiceContainersRequest {
   // The build target the test service containers are being build for.
@@ -73,6 +66,18 @@ message BuildTestServiceContainersRequest {
   // adding the full build URL to the container image for the build that
   // produced them.
   map<string, string> labels = 6;
+
+  // BuilderType identifies builders running on private/public pool bots.
+  enum BuilderType {
+    // No builder type specified.
+    UNSPECIFIED = 0;
+
+    // Public builders
+    PUBLIC = 1;
+
+    // Private builders
+    PRIVATE = 2;
+  }
 
   BuilderType builder_type = 7;
 }
