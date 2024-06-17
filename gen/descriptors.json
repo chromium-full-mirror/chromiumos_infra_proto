@@ -27708,6 +27708,13 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".satlabrpcserver.Dim"
+            },
+            {
+              "jsonName": "cft",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft",
+              "number": 8,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunSuiteRequest"
@@ -28213,6 +28220,13 @@
               "number": 8,
               "type": "TYPE_MESSAGE",
               "typeName": ".satlabrpcserver.Dim"
+            },
+            {
+              "jsonName": "cft",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft",
+              "number": 9,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunTestRequest"
@@ -28693,6 +28707,13 @@
               "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".satlabrpcserver.Dim"
+            },
+            {
+              "jsonName": "cft",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft",
+              "number": 8,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunTestPlanRequest"
