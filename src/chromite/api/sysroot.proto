@@ -56,6 +56,8 @@ message SysrootCreateRequest {
   // prototype that was deprecated in R114.
   reserved 5;
   reserved "package_indexes";
+  // Data needed for fetching binhosts from the binhost lookup service.
+  chromiumos.BinhostLookupServiceData binhost_lookup_service_data = 6;
 }
 
 // Create response.
