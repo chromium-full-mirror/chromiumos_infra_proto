@@ -27723,6 +27723,13 @@
               "name": "cft",
               "number": 8,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "trv2",
+              "label": "LABEL_OPTIONAL",
+              "name": "trv2",
+              "number": 9,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunSuiteRequest"
@@ -28235,6 +28242,13 @@
               "name": "cft",
               "number": 9,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "trv2",
+              "label": "LABEL_OPTIONAL",
+              "name": "trv2",
+              "number": 10,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunTestRequest"
@@ -28721,6 +28735,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "cft",
               "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "trv2",
+              "label": "LABEL_OPTIONAL",
+              "name": "trv2",
+              "number": 9,
               "type": "TYPE_BOOL"
             }
           ],
