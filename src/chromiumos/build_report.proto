@@ -88,6 +88,7 @@ message BuildReport {
     BUILD_TYPE_FACTORY = 3;
     BUILD_TYPE_PUBLIC = 4;
     BUILD_TYPE_PAYGEN = 5;
+    BUILD_TYPE_SNAPSHOT = 6;
   }
 
   message BuildStatus {

@@ -6207,6 +6207,10 @@
                 {
                   "name": "BUILD_TYPE_PAYGEN",
                   "number": 5
+                },
+                {
+                  "name": "BUILD_TYPE_SNAPSHOT",
+                  "number": 6
                 }
               ]
             }
