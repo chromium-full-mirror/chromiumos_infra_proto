@@ -321,6 +321,8 @@ enum ImageType {
   // Used for payload signing.
   IMAGE_TYPE_UPDATE_PAYLOAD = 18;
   IMAGE_TYPE_FLEXOR_KERNEL = 19;
+  // Used for standalone firmware shellball signing.
+  IMAGE_TYPE_SHELLBALL = 20;
 }
 
 // The various channels that we release through.

@@ -270,6 +270,10 @@
             {
               "name": "IMAGE_TYPE_FLEXOR_KERNEL",
               "number": 19
+            },
+            {
+              "name": "IMAGE_TYPE_SHELLBALL",
+              "number": 20
             }
           ]
         },
