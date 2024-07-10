@@ -99,6 +99,12 @@ message RunCopybotRequest {
   // A list of full file paths to include in the downstream path.
   message IncludePath { string path = 1; }
   repeated IncludePath include_paths = 17;
+
+  // Build URL
+  string build_url = 18;
+
+  // Build ID
+  string build_id = 19;
 }
 
 // The result of CopyBot being run.
