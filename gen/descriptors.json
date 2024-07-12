@@ -16769,6 +16769,12 @@
           "enumType": [
             {
               "name": "Linters",
+              "reservedRange": [
+                {
+                  "end": 4,
+                  "start": 4
+                }
+              ],
               "value": [
                 {
                   "name": "LINTER_UNSPECIFIED",
@@ -16785,10 +16791,6 @@
                 {
                   "name": "GO_LINT",
                   "number": 3
-                },
-                {
-                  "name": "IWYU",
-                  "number": 4
                 }
               ]
             }
