@@ -27842,6 +27842,13 @@
               "name": "trv2",
               "number": 9,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "uploadToCpcon",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_to_cpcon",
+              "number": 10,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunSuiteRequest"
@@ -28361,6 +28368,13 @@
               "name": "trv2",
               "number": 10,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "uploadToCpcon",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_to_cpcon",
+              "number": 11,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunTestRequest"
@@ -28854,6 +28868,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "trv2",
               "number": 9,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "uploadToCpcon",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_to_cpcon",
+              "number": 10,
               "type": "TYPE_BOOL"
             }
           ],
