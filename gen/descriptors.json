@@ -26573,6 +26573,13 @@
                   "name": "run_ctpv2_with_qs",
                   "number": 24,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "dryRunCtpv2",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "dry_run_ctpv2",
+                  "number": 25,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",

@@ -23,7 +23,7 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform";
 message Request {
   // Params defines parameters that apply to an entire Request.
   //
-  // NEXT_TAG: 24
+  // NEXT_TAG: 26
   message Params {
     // HardwareAttributes defines the hardware-bound characteristics
     // of the devices to run tests on.
@@ -314,6 +314,10 @@ message Request {
     // If true and run_via_cft is true, this suite will run via ctpv2 using
     // quota scheduler instead of scheduke.
     bool run_ctpv2_with_qs = 24;
+
+    // If true and run_via_cft is true, this suite will run via ctpv2 in dry-run
+    // mode instead of sending tasks to Scheduke.
+    bool dry_run_ctpv2 = 25;
   }
 
   Params params = 1;
