@@ -38264,6 +38264,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "ddd_suite",
               "number": 25,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_BOOL"
             }
           ],
@@ -38544,6 +38547,9 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "trigger_type",
                   "number": 5,
+                  "options": {
+                    "deprecated": true
+                  },
                   "type": "TYPE_ENUM",
                   "typeName": ".testplans.SchedulerConfig.TriggerType"
                 },
