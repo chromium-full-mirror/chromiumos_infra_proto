@@ -37949,6 +37949,40 @@
               "number": 5
             }
           ]
+        },
+        {
+          "name": "RunFlags",
+          "value": [
+            {
+              "name": "UNSPECIFIED_RUN_FLAG",
+              "number": 0
+            },
+            {
+              "name": "RUN_VIA_CFT",
+              "number": 1
+            },
+            {
+              "name": "RUN_VIA_TRV2",
+              "number": 2
+            },
+            {
+              "name": "TRANSLATE_TRV2_REQUEST",
+              "number": 3
+            },
+            {
+              "name": "ENABLE_AUTO_TEST_SHARDING",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "name": "ExperimentFlags",
+          "value": [
+            {
+              "name": "UNSPECIFIED_EXPERIMENT",
+              "number": 0
+            }
+          ]
         }
       ],
       "messageType": [
@@ -38268,6 +38302,22 @@
                 "deprecated": true
               },
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "runFlags",
+              "label": "LABEL_REPEATED",
+              "name": "run_flags",
+              "number": 26,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.RunFlags"
+            },
+            {
+              "jsonName": "experimentFlags",
+              "label": "LABEL_REPEATED",
+              "name": "experiment_flags",
+              "number": 27,
+              "type": "TYPE_ENUM",
+              "typeName": ".testplans.ExperimentFlags"
             }
           ],
           "name": "SchedulerConfig",

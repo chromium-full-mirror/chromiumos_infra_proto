@@ -57,6 +57,22 @@ enum Branch {
   LTS = 5;
 }
 
+// RunFlags represent different CTP run attributes that will be applied to the
+// CTP request in Kron.
+enum RunFlags {
+  UNSPECIFIED_RUN_FLAG = 0;
+  RUN_VIA_CFT = 1;
+  RUN_VIA_TRV2 = 2;
+  TRANSLATE_TRV2_REQUEST = 3;
+  ENABLE_AUTO_TEST_SHARDING = 4;
+}
+
+// ExperimentFlags represent different Kron experiments that can be toggled on a
+// per config basis.
+enum ExperimentFlags {
+  UNSPECIFIED_EXPERIMENT = 0;
+}
+
 // Most fields are the same as suite_scheduler.ini just better organized.
 // The entries will be used to generate a suite_scheduler.ini in starlark
 // scripts. next: 23
@@ -323,6 +339,10 @@ message SchedulerConfig {
   //
   // DEPRECATED: 3D suites will be implemented via a 3D launch criteria type.
   bool ddd_suite = 25 [ deprecated = true ];
+
+  repeated RunFlags run_flags = 26;
+
+  repeated ExperimentFlags experiment_flags = 27;
 }
 
 // A proto to contain all the configs.
