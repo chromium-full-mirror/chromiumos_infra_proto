@@ -19349,9 +19349,23 @@
               "name": "has_lab_resources",
               "number": 11,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "extendedSupportTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "extended_support_target_milestone",
+              "number": 12,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_INT32"
             }
           ],
-          "name": "ReferenceBoardUnifiedBuildConfig"
+          "name": "ReferenceBoardUnifiedBuildConfig",
+          "oneofDecl": [
+            {
+              "name": "_extended_support_target_milestone"
+            }
+          ]
         },
         {
           "field": [
@@ -19447,9 +19461,23 @@
               "name": "stable_target_milestone",
               "number": 4,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "extendedSupportTargetMilestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "extended_support_target_milestone",
+              "number": 5,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_INT32"
             }
           ],
-          "name": "BuildBoard"
+          "name": "BuildBoard",
+          "oneofDecl": [
+            {
+              "name": "_extended_support_target_milestone"
+            }
+          ]
         },
         {
           "field": [

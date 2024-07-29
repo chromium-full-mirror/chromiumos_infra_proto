@@ -107,6 +107,9 @@ message ReferenceBoardUnifiedBuildConfig {
 
   // Whether the build has dedicated lab resources.
   bool has_lab_resources = 11;
+
+  // The milestone when a target will enter Extended Support.
+  optional int32 extended_support_target_milestone = 12;
 }
 
 // Message to represent a build config for a given builder
@@ -137,6 +140,9 @@ message BuildBoard {
   // The first milestone that this board will be released to stable
   // on.
   int32 stable_target_milestone = 4;
+
+  // The milestone when a target will enter Extended Support.
+  optional int32 extended_support_target_milestone = 5;
 }
 
 // Message to represent a build configuration.
