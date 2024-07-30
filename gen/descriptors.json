@@ -19014,6 +19014,130 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "keyId",
+              "label": "LABEL_OPTIONAL",
+              "name": "key_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signatureId",
+              "label": "LABEL_OPTIONAL",
+              "name": "signature_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "brandCode",
+              "label": "LABEL_OPTIONAL",
+              "name": "brand_code",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signatureIdInCustomizationId",
+              "label": "LABEL_OPTIONAL",
+              "name": "signature_id_in_customization_id",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "ModelSigningConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sha256",
+              "label": "LABEL_OPTIONAL",
+              "name": "sha256",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FirmwareVersion"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "roFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "ro_firmware",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareVersion"
+            },
+            {
+              "jsonName": "rwFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "rw_firmware",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareVersion"
+            }
+          ],
+          "name": "FirmwareConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "signing",
+              "label": "LABEL_OPTIONAL",
+              "name": "signing",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ModelSigningConfig"
+            },
+            {
+              "jsonName": "apFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_firmware",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareConfig"
+            },
+            {
+              "jsonName": "ecFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_firmware",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareConfig"
+            }
+          ],
+          "name": "FirmwareConfigForModel"
+        }
+      ],
+      "name": "chromiumos/firmware_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "BuilderType",
