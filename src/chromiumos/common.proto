@@ -356,7 +356,7 @@ enum DeltaType {
 // A wrapper around a serialized protocol buffer.
 message ProtoBytes { bytes serialized_proto = 1; }
 
-// List of known location that firmware can be built from
+// List of known locations that firmware can be built from.
 enum FwLocation {
   FW_LOCATION_UNKNOWN = 0;
   PLATFORM_EC = 1;        // platform/ec/firmware_builder.py
@@ -364,6 +364,7 @@ enum FwLocation {
   PLATFORM_TI50 = 3;      // platform/ti50/common/firmware_builder.py
   PLATFORM_CR50 = 4;      // platform/cr50/firmware_builder.py
   PLATFORM_CHAMELEON = 5; // platform/chameleon/v3/ec/firmware_builder.py
+  PLATFORM_GSC_UTILS = 6; // platform/gsc-utils/firmware_builder.py
 }
 
 // Additional information about artifacts used by PrepareForBuild endpoints.

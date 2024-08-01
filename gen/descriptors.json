@@ -369,6 +369,10 @@
             {
               "name": "PLATFORM_CHAMELEON",
               "number": 5
+            },
+            {
+              "name": "PLATFORM_GSC_UTILS",
+              "number": 6
             }
           ]
         }
