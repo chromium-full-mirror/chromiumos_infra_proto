@@ -21488,6 +21488,10 @@
                 {
                   "name": "SOC_MT8196",
                   "number": 48
+                },
+                {
+                  "name": "SOC_MT8189",
+                  "number": 49
                 }
               ]
             },
