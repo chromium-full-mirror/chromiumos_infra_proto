@@ -38474,6 +38474,20 @@
               "number": 27,
               "type": "TYPE_ENUM",
               "typeName": ".testplans.ExperimentFlags"
+            },
+            {
+              "jsonName": "totalShards",
+              "label": "LABEL_OPTIONAL",
+              "name": "total_shards",
+              "number": 28,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "maxInShard",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_in_shard",
+              "number": 29,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "SchedulerConfig",

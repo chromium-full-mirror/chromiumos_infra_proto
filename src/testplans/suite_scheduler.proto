@@ -343,6 +343,12 @@ message SchedulerConfig {
   repeated RunFlags run_flags = 26;
 
   repeated ExperimentFlags experiment_flags = 27;
+
+  // The total number of shards to be used in a test run.
+  bool total_shards = 28;
+
+  // The total number of tests allowed to be used in a shard.
+  bool max_in_shard = 29;
 }
 
 // A proto to contain all the configs.
