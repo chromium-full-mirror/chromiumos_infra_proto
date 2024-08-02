@@ -105,6 +105,10 @@ message RunCopybotRequest {
 
   // Build ID
   string build_id = 19;
+
+  // A job name to add as a pseudoheader to the downstreamed CLs
+  message JobName { string job_name = 1; }
+  JobName job_name = 20;
 }
 
 // The result of CopyBot being run.

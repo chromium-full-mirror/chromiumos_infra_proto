@@ -12213,6 +12213,14 @@
               "name": "build_id",
               "number": 19,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "jobName",
+              "label": "LABEL_OPTIONAL",
+              "name": "job_name",
+              "number": 20,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.JobName"
             }
           ],
           "name": "RunCopybotRequest",
@@ -12326,6 +12334,18 @@
                 }
               ],
               "name": "IncludePath"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "jobName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "job_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "JobName"
             }
           ]
         },
