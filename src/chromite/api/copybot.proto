@@ -109,6 +109,10 @@ message RunCopybotRequest {
   // A job name to add as a pseudoheader to the downstreamed CLs
   message JobName { string job_name = 1; }
   JobName job_name = 20;
+
+  // A list of job names whose downstreamed CLs in the current jobs
+  // upstream should be ignored.
+  repeated JobName skip_job_names = 21;
 }
 
 // The result of CopyBot being run.

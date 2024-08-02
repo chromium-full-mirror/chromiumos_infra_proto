@@ -12221,6 +12221,14 @@
               "number": 20,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.JobName"
+            },
+            {
+              "jsonName": "skipJobNames",
+              "label": "LABEL_REPEATED",
+              "name": "skip_job_names",
+              "number": 21,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.JobName"
             }
           ],
           "name": "RunCopybotRequest",
