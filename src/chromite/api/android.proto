@@ -111,32 +111,32 @@ service AndroidService {
   // Added in R92.
   rpc GetLatestBuild(GetLatestBuildRequest) returns (GetLatestBuildResponse) {
     option (method_options) = {
-      method_chroot_assert : OUTSIDE;
-  };
-}
+      method_chroot_assert : OUTSIDE,
+    };
+  }
 
-// The MarkStable method uprevs Android, verifies the newly revved package
-// can be emerged, and returns the new package info.
-rpc MarkStable(MarkStableRequest) returns (MarkStableResponse) {
-  // TODO(crbug/904939): When we switch from the cbuildbot/commands.py hack,
-  // we need to make this INSIDE.
-  option (method_options) = {
-    method_chroot_assert : OUTSIDE;
-};
-}
+  // The MarkStable method uprevs Android, verifies the newly revved package
+  // can be emerged, and returns the new package info.
+  rpc MarkStable(MarkStableRequest) returns (MarkStableResponse) {
+    // TODO(crbug/904939): When we switch from the cbuildbot/commands.py hack,
+    // we need to make this INSIDE.
+    option (method_options) = {
+      method_chroot_assert : OUTSIDE,
+    };
+  }
 
-// Unpin the Android package version.  Added in R76.
-rpc UnpinVersion(UnpinVersionRequest) returns (UnpinVersionResponse) {
-  option (method_options) = {
-    method_chroot_assert : INSIDE;
-};
-}
+  // Unpin the Android package version.  Added in R76.
+  rpc UnpinVersion(UnpinVersionRequest) returns (UnpinVersionResponse) {
+    option (method_options) = {
+      method_chroot_assert : INSIDE,
+    };
+  }
 
-// Marks the Last Known Good Build for the given Android package/version.
-// Added in R99.
-rpc WriteLKGB(WriteLKGBRequest) returns (WriteLKGBResponse) {
-  option (method_options) = {
-    method_chroot_assert : OUTSIDE;
-};
-}
+  // Marks the Last Known Good Build for the given Android package/version.
+  // Added in R99.
+  rpc WriteLKGB(WriteLKGBRequest) returns (WriteLKGBResponse) {
+    option (method_options) = {
+      method_chroot_assert : OUTSIDE,
+    };
+  }
 }
