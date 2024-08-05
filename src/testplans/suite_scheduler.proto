@@ -65,6 +65,8 @@ enum RunFlags {
   RUN_VIA_TRV2 = 2;
   TRANSLATE_TRV2_REQUEST = 3;
   ENABLE_AUTO_TEST_SHARDING = 4;
+  TOTAL_SHARDS = 5;
+  MAX_IN_SHARDS = 6;
 }
 
 // ExperimentFlags represent different Kron experiments that can be toggled on a
@@ -343,12 +345,6 @@ message SchedulerConfig {
   repeated RunFlags run_flags = 26;
 
   repeated ExperimentFlags experiment_flags = 27;
-
-  // The total number of shards to be used in a test run.
-  bool total_shards = 28;
-
-  // The total number of tests allowed to be used in a shard.
-  bool max_in_shard = 29;
 }
 
 // A proto to contain all the configs.

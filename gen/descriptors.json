@@ -38128,6 +38128,14 @@
             {
               "name": "ENABLE_AUTO_TEST_SHARDING",
               "number": 4
+            },
+            {
+              "name": "TOTAL_SHARDS",
+              "number": 5
+            },
+            {
+              "name": "MAX_IN_SHARDS",
+              "number": 6
             }
           ]
         },
@@ -38474,20 +38482,6 @@
               "number": 27,
               "type": "TYPE_ENUM",
               "typeName": ".testplans.ExperimentFlags"
-            },
-            {
-              "jsonName": "totalShards",
-              "label": "LABEL_OPTIONAL",
-              "name": "total_shards",
-              "number": 28,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "maxInShard",
-              "label": "LABEL_OPTIONAL",
-              "name": "max_in_shard",
-              "number": 29,
-              "type": "TYPE_BOOL"
             }
           ],
           "name": "SchedulerConfig",
