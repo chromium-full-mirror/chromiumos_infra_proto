@@ -38160,14 +38160,6 @@
             {
               "name": "ENABLE_AUTO_TEST_SHARDING",
               "number": 4
-            },
-            {
-              "name": "TOTAL_SHARDS",
-              "number": 5
-            },
-            {
-              "name": "MAX_IN_SHARDS",
-              "number": 6
             }
           ]
         },
@@ -38856,6 +38848,20 @@
                   "name": "dynamic_trv2",
                   "number": 13,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "totalShards",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "total_shards",
+                  "number": 14,
+                  "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "maxInShard",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "max_in_shard",
+                  "number": 15,
+                  "type": "TYPE_INT64"
                 }
               ],
               "name": "RunOptions",

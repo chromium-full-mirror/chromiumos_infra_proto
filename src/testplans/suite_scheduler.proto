@@ -65,8 +65,6 @@ enum RunFlags {
   RUN_VIA_TRV2 = 2;
   TRANSLATE_TRV2_REQUEST = 3;
   ENABLE_AUTO_TEST_SHARDING = 4;
-  TOTAL_SHARDS = 5;
-  MAX_IN_SHARDS = 6;
 }
 
 // ExperimentFlags represent different Kron experiments that can be toggled on a
@@ -309,6 +307,15 @@ message SchedulerConfig {
     // If set, trv2 request will be translated to the dynamic trv2 request.
     // Requires run_via_trv2 is true.
     bool dynamic_trv2 = 13;
+
+    // The total number of shards to be used in a test run.
+    // Can be overridden if the bucketing process creates more buckets
+    // than total_shards.
+    int64 total_shards = 14;
+
+    // The total number of tests allowed to be used in a shard.
+    // Total_shards takes priority over max_in_shard.
+    int64 max_in_shard = 15;
   }
   RunOptions run_options = 9;
 
