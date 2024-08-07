@@ -12065,6 +12065,10 @@
                 {
                   "name": "MERGE_CONFLICT_BEHAVIOR_STOP",
                   "number": 3
+                },
+                {
+                  "name": "MERGE_CONFLICT_BEHAVIOR_ALLOW_CONFLICT",
+                  "number": 4
                 }
               ]
             }

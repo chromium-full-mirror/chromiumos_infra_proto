@@ -58,6 +58,9 @@ message RunCopybotRequest {
     // Stop the job immediately.  Upload pending changes anyway.  The
     // job will exit with failure status.
     MERGE_CONFLICT_BEHAVIOR_STOP = 3;
+    // Commit changes with conflicts.  Upload pending changes anyway.  The
+    // job will exit with failure status.
+    MERGE_CONFLICT_BEHAVIOR_ALLOW_CONFLICT = 4;
   }
   MergeConflictBehavior merge_conflict_behavior = 8;
 
