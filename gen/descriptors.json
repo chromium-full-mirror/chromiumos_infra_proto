@@ -12247,6 +12247,14 @@
               "number": 21,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.JobName"
+            },
+            {
+              "jsonName": "pantheonSecrets",
+              "label": "LABEL_REPEATED",
+              "name": "pantheon_secrets",
+              "number": 22,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.PantheonSecret"
             }
           ],
           "name": "RunCopybotRequest",
@@ -12372,6 +12380,18 @@
                 }
               ],
               "name": "JobName"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "secretName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "secret_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "PantheonSecret"
             }
           ]
         },

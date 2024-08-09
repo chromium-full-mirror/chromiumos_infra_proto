@@ -116,6 +116,11 @@ message RunCopybotRequest {
   // A list of job names whose downstreamed CLs in the current jobs
   // upstream should be ignored.
   repeated JobName skip_job_names = 21;
+
+  // A list of .netrc configs stored in pantheon secrets.  The entries
+  // are the names of the secrets to be downloaded and configured.
+  message PantheonSecret { string secret_name = 1; }
+  repeated PantheonSecret pantheon_secrets = 22;
 }
 
 // The result of CopyBot being run.
