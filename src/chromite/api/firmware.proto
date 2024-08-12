@@ -200,6 +200,11 @@ message FirmwareArtifactInfo {
 
     // Added in R91.  Required.
     FirmwareVersionInfo firmware_version_info = 5;
+
+    // The ChromeOS board associated with this artifact. I.e. brya or rex
+    // Some artifacts are shared between 2 or more boards. For example the
+    // EC firmware mtlrvpp_mchp is used by both rex and fatcat.
+    repeated string board = 6;
   }
 
   message LcovTarballInfo {

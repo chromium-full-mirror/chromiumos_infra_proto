@@ -5882,6 +5882,13 @@
                   "number": 5,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromite.api.FirmwareVersionInfo"
+                },
+                {
+                  "jsonName": "board",
+                  "label": "LABEL_REPEATED",
+                  "name": "board",
+                  "number": 6,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "TarballInfo",
