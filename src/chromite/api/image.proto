@@ -175,6 +175,10 @@ message SignImageRequest {
   // This consists of the name of the docker image, followed by the tag, i.e.
   // "signing:1234".
   string docker_image = 4;
+
+  // Directory to be mounted to /tmp in the docker container.
+  // Needed to avoid filling up our small boot partition..
+  string tmp_path = 6;
 }
 
 message SignImageResponse {
