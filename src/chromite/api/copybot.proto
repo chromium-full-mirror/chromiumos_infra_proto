@@ -121,6 +121,12 @@ message RunCopybotRequest {
   // are the names of the secrets to be downloaded and configured.
   message PantheonSecret { string secret_name = 1; }
   repeated PantheonSecret pantheon_secrets = 22;
+
+  // A starting upstream hash to consider as the base of relationships
+  string upstream_hash = 23;
+
+  // A starting downstream hash to consider as the base of relationships
+  string downstream_hash = 24;
 }
 
 // The result of CopyBot being run.

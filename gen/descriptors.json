@@ -12255,6 +12255,20 @@
               "number": 22,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.PantheonSecret"
+            },
+            {
+              "jsonName": "upstreamHash",
+              "label": "LABEL_OPTIONAL",
+              "name": "upstream_hash",
+              "number": 23,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "downstreamHash",
+              "label": "LABEL_OPTIONAL",
+              "name": "downstream_hash",
+              "number": 24,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunCopybotRequest",
