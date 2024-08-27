@@ -21544,6 +21544,18 @@
                 {
                   "name": "SOC_MT8189",
                   "number": 49
+                },
+                {
+                  "name": "SOC_TWIN_LAKE",
+                  "number": 50
+                },
+                {
+                  "name": "SOC_PANTHER_LAKE",
+                  "number": 51
+                },
+                {
+                  "name": "SOC_WILDCAT_LAKE",
+                  "number": 52
                 }
               ]
             },
