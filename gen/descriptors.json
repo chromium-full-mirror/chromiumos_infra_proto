@@ -38630,6 +38630,10 @@
                     {
                       "name": "MULTI_DUT",
                       "number": 7
+                    },
+                    {
+                      "name": "N_DAYS",
+                      "number": 8
                     }
                   ]
                 }

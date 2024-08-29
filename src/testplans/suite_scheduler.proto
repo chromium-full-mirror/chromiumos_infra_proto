@@ -110,6 +110,12 @@ message SchedulerConfig {
       // features have diverged enough that it is difficult to package them
       // together.
       MULTI_DUT = 7;
+      // Run every N days. This will accomplish this by getting the current year
+      // day (e.g. 102/365) and using a modulo to check for the Nth day.
+      // Example. 102 % 2 = 0 where N = 2 would trigger the config on the
+      // targeted hardware. The day field will be used here to define N. N
+      // cannot be 0 or >365.
+      N_DAYS = 8;
     }
     LaunchProfile launch_profile = 1;
     // Hour at which to run. Needs to be specified for nightly and weekly
