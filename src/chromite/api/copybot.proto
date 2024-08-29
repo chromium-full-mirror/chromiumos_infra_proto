@@ -127,6 +127,9 @@ message RunCopybotRequest {
 
   // A starting downstream hash to consider as the base of relationships
   string downstream_hash = 24;
+
+  // Any authors to ignore when downstreaming.
+  repeated GerritUser skip_authors = 25;
 }
 
 // The result of CopyBot being run.

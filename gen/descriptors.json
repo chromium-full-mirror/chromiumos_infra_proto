@@ -12269,6 +12269,14 @@
               "name": "downstream_hash",
               "number": 24,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "skipAuthors",
+              "label": "LABEL_REPEATED",
+              "name": "skip_authors",
+              "number": 25,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.GerritUser"
             }
           ],
           "name": "RunCopybotRequest",
