@@ -29941,6 +29941,30 @@
         },
         {
           "name": "AbortJobsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "servoSerial",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_serial",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "OpenCCDRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "message",
+              "label": "LABEL_OPTIONAL",
+              "name": "message",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "OpenCCDReply"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -30065,6 +30089,12 @@
               "inputType": ".satlabrpcserver.RepairDutsRequest",
               "name": "RepairDuts",
               "outputType": ".satlabrpcserver.RepairDutsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.OpenCCDRequest",
+              "name": "OpenCCD",
+              "outputType": ".satlabrpcserver.OpenCCDReply",
+              "serverStreaming": true
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",

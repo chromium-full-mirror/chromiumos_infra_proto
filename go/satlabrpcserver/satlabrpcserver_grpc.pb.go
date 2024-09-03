@@ -50,6 +50,7 @@ type SatlabRpcServiceClient interface {
 	DeleteDuts(ctx context.Context, in *DeleteDutsRequest, opts ...grpc.CallOption) (*DeleteDutsResponse, error)
 	AddDuts(ctx context.Context, in *AddDutsRequest, opts ...grpc.CallOption) (*AddDutsResponse, error)
 	RepairDuts(ctx context.Context, in *RepairDutsRequest, opts ...grpc.CallOption) (*RepairDutsResponse, error)
+	OpenCCD(ctx context.Context, in *OpenCCDRequest, opts ...grpc.CallOption) (SatlabRpcService_OpenCCDClient, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -286,6 +287,38 @@ func (c *satlabRpcServiceClient) RepairDuts(ctx context.Context, in *RepairDutsR
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) OpenCCD(ctx context.Context, in *OpenCCDRequest, opts ...grpc.CallOption) (SatlabRpcService_OpenCCDClient, error) {
+	stream, err := c.cc.NewStream(ctx, &SatlabRpcService_ServiceDesc.Streams[0], "/satlabrpcserver.SatlabRpcService/OpenCCD", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &satlabRpcServiceOpenCCDClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type SatlabRpcService_OpenCCDClient interface {
+	Recv() (*OpenCCDReply, error)
+	grpc.ClientStream
+}
+
+type satlabRpcServiceOpenCCDClient struct {
+	grpc.ClientStream
+}
+
+func (x *satlabRpcServiceOpenCCDClient) Recv() (*OpenCCDReply, error) {
+	m := new(OpenCCDReply)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -368,7 +401,7 @@ func (c *satlabRpcServiceClient) UploadLog(ctx context.Context, in *UploadLogReq
 }
 
 func (c *satlabRpcServiceClient) DownloadLog(ctx context.Context, in *DownloadLogRequest, opts ...grpc.CallOption) (SatlabRpcService_DownloadLogClient, error) {
-	stream, err := c.cc.NewStream(ctx, &SatlabRpcService_ServiceDesc.Streams[0], "/satlabrpcserver.SatlabRpcService/DownloadLog", opts...)
+	stream, err := c.cc.NewStream(ctx, &SatlabRpcService_ServiceDesc.Streams[1], "/satlabrpcserver.SatlabRpcService/DownloadLog", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -456,6 +489,7 @@ type SatlabRpcServiceServer interface {
 	DeleteDuts(context.Context, *DeleteDutsRequest) (*DeleteDutsResponse, error)
 	AddDuts(context.Context, *AddDutsRequest) (*AddDutsResponse, error)
 	RepairDuts(context.Context, *RepairDutsRequest) (*RepairDutsResponse, error)
+	OpenCCD(*OpenCCDRequest, SatlabRpcService_OpenCCDServer) error
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -550,6 +584,9 @@ func (UnimplementedSatlabRpcServiceServer) AddDuts(context.Context, *AddDutsRequ
 }
 func (UnimplementedSatlabRpcServiceServer) RepairDuts(context.Context, *RepairDutsRequest) (*RepairDutsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RepairDuts not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) OpenCCD(*OpenCCDRequest, SatlabRpcService_OpenCCDServer) error {
+	return status.Errorf(codes.Unimplemented, "method OpenCCD not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -1017,6 +1054,27 @@ func _SatlabRpcService_RepairDuts_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_OpenCCD_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(OpenCCDRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SatlabRpcServiceServer).OpenCCD(m, &satlabRpcServiceOpenCCDServer{stream})
+}
+
+type SatlabRpcService_OpenCCDServer interface {
+	Send(*OpenCCDReply) error
+	grpc.ServerStream
+}
+
+type satlabRpcServiceOpenCCDServer struct {
+	grpc.ServerStream
+}
+
+func (x *satlabRpcServiceOpenCCDServer) Send(m *OpenCCDReply) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -1403,6 +1461,11 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "OpenCCD",
+			Handler:       _SatlabRpcService_OpenCCD_Handler,
+			ServerStreams: true,
+		},
 		{
 			StreamName:    "DownloadLog",
 			Handler:       _SatlabRpcService_DownloadLog_Handler,
