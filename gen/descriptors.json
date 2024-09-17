@@ -26860,6 +26860,13 @@
                   "name": "dry_run_ctpv2",
                   "number": 25,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "isAlRun",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "is_al_run",
+                  "number": 26,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Params",

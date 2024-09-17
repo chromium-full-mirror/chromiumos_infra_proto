@@ -318,6 +318,9 @@ message Request {
     // If true and run_via_cft is true, this suite will run via ctpv2 in dry-run
     // mode instead of sending tasks to Scheduke.
     bool dry_run_ctpv2 = 25;
+
+    // If true then the request is an AL type run in CTPv2 and TRv2.
+    bool is_al_run = 26;
   }
 
   Params params = 1;
