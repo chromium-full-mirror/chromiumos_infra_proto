@@ -16,3 +16,7 @@ message Item {
 // Summary is the proto schema for how we will send information to the output
 // properties for the CTPv2 sub build.
 message Summary { repeated Item items = 1; }
+
+message Items { repeated Item items = 1; }
+
+message SummaryMap { map<string, Items> summaries = 1; }

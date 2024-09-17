@@ -40372,6 +40372,57 @@
             }
           ],
           "name": "Summary"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "items",
+              "label": "LABEL_REPEATED",
+              "name": "items",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.v2.Item"
+            }
+          ],
+          "name": "Items"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "summaries",
+              "label": "LABEL_REPEATED",
+              "name": "summaries",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.v2.SummaryMap.SummariesEntry"
+            }
+          ],
+          "name": "SummaryMap",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "key",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "key",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.v2.Items"
+                }
+              ],
+              "name": "SummariesEntry",
+              "options": {
+                "mapEntry": true
+              }
+            }
+          ]
         }
       ],
       "name": "test_platform/v2/summary.proto",
