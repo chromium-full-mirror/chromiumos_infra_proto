@@ -96,6 +96,9 @@ message FwTestMetric {
 // in the firmware_builder.py.
 message FwTestMetricList { repeated FwTestMetric value = 1; }
 
+// FirmwareTarget contains a fw build target. Used by firmware_builder.py.
+message FirmwareTarget { string name = 1; }
+
 message BuildAllFirmwareRequest {
   // Location of firmware to build call into firmware_builder.py entry point.
   // The `build` subcommand will be called
@@ -107,6 +110,9 @@ message BuildAllFirmwareRequest {
 
   // Whether to pass --code-coverage to firmware_builder.py.
   bool code_coverage = 3;
+
+  // List of firmware targets. Optionally used by firmware_builder.py.
+  repeated FirmwareTarget firmware_targets = 4;
 }
 
 message BuildAllFirmwareResponse {

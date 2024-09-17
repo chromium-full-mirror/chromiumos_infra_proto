@@ -5677,6 +5677,18 @@
         {
           "field": [
             {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FirmwareTarget"
+        },
+        {
+          "field": [
+            {
               "jsonName": "firmwareLocation",
               "label": "LABEL_OPTIONAL",
               "name": "firmware_location",
@@ -5698,6 +5710,14 @@
               "name": "code_coverage",
               "number": 3,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "firmwareTargets",
+              "label": "LABEL_REPEATED",
+              "name": "firmware_targets",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FirmwareTarget"
             }
           ],
           "name": "BuildAllFirmwareRequest"
