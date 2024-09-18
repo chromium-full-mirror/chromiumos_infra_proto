@@ -373,6 +373,10 @@
             {
               "name": "PLATFORM_GSC_UTILS",
               "number": 6
+            },
+            {
+              "name": "PLATFORM_AP",
+              "number": 7
             }
           ]
         }

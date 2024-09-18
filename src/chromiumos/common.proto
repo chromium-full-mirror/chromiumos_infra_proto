@@ -365,6 +365,7 @@ enum FwLocation {
   PLATFORM_CR50 = 4;      // platform/cr50/firmware_builder.py
   PLATFORM_CHAMELEON = 5; // platform/chameleon/v3/ec/firmware_builder.py
   PLATFORM_GSC_UTILS = 6; // platform/gsc-utils/firmware_builder.py
+  PLATFORM_AP = 7;        // platform/rules_cros_firmware/ap/firmware_builder.py
 }
 
 // Additional information about artifacts used by PrepareForBuild endpoints.
