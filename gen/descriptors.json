@@ -377,6 +377,10 @@
             {
               "name": "PLATFORM_AP",
               "number": 7
+            },
+            {
+              "name": "PLATFORM_RENODE",
+              "number": 8
             }
           ]
         }
