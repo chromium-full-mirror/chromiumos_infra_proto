@@ -24673,6 +24673,13 @@
               "name": "caller",
               "number": 13,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "disableCft",
+              "label": "LABEL_OPTIONAL",
+              "name": "disable_cft",
+              "number": 14,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "LabpackInput"

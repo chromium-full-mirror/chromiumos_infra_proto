@@ -38,6 +38,9 @@ message LabpackInput {
   // Caller identifies who or what called labpack or caused it to be executed.
   // Prototypical examples include "test_runner.py" or "cros_test_runner".
   string caller = 13;
+  // Disable CFT initialization. Do not start CTR.
+  // Default is initialize CFT.
+  bool disable_cft = 14;
 };
 
 // LabpackResponse represents result of execution the task on unit.
