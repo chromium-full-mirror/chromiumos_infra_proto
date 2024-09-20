@@ -263,7 +263,7 @@ type FwLocation int32
 const (
 	FwLocation_FW_LOCATION_UNKNOWN FwLocation = 0
 	FwLocation_PLATFORM_EC         FwLocation = 1 // platform/ec/firmware_builder.py
-	FwLocation_PLATFORM_ZEPHYR     FwLocation = 2 // platform/zephyr-chrome/firmware_builder.py
+	FwLocation_PLATFORM_ZEPHYR     FwLocation = 2 // platform/ec/zephyr/firmware_builder.py
 	FwLocation_PLATFORM_TI50       FwLocation = 3 // platform/ti50/common/firmware_builder.py
 	FwLocation_PLATFORM_CR50       FwLocation = 4 // platform/cr50/firmware_builder.py
 	FwLocation_PLATFORM_CHAMELEON  FwLocation = 5 // platform/chameleon/v3/ec/firmware_builder.py
