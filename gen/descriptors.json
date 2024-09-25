@@ -36804,6 +36804,37 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.Result.AutotestResultsEntry"
+            },
+            {
+              "jsonName": "startTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "start_time",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "endTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "end_time",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "hostName",
+              "label": "LABEL_OPTIONAL",
+              "name": "host_name",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "resourceUrls",
+              "label": "LABEL_REPEATED",
+              "name": "resource_urls",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result.Links"
             }
           ],
           "name": "Result",
@@ -37008,6 +37039,45 @@
               "options": {
                 "mapEntry": true
               }
+            },
+            {
+              "enumType": [
+                {
+                  "name": "Name",
+                  "value": [
+                    {
+                      "name": "UNKNOWN",
+                      "number": 0
+                    },
+                    {
+                      "name": "TEST_HAUS",
+                      "number": 1
+                    },
+                    {
+                      "name": "GOOGLE_STORAGE",
+                      "number": 2
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".test_platform.skylab_test_runner.Result.Links.Name"
+                },
+                {
+                  "jsonName": "url",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "url",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Links"
             }
           ],
           "oneofDecl": [

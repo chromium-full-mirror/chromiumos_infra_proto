@@ -118,6 +118,25 @@ message Result {
   // comes from the client.
   map<string, Autotest> autotest_results = 6;
 
+  // The start time of the shard run.
+  google.protobuf.Timestamp start_time = 7;
+
+  // The end time of the shard run.
+  google.protobuf.Timestamp end_time = 8;
+
+  string host_name = 9;
+
+  message Links {
+    enum Name {
+      UNKNOWN = 0;
+      TEST_HAUS = 1;
+      GOOGLE_STORAGE = 2;
+    }
+    Name name = 1;
+    string url = 2;
+  }
+  repeated Links resource_urls = 10;
+
   reserved 5;
   reserved "async_results";
 }
