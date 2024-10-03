@@ -36774,6 +36774,15 @@
               "typeName": ".test_platform.skylab_test_runner.Result.Autotest"
             },
             {
+              "jsonName": "androidGenericResult",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_generic_result",
+              "number": 11,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result.AndroidGeneric"
+            },
+            {
               "jsonName": "prejob",
               "label": "LABEL_OPTIONAL",
               "name": "prejob",
@@ -36941,6 +36950,48 @@
                 {
                   "end": 4,
                   "start": 3
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "givenTestCases",
+                  "label": "LABEL_REPEATED",
+                  "name": "given_test_cases",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.skylab_test_runner.Result.AndroidGeneric.GivenTestCase"
+                }
+              ],
+              "name": "AndroidGeneric",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "parentTest",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "parent_test",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "childTestCases",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "child_test_cases",
+                      "number": 2,
+                      "type": "TYPE_MESSAGE",
+                      "typeName": ".test_platform.skylab_test_runner.Result.Autotest.TestCase"
+                    },
+                    {
+                      "jsonName": "incomplete",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "incomplete",
+                      "number": 3,
+                      "type": "TYPE_BOOL"
+                    }
+                  ],
+                  "name": "GivenTestCase"
                 }
               ]
             },

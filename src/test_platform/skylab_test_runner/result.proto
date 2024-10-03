@@ -70,8 +70,27 @@ message Result {
     reserved "synchronous_log_data_url";
   }
 
+  // AndroidGeneric describes the result summary for the case of TradeFed, Mobly
+  // or any other Android genric harness.
+  message AndroidGeneric {
+    // GivenTestCase describes the result of an individual parent test case
+    // which results in having multiple child test cases
+    message GivenTestCase {
+      string parent_test = 1;
+      Autotest.TestCase child_test_cases = 2;
+      // False if test_cases represents all of the test cases to be run by the
+      // task. True otherwise (e.g. the task was aborted early).
+      bool incomplete = 3;
+    }
+
+    repeated GivenTestCase given_test_cases = 1;
+  }
+
   // Which test harness was used.
-  oneof harness { Autotest autotest_result = 1; }
+  oneof harness {
+    Autotest autotest_result = 1;
+    AndroidGeneric android_generic_result = 11;
+  }
 
   // Prejob contains all preparatory operations that run before the actual
   // test cases.
