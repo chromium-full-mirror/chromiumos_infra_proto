@@ -77,7 +77,7 @@ message Result {
     // which results in having multiple child test cases
     message GivenTestCase {
       string parent_test = 1;
-      Autotest.TestCase child_test_cases = 2;
+      repeated Autotest.TestCase child_test_cases = 2;
       // False if test_cases represents all of the test cases to be run by the
       // task. True otherwise (e.g. the task was aborted early).
       bool incomplete = 3;

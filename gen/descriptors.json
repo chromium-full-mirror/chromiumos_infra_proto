@@ -36977,7 +36977,7 @@
                     },
                     {
                       "jsonName": "childTestCases",
-                      "label": "LABEL_OPTIONAL",
+                      "label": "LABEL_REPEATED",
                       "name": "child_test_cases",
                       "number": 2,
                       "type": "TYPE_MESSAGE",
