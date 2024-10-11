@@ -44,6 +44,7 @@ type SatlabRpcServiceClient interface {
 	RunTestPlan(ctx context.Context, in *RunTestPlanRequest, opts ...grpc.CallOption) (*RunTestPlanResponse, error)
 	RunStorageQual(ctx context.Context, in *RunStorageQualRequest, opts ...grpc.CallOption) (*RunStorageQualResponse, error)
 	RunQualification(ctx context.Context, in *RunQualificationRequest, opts ...grpc.CallOption) (*RunQualificationResponse, error)
+	RunLabQual(ctx context.Context, in *RunLabQualRequest, opts ...grpc.CallOption) (*RunLabQualResponse, error)
 	// manage DUTs
 	AddPool(ctx context.Context, in *AddPoolRequest, opts ...grpc.CallOption) (*AddPoolResponse, error)
 	UpdatePool(ctx context.Context, in *UpdatePoolRequest, opts ...grpc.CallOption) (*UpdatePoolResponse, error)
@@ -239,6 +240,15 @@ func (c *satlabRpcServiceClient) RunStorageQual(ctx context.Context, in *RunStor
 func (c *satlabRpcServiceClient) RunQualification(ctx context.Context, in *RunQualificationRequest, opts ...grpc.CallOption) (*RunQualificationResponse, error) {
 	out := new(RunQualificationResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunQualification", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) RunLabQual(ctx context.Context, in *RunLabQualRequest, opts ...grpc.CallOption) (*RunLabQualResponse, error) {
+	out := new(RunLabQualResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunLabQual", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -504,6 +514,7 @@ type SatlabRpcServiceServer interface {
 	RunTestPlan(context.Context, *RunTestPlanRequest) (*RunTestPlanResponse, error)
 	RunStorageQual(context.Context, *RunStorageQualRequest) (*RunStorageQualResponse, error)
 	RunQualification(context.Context, *RunQualificationRequest) (*RunQualificationResponse, error)
+	RunLabQual(context.Context, *RunLabQualRequest) (*RunLabQualResponse, error)
 	// manage DUTs
 	AddPool(context.Context, *AddPoolRequest) (*AddPoolResponse, error)
 	UpdatePool(context.Context, *UpdatePoolRequest) (*UpdatePoolResponse, error)
@@ -593,6 +604,9 @@ func (UnimplementedSatlabRpcServiceServer) RunStorageQual(context.Context, *RunS
 }
 func (UnimplementedSatlabRpcServiceServer) RunQualification(context.Context, *RunQualificationRequest) (*RunQualificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunQualification not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) RunLabQual(context.Context, *RunLabQualRequest) (*RunLabQualResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunLabQual not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) AddPool(context.Context, *AddPoolRequest) (*AddPoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPool not implemented")
@@ -990,6 +1004,24 @@ func _SatlabRpcService_RunQualification_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).RunQualification(ctx, req.(*RunQualificationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_RunLabQual_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunLabQualRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).RunLabQual(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/RunLabQual",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).RunLabQual(ctx, req.(*RunLabQualRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1456,6 +1488,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunQualification",
 			Handler:    _SatlabRpcService_RunQualification_Handler,
+		},
+		{
+			MethodName: "RunLabQual",
+			Handler:    _SatlabRpcService_RunLabQual_Handler,
 		},
 		{
 			MethodName: "AddPool",

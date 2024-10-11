@@ -42,6 +42,7 @@ service SatlabRpcService {
   rpc RunStorageQual(RunStorageQualRequest) returns (RunStorageQualResponse);
   rpc RunQualification(RunQualificationRequest)
       returns (RunQualificationResponse);
+  rpc RunLabQual (RunLabQualRequest) returns (RunLabQualResponse);
 
   // manage DUTs
   rpc AddPool(AddPoolRequest) returns (AddPoolResponse);
@@ -847,3 +848,30 @@ message SendMessageToCCDSessionRequest {
 
 // NEXT_TAG = 1
 message SendMessageToCCDSessionResponse {}
+
+// NEXT_TAG = 4
+message AdvancedSettings {
+  bool cft = 1;
+  bool trv2 = 2;
+  bool upload_to_cpcon = 3;
+}
+
+// NEXT_TAG = 9
+message RunLabQualRequest {
+  string board = 1;
+  string milestone = 2;
+  string build = 3;
+  string model = 4;
+  string pool = 5;
+  // We use `repeated Dim` (not `map<string, string>`) in here
+  // because the generated files in Typescript do not
+  // have a setter function.
+  repeated Dim dims = 6;
+  string firmware_path = 7;
+  AdvancedSettings settings = 8;
+}
+
+// NEXT_TAG = 2
+message RunLabQualResponse {
+  string build_link= 1;
+}

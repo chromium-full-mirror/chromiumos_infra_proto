@@ -30097,6 +30097,107 @@
         },
         {
           "name": "SendMessageToCCDSessionResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "cft",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "trv2",
+              "label": "LABEL_OPTIONAL",
+              "name": "trv2",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "uploadToCpcon",
+              "label": "LABEL_OPTIONAL",
+              "name": "upload_to_cpcon",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "AdvancedSettings"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            },
+            {
+              "jsonName": "firmwarePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_path",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "settings",
+              "label": "LABEL_OPTIONAL",
+              "name": "settings",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.AdvancedSettings"
+            }
+          ],
+          "name": "RunLabQualRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunLabQualResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -30196,6 +30297,11 @@
               "inputType": ".satlabrpcserver.RunQualificationRequest",
               "name": "RunQualification",
               "outputType": ".satlabrpcserver.RunQualificationResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunLabQualRequest",
+              "name": "RunLabQual",
+              "outputType": ".satlabrpcserver.RunLabQualResponse"
             },
             {
               "inputType": ".satlabrpcserver.AddPoolRequest",
