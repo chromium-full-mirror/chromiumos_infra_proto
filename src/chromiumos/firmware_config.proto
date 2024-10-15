@@ -13,17 +13,11 @@ option java_package = "com.google.chrome.crosinfra.proto";
 
 // Config for signing of a specific model.
 message ModelSigningConfig {
-  // Key name to use.
-  string key_id = 1; // e.g. "CROTA"
-
-  // LOEM ID that will be used.
-  string signature_id = 2; // e.g. "CROTAA"
+  // Key ID to use.
+  string key_id = 1; // e.g. "CROTAA"
 
   // Brand code for the model.
-  string brand_code = 3; // e.g. "ZZCR"
-
-  // Whether the signature ID is in the customization ID.
-  bool signature_id_in_customization_id = 4; // e.g. false
+  string brand_code = 2; // e.g. "ZZCR"
 }
 
 // A sinfgle firmware version

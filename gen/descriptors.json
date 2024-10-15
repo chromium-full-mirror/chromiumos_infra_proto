@@ -19145,25 +19145,11 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "signatureId",
-              "label": "LABEL_OPTIONAL",
-              "name": "signature_id",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "brandCode",
               "label": "LABEL_OPTIONAL",
               "name": "brand_code",
-              "number": 3,
+              "number": 2,
               "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "signatureIdInCustomizationId",
-              "label": "LABEL_OPTIONAL",
-              "name": "signature_id_in_customization_id",
-              "number": 4,
-              "type": "TYPE_BOOL"
             }
           ],
           "name": "ModelSigningConfig"
