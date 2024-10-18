@@ -12305,6 +12305,14 @@
               "number": 25,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.GerritUser"
+            },
+            {
+              "jsonName": "insertMsg",
+              "label": "LABEL_REPEATED",
+              "name": "insert_msg",
+              "number": 26,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.CommitMsg"
             }
           ],
           "name": "RunCopybotRequest",
@@ -12442,6 +12450,25 @@
                 }
               ],
               "name": "PantheonSecret"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "lineNumber",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "line_number",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "insertTxt",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "insert_txt",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "CommitMsg"
             }
           ]
         },

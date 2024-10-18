@@ -130,6 +130,16 @@ message RunCopybotRequest {
 
   // Any authors to ignore when downstreaming.
   repeated GerritUser skip_authors = 25;
+
+  message CommitMsg {
+    // The line to insert text into
+    uint32 line_number = 1;
+    // The text to insert
+    string insert_txt = 2;
+  }
+
+  // The upstream repo to copy from.
+  repeated CommitMsg insert_msg = 26;
 }
 
 // The result of CopyBot being run.
