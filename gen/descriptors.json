@@ -27977,6 +27977,13 @@
               "name": "build_version",
               "number": 3,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "filterType",
+              "label": "LABEL_OPTIONAL",
+              "name": "filter_type",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "StageBuildRequest"
@@ -27988,6 +27995,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "build_bucket",
               "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "path",
+              "label": "LABEL_OPTIONAL",
+              "name": "path",
+              "number": 2,
               "type": "TYPE_STRING"
             }
           ],

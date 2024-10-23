@@ -155,15 +155,21 @@ message ListBuildVersionsRequest {
 // NEXT_TAG = 2
 message ListBuildVersionsResponse { repeated BuildItem build_versions = 1; }
 
-// NEXT_TAG = 4
+// NEXT_TAG = 5
 message StageBuildRequest {
   string board = 1;
   string model = 2;
   string build_version = 3;
+  // The type that we want to stage to our bucket
+  // e.g. firmware, release
+  string filter_type = 4;
 }
 
-// NEXT_TAG = 2
-message StageBuildResponse { string build_bucket = 1; }
+// NEXT_TAG = 3
+message StageBuildResponse {
+  string build_bucket = 1;
+  string path = 2;
+}
 
 // NEXT_TAG = 1
 message ListConnectedDutsFirmwareRequest {}
