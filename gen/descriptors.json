@@ -37931,6 +37931,13 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.test.api.CrosTestRunnerDynamicRequest"
+            },
+            {
+              "jsonName": "isAlRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_al_run",
+              "number": 7,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunTestsRequest"

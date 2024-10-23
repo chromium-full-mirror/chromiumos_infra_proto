@@ -25,6 +25,7 @@ message RunTestsRequest {
       cros_test_runner_request = 5;
   chromiumos.test.api.CrosTestRunnerDynamicRequest
       cros_test_runner_dynamic_request = 6;
+  bool is_al_run = 7;
 }
 
 // RunTestsResponse is the output from the Go-based replacement of test_runner.
