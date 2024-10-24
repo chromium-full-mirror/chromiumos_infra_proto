@@ -30010,6 +30010,13 @@
               "name": "servo_serial",
               "number": 1,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "rmaAuth",
+              "label": "LABEL_OPTIONAL",
+              "name": "rma_auth",
+              "number": 2,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "OpenCCDRequest"
@@ -30040,6 +30047,28 @@
             }
           ],
           "name": "IsUpdateAvailableResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "servoSerial",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_serial",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "message",
+              "label": "LABEL_OPTIONAL",
+              "name": "message",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SendMessageToCCDSessionRequest"
+        },
+        {
+          "name": "SendMessageToCCDSessionResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -30170,6 +30199,11 @@
               "name": "OpenCCD",
               "outputType": ".satlabrpcserver.OpenCCDReply",
               "serverStreaming": true
+            },
+            {
+              "inputType": ".satlabrpcserver.SendMessageToCCDSessionRequest",
+              "name": "SendMessageToCCDSession",
+              "outputType": ".satlabrpcserver.SendMessageToCCDSessionResponse"
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",

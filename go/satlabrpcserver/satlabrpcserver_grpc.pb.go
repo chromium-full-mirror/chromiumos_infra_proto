@@ -51,6 +51,7 @@ type SatlabRpcServiceClient interface {
 	AddDuts(ctx context.Context, in *AddDutsRequest, opts ...grpc.CallOption) (*AddDutsResponse, error)
 	RepairDuts(ctx context.Context, in *RepairDutsRequest, opts ...grpc.CallOption) (*RepairDutsResponse, error)
 	OpenCCD(ctx context.Context, in *OpenCCDRequest, opts ...grpc.CallOption) (SatlabRpcService_OpenCCDClient, error)
+	SendMessageToCCDSession(ctx context.Context, in *SendMessageToCCDSessionRequest, opts ...grpc.CallOption) (*SendMessageToCCDSessionResponse, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -321,6 +322,15 @@ func (x *satlabRpcServiceOpenCCDClient) Recv() (*OpenCCDReply, error) {
 	return m, nil
 }
 
+func (c *satlabRpcServiceClient) SendMessageToCCDSession(ctx context.Context, in *SendMessageToCCDSessionRequest, opts ...grpc.CallOption) (*SendMessageToCCDSessionResponse, error) {
+	out := new(SendMessageToCCDSessionResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/SendMessageToCCDSession", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -501,6 +511,7 @@ type SatlabRpcServiceServer interface {
 	AddDuts(context.Context, *AddDutsRequest) (*AddDutsResponse, error)
 	RepairDuts(context.Context, *RepairDutsRequest) (*RepairDutsResponse, error)
 	OpenCCD(*OpenCCDRequest, SatlabRpcService_OpenCCDServer) error
+	SendMessageToCCDSession(context.Context, *SendMessageToCCDSessionRequest) (*SendMessageToCCDSessionResponse, error)
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -600,6 +611,9 @@ func (UnimplementedSatlabRpcServiceServer) RepairDuts(context.Context, *RepairDu
 }
 func (UnimplementedSatlabRpcServiceServer) OpenCCD(*OpenCCDRequest, SatlabRpcService_OpenCCDServer) error {
 	return status.Errorf(codes.Unimplemented, "method OpenCCD not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) SendMessageToCCDSession(context.Context, *SendMessageToCCDSessionRequest) (*SendMessageToCCDSessionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMessageToCCDSession not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -1091,6 +1105,24 @@ func (x *satlabRpcServiceOpenCCDServer) Send(m *OpenCCDReply) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _SatlabRpcService_SendMessageToCCDSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendMessageToCCDSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).SendMessageToCCDSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/SendMessageToCCDSession",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).SendMessageToCCDSession(ctx, req.(*SendMessageToCCDSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -1444,6 +1476,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RepairDuts",
 			Handler:    _SatlabRpcService_RepairDuts_Handler,
+		},
+		{
+			MethodName: "SendMessageToCCDSession",
+			Handler:    _SatlabRpcService_SendMessageToCCDSession_Handler,
 		},
 		{
 			MethodName: "GetDutDetail",
