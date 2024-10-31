@@ -5917,6 +5917,20 @@
                   "name": "board",
                   "number": 6,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "requestSignedTestBinary",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "request_signed_test_binary",
+                  "number": 7,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "publishToGoldeneye",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "publish_to_goldeneye",
+                  "number": 8,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "TarballInfo",
@@ -5941,6 +5955,10 @@
                         {
                           "name": "PD",
                           "number": 3
+                        },
+                        {
+                          "name": "GSC",
+                          "number": 4
                         }
                       ]
                     }

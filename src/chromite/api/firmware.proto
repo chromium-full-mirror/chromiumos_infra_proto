@@ -191,6 +191,7 @@ message FirmwareArtifactInfo {
         MAIN = 1;
         EC = 2;
         PD = 3;
+        GSC = 4;
       }
     }
     FirmwareType.Type type = 3;
@@ -211,6 +212,15 @@ message FirmwareArtifactInfo {
     // Some artifacts are shared between 2 or more boards. For example the
     // EC firmware mtlrvpp_mchp is used by both rex and fatcat.
     repeated string board = 6;
+
+    // Should the builder initiate a sign operation for this tarball. As of
+    // 2024-10-31, it is only used for the GSC test binaries.
+    bool request_signed_test_binary = 7;
+
+    // Indicates that this tarball should be published as the single tarball
+    // artifact in goldeneye for this version. Note that goldeneye only supports
+    // a single firmware artifact per version.
+    bool publish_to_goldeneye = 8;
   }
 
   message LcovTarballInfo {
