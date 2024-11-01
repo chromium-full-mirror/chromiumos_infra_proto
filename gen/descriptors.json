@@ -40462,7 +40462,8 @@
         "test_platform/skylab_test_runner/request.proto",
         "test_platform/skylab_test_runner/cft_request.proto",
         "test_platform/skylab_test_runner/result.proto",
-        "test_platform/skylab_test_runner/common_config.proto"
+        "test_platform/skylab_test_runner/common_config.proto",
+        "chromiumos/test/api/trv2_dynamic.proto"
       ],
       "messageType": [
         {
@@ -40554,6 +40555,14 @@
               "name": "is_al_run",
               "number": 12,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "crosTestRunnerDynamicRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "cros_test_runner_dynamic_request",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.test.api.CrosTestRunnerDynamicRequest"
             }
           ],
           "name": "TestRunnerProperties"
