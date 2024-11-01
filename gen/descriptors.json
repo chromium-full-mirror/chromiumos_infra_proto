@@ -40457,6 +40457,121 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "test_platform/request.proto",
+        "test_platform/skylab_test_runner/config.proto",
+        "test_platform/skylab_test_runner/request.proto",
+        "test_platform/skylab_test_runner/cft_request.proto",
+        "test_platform/skylab_test_runner/result.proto",
+        "test_platform/skylab_test_runner/common_config.proto"
+      ],
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "LUCIExperiments",
+              "value": [
+                {
+                  "name": "USE_RESULT_PUBLISHING_LIMIT",
+                  "number": 0
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "request",
+              "label": "LABEL_OPTIONAL",
+              "name": "request",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Request"
+            },
+            {
+              "jsonName": "result",
+              "label": "LABEL_OPTIONAL",
+              "name": "result",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Result"
+            },
+            {
+              "jsonName": "config",
+              "label": "LABEL_OPTIONAL",
+              "name": "config",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.Config"
+            },
+            {
+              "jsonName": "cftIsEnabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft_is_enabled",
+              "number": 4,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "cftTestRequest",
+              "label": "LABEL_OPTIONAL",
+              "name": "cft_test_request",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CFTTestRequest"
+            },
+            {
+              "jsonName": "commonConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "common_config",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.CommonConfig"
+            },
+            {
+              "jsonName": "experiments",
+              "label": "LABEL_REPEATED",
+              "name": "experiments",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.test_runner.TestRunnerProperties.LUCIExperiments"
+            },
+            {
+              "jsonName": "partnerConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "partner_config",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "resultsUploadConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "results_upload_config",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.Request.Params.ResultsUploadConfig"
+            },
+            {
+              "jsonName": "isAlRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_al_run",
+              "number": 12,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "TestRunnerProperties"
+        }
+      ],
+      "name": "test_platform/test_runner/properties.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/test_platform/test_runner"
+      },
+      "package": "test_platform.test_runner",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromiumos/common.proto",
         "chromiumos/test/api/v1/plan.proto"
       ],
