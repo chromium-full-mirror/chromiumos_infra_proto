@@ -210,6 +210,10 @@ message BuildReport {
       FIRMWARE_IMAGE_ARCHIVE = 3;
       // Typically named "chromiumos_test_image.tar.xz".
       TEST_IMAGE_ARCHIVE = 4;
+      // Typically named "model_AP.tbz2".
+      FIRMWARE_AP_IMAGE_ARCHIVE = 5;
+      // Typically named "model_EC.tbz2".
+      FIRMWARE_EC_IMAGE_ARCHIVE = 6;
 
       // Other Chrome OS artifacts, not necessarily an image.
       // Typically named something like

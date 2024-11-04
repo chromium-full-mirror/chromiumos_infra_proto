@@ -6746,6 +6746,14 @@
                       "number": 4
                     },
                     {
+                      "name": "FIRMWARE_AP_IMAGE_ARCHIVE",
+                      "number": 5
+                    },
+                    {
+                      "name": "FIRMWARE_EC_IMAGE_ARCHIVE",
+                      "number": 6
+                    },
+                    {
                       "name": "HWQUAL_ARCHIVE",
                       "number": 101
                     },
