@@ -36837,6 +36837,49 @@
         "test_platform/common/task.proto",
         "google/protobuf/timestamp.proto"
       ],
+      "enumType": [
+        {
+          "name": "TestRunnerErrorType",
+          "value": [
+            {
+              "name": "NONE",
+              "number": 0
+            },
+            {
+              "name": "INPUT_VALIDATION",
+              "number": 1
+            },
+            {
+              "name": "AUTH",
+              "number": 2
+            },
+            {
+              "name": "DUT_CONNECTION",
+              "number": 3
+            },
+            {
+              "name": "PROVISION",
+              "number": 4
+            },
+            {
+              "name": "SERVO",
+              "number": 5
+            },
+            {
+              "name": "TEST_HARNESS",
+              "number": 6
+            },
+            {
+              "name": "PUBLISH",
+              "number": 7
+            },
+            {
+              "name": "OTHER",
+              "number": 8
+            }
+          ]
+        }
+      ],
       "messageType": [
         {
           "field": [
@@ -36920,6 +36963,21 @@
               "number": 10,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.Result.Links"
+            },
+            {
+              "jsonName": "errorString",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_string",
+              "number": 12,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "errorType",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_type",
+              "number": 13,
+              "type": "TYPE_ENUM",
+              "typeName": ".test_platform.skylab_test_runner.TestRunnerErrorType"
             }
           ],
           "name": "Result",

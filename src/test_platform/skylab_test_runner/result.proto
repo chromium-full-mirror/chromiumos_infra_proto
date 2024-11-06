@@ -156,6 +156,24 @@ message Result {
   }
   repeated Links resource_urls = 10;
 
+  // Human-readable error, if any.
+  string error_string = 12;
+
+  // Error type, if any.
+  TestRunnerErrorType error_type = 13;
+
   reserved 5;
   reserved "async_results";
+}
+
+enum TestRunnerErrorType {
+  NONE = 0;
+  INPUT_VALIDATION = 1;
+  AUTH = 2;
+  DUT_CONNECTION = 3;
+  PROVISION = 4;
+  SERVO = 5;
+  TEST_HARNESS = 6;
+  PUBLISH = 7;
+  OTHER = 8;
 }
