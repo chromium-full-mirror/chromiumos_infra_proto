@@ -8,6 +8,7 @@ syntax = "proto3";
 
 package test_platform.steps;
 
+import "google/protobuf/wrappers.proto";
 import "test_platform/config/config.proto";
 import "test_platform/request.proto";
 import "chromiumos/test/api/ctp2.proto";
@@ -19,6 +20,7 @@ message CTPv2BinaryBuildInput {
   map<string, .test_platform.Request> requests = 2;
   test_platform.config.Config config = 3;
   chromiumos.test.api.CTPv2Request ctpv2_request = 4;
+  google.protobuf.BoolValue partner_config = 5;
 }
 
 message CTPv2BinaryBuildOutput {

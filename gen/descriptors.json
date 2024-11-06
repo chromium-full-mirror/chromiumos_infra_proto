@@ -38316,6 +38316,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/wrappers.proto",
         "test_platform/config/config.proto",
         "test_platform/request.proto",
         "chromiumos/test/api/ctp2.proto"
@@ -38354,6 +38355,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.test.api.CTPv2Request"
+            },
+            {
+              "jsonName": "partnerConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "partner_config",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.BoolValue"
             }
           ],
           "name": "CTPv2BinaryBuildInput",
