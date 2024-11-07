@@ -124,10 +124,13 @@ message BuildItem {
   BuildStatus status = 3;
 }
 
-// NEXT_TAG = 3
+// NEXT_TAG = 4
 message ListMilestonesRequest {
   string board = 1;
   string model = 2;
+  // The type that we want to filter from the google bucket
+  // e.g. firmware, release
+  string filter_type = 3;
 }
 
 // NEXT_TAG = 3
@@ -145,11 +148,14 @@ message Model {
 // NEXT_TAG = 2
 message ListAccessibleModelsResponse { repeated Model models = 1; }
 
-// NEXT_TAG = 4
+// NEXT_TAG = 5
 message ListBuildVersionsRequest {
   string board = 1;
   string model = 2;
   int32 milestone = 3;
+  // The type that we want to filter from the google bucket
+  // e.g. firmware, release
+  string filter_type = 4;
 }
 
 // NEXT_TAG = 2
