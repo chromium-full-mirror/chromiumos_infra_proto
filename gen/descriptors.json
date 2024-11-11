@@ -274,6 +274,10 @@
             {
               "name": "IMAGE_TYPE_SHELLBALL",
               "number": 20
+            },
+            {
+              "name": "IMAGE_TYPE_RECOVERY_KERNEL",
+              "number": 21
             }
           ]
         },

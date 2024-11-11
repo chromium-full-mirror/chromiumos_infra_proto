@@ -323,6 +323,8 @@ enum ImageType {
   IMAGE_TYPE_FLEXOR_KERNEL = 19;
   // Used for standalone firmware shellball signing.
   IMAGE_TYPE_SHELLBALL = 20;
+  // Used for standalone recovery kernel signing.
+  IMAGE_TYPE_RECOVERY_KERNEL = 21;
 }
 
 // The various channels that we release through.
