@@ -84,6 +84,9 @@ service SatlabRpcService {
 
   // Jobs operation
   rpc AbortJobs(AbortJobsRequest) returns (AbortJobsResponse);
+
+  // Satlab update
+  rpc IsUpdateAvailable (IsUpdateAvailableRequest) returns (IsUpdateAvailableResponse);
 }
 
 message StartServodResponse {
@@ -812,4 +815,12 @@ message OpenCCDRequest {
 // NEXT_TAG = 2
 message OpenCCDReply {
   string message = 1;
+}
+
+// NEXT_TAG = 1
+message IsUpdateAvailableRequest {}
+
+// NEXT_TAG = 2
+message IsUpdateAvailableResponse {
+  bool is_update_available = 1;
 }

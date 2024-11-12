@@ -70,6 +70,8 @@ type SatlabRpcServiceClient interface {
 	ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error)
 	// Jobs operation
 	AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error)
+	// Satlab update
+	IsUpdateAvailable(ctx context.Context, in *IsUpdateAvailableRequest, opts ...grpc.CallOption) (*IsUpdateAvailableResponse, error)
 }
 
 type satlabRpcServiceClient struct {
@@ -459,6 +461,15 @@ func (c *satlabRpcServiceClient) AbortJobs(ctx context.Context, in *AbortJobsReq
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) IsUpdateAvailable(ctx context.Context, in *IsUpdateAvailableRequest, opts ...grpc.CallOption) (*IsUpdateAvailableResponse, error) {
+	out := new(IsUpdateAvailableResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/IsUpdateAvailable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SatlabRpcServiceServer is the server API for SatlabRpcService service.
 // All implementations must embed UnimplementedSatlabRpcServiceServer
 // for forward compatibility
@@ -509,6 +520,8 @@ type SatlabRpcServiceServer interface {
 	ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)
 	// Jobs operation
 	AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error)
+	// Satlab update
+	IsUpdateAvailable(context.Context, *IsUpdateAvailableRequest) (*IsUpdateAvailableResponse, error)
 	mustEmbedUnimplementedSatlabRpcServiceServer()
 }
 
@@ -626,6 +639,9 @@ func (UnimplementedSatlabRpcServiceServer) ListJobs(context.Context, *ListJobsRe
 }
 func (UnimplementedSatlabRpcServiceServer) AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AbortJobs not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) IsUpdateAvailable(context.Context, *IsUpdateAvailableRequest) (*IsUpdateAvailableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsUpdateAvailable not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) mustEmbedUnimplementedSatlabRpcServiceServer() {}
 
@@ -1312,6 +1328,24 @@ func _SatlabRpcService_AbortJobs_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_IsUpdateAvailable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsUpdateAvailableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).IsUpdateAvailable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/IsUpdateAvailable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).IsUpdateAvailable(ctx, req.(*IsUpdateAvailableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SatlabRpcService_ServiceDesc is the grpc.ServiceDesc for SatlabRpcService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1458,6 +1492,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AbortJobs",
 			Handler:    _SatlabRpcService_AbortJobs_Handler,
+		},
+		{
+			MethodName: "IsUpdateAvailable",
+			Handler:    _SatlabRpcService_IsUpdateAvailable_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

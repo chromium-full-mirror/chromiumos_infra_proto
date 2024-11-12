@@ -30010,6 +30010,21 @@
             }
           ],
           "name": "OpenCCDReply"
+        },
+        {
+          "name": "IsUpdateAvailableRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "isUpdateAvailable",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_update_available",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "IsUpdateAvailableResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -30212,6 +30227,11 @@
               "inputType": ".satlabrpcserver.AbortJobsRequest",
               "name": "AbortJobs",
               "outputType": ".satlabrpcserver.AbortJobsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.IsUpdateAvailableRequest",
+              "name": "IsUpdateAvailable",
+              "outputType": ".satlabrpcserver.IsUpdateAvailableResponse"
             }
           ],
           "name": "SatlabRpcService"
