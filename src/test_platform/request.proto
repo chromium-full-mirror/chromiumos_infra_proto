@@ -321,6 +321,13 @@ message Request {
 
     // If true then the request is an AL type run in CTPv2 and TRv2.
     bool is_al_run = 26;
+
+    // create_al_invocations signals to CTP if we should create an invocation at
+    // runtime if no ATP information is provided. This should only really be
+    // used by Kron, crosfleet, and LED testing.
+    //
+    // NOTE: This should always be disabled for partners.
+    bool create_al_invocation = 27;
   }
 
   Params params = 1;
