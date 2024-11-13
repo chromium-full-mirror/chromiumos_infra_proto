@@ -47,8 +47,8 @@ message StableVersion {
 
 // StableVersionTarget describes details of target devices.
 message StableVersionTarget {
-  // Reserved for future use.
-  reserved 1;
+  // Device type like cros/android/tablet/labstation.
+  string device_type = 1;
   // The board of the device.
   // For CrOS it can be represented as build-target.
   string board = 2;

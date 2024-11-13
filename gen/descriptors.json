@@ -25288,6 +25288,13 @@
         {
           "field": [
             {
+              "jsonName": "deviceType",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_type",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "board",
               "label": "LABEL_OPTIONAL",
               "name": "board",
@@ -25309,13 +25316,7 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "StableVersionTarget",
-          "reservedRange": [
-            {
-              "end": 2,
-              "start": 1
-            }
-          ]
+          "name": "StableVersionTarget"
         }
       ],
       "name": "lab_platform/stable_version.proto",
