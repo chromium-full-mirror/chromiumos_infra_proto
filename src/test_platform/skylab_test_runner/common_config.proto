@@ -74,6 +74,8 @@ message CommonConfig {
   message PartnerConfig {
     // Account ID for the partner.
     int64 account_id = 1;
+    // Partner GCS bucket name
+    string gcs_bucket = 2;
   }
 
   PartnerConfig partner_config = 8;

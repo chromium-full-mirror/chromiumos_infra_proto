@@ -36570,6 +36570,13 @@
                   "name": "account_id",
                   "number": 1,
                   "type": "TYPE_INT64"
+                },
+                {
+                  "jsonName": "gcsBucket",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "gcs_bucket",
+                  "number": 2,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "PartnerConfig"
