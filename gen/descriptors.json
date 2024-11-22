@@ -36493,6 +36493,14 @@
               "number": 8,
               "type": "TYPE_MESSAGE",
               "typeName": ".test_platform.skylab_test_runner.CommonConfig.PartnerConfig"
+            },
+            {
+              "jsonName": "xtsArchiveConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "xts_archive_config",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".test_platform.skylab_test_runner.XtsArchiveConfig"
             }
           ],
           "name": "CommonConfig",
@@ -36692,6 +36700,25 @@
               "name": "ile_de_france_selector"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "resultsGcsPrefix",
+              "label": "LABEL_OPTIONAL",
+              "name": "results_gcs_prefix",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "apfeGcsPrefix",
+              "label": "LABEL_OPTIONAL",
+              "name": "apfe_gcs_prefix",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "XtsArchiveConfig"
         }
       ],
       "name": "test_platform/skylab_test_runner/common_config.proto",

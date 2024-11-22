@@ -9,6 +9,7 @@ package test_platform.skylab_test_runner;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/test_platform/skylab_test_runner";
 
 // Config defines configuration parameters of skylab_test_runner.
+// NEXT TAG: 10
 message CommonConfig {
 
   CrosFirmwareUpdateConfig cros_firmware_update_config = 1;
@@ -80,6 +81,9 @@ message CommonConfig {
 
   PartnerConfig partner_config = 8;
 
+  // XtsArchiveConfig defines the config for archiving XTS results to specific
+  // buckets to be ingested by XTS result pipeline.
+  XtsArchiveConfig xts_archive_config = 9;
 }
 
 // b/267268890: Config to control trv2 gradual rollout in prod. Should be
@@ -124,4 +128,19 @@ message IleDeFranceConfig {
     ModelList allow_list = 2;
     ModelList deny_list = 3;
   }
+}
+
+// XtsArchiveConfig defines the properties for archiving XTS suite results
+// to be ingested by the XTS pipeline for release qualification and
+// regression monitoring.
+// NEXT TAG: 3
+message XtsArchiveConfig {
+  // The GCS path prefix to upload XTS result file to be ingested by
+  // the XTS pipeline.
+  // This includes the bucket name and any optional file prefix.
+  string results_gcs_prefix = 1;
+
+  // The GCS path prefix to upload XTS result file for APFE approval.
+  // This includes the bucket name and any optional file prefix.
+  string apfe_gcs_prefix = 2;
 }
