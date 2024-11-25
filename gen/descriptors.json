@@ -24727,6 +24727,13 @@
               "name": "disable_cft",
               "number": 14,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "ctrTag",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctr_tag",
+              "number": 15,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "LabpackInput"

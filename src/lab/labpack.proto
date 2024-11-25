@@ -41,6 +41,9 @@ message LabpackInput {
   // Disable CFT initialization. Do not start CTR.
   // Default is initialize CFT.
   bool disable_cft = 14;
+  // Specify CIPD tag for CTR.
+  // Default will be used as `prod`.
+  string ctr_tag = 15;
 };
 
 // LabpackResponse represents result of execution the task on unit.
