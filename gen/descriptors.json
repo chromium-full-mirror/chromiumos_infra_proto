@@ -30205,6 +30205,51 @@
             }
           ],
           "name": "RunLabQualResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "StableVersionRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "osImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "os_image",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "fwVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw_version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "fwImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw_image",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "StableVersionResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -30345,6 +30390,11 @@
               "inputType": ".satlabrpcserver.SendMessageToCCDSessionRequest",
               "name": "SendMessageToCCDSession",
               "outputType": ".satlabrpcserver.SendMessageToCCDSessionResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.StableVersionRequest",
+              "name": "StableVersion",
+              "outputType": ".satlabrpcserver.StableVersionResponse"
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",
