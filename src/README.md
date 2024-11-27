@@ -5,7 +5,7 @@ This folder contains the protobuf source files for the Chromite Build API and Re
 ## Making changes
 
 Before committing any changes to this repo, make sure to run `generate.sh` one
-directory up.
+directory up and also `~/chromiumos/chromite/api/compile_build_api_proto`.
 
 ## Directories:
 

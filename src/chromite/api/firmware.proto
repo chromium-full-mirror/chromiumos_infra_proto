@@ -167,6 +167,9 @@ message BundleFirmwareArtifactsRequest {
 message BundleFirmwareArtifactsResponse {
   // The artifacts that were bundled.
   chromiumos.UploadedArtifactsByService.Firmware artifacts = 1;
+  // The directory the artifacts were written to. You need this to compute the
+  // relative filenames.
+  chromiumos.Path artifact_dir = 2;
 }
 
 // Contents of a Firmware.FIRMWARE_TARBALL_INFO artifact.
