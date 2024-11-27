@@ -5844,6 +5844,14 @@
               "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.UploadedArtifactsByService.Firmware"
+            },
+            {
+              "jsonName": "artifactDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "artifact_dir",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             }
           ],
           "name": "BundleFirmwareArtifactsResponse"
