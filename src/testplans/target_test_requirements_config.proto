@@ -99,9 +99,11 @@ message HwTestCfg {
     // workflow.
     chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 19;
 
-    // The total number of shards to be used in a test run. Only used when
-    // tag_criteria is also set.
-    int64 total_shards = 22;
+    // No-op with CTP2 rollout, use max_in_shard instead.
+    int64 total_shards = 22 [deprecated = true];
+
+    // See test_platform.Request.TestPlan.max_in_shard.
+    int64 max_in_shard = 25;
 
     // If true, then run test via cros_test_runner(trv2) workflow.
     // This flag can only be true if run_via_cft is true.
