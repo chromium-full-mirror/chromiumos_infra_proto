@@ -29182,6 +29182,13 @@
               "name": "ccd_status",
               "number": 15,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hasPermission",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_permission",
+              "number": 16,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "Dut"
