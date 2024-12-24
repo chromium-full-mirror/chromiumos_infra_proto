@@ -8343,6 +8343,13 @@
               "name": "version",
               "number": 1,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "commitHash",
+              "label": "LABEL_OPTIONAL",
+              "name": "commit_hash",
+              "number": 2,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "GetChromeVersionResponse"

@@ -82,6 +82,8 @@ message GetChromeVersionRequest {
 message GetChromeVersionResponse {
   // The chrome version.
   string version = 1;
+  // The commit hash of it.
+  string commit_hash = 2;
 }
 
 message GetTargetVersionsRequest {
