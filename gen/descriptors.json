@@ -41265,6 +41265,7 @@
         "chromiumos/test/api/provision_state.proto",
         "chromiumos/test/api/test_suite.proto",
         "test_platform/common/cft_steps_config.proto",
+        "test_platform/request.proto",
         "lab/license.proto"
       ],
       "messageType": [
@@ -41510,6 +41511,14 @@
                   "name": "enable_autotest_sharding",
                   "number": 24,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "freeformAttributes",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "freeform_attributes",
+                  "number": 26,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".test_platform.Request.Params.FreeformAttributes"
                 }
               ],
               "name": "HwTest",

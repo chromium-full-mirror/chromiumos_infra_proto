@@ -12,6 +12,7 @@ import "google/protobuf/wrappers.proto";
 import "chromiumos/test/api/provision_state.proto";
 import "chromiumos/test/api/test_suite.proto";
 import "test_platform/common/cft_steps_config.proto";
+import "test_platform/request.proto";
 
 import "lab/license.proto";
 
@@ -60,7 +61,7 @@ message HwTestCfg {
     TAST = 2;
   }
   // Configuration for a hardware test suite.
-  // NEXT ID: 25
+  // NEXT ID: 27
   message HwTest {
     TestSuiteCommon common = 12;
 
@@ -100,7 +101,7 @@ message HwTestCfg {
     chromiumos.test.api.TestSuite.TestCaseTagCriteria tag_criteria = 19;
 
     // No-op with CTP2 rollout, use max_in_shard instead.
-    int64 total_shards = 22 [deprecated = true];
+    int64 total_shards = 22 [ deprecated = true ];
 
     // See test_platform.Request.TestPlan.max_in_shard.
     int64 max_in_shard = 25;
@@ -121,6 +122,12 @@ message HwTestCfg {
 
     // If true, then autotest tests will be sharded
     bool enable_autotest_sharding = 24;
+
+    // Additional attributes to be used in scheduling. This field should only
+    // be used if another field in this message doesn't cover the scheduling
+    // requirement. See message definition in test_platform/request.proto for
+    // complete documentation.
+    test_platform.Request.Params.FreeformAttributes freeform_attributes = 26;
   }
 
   repeated HwTest hw_test = 1;
