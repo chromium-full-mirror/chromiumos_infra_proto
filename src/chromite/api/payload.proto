@@ -194,6 +194,14 @@ message GenerateUnsignedPayloadRequest {
   chromiumos.ResultPath result_path = 10;
 }
 
+// Information about input into a payload.
+message PayloadInput {
+  // GS path where the input src/tgt image was downloaded from.
+  string gs_path = 1;
+  // Local path where the input was downloaded to.
+  chromiumos.Path path = 2;
+}
+
 // Information about an unsigned payload.
 message UnsignedPayload {
   // Version of the payload (eg. 1).
@@ -217,6 +225,9 @@ message UnsignedPayload {
 
   // Path of the payload file with generation details.
   chromiumos.Path payload_file_log_path = 9;
+
+  // Image inputs into payloads.
+  repeated PayloadInput payload_inputs = 10;
 }
 
 // Result of a payload generation.
