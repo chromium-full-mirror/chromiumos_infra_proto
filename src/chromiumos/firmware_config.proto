@@ -51,4 +51,9 @@ message FirmwareConfigForModel {
 
   // EC firmware config.
   FirmwareConfig ec_firmware = 4;
+
+  // AP firmware containing the EC firmware for read-write EC.
+  // This is multually exclusive with ec_firmware.rw_firmware. At most one can
+  // have non-empty uri.
+  FirmwareVersion ap_firmware_for_ec_rw = 5;
 }

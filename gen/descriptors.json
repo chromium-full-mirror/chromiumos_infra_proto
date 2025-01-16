@@ -19333,6 +19333,14 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.FirmwareConfig"
+            },
+            {
+              "jsonName": "apFirmwareForEcRw",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_firmware_for_ec_rw",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareVersion"
             }
           ],
           "name": "FirmwareConfigForModel"
