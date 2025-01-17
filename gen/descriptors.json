@@ -15147,6 +15147,13 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.Path"
+            },
+            {
+              "jsonName": "isArchive",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_archive",
+              "number": 3,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "PayloadInput"

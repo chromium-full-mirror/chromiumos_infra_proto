@@ -200,6 +200,8 @@ message PayloadInput {
   string gs_path = 1;
   // Local path where the input was downloaded to.
   chromiumos.Path path = 2;
+  // Whether the input is an archive and can be deleted after verification.
+  bool is_archive = 3;
 }
 
 // Information about an unsigned payload.
