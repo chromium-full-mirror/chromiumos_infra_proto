@@ -6766,6 +6766,10 @@
                       "number": 6
                     },
                     {
+                      "name": "FIRMWARE_GSC_IMAGE_ARCHIVE",
+                      "number": 7
+                    },
+                    {
                       "name": "HWQUAL_ARCHIVE",
                       "number": 101
                     },
