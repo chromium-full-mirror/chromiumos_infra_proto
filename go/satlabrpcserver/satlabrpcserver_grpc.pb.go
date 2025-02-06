@@ -63,6 +63,7 @@ type SatlabRpcServiceClient interface {
 	// setup
 	SetCloudConfiguration(ctx context.Context, in *SetCloudConfigurationRequest, opts ...grpc.CallOption) (*SetCloudConfigurationResponse, error)
 	GetCloudConfiguration(ctx context.Context, in *GetCloudConfigurationRequest, opts ...grpc.CallOption) (*GetCloudConfigurationResponse, error)
+	IsAuth(ctx context.Context, in *IsAuthRequest, opts ...grpc.CallOption) (*IsAuthResponse, error)
 	// system
 	Reboot(ctx context.Context, in *RebootRequest, opts ...grpc.CallOption) (*RebootResponse, error)
 	UploadLog(ctx context.Context, in *UploadLogRequest, opts ...grpc.CallOption) (*UploadLogResponse, error)
@@ -414,6 +415,15 @@ func (c *satlabRpcServiceClient) GetCloudConfiguration(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) IsAuth(ctx context.Context, in *IsAuthRequest, opts ...grpc.CallOption) (*IsAuthResponse, error) {
+	out := new(IsAuthResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/IsAuth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) Reboot(ctx context.Context, in *RebootRequest, opts ...grpc.CallOption) (*RebootResponse, error) {
 	out := new(RebootResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/Reboot", in, out, opts...)
@@ -543,6 +553,7 @@ type SatlabRpcServiceServer interface {
 	// setup
 	SetCloudConfiguration(context.Context, *SetCloudConfigurationRequest) (*SetCloudConfigurationResponse, error)
 	GetCloudConfiguration(context.Context, *GetCloudConfigurationRequest) (*GetCloudConfigurationResponse, error)
+	IsAuth(context.Context, *IsAuthRequest) (*IsAuthResponse, error)
 	// system
 	Reboot(context.Context, *RebootRequest) (*RebootResponse, error)
 	UploadLog(context.Context, *UploadLogRequest) (*UploadLogResponse, error)
@@ -663,6 +674,9 @@ func (UnimplementedSatlabRpcServiceServer) SetCloudConfiguration(context.Context
 }
 func (UnimplementedSatlabRpcServiceServer) GetCloudConfiguration(context.Context, *GetCloudConfigurationRequest) (*GetCloudConfigurationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCloudConfiguration not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) IsAuth(context.Context, *IsAuthRequest) (*IsAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsAuth not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) Reboot(context.Context, *RebootRequest) (*RebootResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Reboot not implemented")
@@ -1313,6 +1327,24 @@ func _SatlabRpcService_GetCloudConfiguration_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_IsAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).IsAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/IsAuth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).IsAuth(ctx, req.(*IsAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_Reboot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RebootRequest)
 	if err := dec(in); err != nil {
@@ -1580,6 +1612,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCloudConfiguration",
 			Handler:    _SatlabRpcService_GetCloudConfiguration_Handler,
+		},
+		{
+			MethodName: "IsAuth",
+			Handler:    _SatlabRpcService_IsAuth_Handler,
 		},
 		{
 			MethodName: "Reboot",

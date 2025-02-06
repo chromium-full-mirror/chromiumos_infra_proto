@@ -30316,6 +30316,21 @@
             }
           ],
           "name": "StableVersionResponse"
+        },
+        {
+          "name": "IsAuthRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "isAuth",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_auth",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "IsAuthResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -30496,6 +30511,11 @@
               "inputType": ".satlabrpcserver.GetCloudConfigurationRequest",
               "name": "GetCloudConfiguration",
               "outputType": ".satlabrpcserver.GetCloudConfigurationResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.IsAuthRequest",
+              "name": "IsAuth",
+              "outputType": ".satlabrpcserver.IsAuthResponse"
             },
             {
               "inputType": ".satlabrpcserver.RebootRequest",
