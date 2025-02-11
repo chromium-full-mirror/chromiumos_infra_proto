@@ -41,6 +41,9 @@ message CreatePreMPKeysRequest {
 
   // Whether to generate UEFI keys.
   bool uefi = 4;
+
+  // Whether to add a new loem to an existing keyset.
+  bool add_loem = 8;
 }
 
 message CreatePreMPKeysResponse {}

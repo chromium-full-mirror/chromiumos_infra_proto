@@ -16442,6 +16442,13 @@
               "name": "uefi",
               "number": 4,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "addLoem",
+              "label": "LABEL_OPTIONAL",
+              "name": "add_loem",
+              "number": 8,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CreatePreMPKeysRequest"
