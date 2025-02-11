@@ -311,6 +311,10 @@
             {
               "name": "CHANNEL_LTC",
               "number": 6
+            },
+            {
+              "name": "CHANNEL_AGNOSTIC",
+              "number": 7
             }
           ]
         },

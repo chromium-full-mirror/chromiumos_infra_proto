@@ -336,6 +336,7 @@ enum Channel {
   CHANNEL_CANARY = 4;
   CHANNEL_LTS = 5;
   CHANNEL_LTC = 6;
+  CHANNEL_AGNOSTIC = 7;
 }
 
 // A map of release milestones to their appropriate channels.
