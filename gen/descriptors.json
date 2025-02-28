@@ -5775,6 +5775,14 @@
               "name": "code_coverage",
               "number": 3,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "firmwareTargets",
+              "label": "LABEL_REPEATED",
+              "name": "firmware_targets",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FirmwareTarget"
             }
           ],
           "name": "TestAllFirmwareRequest"

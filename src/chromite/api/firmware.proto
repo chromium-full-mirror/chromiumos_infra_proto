@@ -131,6 +131,9 @@ message TestAllFirmwareRequest {
 
   // Whether to pass --code-coverage to firmware_builder.py.
   bool code_coverage = 3;
+
+  // List of firmware targets. Optionally used by firmware_builder.py.
+  repeated FirmwareTarget firmware_targets = 4;
 }
 
 message TestAllFirmwareResponse {
