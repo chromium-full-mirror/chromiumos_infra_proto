@@ -5843,6 +5843,14 @@
               "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.BcsVersionInfo"
+            },
+            {
+              "jsonName": "firmwareTargets",
+              "label": "LABEL_REPEATED",
+              "name": "firmware_targets",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FirmwareTarget"
             }
           ],
           "name": "BundleFirmwareArtifactsRequest"

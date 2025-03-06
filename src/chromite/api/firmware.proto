@@ -165,6 +165,9 @@ message BundleFirmwareArtifactsRequest {
 
   // BcsVersionInfo to use in (copy into) FirmwareArtifactInfo.TarballInfo.
   BcsVersionInfo bcs_version_info = 6;
+
+  // List of firmware targets. Optionally used by firmware_builder.py.
+  repeated FirmwareTarget firmware_targets = 7;
 }
 
 message BundleFirmwareArtifactsResponse {
