@@ -29,6 +29,8 @@ type SigningServiceClient interface {
 	//   "uefi": true,
 	// }
 	CreatePreMPKeys(ctx context.Context, in *CreatePreMPKeysRequest, opts ...grpc.CallOption) (*CreatePreMPKeysResponse, error)
+	// Create an accessory keyset for the given board and accessory.
+	CreateAccessoryKeys(ctx context.Context, in *CreateAccessoryKeyRequest, opts ...grpc.CallOption) (*CreateAccessoryKeyResponse, error)
 }
 
 type signingServiceClient struct {
@@ -48,6 +50,15 @@ func (c *signingServiceClient) CreatePreMPKeys(ctx context.Context, in *CreatePr
 	return out, nil
 }
 
+func (c *signingServiceClient) CreateAccessoryKeys(ctx context.Context, in *CreateAccessoryKeyRequest, opts ...grpc.CallOption) (*CreateAccessoryKeyResponse, error) {
+	out := new(CreateAccessoryKeyResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/CreateAccessoryKeys", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SigningServiceServer is the server API for SigningService service.
 // All implementations must embed UnimplementedSigningServiceServer
 // for forward compatibility
@@ -59,6 +70,8 @@ type SigningServiceServer interface {
 	//   "uefi": true,
 	// }
 	CreatePreMPKeys(context.Context, *CreatePreMPKeysRequest) (*CreatePreMPKeysResponse, error)
+	// Create an accessory keyset for the given board and accessory.
+	CreateAccessoryKeys(context.Context, *CreateAccessoryKeyRequest) (*CreateAccessoryKeyResponse, error)
 	mustEmbedUnimplementedSigningServiceServer()
 }
 
@@ -68,6 +81,9 @@ type UnimplementedSigningServiceServer struct {
 
 func (UnimplementedSigningServiceServer) CreatePreMPKeys(context.Context, *CreatePreMPKeysRequest) (*CreatePreMPKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePreMPKeys not implemented")
+}
+func (UnimplementedSigningServiceServer) CreateAccessoryKeys(context.Context, *CreateAccessoryKeyRequest) (*CreateAccessoryKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAccessoryKeys not implemented")
 }
 func (UnimplementedSigningServiceServer) mustEmbedUnimplementedSigningServiceServer() {}
 
@@ -100,6 +116,24 @@ func _SigningService_CreatePreMPKeys_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SigningService_CreateAccessoryKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAccessoryKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SigningServiceServer).CreateAccessoryKeys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SigningService/CreateAccessoryKeys",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SigningServiceServer).CreateAccessoryKeys(ctx, req.(*CreateAccessoryKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SigningService_ServiceDesc is the grpc.ServiceDesc for SigningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -110,6 +144,10 @@ var SigningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreatePreMPKeys",
 			Handler:    _SigningService_CreatePreMPKeys_Handler,
+		},
+		{
+			MethodName: "CreateAccessoryKeys",
+			Handler:    _SigningService_CreateAccessoryKeys_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

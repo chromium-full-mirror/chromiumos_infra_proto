@@ -16471,6 +16471,71 @@
         },
         {
           "name": "CreatePreMPKeysResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "accessory",
+              "label": "LABEL_OPTIONAL",
+              "name": "accessory",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isPreMp",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_pre_mp",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "releaseKeysCheckout",
+              "label": "LABEL_OPTIONAL",
+              "name": "release_keys_checkout",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "isStaging",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_staging",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 8,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "CreateAccessoryKeyRequest"
+        },
+        {
+          "name": "CreateAccessoryKeyResponse"
         }
       ],
       "name": "chromite/api/signing.proto",
@@ -16486,6 +16551,12 @@
               "name": "CreatePreMPKeys",
               "options": {},
               "outputType": ".chromite.api.CreatePreMPKeysResponse"
+            },
+            {
+              "inputType": ".chromite.api.CreateAccessoryKeyRequest",
+              "name": "CreateAccessoryKeys",
+              "options": {},
+              "outputType": ".chromite.api.CreateAccessoryKeyResponse"
             }
           ],
           "name": "SigningService",

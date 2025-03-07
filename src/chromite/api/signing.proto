@@ -48,6 +48,40 @@ message CreatePreMPKeysRequest {
 
 message CreatePreMPKeysResponse {}
 
+message CreateAccessoryKeyRequest {
+  // Build target to create the accessory keyset for.
+  chromiumos.BuildTarget build_target = 1;
+
+  // Accessory to create the keyset for.
+  string accessory = 2;
+
+  // If set, create PreMP keyset
+  bool is_pre_mp = 3;
+
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 4;
+
+  // Path to the local checkout of the chromiumos/platform/release-keys.
+  string release_keys_checkout = 5;
+
+  // If set, no gcloud operations will actually be performed
+  bool dry_run = 6;
+
+  // If set, use chromeos-bot instead of chromeos-release-bot for
+  // cloud operations
+  bool is_staging = 7;
+
+  // The version of the keyset, e.g. 2 in "FooPreMpKeys-v2".
+  // Ignored if request is for PreMP keyset.
+  int32 version = 8;
+}
+
+message CreateAccessoryKeyResponse {}
+
 // The signing service.
 service SigningService {
   option (service_options) = {
@@ -64,4 +98,8 @@ service SigningService {
   // }
   rpc CreatePreMPKeys(CreatePreMPKeysRequest)
       returns (CreatePreMPKeysResponse) {};
+
+  // Create an accessory keyset for the given board and accessory.
+  rpc CreateAccessoryKeys(CreateAccessoryKeyRequest)
+      returns (CreateAccessoryKeyResponse) {};
 }
