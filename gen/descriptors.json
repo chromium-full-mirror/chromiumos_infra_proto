@@ -28502,6 +28502,34 @@
               "name": "upload_to_cpcon",
               "number": 10,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "tagIncludes",
+              "label": "LABEL_REPEATED",
+              "name": "tag_includes",
+              "number": 11,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tagExcludes",
+              "label": "LABEL_REPEATED",
+              "name": "tag_excludes",
+              "number": 12,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testNameIncludes",
+              "label": "LABEL_REPEATED",
+              "name": "test_name_includes",
+              "number": 13,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testNameExcludes",
+              "label": "LABEL_REPEATED",
+              "name": "test_name_excludes",
+              "number": 14,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunSuiteRequest"
