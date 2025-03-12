@@ -12382,6 +12382,13 @@
               "number": 26,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.CommitMsg"
+            },
+            {
+              "jsonName": "configFiles",
+              "label": "LABEL_REPEATED",
+              "name": "config_files",
+              "number": 27,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunCopybotRequest",

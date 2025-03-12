@@ -140,6 +140,9 @@ message RunCopybotRequest {
 
   // The upstream repo to copy from.
   repeated CommitMsg insert_msg = 26;
+
+  // Config file to configure the job.
+  repeated string config_files = 27;
 }
 
 // The result of CopyBot being run.
