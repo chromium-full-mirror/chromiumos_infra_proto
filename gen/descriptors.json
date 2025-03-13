@@ -12388,7 +12388,8 @@
               "label": "LABEL_REPEATED",
               "name": "config_files",
               "number": 27,
-              "type": "TYPE_STRING"
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.RunCopybotRequest.ConfigFiles"
             }
           ],
           "name": "RunCopybotRequest",
@@ -12545,6 +12546,18 @@
                 }
               ],
               "name": "CommitMsg"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "file",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "file",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "ConfigFiles"
             }
           ]
         },
