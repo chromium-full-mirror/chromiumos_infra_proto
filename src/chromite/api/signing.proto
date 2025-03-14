@@ -82,6 +82,37 @@ message CreateAccessoryKeyRequest {
 
 message CreateAccessoryKeyResponse {}
 
+message SignTi50PaosRequest {
+  // Cloud KMS properties for the key to use:
+  string project = 1;
+  string location = 2;
+  string keyring = 3;
+  string key = 4;
+  int32 version = 5;
+
+  // Directory where input (unsigned) artifacts are placed.
+  string archive_dir = 6;
+
+  // Directory where signed artifacts should be placed.
+  chromiumos.ResultPath result_path = 7;
+
+  // File name to be signed.
+  string filename = 8;
+
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 9;
+
+  // Directory to be mounted to /tmp in the docker container.
+  // Needed to avoid filling up our small boot partition..
+  string tmp_path = 10;
+}
+
+message SignTi50PaosResponse {}
+
 // The signing service.
 service SigningService {
   option (service_options) = {
@@ -102,4 +133,7 @@ service SigningService {
   // Create an accessory keyset for the given board and accessory.
   rpc CreateAccessoryKeys(CreateAccessoryKeyRequest)
       returns (CreateAccessoryKeyResponse) {};
+
+  // Sign PAOs in a Ti50 tarball.
+  rpc SignTi50Paos(SignTi50PaosRequest) returns (SignTi50PaosResponse) {};
 }

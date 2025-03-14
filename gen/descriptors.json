@@ -16556,6 +16556,85 @@
         },
         {
           "name": "CreateAccessoryKeyResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "project",
+              "label": "LABEL_OPTIONAL",
+              "name": "project",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "location",
+              "label": "LABEL_OPTIONAL",
+              "name": "location",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "keyring",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyring",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 5,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "archiveDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "archive_dir",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
+            },
+            {
+              "jsonName": "filename",
+              "label": "LABEL_OPTIONAL",
+              "name": "filename",
+              "number": 8,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tmpPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "tmp_path",
+              "number": 10,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SignTi50PaosRequest"
+        },
+        {
+          "name": "SignTi50PaosResponse"
         }
       ],
       "name": "chromite/api/signing.proto",
@@ -16577,6 +16656,12 @@
               "name": "CreateAccessoryKeys",
               "options": {},
               "outputType": ".chromite.api.CreateAccessoryKeyResponse"
+            },
+            {
+              "inputType": ".chromite.api.SignTi50PaosRequest",
+              "name": "SignTi50Paos",
+              "options": {},
+              "outputType": ".chromite.api.SignTi50PaosResponse"
             }
           ],
           "name": "SigningService",
