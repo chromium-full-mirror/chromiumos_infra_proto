@@ -19566,6 +19566,261 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "dependency": [
+        "google/protobuf/descriptor.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Version"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "modelName",
+              "label": "LABEL_OPTIONAL",
+              "name": "model_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sku",
+              "label": "LABEL_OPTIONAL",
+              "name": "sku",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeviceInfo"
+        },
+        {
+          "enumType": [
+            {
+              "name": "HardwareType",
+              "value": [
+                {
+                  "name": "HARDWARE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "EVT",
+                  "number": 1
+                },
+                {
+                  "name": "DVT",
+                  "number": 2
+                },
+                {
+                  "name": "PVT",
+                  "number": 3
+                },
+                {
+                  "name": "MP",
+                  "number": 4
+                }
+              ]
+            },
+            {
+              "name": "FirmwareType",
+              "value": [
+                {
+                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "RO_RW",
+                  "number": 1
+                },
+                {
+                  "name": "RW",
+                  "number": 2
+                }
+              ]
+            },
+            {
+              "name": "QualType",
+              "value": [
+                {
+                  "name": "QUAL_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "AP",
+                  "number": 1
+                },
+                {
+                  "name": "EC",
+                  "number": 2
+                },
+                {
+                  "name": "AP_EC",
+                  "number": 3
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "boardName",
+              "label": "LABEL_OPTIONAL",
+              "name": "board_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "devices",
+              "label": "LABEL_REPEATED",
+              "name": "devices",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.DeviceInfo"
+            },
+            {
+              "jsonName": "branchName",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "qualType",
+              "label": "LABEL_OPTIONAL",
+              "name": "qual_type",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ModelQualConfig.QualType"
+            },
+            {
+              "jsonName": "firmwareType",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_type",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ModelQualConfig.FirmwareType"
+            },
+            {
+              "jsonName": "testingHardware",
+              "label": "LABEL_OPTIONAL",
+              "name": "testing_hardware",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ModelQualConfig.HardwareType"
+            },
+            {
+              "jsonName": "targetMilestoneNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_milestone_number",
+              "number": 9,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "apRoFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_ro_firmware_build_cros_qual_version",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            },
+            {
+              "jsonName": "apRwFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_rw_firmware_build_cros_qual_version",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            },
+            {
+              "jsonName": "apRoFirmwareBuildCrosVersions",
+              "label": "LABEL_REPEATED",
+              "name": "ap_ro_firmware_build_cros_versions",
+              "number": 12,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            },
+            {
+              "jsonName": "ecRoFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_ro_firmware_build_cros_qual_version",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            },
+            {
+              "jsonName": "ecRwFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_rw_firmware_build_cros_qual_version",
+              "number": 14,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            },
+            {
+              "jsonName": "ecRoFirmwareBuildCrosVersions",
+              "label": "LABEL_REPEATED",
+              "name": "ec_ro_firmware_build_cros_versions",
+              "number": 15,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            },
+            {
+              "jsonName": "gscVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "gsc_version",
+              "number": 16,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Version"
+            }
+          ],
+          "name": "ModelQualConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "quals",
+              "label": "LABEL_REPEATED",
+              "name": "quals",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ModelQualConfig"
+            }
+          ],
+          "name": "ModelQualConfigs"
+        }
+      ],
+      "name": "chromiumos/fw_qual.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
+        "javaPackage": "com.google.chrome.crosinfra.proto"
+      },
+      "package": "chromiumos",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "enumType": [
         {
           "name": "BuilderType",
