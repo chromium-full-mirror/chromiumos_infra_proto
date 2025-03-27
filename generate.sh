@@ -66,14 +66,22 @@ fi
 # If we don't have src/config checked out too, then check out our own copy and
 # stash it in the .generate directory.
 if [ ! -e "extern/chromiumos" ]; then
-    config_dir=./.generate
-    cros_config_subdir="config/proto"
+  config_dir=./.generate
+  cros_config_subdir="config/proto"
 
+  # config available in infra checkout, use softlink
+  if [ -e "../../config/proto" ]; then
+    echo "Using local config dir at ../../config"
+    mkdir -p .generate/config
+    ln -s ../../../../config/proto .generate/config/proto
+  # use repo version otherwise
+  else
     echo "Creating a shallow clone of ${CROS_CONFIG_REPO}"
     git clone -q --depth=1 --shallow-submodules "${CROS_CONFIG_REPO}" \
         ".generate/config"
+  fi
 
-    trap "rm -rf .generate/*" EXIT
+  trap "rm -rf .generate/*" EXIT
 fi
 
 echo "protoc version: $(protoc --version)"

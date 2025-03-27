@@ -3,7 +3,7 @@ build:
   roots:
     - src/
     - extern/
-    - .generate/config/proto # used by generate.sh if full checkout not present
+    - .generate/config/proto # used by generate.sh if outside chroot
 lint:
   use:
     - DEFAULT
