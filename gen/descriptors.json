@@ -19573,14 +19573,54 @@
         {
           "field": [
             {
-              "jsonName": "value",
+              "jsonName": "majorVersion",
               "label": "LABEL_OPTIONAL",
-              "name": "value",
+              "name": "major_version",
               "number": 1,
-              "type": "TYPE_STRING"
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "minorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor_version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "patchNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "patch_number",
+              "number": 3,
+              "type": "TYPE_UINT32"
             }
           ],
-          "name": "Version"
+          "name": "FirmwareQualVersion"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "minorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor_version",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "majorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "major_version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "epoch",
+              "label": "LABEL_OPTIONAL",
+              "name": "epoch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "GscQualVersion"
         },
         {
           "field": [
@@ -19673,7 +19713,7 @@
               "label": "LABEL_OPTIONAL",
               "name": "id",
               "number": 1,
-              "type": "TYPE_INT32"
+              "type": "TYPE_UINT32"
             },
             {
               "jsonName": "name",
@@ -19733,7 +19773,7 @@
               "label": "LABEL_OPTIONAL",
               "name": "target_milestone_number",
               "number": 9,
-              "type": "TYPE_INT32"
+              "type": "TYPE_UINT32"
             },
             {
               "jsonName": "apRoFirmwareBuildCrosQualVersion",
@@ -19741,7 +19781,7 @@
               "name": "ap_ro_firmware_build_cros_qual_version",
               "number": 10,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
               "jsonName": "apRwFirmwareBuildCrosQualVersion",
@@ -19749,7 +19789,7 @@
               "name": "ap_rw_firmware_build_cros_qual_version",
               "number": 11,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
               "jsonName": "apRoFirmwareBuildCrosVersions",
@@ -19757,7 +19797,7 @@
               "name": "ap_ro_firmware_build_cros_versions",
               "number": 12,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
               "jsonName": "ecRoFirmwareBuildCrosQualVersion",
@@ -19765,7 +19805,7 @@
               "name": "ec_ro_firmware_build_cros_qual_version",
               "number": 13,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
               "jsonName": "ecRwFirmwareBuildCrosQualVersion",
@@ -19773,7 +19813,7 @@
               "name": "ec_rw_firmware_build_cros_qual_version",
               "number": 14,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
               "jsonName": "ecRoFirmwareBuildCrosVersions",
@@ -19781,7 +19821,7 @@
               "name": "ec_ro_firmware_build_cros_versions",
               "number": 15,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
               "jsonName": "gscVersion",
@@ -19789,7 +19829,7 @@
               "name": "gsc_version",
               "number": 16,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.Version"
+              "typeName": ".chromiumos.GscQualVersion"
             }
           ],
           "name": "ModelQualConfig"

@@ -11,9 +11,16 @@ import "google/protobuf/descriptor.proto";
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
 option java_package = "com.google.chrome.crosinfra.proto";
 
-message Version {
-  // Format: MMMMM.mmm.b
-  string value = 1;
+message FirmwareQualVersion {
+  uint32 major_version = 1;
+  uint32 minor_version = 2;
+  uint32 patch_number = 3;
+}
+
+message GscQualVersion {
+  uint32 minor_version = 1;
+  uint32 major_version = 2;
+  uint32 epoch = 3;
 }
 
 message DeviceInfo {
@@ -45,7 +52,7 @@ message ModelQualConfig {
   }
 
   // Qual ID
-  int32 id = 1;
+  uint32 id = 1;
 
   // Qual Name
   string name = 2;
@@ -69,28 +76,28 @@ message ModelQualConfig {
   HardwareType testing_hardware = 8;
 
   // Target milestone, to be used in test
-  int32 target_milestone_number = 9;
+  uint32 target_milestone_number = 9;
 
   // Primary AP RO FW Test Version
-  Version ap_ro_firmware_build_cros_qual_version = 10;
+  FirmwareQualVersion ap_ro_firmware_build_cros_qual_version = 10;
 
   // Primary AP RW FW Test Version
-  Version ap_rw_firmware_build_cros_qual_version = 11;
+  FirmwareQualVersion ap_rw_firmware_build_cros_qual_version = 11;
 
   // All AP RO FW Versions to test for compatibility
-  repeated Version ap_ro_firmware_build_cros_versions = 12;
+  repeated FirmwareQualVersion ap_ro_firmware_build_cros_versions = 12;
 
   // Primary EC RO FW Test Version
-  Version ec_ro_firmware_build_cros_qual_version = 13;
+  FirmwareQualVersion ec_ro_firmware_build_cros_qual_version = 13;
 
   // Primary EC RW FW Test Version
-  Version ec_rw_firmware_build_cros_qual_version = 14;
+  FirmwareQualVersion ec_rw_firmware_build_cros_qual_version = 14;
 
   // All EC RO FW Versions to test for compatibility
-  repeated Version ec_ro_firmware_build_cros_versions = 15;
+  repeated FirmwareQualVersion ec_ro_firmware_build_cros_versions = 15;
 
   // GSC Version to test with
-  Version gsc_version = 16;
+  GscQualVersion gsc_version = 16;
 }
 
 message ModelQualConfigs {
