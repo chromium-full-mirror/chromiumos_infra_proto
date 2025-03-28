@@ -19592,6 +19592,13 @@
               "name": "patch_number",
               "number": 3,
               "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "FirmwareQualVersion"

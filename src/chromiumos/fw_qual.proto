@@ -15,6 +15,7 @@ message FirmwareQualVersion {
   uint32 major_version = 1;
   uint32 minor_version = 2;
   uint32 patch_number = 3;
+  string uri = 4;
 }
 
 message GscQualVersion {
