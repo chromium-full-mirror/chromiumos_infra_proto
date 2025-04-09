@@ -17936,6 +17936,83 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromite/api/build_api.proto",
+        "chromite/api/sysroot.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "sysroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "sysroot",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.Sysroot"
+            }
+          ],
+          "name": "CollectPackageMetadataRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "success",
+              "label": "LABEL_OPTIONAL",
+              "name": "success",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "metadataProtojson",
+              "label": "LABEL_REPEATED",
+              "name": "metadata_protojson",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CollectPackageMetadataResponse"
+        }
+      ],
+      "name": "chromite/api/third_party_inventory.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.CollectPackageMetadataRequest",
+              "name": "CollectPackageMetadata",
+              "outputType": ".chromite.api.CollectPackageMetadataResponse"
+            }
+          ],
+          "name": "ThirdPartyInventoryService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "third_party_inventory",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/artifacts.proto",
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
