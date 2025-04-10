@@ -18,6 +18,11 @@ message FirmwareQualVersion {
   string uri = 4;
 }
 
+message PreviousQualVersion {
+  FirmwareQualVersion ap_version = 1;
+  FirmwareQualVersion ec_version = 2;
+}
+
 message GscQualVersion {
   uint32 minor_version = 1;
   uint32 major_version = 2;
@@ -85,20 +90,17 @@ message ModelQualConfig {
   // Primary AP RW FW Test Version
   FirmwareQualVersion ap_rw_firmware_build_cros_qual_version = 11;
 
-  // All AP RO FW Versions to test for compatibility
-  repeated FirmwareQualVersion ap_ro_firmware_build_cros_versions = 12;
-
   // Primary EC RO FW Test Version
-  FirmwareQualVersion ec_ro_firmware_build_cros_qual_version = 13;
+  FirmwareQualVersion ec_ro_firmware_build_cros_qual_version = 12;
 
   // Primary EC RW FW Test Version
-  FirmwareQualVersion ec_rw_firmware_build_cros_qual_version = 14;
+  FirmwareQualVersion ec_rw_firmware_build_cros_qual_version = 13;
 
-  // All EC RO FW Versions to test for compatibility
-  repeated FirmwareQualVersion ec_ro_firmware_build_cros_versions = 15;
+  // All Previous RO FW Versions to test for compatibility
+  repeated PreviousQualVersion ro_firmware_build_cros_versions = 14;
 
   // GSC Version to test with
-  GscQualVersion gsc_version = 16;
+  GscQualVersion gsc_version = 15;
 }
 
 message ModelQualConfigs {

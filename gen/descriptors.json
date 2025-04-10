@@ -19606,6 +19606,27 @@
         {
           "field": [
             {
+              "jsonName": "apVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_version",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "ecVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareQualVersion"
+            }
+          ],
+          "name": "PreviousQualVersion"
+        },
+        {
+          "field": [
+            {
               "jsonName": "minorVersion",
               "label": "LABEL_OPTIONAL",
               "name": "minor_version",
@@ -19799,18 +19820,10 @@
               "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
-              "jsonName": "apRoFirmwareBuildCrosVersions",
-              "label": "LABEL_REPEATED",
-              "name": "ap_ro_firmware_build_cros_versions",
-              "number": 12,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
               "jsonName": "ecRoFirmwareBuildCrosQualVersion",
               "label": "LABEL_OPTIONAL",
               "name": "ec_ro_firmware_build_cros_qual_version",
-              "number": 13,
+              "number": 12,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.FirmwareQualVersion"
             },
@@ -19818,23 +19831,23 @@
               "jsonName": "ecRwFirmwareBuildCrosQualVersion",
               "label": "LABEL_OPTIONAL",
               "name": "ec_rw_firmware_build_cros_qual_version",
-              "number": 14,
+              "number": 13,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.FirmwareQualVersion"
             },
             {
-              "jsonName": "ecRoFirmwareBuildCrosVersions",
+              "jsonName": "roFirmwareBuildCrosVersions",
               "label": "LABEL_REPEATED",
-              "name": "ec_ro_firmware_build_cros_versions",
-              "number": 15,
+              "name": "ro_firmware_build_cros_versions",
+              "number": 14,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
+              "typeName": ".chromiumos.PreviousQualVersion"
             },
             {
               "jsonName": "gscVersion",
               "label": "LABEL_OPTIONAL",
               "name": "gsc_version",
-              "number": 16,
+              "number": 15,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.GscQualVersion"
             }
