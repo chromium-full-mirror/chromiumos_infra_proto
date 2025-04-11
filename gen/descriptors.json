@@ -19569,6 +19569,25 @@
       "dependency": [
         "google/protobuf/descriptor.proto"
       ],
+      "enumType": [
+        {
+          "name": "OsType",
+          "value": [
+            {
+              "name": "OS_TYPE_UNSPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "CROS",
+              "number": 1
+            },
+            {
+              "name": "AL",
+              "number": 2
+            }
+          ]
+        }
+      ],
       "messageType": [
         {
           "field": [
@@ -19620,6 +19639,14 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "osQualType",
+              "label": "LABEL_REPEATED",
+              "name": "os_qual_type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.OsType"
             }
           ],
           "name": "PreviousQualVersion"
@@ -19850,6 +19877,14 @@
               "number": 15,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.GscQualVersion"
+            },
+            {
+              "jsonName": "osQualType",
+              "label": "LABEL_REPEATED",
+              "name": "os_qual_type",
+              "number": 16,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.OsType"
             }
           ],
           "name": "ModelQualConfig"

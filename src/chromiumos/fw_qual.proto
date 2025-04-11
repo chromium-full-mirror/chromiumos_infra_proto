@@ -18,9 +18,16 @@ message FirmwareQualVersion {
   string uri = 4;
 }
 
+enum OsType {
+  OS_TYPE_UNSPECIFIED = 0;
+  CROS = 1;
+  AL = 2;
+}
+
 message PreviousQualVersion {
   FirmwareQualVersion ap_version = 1;
   FirmwareQualVersion ec_version = 2;
+  repeated OsType os_qual_type = 3;
 }
 
 message GscQualVersion {
@@ -101,6 +108,9 @@ message ModelQualConfig {
 
   // GSC Version to test with
   GscQualVersion gsc_version = 15;
+
+  // OS type
+  repeated OsType os_qual_type = 16;
 }
 
 message ModelQualConfigs {
