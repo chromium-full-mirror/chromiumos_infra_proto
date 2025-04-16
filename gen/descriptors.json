@@ -19728,6 +19728,31 @@
               ]
             },
             {
+              "name": "PhaseType",
+              "value": [
+                {
+                  "name": "PHASE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "FIRMWARE_ENABLED",
+                  "number": 1
+                },
+                {
+                  "name": "FIRMWARE_MEETS_KPI",
+                  "number": 2
+                },
+                {
+                  "name": "FIRMWARE_STRESSED",
+                  "number": 3
+                },
+                {
+                  "name": "FIRMWARE_QUAL",
+                  "number": 4
+                }
+              ]
+            },
+            {
               "name": "FirmwareType",
               "value": [
                 {
@@ -19889,6 +19914,14 @@
               "number": 16,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.OsType"
+            },
+            {
+              "jsonName": "phaseType",
+              "label": "LABEL_REPEATED",
+              "name": "phase_type",
+              "number": 17,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.ModelQualConfig.PhaseType"
             }
           ],
           "name": "ModelQualConfig"

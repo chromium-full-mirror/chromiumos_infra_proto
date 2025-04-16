@@ -50,6 +50,13 @@ message ModelQualConfig {
     PVT = 3;
     MP = 4;
   }
+  enum PhaseType {
+    PHASE_TYPE_UNSPECIFIED = 0;
+    FIRMWARE_ENABLED = 1;
+    FIRMWARE_MEETS_KPI = 2;
+    FIRMWARE_STRESSED = 3;
+    FIRMWARE_QUAL = 4;
+  }
 
   enum FirmwareType {
     FIRMWARE_TYPE_UNSPECIFIED = 0;
@@ -111,6 +118,9 @@ message ModelQualConfig {
 
   // OS type
   repeated OsType os_qual_type = 16;
+
+  // Phase Type
+  repeated PhaseType phase_type = 17;
 }
 
 message ModelQualConfigs {
