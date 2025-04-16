@@ -389,6 +389,10 @@
             {
               "name": "PLATFORM_RENODE",
               "number": 8
+            },
+            {
+              "name": "PLATFORM_DAGWOOD",
+              "number": 9
             }
           ]
         }
