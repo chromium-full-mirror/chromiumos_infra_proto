@@ -11261,10 +11261,10 @@
               ]
             },
             {
-              "name": "PhaseType",
+              "name": "TestPlan",
               "value": [
                 {
-                  "name": "PHASE_TYPE_UNSPECIFIED",
+                  "name": "TEST_PLAN_TYPE_UNSPECIFIED",
                   "number": 0
                 },
                 {
@@ -11453,12 +11453,12 @@
               "typeName": ".auto_qual.OsType"
             },
             {
-              "jsonName": "phaseType",
+              "jsonName": "testPlan",
               "label": "LABEL_REPEATED",
-              "name": "phase_type",
+              "name": "test_plan",
               "number": 17,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.PhaseType"
+              "typeName": ".auto_qual.ModelQualConfig.TestPlan"
             },
             {
               "jsonName": "maxRetries",

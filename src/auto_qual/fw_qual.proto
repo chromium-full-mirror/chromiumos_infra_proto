@@ -49,8 +49,8 @@ message ModelQualConfig {
     PVT = 3;
     MP = 4;
   }
-  enum PhaseType {
-    PHASE_TYPE_UNSPECIFIED = 0;
+  enum TestPlan {
+    TEST_PLAN_TYPE_UNSPECIFIED = 0;
     FIRMWARE_ENABLED = 1;
     FIRMWARE_MEETS_KPI = 2;
     FIRMWARE_STRESSED = 3;
@@ -92,7 +92,7 @@ message ModelQualConfig {
   // RO or RW Qual
   FirmwareType firmware_type = 7;
 
-  // Phase in test
+  // HW phase in test
   HardwareType testing_hardware = 8;
 
   // Target milestone, to be used in test
@@ -119,8 +119,8 @@ message ModelQualConfig {
   // OS type
   repeated OsType os_qual_type = 16;
 
-  // Phase Type
-  repeated PhaseType phase_type = 17;
+  // Test Plan
+  repeated TestPlan test_plan = 17;
 
   // Max Test Retries
   uint32 max_retries = 18;
