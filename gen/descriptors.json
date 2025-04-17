@@ -11106,135 +11106,26 @@
       "dependency": [
         "google/protobuf/descriptor.proto"
       ],
-      "enumType": [
-        {
-          "name": "OsType",
-          "value": [
-            {
-              "name": "OS_TYPE_UNSPECIFIED",
-              "number": 0
-            },
-            {
-              "name": "CROS",
-              "number": 1
-            },
-            {
-              "name": "AL",
-              "number": 2
-            }
-          ]
-        }
-      ],
       "messageType": [
         {
-          "field": [
-            {
-              "jsonName": "majorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "major_version",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "minorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "minor_version",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "patchNumber",
-              "label": "LABEL_OPTIONAL",
-              "name": "patch_number",
-              "number": 3,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "uri",
-              "label": "LABEL_OPTIONAL",
-              "name": "uri",
-              "number": 4,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "FirmwareQualVersion"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "apVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ap_version",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "ecVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ec_version",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "osQualType",
-              "label": "LABEL_REPEATED",
-              "name": "os_qual_type",
-              "number": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.OsType"
-            }
-          ],
-          "name": "PreviousQualVersion"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "minorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "minor_version",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "majorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "major_version",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "epoch",
-              "label": "LABEL_OPTIONAL",
-              "name": "epoch",
-              "number": 3,
-              "type": "TYPE_UINT32"
-            }
-          ],
-          "name": "GscQualVersion"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "modelName",
-              "label": "LABEL_OPTIONAL",
-              "name": "model_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "sku",
-              "label": "LABEL_OPTIONAL",
-              "name": "sku",
-              "number": 2,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "DeviceInfo"
-        },
-        {
           "enumType": [
+            {
+              "name": "FirmwareType",
+              "value": [
+                {
+                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "RO_RW",
+                  "number": 1
+                },
+                {
+                  "name": "RW",
+                  "number": 2
+                }
+              ]
+            },
             {
               "name": "HardwareType",
               "value": [
@@ -11257,6 +11148,23 @@
                 {
                   "name": "MP",
                   "number": 4
+                }
+              ]
+            },
+            {
+              "name": "OsType",
+              "value": [
+                {
+                  "name": "OS_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "CROS",
+                  "number": 1
+                },
+                {
+                  "name": "AL",
+                  "number": 2
                 }
               ]
             },
@@ -11286,23 +11194,6 @@
                 {
                   "name": "FIRMWARE_LABQUAL",
                   "number": 5
-                }
-              ]
-            },
-            {
-              "name": "FirmwareType",
-              "value": [
-                {
-                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "RO_RW",
-                  "number": 1
-                },
-                {
-                  "name": "RW",
-                  "number": 2
                 }
               ]
             },
@@ -11356,7 +11247,7 @@
               "name": "devices",
               "number": 4,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.DeviceInfo"
+              "typeName": ".auto_qual.ModelQualConfig.DeviceInfo"
             },
             {
               "jsonName": "branchName",
@@ -11402,7 +11293,7 @@
               "name": "ap_ro_firmware_build_cros_qual_version",
               "number": 10,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
             },
             {
               "jsonName": "apRwFirmwareBuildCrosQualVersion",
@@ -11410,7 +11301,7 @@
               "name": "ap_rw_firmware_build_cros_qual_version",
               "number": 11,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
             },
             {
               "jsonName": "ecRoFirmwareBuildCrosQualVersion",
@@ -11418,7 +11309,7 @@
               "name": "ec_ro_firmware_build_cros_qual_version",
               "number": 12,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
             },
             {
               "jsonName": "ecRwFirmwareBuildCrosQualVersion",
@@ -11426,7 +11317,7 @@
               "name": "ec_rw_firmware_build_cros_qual_version",
               "number": 13,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
             },
             {
               "jsonName": "roFirmwareBuildCrosVersions",
@@ -11434,7 +11325,7 @@
               "name": "ro_firmware_build_cros_versions",
               "number": 14,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.PreviousQualVersion"
+              "typeName": ".auto_qual.ModelQualConfig.PreviousQualVersion"
             },
             {
               "jsonName": "gscVersion",
@@ -11442,7 +11333,7 @@
               "name": "gsc_version",
               "number": 15,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.GscQualVersion"
+              "typeName": ".auto_qual.ModelQualConfig.GscQualVersion"
             },
             {
               "jsonName": "osQualType",
@@ -11450,7 +11341,7 @@
               "name": "os_qual_type",
               "number": 16,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.OsType"
+              "typeName": ".auto_qual.ModelQualConfig.OsType"
             },
             {
               "jsonName": "testPlan",
@@ -11468,7 +11359,116 @@
               "type": "TYPE_UINT32"
             }
           ],
-          "name": "ModelQualConfig"
+          "name": "ModelQualConfig",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "modelName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "model_name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "sku",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "sku",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "DeviceInfo"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "majorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "major_version",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "minorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "minor_version",
+                  "number": 2,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "patchNumber",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "patch_number",
+                  "number": 3,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "uri",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "uri",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "FirmwareQualVersion"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "minorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "minor_version",
+                  "number": 1,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "majorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "major_version",
+                  "number": 2,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "epoch",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "epoch",
+                  "number": 3,
+                  "type": "TYPE_UINT32"
+                }
+              ],
+              "name": "GscQualVersion"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "apVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ap_version",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+                },
+                {
+                  "jsonName": "ecVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ec_version",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+                },
+                {
+                  "jsonName": "osQualType",
+                  "label": "LABEL_REPEATED",
+                  "name": "os_qual_type",
+                  "number": 3,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".auto_qual.ModelQualConfig.OsType"
+                }
+              ],
+              "name": "PreviousQualVersion"
+            }
+          ]
         },
         {
           "field": [
