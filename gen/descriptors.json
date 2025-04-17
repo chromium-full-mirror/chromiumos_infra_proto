@@ -11103,6 +11103,169 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "HierarchyEnforcement",
+              "value": [
+                {
+                  "name": "HIERARCHY_ENFORCEMENT_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TEST_PLAN",
+                  "number": 1
+                },
+                {
+                  "name": "TEST",
+                  "number": 2
+                },
+                {
+                  "name": "OS",
+                  "number": 3
+                },
+                {
+                  "name": "BOARD",
+                  "number": 4
+                },
+                {
+                  "name": "MODEL",
+                  "number": 5
+                },
+                {
+                  "name": "AP_RO_VERSION",
+                  "number": 6
+                },
+                {
+                  "name": "AP_RW_VERSION",
+                  "number": 7
+                },
+                {
+                  "name": "EC_RO_VERSION",
+                  "number": 8
+                },
+                {
+                  "name": "EC_RW_VERSION",
+                  "number": 9
+                },
+                {
+                  "name": "GSC_RO_VERSION",
+                  "number": 10
+                },
+                {
+                  "name": "GSC_RW_VERSION",
+                  "number": 11
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "scope",
+              "label": "LABEL_REPEATED",
+              "name": "scope",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TestRequirement.TestScope"
+            },
+            {
+              "jsonName": "analyzer",
+              "label": "LABEL_OPTIONAL",
+              "name": "analyzer",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TestRequirement.Analyzer"
+            }
+          ],
+          "name": "TestRequirement",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "hierarchy",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "hierarchy",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "filter",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "filter",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "TestScope"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "value",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "value",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "AnalysisDimension"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "dimension",
+                  "label": "LABEL_REPEATED",
+                  "name": "dimension",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.TestRequirement.AnalysisDimension"
+                }
+              ],
+              "name": "Analyzer"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testPlanRequirement",
+              "label": "LABEL_REPEATED",
+              "name": "test_plan_requirement",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TestRequirement"
+            }
+          ],
+          "name": "TestRequirements"
+        }
+      ],
+      "name": "auto_qual/analysis_reqs.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/descriptor.proto"
       ],
