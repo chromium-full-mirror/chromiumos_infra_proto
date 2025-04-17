@@ -38,6 +38,9 @@ type SatlabRpcServiceClient interface {
 	ListMilestones(ctx context.Context, in *ListMilestonesRequest, opts ...grpc.CallOption) (*ListMilestonesResponse, error)
 	ListTestPlans(ctx context.Context, in *ListTestPlansRequest, opts ...grpc.CallOption) (*ListTestPlansResponse, error)
 	GetTestPlan(ctx context.Context, in *GetTestPlanRequest, opts ...grpc.CallOption) (*GetTestPlanResponse, error)
+	Topology(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error)
+	AddTopology(ctx context.Context, in *AddTopologyRequest, opts ...grpc.CallOption) (*AddTopologyResponse, error)
+	DeleteTopology(ctx context.Context, in *DeleteTopologyRequest, opts ...grpc.CallOption) (*DeleteTopologyResponse, error)
 	// services to run different types of test suites
 	RunSuite(ctx context.Context, in *RunSuiteRequest, opts ...grpc.CallOption) (*RunSuiteResponse, error)
 	RunTest(ctx context.Context, in *RunTestRequest, opts ...grpc.CallOption) (*RunTestResponse, error)
@@ -199,6 +202,33 @@ func (c *satlabRpcServiceClient) ListTestPlans(ctx context.Context, in *ListTest
 func (c *satlabRpcServiceClient) GetTestPlan(ctx context.Context, in *GetTestPlanRequest, opts ...grpc.CallOption) (*GetTestPlanResponse, error) {
 	out := new(GetTestPlanResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetTestPlan", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) Topology(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error) {
+	out := new(TopologyResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/Topology", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) AddTopology(ctx context.Context, in *AddTopologyRequest, opts ...grpc.CallOption) (*AddTopologyResponse, error) {
+	out := new(AddTopologyResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/AddTopology", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) DeleteTopology(ctx context.Context, in *DeleteTopologyRequest, opts ...grpc.CallOption) (*DeleteTopologyResponse, error) {
+	out := new(DeleteTopologyResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/DeleteTopology", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -539,6 +569,9 @@ type SatlabRpcServiceServer interface {
 	ListMilestones(context.Context, *ListMilestonesRequest) (*ListMilestonesResponse, error)
 	ListTestPlans(context.Context, *ListTestPlansRequest) (*ListTestPlansResponse, error)
 	GetTestPlan(context.Context, *GetTestPlanRequest) (*GetTestPlanResponse, error)
+	Topology(context.Context, *TopologyRequest) (*TopologyResponse, error)
+	AddTopology(context.Context, *AddTopologyRequest) (*AddTopologyResponse, error)
+	DeleteTopology(context.Context, *DeleteTopologyRequest) (*DeleteTopologyResponse, error)
 	// services to run different types of test suites
 	RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error)
 	RunTest(context.Context, *RunTestRequest) (*RunTestResponse, error)
@@ -624,6 +657,15 @@ func (UnimplementedSatlabRpcServiceServer) ListTestPlans(context.Context, *ListT
 }
 func (UnimplementedSatlabRpcServiceServer) GetTestPlan(context.Context, *GetTestPlanRequest) (*GetTestPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTestPlan not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) Topology(context.Context, *TopologyRequest) (*TopologyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Topology not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) AddTopology(context.Context, *AddTopologyRequest) (*AddTopologyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTopology not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) DeleteTopology(context.Context, *DeleteTopologyRequest) (*DeleteTopologyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTopology not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunSuite not implemented")
@@ -958,6 +1000,60 @@ func _SatlabRpcService_GetTestPlan_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).GetTestPlan(ctx, req.(*GetTestPlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_Topology_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TopologyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).Topology(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/Topology",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).Topology(ctx, req.(*TopologyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_AddTopology_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTopologyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).AddTopology(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/AddTopology",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).AddTopology(ctx, req.(*AddTopologyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_DeleteTopology_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTopologyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).DeleteTopology(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/DeleteTopology",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).DeleteTopology(ctx, req.(*DeleteTopologyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1566,6 +1662,18 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTestPlan",
 			Handler:    _SatlabRpcService_GetTestPlan_Handler,
+		},
+		{
+			MethodName: "Topology",
+			Handler:    _SatlabRpcService_Topology_Handler,
+		},
+		{
+			MethodName: "AddTopology",
+			Handler:    _SatlabRpcService_AddTopology_Handler,
+		},
+		{
+			MethodName: "DeleteTopology",
+			Handler:    _SatlabRpcService_DeleteTopology_Handler,
 		},
 		{
 			MethodName: "RunSuite",

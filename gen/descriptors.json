@@ -31556,6 +31556,67 @@
             }
           ],
           "name": "IsAuthResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "TopologyRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "pasitHost",
+              "label": "LABEL_OPTIONAL",
+              "name": "pasit_host",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "TopologyResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "content",
+              "label": "LABEL_OPTIONAL",
+              "name": "content",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AddTopologyRequest"
+        },
+        {
+          "name": "AddTopologyResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeleteTopologyRequest"
+        },
+        {
+          "name": "DeleteTopologyResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -31630,6 +31691,21 @@
               "inputType": ".satlabrpcserver.GetTestPlanRequest",
               "name": "GetTestPlan",
               "outputType": ".satlabrpcserver.GetTestPlanResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.TopologyRequest",
+              "name": "Topology",
+              "outputType": ".satlabrpcserver.TopologyResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.AddTopologyRequest",
+              "name": "AddTopology",
+              "outputType": ".satlabrpcserver.AddTopologyResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.DeleteTopologyRequest",
+              "name": "DeleteTopology",
+              "outputType": ".satlabrpcserver.DeleteTopologyResponse"
             },
             {
               "inputType": ".satlabrpcserver.RunSuiteRequest",
