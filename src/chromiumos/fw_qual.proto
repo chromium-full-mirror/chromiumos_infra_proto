@@ -56,6 +56,7 @@ message ModelQualConfig {
     FIRMWARE_MEETS_KPI = 2;
     FIRMWARE_STRESSED = 3;
     FIRMWARE_QUAL = 4;
+    FIRMWARE_LABQUAL = 5;
   }
 
   enum FirmwareType {
@@ -121,6 +122,9 @@ message ModelQualConfig {
 
   // Phase Type
   repeated PhaseType phase_type = 17;
+
+  // Max Test Retries
+  uint32 max_retries = 18;
 }
 
 message ModelQualConfigs {

@@ -19749,6 +19749,10 @@
                 {
                   "name": "FIRMWARE_QUAL",
                   "number": 4
+                },
+                {
+                  "name": "FIRMWARE_LABQUAL",
+                  "number": 5
                 }
               ]
             },
@@ -19922,6 +19926,13 @@
               "number": 17,
               "type": "TYPE_ENUM",
               "typeName": ".chromiumos.ModelQualConfig.PhaseType"
+            },
+            {
+              "jsonName": "maxRetries",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_retries",
+              "number": 18,
+              "type": "TYPE_UINT32"
             }
           ],
           "name": "ModelQualConfig"
