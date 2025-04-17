@@ -4,12 +4,11 @@
 
 syntax = "proto3";
 
-package chromiumos;
+package auto_qual;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromiumos";
-option java_package = "com.google.chrome.crosinfra.proto";
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
 message FirmwareQualVersion {
   uint32 major_version = 1;

@@ -11104,6 +11104,399 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/descriptor.proto"
+      ],
+      "enumType": [
+        {
+          "name": "OsType",
+          "value": [
+            {
+              "name": "OS_TYPE_UNSPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "CROS",
+              "number": 1
+            },
+            {
+              "name": "AL",
+              "number": 2
+            }
+          ]
+        }
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "majorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "major_version",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "minorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor_version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "patchNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "patch_number",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FirmwareQualVersion"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "apVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_version",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "ecVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "osQualType",
+              "label": "LABEL_REPEATED",
+              "name": "os_qual_type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.OsType"
+            }
+          ],
+          "name": "PreviousQualVersion"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "minorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor_version",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "majorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "major_version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "epoch",
+              "label": "LABEL_OPTIONAL",
+              "name": "epoch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "GscQualVersion"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "modelName",
+              "label": "LABEL_OPTIONAL",
+              "name": "model_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sku",
+              "label": "LABEL_OPTIONAL",
+              "name": "sku",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DeviceInfo"
+        },
+        {
+          "enumType": [
+            {
+              "name": "HardwareType",
+              "value": [
+                {
+                  "name": "HARDWARE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "EVT",
+                  "number": 1
+                },
+                {
+                  "name": "DVT",
+                  "number": 2
+                },
+                {
+                  "name": "PVT",
+                  "number": 3
+                },
+                {
+                  "name": "MP",
+                  "number": 4
+                }
+              ]
+            },
+            {
+              "name": "PhaseType",
+              "value": [
+                {
+                  "name": "PHASE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "FIRMWARE_ENABLED",
+                  "number": 1
+                },
+                {
+                  "name": "FIRMWARE_MEETS_KPI",
+                  "number": 2
+                },
+                {
+                  "name": "FIRMWARE_STRESSED",
+                  "number": 3
+                },
+                {
+                  "name": "FIRMWARE_QUAL",
+                  "number": 4
+                },
+                {
+                  "name": "FIRMWARE_LABQUAL",
+                  "number": 5
+                }
+              ]
+            },
+            {
+              "name": "FirmwareType",
+              "value": [
+                {
+                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "RO_RW",
+                  "number": 1
+                },
+                {
+                  "name": "RW",
+                  "number": 2
+                }
+              ]
+            },
+            {
+              "name": "QualType",
+              "value": [
+                {
+                  "name": "QUAL_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "AP",
+                  "number": 1
+                },
+                {
+                  "name": "EC",
+                  "number": 2
+                },
+                {
+                  "name": "AP_EC",
+                  "number": 3
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "boardName",
+              "label": "LABEL_OPTIONAL",
+              "name": "board_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "devices",
+              "label": "LABEL_REPEATED",
+              "name": "devices",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.DeviceInfo"
+            },
+            {
+              "jsonName": "branchName",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "qualType",
+              "label": "LABEL_OPTIONAL",
+              "name": "qual_type",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.QualType"
+            },
+            {
+              "jsonName": "firmwareType",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_type",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.FirmwareType"
+            },
+            {
+              "jsonName": "testingHardware",
+              "label": "LABEL_OPTIONAL",
+              "name": "testing_hardware",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.HardwareType"
+            },
+            {
+              "jsonName": "targetMilestoneNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_milestone_number",
+              "number": 9,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "apRoFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_ro_firmware_build_cros_qual_version",
+              "number": 10,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "apRwFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap_rw_firmware_build_cros_qual_version",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "ecRoFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_ro_firmware_build_cros_qual_version",
+              "number": 12,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "ecRwFirmwareBuildCrosQualVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec_rw_firmware_build_cros_qual_version",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareQualVersion"
+            },
+            {
+              "jsonName": "roFirmwareBuildCrosVersions",
+              "label": "LABEL_REPEATED",
+              "name": "ro_firmware_build_cros_versions",
+              "number": 14,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.PreviousQualVersion"
+            },
+            {
+              "jsonName": "gscVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "gsc_version",
+              "number": 15,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.GscQualVersion"
+            },
+            {
+              "jsonName": "osQualType",
+              "label": "LABEL_REPEATED",
+              "name": "os_qual_type",
+              "number": 16,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.OsType"
+            },
+            {
+              "jsonName": "phaseType",
+              "label": "LABEL_REPEATED",
+              "name": "phase_type",
+              "number": 17,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.PhaseType"
+            },
+            {
+              "jsonName": "maxRetries",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_retries",
+              "number": 18,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "ModelQualConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "quals",
+              "label": "LABEL_REPEATED",
+              "name": "quals",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelQualConfig"
+            }
+          ],
+          "name": "ModelQualConfigs"
+        }
+      ],
+      "name": "auto_qual/fw_qual.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
       ],
@@ -19558,400 +19951,6 @@
         }
       ],
       "name": "chromiumos/firmware_config.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
-        "javaPackage": "com.google.chrome.crosinfra.proto"
-      },
-      "package": "chromiumos",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
-        "google/protobuf/descriptor.proto"
-      ],
-      "enumType": [
-        {
-          "name": "OsType",
-          "value": [
-            {
-              "name": "OS_TYPE_UNSPECIFIED",
-              "number": 0
-            },
-            {
-              "name": "CROS",
-              "number": 1
-            },
-            {
-              "name": "AL",
-              "number": 2
-            }
-          ]
-        }
-      ],
-      "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "majorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "major_version",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "minorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "minor_version",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "patchNumber",
-              "label": "LABEL_OPTIONAL",
-              "name": "patch_number",
-              "number": 3,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "uri",
-              "label": "LABEL_OPTIONAL",
-              "name": "uri",
-              "number": 4,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "FirmwareQualVersion"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "apVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ap_version",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "ecVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ec_version",
-              "number": 2,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "osQualType",
-              "label": "LABEL_REPEATED",
-              "name": "os_qual_type",
-              "number": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.OsType"
-            }
-          ],
-          "name": "PreviousQualVersion"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "minorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "minor_version",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "majorVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "major_version",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "epoch",
-              "label": "LABEL_OPTIONAL",
-              "name": "epoch",
-              "number": 3,
-              "type": "TYPE_UINT32"
-            }
-          ],
-          "name": "GscQualVersion"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "modelName",
-              "label": "LABEL_OPTIONAL",
-              "name": "model_name",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "sku",
-              "label": "LABEL_OPTIONAL",
-              "name": "sku",
-              "number": 2,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "DeviceInfo"
-        },
-        {
-          "enumType": [
-            {
-              "name": "HardwareType",
-              "value": [
-                {
-                  "name": "HARDWARE_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "EVT",
-                  "number": 1
-                },
-                {
-                  "name": "DVT",
-                  "number": 2
-                },
-                {
-                  "name": "PVT",
-                  "number": 3
-                },
-                {
-                  "name": "MP",
-                  "number": 4
-                }
-              ]
-            },
-            {
-              "name": "PhaseType",
-              "value": [
-                {
-                  "name": "PHASE_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "FIRMWARE_ENABLED",
-                  "number": 1
-                },
-                {
-                  "name": "FIRMWARE_MEETS_KPI",
-                  "number": 2
-                },
-                {
-                  "name": "FIRMWARE_STRESSED",
-                  "number": 3
-                },
-                {
-                  "name": "FIRMWARE_QUAL",
-                  "number": 4
-                },
-                {
-                  "name": "FIRMWARE_LABQUAL",
-                  "number": 5
-                }
-              ]
-            },
-            {
-              "name": "FirmwareType",
-              "value": [
-                {
-                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "RO_RW",
-                  "number": 1
-                },
-                {
-                  "name": "RW",
-                  "number": 2
-                }
-              ]
-            },
-            {
-              "name": "QualType",
-              "value": [
-                {
-                  "name": "QUAL_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "AP",
-                  "number": 1
-                },
-                {
-                  "name": "EC",
-                  "number": 2
-                },
-                {
-                  "name": "AP_EC",
-                  "number": 3
-                }
-              ]
-            }
-          ],
-          "field": [
-            {
-              "jsonName": "id",
-              "label": "LABEL_OPTIONAL",
-              "name": "id",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "boardName",
-              "label": "LABEL_OPTIONAL",
-              "name": "board_name",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "devices",
-              "label": "LABEL_REPEATED",
-              "name": "devices",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.DeviceInfo"
-            },
-            {
-              "jsonName": "branchName",
-              "label": "LABEL_OPTIONAL",
-              "name": "branch_name",
-              "number": 5,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "qualType",
-              "label": "LABEL_OPTIONAL",
-              "name": "qual_type",
-              "number": 6,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ModelQualConfig.QualType"
-            },
-            {
-              "jsonName": "firmwareType",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_type",
-              "number": 7,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ModelQualConfig.FirmwareType"
-            },
-            {
-              "jsonName": "testingHardware",
-              "label": "LABEL_OPTIONAL",
-              "name": "testing_hardware",
-              "number": 8,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ModelQualConfig.HardwareType"
-            },
-            {
-              "jsonName": "targetMilestoneNumber",
-              "label": "LABEL_OPTIONAL",
-              "name": "target_milestone_number",
-              "number": 9,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "apRoFirmwareBuildCrosQualVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ap_ro_firmware_build_cros_qual_version",
-              "number": 10,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "apRwFirmwareBuildCrosQualVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ap_rw_firmware_build_cros_qual_version",
-              "number": 11,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "ecRoFirmwareBuildCrosQualVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ec_ro_firmware_build_cros_qual_version",
-              "number": 12,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "ecRwFirmwareBuildCrosQualVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ec_rw_firmware_build_cros_qual_version",
-              "number": 13,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareQualVersion"
-            },
-            {
-              "jsonName": "roFirmwareBuildCrosVersions",
-              "label": "LABEL_REPEATED",
-              "name": "ro_firmware_build_cros_versions",
-              "number": 14,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.PreviousQualVersion"
-            },
-            {
-              "jsonName": "gscVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "gsc_version",
-              "number": 15,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.GscQualVersion"
-            },
-            {
-              "jsonName": "osQualType",
-              "label": "LABEL_REPEATED",
-              "name": "os_qual_type",
-              "number": 16,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.OsType"
-            },
-            {
-              "jsonName": "phaseType",
-              "label": "LABEL_REPEATED",
-              "name": "phase_type",
-              "number": 17,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromiumos.ModelQualConfig.PhaseType"
-            },
-            {
-              "jsonName": "maxRetries",
-              "label": "LABEL_OPTIONAL",
-              "name": "max_retries",
-              "number": 18,
-              "type": "TYPE_UINT32"
-            }
-          ],
-          "name": "ModelQualConfig"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "quals",
-              "label": "LABEL_REPEATED",
-              "name": "quals",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.ModelQualConfig"
-            }
-          ],
-          "name": "ModelQualConfigs"
-        }
-      ],
-      "name": "chromiumos/fw_qual.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromiumos",
         "javaPackage": "com.google.chrome.crosinfra.proto"
