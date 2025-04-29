@@ -16492,6 +16492,91 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromite/api/build_api.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "task",
+              "label": "LABEL_OPTIONAL",
+              "name": "task",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunQualbotRequest"
+        },
+        {
+          "enumType": [
+            {
+              "name": "FailureReason",
+              "value": [
+                {
+                  "name": "FAILURE_UNKNOWN",
+                  "number": 0
+                },
+                {
+                  "name": "FAILURE_SCHEDULE_PUSH_ERROR",
+                  "number": 1
+                },
+                {
+                  "name": "FAILURE_MERGE_CONFLICTS",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "failureReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_reason",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RunQualbotResponse.FailureReason"
+            }
+          ],
+          "name": "RunQualbotResponse"
+        }
+      ],
+      "name": "chromite/api/qualbot.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.RunQualbotRequest",
+              "name": "RunQualbot",
+              "outputType": ".chromite.api.RunQualbotResponse"
+            }
+          ],
+          "name": "QualbotService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "qualbot"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
       ],
