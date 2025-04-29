@@ -16499,6 +16499,99 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "buildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_target",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.BuildTarget"
+            },
+            {
+              "jsonName": "flags",
+              "label": "LABEL_OPTIONAL",
+              "name": "flags",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.CreateRecoveryKernelRequest.Flags"
+            }
+          ],
+          "name": "CreateRecoveryKernelRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "createBootableImage",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "create_bootable_image",
+                  "number": 1,
+                  "type": "TYPE_BOOL"
+                }
+              ],
+              "name": "Flags"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "recoveryKernel",
+              "label": "LABEL_OPTIONAL",
+              "name": "recovery_kernel",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
+            }
+          ],
+          "name": "CreateRecoveryKernelResponse"
+        }
+      ],
+      "name": "chromite/api/recovery.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.CreateRecoveryKernelRequest",
+              "name": "CreateRecoveryKernel",
+              "options": {},
+              "outputType": ".chromite.api.CreateRecoveryKernelResponse"
+            }
+          ],
+          "name": "RecoveryService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "recovery",
+              "serviceChrootAssert": "INSIDE"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "chromite/api/build_api.proto",
+        "chromiumos/common.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "path",
               "label": "LABEL_OPTIONAL",
               "name": "path",
