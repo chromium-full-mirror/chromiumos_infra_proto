@@ -11,6 +11,7 @@ import "google/protobuf/timestamp.proto";
 import "test_platform/request.proto";
 import "chromiumos/longrunning/operations.proto";
 import "chromiumos/test/api/servod_service.proto";
+import "chromiumos/test/api/devboard_service.proto";
 
 service SatlabRpcService {
   rpc ListAccessibleModels(ListAccessibleModelsRequest)
@@ -80,6 +81,15 @@ service SatlabRpcService {
     option (chromiumos.longrunning.operation_info) = {
       response_type : "StartServodResponse",
       metadata_type : "StartServodMetadata"
+    };
+  }
+
+  // devboard
+  rpc StartDevboardService(chromiumos.test.api.StartDevboardServiceRequest)
+      returns (chromiumos.longrunning.Operation) {
+    option (chromiumos.longrunning.operation_info) = {
+      response_type : "chromiumos.test.api.StartDevboardServiceResponse",
+      metadata_type : "chromiumos.test.api.StartDevboardServiceMetadata"
     };
   }
 

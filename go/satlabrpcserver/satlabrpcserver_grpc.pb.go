@@ -70,6 +70,8 @@ type SatlabRpcServiceClient interface {
 	DownloadLog(ctx context.Context, in *DownloadLogRequest, opts ...grpc.CallOption) (SatlabRpcService_DownloadLogClient, error)
 	// servo
 	StartServod(ctx context.Context, in *api.StartServodRequest, opts ...grpc.CallOption) (*longrunning.Operation, error)
+	// devboard
+	StartDevboardService(ctx context.Context, in *api.StartDevboardServiceRequest, opts ...grpc.CallOption) (*longrunning.Operation, error)
 	// Jobs/Tasks information
 	ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error)
 	// Jobs operation
@@ -483,6 +485,15 @@ func (c *satlabRpcServiceClient) StartServod(ctx context.Context, in *api.StartS
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) StartDevboardService(ctx context.Context, in *api.StartDevboardServiceRequest, opts ...grpc.CallOption) (*longrunning.Operation, error) {
+	out := new(longrunning.Operation)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/StartDevboardService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error) {
 	out := new(ListJobsResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListJobs", in, out, opts...)
@@ -560,6 +571,8 @@ type SatlabRpcServiceServer interface {
 	DownloadLog(*DownloadLogRequest, SatlabRpcService_DownloadLogServer) error
 	// servo
 	StartServod(context.Context, *api.StartServodRequest) (*longrunning.Operation, error)
+	// devboard
+	StartDevboardService(context.Context, *api.StartDevboardServiceRequest) (*longrunning.Operation, error)
 	// Jobs/Tasks information
 	ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)
 	// Jobs operation
@@ -689,6 +702,9 @@ func (UnimplementedSatlabRpcServiceServer) DownloadLog(*DownloadLogRequest, Satl
 }
 func (UnimplementedSatlabRpcServiceServer) StartServod(context.Context, *api.StartServodRequest) (*longrunning.Operation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartServod not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) StartDevboardService(context.Context, *api.StartDevboardServiceRequest) (*longrunning.Operation, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartDevboardService not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobs not implemented")
@@ -1420,6 +1436,24 @@ func _SatlabRpcService_StartServod_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_StartDevboardService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(api.StartDevboardServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).StartDevboardService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/StartDevboardService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).StartDevboardService(ctx, req.(*api.StartDevboardServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_ListJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListJobsRequest)
 	if err := dec(in); err != nil {
@@ -1628,6 +1662,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StartServod",
 			Handler:    _SatlabRpcService_StartServod_Handler,
+		},
+		{
+			MethodName: "StartDevboardService",
+			Handler:    _SatlabRpcService_StartDevboardService_Handler,
 		},
 		{
 			MethodName: "ListJobs",

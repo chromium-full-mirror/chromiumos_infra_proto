@@ -28659,7 +28659,8 @@
         "google/protobuf/timestamp.proto",
         "test_platform/request.proto",
         "chromiumos/longrunning/operations.proto",
-        "chromiumos/test/api/servod_service.proto"
+        "chromiumos/test/api/servod_service.proto",
+        "chromiumos/test/api/devboard_service.proto"
       ],
       "enumType": [
         {
@@ -31505,6 +31506,17 @@
                 "[chromiumos.longrunning.operation_info]": {
                   "metadataType": "StartServodMetadata",
                   "responseType": "StartServodResponse"
+                }
+              },
+              "outputType": ".chromiumos.longrunning.Operation"
+            },
+            {
+              "inputType": ".chromiumos.test.api.StartDevboardServiceRequest",
+              "name": "StartDevboardService",
+              "options": {
+                "[chromiumos.longrunning.operation_info]": {
+                  "metadataType": "chromiumos.test.api.StartDevboardServiceMetadata",
+                  "responseType": "chromiumos.test.api.StartDevboardServiceResponse"
                 }
               },
               "outputType": ".chromiumos.longrunning.Operation"
