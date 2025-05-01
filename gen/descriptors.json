@@ -11332,35 +11332,6 @@
               ]
             },
             {
-              "name": "TestPlan",
-              "value": [
-                {
-                  "name": "TEST_PLAN_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "FIRMWARE_ENABLED",
-                  "number": 1
-                },
-                {
-                  "name": "FIRMWARE_MEETS_KPI",
-                  "number": 2
-                },
-                {
-                  "name": "FIRMWARE_STRESSED",
-                  "number": 3
-                },
-                {
-                  "name": "FIRMWARE_QUAL",
-                  "number": 4
-                },
-                {
-                  "name": "FIRMWARE_LABQUAL",
-                  "number": 5
-                }
-              ]
-            },
-            {
               "name": "QualType",
               "value": [
                 {
@@ -11511,7 +11482,7 @@
               "label": "LABEL_REPEATED",
               "name": "test_plan",
               "number": 17,
-              "type": "TYPE_ENUM",
+              "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelQualConfig.TestPlan"
             },
             {
@@ -11524,6 +11495,78 @@
           ],
           "name": "ModelQualConfig",
           "nestedType": [
+            {
+              "enumType": [
+                {
+                  "name": "TestPlanType",
+                  "value": [
+                    {
+                      "name": "TEST_PLAN_TYPE_UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "FIRMWARE_ENABLED",
+                      "number": 1
+                    },
+                    {
+                      "name": "FIRMWARE_MEETS_KPI",
+                      "number": 2
+                    },
+                    {
+                      "name": "FIRMWARE_STRESSED",
+                      "number": 3
+                    },
+                    {
+                      "name": "FIRMWARE_QUAL",
+                      "number": 4
+                    },
+                    {
+                      "name": "FIRMWARE_LABQUAL",
+                      "number": 5
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".auto_qual.ModelQualConfig.TestPlan.TestPlanType"
+                },
+                {
+                  "jsonName": "numIterations",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "num_iterations",
+                  "number": 2,
+                  "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "testPool",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_pool",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pdTestPool",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "pd_test_pool",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "excludeTestName",
+                  "label": "LABEL_REPEATED",
+                  "name": "exclude_test_name",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "TestPlan"
+            },
             {
               "field": [
                 {
