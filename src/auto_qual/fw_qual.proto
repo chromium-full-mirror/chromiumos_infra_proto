@@ -142,6 +142,9 @@ message ModelQualConfig {
 
   // Max Test Retries
   uint32 max_retries = 18;
+
+  // Latest RW FW Versions to test for compatibility
+  PreviousQualVersion latest_rw_firmware_versions = 19;
 }
 
 message ModelQualConfigs {

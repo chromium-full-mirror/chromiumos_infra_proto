@@ -11491,6 +11491,14 @@
               "name": "max_retries",
               "number": 18,
               "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "latestRwFirmwareVersions",
+              "label": "LABEL_OPTIONAL",
+              "name": "latest_rw_firmware_versions",
+              "number": 19,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelQualConfig.PreviousQualVersion"
             }
           ],
           "name": "ModelQualConfig",
