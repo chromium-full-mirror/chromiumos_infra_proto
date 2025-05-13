@@ -14606,6 +14606,13 @@
                       "name": "sdknext",
                       "number": 3,
                       "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "forceUpdate",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "force_update",
+                      "number": 4,
+                      "type": "TYPE_BOOL"
                     }
                   ],
                   "name": "SdkUpdate"

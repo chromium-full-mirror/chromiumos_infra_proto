@@ -531,6 +531,9 @@ message BuilderConfig {
       // to test changes won't break the SDK builder.  The effect is that
       // chromite.api.SdkService/Update will actually do an update_chroot.
       bool sdknext = 3;
+
+      // If true, force the SDK to update.
+      bool force_update = 4;
     }
     SdkUpdate sdk_update = 12;
 
