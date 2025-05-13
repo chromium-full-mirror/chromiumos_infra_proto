@@ -1,0 +1,31 @@
+// Copyright 2025 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package auto_qual;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
+import "auto_qual/fw_qual.proto";
+
+message Test {
+  enum HarnessType {
+    HARNESS_TYPE_UNSPECIFIED = 0;
+    TAUTO = 1;
+    TAST = 2;
+    MANUAL = 3;
+  }
+  HarnessType harness = 1;
+  repeated string include_tags = 2;
+  repeated string exclude_tags = 3;
+  string pool = 4;
+  string suite = 5;
+}
+
+message TestList {
+  ModelQualConfig.TestPlan.TestPlanType test_effort = 2;
+  repeated Test test = 3;
+}
+
+message Tests { repeated TestList tests = 1; }
