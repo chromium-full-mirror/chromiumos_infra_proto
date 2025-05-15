@@ -11781,6 +11781,14 @@
         {
           "field": [
             {
+              "jsonName": "os",
+              "label": "LABEL_REPEATED",
+              "name": "os",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.OsType"
+            },
+            {
               "jsonName": "testEffort",
               "label": "LABEL_OPTIONAL",
               "name": "test_effort",
@@ -11797,20 +11805,20 @@
               "typeName": ".auto_qual.Test"
             }
           ],
-          "name": "TestList"
+          "name": "TestPlan"
         },
         {
           "field": [
             {
-              "jsonName": "tests",
+              "jsonName": "testPlan",
               "label": "LABEL_REPEATED",
-              "name": "tests",
+              "name": "test_plan",
               "number": 1,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.TestList"
+              "typeName": ".auto_qual.TestPlan"
             }
           ],
-          "name": "Tests"
+          "name": "TestPlans"
         }
       ],
       "name": "auto_qual/test_plan.proto",

@@ -23,9 +23,10 @@ message Test {
   string suite = 5;
 }
 
-message TestList {
+message TestPlan {
+  repeated ModelQualConfig.OsType os = 1;
   ModelQualConfig.TestPlan.TestPlanType test_effort = 2;
   repeated Test test = 3;
 }
 
-message Tests { repeated TestList tests = 1; }
+message TestPlans { repeated TestPlan test_plan = 1; }
