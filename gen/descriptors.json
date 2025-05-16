@@ -11774,6 +11774,20 @@
               "name": "suite",
               "number": 5,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "includeNames",
+              "label": "LABEL_REPEATED",
+              "name": "include_names",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "excludeNames",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_names",
+              "number": 7,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Test"

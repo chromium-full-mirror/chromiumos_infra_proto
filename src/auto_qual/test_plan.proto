@@ -21,6 +21,8 @@ message Test {
   repeated string exclude_tags = 3;
   string pool = 4;
   string suite = 5;
+  repeated string include_names = 6;
+  repeated string exclude_names = 7;
 }
 
 message TestPlan {
