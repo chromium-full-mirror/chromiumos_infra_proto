@@ -29323,6 +29323,35 @@
               "number": 4
             }
           ]
+        },
+        {
+          "name": "DownloadJobLogStatus",
+          "value": [
+            {
+              "name": "PENDING",
+              "number": 0
+            },
+            {
+              "name": "DOWNLOADING",
+              "number": 1
+            },
+            {
+              "name": "ZIPPING",
+              "number": 2
+            },
+            {
+              "name": "UPLOADING",
+              "number": 3
+            },
+            {
+              "name": "COMPLETED",
+              "number": 4
+            },
+            {
+              "name": "FAILED",
+              "number": 5
+            }
+          ]
         }
       ],
       "messageType": [
@@ -31960,6 +31989,124 @@
         },
         {
           "name": "DeleteTopologyResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DownloadJobLogRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "taskId",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DownloadJobLogResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "taskId",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CheckDownloadJobLogStatusRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.DownloadJobLogStatus"
+            },
+            {
+              "jsonName": "errorMessage",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_message",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CheckDownloadJobLogStatusResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "taskId",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "JobLogLinkRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "link",
+              "label": "LABEL_OPTIONAL",
+              "name": "link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "JobLogLinkResponse"
+        },
+        {
+          "name": "ListJobLogTasksRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "tasks",
+              "label": "LABEL_REPEATED",
+              "name": "tasks",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.ListJobLogTasksResponse.Task"
+            }
+          ],
+          "name": "ListJobLogTasksResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "id",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "id",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "status",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "status",
+                  "number": 2,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".satlabrpcserver.DownloadJobLogStatus"
+                }
+              ],
+              "name": "Task"
+            }
+          ]
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -32203,6 +32350,26 @@
               "inputType": ".satlabrpcserver.ListJobsRequest",
               "name": "ListJobs",
               "outputType": ".satlabrpcserver.ListJobsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.DownloadJobLogRequest",
+              "name": "DownloadJobLog",
+              "outputType": ".satlabrpcserver.DownloadJobLogResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.CheckDownloadJobLogStatusRequest",
+              "name": "CheckDownloadJobLogStatus",
+              "outputType": ".satlabrpcserver.CheckDownloadJobLogStatusResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.JobLogLinkRequest",
+              "name": "JobLogLink",
+              "outputType": ".satlabrpcserver.JobLogLinkResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListJobLogTasksRequest",
+              "name": "ListJobLogTasks",
+              "outputType": ".satlabrpcserver.ListJobLogTasksResponse"
             },
             {
               "inputType": ".satlabrpcserver.AbortJobsRequest",

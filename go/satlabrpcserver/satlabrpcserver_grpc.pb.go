@@ -77,6 +77,10 @@ type SatlabRpcServiceClient interface {
 	StartDevboardService(ctx context.Context, in *api.StartDevboardServiceRequest, opts ...grpc.CallOption) (*longrunning.Operation, error)
 	// Jobs/Tasks information
 	ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error)
+	DownloadJobLog(ctx context.Context, in *DownloadJobLogRequest, opts ...grpc.CallOption) (*DownloadJobLogResponse, error)
+	CheckDownloadJobLogStatus(ctx context.Context, in *CheckDownloadJobLogStatusRequest, opts ...grpc.CallOption) (*CheckDownloadJobLogStatusResponse, error)
+	JobLogLink(ctx context.Context, in *JobLogLinkRequest, opts ...grpc.CallOption) (*JobLogLinkResponse, error)
+	ListJobLogTasks(ctx context.Context, in *ListJobLogTasksRequest, opts ...grpc.CallOption) (*ListJobLogTasksResponse, error)
 	// Jobs operation
 	AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error)
 	// Satlab update
@@ -533,6 +537,42 @@ func (c *satlabRpcServiceClient) ListJobs(ctx context.Context, in *ListJobsReque
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) DownloadJobLog(ctx context.Context, in *DownloadJobLogRequest, opts ...grpc.CallOption) (*DownloadJobLogResponse, error) {
+	out := new(DownloadJobLogResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/DownloadJobLog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) CheckDownloadJobLogStatus(ctx context.Context, in *CheckDownloadJobLogStatusRequest, opts ...grpc.CallOption) (*CheckDownloadJobLogStatusResponse, error) {
+	out := new(CheckDownloadJobLogStatusResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/CheckDownloadJobLogStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) JobLogLink(ctx context.Context, in *JobLogLinkRequest, opts ...grpc.CallOption) (*JobLogLinkResponse, error) {
+	out := new(JobLogLinkResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/JobLogLink", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListJobLogTasks(ctx context.Context, in *ListJobLogTasksRequest, opts ...grpc.CallOption) (*ListJobLogTasksResponse, error) {
+	out := new(ListJobLogTasksResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListJobLogTasks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error) {
 	out := new(AbortJobsResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/AbortJobs", in, out, opts...)
@@ -608,6 +648,10 @@ type SatlabRpcServiceServer interface {
 	StartDevboardService(context.Context, *api.StartDevboardServiceRequest) (*longrunning.Operation, error)
 	// Jobs/Tasks information
 	ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)
+	DownloadJobLog(context.Context, *DownloadJobLogRequest) (*DownloadJobLogResponse, error)
+	CheckDownloadJobLogStatus(context.Context, *CheckDownloadJobLogStatusRequest) (*CheckDownloadJobLogStatusResponse, error)
+	JobLogLink(context.Context, *JobLogLinkRequest) (*JobLogLinkResponse, error)
+	ListJobLogTasks(context.Context, *ListJobLogTasksRequest) (*ListJobLogTasksResponse, error)
 	// Jobs operation
 	AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error)
 	// Satlab update
@@ -750,6 +794,18 @@ func (UnimplementedSatlabRpcServiceServer) StartDevboardService(context.Context,
 }
 func (UnimplementedSatlabRpcServiceServer) ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobs not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) DownloadJobLog(context.Context, *DownloadJobLogRequest) (*DownloadJobLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DownloadJobLog not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) CheckDownloadJobLogStatus(context.Context, *CheckDownloadJobLogStatusRequest) (*CheckDownloadJobLogStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckDownloadJobLogStatus not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) JobLogLink(context.Context, *JobLogLinkRequest) (*JobLogLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method JobLogLink not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListJobLogTasks(context.Context, *ListJobLogTasksRequest) (*ListJobLogTasksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListJobLogTasks not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AbortJobs not implemented")
@@ -1568,6 +1624,78 @@ func _SatlabRpcService_ListJobs_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_DownloadJobLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DownloadJobLogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).DownloadJobLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/DownloadJobLog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).DownloadJobLog(ctx, req.(*DownloadJobLogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_CheckDownloadJobLogStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckDownloadJobLogStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).CheckDownloadJobLogStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/CheckDownloadJobLogStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).CheckDownloadJobLogStatus(ctx, req.(*CheckDownloadJobLogStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_JobLogLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JobLogLinkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).JobLogLink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/JobLogLink",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).JobLogLink(ctx, req.(*JobLogLinkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListJobLogTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListJobLogTasksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListJobLogTasks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListJobLogTasks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListJobLogTasks(ctx, req.(*ListJobLogTasksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_AbortJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AbortJobsRequest)
 	if err := dec(in); err != nil {
@@ -1778,6 +1906,22 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobs",
 			Handler:    _SatlabRpcService_ListJobs_Handler,
+		},
+		{
+			MethodName: "DownloadJobLog",
+			Handler:    _SatlabRpcService_DownloadJobLog_Handler,
+		},
+		{
+			MethodName: "CheckDownloadJobLogStatus",
+			Handler:    _SatlabRpcService_CheckDownloadJobLogStatus_Handler,
+		},
+		{
+			MethodName: "JobLogLink",
+			Handler:    _SatlabRpcService_JobLogLink_Handler,
+		},
+		{
+			MethodName: "ListJobLogTasks",
+			Handler:    _SatlabRpcService_ListJobLogTasks_Handler,
 		},
 		{
 			MethodName: "AbortJobs",
