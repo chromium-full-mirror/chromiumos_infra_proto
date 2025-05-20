@@ -30294,6 +30294,13 @@
               "name": "has_permission",
               "number": 16,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "hasAndroidDesktopImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_android_desktop_image",
+              "number": 17,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "Dut"
