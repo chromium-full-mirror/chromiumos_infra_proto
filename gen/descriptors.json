@@ -11788,6 +11788,13 @@
               "name": "exclude_names",
               "number": 7,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "scheduleForEachRo",
+              "label": "LABEL_OPTIONAL",
+              "name": "schedule_for_each_ro",
+              "number": 8,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "Test"

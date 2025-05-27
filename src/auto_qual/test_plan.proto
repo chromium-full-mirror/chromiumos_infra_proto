@@ -23,6 +23,7 @@ message Test {
   string suite = 5;
   repeated string include_names = 6;
   repeated string exclude_names = 7;
+  bool schedule_for_each_ro = 8;
 }
 
 message TestPlan {
