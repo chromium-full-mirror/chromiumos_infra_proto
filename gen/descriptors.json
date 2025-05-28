@@ -28991,6 +28991,13 @@
                   "number": 10,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.Iterations"
+                },
+                {
+                  "jsonName": "ignoreVariantCategory",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ignore_variant_category",
+                  "number": 11,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "TestPlan"
@@ -41076,6 +41083,13 @@
                   "number": 16,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromiumos.test.api.Iterations"
+                },
+                {
+                  "jsonName": "ignoreVariantCategory",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ignore_variant_category",
+                  "number": 17,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "RunOptions",
