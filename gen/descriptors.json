@@ -32795,6 +32795,30 @@
             }
           ],
           "name": "ValidateAndroidBuildResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ipAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "ip_address",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "TestlabRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "enabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "enabled",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "TestlabResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -32995,6 +33019,11 @@
               "inputType": ".satlabrpcserver.UpdateDeviceRequest",
               "name": "UpdateDevice",
               "outputType": ".satlabrpcserver.UpdateDeviceResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.TestlabRequest",
+              "name": "Testlab",
+              "outputType": ".satlabrpcserver.TestlabResponse"
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",

@@ -66,6 +66,7 @@ type SatlabRpcServiceClient interface {
 	SendMessageToCCDSession(ctx context.Context, in *SendMessageToCCDSessionRequest, opts ...grpc.CallOption) (*SendMessageToCCDSessionResponse, error)
 	StableVersion(ctx context.Context, in *StableVersionRequest, opts ...grpc.CallOption) (*StableVersionResponse, error)
 	UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*UpdateDeviceResponse, error)
+	Testlab(ctx context.Context, in *TestlabRequest, opts ...grpc.CallOption) (*TestlabResponse, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -469,6 +470,15 @@ func (c *satlabRpcServiceClient) UpdateDevice(ctx context.Context, in *UpdateDev
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) Testlab(ctx context.Context, in *TestlabRequest, opts ...grpc.CallOption) (*TestlabResponse, error) {
+	out := new(TestlabResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/Testlab", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -718,6 +728,7 @@ type SatlabRpcServiceServer interface {
 	SendMessageToCCDSession(context.Context, *SendMessageToCCDSessionRequest) (*SendMessageToCCDSessionResponse, error)
 	StableVersion(context.Context, *StableVersionRequest) (*StableVersionResponse, error)
 	UpdateDevice(context.Context, *UpdateDeviceRequest) (*UpdateDeviceResponse, error)
+	Testlab(context.Context, *TestlabRequest) (*TestlabResponse, error)
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -866,6 +877,9 @@ func (UnimplementedSatlabRpcServiceServer) StableVersion(context.Context, *Stabl
 }
 func (UnimplementedSatlabRpcServiceServer) UpdateDevice(context.Context, *UpdateDeviceRequest) (*UpdateDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDevice not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) Testlab(context.Context, *TestlabRequest) (*TestlabResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Testlab not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -1627,6 +1641,24 @@ func _SatlabRpcService_UpdateDevice_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_Testlab_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestlabRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).Testlab(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/Testlab",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).Testlab(ctx, req.(*TestlabRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -2144,6 +2176,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateDevice",
 			Handler:    _SatlabRpcService_UpdateDevice_Handler,
+		},
+		{
+			MethodName: "Testlab",
+			Handler:    _SatlabRpcService_Testlab_Handler,
 		},
 		{
 			MethodName: "GetDutDetail",
