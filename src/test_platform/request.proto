@@ -156,6 +156,16 @@ message Request {
       // it will be ignored and the request will default to running at
       // the lowest priority.
       string qs_account = 5;
+
+      // tr_hours will be used to extend the TestRunner child builders spawned
+      // by this CTP request. This will only work in private pools and not in
+      // the shared pool.
+      //
+      // NOTE: If you are building requests using this field to extend
+      // TestRunner than its default configured length then you will likely need
+      // to also modify your CTP BB request to accommodate longer TR child
+      // builders.
+      int64 tr_hours = 6;
     }
 
     Scheduling scheduling = 4;
