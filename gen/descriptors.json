@@ -11736,6 +11736,23 @@
                   "number": 3
                 }
               ]
+            },
+            {
+              "name": "RetryType",
+              "value": [
+                {
+                  "name": "RETRY_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TEST_RUNNER_DISABLE_RETRY",
+                  "number": 1
+                },
+                {
+                  "name": "TEST_RUNNER_ENABLE_RETRY",
+                  "number": 2
+                }
+              ]
             }
           ],
           "field": [
@@ -11795,6 +11812,14 @@
               "name": "schedule_for_each_ro",
               "number": 8,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "retry",
+              "label": "LABEL_OPTIONAL",
+              "name": "retry",
+              "number": 9,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Test.RetryType"
             }
           ],
           "name": "Test"
