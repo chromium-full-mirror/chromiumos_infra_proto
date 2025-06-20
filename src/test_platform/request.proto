@@ -338,6 +338,9 @@ message Request {
     //
     // NOTE: This should always be disabled for partners.
     bool create_al_invocation = 27;
+
+    // Skip provisioning if true.
+    bool skip_provisioning = 28;
   }
 
   Params params = 1;
