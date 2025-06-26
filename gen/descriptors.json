@@ -11963,6 +11963,129 @@
     {
       "bufExtension": {
         "isImport": false,
+        "isSyntaxUnspecified": false,
+        "unusedDependency": [
+          0,
+          1
+        ]
+      },
+      "dependency": [
+        "auto_qual/fw_qual.proto",
+        "auto_qual/test_plan.proto"
+      ],
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "WaiverType",
+              "value": [
+                {
+                  "name": "WAIVER_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "WARM_BOOT",
+                  "number": 1
+                },
+                {
+                  "name": "COLD_BOOT",
+                  "number": 2
+                },
+                {
+                  "name": "RESUME_TIME",
+                  "number": 3
+                },
+                {
+                  "name": "NON_REQUIRED_TEST",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_REPEATED",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_REPEATED",
+              "name": "model",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "type",
+              "label": "LABEL_OPTIONAL",
+              "name": "type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Waiver.WaiverType"
+            },
+            {
+              "jsonName": "resource",
+              "label": "LABEL_REPEATED",
+              "name": "resource",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 5,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "Waiver"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "qualId",
+              "label": "LABEL_REPEATED",
+              "name": "qual_id",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "waiver",
+              "label": "LABEL_OPTIONAL",
+              "name": "waiver",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.Waiver"
+            }
+          ],
+          "name": "WaiverInstance"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "waiverInstance",
+              "label": "LABEL_REPEATED",
+              "name": "waiver_instance",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.WaiverInstance"
+            }
+          ],
+          "name": "Waivers"
+        }
+      ],
+      "name": "auto_qual/waiver.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
         "isSyntaxUnspecified": false
       },
       "dependency": [

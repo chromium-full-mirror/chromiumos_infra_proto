@@ -1,0 +1,39 @@
+// Copyright 2025 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package auto_qual;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
+import "auto_qual/fw_qual.proto";
+import "auto_qual/test_plan.proto";
+
+// Waiver specific information to link
+message Waiver {
+
+  enum WaiverType {
+    WAIVER_TYPE_UNSPECIFIED = 0;
+    WARM_BOOT = 1;
+    COLD_BOOT = 2;
+    RESUME_TIME = 3;
+    NON_REQUIRED_TEST = 4;
+  }
+
+  repeated string board = 1;
+  repeated string model = 2;
+  WaiverType type = 3;
+  // Bug, Doc, or other reference supporting the waiver
+  repeated string resource = 4;
+  // Waiver value, left as a string to be agnostic
+  string value = 5;
+}
+
+message WaiverInstance {
+  // Optional, if unspecified applies to all quals
+  repeated uint32 qual_id = 1;
+  Waiver waiver = 2;
+}
+
+message Waivers { repeated WaiverInstance waiver_instance = 1; }
