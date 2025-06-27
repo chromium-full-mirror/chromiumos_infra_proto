@@ -17116,6 +17116,14 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.CreateRecoveryKernelRequest.Flags"
+            },
+            {
+              "jsonName": "shellballPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "shellball_path",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Path"
             }
           ],
           "name": "CreateRecoveryKernelRequest",

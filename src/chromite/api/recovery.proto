@@ -24,6 +24,9 @@ message CreateRecoveryKernelRequest {
 
   // Flags for the tooling invocation.
   Flags flags = 3;
+
+  // Local path to the signed firmware shellball.
+  chromiumos.Path shellball_path = 4;
 }
 
 message CreateRecoveryKernelResponse {
