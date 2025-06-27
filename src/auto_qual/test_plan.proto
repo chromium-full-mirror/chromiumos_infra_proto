@@ -7,7 +7,7 @@ syntax = "proto3";
 package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
-import "auto_qual/fw_qual.proto";
+import "auto_qual/test_effort.proto";
 import "auto_qual/test.proto";
 
 message TestPlan {

@@ -11831,7 +11831,7 @@
           "name": "ModelQualConfigs"
         }
       ],
-      "name": "auto_qual/fw_qual.proto",
+      "name": "auto_qual/test_effort.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
       },
@@ -11844,7 +11844,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "auto_qual/fw_qual.proto",
+        "auto_qual/test_effort.proto",
         "auto_qual/test.proto"
       ],
       "messageType": [
@@ -11930,7 +11930,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "auto_qual/fw_qual.proto",
+        "auto_qual/test_effort.proto",
         "auto_qual/test.proto"
       ],
       "messageType": [
