@@ -7,6 +7,7 @@ syntax = "proto3";
 package auto_qual;
 
 import "google/protobuf/descriptor.proto";
+import "auto_qual/test.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
@@ -55,7 +56,10 @@ message ModelQualConfig {
     string pd_test_pool = 4;
 
     // Tests to be excluded from the test effort
-    repeated string exclude_test_name = 5;
+    repeated Test test_overrides = 5;
+
+    // Tests to be excluded from the test effort
+    repeated string exclude_test_name = 6;
   }
 
   enum QualType {

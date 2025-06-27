@@ -11266,8 +11266,133 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "HarnessType",
+              "value": [
+                {
+                  "name": "HARNESS_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TAUTO",
+                  "number": 1
+                },
+                {
+                  "name": "TAST",
+                  "number": 2
+                },
+                {
+                  "name": "MANUAL",
+                  "number": 3
+                }
+              ]
+            },
+            {
+              "name": "RetryType",
+              "value": [
+                {
+                  "name": "RETRY_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TEST_RUNNER_DISABLE_RETRY",
+                  "number": 1
+                },
+                {
+                  "name": "TEST_RUNNER_ENABLE_RETRY",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "harness",
+              "label": "LABEL_OPTIONAL",
+              "name": "harness",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Test.HarnessType"
+            },
+            {
+              "jsonName": "includeTags",
+              "label": "LABEL_REPEATED",
+              "name": "include_tags",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "excludeTags",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_tags",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suite",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "includeNames",
+              "label": "LABEL_REPEATED",
+              "name": "include_names",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "excludeNames",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_names",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "scheduleForEachRo",
+              "label": "LABEL_OPTIONAL",
+              "name": "schedule_for_each_ro",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "retry",
+              "label": "LABEL_OPTIONAL",
+              "name": "retry",
+              "number": 9,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Test.RetryType"
+            }
+          ],
+          "name": "Test"
+        }
+      ],
+      "name": "auto_qual/test.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
-        "google/protobuf/descriptor.proto"
+        "google/protobuf/descriptor.proto",
+        "auto_qual/test.proto"
       ],
       "messageType": [
         {
@@ -11566,10 +11691,18 @@
                   "type": "TYPE_STRING"
                 },
                 {
+                  "jsonName": "testOverrides",
+                  "label": "LABEL_REPEATED",
+                  "name": "test_overrides",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.Test"
+                },
+                {
                   "jsonName": "excludeTestName",
                   "label": "LABEL_REPEATED",
                   "name": "exclude_test_name",
-                  "number": 5,
+                  "number": 6,
                   "type": "TYPE_STRING"
                 }
               ],
@@ -11711,177 +11844,8 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "auto_qual/fw_qual.proto"
-      ],
-      "messageType": [
-        {
-          "enumType": [
-            {
-              "name": "HarnessType",
-              "value": [
-                {
-                  "name": "HARNESS_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "TAUTO",
-                  "number": 1
-                },
-                {
-                  "name": "TAST",
-                  "number": 2
-                },
-                {
-                  "name": "MANUAL",
-                  "number": 3
-                }
-              ]
-            },
-            {
-              "name": "RetryType",
-              "value": [
-                {
-                  "name": "RETRY_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "TEST_RUNNER_DISABLE_RETRY",
-                  "number": 1
-                },
-                {
-                  "name": "TEST_RUNNER_ENABLE_RETRY",
-                  "number": 2
-                }
-              ]
-            }
-          ],
-          "field": [
-            {
-              "jsonName": "harness",
-              "label": "LABEL_OPTIONAL",
-              "name": "harness",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.Test.HarnessType"
-            },
-            {
-              "jsonName": "includeTags",
-              "label": "LABEL_REPEATED",
-              "name": "include_tags",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "excludeTags",
-              "label": "LABEL_REPEATED",
-              "name": "exclude_tags",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "pool",
-              "label": "LABEL_OPTIONAL",
-              "name": "pool",
-              "number": 4,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "suite",
-              "label": "LABEL_OPTIONAL",
-              "name": "suite",
-              "number": 5,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "includeNames",
-              "label": "LABEL_REPEATED",
-              "name": "include_names",
-              "number": 6,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "excludeNames",
-              "label": "LABEL_REPEATED",
-              "name": "exclude_names",
-              "number": 7,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "scheduleForEachRo",
-              "label": "LABEL_OPTIONAL",
-              "name": "schedule_for_each_ro",
-              "number": 8,
-              "type": "TYPE_BOOL"
-            },
-            {
-              "jsonName": "retry",
-              "label": "LABEL_OPTIONAL",
-              "name": "retry",
-              "number": 9,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.Test.RetryType"
-            }
-          ],
-          "name": "Test"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "os",
-              "label": "LABEL_REPEATED",
-              "name": "os",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.OsType"
-            },
-            {
-              "jsonName": "testEffort",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_effort",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.TestPlan.TestPlanType"
-            },
-            {
-              "jsonName": "test",
-              "label": "LABEL_REPEATED",
-              "name": "test",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.Test"
-            }
-          ],
-          "name": "TestPlan"
-        },
-        {
-          "field": [
-            {
-              "jsonName": "testPlan",
-              "label": "LABEL_REPEATED",
-              "name": "test_plan",
-              "number": 1,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.TestPlan"
-            }
-          ],
-          "name": "TestPlans"
-        }
-      ],
-      "name": "auto_qual/test_plan.proto",
-      "options": {
-        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
-      },
-      "package": "auto_qual",
-      "syntax": "proto3"
-    },
-    {
-      "bufExtension": {
-        "isImport": false,
-        "isSyntaxUnspecified": false
-      },
-      "dependency": [
         "auto_qual/fw_qual.proto",
-        "auto_qual/test_plan.proto"
+        "auto_qual/test.proto"
       ],
       "messageType": [
         {
@@ -11963,16 +11927,68 @@
     {
       "bufExtension": {
         "isImport": false,
-        "isSyntaxUnspecified": false,
-        "unusedDependency": [
-          0,
-          1
-        ]
+        "isSyntaxUnspecified": false
       },
       "dependency": [
         "auto_qual/fw_qual.proto",
-        "auto_qual/test_plan.proto"
+        "auto_qual/test.proto"
       ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "os",
+              "label": "LABEL_REPEATED",
+              "name": "os",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.OsType"
+            },
+            {
+              "jsonName": "testEffort",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_effort",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelQualConfig.TestPlan.TestPlanType"
+            },
+            {
+              "jsonName": "test",
+              "label": "LABEL_REPEATED",
+              "name": "test",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.Test"
+            }
+          ],
+          "name": "TestPlan"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testPlan",
+              "label": "LABEL_REPEATED",
+              "name": "test_plan",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TestPlan"
+            }
+          ],
+          "name": "TestPlans"
+        }
+      ],
+      "name": "auto_qual/test_plan.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "messageType": [
         {
           "enumType": [

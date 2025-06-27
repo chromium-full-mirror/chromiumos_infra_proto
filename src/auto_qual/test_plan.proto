@@ -8,32 +8,7 @@ package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 import "auto_qual/fw_qual.proto";
-
-message Test {
-  enum HarnessType {
-    HARNESS_TYPE_UNSPECIFIED = 0;
-    TAUTO = 1;
-    TAST = 2;
-    MANUAL = 3;
-  }
-  HarnessType harness = 1;
-  repeated string include_tags = 2;
-  repeated string exclude_tags = 3;
-  string pool = 4;
-  string suite = 5;
-  repeated string include_names = 6;
-  repeated string exclude_names = 7;
-  bool schedule_for_each_ro = 8;
-  enum RetryType {
-    RETRY_TYPE_UNSPECIFIED = 0;
-    // Do not pass the retry=True flag into the suite schedule
-    TEST_RUNNER_DISABLE_RETRY = 1;
-    // Pass the retry=True flag into the suite schedule so tast can
-    // automatically retry failures.
-    TEST_RUNNER_ENABLE_RETRY = 2;
-  };
-  RetryType retry = 9;
-}
+import "auto_qual/test.proto";
 
 message TestPlan {
   repeated ModelQualConfig.OsType os = 1;
