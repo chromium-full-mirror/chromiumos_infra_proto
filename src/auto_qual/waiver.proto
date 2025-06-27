@@ -29,8 +29,8 @@ message Waiver {
 }
 
 message WaiverInstance {
-  // Optional, if unspecified applies to all quals
-  repeated uint32 qual_id = 1;
+  // Optional, if unspecified applies to all test efforts
+  repeated uint32 test_effort_id = 1;
   Waiver waiver = 2;
 }
 

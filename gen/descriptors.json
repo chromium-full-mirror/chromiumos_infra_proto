@@ -11457,10 +11457,10 @@
               ]
             },
             {
-              "name": "QualType",
+              "name": "TestEffortType",
               "value": [
                 {
-                  "name": "QUAL_TYPE_UNSPECIFIED",
+                  "name": "TEST_EFFORT_TYPE_UNSPECIFIED",
                   "number": 0
                 },
                 {
@@ -11506,7 +11506,7 @@
               "name": "devices",
               "number": 4,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.DeviceInfo"
+              "typeName": ".auto_qual.ModelTestEffortConfig.DeviceInfo"
             },
             {
               "jsonName": "branchName",
@@ -11516,12 +11516,12 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "qualType",
+              "jsonName": "testEffortType",
               "label": "LABEL_OPTIONAL",
-              "name": "qual_type",
+              "name": "test_effort_type",
               "number": 6,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.QualType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.TestEffortType"
             },
             {
               "jsonName": "firmwareType",
@@ -11529,7 +11529,7 @@
               "name": "firmware_type",
               "number": 7,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.FirmwareType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareType"
             },
             {
               "jsonName": "testingHardware",
@@ -11537,7 +11537,7 @@
               "name": "testing_hardware",
               "number": 8,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.HardwareType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.HardwareType"
             },
             {
               "jsonName": "targetMilestoneNumber",
@@ -11547,36 +11547,36 @@
               "type": "TYPE_UINT32"
             },
             {
-              "jsonName": "apRoFirmwareBuildCrosQualVersion",
+              "jsonName": "apRoFirmwareBuildCrosTestEffortVersion",
               "label": "LABEL_OPTIONAL",
-              "name": "ap_ro_firmware_build_cros_qual_version",
+              "name": "ap_ro_firmware_build_cros_test_effort_version",
               "number": 10,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
             },
             {
-              "jsonName": "apRwFirmwareBuildCrosQualVersion",
+              "jsonName": "apRwFirmwareBuildCrosTestEffortVersion",
               "label": "LABEL_OPTIONAL",
-              "name": "ap_rw_firmware_build_cros_qual_version",
+              "name": "ap_rw_firmware_build_cros_test_effort_version",
               "number": 11,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
             },
             {
-              "jsonName": "ecRoFirmwareBuildCrosQualVersion",
+              "jsonName": "ecRoFirmwareBuildCrosTestEffortVersion",
               "label": "LABEL_OPTIONAL",
-              "name": "ec_ro_firmware_build_cros_qual_version",
+              "name": "ec_ro_firmware_build_cros_test_effort_version",
               "number": 12,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
             },
             {
-              "jsonName": "ecRwFirmwareBuildCrosQualVersion",
+              "jsonName": "ecRwFirmwareBuildCrosTestEffortVersion",
               "label": "LABEL_OPTIONAL",
-              "name": "ec_rw_firmware_build_cros_qual_version",
+              "name": "ec_rw_firmware_build_cros_test_effort_version",
               "number": 13,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
             },
             {
               "jsonName": "roFirmwareBuildCrosVersions",
@@ -11584,7 +11584,7 @@
               "name": "ro_firmware_build_cros_versions",
               "number": 14,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.PreviousQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.PreviousTestEffortVersion"
             },
             {
               "jsonName": "gscVersion",
@@ -11592,15 +11592,15 @@
               "name": "gsc_version",
               "number": 15,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.GscQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.GscTestEffortVersion"
             },
             {
-              "jsonName": "osQualType",
+              "jsonName": "osTestEffortType",
               "label": "LABEL_REPEATED",
-              "name": "os_qual_type",
+              "name": "os_test_effort_type",
               "number": 16,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.OsType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
             },
             {
               "jsonName": "testPlan",
@@ -11608,7 +11608,7 @@
               "name": "test_plan",
               "number": 17,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.TestPlan"
+              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan"
             },
             {
               "jsonName": "maxRetries",
@@ -11623,10 +11623,10 @@
               "name": "latest_rw_firmware_versions",
               "number": 19,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig.PreviousQualVersion"
+              "typeName": ".auto_qual.ModelTestEffortConfig.PreviousTestEffortVersion"
             }
           ],
-          "name": "ModelQualConfig",
+          "name": "ModelTestEffortConfig",
           "nestedType": [
             {
               "enumType": [
@@ -11667,7 +11667,7 @@
                   "name": "type",
                   "number": 1,
                   "type": "TYPE_ENUM",
-                  "typeName": ".auto_qual.ModelQualConfig.TestPlan.TestPlanType"
+                  "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
                 },
                 {
                   "jsonName": "numIterations",
@@ -11758,7 +11758,7 @@
                   "type": "TYPE_STRING"
                 }
               ],
-              "name": "FirmwareQualVersion"
+              "name": "FirmwareTestEffortVersion"
             },
             {
               "field": [
@@ -11784,7 +11784,7 @@
                   "type": "TYPE_UINT32"
                 }
               ],
-              "name": "GscQualVersion"
+              "name": "GscTestEffortVersion"
             },
             {
               "field": [
@@ -11794,7 +11794,7 @@
                   "name": "ap_version",
                   "number": 1,
                   "type": "TYPE_MESSAGE",
-                  "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+                  "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
                 },
                 {
                   "jsonName": "ecVersion",
@@ -11802,33 +11802,33 @@
                   "name": "ec_version",
                   "number": 2,
                   "type": "TYPE_MESSAGE",
-                  "typeName": ".auto_qual.ModelQualConfig.FirmwareQualVersion"
+                  "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
                 },
                 {
-                  "jsonName": "osQualType",
+                  "jsonName": "osTestEffortType",
                   "label": "LABEL_REPEATED",
-                  "name": "os_qual_type",
+                  "name": "os_test_effort_type",
                   "number": 3,
                   "type": "TYPE_ENUM",
-                  "typeName": ".auto_qual.ModelQualConfig.OsType"
+                  "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
                 }
               ],
-              "name": "PreviousQualVersion"
+              "name": "PreviousTestEffortVersion"
             }
           ]
         },
         {
           "field": [
             {
-              "jsonName": "quals",
+              "jsonName": "testEfforts",
               "label": "LABEL_REPEATED",
-              "name": "quals",
+              "name": "test_efforts",
               "number": 1,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelQualConfig"
+              "typeName": ".auto_qual.ModelTestEffortConfig"
             }
           ],
-          "name": "ModelQualConfigs"
+          "name": "ModelTestEffortConfigs"
         }
       ],
       "name": "auto_qual/test_effort.proto",
@@ -11890,7 +11890,7 @@
               "name": "test_effort",
               "number": 2,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.TestPlan.TestPlanType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
             {
               "jsonName": "requiredTest",
@@ -11942,7 +11942,7 @@
               "name": "os",
               "number": 1,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.OsType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
             },
             {
               "jsonName": "testEffort",
@@ -11950,7 +11950,7 @@
               "name": "test_effort",
               "number": 2,
               "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelQualConfig.TestPlan.TestPlanType"
+              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
             {
               "jsonName": "test",
@@ -12061,9 +12061,9 @@
         {
           "field": [
             {
-              "jsonName": "qualId",
+              "jsonName": "testEffortId",
               "label": "LABEL_REPEATED",
-              "name": "qual_id",
+              "name": "test_effort_id",
               "number": 1,
               "type": "TYPE_UINT32"
             },

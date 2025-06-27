@@ -18,7 +18,7 @@ message RequiredTest {
 
 message RequiredTestList {
   uint32 milestone = 1;
-  ModelQualConfig.TestPlan.TestPlanType test_effort = 2;
+  ModelTestEffortConfig.TestPlan.TestPlanType test_effort = 2;
   repeated RequiredTest required_test = 3;
 }
 

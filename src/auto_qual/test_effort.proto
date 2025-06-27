@@ -11,8 +11,8 @@ import "auto_qual/test.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
-// Config for qualifying of a specific model.
-message ModelQualConfig {
+// Config for testing of a specific model.
+message ModelTestEffortConfig {
 
   enum FirmwareType {
     FIRMWARE_TYPE_UNSPECIFIED = 0;
@@ -62,8 +62,8 @@ message ModelQualConfig {
     repeated string exclude_test_name = 6;
   }
 
-  enum QualType {
-    QUAL_TYPE_UNSPECIFIED = 0;
+  enum TestEffortType {
+    TEST_EFFORT_TYPE_UNSPECIFIED = 0;
     AP = 1;
     EC = 2;
     AP_EC = 3;
@@ -74,29 +74,29 @@ message ModelQualConfig {
     string sku = 2;
   }
 
-  message FirmwareQualVersion {
+  message FirmwareTestEffortVersion {
     uint32 major_version = 1;
     uint32 minor_version = 2;
     uint32 patch_number = 3;
     string uri = 4;
   }
 
-  message GscQualVersion {
+  message GscTestEffortVersion {
     uint32 minor_version = 1;
     uint32 major_version = 2;
     uint32 epoch = 3;
   }
 
-  message PreviousQualVersion {
-    FirmwareQualVersion ap_version = 1;
-    FirmwareQualVersion ec_version = 2;
-    repeated OsType os_qual_type = 3;
+  message PreviousTestEffortVersion {
+    FirmwareTestEffortVersion ap_version = 1;
+    FirmwareTestEffortVersion ec_version = 2;
+    repeated OsType os_test_effort_type = 3;
   }
 
-  // Qual ID
+  // Test Effort ID
   uint32 id = 1;
 
-  // Qual Name
+  // Test Effort Name
   string name = 2;
 
   // Board to be tested
@@ -108,10 +108,10 @@ message ModelQualConfig {
   // Branch to get firmware from
   string branch_name = 5;
 
-  // Qual type from enumerated type AP, EC, AP_EC
-  QualType qual_type = 6;
+  // Test Effort type from enumerated type AP, EC, AP_EC
+  TestEffortType test_effort_type = 6;
 
-  // RO or RW Qual
+  // RO or RW Test Effort
   FirmwareType firmware_type = 7;
 
   // HW phase in test
@@ -121,25 +121,25 @@ message ModelQualConfig {
   uint32 target_milestone_number = 9;
 
   // Primary AP RO FW Test Version
-  FirmwareQualVersion ap_ro_firmware_build_cros_qual_version = 10;
+  FirmwareTestEffortVersion ap_ro_firmware_build_cros_test_effort_version = 10;
 
   // Primary AP RW FW Test Version
-  FirmwareQualVersion ap_rw_firmware_build_cros_qual_version = 11;
+  FirmwareTestEffortVersion ap_rw_firmware_build_cros_test_effort_version = 11;
 
   // Primary EC RO FW Test Version
-  FirmwareQualVersion ec_ro_firmware_build_cros_qual_version = 12;
+  FirmwareTestEffortVersion ec_ro_firmware_build_cros_test_effort_version = 12;
 
   // Primary EC RW FW Test Version
-  FirmwareQualVersion ec_rw_firmware_build_cros_qual_version = 13;
+  FirmwareTestEffortVersion ec_rw_firmware_build_cros_test_effort_version = 13;
 
   // All Previous RO FW Versions to test for compatibility
-  repeated PreviousQualVersion ro_firmware_build_cros_versions = 14;
+  repeated PreviousTestEffortVersion ro_firmware_build_cros_versions = 14;
 
   // GSC Version to test with
-  GscQualVersion gsc_version = 15;
+  GscTestEffortVersion gsc_version = 15;
 
   // OS type
-  repeated OsType os_qual_type = 16;
+  repeated OsType os_test_effort_type = 16;
 
   // Test Plan
   repeated TestPlan test_plan = 17;
@@ -148,10 +148,10 @@ message ModelQualConfig {
   uint32 max_retries = 18;
 
   // Latest RW FW Versions to test for compatibility
-  PreviousQualVersion latest_rw_firmware_versions = 19;
+  PreviousTestEffortVersion latest_rw_firmware_versions = 19;
 }
 
-message ModelQualConfigs {
-  // Qual configs to be used
-  repeated ModelQualConfig quals = 1;
+message ModelTestEffortConfigs {
+  // Test Effort configs to be used
+  repeated ModelTestEffortConfig test_efforts = 1;
 }

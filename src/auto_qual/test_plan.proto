@@ -11,8 +11,8 @@ import "auto_qual/test_effort.proto";
 import "auto_qual/test.proto";
 
 message TestPlan {
-  repeated ModelQualConfig.OsType os = 1;
-  ModelQualConfig.TestPlan.TestPlanType test_effort = 2;
+  repeated ModelTestEffortConfig.OsType os = 1;
+  ModelTestEffortConfig.TestPlan.TestPlanType test_effort = 2;
   repeated Test test = 3;
 }
 
