@@ -12034,20 +12034,24 @@
                   "number": 0
                 },
                 {
-                  "name": "WARM_BOOT",
+                  "name": "BOOT_TO_KERNEL",
                   "number": 1
                 },
                 {
-                  "name": "COLD_BOOT",
+                  "name": "BOOT_TO_LOGIN",
                   "number": 2
                 },
                 {
-                  "name": "RESUME_TIME",
+                  "name": "EC_REBOOT",
                   "number": 3
                 },
                 {
-                  "name": "NON_REQUIRED_TEST",
+                  "name": "RESUME_TIME",
                   "number": 4
+                },
+                {
+                  "name": "NON_REQUIRED_TEST",
+                  "number": 5
                 }
               ]
             }

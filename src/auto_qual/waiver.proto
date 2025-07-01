@@ -13,10 +13,11 @@ message Waiver {
 
   enum WaiverType {
     WAIVER_TYPE_UNSPECIFIED = 0;
-    WARM_BOOT = 1;
-    COLD_BOOT = 2;
-    RESUME_TIME = 3;
-    NON_REQUIRED_TEST = 4;
+    BOOT_TO_KERNEL = 1;
+    BOOT_TO_LOGIN = 2;
+    EC_REBOOT = 3;
+    RESUME_TIME = 4;
+    NON_REQUIRED_TEST = 5;
   }
 
   repeated string board = 1;
