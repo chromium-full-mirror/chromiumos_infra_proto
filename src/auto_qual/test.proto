@@ -8,6 +8,13 @@ package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
+message TestArguments {
+  // The name of the argument
+  string flag = 1;
+  // The value of the argument
+  string value = 2;
+}
+
 message Test {
   enum HarnessType {
     HARNESS_TYPE_UNSPECIFIED = 0;
@@ -32,5 +39,5 @@ message Test {
     TEST_RUNNER_ENABLE_RETRY = 2;
   };
   RetryType retry = 9;
-  string arguments = 10;
+  repeated TestArguments arguments = 10;
 }
