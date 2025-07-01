@@ -11373,6 +11373,13 @@
               "number": 9,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.Test.RetryType"
+            },
+            {
+              "jsonName": "arguments",
+              "label": "LABEL_OPTIONAL",
+              "name": "arguments",
+              "number": 10,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Test"

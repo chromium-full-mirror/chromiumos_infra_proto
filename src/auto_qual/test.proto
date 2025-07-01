@@ -32,4 +32,5 @@ message Test {
     TEST_RUNNER_ENABLE_RETRY = 2;
   };
   RetryType retry = 9;
+  string arguments = 10;
 }
