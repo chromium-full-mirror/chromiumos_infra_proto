@@ -11400,6 +11400,13 @@
               "number": 10,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.TestArguments"
+            },
+            {
+              "jsonName": "timeoutSeconds",
+              "label": "LABEL_OPTIONAL",
+              "name": "timeout_seconds",
+              "number": 11,
+              "type": "TYPE_UINT32"
             }
           ],
           "name": "Test"

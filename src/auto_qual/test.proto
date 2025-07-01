@@ -40,4 +40,11 @@ message Test {
   };
   RetryType retry = 9;
   repeated TestArguments arguments = 10;
+
+  // How long the test should run before it time outs in seconds.
+  // This is only applicable when running in unmanaged pools
+  // e.g. faft-test as opposed to MANAGED_POOL_QUOTA.
+  // This will default to 16 hours if left unspecified.
+  // https://chrome-internal.googlesource.com/chromeos/infra/config/+/main/testplatform/test_runner/main.star#157
+  uint32 timeout_seconds = 11;
 }
