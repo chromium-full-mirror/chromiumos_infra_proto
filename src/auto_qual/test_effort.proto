@@ -57,9 +57,6 @@ message ModelTestEffortConfig {
 
     // Tests to be excluded from the test effort
     repeated Test test_overrides = 5;
-
-    // Tests to be excluded from the test effort
-    repeated string exclude_test_name = 6;
   }
 
   enum TestEffortType {

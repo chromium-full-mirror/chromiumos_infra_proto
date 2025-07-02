@@ -11731,13 +11731,6 @@
                   "number": 5,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".auto_qual.Test"
-                },
-                {
-                  "jsonName": "excludeTestName",
-                  "label": "LABEL_REPEATED",
-                  "name": "exclude_test_name",
-                  "number": 6,
-                  "type": "TYPE_STRING"
                 }
               ],
               "name": "TestPlan"
