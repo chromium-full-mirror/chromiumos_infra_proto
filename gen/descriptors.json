@@ -12018,6 +12018,25 @@
       },
       "messageType": [
         {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "argument",
+              "label": "LABEL_OPTIONAL",
+              "name": "argument",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ApplicableTest"
+        },
+        {
           "enumType": [
             {
               "name": "WaiverType",
@@ -12085,6 +12104,14 @@
               "name": "value",
               "number": 5,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "applicableTest",
+              "label": "LABEL_REPEATED",
+              "name": "applicable_test",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ApplicableTest"
             }
           ],
           "name": "Waiver"

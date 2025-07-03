@@ -8,6 +8,11 @@ package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
+message ApplicableTest {
+  string name = 1;
+  string argument = 2;
+}
+
 // Waiver specific information to link
 message Waiver {
 
@@ -27,6 +32,7 @@ message Waiver {
   repeated string resource = 4;
   // Waiver value, left as a string to be agnostic
   string value = 5;
+  repeated ApplicableTest applicable_test = 6;
 }
 
 message WaiverInstance {
