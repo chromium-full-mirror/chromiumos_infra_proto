@@ -11871,37 +11871,9 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "auto_qual/test_effort.proto",
-        "auto_qual/test.proto"
+        "auto_qual/test_effort.proto"
       ],
       "messageType": [
-        {
-          "field": [
-            {
-              "jsonName": "harness",
-              "label": "LABEL_OPTIONAL",
-              "name": "harness",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.Test.HarnessType"
-            },
-            {
-              "jsonName": "name",
-              "label": "LABEL_OPTIONAL",
-              "name": "name",
-              "number": 2,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "tags",
-              "label": "LABEL_REPEATED",
-              "name": "tags",
-              "number": 3,
-              "type": "TYPE_STRING"
-            }
-          ],
-          "name": "RequiredTest"
-        },
         {
           "field": [
             {
@@ -11920,12 +11892,19 @@
               "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
             {
+              "jsonName": "os",
+              "label": "LABEL_REPEATED",
+              "name": "os",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
+            },
+            {
               "jsonName": "requiredTest",
               "label": "LABEL_REPEATED",
               "name": "required_test",
-              "number": 3,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.RequiredTest"
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RequiredTestList"

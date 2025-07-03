@@ -8,18 +8,12 @@ package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 import "auto_qual/test_effort.proto";
-import "auto_qual/test.proto";
-
-message RequiredTest {
-  Test.HarnessType harness = 1;
-  string name = 2;
-  repeated string tags = 3;
-}
 
 message RequiredTestList {
   uint32 milestone = 1;
   ModelTestEffortConfig.TestPlan.TestPlanType test_effort = 2;
-  repeated RequiredTest required_test = 3;
+  repeated ModelTestEffortConfig.OsType os = 3;
+  repeated string required_test = 4;
 }
 
 message RequiredTests { repeated RequiredTestList test_requirements = 1; }
