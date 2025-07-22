@@ -35,6 +35,8 @@ message ModelTestEffortConfig {
   }
 
   message TestPlan {
+    reserved 2;
+
     enum TestPlanType {
       TEST_PLAN_TYPE_UNSPECIFIED = 0;
       FIRMWARE_ENABLED = 1;
@@ -46,9 +48,6 @@ message ModelTestEffortConfig {
     }
     // Type of test to run
     TestPlanType type = 1;
-
-    // Desired Iterations per schedule
-    uint32 num_iterations = 2;
 
     // Default Test Pool
     string test_pool = 3;

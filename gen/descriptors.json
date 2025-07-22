@@ -11708,13 +11708,6 @@
                   "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
                 },
                 {
-                  "jsonName": "numIterations",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "num_iterations",
-                  "number": 2,
-                  "type": "TYPE_UINT32"
-                },
-                {
                   "jsonName": "testPool",
                   "label": "LABEL_OPTIONAL",
                   "name": "test_pool",
@@ -11737,7 +11730,13 @@
                   "typeName": ".auto_qual.Test"
                 }
               ],
-              "name": "TestPlan"
+              "name": "TestPlan",
+              "reservedRange": [
+                {
+                  "end": 3,
+                  "start": 2
+                }
+              ]
             },
             {
               "field": [
