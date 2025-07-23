@@ -41,6 +41,12 @@ type SatlabRpcServiceClient interface {
 	Topology(ctx context.Context, in *TopologyRequest, opts ...grpc.CallOption) (*TopologyResponse, error)
 	AddTopology(ctx context.Context, in *AddTopologyRequest, opts ...grpc.CallOption) (*AddTopologyResponse, error)
 	DeleteTopology(ctx context.Context, in *DeleteTopologyRequest, opts ...grpc.CallOption) (*DeleteTopologyResponse, error)
+	// Android Desktop
+	ListAndroidBranches(ctx context.Context, in *ListAndroidBranchesRequest, opts ...grpc.CallOption) (*ListAndroidBranchesResponse, error)
+	ListAndroidTargets(ctx context.Context, in *ListAndroidTargetsRequest, opts ...grpc.CallOption) (*ListAndroidTargetsResponse, error)
+	ListAndroidTestModules(ctx context.Context, in *ListAndroidTestModulesRequest, opts ...grpc.CallOption) (*ListAndroidTestModulesResponse, error)
+	ListAndroidBuilds(ctx context.Context, in *ListAndroidBuildsRequest, opts ...grpc.CallOption) (*ListAndroidBuildsResponse, error)
+	ListAndroidSuites(ctx context.Context, in *ListAndroidSuitesRequest, opts ...grpc.CallOption) (*ListAndroidSuitesResponse, error)
 	// services to run different types of test suites
 	RunSuite(ctx context.Context, in *RunSuiteRequest, opts ...grpc.CallOption) (*RunSuiteResponse, error)
 	RunTest(ctx context.Context, in *RunTestRequest, opts ...grpc.CallOption) (*RunTestResponse, error)
@@ -233,6 +239,51 @@ func (c *satlabRpcServiceClient) AddTopology(ctx context.Context, in *AddTopolog
 func (c *satlabRpcServiceClient) DeleteTopology(ctx context.Context, in *DeleteTopologyRequest, opts ...grpc.CallOption) (*DeleteTopologyResponse, error) {
 	out := new(DeleteTopologyResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/DeleteTopology", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListAndroidBranches(ctx context.Context, in *ListAndroidBranchesRequest, opts ...grpc.CallOption) (*ListAndroidBranchesResponse, error) {
+	out := new(ListAndroidBranchesResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListAndroidBranches", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListAndroidTargets(ctx context.Context, in *ListAndroidTargetsRequest, opts ...grpc.CallOption) (*ListAndroidTargetsResponse, error) {
+	out := new(ListAndroidTargetsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListAndroidTargets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListAndroidTestModules(ctx context.Context, in *ListAndroidTestModulesRequest, opts ...grpc.CallOption) (*ListAndroidTestModulesResponse, error) {
+	out := new(ListAndroidTestModulesResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListAndroidTestModules", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListAndroidBuilds(ctx context.Context, in *ListAndroidBuildsRequest, opts ...grpc.CallOption) (*ListAndroidBuildsResponse, error) {
+	out := new(ListAndroidBuildsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListAndroidBuilds", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListAndroidSuites(ctx context.Context, in *ListAndroidSuitesRequest, opts ...grpc.CallOption) (*ListAndroidSuitesResponse, error) {
+	out := new(ListAndroidSuitesResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListAndroidSuites", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -612,6 +663,12 @@ type SatlabRpcServiceServer interface {
 	Topology(context.Context, *TopologyRequest) (*TopologyResponse, error)
 	AddTopology(context.Context, *AddTopologyRequest) (*AddTopologyResponse, error)
 	DeleteTopology(context.Context, *DeleteTopologyRequest) (*DeleteTopologyResponse, error)
+	// Android Desktop
+	ListAndroidBranches(context.Context, *ListAndroidBranchesRequest) (*ListAndroidBranchesResponse, error)
+	ListAndroidTargets(context.Context, *ListAndroidTargetsRequest) (*ListAndroidTargetsResponse, error)
+	ListAndroidTestModules(context.Context, *ListAndroidTestModulesRequest) (*ListAndroidTestModulesResponse, error)
+	ListAndroidBuilds(context.Context, *ListAndroidBuildsRequest) (*ListAndroidBuildsResponse, error)
+	ListAndroidSuites(context.Context, *ListAndroidSuitesRequest) (*ListAndroidSuitesResponse, error)
 	// services to run different types of test suites
 	RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error)
 	RunTest(context.Context, *RunTestRequest) (*RunTestResponse, error)
@@ -710,6 +767,21 @@ func (UnimplementedSatlabRpcServiceServer) AddTopology(context.Context, *AddTopo
 }
 func (UnimplementedSatlabRpcServiceServer) DeleteTopology(context.Context, *DeleteTopologyRequest) (*DeleteTopologyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTopology not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListAndroidBranches(context.Context, *ListAndroidBranchesRequest) (*ListAndroidBranchesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAndroidBranches not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListAndroidTargets(context.Context, *ListAndroidTargetsRequest) (*ListAndroidTargetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAndroidTargets not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListAndroidTestModules(context.Context, *ListAndroidTestModulesRequest) (*ListAndroidTestModulesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAndroidTestModules not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListAndroidBuilds(context.Context, *ListAndroidBuildsRequest) (*ListAndroidBuildsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAndroidBuilds not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListAndroidSuites(context.Context, *ListAndroidSuitesRequest) (*ListAndroidSuitesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAndroidSuites not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunSuite not implemented")
@@ -1110,6 +1182,96 @@ func _SatlabRpcService_DeleteTopology_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).DeleteTopology(ctx, req.(*DeleteTopologyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListAndroidBranches_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAndroidBranchesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListAndroidBranches(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListAndroidBranches",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListAndroidBranches(ctx, req.(*ListAndroidBranchesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListAndroidTargets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAndroidTargetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListAndroidTargets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListAndroidTargets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListAndroidTargets(ctx, req.(*ListAndroidTargetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListAndroidTestModules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAndroidTestModulesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListAndroidTestModules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListAndroidTestModules",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListAndroidTestModules(ctx, req.(*ListAndroidTestModulesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListAndroidBuilds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAndroidBuildsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListAndroidBuilds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListAndroidBuilds",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListAndroidBuilds(ctx, req.(*ListAndroidBuildsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListAndroidSuites_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAndroidSuitesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListAndroidSuites(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListAndroidSuites",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListAndroidSuites(ctx, req.(*ListAndroidSuitesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1802,6 +1964,26 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTopology",
 			Handler:    _SatlabRpcService_DeleteTopology_Handler,
+		},
+		{
+			MethodName: "ListAndroidBranches",
+			Handler:    _SatlabRpcService_ListAndroidBranches_Handler,
+		},
+		{
+			MethodName: "ListAndroidTargets",
+			Handler:    _SatlabRpcService_ListAndroidTargets_Handler,
+		},
+		{
+			MethodName: "ListAndroidTestModules",
+			Handler:    _SatlabRpcService_ListAndroidTestModules_Handler,
+		},
+		{
+			MethodName: "ListAndroidBuilds",
+			Handler:    _SatlabRpcService_ListAndroidBuilds_Handler,
+		},
+		{
+			MethodName: "ListAndroidSuites",
+			Handler:    _SatlabRpcService_ListAndroidSuites_Handler,
 		},
 		{
 			MethodName: "RunSuite",

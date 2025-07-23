@@ -32199,6 +32199,161 @@
               "name": "Task"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "branch",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "targets",
+              "label": "LABEL_REPEATED",
+              "name": "targets",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidBuildsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "builds",
+              "label": "LABEL_REPEATED",
+              "name": "builds",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidBuildsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "target",
+              "label": "LABEL_OPTIONAL",
+              "name": "target",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidSuitesRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "suites",
+              "label": "LABEL_REPEATED",
+              "name": "suites",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidSuitesResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidBranchesRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "branches",
+              "label": "LABEL_REPEATED",
+              "name": "branches",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidBranchesResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "branch",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidTargetsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "targets",
+              "label": "LABEL_REPEATED",
+              "name": "targets",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidTargetsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "target",
+              "label": "LABEL_OPTIONAL",
+              "name": "target",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "suite",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidTestModulesRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "modules",
+              "label": "LABEL_REPEATED",
+              "name": "modules",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListAndroidTestModulesResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -32288,6 +32443,31 @@
               "inputType": ".satlabrpcserver.DeleteTopologyRequest",
               "name": "DeleteTopology",
               "outputType": ".satlabrpcserver.DeleteTopologyResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListAndroidBranchesRequest",
+              "name": "ListAndroidBranches",
+              "outputType": ".satlabrpcserver.ListAndroidBranchesResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListAndroidTargetsRequest",
+              "name": "ListAndroidTargets",
+              "outputType": ".satlabrpcserver.ListAndroidTargetsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListAndroidTestModulesRequest",
+              "name": "ListAndroidTestModules",
+              "outputType": ".satlabrpcserver.ListAndroidTestModulesResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListAndroidBuildsRequest",
+              "name": "ListAndroidBuilds",
+              "outputType": ".satlabrpcserver.ListAndroidBuildsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListAndroidSuitesRequest",
+              "name": "ListAndroidSuites",
+              "outputType": ".satlabrpcserver.ListAndroidSuitesResponse"
             },
             {
               "inputType": ".satlabrpcserver.RunSuiteRequest",

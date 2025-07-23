@@ -39,6 +39,13 @@ service SatlabRpcService {
   rpc AddTopology(AddTopologyRequest) returns (AddTopologyResponse);
   rpc DeleteTopology(DeleteTopologyRequest) returns (DeleteTopologyResponse);
 
+  // Android Desktop
+  rpc ListAndroidBranches(ListAndroidBranchesRequest) returns (ListAndroidBranchesResponse);
+  rpc ListAndroidTargets(ListAndroidTargetsRequest) returns (ListAndroidTargetsResponse);
+  rpc ListAndroidTestModules(ListAndroidTestModulesRequest) returns (ListAndroidTestModulesResponse);
+  rpc ListAndroidBuilds(ListAndroidBuildsRequest) returns (ListAndroidBuildsResponse);
+  rpc ListAndroidSuites(ListAndroidSuitesRequest) returns (ListAndroidSuitesResponse);
+
   // services to run different types of test suites
   rpc RunSuite(RunSuiteRequest) returns (RunSuiteResponse);
   rpc RunTest(RunTestRequest) returns (RunTestResponse);
@@ -1010,3 +1017,59 @@ message ListJobLogTasksResponse {
 
   repeated Task tasks = 1;
 }
+
+// NEXT_TAG = 4
+message ListAndroidBuildsRequest {
+  string board = 1;
+  string branch = 2;
+  repeated string targets = 3;
+}
+
+// NEXT_TAG = 2
+message ListAndroidBuildsResponse {
+  repeated string builds = 1;
+}
+
+// NEXT_TAG = 3
+message ListAndroidSuitesRequest {
+  string build_id = 1;
+  string target = 2;
+}
+
+// NEXT_TAG = 2
+message ListAndroidSuitesResponse {
+  repeated string suites = 1;
+}
+
+// NEXT_TAG = 2
+message ListAndroidBranchesRequest {
+  string board = 1;
+}
+
+// NEXT_TAG = 2
+message ListAndroidBranchesResponse {
+  repeated string branches = 1;
+}
+
+// NEXT_TAG = 2
+message ListAndroidTargetsRequest {
+  string branch = 1;
+}
+
+// NEXT_TAG = 2
+message ListAndroidTargetsResponse {
+  repeated string targets = 1;
+}
+
+// NEXT_TAG = 4
+message ListAndroidTestModulesRequest {
+  string build_id = 1;
+  string target = 2;
+  string suite = 3;
+}
+
+// NEXT_TAG = 2
+message ListAndroidTestModulesResponse {
+  repeated string modules = 1;
+}
+
