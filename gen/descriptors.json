@@ -11871,6 +11871,80 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "google/protobuf/descriptor.proto",
+        "auto_qual/test_effort.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "builderName",
+              "label": "LABEL_OPTIONAL",
+              "name": "builder_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "models",
+              "label": "LABEL_REPEATED",
+              "name": "models",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "operatingSystems",
+              "label": "LABEL_REPEATED",
+              "name": "operating_systems",
+              "number": 16,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
+            },
+            {
+              "jsonName": "testPlanType",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan_type",
+              "number": 17,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
+            },
+            {
+              "jsonName": "firmwareType",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_type",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareType"
+            }
+          ],
+          "name": "BuilderQualConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "builderQualConfig",
+              "label": "LABEL_REPEATED",
+              "name": "builder_qual_config",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BuilderQualConfig"
+            }
+          ],
+          "name": "BuilderQualConfigs"
+        }
+      ],
+      "name": "auto_qual/builder_qual_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "auto_qual/test_effort.proto"
       ],
       "messageType": [
