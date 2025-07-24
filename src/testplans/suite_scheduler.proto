@@ -365,6 +365,9 @@ message SchedulerConfig {
   repeated RunFlags run_flags = 26;
 
   repeated ExperimentFlags experiment_flags = 27;
+
+  // if enabled, then provisioning step will be skipped during test runs.
+  bool skip_provision = 28;
 }
 
 // A proto to contain all the configs.
