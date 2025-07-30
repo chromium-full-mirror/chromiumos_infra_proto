@@ -11690,6 +11690,10 @@
                     {
                       "name": "FIRMWARE_LABQUAL",
                       "number": 5
+                    },
+                    {
+                      "name": "FIRMWARE_ULDRENITE_CUSTOM",
+                      "number": 6
                     }
                   ]
                 }

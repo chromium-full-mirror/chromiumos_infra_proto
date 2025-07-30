@@ -42,6 +42,7 @@ message ModelTestEffortConfig {
       FIRMWARE_STRESSED = 3;
       FIRMWARE_QUAL = 4;
       FIRMWARE_LABQUAL = 5;
+      FIRMWARE_ULDRENITE_CUSTOM = 6;
     }
     // Type of test to run
     TestPlanType type = 1;
