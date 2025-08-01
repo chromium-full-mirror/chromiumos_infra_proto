@@ -29979,6 +29979,13 @@
               "name": "test_name_excludes",
               "number": 14,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "androidDesktop",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_desktop",
+              "number": 15,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "RunSuiteRequest"

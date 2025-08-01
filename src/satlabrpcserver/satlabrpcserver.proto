@@ -247,7 +247,7 @@ message Dim {
   string value = 2;
 }
 
-// NEXT_TAG = 15
+// NEXT_TAG = 16
 message RunSuiteRequest {
   string suite = 1;
   string build_target = 2;
@@ -266,6 +266,7 @@ message RunSuiteRequest {
   repeated string tag_excludes = 12;
   repeated string test_name_includes = 13;
   repeated string test_name_excludes = 14;
+  bool android_desktop = 15;
 }
 
 // NEXT_TAG = 2
