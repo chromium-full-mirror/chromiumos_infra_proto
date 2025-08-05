@@ -46,7 +46,16 @@ message CreatePreMPKeysRequest {
   bool add_loem = 8;
 }
 
-message CreatePreMPKeysResponse {}
+message CreatePreMPKeysResponse {
+  // Status defines the result.
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_PASS = 1;
+    STATUS_FAIL = 2;
+  }
+
+  Status status = 1;
+}
 
 message CreateAccessoryKeyRequest {
   // Build target to create the accessory keyset for.
