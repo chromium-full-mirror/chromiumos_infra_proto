@@ -11,6 +11,13 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
+// RequestStatus defines the result.
+enum RequestStatus {
+  STATUS_UNKNOWN = 0;
+  STATUS_PASS = 1;
+  STATUS_FAIL = 2;
+}
+
 message CreatePreMPKeysRequest {
   // Docker image to use for signing operations.
   // Should already be pulled down on the host.
@@ -47,6 +54,7 @@ message CreatePreMPKeysRequest {
 }
 
 message CreatePreMPKeysResponse {
+  // TODO(b/348033328): consolidate with RequestStatus.
   // Status defines the result.
   enum Status {
     STATUS_UNKNOWN = 0;
@@ -55,6 +63,7 @@ message CreatePreMPKeysResponse {
   }
 
   Status status = 1;
+  RequestStatus request_status = 2;
 }
 
 message CreateAccessoryKeyRequest {
@@ -89,7 +98,7 @@ message CreateAccessoryKeyRequest {
   int32 version = 8;
 }
 
-message CreateAccessoryKeyResponse {}
+message CreateAccessoryKeyResponse { RequestStatus request_status = 1; }
 
 message SignTi50PaosRequest {
   // Cloud KMS properties for the key to use:

@@ -17738,6 +17738,25 @@
         "chromite/api/build_api.proto",
         "chromiumos/common.proto"
       ],
+      "enumType": [
+        {
+          "name": "RequestStatus",
+          "value": [
+            {
+              "name": "STATUS_UNKNOWN",
+              "number": 0
+            },
+            {
+              "name": "STATUS_PASS",
+              "number": 1
+            },
+            {
+              "name": "STATUS_FAIL",
+              "number": 2
+            }
+          ]
+        }
+      ],
       "messageType": [
         {
           "field": [
@@ -17829,6 +17848,14 @@
               "number": 1,
               "type": "TYPE_ENUM",
               "typeName": ".chromite.api.CreatePreMPKeysResponse.Status"
+            },
+            {
+              "jsonName": "requestStatus",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_status",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RequestStatus"
             }
           ],
           "name": "CreatePreMPKeysResponse"
@@ -17896,6 +17923,16 @@
           "name": "CreateAccessoryKeyRequest"
         },
         {
+          "field": [
+            {
+              "jsonName": "requestStatus",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RequestStatus"
+            }
+          ],
           "name": "CreateAccessoryKeyResponse"
         },
         {
