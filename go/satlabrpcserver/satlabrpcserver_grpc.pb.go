@@ -63,6 +63,7 @@ type SatlabRpcServiceClient interface {
 	OpenCCD(ctx context.Context, in *OpenCCDRequest, opts ...grpc.CallOption) (SatlabRpcService_OpenCCDClient, error)
 	SendMessageToCCDSession(ctx context.Context, in *SendMessageToCCDSessionRequest, opts ...grpc.CallOption) (*SendMessageToCCDSessionResponse, error)
 	StableVersion(ctx context.Context, in *StableVersionRequest, opts ...grpc.CallOption) (*StableVersionResponse, error)
+	UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*UpdateDeviceResponse, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -439,6 +440,15 @@ func (c *satlabRpcServiceClient) StableVersion(ctx context.Context, in *StableVe
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*UpdateDeviceResponse, error) {
+	out := new(UpdateDeviceResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/UpdateDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -685,6 +695,7 @@ type SatlabRpcServiceServer interface {
 	OpenCCD(*OpenCCDRequest, SatlabRpcService_OpenCCDServer) error
 	SendMessageToCCDSession(context.Context, *SendMessageToCCDSessionRequest) (*SendMessageToCCDSessionResponse, error)
 	StableVersion(context.Context, *StableVersionRequest) (*StableVersionResponse, error)
+	UpdateDevice(context.Context, *UpdateDeviceRequest) (*UpdateDeviceResponse, error)
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -824,6 +835,9 @@ func (UnimplementedSatlabRpcServiceServer) SendMessageToCCDSession(context.Conte
 }
 func (UnimplementedSatlabRpcServiceServer) StableVersion(context.Context, *StableVersionRequest) (*StableVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StableVersion not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) UpdateDevice(context.Context, *UpdateDeviceRequest) (*UpdateDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDevice not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -1531,6 +1545,24 @@ func _SatlabRpcService_StableVersion_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_UpdateDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDeviceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).UpdateDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/UpdateDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).UpdateDevice(ctx, req.(*UpdateDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -2036,6 +2068,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StableVersion",
 			Handler:    _SatlabRpcService_StableVersion_Handler,
+		},
+		{
+			MethodName: "UpdateDevice",
+			Handler:    _SatlabRpcService_UpdateDevice_Handler,
 		},
 		{
 			MethodName: "GetDutDetail",

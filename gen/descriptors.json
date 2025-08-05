@@ -32354,6 +32354,28 @@
             }
           ],
           "name": "ListAndroidTestModulesResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "osRestriction",
+              "label": "LABEL_OPTIONAL",
+              "name": "os_restriction",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UpdateDeviceRequest"
+        },
+        {
+          "name": "UpdateDeviceResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -32539,6 +32561,11 @@
               "inputType": ".satlabrpcserver.StableVersionRequest",
               "name": "StableVersion",
               "outputType": ".satlabrpcserver.StableVersionResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.UpdateDeviceRequest",
+              "name": "UpdateDevice",
+              "outputType": ".satlabrpcserver.UpdateDeviceResponse"
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",
