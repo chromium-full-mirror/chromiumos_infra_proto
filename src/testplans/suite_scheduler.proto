@@ -368,6 +368,14 @@ message SchedulerConfig {
 
   // if enabled, then provisioning step will be skipped during test runs.
   bool skip_provision = 28;
+
+  // DDD related options.
+  message DDDOptions {
+    // Applies suite level 3D variant category expression for device targeting
+    // to each test in suite
+    string ddd_variant_category = 1;
+  }
+  DDDOptions ddd_options = 29;
 }
 
 // A proto to contain all the configs.

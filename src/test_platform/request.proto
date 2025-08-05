@@ -412,6 +412,8 @@ message Request {
     chromiumos.test.api.Iterations iterations = 10;
     // For non-3D, this will ignore tests with variantCategory metadata values
     bool ignore_variant_category = 11;
+    // Applies suite level 3D variant category expression to tests in suite
+    string ddd_variant_category = 12;
   }
 
   TestPlan test_plan = 5;

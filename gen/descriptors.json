@@ -29178,6 +29178,13 @@
                   "name": "ignore_variant_category",
                   "number": 11,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "dddVariantCategory",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ddd_variant_category",
+                  "number": 12,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "TestPlan"
@@ -41297,6 +41304,14 @@
               "name": "skip_provision",
               "number": 28,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "dddOptions",
+              "label": "LABEL_OPTIONAL",
+              "name": "ddd_options",
+              "number": 29,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".testplans.SchedulerConfig.DDDOptions"
             }
           ],
           "name": "SchedulerConfig",
@@ -41722,6 +41737,18 @@
                   "name": "BuilderID"
                 }
               ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "dddVariantCategory",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ddd_variant_category",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "DDDOptions"
             }
           ],
           "oneofDecl": [
