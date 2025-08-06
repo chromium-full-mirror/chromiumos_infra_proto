@@ -255,7 +255,7 @@ message Dim {
   string value = 2;
 }
 
-// NEXT_TAG = 16
+// NEXT_TAG = 18
 message RunSuiteRequest {
   string suite = 1;
   string build_target = 2;
@@ -275,6 +275,8 @@ message RunSuiteRequest {
   repeated string test_name_includes = 13;
   repeated string test_name_excludes = 14;
   bool android_desktop = 15;
+  string target_type = 16;
+  int64 max_shard = 17;
 }
 
 // NEXT_TAG = 2
@@ -563,7 +565,7 @@ message ListTestPlansResponse {
   repeated string names = 1;
 }
 
-// NEXT_TAG = 11
+// NEXT_TAG = 14
 message RunTestPlanRequest {
   // the name of the test plan in the bucket that a user wants to run
   string test_plan_name = 1;
@@ -579,6 +581,9 @@ message RunTestPlanRequest {
   bool cft = 8;
   bool trv2 = 9;
   bool upload_to_cpcon = 10;
+  bool android_desktop = 11;
+  string target_type = 12;
+  int64 max_shard = 13;
 }
 
 // NEXT_TAG = 2

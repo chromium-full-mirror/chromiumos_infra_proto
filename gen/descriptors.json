@@ -29872,6 +29872,20 @@
               "name": "android_desktop",
               "number": 15,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "targetType",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_type",
+              "number": 16,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "maxShard",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_shard",
+              "number": 17,
+              "type": "TYPE_INT64"
             }
           ],
           "name": "RunSuiteRequest"
@@ -30920,6 +30934,27 @@
               "name": "upload_to_cpcon",
               "number": 10,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "androidDesktop",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_desktop",
+              "number": 11,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "targetType",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_type",
+              "number": 12,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "maxShard",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_shard",
+              "number": 13,
+              "type": "TYPE_INT64"
             }
           ],
           "name": "RunTestPlanRequest"
