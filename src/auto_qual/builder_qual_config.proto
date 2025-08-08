@@ -28,13 +28,16 @@ message BuilderQualConfig {
 
   // The operating systems to generate test efforts for.
   // If this list is empty, then no qualifications will be generated.
-  repeated ModelTestEffortConfig.OsType operating_systems = 16;
+  repeated ModelTestEffortConfig.OsType operating_systems = 3;
 
   // Test Plan Type to use for the generated test efforts.
-  ModelTestEffortConfig.TestPlan.TestPlanType test_plan_type = 17;
+  ModelTestEffortConfig.TestPlan.TestPlanType test_plan_type = 4;
 
   // RO+RW or RW Test Effort.
-  ModelTestEffortConfig.FirmwareType firmware_type = 7;
+  ModelTestEffortConfig.FirmwareType firmware_type = 5;
+
+  // Test Effort type from enumerated type AP, EC, AP_EC
+  ModelTestEffortConfig.TestEffortType test_effort_type = 6;
 }
 
 message BuilderQualConfigs {

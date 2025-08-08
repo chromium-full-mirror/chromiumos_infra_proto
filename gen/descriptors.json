@@ -11898,7 +11898,7 @@
               "jsonName": "operatingSystems",
               "label": "LABEL_REPEATED",
               "name": "operating_systems",
-              "number": 16,
+              "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
             },
@@ -11906,7 +11906,7 @@
               "jsonName": "testPlanType",
               "label": "LABEL_OPTIONAL",
               "name": "test_plan_type",
-              "number": 17,
+              "number": 4,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
@@ -11914,9 +11914,17 @@
               "jsonName": "firmwareType",
               "label": "LABEL_OPTIONAL",
               "name": "firmware_type",
-              "number": 7,
+              "number": 5,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareType"
+            },
+            {
+              "jsonName": "testEffortType",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_effort_type",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ModelTestEffortConfig.TestEffortType"
             }
           ],
           "name": "BuilderQualConfig"
