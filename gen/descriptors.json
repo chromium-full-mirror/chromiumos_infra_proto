@@ -17829,34 +17829,7 @@
           "name": "CreatePreMPKeysRequest"
         },
         {
-          "enumType": [
-            {
-              "name": "Status",
-              "value": [
-                {
-                  "name": "STATUS_UNKNOWN",
-                  "number": 0
-                },
-                {
-                  "name": "STATUS_PASS",
-                  "number": 1
-                },
-                {
-                  "name": "STATUS_FAIL",
-                  "number": 2
-                }
-              ]
-            }
-          ],
           "field": [
-            {
-              "jsonName": "status",
-              "label": "LABEL_OPTIONAL",
-              "name": "status",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".chromite.api.CreatePreMPKeysResponse.Status"
-            },
             {
               "jsonName": "requestStatus",
               "label": "LABEL_OPTIONAL",

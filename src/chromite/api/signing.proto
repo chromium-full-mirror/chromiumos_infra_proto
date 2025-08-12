@@ -53,18 +53,7 @@ message CreatePreMPKeysRequest {
   bool add_loem = 8;
 }
 
-message CreatePreMPKeysResponse {
-  // TODO(b/348033328): consolidate with RequestStatus.
-  // Status defines the result.
-  enum Status {
-    STATUS_UNKNOWN = 0;
-    STATUS_PASS = 1;
-    STATUS_FAIL = 2;
-  }
-
-  Status status = 1;
-  RequestStatus request_status = 2;
-}
+message CreatePreMPKeysResponse { RequestStatus request_status = 2; }
 
 message CreateAccessoryKeyRequest {
   // Build target to create the accessory keyset for.
