@@ -18021,6 +18021,73 @@
         },
         {
           "name": "SignTi50PaosResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "isStaging",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_staging",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "keyring",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyring",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "keyName",
+              "label": "LABEL_OPTIONAL",
+              "name": "key_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "outPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "out_path",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CreateCertRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "requestStatus",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RequestStatus"
+            },
+            {
+              "jsonName": "certPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "cert_path",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CreateCertResponse"
         }
       ],
       "name": "chromite/api/signing.proto",
@@ -18048,6 +18115,12 @@
               "name": "SignTi50Paos",
               "options": {},
               "outputType": ".chromite.api.SignTi50PaosResponse"
+            },
+            {
+              "inputType": ".chromite.api.CreateCertRequest",
+              "name": "CreateCert",
+              "options": {},
+              "outputType": ".chromite.api.CreateCertResponse"
             }
           ],
           "name": "SigningService",

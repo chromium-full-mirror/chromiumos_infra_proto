@@ -33,6 +33,8 @@ type SigningServiceClient interface {
 	CreateAccessoryKeys(ctx context.Context, in *CreateAccessoryKeyRequest, opts ...grpc.CallOption) (*CreateAccessoryKeyResponse, error)
 	// Sign PAOs in a Ti50 tarball.
 	SignTi50Paos(ctx context.Context, in *SignTi50PaosRequest, opts ...grpc.CallOption) (*SignTi50PaosResponse, error)
+	// Create cert for a given key.
+	CreateCert(ctx context.Context, in *CreateCertRequest, opts ...grpc.CallOption) (*CreateCertResponse, error)
 }
 
 type signingServiceClient struct {
@@ -70,6 +72,15 @@ func (c *signingServiceClient) SignTi50Paos(ctx context.Context, in *SignTi50Pao
 	return out, nil
 }
 
+func (c *signingServiceClient) CreateCert(ctx context.Context, in *CreateCertRequest, opts ...grpc.CallOption) (*CreateCertResponse, error) {
+	out := new(CreateCertResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/CreateCert", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SigningServiceServer is the server API for SigningService service.
 // All implementations must embed UnimplementedSigningServiceServer
 // for forward compatibility
@@ -85,6 +96,8 @@ type SigningServiceServer interface {
 	CreateAccessoryKeys(context.Context, *CreateAccessoryKeyRequest) (*CreateAccessoryKeyResponse, error)
 	// Sign PAOs in a Ti50 tarball.
 	SignTi50Paos(context.Context, *SignTi50PaosRequest) (*SignTi50PaosResponse, error)
+	// Create cert for a given key.
+	CreateCert(context.Context, *CreateCertRequest) (*CreateCertResponse, error)
 	mustEmbedUnimplementedSigningServiceServer()
 }
 
@@ -100,6 +113,9 @@ func (UnimplementedSigningServiceServer) CreateAccessoryKeys(context.Context, *C
 }
 func (UnimplementedSigningServiceServer) SignTi50Paos(context.Context, *SignTi50PaosRequest) (*SignTi50PaosResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignTi50Paos not implemented")
+}
+func (UnimplementedSigningServiceServer) CreateCert(context.Context, *CreateCertRequest) (*CreateCertResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCert not implemented")
 }
 func (UnimplementedSigningServiceServer) mustEmbedUnimplementedSigningServiceServer() {}
 
@@ -168,6 +184,24 @@ func _SigningService_SignTi50Paos_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SigningService_CreateCert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCertRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SigningServiceServer).CreateCert(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SigningService/CreateCert",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SigningServiceServer).CreateCert(ctx, req.(*CreateCertRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SigningService_ServiceDesc is the grpc.ServiceDesc for SigningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -186,6 +220,10 @@ var SigningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignTi50Paos",
 			Handler:    _SigningService_SignTi50Paos_Handler,
+		},
+		{
+			MethodName: "CreateCert",
+			Handler:    _SigningService_CreateCert_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

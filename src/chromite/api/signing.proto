@@ -131,6 +131,38 @@ message SignTi50PaosRequest {
 
 message SignTi50PaosResponse {}
 
+message CreateCertRequest {
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 1;
+
+  // If set, will skip gcloud operations.
+  bool dry_run = 2;
+
+  // If set, use dev project for cloud operations.
+  bool is_staging = 3;
+
+  // Name of the keyring.
+  string keyring = 4;
+
+  // Name of the key to create a cert for.
+  string key_name = 5;
+
+  // Path where cert should be placed.
+  string out_path = 6;
+}
+
+message CreateCertResponse {
+  // Status of cert creation.
+  RequestStatus request_status = 1;
+
+  // Path to created cert.
+  string cert_path = 2;
+}
+
 // The signing service.
 service SigningService {
   option (service_options) = {
@@ -154,4 +186,7 @@ service SigningService {
 
   // Sign PAOs in a Ti50 tarball.
   rpc SignTi50Paos(SignTi50PaosRequest) returns (SignTi50PaosResponse) {};
+
+  // Create cert for a given key.
+  rpc CreateCert(CreateCertRequest) returns (CreateCertResponse) {};
 }
