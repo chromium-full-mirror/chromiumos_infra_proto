@@ -153,6 +153,9 @@ message CreateCertRequest {
 
   // Path where cert should be placed.
   string out_path = 6;
+
+  // Path to the local checkout of keys.
+  string release_keys_checkout = 7;
 }
 
 message CreateCertResponse {
