@@ -156,6 +156,9 @@ message CreateCertRequest {
 
   // Path to the local checkout of keys.
   string release_keys_checkout = 7;
+
+  // Directory where artifacts should be placed.
+  chromiumos.ResultPath result_path = 8;
 }
 
 message CreateCertResponse {

@@ -18072,6 +18072,14 @@
               "name": "release_keys_checkout",
               "number": 7,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "resultPath",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_path",
+              "number": 8,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.ResultPath"
             }
           ],
           "name": "CreateCertRequest"
