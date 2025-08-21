@@ -32696,6 +32696,51 @@
             }
           ],
           "name": "RunResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "branch",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "targets",
+              "label": "LABEL_REPEATED",
+              "name": "targets",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ValidateAndroidBuildRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "isValid",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_valid",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "ValidateAndroidBuildResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -32810,6 +32855,11 @@
               "inputType": ".satlabrpcserver.ListAndroidSuitesRequest",
               "name": "ListAndroidSuites",
               "outputType": ".satlabrpcserver.ListAndroidSuitesResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ValidateAndroidBuildRequest",
+              "name": "ValidateAndroidBuild",
+              "outputType": ".satlabrpcserver.ValidateAndroidBuildResponse"
             },
             {
               "inputType": ".satlabrpcserver.RunSuiteRequest",
