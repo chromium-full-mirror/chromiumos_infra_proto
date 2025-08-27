@@ -35,6 +35,8 @@ type SigningServiceClient interface {
 	SignTi50Paos(ctx context.Context, in *SignTi50PaosRequest, opts ...grpc.CallOption) (*SignTi50PaosResponse, error)
 	// Create cert for a given key.
 	CreateCert(ctx context.Context, in *CreateCertRequest, opts ...grpc.CallOption) (*CreateCertResponse, error)
+	// Initiate a signing operation against the online HSM.
+	SignViaOnlineHsm(ctx context.Context, in *SignViaOnlineHsmRequest, opts ...grpc.CallOption) (*SignViaOnlineHsmResponse, error)
 }
 
 type signingServiceClient struct {
@@ -81,6 +83,15 @@ func (c *signingServiceClient) CreateCert(ctx context.Context, in *CreateCertReq
 	return out, nil
 }
 
+func (c *signingServiceClient) SignViaOnlineHsm(ctx context.Context, in *SignViaOnlineHsmRequest, opts ...grpc.CallOption) (*SignViaOnlineHsmResponse, error) {
+	out := new(SignViaOnlineHsmResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/SignViaOnlineHsm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SigningServiceServer is the server API for SigningService service.
 // All implementations must embed UnimplementedSigningServiceServer
 // for forward compatibility
@@ -98,6 +109,8 @@ type SigningServiceServer interface {
 	SignTi50Paos(context.Context, *SignTi50PaosRequest) (*SignTi50PaosResponse, error)
 	// Create cert for a given key.
 	CreateCert(context.Context, *CreateCertRequest) (*CreateCertResponse, error)
+	// Initiate a signing operation against the online HSM.
+	SignViaOnlineHsm(context.Context, *SignViaOnlineHsmRequest) (*SignViaOnlineHsmResponse, error)
 	mustEmbedUnimplementedSigningServiceServer()
 }
 
@@ -116,6 +129,9 @@ func (UnimplementedSigningServiceServer) SignTi50Paos(context.Context, *SignTi50
 }
 func (UnimplementedSigningServiceServer) CreateCert(context.Context, *CreateCertRequest) (*CreateCertResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCert not implemented")
+}
+func (UnimplementedSigningServiceServer) SignViaOnlineHsm(context.Context, *SignViaOnlineHsmRequest) (*SignViaOnlineHsmResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignViaOnlineHsm not implemented")
 }
 func (UnimplementedSigningServiceServer) mustEmbedUnimplementedSigningServiceServer() {}
 
@@ -202,6 +218,24 @@ func _SigningService_CreateCert_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SigningService_SignViaOnlineHsm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignViaOnlineHsmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SigningServiceServer).SignViaOnlineHsm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SigningService/SignViaOnlineHsm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SigningServiceServer).SignViaOnlineHsm(ctx, req.(*SignViaOnlineHsmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SigningService_ServiceDesc is the grpc.ServiceDesc for SigningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -224,6 +258,10 @@ var SigningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCert",
 			Handler:    _SigningService_CreateCert_Handler,
+		},
+		{
+			MethodName: "SignViaOnlineHsm",
+			Handler:    _SigningService_SignViaOnlineHsm_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -158,6 +158,17 @@ message CreateCertResponse {
   string cert_path = 2;
 }
 
+message SignViaOnlineHsmRequest {
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 1;
+}
+
+message SignViaOnlineHsmResponse {}
+
 // The signing service.
 service SigningService {
   option (service_options) = {
@@ -184,4 +195,8 @@ service SigningService {
 
   // Create cert for a given key.
   rpc CreateCert(CreateCertRequest) returns (CreateCertResponse) {};
+
+  // Initiate a signing operation against the online HSM.
+  rpc SignViaOnlineHsm(SignViaOnlineHsmRequest)
+      returns (SignViaOnlineHsmResponse) {};
 }

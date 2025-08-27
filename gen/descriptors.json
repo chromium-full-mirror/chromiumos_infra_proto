@@ -18076,6 +18076,21 @@
             }
           ],
           "name": "CreateCertResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SignViaOnlineHsmRequest"
+        },
+        {
+          "name": "SignViaOnlineHsmResponse"
         }
       ],
       "name": "chromite/api/signing.proto",
@@ -18109,6 +18124,12 @@
               "name": "CreateCert",
               "options": {},
               "outputType": ".chromite.api.CreateCertResponse"
+            },
+            {
+              "inputType": ".chromite.api.SignViaOnlineHsmRequest",
+              "name": "SignViaOnlineHsm",
+              "options": {},
+              "outputType": ".chromite.api.SignViaOnlineHsmResponse"
             }
           ],
           "name": "SigningService",
