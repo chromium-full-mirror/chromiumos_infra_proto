@@ -54,6 +54,7 @@ type SatlabRpcServiceClient interface {
 	RunStorageQual(ctx context.Context, in *RunStorageQualRequest, opts ...grpc.CallOption) (*RunStorageQualResponse, error)
 	RunQualification(ctx context.Context, in *RunQualificationRequest, opts ...grpc.CallOption) (*RunQualificationResponse, error)
 	RunLabQual(ctx context.Context, in *RunLabQualRequest, opts ...grpc.CallOption) (*RunLabQualResponse, error)
+	Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error)
 	// manage DUTs
 	AddPool(ctx context.Context, in *AddPoolRequest, opts ...grpc.CallOption) (*AddPoolResponse, error)
 	UpdatePool(ctx context.Context, in *UpdatePoolRequest, opts ...grpc.CallOption) (*UpdatePoolResponse, error)
@@ -339,6 +340,15 @@ func (c *satlabRpcServiceClient) RunQualification(ctx context.Context, in *RunQu
 func (c *satlabRpcServiceClient) RunLabQual(ctx context.Context, in *RunLabQualRequest, opts ...grpc.CallOption) (*RunLabQualResponse, error) {
 	out := new(RunLabQualResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunLabQual", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error) {
+	out := new(RunResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/Run", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -686,6 +696,7 @@ type SatlabRpcServiceServer interface {
 	RunStorageQual(context.Context, *RunStorageQualRequest) (*RunStorageQualResponse, error)
 	RunQualification(context.Context, *RunQualificationRequest) (*RunQualificationResponse, error)
 	RunLabQual(context.Context, *RunLabQualRequest) (*RunLabQualResponse, error)
+	Run(context.Context, *RunRequest) (*RunResponse, error)
 	// manage DUTs
 	AddPool(context.Context, *AddPoolRequest) (*AddPoolResponse, error)
 	UpdatePool(context.Context, *UpdatePoolRequest) (*UpdatePoolResponse, error)
@@ -811,6 +822,9 @@ func (UnimplementedSatlabRpcServiceServer) RunQualification(context.Context, *Ru
 }
 func (UnimplementedSatlabRpcServiceServer) RunLabQual(context.Context, *RunLabQualRequest) (*RunLabQualResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunLabQual not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) AddPool(context.Context, *AddPoolRequest) (*AddPoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPool not implemented")
@@ -1394,6 +1408,24 @@ func _SatlabRpcService_RunLabQual_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).RunLabQual(ctx, req.(*RunLabQualRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_Run_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).Run(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/Run",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).Run(ctx, req.(*RunRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2040,6 +2072,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunLabQual",
 			Handler:    _SatlabRpcService_RunLabQual_Handler,
+		},
+		{
+			MethodName: "Run",
+			Handler:    _SatlabRpcService_Run_Handler,
 		},
 		{
 			MethodName: "AddPool",

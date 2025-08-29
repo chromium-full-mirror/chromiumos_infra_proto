@@ -31986,6 +31986,13 @@
               "name": "upload_to_cpcon",
               "number": 3,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "maxInShard",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_in_shard",
+              "number": 4,
+              "type": "TYPE_INT64"
             }
           ],
           "name": "AdvancedSettings"
@@ -32487,6 +32494,208 @@
         },
         {
           "name": "UpdateDeviceResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "suite",
+              "label": "LABEL_OPTIONAL",
+              "name": "suite",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.RunRequest.Suite"
+            },
+            {
+              "jsonName": "test",
+              "label": "LABEL_OPTIONAL",
+              "name": "test",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.RunRequest.Test"
+            },
+            {
+              "jsonName": "plan",
+              "label": "LABEL_OPTIONAL",
+              "name": "plan",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.RunRequest.Testplan"
+            },
+            {
+              "jsonName": "os",
+              "label": "LABEL_OPTIONAL",
+              "name": "os",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 6,
+              "oneofIndex": 1,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "milestone",
+              "label": "LABEL_OPTIONAL",
+              "name": "milestone",
+              "number": 7,
+              "oneofIndex": 2,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "targetType",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_type",
+              "number": 8,
+              "oneofIndex": 3,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 9,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pool",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool",
+              "number": 10,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dims",
+              "label": "LABEL_REPEATED",
+              "name": "dims",
+              "number": 11,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.Dim"
+            },
+            {
+              "jsonName": "tagIncludes",
+              "label": "LABEL_REPEATED",
+              "name": "tag_includes",
+              "number": 12,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tagExcludes",
+              "label": "LABEL_REPEATED",
+              "name": "tag_excludes",
+              "number": 13,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testNameIncludes",
+              "label": "LABEL_REPEATED",
+              "name": "test_name_includes",
+              "number": 14,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testNameExcludes",
+              "label": "LABEL_REPEATED",
+              "name": "test_name_excludes",
+              "number": 15,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "settings",
+              "label": "LABEL_OPTIONAL",
+              "name": "settings",
+              "number": 16,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.AdvancedSettings"
+            }
+          ],
+          "name": "RunRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Suite"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "args",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "args",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Test"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Testplan"
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "task"
+            },
+            {
+              "name": "_model"
+            },
+            {
+              "name": "_milestone"
+            },
+            {
+              "name": "_target_type"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "link",
+              "label": "LABEL_OPTIONAL",
+              "name": "link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -32631,6 +32840,11 @@
               "inputType": ".satlabrpcserver.RunLabQualRequest",
               "name": "RunLabQual",
               "outputType": ".satlabrpcserver.RunLabQualResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunRequest",
+              "name": "Run",
+              "outputType": ".satlabrpcserver.RunResponse"
             },
             {
               "inputType": ".satlabrpcserver.AddPoolRequest",
