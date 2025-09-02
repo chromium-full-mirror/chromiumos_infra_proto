@@ -17578,6 +17578,95 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "chromite/api/build_api.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "hostId",
+              "label": "LABEL_OPTIONAL",
+              "name": "host_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunSatlabMonitorRequest"
+        },
+        {
+          "enumType": [
+            {
+              "name": "FailureReason",
+              "value": [
+                {
+                  "name": "FAILURE_UNKNOWN",
+                  "number": 0
+                },
+                {
+                  "name": "FAILURE_SCHEDULE_PUSH_ERROR",
+                  "number": 1
+                },
+                {
+                  "name": "FAILURE_MERGE_CONFLICTS",
+                  "number": 2
+                },
+                {
+                  "name": "FAILURE_UNKNOWN_HOST",
+                  "number": 3
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "failureReason",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_reason",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RunSatlabMonitorResponse.FailureReason"
+            }
+          ],
+          "name": "RunSatlabMonitorResponse"
+        }
+      ],
+      "name": "chromite/api/satlab_monitor.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/chromite/api"
+      },
+      "package": "chromite.api",
+      "service": [
+        {
+          "method": [
+            {
+              "inputType": ".chromite.api.RunSatlabMonitorRequest",
+              "name": "RunSatlabMonitor",
+              "outputType": ".chromite.api.RunSatlabMonitorResponse"
+            }
+          ],
+          "name": "SatlabMonitorService",
+          "options": {
+            "[chromite.api.service_options]": {
+              "module": "satlab_monitor"
+            }
+          }
+        }
+      ],
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "chromite/api/build_api.proto",
         "chromite/api/sysroot.proto",
         "chromiumos/common.proto"
