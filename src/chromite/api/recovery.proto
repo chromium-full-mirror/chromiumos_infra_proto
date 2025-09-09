@@ -11,9 +11,24 @@ import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
 
 message CreateRecoveryKernelRequest {
+
+  enum RamfsType {
+    UNKNOWN = 0;
+    DESKTOP_RECOVERY_RAMFS = 1;
+    FACTORY_NETBOOT_RAMFS = 2;
+    FACTORY_SHIM_RAMFS = 3;
+    RECOVERY_RAMFS = 4;
+    MINIOS_RAMFS = 5;
+    FLEXOR_RAMFS = 6;
+    PROD_RAMFS = 7;
+  }
+
   message Flags {
     // After building the kernel, attempt to generate a bootable disk image.
     bool create_bootable_image = 1;
+
+    // The ramfs type to build.
+    RamfsType ramfs_type = 2;
   }
 
   // The chroot to use to execute the endpoint.

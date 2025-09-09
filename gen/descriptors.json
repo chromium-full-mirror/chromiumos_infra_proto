@@ -17156,6 +17156,45 @@
       ],
       "messageType": [
         {
+          "enumType": [
+            {
+              "name": "RamfsType",
+              "value": [
+                {
+                  "name": "UNKNOWN",
+                  "number": 0
+                },
+                {
+                  "name": "DESKTOP_RECOVERY_RAMFS",
+                  "number": 1
+                },
+                {
+                  "name": "FACTORY_NETBOOT_RAMFS",
+                  "number": 2
+                },
+                {
+                  "name": "FACTORY_SHIM_RAMFS",
+                  "number": 3
+                },
+                {
+                  "name": "RECOVERY_RAMFS",
+                  "number": 4
+                },
+                {
+                  "name": "MINIOS_RAMFS",
+                  "number": 5
+                },
+                {
+                  "name": "FLEXOR_RAMFS",
+                  "number": 6
+                },
+                {
+                  "name": "PROD_RAMFS",
+                  "number": 7
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "chroot",
@@ -17200,6 +17239,14 @@
                   "name": "create_bootable_image",
                   "number": 1,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "ramfsType",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ramfs_type",
+                  "number": 2,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.api.CreateRecoveryKernelRequest.RamfsType"
                 }
               ],
               "name": "Flags"
