@@ -12096,6 +12096,13 @@
               "name": "argument",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "tag",
+              "label": "LABEL_OPTIONAL",
+              "name": "tag",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ApplicableTest"

@@ -9,8 +9,11 @@ package auto_qual;
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
 message ApplicableTest {
+  // A regex that will be matched against Test.include_names.
   string name = 1;
   string argument = 2;
+  // A regex that will be matched against Test.include_tags.
+  string tag = 3;
 }
 
 // Waiver specific information to link
