@@ -16,7 +16,7 @@ include chromiumos/owners:v1:/infra/OWNERS.tse
 
 # Fleet team.
 ayatane@chromium.org
-xixuan@chromium.org
+xixuan@google.com
 
 # Service accounts, for rolling dependencies.
 recipe-mega-autoroller@chops-service-accounts.iam.gserviceaccount.com
