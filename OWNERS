@@ -8,8 +8,8 @@ include chromiumos/owners:v1:/infra/OWNERS.build
 # ChromeOS CI Team
 include chromiumos/owners:v1:/infra/OWNERS.ci
 
-# ChromeOS Distributed Fleet Team
-per-file gen/descriptors.json = file:chromiumos/owners:v1:/infra/OWNERS.distributedfleet
+# Allow anyone to regenerate the json file.
+per-file gen/descriptors.json = *
 
 # ChromeOS Test Scheduling team
 include chromiumos/owners:v1:/infra/OWNERS.tse
