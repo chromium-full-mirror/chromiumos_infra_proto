@@ -113,6 +113,9 @@ message BuildAllFirmwareRequest {
 
   // List of firmware targets. Optionally used by firmware_builder.py.
   repeated FirmwareTarget firmware_targets = 4;
+
+  // Whether to pass --avb-enabled to firmware_builder.py.
+  bool avb_enabled = 5;
 }
 
 message BuildAllFirmwareResponse {
@@ -134,6 +137,9 @@ message TestAllFirmwareRequest {
 
   // List of firmware targets. Optionally used by firmware_builder.py.
   repeated FirmwareTarget firmware_targets = 4;
+
+  // Whether to pass --avb-enabled to firmware_builder.py.
+  bool avb_enabled = 5;
 }
 
 message TestAllFirmwareResponse {

@@ -5738,6 +5738,13 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.FirmwareTarget"
+            },
+            {
+              "jsonName": "avbEnabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "avb_enabled",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "BuildAllFirmwareRequest"
@@ -5787,6 +5794,13 @@
               "number": 4,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.FirmwareTarget"
+            },
+            {
+              "jsonName": "avbEnabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "avb_enabled",
+              "number": 5,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "TestAllFirmwareRequest"
