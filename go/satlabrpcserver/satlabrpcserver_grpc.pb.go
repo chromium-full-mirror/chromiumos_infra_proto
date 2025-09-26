@@ -77,6 +77,8 @@ type SatlabRpcServiceClient interface {
 	SetCloudConfiguration(ctx context.Context, in *SetCloudConfigurationRequest, opts ...grpc.CallOption) (*SetCloudConfigurationResponse, error)
 	GetCloudConfiguration(ctx context.Context, in *GetCloudConfigurationRequest, opts ...grpc.CallOption) (*GetCloudConfigurationResponse, error)
 	IsAuth(ctx context.Context, in *IsAuthRequest, opts ...grpc.CallOption) (*IsAuthResponse, error)
+	DutWifiInfo(ctx context.Context, in *DutWifiInfoRequest, opts ...grpc.CallOption) (*DutWifiInfoResponse, error)
+	SetDutWifiInfo(ctx context.Context, in *SetDutWifiInfoRequest, opts ...grpc.CallOption) (*SetDutWifiInfoResponse, error)
 	// system
 	Reboot(ctx context.Context, in *RebootRequest, opts ...grpc.CallOption) (*RebootResponse, error)
 	UploadLog(ctx context.Context, in *UploadLogRequest, opts ...grpc.CallOption) (*UploadLogResponse, error)
@@ -551,6 +553,24 @@ func (c *satlabRpcServiceClient) IsAuth(ctx context.Context, in *IsAuthRequest, 
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) DutWifiInfo(ctx context.Context, in *DutWifiInfoRequest, opts ...grpc.CallOption) (*DutWifiInfoResponse, error) {
+	out := new(DutWifiInfoResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/DutWifiInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) SetDutWifiInfo(ctx context.Context, in *SetDutWifiInfoRequest, opts ...grpc.CallOption) (*SetDutWifiInfoResponse, error) {
+	out := new(SetDutWifiInfoResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/SetDutWifiInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) Reboot(ctx context.Context, in *RebootRequest, opts ...grpc.CallOption) (*RebootResponse, error) {
 	out := new(RebootResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/Reboot", in, out, opts...)
@@ -739,6 +759,8 @@ type SatlabRpcServiceServer interface {
 	SetCloudConfiguration(context.Context, *SetCloudConfigurationRequest) (*SetCloudConfigurationResponse, error)
 	GetCloudConfiguration(context.Context, *GetCloudConfigurationRequest) (*GetCloudConfigurationResponse, error)
 	IsAuth(context.Context, *IsAuthRequest) (*IsAuthResponse, error)
+	DutWifiInfo(context.Context, *DutWifiInfoRequest) (*DutWifiInfoResponse, error)
+	SetDutWifiInfo(context.Context, *SetDutWifiInfoRequest) (*SetDutWifiInfoResponse, error)
 	// system
 	Reboot(context.Context, *RebootRequest) (*RebootResponse, error)
 	UploadLog(context.Context, *UploadLogRequest) (*UploadLogResponse, error)
@@ -904,6 +926,12 @@ func (UnimplementedSatlabRpcServiceServer) GetCloudConfiguration(context.Context
 }
 func (UnimplementedSatlabRpcServiceServer) IsAuth(context.Context, *IsAuthRequest) (*IsAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsAuth not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) DutWifiInfo(context.Context, *DutWifiInfoRequest) (*DutWifiInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DutWifiInfo not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) SetDutWifiInfo(context.Context, *SetDutWifiInfoRequest) (*SetDutWifiInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDutWifiInfo not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) Reboot(context.Context, *RebootRequest) (*RebootResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Reboot not implemented")
@@ -1803,6 +1831,42 @@ func _SatlabRpcService_IsAuth_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_DutWifiInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DutWifiInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).DutWifiInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/DutWifiInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).DutWifiInfo(ctx, req.(*DutWifiInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_SetDutWifiInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetDutWifiInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).SetDutWifiInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/SetDutWifiInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).SetDutWifiInfo(ctx, req.(*SetDutWifiInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_Reboot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RebootRequest)
 	if err := dec(in); err != nil {
@@ -2212,6 +2276,14 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsAuth",
 			Handler:    _SatlabRpcService_IsAuth_Handler,
+		},
+		{
+			MethodName: "DutWifiInfo",
+			Handler:    _SatlabRpcService_DutWifiInfo_Handler,
+		},
+		{
+			MethodName: "SetDutWifiInfo",
+			Handler:    _SatlabRpcService_SetDutWifiInfo_Handler,
 		},
 		{
 			MethodName: "Reboot",

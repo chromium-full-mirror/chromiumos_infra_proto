@@ -8290,6 +8290,196 @@ func (x *TestlabResponse) GetEnabled() bool {
 	return false
 }
 
+// NEXT_TAG = 1
+type DutWifiInfoRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DutWifiInfoRequest) Reset() {
+	*x = DutWifiInfoRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[131]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DutWifiInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DutWifiInfoRequest) ProtoMessage() {}
+
+func (x *DutWifiInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[131]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DutWifiInfoRequest.ProtoReflect.Descriptor instead.
+func (*DutWifiInfoRequest) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{131}
+}
+
+// NEXT_TAG = 3
+type DutWifiInfoResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ssid     string `protobuf:"bytes,1,opt,name=ssid,proto3" json:"ssid,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *DutWifiInfoResponse) Reset() {
+	*x = DutWifiInfoResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[132]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DutWifiInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DutWifiInfoResponse) ProtoMessage() {}
+
+func (x *DutWifiInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[132]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DutWifiInfoResponse.ProtoReflect.Descriptor instead.
+func (*DutWifiInfoResponse) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{132}
+}
+
+func (x *DutWifiInfoResponse) GetSsid() string {
+	if x != nil {
+		return x.Ssid
+	}
+	return ""
+}
+
+func (x *DutWifiInfoResponse) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+// NEXT_TAG = 3
+type SetDutWifiInfoRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ssid     string `protobuf:"bytes,1,opt,name=ssid,proto3" json:"ssid,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *SetDutWifiInfoRequest) Reset() {
+	*x = SetDutWifiInfoRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[133]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetDutWifiInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetDutWifiInfoRequest) ProtoMessage() {}
+
+func (x *SetDutWifiInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[133]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetDutWifiInfoRequest.ProtoReflect.Descriptor instead.
+func (*SetDutWifiInfoRequest) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{133}
+}
+
+func (x *SetDutWifiInfoRequest) GetSsid() string {
+	if x != nil {
+		return x.Ssid
+	}
+	return ""
+}
+
+func (x *SetDutWifiInfoRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+// NEXT_TAG = 1
+type SetDutWifiInfoResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *SetDutWifiInfoResponse) Reset() {
+	*x = SetDutWifiInfoResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[134]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetDutWifiInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetDutWifiInfoResponse) ProtoMessage() {}
+
+func (x *SetDutWifiInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[134]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetDutWifiInfoResponse.ProtoReflect.Descriptor instead.
+func (*SetDutWifiInfoResponse) Descriptor() ([]byte, []int) {
+	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{134}
+}
+
 // Empty response for success.
 type StartServodResponse_Success struct {
 	state         protoimpl.MessageState
@@ -8300,7 +8490,7 @@ type StartServodResponse_Success struct {
 func (x *StartServodResponse_Success) Reset() {
 	*x = StartServodResponse_Success{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[131]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[135]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8313,7 +8503,7 @@ func (x *StartServodResponse_Success) String() string {
 func (*StartServodResponse_Success) ProtoMessage() {}
 
 func (x *StartServodResponse_Success) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[131]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[135]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8341,7 +8531,7 @@ type StartServodResponse_Failure struct {
 func (x *StartServodResponse_Failure) Reset() {
 	*x = StartServodResponse_Failure{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[132]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[136]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8354,7 +8544,7 @@ func (x *StartServodResponse_Failure) String() string {
 func (*StartServodResponse_Failure) ProtoMessage() {}
 
 func (x *StartServodResponse_Failure) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[132]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[136]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8390,7 +8580,7 @@ type UpdatePoolRequest_Item struct {
 func (x *UpdatePoolRequest_Item) Reset() {
 	*x = UpdatePoolRequest_Item{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[133]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[137]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8403,7 +8593,7 @@ func (x *UpdatePoolRequest_Item) String() string {
 func (*UpdatePoolRequest_Item) ProtoMessage() {}
 
 func (x *UpdatePoolRequest_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[133]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[137]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8459,7 +8649,7 @@ type AddDutsRequest_Param struct {
 func (x *AddDutsRequest_Param) Reset() {
 	*x = AddDutsRequest_Param{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[134]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[138]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8472,7 +8662,7 @@ func (x *AddDutsRequest_Param) String() string {
 func (*AddDutsRequest_Param) ProtoMessage() {}
 
 func (x *AddDutsRequest_Param) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[134]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[138]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8551,7 +8741,7 @@ type AddDutsResponse_PassedData struct {
 func (x *AddDutsResponse_PassedData) Reset() {
 	*x = AddDutsResponse_PassedData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[135]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[139]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8564,7 +8754,7 @@ func (x *AddDutsResponse_PassedData) String() string {
 func (*AddDutsResponse_PassedData) ProtoMessage() {}
 
 func (x *AddDutsResponse_PassedData) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[135]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[139]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8608,7 +8798,7 @@ type AddDutsResponse_FailedData struct {
 func (x *AddDutsResponse_FailedData) Reset() {
 	*x = AddDutsResponse_FailedData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[136]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[140]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8621,7 +8811,7 @@ func (x *AddDutsResponse_FailedData) String() string {
 func (*AddDutsResponse_FailedData) ProtoMessage() {}
 
 func (x *AddDutsResponse_FailedData) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[136]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[140]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8667,7 +8857,7 @@ type RepairDutsResponse_RepairResult struct {
 func (x *RepairDutsResponse_RepairResult) Reset() {
 	*x = RepairDutsResponse_RepairResult{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[137]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[141]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8680,7 +8870,7 @@ func (x *RepairDutsResponse_RepairResult) String() string {
 func (*RepairDutsResponse_RepairResult) ProtoMessage() {}
 
 func (x *RepairDutsResponse_RepairResult) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[137]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[141]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8737,7 +8927,7 @@ type TasksStatusCount_TaskCount struct {
 func (x *TasksStatusCount_TaskCount) Reset() {
 	*x = TasksStatusCount_TaskCount{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[138]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[142]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8750,7 +8940,7 @@ func (x *TasksStatusCount_TaskCount) String() string {
 func (*TasksStatusCount_TaskCount) ProtoMessage() {}
 
 func (x *TasksStatusCount_TaskCount) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[138]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[142]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8793,7 +8983,7 @@ type ListJobLogTasksResponse_Task struct {
 func (x *ListJobLogTasksResponse_Task) Reset() {
 	*x = ListJobLogTasksResponse_Task{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[139]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[143]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8806,7 +8996,7 @@ func (x *ListJobLogTasksResponse_Task) String() string {
 func (*ListJobLogTasksResponse_Task) ProtoMessage() {}
 
 func (x *ListJobLogTasksResponse_Task) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[139]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[143]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8848,7 +9038,7 @@ type RunRequest_Suite struct {
 func (x *RunRequest_Suite) Reset() {
 	*x = RunRequest_Suite{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[140]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[144]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8861,7 +9051,7 @@ func (x *RunRequest_Suite) String() string {
 func (*RunRequest_Suite) ProtoMessage() {}
 
 func (x *RunRequest_Suite) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[140]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[144]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8897,7 +9087,7 @@ type RunRequest_Test struct {
 func (x *RunRequest_Test) Reset() {
 	*x = RunRequest_Test{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[141]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[145]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8910,7 +9100,7 @@ func (x *RunRequest_Test) String() string {
 func (*RunRequest_Test) ProtoMessage() {}
 
 func (x *RunRequest_Test) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[141]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[145]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8952,7 +9142,7 @@ type RunRequest_Testplan struct {
 func (x *RunRequest_Testplan) Reset() {
 	*x = RunRequest_Testplan{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[142]
+		mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[146]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8965,7 +9155,7 @@ func (x *RunRequest_Testplan) String() string {
 func (*RunRequest_Testplan) ProtoMessage() {}
 
 func (x *RunRequest_Testplan) ProtoReflect() protoreflect.Message {
-	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[142]
+	mi := &file_satlabrpcserver_satlabrpcserver_proto_msgTypes[146]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9941,7 +10131,19 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65,
 	0x73, 0x73, 0x22, 0x2b, 0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x6c, 0x61, 0x62, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x2a,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x22,
+	0x14, 0x0a, 0x12, 0x44, 0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x45, 0x0a, 0x13, 0x44, 0x75, 0x74, 0x57, 0x69, 0x66, 0x69,
+	0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x73, 0x73, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x73, 0x73, 0x69, 0x64,
+	0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x47, 0x0a, 0x15,
+	0x53, 0x65, 0x74, 0x44, 0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x73, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x73, 0x73, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73,
+	0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73,
+	0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x53, 0x65, 0x74, 0x44, 0x75, 0x74, 0x57,
+	0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2a,
 	0xe7, 0x01, 0x0a, 0x0a, 0x53, 0x74, 0x61, 0x74, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x11,
 	0x0a, 0x0d, 0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x50, 0x45, 0x4e, 0x44, 0x49, 0x4e, 0x47, 0x10,
 	0x00, 0x12, 0x11, 0x0a, 0x0d, 0x51, 0x55, 0x45, 0x52, 0x59, 0x5f, 0x52, 0x55, 0x4e, 0x4e, 0x49,
@@ -9968,7 +10170,7 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x07, 0x5a, 0x49, 0x50, 0x50, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12, 0x0d, 0x0a, 0x09, 0x55, 0x50,
 	0x4c, 0x4f, 0x41, 0x44, 0x49, 0x4e, 0x47, 0x10, 0x03, 0x12, 0x0d, 0x0a, 0x09, 0x43, 0x4f, 0x4d,
 	0x50, 0x4c, 0x45, 0x54, 0x45, 0x44, 0x10, 0x04, 0x12, 0x0a, 0x0a, 0x06, 0x46, 0x41, 0x49, 0x4c,
-	0x45, 0x44, 0x10, 0x05, 0x32, 0x99, 0x2e, 0x0a, 0x10, 0x53, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x52,
+	0x45, 0x44, 0x10, 0x05, 0x32, 0xd6, 0x2f, 0x0a, 0x10, 0x53, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x52,
 	0x70, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x73, 0x0a, 0x14, 0x4c, 0x69, 0x73,
 	0x74, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
 	0x73, 0x12, 0x2c, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
@@ -10256,93 +10458,104 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x49,
 	0x73, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x73,
 	0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x49,
-	0x73, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x49, 0x0a,
-	0x06, 0x52, 0x65, 0x62, 0x6f, 0x6f, 0x74, 0x12, 0x1e, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62,
-	0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x62, 0x6f, 0x6f, 0x74,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62,
-	0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x62, 0x6f, 0x6f, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x09, 0x55, 0x70, 0x6c, 0x6f,
-	0x61, 0x64, 0x4c, 0x6f, 0x67, 0x12, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
+	0x73, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x58, 0x0a,
+	0x0b, 0x44, 0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x23, 0x2e, 0x73,
+	0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x44,
+	0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x24, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x2e, 0x44, 0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x61, 0x0a, 0x0e, 0x53, 0x65, 0x74, 0x44, 0x75,
+	0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x26, 0x2e, 0x73, 0x61, 0x74, 0x6c,
+	0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x74, 0x44,
+	0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x27, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x74, 0x44, 0x75, 0x74, 0x57, 0x69, 0x66, 0x69, 0x49, 0x6e,
+	0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x49, 0x0a, 0x06, 0x52, 0x65,
+	0x62, 0x6f, 0x6f, 0x74, 0x12, 0x1e, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x62, 0x6f, 0x6f, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x62, 0x6f, 0x6f, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x09, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4c,
+	0x6f, 0x67, 0x12, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
 	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f,
-	0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61,
-	0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61,
-	0x64, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b,
-	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x12, 0x23, 0x2e, 0x73, 0x61,
-	0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x44, 0x6f,
-	0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x24, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x12, 0x88, 0x01, 0x0a, 0x0b, 0x53, 0x74, 0x61,
-	0x72, 0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x12, 0x27, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d,
-	0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53,
-	0x74, 0x61, 0x72, 0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x21, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x6c,
-	0x6f, 0x6e, 0x67, 0x72, 0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2d, 0xd2, 0x41, 0x2a, 0x0a, 0x13, 0x53, 0x74, 0x61, 0x72, 0x74,
-	0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x13,
-	0x53, 0x74, 0x61, 0x72, 0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x4d, 0x65, 0x74, 0x61, 0x64,
-	0x61, 0x74, 0x61, 0x12, 0xd4, 0x01, 0x0a, 0x14, 0x53, 0x74, 0x61, 0x72, 0x74, 0x44, 0x65, 0x76,
-	0x62, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x30, 0x2e, 0x63,
-	0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61,
-	0x70, 0x69, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x44, 0x65, 0x76, 0x62, 0x6f, 0x61, 0x72, 0x64,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x44, 0x6f, 0x77,
+	0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x12, 0x23, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61,
+	0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c,
+	0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e,
+	0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
+	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x30, 0x01, 0x12, 0x88, 0x01, 0x0a, 0x0b, 0x53, 0x74, 0x61, 0x72, 0x74, 0x53,
+	0x65, 0x72, 0x76, 0x6f, 0x64, 0x12, 0x27, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
+	0x6f, 0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53, 0x74, 0x61, 0x72,
+	0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21,
 	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x6e, 0x67,
 	0x72, 0x75, 0x6e, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x22, 0x67, 0xd2, 0x41, 0x64, 0x0a, 0x30, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d,
-	0x6f, 0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53, 0x74, 0x61, 0x72,
-	0x74, 0x44, 0x65, 0x76, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
-	0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53, 0x74,
-	0x61, 0x72, 0x74, 0x44, 0x65, 0x76, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x4f, 0x0a, 0x08, 0x4c, 0x69,
-	0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72,
-	0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61,
-	0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a,
-	0x6f, 0x62, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x61, 0x0a, 0x0e, 0x44,
-	0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x12, 0x26, 0x2e,
-	0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
-	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
-	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64,
-	0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x82,
-	0x01, 0x0a, 0x19, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64,
-	0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x31, 0x2e, 0x73,
+	0x6e, 0x22, 0x2d, 0xd2, 0x41, 0x2a, 0x0a, 0x13, 0x53, 0x74, 0x61, 0x72, 0x74, 0x53, 0x65, 0x72,
+	0x76, 0x6f, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x13, 0x53, 0x74, 0x61,
+	0x72, 0x74, 0x53, 0x65, 0x72, 0x76, 0x6f, 0x64, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0x12, 0xd4, 0x01, 0x0a, 0x14, 0x53, 0x74, 0x61, 0x72, 0x74, 0x44, 0x65, 0x76, 0x62, 0x6f, 0x61,
+	0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x30, 0x2e, 0x63, 0x68, 0x72, 0x6f,
+	0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x53, 0x74, 0x61, 0x72, 0x74, 0x44, 0x65, 0x76, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x6e, 0x67, 0x72, 0x75, 0x6e,
+	0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x67,
+	0xd2, 0x41, 0x64, 0x0a, 0x30, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2e,
+	0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x44, 0x65,
+	0x76, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f,
+	0x73, 0x2e, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74,
+	0x44, 0x65, 0x76, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x4f, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x4a,
+	0x6f, 0x62, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
+	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x61, 0x0a, 0x0e, 0x44, 0x6f, 0x77, 0x6e,
+	0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x12, 0x26, 0x2e, 0x73, 0x61, 0x74,
+	0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77,
+	0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x27, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62,
+	0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x82, 0x01, 0x0a, 0x19,
+	0x43, 0x68, 0x65, 0x63, 0x6b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62,
+	0x4c, 0x6f, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x31, 0x2e, 0x73, 0x61, 0x74, 0x6c,
+	0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x68, 0x65, 0x63,
+	0x6b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x32, 0x2e, 0x73,
 	0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x43,
 	0x68, 0x65, 0x63, 0x6b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x6f, 0x62, 0x4c,
-	0x6f, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x32, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4a,
-	0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x0a, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x4c, 0x69, 0x6e,
-	0x6b, 0x12, 0x22, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x4c, 0x69, 0x6e, 0x6b, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
-	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x4c, 0x69,
-	0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x64, 0x0a, 0x0f, 0x4c, 0x69,
-	0x73, 0x74, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x12, 0x27, 0x2e,
+	0x6f, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x55, 0x0a, 0x0a, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x4c, 0x69, 0x6e, 0x6b, 0x12, 0x22,
+	0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x2e, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x4c, 0x69, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x4c, 0x69, 0x6e, 0x6b, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x64, 0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x4a,
+	0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x12, 0x27, 0x2e, 0x73, 0x61, 0x74,
+	0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73,
+	0x74, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67,
+	0x54, 0x61, 0x73, 0x6b, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a,
+	0x09, 0x41, 0x62, 0x6f, 0x72, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x12, 0x21, 0x2e, 0x73, 0x61, 0x74,
+	0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x41, 0x62, 0x6f,
+	0x72, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e,
 	0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
-	0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72,
-	0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62,
-	0x4c, 0x6f, 0x67, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x52, 0x0a, 0x09, 0x41, 0x62, 0x6f, 0x72, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x12, 0x21, 0x2e,
-	0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
-	0x41, 0x62, 0x6f, 0x72, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x22, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x2e, 0x41, 0x62, 0x6f, 0x72, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6a, 0x0a, 0x11, 0x49, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x41, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x29, 0x2e, 0x73, 0x61, 0x74, 0x6c,
-	0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x49, 0x73, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x41, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63,
-	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x49, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41,
-	0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x42, 0x38, 0x5a, 0x36, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e,
-	0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69,
-	0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x73, 0x61, 0x74, 0x6c, 0x61,
-	0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x41, 0x62, 0x6f, 0x72, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x6a, 0x0a, 0x11, 0x49, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x76, 0x61,
+	0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x29, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72,
+	0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x49, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x41, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2a, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x2e, 0x49, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x76, 0x61, 0x69,
+	0x6c, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x38, 0x5a,
+	0x36, 0x67, 0x6f, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67,
+	0x2f, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72,
+	0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70,
+	0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -10358,7 +10571,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP() []byte {
 }
 
 var file_satlabrpcserver_satlabrpcserver_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_satlabrpcserver_satlabrpcserver_proto_msgTypes = make([]protoimpl.MessageInfo, 143)
+var file_satlabrpcserver_satlabrpcserver_proto_msgTypes = make([]protoimpl.MessageInfo, 147)
 var file_satlabrpcserver_satlabrpcserver_proto_goTypes = []interface{}{
 	(StateQuery)(0),                           // 0: satlabrpcserver.StateQuery
 	(SortBy)(0),                               // 1: satlabrpcserver.SortBy
@@ -10498,42 +10711,46 @@ var file_satlabrpcserver_satlabrpcserver_proto_goTypes = []interface{}{
 	(*ValidateAndroidBuildResponse)(nil),      // 135: satlabrpcserver.ValidateAndroidBuildResponse
 	(*TestlabRequest)(nil),                    // 136: satlabrpcserver.TestlabRequest
 	(*TestlabResponse)(nil),                   // 137: satlabrpcserver.TestlabResponse
-	(*StartServodResponse_Success)(nil),       // 138: satlabrpcserver.StartServodResponse.Success
-	(*StartServodResponse_Failure)(nil),       // 139: satlabrpcserver.StartServodResponse.Failure
-	(*UpdatePoolRequest_Item)(nil),            // 140: satlabrpcserver.UpdatePoolRequest.Item
-	(*AddDutsRequest_Param)(nil),              // 141: satlabrpcserver.AddDutsRequest.Param
-	(*AddDutsResponse_PassedData)(nil),        // 142: satlabrpcserver.AddDutsResponse.PassedData
-	(*AddDutsResponse_FailedData)(nil),        // 143: satlabrpcserver.AddDutsResponse.FailedData
-	(*RepairDutsResponse_RepairResult)(nil),   // 144: satlabrpcserver.RepairDutsResponse.RepairResult
-	(*TasksStatusCount_TaskCount)(nil),        // 145: satlabrpcserver.TasksStatusCount.TaskCount
-	(*ListJobLogTasksResponse_Task)(nil),      // 146: satlabrpcserver.ListJobLogTasksResponse.Task
-	(*RunRequest_Suite)(nil),                  // 147: satlabrpcserver.RunRequest.Suite
-	(*RunRequest_Test)(nil),                   // 148: satlabrpcserver.RunRequest.Test
-	(*RunRequest_Testplan)(nil),               // 149: satlabrpcserver.RunRequest.Testplan
-	(*timestamppb.Timestamp)(nil),             // 150: google.protobuf.Timestamp
-	(*test_platform.Request_TestPlan)(nil),    // 151: test_platform.Request.TestPlan
-	(*api.StartServodRequest)(nil),            // 152: chromiumos.test.api.StartServodRequest
-	(*api.StartDevboardServiceRequest)(nil),   // 153: chromiumos.test.api.StartDevboardServiceRequest
-	(*longrunning.Operation)(nil),             // 154: chromiumos.longrunning.Operation
+	(*DutWifiInfoRequest)(nil),                // 138: satlabrpcserver.DutWifiInfoRequest
+	(*DutWifiInfoResponse)(nil),               // 139: satlabrpcserver.DutWifiInfoResponse
+	(*SetDutWifiInfoRequest)(nil),             // 140: satlabrpcserver.SetDutWifiInfoRequest
+	(*SetDutWifiInfoResponse)(nil),            // 141: satlabrpcserver.SetDutWifiInfoResponse
+	(*StartServodResponse_Success)(nil),       // 142: satlabrpcserver.StartServodResponse.Success
+	(*StartServodResponse_Failure)(nil),       // 143: satlabrpcserver.StartServodResponse.Failure
+	(*UpdatePoolRequest_Item)(nil),            // 144: satlabrpcserver.UpdatePoolRequest.Item
+	(*AddDutsRequest_Param)(nil),              // 145: satlabrpcserver.AddDutsRequest.Param
+	(*AddDutsResponse_PassedData)(nil),        // 146: satlabrpcserver.AddDutsResponse.PassedData
+	(*AddDutsResponse_FailedData)(nil),        // 147: satlabrpcserver.AddDutsResponse.FailedData
+	(*RepairDutsResponse_RepairResult)(nil),   // 148: satlabrpcserver.RepairDutsResponse.RepairResult
+	(*TasksStatusCount_TaskCount)(nil),        // 149: satlabrpcserver.TasksStatusCount.TaskCount
+	(*ListJobLogTasksResponse_Task)(nil),      // 150: satlabrpcserver.ListJobLogTasksResponse.Task
+	(*RunRequest_Suite)(nil),                  // 151: satlabrpcserver.RunRequest.Suite
+	(*RunRequest_Test)(nil),                   // 152: satlabrpcserver.RunRequest.Test
+	(*RunRequest_Testplan)(nil),               // 153: satlabrpcserver.RunRequest.Testplan
+	(*timestamppb.Timestamp)(nil),             // 154: google.protobuf.Timestamp
+	(*test_platform.Request_TestPlan)(nil),    // 155: test_platform.Request.TestPlan
+	(*api.StartServodRequest)(nil),            // 156: chromiumos.test.api.StartServodRequest
+	(*api.StartDevboardServiceRequest)(nil),   // 157: chromiumos.test.api.StartDevboardServiceRequest
+	(*longrunning.Operation)(nil),             // 158: chromiumos.longrunning.Operation
 }
 var file_satlabrpcserver_satlabrpcserver_proto_depIdxs = []int32{
-	138, // 0: satlabrpcserver.StartServodResponse.success:type_name -> satlabrpcserver.StartServodResponse.Success
-	139, // 1: satlabrpcserver.StartServodResponse.failure:type_name -> satlabrpcserver.StartServodResponse.Failure
+	142, // 0: satlabrpcserver.StartServodResponse.success:type_name -> satlabrpcserver.StartServodResponse.Success
+	143, // 1: satlabrpcserver.StartServodResponse.failure:type_name -> satlabrpcserver.StartServodResponse.Failure
 	3,   // 2: satlabrpcserver.BuildItem.status:type_name -> satlabrpcserver.BuildItem.BuildStatus
 	11,  // 3: satlabrpcserver.ListMilestonesResponse.milestones:type_name -> satlabrpcserver.BuildItem
 	15,  // 4: satlabrpcserver.ListAccessibleModelsResponse.models:type_name -> satlabrpcserver.Model
 	11,  // 5: satlabrpcserver.ListBuildVersionsResponse.build_versions:type_name -> satlabrpcserver.BuildItem
 	22,  // 6: satlabrpcserver.ListConnectedDutsFirmwareResponse.duts:type_name -> satlabrpcserver.ConnectedDutFirmwareInfo
-	150, // 7: satlabrpcserver.GetSystemInfoResponse.start_time:type_name -> google.protobuf.Timestamp
+	154, // 7: satlabrpcserver.GetSystemInfoResponse.start_time:type_name -> google.protobuf.Timestamp
 	29,  // 8: satlabrpcserver.UpdateDutsFirmwareResponse.outputs:type_name -> satlabrpcserver.FirmwareUpdateCommandOutput
 	31,  // 9: satlabrpcserver.RunSuiteRequest.dims:type_name -> satlabrpcserver.Dim
-	140, // 10: satlabrpcserver.UpdatePoolRequest.items:type_name -> satlabrpcserver.UpdatePoolRequest.Item
-	150, // 11: satlabrpcserver.GetDutDetailResponse.first_seen_ts:type_name -> google.protobuf.Timestamp
-	150, // 12: satlabrpcserver.GetDutDetailResponse.last_seen_ts:type_name -> google.protobuf.Timestamp
+	144, // 10: satlabrpcserver.UpdatePoolRequest.items:type_name -> satlabrpcserver.UpdatePoolRequest.Item
+	154, // 11: satlabrpcserver.GetDutDetailResponse.first_seen_ts:type_name -> google.protobuf.Timestamp
+	154, // 12: satlabrpcserver.GetDutDetailResponse.last_seen_ts:type_name -> google.protobuf.Timestamp
 	41,  // 13: satlabrpcserver.GetDutDetailResponse.dimensions:type_name -> satlabrpcserver.StringListPair
-	150, // 14: satlabrpcserver.Task.start_at:type_name -> google.protobuf.Timestamp
+	154, // 14: satlabrpcserver.Task.start_at:type_name -> google.protobuf.Timestamp
 	44,  // 15: satlabrpcserver.ListDutTasksResponse.tasks:type_name -> satlabrpcserver.Task
-	150, // 16: satlabrpcserver.BotEvent.created_at:type_name -> google.protobuf.Timestamp
+	154, // 16: satlabrpcserver.BotEvent.created_at:type_name -> google.protobuf.Timestamp
 	47,  // 17: satlabrpcserver.ListDutEventsResponse.events:type_name -> satlabrpcserver.BotEvent
 	31,  // 18: satlabrpcserver.RunTestRequest.dims:type_name -> satlabrpcserver.Dim
 	53,  // 19: satlabrpcserver.Dut.bot_info:type_name -> satlabrpcserver.BotInfo
@@ -10541,39 +10758,39 @@ var file_satlabrpcserver_satlabrpcserver_proto_depIdxs = []int32{
 	41,  // 21: satlabrpcserver.BotInfo.dimensions:type_name -> satlabrpcserver.StringListPair
 	52,  // 22: satlabrpcserver.ListEnrolledDutsResponse.duts:type_name -> satlabrpcserver.Dut
 	52,  // 23: satlabrpcserver.ListDutsResponse.duts:type_name -> satlabrpcserver.Dut
-	141, // 24: satlabrpcserver.AddDutsRequest.duts:type_name -> satlabrpcserver.AddDutsRequest.Param
-	142, // 25: satlabrpcserver.AddDutsResponse.pass:type_name -> satlabrpcserver.AddDutsResponse.PassedData
-	143, // 26: satlabrpcserver.AddDutsResponse.fail:type_name -> satlabrpcserver.AddDutsResponse.FailedData
+	145, // 24: satlabrpcserver.AddDutsRequest.duts:type_name -> satlabrpcserver.AddDutsRequest.Param
+	146, // 25: satlabrpcserver.AddDutsResponse.pass:type_name -> satlabrpcserver.AddDutsResponse.PassedData
+	147, // 26: satlabrpcserver.AddDutsResponse.fail:type_name -> satlabrpcserver.AddDutsResponse.FailedData
 	31,  // 27: satlabrpcserver.RunTestPlanRequest.dims:type_name -> satlabrpcserver.Dim
-	151, // 28: satlabrpcserver.GetTestPlanResponse.plan:type_name -> test_platform.Request.TestPlan
-	144, // 29: satlabrpcserver.RepairDutsResponse.result:type_name -> satlabrpcserver.RepairDutsResponse.RepairResult
+	155, // 28: satlabrpcserver.GetTestPlanResponse.plan:type_name -> test_platform.Request.TestPlan
+	148, // 29: satlabrpcserver.RepairDutsResponse.result:type_name -> satlabrpcserver.RepairDutsResponse.RepairResult
 	31,  // 30: satlabrpcserver.RunStorageQualRequest.dims:type_name -> satlabrpcserver.Dim
 	31,  // 31: satlabrpcserver.RunQualificationRequest.dims:type_name -> satlabrpcserver.Dim
-	150, // 32: satlabrpcserver.Job.created_time:type_name -> google.protobuf.Timestamp
-	150, // 33: satlabrpcserver.Job.start_time:type_name -> google.protobuf.Timestamp
-	150, // 34: satlabrpcserver.Job.finished_time:type_name -> google.protobuf.Timestamp
+	154, // 32: satlabrpcserver.Job.created_time:type_name -> google.protobuf.Timestamp
+	154, // 33: satlabrpcserver.Job.start_time:type_name -> google.protobuf.Timestamp
+	154, // 34: satlabrpcserver.Job.finished_time:type_name -> google.protobuf.Timestamp
 	6,   // 35: satlabrpcserver.Job.status:type_name -> satlabrpcserver.Job.JobStatus
 	90,  // 36: satlabrpcserver.Job.child_status_count:type_name -> satlabrpcserver.TasksStatusCount
-	150, // 37: satlabrpcserver.ListJobsRequest.created_time_gt:type_name -> google.protobuf.Timestamp
-	150, // 38: satlabrpcserver.ListJobsRequest.created_time_lt:type_name -> google.protobuf.Timestamp
+	154, // 37: satlabrpcserver.ListJobsRequest.created_time_gt:type_name -> google.protobuf.Timestamp
+	154, // 38: satlabrpcserver.ListJobsRequest.created_time_lt:type_name -> google.protobuf.Timestamp
 	5,   // 39: satlabrpcserver.ListJobsRequest.job_type:type_name -> satlabrpcserver.Job.JobType
 	86,  // 40: satlabrpcserver.ListJobsRequest.tags:type_name -> satlabrpcserver.Tag
 	1,   // 41: satlabrpcserver.ListJobsRequest.sort_by:type_name -> satlabrpcserver.SortBy
 	0,   // 42: satlabrpcserver.ListJobsRequest.query_status:type_name -> satlabrpcserver.StateQuery
 	85,  // 43: satlabrpcserver.ListJobsResponse.jobs:type_name -> satlabrpcserver.Job
-	151, // 44: satlabrpcserver.CftMixTestplan.cft:type_name -> test_platform.Request.TestPlan
-	151, // 45: satlabrpcserver.CftMixTestplan.non_cft:type_name -> test_platform.Request.TestPlan
-	145, // 46: satlabrpcserver.TasksStatusCount.task_count:type_name -> satlabrpcserver.TasksStatusCount.TaskCount
+	155, // 44: satlabrpcserver.CftMixTestplan.cft:type_name -> test_platform.Request.TestPlan
+	155, // 45: satlabrpcserver.CftMixTestplan.non_cft:type_name -> test_platform.Request.TestPlan
+	149, // 46: satlabrpcserver.TasksStatusCount.task_count:type_name -> satlabrpcserver.TasksStatusCount.TaskCount
 	5,   // 47: satlabrpcserver.AbortJobsRequest.job_type:type_name -> satlabrpcserver.Job.JobType
-	150, // 48: satlabrpcserver.AbortJobsRequest.created_time_gt:type_name -> google.protobuf.Timestamp
-	150, // 49: satlabrpcserver.AbortJobsRequest.created_time_lt:type_name -> google.protobuf.Timestamp
+	154, // 48: satlabrpcserver.AbortJobsRequest.created_time_gt:type_name -> google.protobuf.Timestamp
+	154, // 49: satlabrpcserver.AbortJobsRequest.created_time_lt:type_name -> google.protobuf.Timestamp
 	31,  // 50: satlabrpcserver.RunLabQualRequest.dims:type_name -> satlabrpcserver.Dim
 	99,  // 51: satlabrpcserver.RunLabQualRequest.settings:type_name -> satlabrpcserver.AdvancedSettings
 	2,   // 52: satlabrpcserver.CheckDownloadJobLogStatusResponse.status:type_name -> satlabrpcserver.DownloadJobLogStatus
-	146, // 53: satlabrpcserver.ListJobLogTasksResponse.tasks:type_name -> satlabrpcserver.ListJobLogTasksResponse.Task
-	147, // 54: satlabrpcserver.RunRequest.suite:type_name -> satlabrpcserver.RunRequest.Suite
-	148, // 55: satlabrpcserver.RunRequest.test:type_name -> satlabrpcserver.RunRequest.Test
-	149, // 56: satlabrpcserver.RunRequest.plan:type_name -> satlabrpcserver.RunRequest.Testplan
+	150, // 53: satlabrpcserver.ListJobLogTasksResponse.tasks:type_name -> satlabrpcserver.ListJobLogTasksResponse.Task
+	151, // 54: satlabrpcserver.RunRequest.suite:type_name -> satlabrpcserver.RunRequest.Suite
+	152, // 55: satlabrpcserver.RunRequest.test:type_name -> satlabrpcserver.RunRequest.Test
+	153, // 56: satlabrpcserver.RunRequest.plan:type_name -> satlabrpcserver.RunRequest.Testplan
 	31,  // 57: satlabrpcserver.RunRequest.dims:type_name -> satlabrpcserver.Dim
 	99,  // 58: satlabrpcserver.RunRequest.settings:type_name -> satlabrpcserver.AdvancedSettings
 	0,   // 59: satlabrpcserver.TasksStatusCount.TaskCount.state:type_name -> satlabrpcserver.StateQuery
@@ -10625,79 +10842,83 @@ var file_satlabrpcserver_satlabrpcserver_proto_depIdxs = []int32{
 	69,  // 105: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:input_type -> satlabrpcserver.SetCloudConfigurationRequest
 	71,  // 106: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:input_type -> satlabrpcserver.GetCloudConfigurationRequest
 	104, // 107: satlabrpcserver.SatlabRpcService.IsAuth:input_type -> satlabrpcserver.IsAuthRequest
-	73,  // 108: satlabrpcserver.SatlabRpcService.Reboot:input_type -> satlabrpcserver.RebootRequest
-	75,  // 109: satlabrpcserver.SatlabRpcService.UploadLog:input_type -> satlabrpcserver.UploadLogRequest
-	77,  // 110: satlabrpcserver.SatlabRpcService.DownloadLog:input_type -> satlabrpcserver.DownloadLogRequest
-	152, // 111: satlabrpcserver.SatlabRpcService.StartServod:input_type -> chromiumos.test.api.StartServodRequest
-	153, // 112: satlabrpcserver.SatlabRpcService.StartDevboardService:input_type -> chromiumos.test.api.StartDevboardServiceRequest
-	87,  // 113: satlabrpcserver.SatlabRpcService.ListJobs:input_type -> satlabrpcserver.ListJobsRequest
-	112, // 114: satlabrpcserver.SatlabRpcService.DownloadJobLog:input_type -> satlabrpcserver.DownloadJobLogRequest
-	114, // 115: satlabrpcserver.SatlabRpcService.CheckDownloadJobLogStatus:input_type -> satlabrpcserver.CheckDownloadJobLogStatusRequest
-	116, // 116: satlabrpcserver.SatlabRpcService.JobLogLink:input_type -> satlabrpcserver.JobLogLinkRequest
-	118, // 117: satlabrpcserver.SatlabRpcService.ListJobLogTasks:input_type -> satlabrpcserver.ListJobLogTasksRequest
-	91,  // 118: satlabrpcserver.SatlabRpcService.AbortJobs:input_type -> satlabrpcserver.AbortJobsRequest
-	95,  // 119: satlabrpcserver.SatlabRpcService.IsUpdateAvailable:input_type -> satlabrpcserver.IsUpdateAvailableRequest
-	16,  // 120: satlabrpcserver.SatlabRpcService.ListAccessibleModels:output_type -> satlabrpcserver.ListAccessibleModelsResponse
-	18,  // 121: satlabrpcserver.SatlabRpcService.ListBuildVersions:output_type -> satlabrpcserver.ListBuildVersionsResponse
-	20,  // 122: satlabrpcserver.SatlabRpcService.StageBuild:output_type -> satlabrpcserver.StageBuildResponse
-	23,  // 123: satlabrpcserver.SatlabRpcService.ListConnectedDutsFirmware:output_type -> satlabrpcserver.ListConnectedDutsFirmwareResponse
-	25,  // 124: satlabrpcserver.SatlabRpcService.GetSystemInfo:output_type -> satlabrpcserver.GetSystemInfoResponse
-	35,  // 125: satlabrpcserver.SatlabRpcService.GetVersionInfo:output_type -> satlabrpcserver.GetVersionInfoResponse
-	60,  // 126: satlabrpcserver.SatlabRpcService.GetNetworkInfo:output_type -> satlabrpcserver.GetNetworkInfoResponse
-	27,  // 127: satlabrpcserver.SatlabRpcService.GetPeripheralInformation:output_type -> satlabrpcserver.GetPeripheralInformationResponse
-	30,  // 128: satlabrpcserver.SatlabRpcService.UpdateDutsFirmware:output_type -> satlabrpcserver.UpdateDutsFirmwareResponse
-	10,  // 129: satlabrpcserver.SatlabRpcService.ListBuildTargets:output_type -> satlabrpcserver.ListBuildTargetsResponse
-	13,  // 130: satlabrpcserver.SatlabRpcService.ListMilestones:output_type -> satlabrpcserver.ListMilestonesResponse
-	64,  // 131: satlabrpcserver.SatlabRpcService.ListTestPlans:output_type -> satlabrpcserver.ListTestPlansResponse
-	68,  // 132: satlabrpcserver.SatlabRpcService.GetTestPlan:output_type -> satlabrpcserver.GetTestPlanResponse
-	107, // 133: satlabrpcserver.SatlabRpcService.Topology:output_type -> satlabrpcserver.TopologyResponse
-	109, // 134: satlabrpcserver.SatlabRpcService.AddTopology:output_type -> satlabrpcserver.AddTopologyResponse
-	111, // 135: satlabrpcserver.SatlabRpcService.DeleteTopology:output_type -> satlabrpcserver.DeleteTopologyResponse
-	125, // 136: satlabrpcserver.SatlabRpcService.ListAndroidBranches:output_type -> satlabrpcserver.ListAndroidBranchesResponse
-	127, // 137: satlabrpcserver.SatlabRpcService.ListAndroidTargets:output_type -> satlabrpcserver.ListAndroidTargetsResponse
-	129, // 138: satlabrpcserver.SatlabRpcService.ListAndroidTestModules:output_type -> satlabrpcserver.ListAndroidTestModulesResponse
-	121, // 139: satlabrpcserver.SatlabRpcService.ListAndroidBuilds:output_type -> satlabrpcserver.ListAndroidBuildsResponse
-	123, // 140: satlabrpcserver.SatlabRpcService.ListAndroidSuites:output_type -> satlabrpcserver.ListAndroidSuitesResponse
-	135, // 141: satlabrpcserver.SatlabRpcService.ValidateAndroidBuild:output_type -> satlabrpcserver.ValidateAndroidBuildResponse
-	33,  // 142: satlabrpcserver.SatlabRpcService.RunSuite:output_type -> satlabrpcserver.RunSuiteResponse
-	50,  // 143: satlabrpcserver.SatlabRpcService.RunTest:output_type -> satlabrpcserver.RunTestResponse
-	66,  // 144: satlabrpcserver.SatlabRpcService.RunTestPlan:output_type -> satlabrpcserver.RunTestPlanResponse
-	84,  // 145: satlabrpcserver.SatlabRpcService.RunStorageQual:output_type -> satlabrpcserver.RunStorageQualResponse
-	82,  // 146: satlabrpcserver.SatlabRpcService.RunQualification:output_type -> satlabrpcserver.RunQualificationResponse
-	101, // 147: satlabrpcserver.SatlabRpcService.RunLabQual:output_type -> satlabrpcserver.RunLabQualResponse
-	133, // 148: satlabrpcserver.SatlabRpcService.Run:output_type -> satlabrpcserver.RunResponse
-	37,  // 149: satlabrpcserver.SatlabRpcService.AddPool:output_type -> satlabrpcserver.AddPoolResponse
-	39,  // 150: satlabrpcserver.SatlabRpcService.UpdatePool:output_type -> satlabrpcserver.UpdatePoolResponse
-	58,  // 151: satlabrpcserver.SatlabRpcService.DeleteDuts:output_type -> satlabrpcserver.DeleteDutsResponse
-	62,  // 152: satlabrpcserver.SatlabRpcService.AddDuts:output_type -> satlabrpcserver.AddDutsResponse
-	80,  // 153: satlabrpcserver.SatlabRpcService.RepairDuts:output_type -> satlabrpcserver.RepairDutsResponse
-	94,  // 154: satlabrpcserver.SatlabRpcService.OpenCCD:output_type -> satlabrpcserver.OpenCCDReply
-	98,  // 155: satlabrpcserver.SatlabRpcService.SendMessageToCCDSession:output_type -> satlabrpcserver.SendMessageToCCDSessionResponse
-	103, // 156: satlabrpcserver.SatlabRpcService.StableVersion:output_type -> satlabrpcserver.StableVersionResponse
-	131, // 157: satlabrpcserver.SatlabRpcService.UpdateDevice:output_type -> satlabrpcserver.UpdateDeviceResponse
-	137, // 158: satlabrpcserver.SatlabRpcService.Testlab:output_type -> satlabrpcserver.TestlabResponse
-	42,  // 159: satlabrpcserver.SatlabRpcService.GetDutDetail:output_type -> satlabrpcserver.GetDutDetailResponse
-	45,  // 160: satlabrpcserver.SatlabRpcService.ListDutTasks:output_type -> satlabrpcserver.ListDutTasksResponse
-	48,  // 161: satlabrpcserver.SatlabRpcService.ListDutEvents:output_type -> satlabrpcserver.ListDutEventsResponse
-	54,  // 162: satlabrpcserver.SatlabRpcService.ListEnrolledDuts:output_type -> satlabrpcserver.ListEnrolledDutsResponse
-	56,  // 163: satlabrpcserver.SatlabRpcService.ListDuts:output_type -> satlabrpcserver.ListDutsResponse
-	70,  // 164: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:output_type -> satlabrpcserver.SetCloudConfigurationResponse
-	72,  // 165: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:output_type -> satlabrpcserver.GetCloudConfigurationResponse
-	105, // 166: satlabrpcserver.SatlabRpcService.IsAuth:output_type -> satlabrpcserver.IsAuthResponse
-	74,  // 167: satlabrpcserver.SatlabRpcService.Reboot:output_type -> satlabrpcserver.RebootResponse
-	76,  // 168: satlabrpcserver.SatlabRpcService.UploadLog:output_type -> satlabrpcserver.UploadLogResponse
-	78,  // 169: satlabrpcserver.SatlabRpcService.DownloadLog:output_type -> satlabrpcserver.DownloadLogResponse
-	154, // 170: satlabrpcserver.SatlabRpcService.StartServod:output_type -> chromiumos.longrunning.Operation
-	154, // 171: satlabrpcserver.SatlabRpcService.StartDevboardService:output_type -> chromiumos.longrunning.Operation
-	88,  // 172: satlabrpcserver.SatlabRpcService.ListJobs:output_type -> satlabrpcserver.ListJobsResponse
-	113, // 173: satlabrpcserver.SatlabRpcService.DownloadJobLog:output_type -> satlabrpcserver.DownloadJobLogResponse
-	115, // 174: satlabrpcserver.SatlabRpcService.CheckDownloadJobLogStatus:output_type -> satlabrpcserver.CheckDownloadJobLogStatusResponse
-	117, // 175: satlabrpcserver.SatlabRpcService.JobLogLink:output_type -> satlabrpcserver.JobLogLinkResponse
-	119, // 176: satlabrpcserver.SatlabRpcService.ListJobLogTasks:output_type -> satlabrpcserver.ListJobLogTasksResponse
-	92,  // 177: satlabrpcserver.SatlabRpcService.AbortJobs:output_type -> satlabrpcserver.AbortJobsResponse
-	96,  // 178: satlabrpcserver.SatlabRpcService.IsUpdateAvailable:output_type -> satlabrpcserver.IsUpdateAvailableResponse
-	120, // [120:179] is the sub-list for method output_type
-	61,  // [61:120] is the sub-list for method input_type
+	138, // 108: satlabrpcserver.SatlabRpcService.DutWifiInfo:input_type -> satlabrpcserver.DutWifiInfoRequest
+	140, // 109: satlabrpcserver.SatlabRpcService.SetDutWifiInfo:input_type -> satlabrpcserver.SetDutWifiInfoRequest
+	73,  // 110: satlabrpcserver.SatlabRpcService.Reboot:input_type -> satlabrpcserver.RebootRequest
+	75,  // 111: satlabrpcserver.SatlabRpcService.UploadLog:input_type -> satlabrpcserver.UploadLogRequest
+	77,  // 112: satlabrpcserver.SatlabRpcService.DownloadLog:input_type -> satlabrpcserver.DownloadLogRequest
+	156, // 113: satlabrpcserver.SatlabRpcService.StartServod:input_type -> chromiumos.test.api.StartServodRequest
+	157, // 114: satlabrpcserver.SatlabRpcService.StartDevboardService:input_type -> chromiumos.test.api.StartDevboardServiceRequest
+	87,  // 115: satlabrpcserver.SatlabRpcService.ListJobs:input_type -> satlabrpcserver.ListJobsRequest
+	112, // 116: satlabrpcserver.SatlabRpcService.DownloadJobLog:input_type -> satlabrpcserver.DownloadJobLogRequest
+	114, // 117: satlabrpcserver.SatlabRpcService.CheckDownloadJobLogStatus:input_type -> satlabrpcserver.CheckDownloadJobLogStatusRequest
+	116, // 118: satlabrpcserver.SatlabRpcService.JobLogLink:input_type -> satlabrpcserver.JobLogLinkRequest
+	118, // 119: satlabrpcserver.SatlabRpcService.ListJobLogTasks:input_type -> satlabrpcserver.ListJobLogTasksRequest
+	91,  // 120: satlabrpcserver.SatlabRpcService.AbortJobs:input_type -> satlabrpcserver.AbortJobsRequest
+	95,  // 121: satlabrpcserver.SatlabRpcService.IsUpdateAvailable:input_type -> satlabrpcserver.IsUpdateAvailableRequest
+	16,  // 122: satlabrpcserver.SatlabRpcService.ListAccessibleModels:output_type -> satlabrpcserver.ListAccessibleModelsResponse
+	18,  // 123: satlabrpcserver.SatlabRpcService.ListBuildVersions:output_type -> satlabrpcserver.ListBuildVersionsResponse
+	20,  // 124: satlabrpcserver.SatlabRpcService.StageBuild:output_type -> satlabrpcserver.StageBuildResponse
+	23,  // 125: satlabrpcserver.SatlabRpcService.ListConnectedDutsFirmware:output_type -> satlabrpcserver.ListConnectedDutsFirmwareResponse
+	25,  // 126: satlabrpcserver.SatlabRpcService.GetSystemInfo:output_type -> satlabrpcserver.GetSystemInfoResponse
+	35,  // 127: satlabrpcserver.SatlabRpcService.GetVersionInfo:output_type -> satlabrpcserver.GetVersionInfoResponse
+	60,  // 128: satlabrpcserver.SatlabRpcService.GetNetworkInfo:output_type -> satlabrpcserver.GetNetworkInfoResponse
+	27,  // 129: satlabrpcserver.SatlabRpcService.GetPeripheralInformation:output_type -> satlabrpcserver.GetPeripheralInformationResponse
+	30,  // 130: satlabrpcserver.SatlabRpcService.UpdateDutsFirmware:output_type -> satlabrpcserver.UpdateDutsFirmwareResponse
+	10,  // 131: satlabrpcserver.SatlabRpcService.ListBuildTargets:output_type -> satlabrpcserver.ListBuildTargetsResponse
+	13,  // 132: satlabrpcserver.SatlabRpcService.ListMilestones:output_type -> satlabrpcserver.ListMilestonesResponse
+	64,  // 133: satlabrpcserver.SatlabRpcService.ListTestPlans:output_type -> satlabrpcserver.ListTestPlansResponse
+	68,  // 134: satlabrpcserver.SatlabRpcService.GetTestPlan:output_type -> satlabrpcserver.GetTestPlanResponse
+	107, // 135: satlabrpcserver.SatlabRpcService.Topology:output_type -> satlabrpcserver.TopologyResponse
+	109, // 136: satlabrpcserver.SatlabRpcService.AddTopology:output_type -> satlabrpcserver.AddTopologyResponse
+	111, // 137: satlabrpcserver.SatlabRpcService.DeleteTopology:output_type -> satlabrpcserver.DeleteTopologyResponse
+	125, // 138: satlabrpcserver.SatlabRpcService.ListAndroidBranches:output_type -> satlabrpcserver.ListAndroidBranchesResponse
+	127, // 139: satlabrpcserver.SatlabRpcService.ListAndroidTargets:output_type -> satlabrpcserver.ListAndroidTargetsResponse
+	129, // 140: satlabrpcserver.SatlabRpcService.ListAndroidTestModules:output_type -> satlabrpcserver.ListAndroidTestModulesResponse
+	121, // 141: satlabrpcserver.SatlabRpcService.ListAndroidBuilds:output_type -> satlabrpcserver.ListAndroidBuildsResponse
+	123, // 142: satlabrpcserver.SatlabRpcService.ListAndroidSuites:output_type -> satlabrpcserver.ListAndroidSuitesResponse
+	135, // 143: satlabrpcserver.SatlabRpcService.ValidateAndroidBuild:output_type -> satlabrpcserver.ValidateAndroidBuildResponse
+	33,  // 144: satlabrpcserver.SatlabRpcService.RunSuite:output_type -> satlabrpcserver.RunSuiteResponse
+	50,  // 145: satlabrpcserver.SatlabRpcService.RunTest:output_type -> satlabrpcserver.RunTestResponse
+	66,  // 146: satlabrpcserver.SatlabRpcService.RunTestPlan:output_type -> satlabrpcserver.RunTestPlanResponse
+	84,  // 147: satlabrpcserver.SatlabRpcService.RunStorageQual:output_type -> satlabrpcserver.RunStorageQualResponse
+	82,  // 148: satlabrpcserver.SatlabRpcService.RunQualification:output_type -> satlabrpcserver.RunQualificationResponse
+	101, // 149: satlabrpcserver.SatlabRpcService.RunLabQual:output_type -> satlabrpcserver.RunLabQualResponse
+	133, // 150: satlabrpcserver.SatlabRpcService.Run:output_type -> satlabrpcserver.RunResponse
+	37,  // 151: satlabrpcserver.SatlabRpcService.AddPool:output_type -> satlabrpcserver.AddPoolResponse
+	39,  // 152: satlabrpcserver.SatlabRpcService.UpdatePool:output_type -> satlabrpcserver.UpdatePoolResponse
+	58,  // 153: satlabrpcserver.SatlabRpcService.DeleteDuts:output_type -> satlabrpcserver.DeleteDutsResponse
+	62,  // 154: satlabrpcserver.SatlabRpcService.AddDuts:output_type -> satlabrpcserver.AddDutsResponse
+	80,  // 155: satlabrpcserver.SatlabRpcService.RepairDuts:output_type -> satlabrpcserver.RepairDutsResponse
+	94,  // 156: satlabrpcserver.SatlabRpcService.OpenCCD:output_type -> satlabrpcserver.OpenCCDReply
+	98,  // 157: satlabrpcserver.SatlabRpcService.SendMessageToCCDSession:output_type -> satlabrpcserver.SendMessageToCCDSessionResponse
+	103, // 158: satlabrpcserver.SatlabRpcService.StableVersion:output_type -> satlabrpcserver.StableVersionResponse
+	131, // 159: satlabrpcserver.SatlabRpcService.UpdateDevice:output_type -> satlabrpcserver.UpdateDeviceResponse
+	137, // 160: satlabrpcserver.SatlabRpcService.Testlab:output_type -> satlabrpcserver.TestlabResponse
+	42,  // 161: satlabrpcserver.SatlabRpcService.GetDutDetail:output_type -> satlabrpcserver.GetDutDetailResponse
+	45,  // 162: satlabrpcserver.SatlabRpcService.ListDutTasks:output_type -> satlabrpcserver.ListDutTasksResponse
+	48,  // 163: satlabrpcserver.SatlabRpcService.ListDutEvents:output_type -> satlabrpcserver.ListDutEventsResponse
+	54,  // 164: satlabrpcserver.SatlabRpcService.ListEnrolledDuts:output_type -> satlabrpcserver.ListEnrolledDutsResponse
+	56,  // 165: satlabrpcserver.SatlabRpcService.ListDuts:output_type -> satlabrpcserver.ListDutsResponse
+	70,  // 166: satlabrpcserver.SatlabRpcService.SetCloudConfiguration:output_type -> satlabrpcserver.SetCloudConfigurationResponse
+	72,  // 167: satlabrpcserver.SatlabRpcService.GetCloudConfiguration:output_type -> satlabrpcserver.GetCloudConfigurationResponse
+	105, // 168: satlabrpcserver.SatlabRpcService.IsAuth:output_type -> satlabrpcserver.IsAuthResponse
+	139, // 169: satlabrpcserver.SatlabRpcService.DutWifiInfo:output_type -> satlabrpcserver.DutWifiInfoResponse
+	141, // 170: satlabrpcserver.SatlabRpcService.SetDutWifiInfo:output_type -> satlabrpcserver.SetDutWifiInfoResponse
+	74,  // 171: satlabrpcserver.SatlabRpcService.Reboot:output_type -> satlabrpcserver.RebootResponse
+	76,  // 172: satlabrpcserver.SatlabRpcService.UploadLog:output_type -> satlabrpcserver.UploadLogResponse
+	78,  // 173: satlabrpcserver.SatlabRpcService.DownloadLog:output_type -> satlabrpcserver.DownloadLogResponse
+	158, // 174: satlabrpcserver.SatlabRpcService.StartServod:output_type -> chromiumos.longrunning.Operation
+	158, // 175: satlabrpcserver.SatlabRpcService.StartDevboardService:output_type -> chromiumos.longrunning.Operation
+	88,  // 176: satlabrpcserver.SatlabRpcService.ListJobs:output_type -> satlabrpcserver.ListJobsResponse
+	113, // 177: satlabrpcserver.SatlabRpcService.DownloadJobLog:output_type -> satlabrpcserver.DownloadJobLogResponse
+	115, // 178: satlabrpcserver.SatlabRpcService.CheckDownloadJobLogStatus:output_type -> satlabrpcserver.CheckDownloadJobLogStatusResponse
+	117, // 179: satlabrpcserver.SatlabRpcService.JobLogLink:output_type -> satlabrpcserver.JobLogLinkResponse
+	119, // 180: satlabrpcserver.SatlabRpcService.ListJobLogTasks:output_type -> satlabrpcserver.ListJobLogTasksResponse
+	92,  // 181: satlabrpcserver.SatlabRpcService.AbortJobs:output_type -> satlabrpcserver.AbortJobsResponse
+	96,  // 182: satlabrpcserver.SatlabRpcService.IsUpdateAvailable:output_type -> satlabrpcserver.IsUpdateAvailableResponse
+	122, // [122:183] is the sub-list for method output_type
+	61,  // [61:122] is the sub-list for method input_type
 	61,  // [61:61] is the sub-list for extension type_name
 	61,  // [61:61] is the sub-list for extension extendee
 	0,   // [0:61] is the sub-list for field type_name
@@ -12282,7 +12503,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[131].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StartServodResponse_Success); i {
+			switch v := v.(*DutWifiInfoRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12294,7 +12515,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[132].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StartServodResponse_Failure); i {
+			switch v := v.(*DutWifiInfoResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12306,7 +12527,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[133].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdatePoolRequest_Item); i {
+			switch v := v.(*SetDutWifiInfoRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12318,7 +12539,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[134].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDutsRequest_Param); i {
+			switch v := v.(*SetDutWifiInfoResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12330,7 +12551,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[135].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDutsResponse_PassedData); i {
+			switch v := v.(*StartServodResponse_Success); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12342,7 +12563,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[136].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDutsResponse_FailedData); i {
+			switch v := v.(*StartServodResponse_Failure); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12354,7 +12575,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[137].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RepairDutsResponse_RepairResult); i {
+			switch v := v.(*UpdatePoolRequest_Item); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12366,7 +12587,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[138].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TasksStatusCount_TaskCount); i {
+			switch v := v.(*AddDutsRequest_Param); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12378,7 +12599,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[139].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListJobLogTasksResponse_Task); i {
+			switch v := v.(*AddDutsResponse_PassedData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12390,7 +12611,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[140].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RunRequest_Suite); i {
+			switch v := v.(*AddDutsResponse_FailedData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12402,7 +12623,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[141].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RunRequest_Test); i {
+			switch v := v.(*RepairDutsResponse_RepairResult); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12414,6 +12635,54 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			}
 		}
 		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[142].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TasksStatusCount_TaskCount); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[143].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListJobLogTasksResponse_Task); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[144].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RunRequest_Suite); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[145].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RunRequest_Test); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_satlabrpcserver_satlabrpcserver_proto_msgTypes[146].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunRequest_Testplan); i {
 			case 0:
 				return &v.state
@@ -12441,7 +12710,7 @@ func file_satlabrpcserver_satlabrpcserver_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_satlabrpcserver_satlabrpcserver_proto_rawDesc,
 			NumEnums:      7,
-			NumMessages:   143,
+			NumMessages:   147,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

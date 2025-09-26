@@ -32837,6 +32837,50 @@
             }
           ],
           "name": "TestlabResponse"
+        },
+        {
+          "name": "DutWifiInfoRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ssid",
+              "label": "LABEL_OPTIONAL",
+              "name": "ssid",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "password",
+              "label": "LABEL_OPTIONAL",
+              "name": "password",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DutWifiInfoResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ssid",
+              "label": "LABEL_OPTIONAL",
+              "name": "ssid",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "password",
+              "label": "LABEL_OPTIONAL",
+              "name": "password",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "SetDutWifiInfoRequest"
+        },
+        {
+          "name": "SetDutWifiInfoResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -33082,6 +33126,16 @@
               "inputType": ".satlabrpcserver.IsAuthRequest",
               "name": "IsAuth",
               "outputType": ".satlabrpcserver.IsAuthResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.DutWifiInfoRequest",
+              "name": "DutWifiInfo",
+              "outputType": ".satlabrpcserver.DutWifiInfoResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.SetDutWifiInfoRequest",
+              "name": "SetDutWifiInfo",
+              "outputType": ".satlabrpcserver.SetDutWifiInfoResponse"
             },
             {
               "inputType": ".satlabrpcserver.RebootRequest",
