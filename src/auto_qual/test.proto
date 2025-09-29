@@ -21,6 +21,7 @@ message Test {
     TAUTO = 1;
     TAST = 2;
     MANUAL = 3;
+    TRADEFED = 4;
   }
   HarnessType harness = 1;
   repeated string include_tags = 2;
