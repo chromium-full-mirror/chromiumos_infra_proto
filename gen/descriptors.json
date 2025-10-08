@@ -11425,6 +11425,13 @@
               "name": "timeout_seconds",
               "number": 11,
               "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "ctpContainerLabel",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctp_container_label",
+              "number": 12,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "Test"
@@ -11712,6 +11719,10 @@
                     {
                       "name": "FIRMWARE_ULDRENITE_CUSTOM",
                       "number": 6
+                    },
+                    {
+                      "name": "FIRMWARE_CTP_STAGING",
+                      "number": 7
                     }
                   ]
                 }
