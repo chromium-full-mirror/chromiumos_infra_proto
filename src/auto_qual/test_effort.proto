@@ -8,6 +8,7 @@ package auto_qual;
 
 import "google/protobuf/descriptor.proto";
 import "auto_qual/test.proto";
+import "auto_qual/os_build_target.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
@@ -136,7 +137,7 @@ message ModelTestEffortConfig {
   // GSC Version to test with
   GscTestEffortVersion gsc_version = 15;
 
-  // OS type
+  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
   repeated OsType os_test_effort_type = 16;
 
   // Test Plan
@@ -147,6 +148,10 @@ message ModelTestEffortConfig {
 
   // Latest RW FW Versions to test for compatibility
   PreviousTestEffortVersion latest_rw_firmware_versions = 19;
+
+  // The OS build to test against.
+  // TODO: Should this be repeated?
+  repeated OSBuildTarget os_build_target = 20;
 }
 
 message ModelTestEffortConfigs {

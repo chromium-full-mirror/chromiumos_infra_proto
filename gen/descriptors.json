@@ -11449,9 +11449,81 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "busytownBranchName",
+              "label": "LABEL_OPTIONAL",
+              "name": "busytown_branch_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "releaseConfiguration",
+              "label": "LABEL_OPTIONAL",
+              "name": "release_configuration",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildVariant",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_variant",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AndroidBuildTarget"
+        },
+        {
+          "name": "ChromeosBuildTarget"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "android",
+              "label": "LABEL_OPTIONAL",
+              "name": "android",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.AndroidBuildTarget"
+            },
+            {
+              "jsonName": "chromeos",
+              "label": "LABEL_OPTIONAL",
+              "name": "chromeos",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ChromeosBuildTarget"
+            }
+          ],
+          "name": "OSBuildTarget",
+          "oneofDecl": [
+            {
+              "name": "os"
+            }
+          ]
+        }
+      ],
+      "name": "auto_qual/os_build_target.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/descriptor.proto",
-        "auto_qual/test.proto"
+        "auto_qual/test.proto",
+        "auto_qual/os_build_target.proto"
       ],
       "messageType": [
         {
@@ -11683,6 +11755,14 @@
               "number": 19,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.PreviousTestEffortVersion"
+            },
+            {
+              "jsonName": "osBuildTarget",
+              "label": "LABEL_REPEATED",
+              "name": "os_build_target",
+              "number": 20,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.OSBuildTarget"
             }
           ],
           "name": "ModelTestEffortConfig",
@@ -11904,7 +11984,8 @@
       },
       "dependency": [
         "google/protobuf/descriptor.proto",
-        "auto_qual/test_effort.proto"
+        "auto_qual/test_effort.proto",
+        "auto_qual/os_build_target.proto"
       ],
       "messageType": [
         {
@@ -11954,6 +12035,14 @@
               "number": 6,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.TestEffortType"
+            },
+            {
+              "jsonName": "osBuildTargets",
+              "label": "LABEL_REPEATED",
+              "name": "os_build_targets",
+              "number": 7,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.OSBuildTarget"
             }
           ],
           "name": "BuilderQualConfig"

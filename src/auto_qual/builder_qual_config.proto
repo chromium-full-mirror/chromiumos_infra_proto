@@ -8,6 +8,7 @@ package auto_qual;
 
 import "google/protobuf/descriptor.proto";
 import "auto_qual/test_effort.proto";
+import "auto_qual/os_build_target.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
@@ -26,8 +27,7 @@ message BuilderQualConfig {
   // If this list is empty, then no models will be qualified.
   repeated string models = 2;
 
-  // The operating systems to generate test efforts for.
-  // If this list is empty, then no qualifications will be generated.
+  // DEPRECATED. Will be removed soon. Use os_build_targets instead.
   repeated ModelTestEffortConfig.OsType operating_systems = 3;
 
   // Test Plan Type to use for the generated test efforts.
@@ -38,6 +38,10 @@ message BuilderQualConfig {
 
   // Test Effort type from enumerated type AP, EC, AP_EC
   ModelTestEffortConfig.TestEffortType test_effort_type = 6;
+
+  // The operating systems to generate test efforts for.
+  // If this list is empty, then no qualifications will be generated.
+  repeated OSBuildTarget os_build_targets = 7;
 }
 
 message BuilderQualConfigs {
