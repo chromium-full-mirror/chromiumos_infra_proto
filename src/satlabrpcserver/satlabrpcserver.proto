@@ -68,6 +68,7 @@ service SatlabRpcService {
   rpc StableVersion(StableVersionRequest) returns (StableVersionResponse);
   rpc UpdateDevice(UpdateDeviceRequest) returns (UpdateDeviceResponse);
   rpc Testlab(TestlabRequest) returns (TestlabResponse);
+  rpc ServoType(ServoTypeRequest) returns (ServoTypeResponse);
 
   // get DUTs information
   rpc GetDutDetail(GetDutDetailRequest) returns (GetDutDetailResponse);
@@ -1192,3 +1193,16 @@ message SetDutWifiInfoRequest {
 // NEXT_TAG = 1
 message SetDutWifiInfoResponse {}
 
+// NEXT_TAG = 6
+message ServoTypeRequest {
+  string board = 1;
+  string model = 2;
+  string servo_serial = 3;
+  int32 servo_port = 4;
+  string servod_docker_container_name = 5;
+}
+
+// NEXT_TAG = 2
+message ServoTypeResponse {
+  repeated string types = 1;
+}
