@@ -393,6 +393,10 @@
             {
               "name": "PLATFORM_DAGWOOD",
               "number": 9
+            },
+            {
+              "name": "PLATFORM_EC_LEGACY",
+              "number": 10
             }
           ]
         }

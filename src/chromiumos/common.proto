@@ -371,6 +371,7 @@ enum FwLocation {
   PLATFORM_AP = 7;        // platform/rules_cros_firmware/ap/firmware_builder.py
   PLATFORM_RENODE = 8;    // platform/ec/util/renode/firmware_builder.py
   PLATFORM_DAGWOOD = 9;   // platform/dagwood/firmware_builder.py
+  PLATFORM_EC_LEGACY = 10; // platform/ec-legacy/firmware_builder.py
 }
 
 // Additional information about artifacts used by PrepareForBuild endpoints.
