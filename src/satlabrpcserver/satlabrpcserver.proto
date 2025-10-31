@@ -1098,8 +1098,9 @@ message UpdateDeviceRequest {
 // NEXT_TAG = 1
 message UpdateDeviceResponse {}
 
-// NEXT_TAG = 17
+// NEXT_TAG = 18
 message RunRequest {
+  reserved 8;
   // NEXT_TAG = 2
   message Suite {
     string name = 1;
@@ -1130,7 +1131,7 @@ message RunRequest {
   string board = 5;
   optional string model = 6;
   optional string milestone = 7;
-  optional string target_type = 8;
+  optional string target = 17;
   string build = 9;
   string pool = 10;
 
