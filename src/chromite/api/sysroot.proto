@@ -126,6 +126,8 @@ message InstallToolchainRequest {
     bool compile_source = 1;
     // Whether a toolchain change has occurred.
     bool toolchain_changed = 2;
+    // If true, force toolchain update (emerge).
+    bool force_toolchain_update = 3;
   }
 
   // The sysroot where the toolchain is being installed.

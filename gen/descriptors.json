@@ -3545,6 +3545,13 @@
                   "name": "toolchain_changed",
                   "number": 2,
                   "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "forceToolchainUpdate",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "force_toolchain_update",
+                  "number": 3,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Flags"
