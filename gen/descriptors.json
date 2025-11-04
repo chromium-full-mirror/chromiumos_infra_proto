@@ -32566,14 +32566,20 @@
         {
           "field": [
             {
-              "jsonName": "board",
-              "label": "LABEL_OPTIONAL",
-              "name": "board",
-              "number": 1,
+              "jsonName": "targets",
+              "label": "LABEL_REPEATED",
+              "name": "targets",
+              "number": 2,
               "type": "TYPE_STRING"
             }
           ],
-          "name": "ListAndroidBranchesRequest"
+          "name": "ListAndroidBranchesRequest",
+          "reservedRange": [
+            {
+              "end": 2,
+              "start": 1
+            }
+          ]
         },
         {
           "field": [
