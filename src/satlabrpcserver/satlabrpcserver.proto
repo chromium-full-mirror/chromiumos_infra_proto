@@ -1055,9 +1055,10 @@ message ListAndroidSuitesResponse {
   repeated string suites = 1;
 }
 
-// NEXT_TAG = 2
+// NEXT_TAG = 3
 message ListAndroidBranchesRequest {
-  string board = 1;
+  string board = 1 [deprecated = true];
+  repeated string targets = 2;
 }
 
 // NEXT_TAG = 2
@@ -1098,7 +1099,7 @@ message UpdateDeviceRequest {
 // NEXT_TAG = 1
 message UpdateDeviceResponse {}
 
-// NEXT_TAG = 17
+// NEXT_TAG = 18
 message RunRequest {
   // NEXT_TAG = 2
   message Suite {
@@ -1130,7 +1131,8 @@ message RunRequest {
   string board = 5;
   optional string model = 6;
   optional string milestone = 7;
-  optional string target_type = 8;
+  optional string target_type = 8 [deprecated = true];
+  optional string target = 17;
   string build = 9;
   string pool = 10;
 

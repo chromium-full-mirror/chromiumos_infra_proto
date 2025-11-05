@@ -32577,6 +32577,16 @@
               "label": "LABEL_OPTIONAL",
               "name": "board",
               "number": 1,
+              "options": {
+                "deprecated": true
+              },
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "targets",
+              "label": "LABEL_REPEATED",
+              "name": "targets",
+              "number": 2,
               "type": "TYPE_STRING"
             }
           ],
@@ -32745,6 +32755,18 @@
               "name": "target_type",
               "number": 8,
               "oneofIndex": 3,
+              "options": {
+                "deprecated": true
+              },
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "target",
+              "label": "LABEL_OPTIONAL",
+              "name": "target",
+              "number": 17,
+              "oneofIndex": 4,
               "proto3Optional": true,
               "type": "TYPE_STRING"
             },
@@ -32865,6 +32887,9 @@
             },
             {
               "name": "_target_type"
+            },
+            {
+              "name": "_target"
             }
           ]
         },
