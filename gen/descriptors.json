@@ -17327,6 +17327,10 @@
                 {
                   "name": "PROD_RAMFS",
                   "number": 7
+                },
+                {
+                  "name": "DESKTOP_PROVISION_RAMFS",
+                  "number": 8
                 }
               ]
             }

@@ -21,6 +21,7 @@ message CreateRecoveryKernelRequest {
     MINIOS_RAMFS = 5;
     FLEXOR_RAMFS = 6;
     PROD_RAMFS = 7;
+    DESKTOP_PROVISION_RAMFS = 8;
   }
 
   message Flags {
