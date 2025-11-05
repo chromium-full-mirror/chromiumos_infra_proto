@@ -1055,10 +1055,9 @@ message ListAndroidSuitesResponse {
   repeated string suites = 1;
 }
 
-// NEXT_TAG = 3
+// NEXT_TAG = 2
 message ListAndroidBranchesRequest {
-  reserved 1;
-  repeated string targets = 2;
+  string board = 1;
 }
 
 // NEXT_TAG = 2
