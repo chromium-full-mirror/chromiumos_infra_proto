@@ -67,7 +67,6 @@ type SatlabRpcServiceClient interface {
 	StableVersion(ctx context.Context, in *StableVersionRequest, opts ...grpc.CallOption) (*StableVersionResponse, error)
 	UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*UpdateDeviceResponse, error)
 	Testlab(ctx context.Context, in *TestlabRequest, opts ...grpc.CallOption) (*TestlabResponse, error)
-	ServoType(ctx context.Context, in *ServoTypeRequest, opts ...grpc.CallOption) (*ServoTypeResponse, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -482,15 +481,6 @@ func (c *satlabRpcServiceClient) Testlab(ctx context.Context, in *TestlabRequest
 	return out, nil
 }
 
-func (c *satlabRpcServiceClient) ServoType(ctx context.Context, in *ServoTypeRequest, opts ...grpc.CallOption) (*ServoTypeResponse, error) {
-	out := new(ServoTypeResponse)
-	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ServoType", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -759,7 +749,6 @@ type SatlabRpcServiceServer interface {
 	StableVersion(context.Context, *StableVersionRequest) (*StableVersionResponse, error)
 	UpdateDevice(context.Context, *UpdateDeviceRequest) (*UpdateDeviceResponse, error)
 	Testlab(context.Context, *TestlabRequest) (*TestlabResponse, error)
-	ServoType(context.Context, *ServoTypeRequest) (*ServoTypeResponse, error)
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -913,9 +902,6 @@ func (UnimplementedSatlabRpcServiceServer) UpdateDevice(context.Context, *Update
 }
 func (UnimplementedSatlabRpcServiceServer) Testlab(context.Context, *TestlabRequest) (*TestlabResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Testlab not implemented")
-}
-func (UnimplementedSatlabRpcServiceServer) ServoType(context.Context, *ServoTypeRequest) (*ServoTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ServoType not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -1701,24 +1687,6 @@ func _SatlabRpcService_Testlab_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SatlabRpcService_ServoType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServoTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SatlabRpcServiceServer).ServoType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/satlabrpcserver.SatlabRpcService/ServoType",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SatlabRpcServiceServer).ServoType(ctx, req.(*ServoTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -2276,10 +2244,6 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Testlab",
 			Handler:    _SatlabRpcService_Testlab_Handler,
-		},
-		{
-			MethodName: "ServoType",
-			Handler:    _SatlabRpcService_ServoType_Handler,
 		},
 		{
 			MethodName: "GetDutDetail",
