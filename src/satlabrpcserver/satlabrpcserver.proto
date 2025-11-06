@@ -46,6 +46,7 @@ service SatlabRpcService {
   rpc ListAndroidBuilds(ListAndroidBuildsRequest) returns (ListAndroidBuildsResponse);
   rpc ListAndroidSuites(ListAndroidSuitesRequest) returns (ListAndroidSuitesResponse);
   rpc ValidateAndroidBuild(ValidateAndroidBuildRequest) returns (ValidateAndroidBuildResponse);
+  rpc RunAndroidLabqual (RunAndroidLabqualRequest) returns (RunAndroidLabqualResponse);
 
   // services to run different types of test suites
   rpc RunSuite(RunSuiteRequest) returns (RunSuiteResponse);
@@ -1192,3 +1193,16 @@ message SetDutWifiInfoRequest {
 // NEXT_TAG = 1
 message SetDutWifiInfoResponse {}
 
+// NEXT_TAG = 6
+message RunAndroidLabqualRequest {
+  string hostname = 1;
+  string firmware_path = 2;
+  string build = 3;
+  string board = 4;
+  string model = 5;
+}
+
+// NEXT_TAG = 2
+message RunAndroidLabqualResponse {
+  string link = 1;
+}

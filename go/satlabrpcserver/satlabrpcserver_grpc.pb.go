@@ -48,6 +48,7 @@ type SatlabRpcServiceClient interface {
 	ListAndroidBuilds(ctx context.Context, in *ListAndroidBuildsRequest, opts ...grpc.CallOption) (*ListAndroidBuildsResponse, error)
 	ListAndroidSuites(ctx context.Context, in *ListAndroidSuitesRequest, opts ...grpc.CallOption) (*ListAndroidSuitesResponse, error)
 	ValidateAndroidBuild(ctx context.Context, in *ValidateAndroidBuildRequest, opts ...grpc.CallOption) (*ValidateAndroidBuildResponse, error)
+	RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error)
 	// services to run different types of test suites
 	RunSuite(ctx context.Context, in *RunSuiteRequest, opts ...grpc.CallOption) (*RunSuiteResponse, error)
 	RunTest(ctx context.Context, in *RunTestRequest, opts ...grpc.CallOption) (*RunTestResponse, error)
@@ -299,6 +300,15 @@ func (c *satlabRpcServiceClient) ListAndroidSuites(ctx context.Context, in *List
 func (c *satlabRpcServiceClient) ValidateAndroidBuild(ctx context.Context, in *ValidateAndroidBuildRequest, opts ...grpc.CallOption) (*ValidateAndroidBuildResponse, error) {
 	out := new(ValidateAndroidBuildResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ValidateAndroidBuild", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error) {
+	out := new(RunAndroidLabqualResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunAndroidLabqual", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -730,6 +740,7 @@ type SatlabRpcServiceServer interface {
 	ListAndroidBuilds(context.Context, *ListAndroidBuildsRequest) (*ListAndroidBuildsResponse, error)
 	ListAndroidSuites(context.Context, *ListAndroidSuitesRequest) (*ListAndroidSuitesResponse, error)
 	ValidateAndroidBuild(context.Context, *ValidateAndroidBuildRequest) (*ValidateAndroidBuildResponse, error)
+	RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error)
 	// services to run different types of test suites
 	RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error)
 	RunTest(context.Context, *RunTestRequest) (*RunTestResponse, error)
@@ -851,6 +862,9 @@ func (UnimplementedSatlabRpcServiceServer) ListAndroidSuites(context.Context, *L
 }
 func (UnimplementedSatlabRpcServiceServer) ValidateAndroidBuild(context.Context, *ValidateAndroidBuildRequest) (*ValidateAndroidBuildResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateAndroidBuild not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunAndroidLabqual not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunSuite not implemented")
@@ -1374,6 +1388,24 @@ func _SatlabRpcService_ValidateAndroidBuild_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).ValidateAndroidBuild(ctx, req.(*ValidateAndroidBuildRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_RunAndroidLabqual_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunAndroidLabqualRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).RunAndroidLabqual(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/RunAndroidLabqual",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).RunAndroidLabqual(ctx, req.(*RunAndroidLabqualRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2180,6 +2212,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateAndroidBuild",
 			Handler:    _SatlabRpcService_ValidateAndroidBuild_Handler,
+		},
+		{
+			MethodName: "RunAndroidLabqual",
+			Handler:    _SatlabRpcService_RunAndroidLabqual_Handler,
 		},
 		{
 			MethodName: "RunSuite",

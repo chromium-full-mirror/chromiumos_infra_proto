@@ -33025,6 +33025,58 @@
         },
         {
           "name": "SetDutWifiInfoResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "firmwarePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_path",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "build",
+              "label": "LABEL_OPTIONAL",
+              "name": "build",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 5,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunAndroidLabqualRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "link",
+              "label": "LABEL_OPTIONAL",
+              "name": "link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "RunAndroidLabqualResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -33144,6 +33196,11 @@
               "inputType": ".satlabrpcserver.ValidateAndroidBuildRequest",
               "name": "ValidateAndroidBuild",
               "outputType": ".satlabrpcserver.ValidateAndroidBuildResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.RunAndroidLabqualRequest",
+              "name": "RunAndroidLabqual",
+              "outputType": ".satlabrpcserver.RunAndroidLabqualResponse"
             },
             {
               "inputType": ".satlabrpcserver.RunSuiteRequest",
