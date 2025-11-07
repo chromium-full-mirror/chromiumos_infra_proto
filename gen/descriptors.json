@@ -397,6 +397,10 @@
             {
               "name": "PLATFORM_EC_LEGACY",
               "number": 10
+            },
+            {
+              "name": "PLATFORM_EC_LEGACY_RENODE",
+              "number": 11
             }
           ]
         }
