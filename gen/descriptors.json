@@ -32779,6 +32779,15 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "testTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_target",
+              "number": 18,
+              "oneofIndex": 5,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "build",
               "label": "LABEL_OPTIONAL",
               "name": "build",
@@ -32898,6 +32907,9 @@
             },
             {
               "name": "_target"
+            },
+            {
+              "name": "_test_target"
             }
           ]
         },
