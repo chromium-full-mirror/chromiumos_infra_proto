@@ -21373,6 +21373,14 @@
               "number": 5,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromiumos.FirmwareVersion"
+            },
+            {
+              "jsonName": "fingerprintFirmware",
+              "label": "LABEL_OPTIONAL",
+              "name": "fingerprint_firmware",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareVersion"
             }
           ],
           "name": "FirmwareConfigForModel"

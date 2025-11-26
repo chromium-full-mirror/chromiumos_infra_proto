@@ -56,4 +56,7 @@ message FirmwareConfigForModel {
   // This is multually exclusive with ec_firmware.rw_firmware. At most one can
   // have non-empty uri.
   FirmwareVersion ap_firmware_for_ec_rw = 5;
+
+  // Fingerprint firmware.
+  FirmwareVersion fingerprint_firmware = 6;
 }
