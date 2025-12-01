@@ -32921,6 +32921,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "userDefinedFilter",
+              "label": "LABEL_REPEATED",
+              "name": "user_defined_filter",
+              "number": 19,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "settings",
               "label": "LABEL_OPTIONAL",
               "name": "settings",

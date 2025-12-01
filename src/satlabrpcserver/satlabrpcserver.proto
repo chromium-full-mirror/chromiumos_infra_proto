@@ -1100,7 +1100,7 @@ message UpdateDeviceRequest {
 // NEXT_TAG = 1
 message UpdateDeviceResponse {}
 
-// NEXT_TAG = 19
+// NEXT_TAG = 20
 message RunRequest {
   // NEXT_TAG = 2
   message Suite {
@@ -1143,6 +1143,7 @@ message RunRequest {
   repeated string tag_excludes = 13;
   repeated string test_name_includes = 14;
   repeated string test_name_excludes = 15;
+  repeated string user_defined_filter = 19;
 
 
   AdvancedSettings settings = 16;

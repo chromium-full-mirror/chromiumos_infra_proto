@@ -7834,7 +7834,7 @@ func (*UpdateDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_satlabrpcserver_satlabrpcserver_proto_rawDescGZIP(), []int{124}
 }
 
-// NEXT_TAG = 19
+// NEXT_TAG = 20
 type RunRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7853,17 +7853,18 @@ type RunRequest struct {
 	Model     *string `protobuf:"bytes,6,opt,name=model,proto3,oneof" json:"model,omitempty"`
 	Milestone *string `protobuf:"bytes,7,opt,name=milestone,proto3,oneof" json:"milestone,omitempty"`
 	// Deprecated: Do not use.
-	TargetType       *string           `protobuf:"bytes,8,opt,name=target_type,json=targetType,proto3,oneof" json:"target_type,omitempty"`
-	Target           *string           `protobuf:"bytes,17,opt,name=target,proto3,oneof" json:"target,omitempty"`
-	TestTarget       *string           `protobuf:"bytes,18,opt,name=test_target,json=testTarget,proto3,oneof" json:"test_target,omitempty"`
-	Build            string            `protobuf:"bytes,9,opt,name=build,proto3" json:"build,omitempty"`
-	Pool             string            `protobuf:"bytes,10,opt,name=pool,proto3" json:"pool,omitempty"`
-	Dims             []*Dim            `protobuf:"bytes,11,rep,name=dims,proto3" json:"dims,omitempty"`
-	TagIncludes      []string          `protobuf:"bytes,12,rep,name=tag_includes,json=tagIncludes,proto3" json:"tag_includes,omitempty"`
-	TagExcludes      []string          `protobuf:"bytes,13,rep,name=tag_excludes,json=tagExcludes,proto3" json:"tag_excludes,omitempty"`
-	TestNameIncludes []string          `protobuf:"bytes,14,rep,name=test_name_includes,json=testNameIncludes,proto3" json:"test_name_includes,omitempty"`
-	TestNameExcludes []string          `protobuf:"bytes,15,rep,name=test_name_excludes,json=testNameExcludes,proto3" json:"test_name_excludes,omitempty"`
-	Settings         *AdvancedSettings `protobuf:"bytes,16,opt,name=settings,proto3" json:"settings,omitempty"`
+	TargetType        *string           `protobuf:"bytes,8,opt,name=target_type,json=targetType,proto3,oneof" json:"target_type,omitempty"`
+	Target            *string           `protobuf:"bytes,17,opt,name=target,proto3,oneof" json:"target,omitempty"`
+	TestTarget        *string           `protobuf:"bytes,18,opt,name=test_target,json=testTarget,proto3,oneof" json:"test_target,omitempty"`
+	Build             string            `protobuf:"bytes,9,opt,name=build,proto3" json:"build,omitempty"`
+	Pool              string            `protobuf:"bytes,10,opt,name=pool,proto3" json:"pool,omitempty"`
+	Dims              []*Dim            `protobuf:"bytes,11,rep,name=dims,proto3" json:"dims,omitempty"`
+	TagIncludes       []string          `protobuf:"bytes,12,rep,name=tag_includes,json=tagIncludes,proto3" json:"tag_includes,omitempty"`
+	TagExcludes       []string          `protobuf:"bytes,13,rep,name=tag_excludes,json=tagExcludes,proto3" json:"tag_excludes,omitempty"`
+	TestNameIncludes  []string          `protobuf:"bytes,14,rep,name=test_name_includes,json=testNameIncludes,proto3" json:"test_name_includes,omitempty"`
+	TestNameExcludes  []string          `protobuf:"bytes,15,rep,name=test_name_excludes,json=testNameExcludes,proto3" json:"test_name_excludes,omitempty"`
+	UserDefinedFilter []string          `protobuf:"bytes,19,rep,name=user_defined_filter,json=userDefinedFilter,proto3" json:"user_defined_filter,omitempty"`
+	Settings          *AdvancedSettings `protobuf:"bytes,16,opt,name=settings,proto3" json:"settings,omitempty"`
 }
 
 func (x *RunRequest) Reset() {
@@ -8021,6 +8022,13 @@ func (x *RunRequest) GetTestNameIncludes() []string {
 func (x *RunRequest) GetTestNameExcludes() []string {
 	if x != nil {
 		return x.TestNameExcludes
+	}
+	return nil
+}
+
+func (x *RunRequest) GetUserDefinedFilter() []string {
+	if x != nil {
+		return x.UserDefinedFilter
 	}
 	return nil
 }
@@ -10228,7 +10236,7 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x73, 0x5f, 0x72, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x0d, 0x6f, 0x73, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69,
 	0x6f, 0x6e, 0x22, 0x16, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x65, 0x76, 0x69,
-	0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xf9, 0x06, 0x0a, 0x0a, 0x52,
+	0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa9, 0x07, 0x0a, 0x0a, 0x52,
 	0x75, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x39, 0x0a, 0x05, 0x73, 0x75, 0x69,
 	0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61,
 	0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x52, 0x75, 0x6e, 0x52, 0x65,
@@ -10269,6 +10277,9 @@ var file_satlabrpcserver_satlabrpcserver_proto_rawDesc = []byte{
 	0x73, 0x12, 0x2c, 0x0a, 0x12, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x5f, 0x65,
 	0x78, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x73, 0x18, 0x0f, 0x20, 0x03, 0x28, 0x09, 0x52, 0x10, 0x74,
 	0x65, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x45, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x73, 0x12,
+	0x2e, 0x0a, 0x13, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x5f,
+	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x13, 0x20, 0x03, 0x28, 0x09, 0x52, 0x11, 0x75, 0x73,
+	0x65, 0x72, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12,
 	0x3d, 0x0a, 0x08, 0x73, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x73, 0x18, 0x10, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x21, 0x2e, 0x73, 0x61, 0x74, 0x6c, 0x61, 0x62, 0x72, 0x70, 0x63, 0x73, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x2e, 0x41, 0x64, 0x76, 0x61, 0x6e, 0x63, 0x65, 0x64, 0x53, 0x65, 0x74, 0x74,
