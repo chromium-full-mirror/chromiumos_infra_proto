@@ -18,6 +18,9 @@ message RunQualbotRequest {
   // Build URL populated by concatenation with
   // https://cr-buildbucket.appspot.com/build/
   string build_id = 2;
+
+  // Whether or not this is a staging run
+  bool is_staging = 3;
 }
 
 // The result of QualBot being run.
