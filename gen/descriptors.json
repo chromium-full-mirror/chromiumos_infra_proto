@@ -11358,6 +11358,27 @@
                   "number": 2
                 }
               ]
+            },
+            {
+              "name": "PoolType",
+              "value": [
+                {
+                  "name": "UNKNOWN_POOL_TYPE",
+                  "number": 0
+                },
+                {
+                  "name": "DEFAULT",
+                  "number": 1
+                },
+                {
+                  "name": "FAFT_PD",
+                  "number": 2
+                },
+                {
+                  "name": "EXTENDED_DURATION",
+                  "number": 3
+                }
+              ]
             }
           ],
           "field": [
@@ -11388,6 +11409,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "pool",
               "number": 4,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -11447,6 +11471,14 @@
               "name": "ctp_container_label",
               "number": 12,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "poolType",
+              "label": "LABEL_OPTIONAL",
+              "name": "pool_type",
+              "number": 13,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Test.PoolType"
             }
           ],
           "name": "Test"
@@ -11836,6 +11868,9 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "test_pool",
                   "number": 3,
+                  "options": {
+                    "deprecated": true
+                  },
                   "type": "TYPE_STRING"
                 },
                 {
@@ -11843,7 +11878,18 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "pd_test_pool",
                   "number": 4,
+                  "options": {
+                    "deprecated": true
+                  },
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "poolConfigs",
+                  "label": "LABEL_REPEATED",
+                  "name": "pool_configs",
+                  "number": 6,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.PoolConfig"
                 },
                 {
                   "jsonName": "testOverrides",
@@ -11855,6 +11901,28 @@
                 }
               ],
               "name": "TestPlan",
+              "nestedType": [
+                {
+                  "field": [
+                    {
+                      "jsonName": "pool",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "pool",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "poolType",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "pool_type",
+                      "number": 2,
+                      "type": "TYPE_ENUM",
+                      "typeName": ".auto_qual.Test.PoolType"
+                    }
+                  ],
+                  "name": "PoolConfig"
+                }
+              ],
               "reservedRange": [
                 {
                   "end": 3,

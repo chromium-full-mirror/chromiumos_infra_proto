@@ -52,10 +52,25 @@ message ModelTestEffortConfig {
     TestPlanType type = 1;
 
     // Default Test Pool
-    string test_pool = 3;
+    // DEPRECATED FIELD: Replaced by `pool_configs`
+    string test_pool = 3 [ deprecated = true ];
 
     // Default PD Test Pool
-    string pd_test_pool = 4;
+    // DEPRECATED FIELD: Replaced by `pool_configs`
+    string pd_test_pool = 4 [ deprecated = true ];
+
+    // Grouping of pool name and pool category
+    // e.g. (DEFAULT, "DUT_POOL_QUOTA")
+    message PoolConfig {
+      string pool = 1;
+      Test.PoolType pool_type = 2;
+    }
+
+    // Which pools to use when scheduling tests.
+    // In scenarios where two pool_configs share a
+    // PoolType, pools containing devices that belong
+    // to partners will be prioritized over internal pools.
+    repeated PoolConfig pool_configs = 6;
 
     // Tests to be excluded from the test effort
     repeated Test test_overrides = 5;

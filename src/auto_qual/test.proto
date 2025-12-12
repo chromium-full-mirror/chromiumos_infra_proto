@@ -23,14 +23,19 @@ message Test {
     MANUAL = 3;
     TRADEFED = 4;
   }
+
   HarnessType harness = 1;
+
   repeated string include_tags = 2;
   repeated string exclude_tags = 3;
-  string pool = 4;
+
+  // DEPRECATED FIELD: Replaced by pool_type
+  string pool = 4 [ deprecated = true ];
   string suite = 5;
   repeated string include_names = 6;
   repeated string exclude_names = 7;
   bool schedule_for_each_ro = 8;
+
   enum RetryType {
     RETRY_TYPE_UNSPECIFIED = 0;
     // Do not pass the retry=True flag into the suite schedule
@@ -39,15 +44,36 @@ message Test {
     // automatically retry failures.
     TEST_RUNNER_ENABLE_RETRY = 2;
   };
+
   RetryType retry = 9;
+
   repeated TestArguments arguments = 10;
 
   // How long the test should run before it time outs in seconds.
   // This is only applicable when running in unmanaged pools
-  // e.g. faft-test as opposed to MANAGED_POOL_QUOTA.
+  // e.g. faft-test as opposed to DUT_POOL_QUOTA.
   // This will default to 16 hours if left unspecified.
   // https://chrome-internal.googlesource.com/chromeos/infra/config/+/main/testplatform/test_runner/main.star#157
   uint32 timeout_seconds = 11;
 
   string ctp_container_label = 12;
+
+  // The category of pool to schedule tests against.
+  enum PoolType {
+    // Not used. Exists to distinguish between an unset value and DEFAULT.
+    UNKNOWN_POOL_TYPE = 0;
+
+    // Pools used when scheduling tests without any special exceptions
+    DEFAULT = 1;
+
+    // Pools to use when scheduling FAFT PD tests.
+    FAFT_PD = 2;
+
+    // pools to schedule tests with extremely long runtimes (3+ hours)
+    EXTENDED_DURATION = 3;
+  }
+
+  // Determines which pools within the test effort to use when
+  // scheduling this test.
+  PoolType pool_type = 13;
 }
