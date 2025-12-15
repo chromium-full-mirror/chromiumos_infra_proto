@@ -22891,6 +22891,80 @@
       },
       "messageType": [
         {
+          "field": [
+            {
+              "jsonName": "notifyEmail",
+              "label": "LABEL_REPEATED",
+              "name": "notify_email",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "groupName",
+              "label": "LABEL_OPTIONAL",
+              "name": "group_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "offsetHourOfDay",
+              "label": "LABEL_OPTIONAL",
+              "name": "offset_hour_of_day",
+              "number": 3,
+              "type": "TYPE_FLOAT"
+            },
+            {
+              "jsonName": "interval",
+              "label": "LABEL_OPTIONAL",
+              "name": "interval",
+              "number": 4,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "timeout",
+              "label": "LABEL_OPTIONAL",
+              "name": "timeout",
+              "number": 5,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "configFile",
+              "label": "LABEL_REPEATED",
+              "name": "config_file",
+              "number": 6,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CopybotJob"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "copybotJobs",
+              "label": "LABEL_REPEATED",
+              "name": "copybot_jobs",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".copybot.CopybotJob"
+            }
+          ],
+          "name": "CopybotJobs"
+        }
+      ],
+      "name": "copybot/copybot_job.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/copybot"
+      },
+      "package": "copybot",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
           "name": "NoopEffectConfiguration"
         },
         {
