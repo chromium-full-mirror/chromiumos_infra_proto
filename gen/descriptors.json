@@ -33051,6 +33051,13 @@
                   "name": "name",
                   "number": 1,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "autoQual",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "auto_qual",
+                  "number": 2,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Testplan"
