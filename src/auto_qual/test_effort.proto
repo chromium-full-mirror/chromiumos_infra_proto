@@ -47,6 +47,7 @@ message ModelTestEffortConfig {
       FIRMWARE_LABQUAL = 5;
       FIRMWARE_ULDRENITE_CUSTOM = 6;
       FIRMWARE_CTP_STAGING = 7;
+      AVS_RELEASE_INITIAL = 8;
     }
     // Type of test to run
     TestPlanType type = 1;

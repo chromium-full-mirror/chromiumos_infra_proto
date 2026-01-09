@@ -11850,6 +11850,10 @@
                     {
                       "name": "FIRMWARE_CTP_STAGING",
                       "number": 7
+                    },
+                    {
+                      "name": "AVS_RELEASE_INITIAL",
+                      "number": 8
                     }
                   ]
                 }
