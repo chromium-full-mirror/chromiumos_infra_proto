@@ -49,7 +49,14 @@ message ModelTestEffortConfig {
       FIRMWARE_CTP_STAGING = 7;
       AVS_RELEASE_INITIAL = 8;
     }
+
+    // Local path within the auto qual repo containing the TestPlan text proto
+    // e.g: test_plans/avs/firmware.txtpb or
+    // test_plans/cros/firmware_qual.txtpb
+    string proto_path = 7;
+
     // Type of test to run
+    // DEPRECATED FIELD: Replaced by `proto_path`
     TestPlanType type = 1;
 
     // Default Test Pool

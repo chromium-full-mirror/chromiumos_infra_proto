@@ -12,7 +12,10 @@ import "auto_qual/test.proto";
 
 message TestPlan {
   repeated ModelTestEffortConfig.OsType os = 1;
+
+  // DEPRECATED FIELD
   ModelTestEffortConfig.TestPlan.TestPlanType test_effort = 2;
+
   repeated Test test = 3;
 }
 

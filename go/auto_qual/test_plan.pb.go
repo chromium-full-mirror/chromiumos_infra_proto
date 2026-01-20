@@ -29,7 +29,8 @@ type TestPlan struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Os         []ModelTestEffortConfig_OsType              `protobuf:"varint,1,rep,packed,name=os,proto3,enum=auto_qual.ModelTestEffortConfig_OsType" json:"os,omitempty"`
+	Os []ModelTestEffortConfig_OsType `protobuf:"varint,1,rep,packed,name=os,proto3,enum=auto_qual.ModelTestEffortConfig_OsType" json:"os,omitempty"`
+	// DEPRECATED FIELD
 	TestEffort ModelTestEffortConfig_TestPlan_TestPlanType `protobuf:"varint,2,opt,name=test_effort,json=testEffort,proto3,enum=auto_qual.ModelTestEffortConfig_TestPlan_TestPlanType" json:"test_effort,omitempty"`
 	Test       []*Test                                     `protobuf:"bytes,3,rep,name=test,proto3" json:"test,omitempty"`
 }

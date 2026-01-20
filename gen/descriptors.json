@@ -11908,6 +11908,13 @@
               ],
               "field": [
                 {
+                  "jsonName": "protoPath",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "proto_path",
+                  "number": 7,
+                  "type": "TYPE_STRING"
+                },
+                {
                   "jsonName": "type",
                   "label": "LABEL_OPTIONAL",
                   "name": "type",
