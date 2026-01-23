@@ -11316,6 +11316,28 @@
           "name": "TestArguments"
         },
         {
+          "name": "CustomizableTestPlatformTest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "atpConfigName",
+              "label": "LABEL_OPTIONAL",
+              "name": "atp_config_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "atpGclFile",
+              "label": "LABEL_OPTIONAL",
+              "name": "atp_gcl_file",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AndroidTestPlatformTest"
+        },
+        {
           "enumType": [
             {
               "name": "HarnessType",
@@ -11387,6 +11409,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "harness",
               "number": 1,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.Test.HarnessType"
             },
@@ -11479,9 +11504,32 @@
               "number": 13,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.Test.PoolType"
+            },
+            {
+              "jsonName": "ctpTest",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctp_test",
+              "number": 14,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.CustomizableTestPlatformTest"
+            },
+            {
+              "jsonName": "atpTest",
+              "label": "LABEL_OPTIONAL",
+              "name": "atp_test",
+              "number": 15,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.AndroidTestPlatformTest"
             }
           ],
-          "name": "Test"
+          "name": "Test",
+          "oneofDecl": [
+            {
+              "name": "test_system"
+            }
+          ]
         }
       ],
       "name": "auto_qual/test.proto",
