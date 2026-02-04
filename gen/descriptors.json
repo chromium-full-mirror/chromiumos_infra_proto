@@ -11908,9 +11908,9 @@
               ],
               "field": [
                 {
-                  "jsonName": "protoPath",
+                  "jsonName": "testPlanName",
                   "label": "LABEL_OPTIONAL",
-                  "name": "proto_path",
+                  "name": "test_plan_name",
                   "number": 7,
                   "type": "TYPE_STRING"
                 },
@@ -12153,6 +12153,13 @@
               "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
+            },
+            {
+              "jsonName": "testPlanName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan_name",
+              "number": 8,
+              "type": "TYPE_STRING"
             },
             {
               "jsonName": "testPlanType",

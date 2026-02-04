@@ -30,7 +30,13 @@ message BuilderQualConfig {
   // DEPRECATED. Will be removed soon. Use os_build_targets instead.
   repeated ModelTestEffortConfig.OsType operating_systems = 3;
 
+  // Name of the test plan. Maps to a local path within the auto qual
+  // repo containing the TestPlan text proto.
+  // e.g: avs/firmware which maps to test_plans/avs/firmware.txtpb
+  string test_plan_name = 8;
+
   // Test Plan Type to use for the generated test efforts.
+  // DEPRECATED FIELD: Replaced by `test_plan_name`
   ModelTestEffortConfig.TestPlan.TestPlanType test_plan_type = 4;
 
   // RO+RW or RW Test Effort.
