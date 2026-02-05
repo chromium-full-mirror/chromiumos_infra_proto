@@ -32461,6 +32461,27 @@
               "name": "max_in_shard",
               "number": 4,
               "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "testRunnerTimeout",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_runner_timeout",
+              "number": 5,
+              "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "staticShard",
+              "label": "LABEL_OPTIONAL",
+              "name": "static_shard",
+              "number": 6,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "ctpTimeout",
+              "label": "LABEL_OPTIONAL",
+              "name": "ctp_timeout",
+              "number": 7,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "AdvancedSettings"
