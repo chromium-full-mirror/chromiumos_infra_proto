@@ -12244,6 +12244,13 @@
               "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
             {
+              "jsonName": "testPlanName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_plan_name",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "os",
               "label": "LABEL_REPEATED",
               "name": "os",
