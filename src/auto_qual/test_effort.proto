@@ -35,6 +35,17 @@ message ModelTestEffortConfig {
     AL = 2;
   }
 
+  enum NotificationType {
+    NOTIFICATION_TYPE_UNSPECIFIED = 0;
+    FAILING_VERDICT = 1;
+    FAILING_EFFORT = 2;
+  }
+
+  message Notification {
+    NotificationType type = 1;
+    repeated string email = 2;
+  }
+
   message TestPlan {
     reserved 2;
 
@@ -175,6 +186,9 @@ message ModelTestEffortConfig {
   // The OS build to test against.
   // TODO: Should this be repeated?
   repeated OSBuildTarget os_build_target = 20;
+
+  // Notification configurations
+  repeated Notification notifications = 21;
 }
 
 message ModelTestEffortConfigs {

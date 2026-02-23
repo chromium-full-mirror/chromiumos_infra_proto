@@ -11683,6 +11683,23 @@
               ]
             },
             {
+              "name": "NotificationType",
+              "value": [
+                {
+                  "name": "NOTIFICATION_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "FAILING_VERDICT",
+                  "number": 1
+                },
+                {
+                  "name": "FAILING_EFFORT",
+                  "number": 2
+                }
+              ]
+            },
+            {
               "name": "TestEffortType",
               "value": [
                 {
@@ -11858,10 +11875,38 @@
               "number": 20,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.OSBuildTarget"
+            },
+            {
+              "jsonName": "notifications",
+              "label": "LABEL_REPEATED",
+              "name": "notifications",
+              "number": 21,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelTestEffortConfig.Notification"
             }
           ],
           "name": "ModelTestEffortConfig",
           "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 1,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".auto_qual.ModelTestEffortConfig.NotificationType"
+                },
+                {
+                  "jsonName": "email",
+                  "label": "LABEL_REPEATED",
+                  "name": "email",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Notification"
+            },
             {
               "enumType": [
                 {
