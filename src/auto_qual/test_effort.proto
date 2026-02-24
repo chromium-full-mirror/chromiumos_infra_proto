@@ -39,6 +39,7 @@ message ModelTestEffortConfig {
     NOTIFICATION_TYPE_UNSPECIFIED = 0;
     FAILING_VERDICT = 1;
     FAILING_EFFORT = 2;
+    COMPLETE_EFFORT = 3;
   }
 
   message Notification {

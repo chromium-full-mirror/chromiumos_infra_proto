@@ -11696,6 +11696,10 @@
                 {
                   "name": "FAILING_EFFORT",
                   "number": 2
+                },
+                {
+                  "name": "COMPLETE_EFFORT",
+                  "number": 3
                 }
               ]
             },
