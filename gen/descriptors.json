@@ -401,6 +401,10 @@
             {
               "name": "PLATFORM_EC_LEGACY_RENODE",
               "number": 11
+            },
+            {
+              "name": "PLATFORM_PDC",
+              "number": 12
             }
           ]
         }

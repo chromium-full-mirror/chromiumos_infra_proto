@@ -373,7 +373,8 @@ enum FwLocation {
   PLATFORM_DAGWOOD = 9;   // platform/dagwood/firmware_builder.py
   PLATFORM_EC_LEGACY = 10; // platform/ec-legacy/firmware_builder.py
   PLATFORM_EC_LEGACY_RENODE =
-      11; // platform/ec-legacy/util/renode/firmware_builder.py
+      11;            // platform/ec-legacy/util/renode/firmware_builder.py
+  PLATFORM_PDC = 12; // platform/pdc/firmware_builder.py
 }
 
 // Additional information about artifacts used by PrepareForBuild endpoints.
