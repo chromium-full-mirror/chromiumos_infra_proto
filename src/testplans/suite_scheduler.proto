@@ -116,6 +116,9 @@ message SchedulerConfig {
       // targeted hardware. The day field will be used here to define N. N
       // cannot be 0 or >365.
       N_DAYS = 8;
+      // Run on every new release build of the boards/variants targeted
+      // 3D suites.
+      NEW_BUILD_3D_BOARD_BASED = 9;
     }
     LaunchProfile launch_profile = 1;
     // Hour at which to run. Needs to be specified for nightly and weekly

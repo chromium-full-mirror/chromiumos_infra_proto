@@ -42536,6 +42536,10 @@
                     {
                       "name": "N_DAYS",
                       "number": 8
+                    },
+                    {
+                      "name": "NEW_BUILD_3D_BOARD_BASED",
+                      "number": 9
                     }
                   ]
                 }
