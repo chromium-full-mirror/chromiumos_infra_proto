@@ -127,6 +127,14 @@ message ModelTestEffortConfig {
     repeated OsType os_test_effort_type = 3;
   }
 
+  message AdditionalTesting {
+    // Additional test efforts run on completion
+    repeated ModelTestEffortConfig test_effort = 1;
+
+    // Additional test plans run on completion
+    repeated TestPlan test_plan = 2;
+  }
+
   // Test Effort ID
   uint32 id = 1;
 
@@ -190,6 +198,12 @@ message ModelTestEffortConfig {
 
   // Notification configurations
   repeated Notification notifications = 21;
+
+  // Additional testing to run on completion
+  repeated AdditionalTesting follow_on_testing = 22;
+
+  // Additional testing already scheduled or completed
+  repeated AdditionalTesting scheduled_testing = 23;
 }
 
 message ModelTestEffortConfigs {

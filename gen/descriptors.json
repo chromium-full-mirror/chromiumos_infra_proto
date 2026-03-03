@@ -11891,6 +11891,22 @@
               "number": 21,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.Notification"
+            },
+            {
+              "jsonName": "followOnTesting",
+              "label": "LABEL_REPEATED",
+              "name": "follow_on_testing",
+              "number": 22,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelTestEffortConfig.AdditionalTesting"
+            },
+            {
+              "jsonName": "scheduledTesting",
+              "label": "LABEL_REPEATED",
+              "name": "scheduled_testing",
+              "number": 23,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelTestEffortConfig.AdditionalTesting"
             }
           ],
           "name": "ModelTestEffortConfig",
@@ -12148,6 +12164,27 @@
                 }
               ],
               "name": "PreviousTestEffortVersion"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "testEffort",
+                  "label": "LABEL_REPEATED",
+                  "name": "test_effort",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.ModelTestEffortConfig"
+                },
+                {
+                  "jsonName": "testPlan",
+                  "label": "LABEL_REPEATED",
+                  "name": "test_plan",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan"
+                }
+              ],
+              "name": "AdditionalTesting"
             }
           ]
         },
