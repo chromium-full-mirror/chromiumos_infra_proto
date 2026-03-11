@@ -12193,6 +12193,9 @@
               "label": "LABEL_REPEATED",
               "name": "models",
               "number": 2,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -12200,6 +12203,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "test_plan_name",
               "number": 8,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -12207,6 +12213,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "firmware_type",
               "number": 5,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareType"
             },
@@ -12215,6 +12224,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "test_effort_type",
               "number": 6,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.TestEffortType"
             },
@@ -12223,8 +12235,19 @@
               "label": "LABEL_REPEATED",
               "name": "os_build_targets",
               "number": 7,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.OSBuildTarget"
+            },
+            {
+              "jsonName": "testEffortTemplate",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_effort_template",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelTestEffortConfig"
             }
           ],
           "name": "BuilderQualConfig"

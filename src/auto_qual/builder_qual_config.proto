@@ -22,25 +22,37 @@ message BuilderQualConfig {
   //   * firmware-android-brya-%
   string builder_name = 1;
 
-  // A list of hardware models to generate qualification requests for.
+  // DEPRECATED: Will be deprecated later. Use test_effort_template.devices
+  // instead. A list of hardware models to generate qualification requests for.
   // The builder must generate firmware for the models specified here.
   // If this list is empty, then no models will be qualified.
-  repeated string models = 2;
+  repeated string models = 2 [ deprecated = true ];
 
-  // Name of the test plan. Maps to a local path within the auto qual
-  // repo containing the TestPlan text proto.
+  // DEPRECATED: Will be deprecated later. Use
+  // test_effort_template.test_plan instead. Name of the test plan. Maps to
+  // a local path within the auto qual repo containing the TestPlan text proto.
   // e.g: avs/firmware which maps to test_plans/avs/firmware.txtpb
-  string test_plan_name = 8;
+  string test_plan_name = 8 [ deprecated = true ];
 
-  // RO+RW or RW Test Effort.
-  ModelTestEffortConfig.FirmwareType firmware_type = 5;
+  // DEPRECATED: Will be deprecated later. Use
+  // test_effort_template.firmware_type instead. RO+RW or RW Test Effort.
+  ModelTestEffortConfig.FirmwareType firmware_type = 5 [ deprecated = true ];
 
-  // Test Effort type from enumerated type AP, EC, AP_EC
-  ModelTestEffortConfig.TestEffortType test_effort_type = 6;
+  // DEPRECATED: Will be deprecated later. Use
+  // test_effort_template.test_effort_type instead. Test Effort type from
+  // enumerated type AP, EC, AP_EC
+  ModelTestEffortConfig.TestEffortType test_effort_type = 6
+      [ deprecated = true ];
 
-  // The operating systems to generate test efforts for.
-  // If this list is empty, then no qualifications will be generated.
-  repeated OSBuildTarget os_build_targets = 7;
+  // DEPRECATED: Will be deprecated later. Use
+  // test_effort_template.os_build_target instead. The operating systems to
+  // generate test efforts for. If this list is empty, then no qualifications
+  // will be generated.
+  repeated OSBuildTarget os_build_targets = 7 [ deprecated = true ];
+
+  // The test effort configuration to use as a base/template for this builder.
+  // This consolidates and replaces the deprecated fields above.
+  ModelTestEffortConfig test_effort_template = 9;
 }
 
 message BuilderQualConfigs {
