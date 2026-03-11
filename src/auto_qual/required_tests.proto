@@ -11,9 +11,6 @@ import "auto_qual/test_effort.proto";
 
 message RequiredTestList {
   uint32 milestone = 1;
-  // DEPRECATED FIELD: Replaced by test_plan_name
-  ModelTestEffortConfig.TestPlan.TestPlanType test_effort = 2;
-
   string test_plan_name = 5;
   repeated ModelTestEffortConfig.OsType os = 3;
   repeated string required_test = 4;

@@ -11413,9 +11413,6 @@
               "label": "LABEL_OPTIONAL",
               "name": "harness",
               "number": 1,
-              "options": {
-                "deprecated": true
-              },
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.Test.HarnessType"
             },
@@ -11431,16 +11428,6 @@
               "label": "LABEL_REPEATED",
               "name": "exclude_tags",
               "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "pool",
-              "label": "LABEL_OPTIONAL",
-              "name": "pool",
-              "number": 4,
-              "options": {
-                "deprecated": true
-              },
               "type": "TYPE_STRING"
             },
             {
@@ -11984,34 +11971,6 @@
                   "type": "TYPE_STRING"
                 },
                 {
-                  "jsonName": "type",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "type",
-                  "number": 1,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
-                },
-                {
-                  "jsonName": "testPool",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "test_pool",
-                  "number": 3,
-                  "options": {
-                    "deprecated": true
-                  },
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "pdTestPool",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "pd_test_pool",
-                  "number": 4,
-                  "options": {
-                    "deprecated": true
-                  },
-                  "type": "TYPE_STRING"
-                },
-                {
                   "jsonName": "poolConfigs",
                   "label": "LABEL_REPEATED",
                   "name": "pool_configs",
@@ -12237,27 +12196,11 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "operatingSystems",
-              "label": "LABEL_REPEATED",
-              "name": "operating_systems",
-              "number": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
-            },
-            {
               "jsonName": "testPlanName",
               "label": "LABEL_OPTIONAL",
               "name": "test_plan_name",
               "number": 8,
               "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "testPlanType",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_plan_type",
-              "number": 4,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
             {
               "jsonName": "firmwareType",
@@ -12326,14 +12269,6 @@
               "type": "TYPE_UINT32"
             },
             {
-              "jsonName": "testEffort",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_effort",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
-            },
-            {
               "jsonName": "testPlanName",
               "label": "LABEL_OPTIONAL",
               "name": "test_plan_name",
@@ -12398,14 +12333,6 @@
               "number": 1,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
-            },
-            {
-              "jsonName": "testEffort",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_effort",
-              "number": 2,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.TestPlanType"
             },
             {
               "jsonName": "test",

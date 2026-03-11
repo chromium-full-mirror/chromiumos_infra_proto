@@ -67,18 +67,6 @@ message ModelTestEffortConfig {
     // e.g: avs/firmware which maps to test_plans/avs/firmware.txtpb
     string test_plan_name = 7;
 
-    // Type of test to run
-    // DEPRECATED FIELD: Replaced by `test_plan_name`
-    TestPlanType type = 1;
-
-    // Default Test Pool
-    // DEPRECATED FIELD: Replaced by `pool_configs`
-    string test_pool = 3 [ deprecated = true ];
-
-    // Default PD Test Pool
-    // DEPRECATED FIELD: Replaced by `pool_configs`
-    string pd_test_pool = 4 [ deprecated = true ];
-
     // Grouping of pool name and pool category
     // e.g. (DEFAULT, "DUT_POOL_QUOTA")
     message PoolConfig {
