@@ -12411,6 +12411,14 @@
               "number": 25,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.DeviceUnderTest"
+            },
+            {
+              "jsonName": "entryPointSource",
+              "label": "LABEL_OPTIONAL",
+              "name": "entry_point_source",
+              "number": 26,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelTestEffortConfig.EntryPointSource"
             }
           ],
           "name": "ModelTestEffortConfig",
@@ -12669,6 +12677,32 @@
                 }
               ],
               "name": "AdditionalTesting"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "method",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "method",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "bucket",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bucket",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "source",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "source",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "EntryPointSource"
             }
           ]
         },

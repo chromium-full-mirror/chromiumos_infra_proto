@@ -138,6 +138,12 @@ message ModelTestEffortConfig {
     repeated TestPlan test_plan = 2;
   }
 
+  message EntryPointSource {
+    string method = 1;
+    string bucket = 2;
+    string source = 3;
+  }
+
   // Test Effort ID
   uint32 id = 1;
 
@@ -225,6 +231,9 @@ message ModelTestEffortConfig {
   FirmwareTargetDefinition fw_targets = 24;
 
   repeated DeviceUnderTest duts = 25;
+
+  // How the test effort was created
+  EntryPointSource entry_point_source = 26;
 }
 
 message ModelTestEffortConfigs {
