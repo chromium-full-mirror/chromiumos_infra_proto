@@ -12120,6 +12120,14 @@
                   "number": 3,
                   "type": "TYPE_ENUM",
                   "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
+                },
+                {
+                  "jsonName": "osBuildTarget",
+                  "label": "LABEL_REPEATED",
+                  "name": "os_build_target",
+                  "number": 4,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.OSBuildTarget"
                 }
               ],
               "name": "PreviousTestEffortVersion"
@@ -12279,7 +12287,8 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "auto_qual/test_effort.proto"
+        "auto_qual/test_effort.proto",
+        "auto_qual/os_build_target.proto"
       ],
       "messageType": [
         {
@@ -12305,6 +12314,14 @@
               "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
+            },
+            {
+              "jsonName": "osBuildTarget",
+              "label": "LABEL_REPEATED",
+              "name": "os_build_target",
+              "number": 6,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.OSBuildTarget"
             },
             {
               "jsonName": "requiredTest",
@@ -12343,6 +12360,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "auto_qual/os_build_target.proto",
         "auto_qual/test_effort.proto",
         "auto_qual/test.proto"
       ],
@@ -12356,6 +12374,14 @@
               "number": 1,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
+            },
+            {
+              "jsonName": "osBuildTarget",
+              "label": "LABEL_REPEATED",
+              "name": "os_build_target",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.OSBuildTarget"
             },
             {
               "jsonName": "test",

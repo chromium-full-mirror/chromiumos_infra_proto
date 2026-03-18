@@ -112,7 +112,9 @@ message ModelTestEffortConfig {
   message PreviousTestEffortVersion {
     FirmwareTestEffortVersion ap_version = 1;
     FirmwareTestEffortVersion ec_version = 2;
+    // DEPRECATED use os_build_target
     repeated OsType os_test_effort_type = 3;
+    repeated OSBuildTarget os_build_target = 4;
   }
 
   message AdditionalTesting {
