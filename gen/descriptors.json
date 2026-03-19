@@ -11147,15 +11147,15 @@
                   "number": 0
                 },
                 {
-                  "name": "TEST_PLAN",
+                  "name": "OS",
                   "number": 1
                 },
                 {
-                  "name": "TEST",
+                  "name": "TEST_PLAN",
                   "number": 2
                 },
                 {
-                  "name": "OS",
+                  "name": "TEST",
                   "number": 3
                 },
                 {

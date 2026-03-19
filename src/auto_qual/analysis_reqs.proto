@@ -12,9 +12,9 @@ message TestRequirement {
   // Hierarchies will be enforced in ascending order.
   enum HierarchyEnforcement {
     HIERARCHY_ENFORCEMENT_UNSPECIFIED = 0;
-    TEST_PLAN = 1;
-    TEST = 2;
-    OS = 3;
+    OS = 1;
+    TEST_PLAN = 2;
+    TEST = 3;
     BOARD = 4;
     MODEL = 5;
     AP_RO_VERSION = 6;
