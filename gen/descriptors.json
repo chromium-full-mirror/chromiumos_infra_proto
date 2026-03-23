@@ -11546,6 +11546,13 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "productName",
+              "label": "LABEL_OPTIONAL",
+              "name": "product_name",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "releaseConfiguration",
               "label": "LABEL_OPTIONAL",
               "name": "release_configuration",

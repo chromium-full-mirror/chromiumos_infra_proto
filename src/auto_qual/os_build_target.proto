@@ -26,6 +26,20 @@ message AndroidBuildTarget {
   // Defaults to `git_main-throttled`.
   string busytown_branch_name = 1;
 
+  // Product name of the build target.
+  //
+  // Supports string formatting with {board} and {model}.
+  // If left empty, it defaults to the board name.
+  //
+  // This typically corresponds to the first part of a lunch target string,
+  // for example, the "brya" in "brya-trunk_staging-eng".
+  //
+  // Examples:
+  // - "{board}" -> "brya"
+  // - "{model}" -> "navi"
+  // - "{board}_corp" -> "brya_corp"
+  string product_name = 4;
+
   // Specifies the release configuration of the build target.
   //
   // This typically corresponds to the middle part of a lunch target string,
