@@ -12196,9 +12196,7 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "google/protobuf/descriptor.proto",
-        "auto_qual/test_effort.proto",
-        "auto_qual/os_build_target.proto"
+        "auto_qual/test_effort.proto"
       ],
       "messageType": [
         {
@@ -12211,59 +12209,6 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "models",
-              "label": "LABEL_REPEATED",
-              "name": "models",
-              "number": 2,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "testPlanName",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_plan_name",
-              "number": 8,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "firmwareType",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_type",
-              "number": 5,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareType"
-            },
-            {
-              "jsonName": "testEffortType",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_effort_type",
-              "number": 6,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.TestEffortType"
-            },
-            {
-              "jsonName": "osBuildTargets",
-              "label": "LABEL_REPEATED",
-              "name": "os_build_targets",
-              "number": 7,
-              "options": {
-                "deprecated": true
-              },
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.OSBuildTarget"
-            },
-            {
               "jsonName": "testEffortTemplate",
               "label": "LABEL_OPTIONAL",
               "name": "test_effort_template",
@@ -12272,7 +12217,29 @@
               "typeName": ".auto_qual.ModelTestEffortConfig"
             }
           ],
-          "name": "BuilderQualConfig"
+          "name": "BuilderQualConfig",
+          "reservedRange": [
+            {
+              "end": 3,
+              "start": 2
+            },
+            {
+              "end": 6,
+              "start": 5
+            },
+            {
+              "end": 7,
+              "start": 6
+            },
+            {
+              "end": 8,
+              "start": 7
+            },
+            {
+              "end": 9,
+              "start": 8
+            }
+          ]
         },
         {
           "field": [

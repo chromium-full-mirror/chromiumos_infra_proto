@@ -6,14 +6,17 @@ syntax = "proto3";
 
 package auto_qual;
 
-import "google/protobuf/descriptor.proto";
 import "auto_qual/test_effort.proto";
-import "auto_qual/os_build_target.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
 // Defines how to generate Test Efforts from LUCI Firmware Builders.
 message BuilderQualConfig {
+  // Reserved tags for previously deprecated fields:
+  // 2: models, 5: firmware_type, 6: test_effort_type, 7: os_build_targets, 8:
+  // test_plan_name
+  reserved 2, 5, 6, 7, 8;
+
   // The name of the firmware builder.
   // This can be a SQL like pattern.
   //
@@ -22,36 +25,7 @@ message BuilderQualConfig {
   //   * firmware-android-brya-%
   string builder_name = 1;
 
-  // DEPRECATED: Will be deprecated later. Use test_effort_template.devices
-  // instead. A list of hardware models to generate qualification requests for.
-  // The builder must generate firmware for the models specified here.
-  // If this list is empty, then no models will be qualified.
-  repeated string models = 2 [ deprecated = true ];
-
-  // DEPRECATED: Will be deprecated later. Use
-  // test_effort_template.test_plan instead. Name of the test plan. Maps to
-  // a local path within the auto qual repo containing the TestPlan text proto.
-  // e.g: avs/firmware which maps to test_plans/avs/firmware.txtpb
-  string test_plan_name = 8 [ deprecated = true ];
-
-  // DEPRECATED: Will be deprecated later. Use
-  // test_effort_template.firmware_type instead. RO+RW or RW Test Effort.
-  ModelTestEffortConfig.FirmwareType firmware_type = 5 [ deprecated = true ];
-
-  // DEPRECATED: Will be deprecated later. Use
-  // test_effort_template.test_effort_type instead. Test Effort type from
-  // enumerated type AP, EC, AP_EC
-  ModelTestEffortConfig.TestEffortType test_effort_type = 6
-      [ deprecated = true ];
-
-  // DEPRECATED: Will be deprecated later. Use
-  // test_effort_template.os_build_target instead. The operating systems to
-  // generate test efforts for. If this list is empty, then no qualifications
-  // will be generated.
-  repeated OSBuildTarget os_build_targets = 7 [ deprecated = true ];
-
   // The test effort configuration to use as a base/template for this builder.
-  // This consolidates and replaces the deprecated fields above.
   ModelTestEffortConfig test_effort_template = 9;
 }
 
