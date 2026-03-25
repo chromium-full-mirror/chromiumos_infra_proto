@@ -66,6 +66,11 @@ message AndroidBuildTarget {
   //
   // Defaults to `userdebug`
   string build_variant = 3;
+
+  // Specifies the Build ID to be used.
+  //
+  // This is the specific Build ID targeted to test against.
+  string build_id = 5;
 }
 
 message ChromeosBuildTarget {}

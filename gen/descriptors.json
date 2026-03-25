@@ -11565,6 +11565,13 @@
               "name": "build_variant",
               "number": 3,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buildId",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_id",
+              "number": 5,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "AndroidBuildTarget"
