@@ -300,6 +300,28 @@ message UprevVersionedPackageRequest {
   repeated chromiumos.BuildTarget build_targets = 4;
 }
 
+message UprevVersionFileRequest {
+  // The chroot path. Required
+  chromiumos.Chroot chroot = 1;
+
+  // The file to uprev.
+  string file_path = 2;
+
+  message GitRef {
+    // Relative path to the git repository.
+    string repository = 1;
+
+    // The name of the git ref.
+    string ref = 2;
+
+    // The exact sha1 of the git ref.
+    string revision = 3;
+  }
+
+  // The versions to consider for an update
+  repeated GitRef versions = 3;
+}
+
 message UprevPackagesResponse {
   message Ebuild { string path = 1; }
 
@@ -316,9 +338,22 @@ message UprevPackagesResponse {
   string additional_commit_info = 4;
 }
 
+message UprevFileResponse {
+  // The list of files that were modified. Contains added and deleted files.
+  repeated string modified_files = 1;
+
+  // The new version that was uprevved to when an uprev was completed.
+  string version = 2;
+}
+
 message UprevVersionedPackageResponse {
   // list of uprev responses.
   repeated UprevPackagesResponse responses = 1;
+}
+
+message UprevVersionFileResponse {
+  // List of uprev responses
+  repeated UprevFileResponse responses = 1;
 }
 
 message RevBumpChromeRequest {
@@ -406,6 +441,18 @@ service PackageService {
   // Added in R79.
   rpc UprevVersionedPackage(UprevVersionedPackageRequest)
       returns (UprevVersionedPackageResponse) {
+    option (method_options) = {
+      method_chroot_assert : OUTSIDE,
+    };
+  }
+
+  // Uprev a non-ebuild file that contains a version. (e.g. LKGM)
+  // This endpoint iterates over a list of git refs t hat represent versions
+  // and searches for a new version, updating and upreving the version file
+  // if such a version is found. The exact behavior depends on the file.
+  // Added in R148
+  rpc UprevVersionFile(UprevVersionFileRequest)
+      returns (UprevVersionFileResponse) {
     option (method_options) = {
       method_chroot_assert : OUTSIDE,
     };

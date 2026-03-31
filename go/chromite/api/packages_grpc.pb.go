@@ -68,6 +68,12 @@ type PackageServiceClient interface {
 	// if such a version is found. The exact behavior depends on the package.
 	// Added in R79.
 	UprevVersionedPackage(ctx context.Context, in *UprevVersionedPackageRequest, opts ...grpc.CallOption) (*UprevVersionedPackageResponse, error)
+	// Uprev a non-ebuild file that contains a version. (e.g. LKGM)
+	// This endpoint iterates over a list of git refs t hat represent versions
+	// and searches for a new version, updating and upreving the version file
+	// if such a version is found. The exact behavior depends on the file.
+	// Added in R148
+	UprevVersionFile(ctx context.Context, in *UprevVersionFileRequest, opts ...grpc.CallOption) (*UprevVersionFileResponse, error)
 }
 
 type packageServiceClient struct {
@@ -186,6 +192,15 @@ func (c *packageServiceClient) UprevVersionedPackage(ctx context.Context, in *Up
 	return out, nil
 }
 
+func (c *packageServiceClient) UprevVersionFile(ctx context.Context, in *UprevVersionFileRequest, opts ...grpc.CallOption) (*UprevVersionFileResponse, error) {
+	out := new(UprevVersionFileResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.PackageService/UprevVersionFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PackageServiceServer is the server API for PackageService service.
 // All implementations must embed UnimplementedPackageServiceServer
 // for forward compatibility
@@ -236,6 +251,12 @@ type PackageServiceServer interface {
 	// if such a version is found. The exact behavior depends on the package.
 	// Added in R79.
 	UprevVersionedPackage(context.Context, *UprevVersionedPackageRequest) (*UprevVersionedPackageResponse, error)
+	// Uprev a non-ebuild file that contains a version. (e.g. LKGM)
+	// This endpoint iterates over a list of git refs t hat represent versions
+	// and searches for a new version, updating and upreving the version file
+	// if such a version is found. The exact behavior depends on the file.
+	// Added in R148
+	UprevVersionFile(context.Context, *UprevVersionFileRequest) (*UprevVersionFileResponse, error)
 	mustEmbedUnimplementedPackageServiceServer()
 }
 
@@ -278,6 +299,9 @@ func (UnimplementedPackageServiceServer) Uprev(context.Context, *UprevPackagesRe
 }
 func (UnimplementedPackageServiceServer) UprevVersionedPackage(context.Context, *UprevVersionedPackageRequest) (*UprevVersionedPackageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UprevVersionedPackage not implemented")
+}
+func (UnimplementedPackageServiceServer) UprevVersionFile(context.Context, *UprevVersionFileRequest) (*UprevVersionFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UprevVersionFile not implemented")
 }
 func (UnimplementedPackageServiceServer) mustEmbedUnimplementedPackageServiceServer() {}
 
@@ -508,6 +532,24 @@ func _PackageService_UprevVersionedPackage_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PackageService_UprevVersionFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UprevVersionFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).UprevVersionFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.PackageService/UprevVersionFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).UprevVersionFile(ctx, req.(*UprevVersionFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PackageService_ServiceDesc is the grpc.ServiceDesc for PackageService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -562,6 +604,10 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UprevVersionedPackage",
 			Handler:    _PackageService_UprevVersionedPackage_Handler,
+		},
+		{
+			MethodName: "UprevVersionFile",
+			Handler:    _PackageService_UprevVersionFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

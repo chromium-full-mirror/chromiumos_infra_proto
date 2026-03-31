@@ -8939,6 +8939,62 @@
         {
           "field": [
             {
+              "jsonName": "chroot",
+              "label": "LABEL_OPTIONAL",
+              "name": "chroot",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.Chroot"
+            },
+            {
+              "jsonName": "filePath",
+              "label": "LABEL_OPTIONAL",
+              "name": "file_path",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "versions",
+              "label": "LABEL_REPEATED",
+              "name": "versions",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UprevVersionFileRequest.GitRef"
+            }
+          ],
+          "name": "UprevVersionFileRequest",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "repository",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "repository",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "ref",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ref",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "revision",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "revision",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "GitRef"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
               "jsonName": "modifiedEbuilds",
               "label": "LABEL_REPEATED",
               "name": "modified_ebuilds",
@@ -8988,6 +9044,25 @@
         {
           "field": [
             {
+              "jsonName": "modifiedFiles",
+              "label": "LABEL_REPEATED",
+              "name": "modified_files",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "UprevFileResponse"
+        },
+        {
+          "field": [
+            {
               "jsonName": "responses",
               "label": "LABEL_REPEATED",
               "name": "responses",
@@ -8997,6 +9072,19 @@
             }
           ],
           "name": "UprevVersionedPackageResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "responses",
+              "label": "LABEL_REPEATED",
+              "name": "responses",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UprevFileResponse"
+            }
+          ],
+          "name": "UprevVersionFileResponse"
         },
         {
           "name": "RevBumpChromeRequest"
@@ -9084,6 +9172,16 @@
                 }
               },
               "outputType": ".chromite.api.UprevVersionedPackageResponse"
+            },
+            {
+              "inputType": ".chromite.api.UprevVersionFileRequest",
+              "name": "UprevVersionFile",
+              "options": {
+                "[chromite.api.method_options]": {
+                  "methodChrootAssert": "OUTSIDE"
+                }
+              },
+              "outputType": ".chromite.api.UprevVersionFileResponse"
             }
           ],
           "name": "PackageService",
