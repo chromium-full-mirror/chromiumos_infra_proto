@@ -33198,6 +33198,24 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "testBranch",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_branch",
+              "number": 20,
+              "oneofIndex": 6,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build",
+              "number": 21,
+              "oneofIndex": 7,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "build",
               "label": "LABEL_OPTIONAL",
               "name": "build",
@@ -33334,6 +33352,12 @@
             },
             {
               "name": "_test_target"
+            },
+            {
+              "name": "_test_branch"
+            },
+            {
+              "name": "_test_build"
             }
           ]
         },
