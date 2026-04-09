@@ -171,6 +171,10 @@ message RunCopybotResponse {
   // hashes which conflicted.
   message MergeConflictCommit { string hash = 1; }
   repeated MergeConflictCommit merge_conflicts = 2;
+
+  // The summary for the overall result on luci.
+  // This is the place to put warning messages.
+  string summary_markdown = 3;
 }
 
 service CopybotService {

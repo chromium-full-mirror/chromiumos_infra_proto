@@ -14158,6 +14158,13 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotResponse.MergeConflictCommit"
+            },
+            {
+              "jsonName": "summaryMarkdown",
+              "label": "LABEL_OPTIONAL",
+              "name": "summary_markdown",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunCopybotResponse",
