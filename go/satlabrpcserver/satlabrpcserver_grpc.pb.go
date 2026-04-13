@@ -49,6 +49,10 @@ type SatlabRpcServiceClient interface {
 	ListAndroidSuites(ctx context.Context, in *ListAndroidSuitesRequest, opts ...grpc.CallOption) (*ListAndroidSuitesResponse, error)
 	ValidateAndroidBuild(ctx context.Context, in *ValidateAndroidBuildRequest, opts ...grpc.CallOption) (*ValidateAndroidBuildResponse, error)
 	RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error)
+	// Autoqual
+	ListTestEfforts(ctx context.Context, in *ListTestEffortsRequest, opts ...grpc.CallOption) (*ListTestEffortsResponse, error)
+	CancelTestEffort(ctx context.Context, in *CancelTestEffortRequest, opts ...grpc.CallOption) (*CancelTestEffortResponse, error)
+	CreateTestEffort(ctx context.Context, in *CreateTestEffortRequest, opts ...grpc.CallOption) (*CreateTestEffortResponse, error)
 	// services to run different types of test suites
 	RunSuite(ctx context.Context, in *RunSuiteRequest, opts ...grpc.CallOption) (*RunSuiteResponse, error)
 	RunTest(ctx context.Context, in *RunTestRequest, opts ...grpc.CallOption) (*RunTestResponse, error)
@@ -309,6 +313,33 @@ func (c *satlabRpcServiceClient) ValidateAndroidBuild(ctx context.Context, in *V
 func (c *satlabRpcServiceClient) RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error) {
 	out := new(RunAndroidLabqualResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunAndroidLabqual", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListTestEfforts(ctx context.Context, in *ListTestEffortsRequest, opts ...grpc.CallOption) (*ListTestEffortsResponse, error) {
+	out := new(ListTestEffortsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListTestEfforts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) CancelTestEffort(ctx context.Context, in *CancelTestEffortRequest, opts ...grpc.CallOption) (*CancelTestEffortResponse, error) {
+	out := new(CancelTestEffortResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/CancelTestEffort", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) CreateTestEffort(ctx context.Context, in *CreateTestEffortRequest, opts ...grpc.CallOption) (*CreateTestEffortResponse, error) {
+	out := new(CreateTestEffortResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/CreateTestEffort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -741,6 +772,10 @@ type SatlabRpcServiceServer interface {
 	ListAndroidSuites(context.Context, *ListAndroidSuitesRequest) (*ListAndroidSuitesResponse, error)
 	ValidateAndroidBuild(context.Context, *ValidateAndroidBuildRequest) (*ValidateAndroidBuildResponse, error)
 	RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error)
+	// Autoqual
+	ListTestEfforts(context.Context, *ListTestEffortsRequest) (*ListTestEffortsResponse, error)
+	CancelTestEffort(context.Context, *CancelTestEffortRequest) (*CancelTestEffortResponse, error)
+	CreateTestEffort(context.Context, *CreateTestEffortRequest) (*CreateTestEffortResponse, error)
 	// services to run different types of test suites
 	RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error)
 	RunTest(context.Context, *RunTestRequest) (*RunTestResponse, error)
@@ -865,6 +900,15 @@ func (UnimplementedSatlabRpcServiceServer) ValidateAndroidBuild(context.Context,
 }
 func (UnimplementedSatlabRpcServiceServer) RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunAndroidLabqual not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListTestEfforts(context.Context, *ListTestEffortsRequest) (*ListTestEffortsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTestEfforts not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) CancelTestEffort(context.Context, *CancelTestEffortRequest) (*CancelTestEffortResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelTestEffort not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) CreateTestEffort(context.Context, *CreateTestEffortRequest) (*CreateTestEffortResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTestEffort not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) RunSuite(context.Context, *RunSuiteRequest) (*RunSuiteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunSuite not implemented")
@@ -1406,6 +1450,60 @@ func _SatlabRpcService_RunAndroidLabqual_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).RunAndroidLabqual(ctx, req.(*RunAndroidLabqualRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListTestEfforts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTestEffortsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListTestEfforts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListTestEfforts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListTestEfforts(ctx, req.(*ListTestEffortsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_CancelTestEffort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelTestEffortRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).CancelTestEffort(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/CancelTestEffort",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).CancelTestEffort(ctx, req.(*CancelTestEffortRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_CreateTestEffort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTestEffortRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).CreateTestEffort(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/CreateTestEffort",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).CreateTestEffort(ctx, req.(*CreateTestEffortRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2216,6 +2314,18 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunAndroidLabqual",
 			Handler:    _SatlabRpcService_RunAndroidLabqual_Handler,
+		},
+		{
+			MethodName: "ListTestEfforts",
+			Handler:    _SatlabRpcService_ListTestEfforts_Handler,
+		},
+		{
+			MethodName: "CancelTestEffort",
+			Handler:    _SatlabRpcService_CancelTestEffort_Handler,
+		},
+		{
+			MethodName: "CreateTestEffort",
+			Handler:    _SatlabRpcService_CreateTestEffort_Handler,
 		},
 		{
 			MethodName: "RunSuite",

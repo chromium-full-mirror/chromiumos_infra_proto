@@ -33645,6 +33645,302 @@
             }
           ],
           "name": "RunAndroidLabqualResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "pageSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_size",
+              "number": 1,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "pageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "page_token",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListTestEffortsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "nextPageToken",
+              "label": "LABEL_OPTIONAL",
+              "name": "next_page_token",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "efforts",
+              "label": "LABEL_REPEATED",
+              "name": "efforts",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TestEffort"
+            },
+            {
+              "jsonName": "totalSize",
+              "label": "LABEL_OPTIONAL",
+              "name": "total_size",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "ListTestEffortsResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CancelTestEffortRequest"
+        },
+        {
+          "name": "CancelTestEffortResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "effort",
+              "label": "LABEL_OPTIONAL",
+              "name": "effort",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TestEffort"
+            }
+          ],
+          "name": "CreateTestEffortRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CreateTestEffortResponse"
+        },
+        {
+          "enumType": [
+            {
+              "name": "State",
+              "value": [
+                {
+                  "name": "STATE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "CREATED",
+                  "number": 1
+                },
+                {
+                  "name": "INCOMPLETE",
+                  "number": 2
+                },
+                {
+                  "name": "FAILED",
+                  "number": 3
+                },
+                {
+                  "name": "UNREPORTED",
+                  "number": 4
+                },
+                {
+                  "name": "NOT_APPLICABLE",
+                  "number": 5
+                },
+                {
+                  "name": "SUCCEEDED",
+                  "number": 6
+                },
+                {
+                  "name": "CANCEL_REQUESTED",
+                  "number": 7
+                },
+                {
+                  "name": "CANCELLED",
+                  "number": 8
+                },
+                {
+                  "name": "CANCEL_FAILED",
+                  "number": 9
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "id",
+              "label": "LABEL_OPTIONAL",
+              "name": "id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "satlabId",
+              "label": "LABEL_OPTIONAL",
+              "name": "satlab_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pools",
+              "label": "LABEL_REPEATED",
+              "name": "pools",
+              "number": 5,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TestEffort.Pool"
+            },
+            {
+              "jsonName": "testplan",
+              "label": "LABEL_OPTIONAL",
+              "name": "testplan",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testhausUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "testhaus_url",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "state",
+              "label": "LABEL_OPTIONAL",
+              "name": "state",
+              "number": 8,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.TestEffort.State"
+            },
+            {
+              "jsonName": "createdAt",
+              "label": "LABEL_OPTIONAL",
+              "name": "created_at",
+              "number": 9,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "android",
+              "label": "LABEL_OPTIONAL",
+              "name": "android",
+              "number": 10,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TestEffort.AndroidBuildTarget"
+            }
+          ],
+          "name": "TestEffort",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "branch",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "branch",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "target",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "target",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "buildId",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "build_id",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "product",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "product",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "AndroidBuildTarget"
+            },
+            {
+              "enumType": [
+                {
+                  "name": "PoolType",
+                  "value": [
+                    {
+                      "name": "POOL_TYPE_UNSPECIFIED",
+                      "number": 0
+                    },
+                    {
+                      "name": "DEFAULT_POOL",
+                      "number": 1
+                    },
+                    {
+                      "name": "FAFT_PD",
+                      "number": 2
+                    },
+                    {
+                      "name": "EXTENDED_DURATION",
+                      "number": 3
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "label",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "label",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "type",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "type",
+                  "number": 2,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".satlabrpcserver.TestEffort.Pool.PoolType"
+                }
+              ],
+              "name": "Pool"
+            }
+          ],
+          "oneofDecl": [
+            {
+              "name": "os"
+            }
+          ]
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -33769,6 +34065,21 @@
               "inputType": ".satlabrpcserver.RunAndroidLabqualRequest",
               "name": "RunAndroidLabqual",
               "outputType": ".satlabrpcserver.RunAndroidLabqualResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListTestEffortsRequest",
+              "name": "ListTestEfforts",
+              "outputType": ".satlabrpcserver.ListTestEffortsResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.CancelTestEffortRequest",
+              "name": "CancelTestEffort",
+              "outputType": ".satlabrpcserver.CancelTestEffortResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.CreateTestEffortRequest",
+              "name": "CreateTestEffort",
+              "outputType": ".satlabrpcserver.CreateTestEffortResponse"
             },
             {
               "inputType": ".satlabrpcserver.RunSuiteRequest",
