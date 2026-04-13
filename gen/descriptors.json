@@ -24111,6 +24111,10 @@
                 {
                   "name": "SOC_X1P42100",
                   "number": 53
+                },
+                {
+                  "name": "SOC_CALYPSO",
+                  "number": 54
                 }
               ]
             },
