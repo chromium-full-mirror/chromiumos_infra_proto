@@ -24115,6 +24115,10 @@
                 {
                   "name": "SOC_CALYPSO",
                   "number": 54
+                },
+                {
+                  "name": "SOC_NOVA_LAKE",
+                  "number": 55
                 }
               ]
             },
