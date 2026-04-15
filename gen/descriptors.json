@@ -14949,6 +14949,14 @@
                   "typeName": ".chromiumos.BuilderConfig.Orchestrator.FollowOnOrchestrator"
                 },
                 {
+                  "jsonName": "followOnBuilders",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "follow_on_builders",
+                  "number": 7,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromiumos.BuilderConfig.Orchestrator.FollowOnBuilders"
+                },
+                {
                   "jsonName": "requireStableDevices",
                   "label": "LABEL_OPTIONAL",
                   "name": "require_stable_devices",
@@ -15033,6 +15041,32 @@
                     }
                   ],
                   "name": "FollowOnOrchestrator"
+                },
+                {
+                  "field": [
+                    {
+                      "jsonName": "names",
+                      "label": "LABEL_REPEATED",
+                      "name": "names",
+                      "number": 1,
+                      "type": "TYPE_STRING"
+                    },
+                    {
+                      "jsonName": "awaitCompletion",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "await_completion",
+                      "number": 2,
+                      "type": "TYPE_BOOL"
+                    },
+                    {
+                      "jsonName": "revBump",
+                      "label": "LABEL_OPTIONAL",
+                      "name": "rev_bump",
+                      "number": 3,
+                      "type": "TYPE_BOOL"
+                    }
+                  ],
+                  "name": "FollowOnBuilders"
                 }
               ],
               "reservedRange": [

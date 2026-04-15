@@ -236,6 +236,20 @@ message BuilderConfig {
     }
     FollowOnOrchestrator follow_on_orchestrator = 4;
 
+    // Follow on builders to launch. These are additional builders that are
+    // launched after the orchestrator's main child builders complete.
+    message FollowOnBuilders {
+      // Builder names to launch.
+      repeated string names = 1;
+
+      // Whether to wait for the follow on builders to finish.
+      bool await_completion = 2;
+
+      // Whether to trigger a rev bump for these builders.
+      bool rev_bump = 3;
+    }
+    FollowOnBuilders follow_on_builders = 7;
+
     // If require_stable_devices is true, the tests are scheduled to run on
     // devices with label-device-stable: True. The label-device-stable
     // dimension is typically used to filter out devices that have known
