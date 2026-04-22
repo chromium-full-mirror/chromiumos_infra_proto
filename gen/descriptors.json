@@ -18705,6 +18705,52 @@
         },
         {
           "name": "SignViaOnlineHsmResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "releaseKeysCheckout",
+              "label": "LABEL_OPTIONAL",
+              "name": "release_keys_checkout",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "keysetName",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset_name",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "CreateKeysHsmRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "requestStatus",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RequestStatus"
+            }
+          ],
+          "name": "CreateKeysHsmResponse"
         }
       ],
       "name": "chromite/api/signing.proto",
@@ -18744,6 +18790,12 @@
               "name": "SignViaOnlineHsm",
               "options": {},
               "outputType": ".chromite.api.SignViaOnlineHsmResponse"
+            },
+            {
+              "inputType": ".chromite.api.CreateKeysHsmRequest",
+              "name": "CreateKeysHsm",
+              "options": {},
+              "outputType": ".chromite.api.CreateKeysHsmResponse"
             }
           ],
           "name": "SigningService",

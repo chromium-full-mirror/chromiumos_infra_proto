@@ -169,6 +169,24 @@ message SignViaOnlineHsmRequest {
 
 message SignViaOnlineHsmResponse {}
 
+message CreateKeysHsmRequest {
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 1;
+
+  // Path to the local checkout of the chromiumos/platform/release-keys.
+  string release_keys_checkout = 2;
+
+  bool dry_run = 3;
+
+  string keyset_name = 4;
+}
+
+message CreateKeysHsmResponse { RequestStatus request_status = 1; }
+
 // The signing service.
 service SigningService {
   option (service_options) = {
@@ -199,4 +217,7 @@ service SigningService {
   // Initiate a signing operation against the online HSM.
   rpc SignViaOnlineHsm(SignViaOnlineHsmRequest)
       returns (SignViaOnlineHsmResponse) {};
+
+  // Request key creation from the online HSM.
+  rpc CreateKeysHsm(CreateKeysHsmRequest) returns (CreateKeysHsmResponse) {};
 }
