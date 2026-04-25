@@ -11401,6 +11401,135 @@
         {
           "field": [
             {
+              "jsonName": "modelName",
+              "label": "LABEL_OPTIONAL",
+              "name": "model_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sku",
+              "label": "LABEL_OPTIONAL",
+              "name": "sku",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "IndividualTarget"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "models",
+              "label": "LABEL_REPEATED",
+              "name": "models",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.IndividualTarget"
+            }
+          ],
+          "name": "UnibuildTarget"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "individual",
+              "label": "LABEL_OPTIONAL",
+              "name": "individual",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.IndividualTarget"
+            },
+            {
+              "jsonName": "unibuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "unibuild",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.UnibuildTarget"
+            }
+          ],
+          "name": "BuildTargetType",
+          "oneofDecl": [
+            {
+              "name": "build"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "HardwarePhase",
+              "value": [
+                {
+                  "name": "HARDWARE_PHASE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "EVT",
+                  "number": 1
+                },
+                {
+                  "name": "DVT",
+                  "number": 2
+                },
+                {
+                  "name": "PVT",
+                  "number": 3
+                },
+                {
+                  "name": "MP",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "phase",
+              "label": "LABEL_OPTIONAL",
+              "name": "phase",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.DeviceUnderTest.HardwarePhase"
+            },
+            {
+              "jsonName": "dut",
+              "label": "LABEL_OPTIONAL",
+              "name": "dut",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BuildTargetType"
+            }
+          ],
+          "name": "DeviceUnderTest"
+        }
+      ],
+      "name": "auto_qual/build_info.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "field": [
+            {
               "jsonName": "flag",
               "label": "LABEL_OPTIONAL",
               "name": "flag",
@@ -11964,7 +12093,8 @@
         "google/protobuf/descriptor.proto",
         "auto_qual/test.proto",
         "auto_qual/os_build_target.proto",
-        "auto_qual/firmware_target.proto"
+        "auto_qual/firmware_target.proto",
+        "auto_qual/build_info.proto"
       ],
       "messageType": [
         {
@@ -12257,6 +12387,14 @@
               "number": 24,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.FirmwareTargetDefinition"
+            },
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 25,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.DeviceUnderTest"
             }
           ],
           "name": "ModelTestEffortConfig",
