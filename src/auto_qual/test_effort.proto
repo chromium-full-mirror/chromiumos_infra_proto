@@ -145,7 +145,7 @@ message ModelTestEffortConfig {
   }
 
   // Test Effort ID
-  uint32 id = 1;
+  string id = 1;
 
   // Test Effort Name
   string name = 2;
@@ -234,6 +234,8 @@ message ModelTestEffortConfig {
 
   // How the test effort was created
   EntryPointSource entry_point_source = 26;
+
+  string user_request_id = 27;
 }
 
 message ModelTestEffortConfigs {

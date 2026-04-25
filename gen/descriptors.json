@@ -12223,7 +12223,7 @@
               "label": "LABEL_OPTIONAL",
               "name": "id",
               "number": 1,
-              "type": "TYPE_UINT32"
+              "type": "TYPE_STRING"
             },
             {
               "jsonName": "name",
@@ -12419,6 +12419,13 @@
               "number": 26,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.EntryPointSource"
+            },
+            {
+              "jsonName": "userRequestId",
+              "label": "LABEL_OPTIONAL",
+              "name": "user_request_id",
+              "number": 27,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ModelTestEffortConfig",
