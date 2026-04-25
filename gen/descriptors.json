@@ -11804,6 +11804,22 @@
           "name": "AndroidBuildTarget"
         },
         {
+          "field": [
+            {
+              "jsonName": "targetMilestoneNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_milestone_number",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "branchName",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
           "name": "ChromeosBuildTarget"
         },
         {

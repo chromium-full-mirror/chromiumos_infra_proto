@@ -152,6 +152,7 @@ message ModelTestEffortConfig {
   // Device to be tested
   repeated DeviceInfo devices = 4;
 
+  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
   // Branch to get firmware from
   string branch_name = 5;
 
@@ -167,6 +168,7 @@ message ModelTestEffortConfig {
   // HW phase in test
   HardwareType testing_hardware = 8;
 
+  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
   // Target milestone, to be used in test
   uint32 target_milestone_number = 9;
 

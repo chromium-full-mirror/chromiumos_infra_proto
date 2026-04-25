@@ -370,6 +370,7 @@ type ModelTestEffortConfig struct {
 	// DEPRECATED: will be removed soon. Use `duts` instead.
 	// Device to be tested
 	Devices []*ModelTestEffortConfig_DeviceInfo `protobuf:"bytes,4,rep,name=devices,proto3" json:"devices,omitempty"`
+	// DEPRECATED: will be removed soon. Use `os_build_target` instead.
 	// Branch to get firmware from
 	BranchName string `protobuf:"bytes,5,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
 	// DEPRECATED: will be removed soon. Use `fw_targets` instead.
@@ -381,6 +382,7 @@ type ModelTestEffortConfig struct {
 	// DEPRECATED: will be removed soon. Use `duts` instead.
 	// HW phase in test
 	TestingHardware ModelTestEffortConfig_HardwareType `protobuf:"varint,8,opt,name=testing_hardware,json=testingHardware,proto3,enum=auto_qual.ModelTestEffortConfig_HardwareType" json:"testing_hardware,omitempty"`
+	// DEPRECATED: will be removed soon. Use `os_build_target` instead.
 	// Target milestone, to be used in test
 	TargetMilestoneNumber uint32 `protobuf:"varint,9,opt,name=target_milestone_number,json=targetMilestoneNumber,proto3" json:"target_milestone_number,omitempty"`
 	// DEPRECATED: will be removed soon. Use `fw_targets` instead.

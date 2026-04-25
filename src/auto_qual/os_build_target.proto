@@ -73,7 +73,10 @@ message AndroidBuildTarget {
   uint32 build_id = 5;
 }
 
-message ChromeosBuildTarget {}
+message ChromeosBuildTarget {
+  uint32 target_milestone_number = 1;
+  string branch_name = 2;
+}
 
 // Specifies the Operating System build targets to test against.
 message OSBuildTarget {
