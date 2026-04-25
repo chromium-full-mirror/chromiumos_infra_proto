@@ -12107,6 +12107,7 @@
       },
       "dependency": [
         "google/protobuf/descriptor.proto",
+        "google/protobuf/timestamp.proto",
         "auto_qual/test.proto",
         "auto_qual/os_build_target.proto",
         "auto_qual/firmware_target.proto",
@@ -12426,6 +12427,14 @@
               "name": "user_request_id",
               "number": 27,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "generationTime",
+              "label": "LABEL_OPTIONAL",
+              "name": "generation_time",
+              "number": 28,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".google.protobuf.Timestamp"
             }
           ],
           "name": "ModelTestEffortConfig",

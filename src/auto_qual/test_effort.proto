@@ -7,6 +7,7 @@ syntax = "proto3";
 package auto_qual;
 
 import "google/protobuf/descriptor.proto";
+import "google/protobuf/timestamp.proto";
 import "auto_qual/test.proto";
 import "auto_qual/os_build_target.proto";
 import "auto_qual/firmware_target.proto";
@@ -236,6 +237,9 @@ message ModelTestEffortConfig {
   EntryPointSource entry_point_source = 26;
 
   string user_request_id = 27;
+
+  // generation_time
+  google.protobuf.Timestamp generation_time = 28;
 }
 
 message ModelTestEffortConfigs {
