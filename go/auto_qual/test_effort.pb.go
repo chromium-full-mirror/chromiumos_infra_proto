@@ -129,6 +129,7 @@ func (ModelTestEffortConfig_HardwareType) EnumDescriptor() ([]byte, []int) {
 	return file_auto_qual_test_effort_proto_rawDescGZIP(), []int{0, 1}
 }
 
+// DEPRECATED: Will be removed soon
 type ModelTestEffortConfig_OsType int32
 
 const (
@@ -282,6 +283,7 @@ func (ModelTestEffortConfig_TestEffortType) EnumDescriptor() ([]byte, []int) {
 	return file_auto_qual_test_effort_proto_rawDescGZIP(), []int{0, 4}
 }
 
+// DEPRECATED: Will be removed soon
 type ModelTestEffortConfig_TestPlan_TestPlanType int32
 
 const (

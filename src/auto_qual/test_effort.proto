@@ -29,6 +29,7 @@ message ModelTestEffortConfig {
     MP = 4;
   }
 
+  // DEPRECATED: Will be removed soon
   enum OsType {
     OS_TYPE_UNSPECIFIED = 0;
     CROS = 1;
@@ -50,6 +51,7 @@ message ModelTestEffortConfig {
   message TestPlan {
     reserved 2;
 
+    // DEPRECATED: Will be removed soon
     enum TestPlanType {
       TEST_PLAN_TYPE_UNSPECIFIED = 0;
       FIRMWARE_ENABLED = 1;
