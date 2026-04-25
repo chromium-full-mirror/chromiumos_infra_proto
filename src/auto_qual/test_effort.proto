@@ -9,12 +9,14 @@ package auto_qual;
 import "google/protobuf/descriptor.proto";
 import "auto_qual/test.proto";
 import "auto_qual/os_build_target.proto";
+import "auto_qual/firmware_target.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
 // Config for testing of a specific model.
 message ModelTestEffortConfig {
 
+  // DEPRECATED: Will be removed soon
   enum FirmwareType {
     FIRMWARE_TYPE_UNSPECIFIED = 0;
     RO_RW = 1;
@@ -86,6 +88,7 @@ message ModelTestEffortConfig {
     repeated Test test_overrides = 5;
   }
 
+  // DEPRECATED: Will be removed soon
   enum TestEffortType {
     TEST_EFFORT_TYPE_UNSPECIFIED = 0;
     AP = 1;
@@ -98,6 +101,7 @@ message ModelTestEffortConfig {
     string sku = 2;
   }
 
+  // DEPRECATED: Will be removed soon
   message FirmwareTestEffortVersion {
     uint32 major_version = 1;
     uint32 minor_version = 2;
@@ -105,6 +109,7 @@ message ModelTestEffortConfig {
     string uri = 4;
   }
 
+  // DEPRECATED: Will be removed soon
   message GscTestEffortVersion {
     uint32 minor_version = 1;
     uint32 major_version = 2;
@@ -112,7 +117,9 @@ message ModelTestEffortConfig {
   }
 
   message PreviousTestEffortVersion {
+    // DEPRECATED: Will be removed soon
     FirmwareTestEffortVersion ap_version = 1;
+    // DEPRECATED: Will be removed soon
     FirmwareTestEffortVersion ec_version = 2;
     // DEPRECATED use os_build_target
     repeated OsType os_test_effort_type = 3;
@@ -142,9 +149,11 @@ message ModelTestEffortConfig {
   // Branch to get firmware from
   string branch_name = 5;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // Test Effort type from enumerated type AP, EC, AP_EC
   TestEffortType test_effort_type = 6;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // RO or RW Test Effort
   FirmwareType firmware_type = 7;
 
@@ -154,21 +163,27 @@ message ModelTestEffortConfig {
   // Target milestone, to be used in test
   uint32 target_milestone_number = 9;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // Primary AP RO FW Test Version
   FirmwareTestEffortVersion ap_ro_firmware_build_cros_test_effort_version = 10;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // Primary AP RW FW Test Version
   FirmwareTestEffortVersion ap_rw_firmware_build_cros_test_effort_version = 11;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // Primary EC RO FW Test Version
   FirmwareTestEffortVersion ec_ro_firmware_build_cros_test_effort_version = 12;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // Primary EC RW FW Test Version
   FirmwareTestEffortVersion ec_rw_firmware_build_cros_test_effort_version = 13;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // All Previous RO FW Versions to test for compatibility
   repeated PreviousTestEffortVersion ro_firmware_build_cros_versions = 14;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // GSC Version to test with
   GscTestEffortVersion gsc_version = 15;
 
@@ -181,6 +196,7 @@ message ModelTestEffortConfig {
   // Max Test Retries
   uint32 max_retries = 18;
 
+  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
   // Latest RW FW Versions to test for compatibility
   PreviousTestEffortVersion latest_rw_firmware_versions = 19;
 
@@ -196,6 +212,8 @@ message ModelTestEffortConfig {
 
   // Additional testing already scheduled or completed
   repeated AdditionalTesting scheduled_testing = 23;
+
+  FirmwareTargetDefinition fw_targets = 24;
 }
 
 message ModelTestEffortConfigs {

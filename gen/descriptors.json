@@ -11718,10 +11718,253 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "BaseFirmwareVersionString"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "majorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "major_version",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "minorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor_version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "patchNumber",
+              "label": "LABEL_OPTIONAL",
+              "name": "patch_number",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "BaseFirmwareVersionStruct"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "minorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "minor_version",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "majorVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "major_version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "epoch",
+              "label": "LABEL_OPTIONAL",
+              "name": "epoch",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "GscFirmwareVersionStruct"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "baseVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "base_version",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareVersionStruct"
+            },
+            {
+              "jsonName": "baseVersionString",
+              "label": "LABEL_OPTIONAL",
+              "name": "base_version_string",
+              "number": 4,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareVersionString"
+            },
+            {
+              "jsonName": "gscVersion",
+              "label": "LABEL_OPTIONAL",
+              "name": "gsc_version",
+              "number": 5,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.GscFirmwareVersionStruct"
+            }
+          ],
+          "name": "FirmwareTargetVersion",
+          "oneofDecl": [
+            {
+              "name": "info"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTargetVersion"
+            }
+          ],
+          "name": "BaseFirmwareTarget"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ec",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareTarget"
+            },
+            {
+              "jsonName": "ap",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareTarget"
+            },
+            {
+              "jsonName": "gsc",
+              "label": "LABEL_OPTIONAL",
+              "name": "gsc",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareTarget"
+            },
+            {
+              "jsonName": "fpmcu",
+              "label": "LABEL_OPTIONAL",
+              "name": "fpmcu",
+              "number": 4,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareTarget"
+            }
+          ],
+          "name": "FirmwareTargetInfo",
+          "oneofDecl": [
+            {
+              "name": "info"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "ReadabilityType",
+              "value": [
+                {
+                  "name": "READABILITY_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "RO",
+                  "number": 1
+                },
+                {
+                  "name": "RW",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "readability",
+              "label": "LABEL_REPEATED",
+              "name": "readability",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.FirmwareTarget.ReadabilityType"
+            },
+            {
+              "jsonName": "fw",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTargetInfo"
+            }
+          ],
+          "name": "FirmwareTarget"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "current",
+              "label": "LABEL_REPEATED",
+              "name": "current",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTarget"
+            },
+            {
+              "jsonName": "previous",
+              "label": "LABEL_REPEATED",
+              "name": "previous",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTarget"
+            }
+          ],
+          "name": "FirmwareTargetDefinition"
+        }
+      ],
+      "name": "auto_qual/firmware_target.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "google/protobuf/descriptor.proto",
         "auto_qual/test.proto",
-        "auto_qual/os_build_target.proto"
+        "auto_qual/os_build_target.proto",
+        "auto_qual/firmware_target.proto"
       ],
       "messageType": [
         {
@@ -12006,6 +12249,14 @@
               "number": 23,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.AdditionalTesting"
+            },
+            {
+              "jsonName": "fwTargets",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw_targets",
+              "number": 24,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTargetDefinition"
             }
           ],
           "name": "ModelTestEffortConfig",
