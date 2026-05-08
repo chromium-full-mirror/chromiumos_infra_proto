@@ -49,6 +49,7 @@ type SatlabRpcServiceClient interface {
 	ListAndroidSuites(ctx context.Context, in *ListAndroidSuitesRequest, opts ...grpc.CallOption) (*ListAndroidSuitesResponse, error)
 	ValidateAndroidBuild(ctx context.Context, in *ValidateAndroidBuildRequest, opts ...grpc.CallOption) (*ValidateAndroidBuildResponse, error)
 	RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error)
+	ListDrive(ctx context.Context, in *ListDriveRequest, opts ...grpc.CallOption) (*ListDriveResponse, error)
 	// Autoqual
 	ListTestEfforts(ctx context.Context, in *ListTestEffortsRequest, opts ...grpc.CallOption) (*ListTestEffortsResponse, error)
 	CancelTestEffort(ctx context.Context, in *CancelTestEffortRequest, opts ...grpc.CallOption) (*CancelTestEffortResponse, error)
@@ -313,6 +314,15 @@ func (c *satlabRpcServiceClient) ValidateAndroidBuild(ctx context.Context, in *V
 func (c *satlabRpcServiceClient) RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error) {
 	out := new(RunAndroidLabqualResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/RunAndroidLabqual", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) ListDrive(ctx context.Context, in *ListDriveRequest, opts ...grpc.CallOption) (*ListDriveResponse, error) {
+	out := new(ListDriveResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListDrive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -772,6 +782,7 @@ type SatlabRpcServiceServer interface {
 	ListAndroidSuites(context.Context, *ListAndroidSuitesRequest) (*ListAndroidSuitesResponse, error)
 	ValidateAndroidBuild(context.Context, *ValidateAndroidBuildRequest) (*ValidateAndroidBuildResponse, error)
 	RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error)
+	ListDrive(context.Context, *ListDriveRequest) (*ListDriveResponse, error)
 	// Autoqual
 	ListTestEfforts(context.Context, *ListTestEffortsRequest) (*ListTestEffortsResponse, error)
 	CancelTestEffort(context.Context, *CancelTestEffortRequest) (*CancelTestEffortResponse, error)
@@ -900,6 +911,9 @@ func (UnimplementedSatlabRpcServiceServer) ValidateAndroidBuild(context.Context,
 }
 func (UnimplementedSatlabRpcServiceServer) RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunAndroidLabqual not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) ListDrive(context.Context, *ListDriveRequest) (*ListDriveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDrive not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) ListTestEfforts(context.Context, *ListTestEffortsRequest) (*ListTestEffortsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestEfforts not implemented")
@@ -1450,6 +1464,24 @@ func _SatlabRpcService_RunAndroidLabqual_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).RunAndroidLabqual(ctx, req.(*RunAndroidLabqualRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_ListDrive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDriveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).ListDrive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/ListDrive",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).ListDrive(ctx, req.(*ListDriveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2314,6 +2346,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunAndroidLabqual",
 			Handler:    _SatlabRpcService_RunAndroidLabqual_Handler,
+		},
+		{
+			MethodName: "ListDrive",
+			Handler:    _SatlabRpcService_ListDrive_Handler,
 		},
 		{
 			MethodName: "ListTestEfforts",

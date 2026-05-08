@@ -33560,6 +33560,24 @@
               "typeName": ".satlabrpcserver.RunRequest.Testplan"
             },
             {
+              "jsonName": "androidTestBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_test_build",
+              "number": 22,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.RunRequest.Build"
+            },
+            {
+              "jsonName": "drive",
+              "label": "LABEL_OPTIONAL",
+              "name": "drive",
+              "number": 23,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.RunRequest.Drive"
+            },
+            {
               "jsonName": "os",
               "label": "LABEL_OPTIONAL",
               "name": "os",
@@ -33578,7 +33596,7 @@
               "label": "LABEL_OPTIONAL",
               "name": "model",
               "number": 6,
-              "oneofIndex": 1,
+              "oneofIndex": 2,
               "proto3Optional": true,
               "type": "TYPE_STRING"
             },
@@ -33587,19 +33605,7 @@
               "label": "LABEL_OPTIONAL",
               "name": "milestone",
               "number": 7,
-              "oneofIndex": 2,
-              "proto3Optional": true,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "targetType",
-              "label": "LABEL_OPTIONAL",
-              "name": "target_type",
-              "number": 8,
               "oneofIndex": 3,
-              "options": {
-                "deprecated": true
-              },
               "proto3Optional": true,
               "type": "TYPE_STRING"
             },
@@ -33609,33 +33615,6 @@
               "name": "target",
               "number": 17,
               "oneofIndex": 4,
-              "proto3Optional": true,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "testTarget",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_target",
-              "number": 18,
-              "oneofIndex": 5,
-              "proto3Optional": true,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "testBranch",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_branch",
-              "number": 20,
-              "oneofIndex": 6,
-              "proto3Optional": true,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "testBuild",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_build",
-              "number": 21,
-              "oneofIndex": 7,
               "proto3Optional": true,
               "type": "TYPE_STRING"
             },
@@ -33697,12 +33676,67 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "skipProvisioning",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_provisioning",
+              "number": 24,
+              "type": "TYPE_BOOL"
+            },
+            {
               "jsonName": "settings",
               "label": "LABEL_OPTIONAL",
               "name": "settings",
               "number": 16,
               "type": "TYPE_MESSAGE",
               "typeName": ".satlabrpcserver.AdvancedSettings"
+            },
+            {
+              "jsonName": "targetType",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_type",
+              "number": 8,
+              "oneofIndex": 5,
+              "options": {
+                "deprecated": true
+              },
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_target",
+              "number": 18,
+              "oneofIndex": 6,
+              "options": {
+                "deprecated": true
+              },
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBranch",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_branch",
+              "number": 20,
+              "oneofIndex": 7,
+              "options": {
+                "deprecated": true
+              },
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build",
+              "number": 21,
+              "oneofIndex": 8,
+              "options": {
+                "deprecated": true
+              },
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunRequest",
@@ -33756,11 +33790,52 @@
                 }
               ],
               "name": "Testplan"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "branch",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "branch",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "target",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "target",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "id",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "id",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Build"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "id",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "id",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "Drive"
             }
           ],
           "oneofDecl": [
             {
               "name": "task"
+            },
+            {
+              "name": "test_option"
             },
             {
               "name": "_model"
@@ -33769,10 +33844,10 @@
               "name": "_milestone"
             },
             {
-              "name": "_target_type"
+              "name": "_target"
             },
             {
-              "name": "_target"
+              "name": "_target_type"
             },
             {
               "name": "_test_target"
@@ -34283,6 +34358,59 @@
               "name": "test_source"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "type",
+              "label": "LABEL_OPTIONAL",
+              "name": "type",
+              "number": 1,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ListDriveRequest",
+          "oneofDecl": [
+            {
+              "name": "_type"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "files",
+              "label": "LABEL_REPEATED",
+              "name": "files",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.ListDriveResponse.File"
+            }
+          ],
+          "name": "ListDriveResponse",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "id",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "id",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "name",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "File"
+            }
+          ]
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -34407,6 +34535,11 @@
               "inputType": ".satlabrpcserver.RunAndroidLabqualRequest",
               "name": "RunAndroidLabqual",
               "outputType": ".satlabrpcserver.RunAndroidLabqualResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.ListDriveRequest",
+              "name": "ListDrive",
+              "outputType": ".satlabrpcserver.ListDriveResponse"
             },
             {
               "inputType": ".satlabrpcserver.ListTestEffortsRequest",
