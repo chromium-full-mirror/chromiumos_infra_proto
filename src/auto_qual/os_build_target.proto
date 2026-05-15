@@ -70,7 +70,7 @@ message AndroidBuildTarget {
   // Specifies the Build ID to be used.
   //
   // This is the specific Build ID targeted to test against.
-  uint32 build_id = 5;
+  string build_id = 5;
 }
 
 message ChromeosBuildTarget {

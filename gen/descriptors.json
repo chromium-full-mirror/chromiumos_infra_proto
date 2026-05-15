@@ -11798,7 +11798,7 @@
               "label": "LABEL_OPTIONAL",
               "name": "build_id",
               "number": 5,
-              "type": "TYPE_UINT32"
+              "type": "TYPE_STRING"
             }
           ],
           "name": "AndroidBuildTarget"
