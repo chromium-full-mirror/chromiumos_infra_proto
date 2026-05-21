@@ -18,29 +18,6 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 // Config for testing of a specific model.
 message ModelTestEffortConfig {
 
-  // DEPRECATED: Will be removed soon
-  enum FirmwareType {
-    FIRMWARE_TYPE_UNSPECIFIED = 0;
-    RO_RW = 1;
-    RW = 2;
-  }
-
-  // DEPRECATED: Will be removed soon
-  enum HardwareType {
-    HARDWARE_TYPE_UNSPECIFIED = 0;
-    EVT = 1;
-    DVT = 2;
-    PVT = 3;
-    MP = 4;
-  }
-
-  // DEPRECATED: Will be removed soon
-  enum OsType {
-    OS_TYPE_UNSPECIFIED = 0;
-    CROS = 1;
-    AL = 2;
-  }
-
   enum NotificationType {
     NOTIFICATION_TYPE_UNSPECIFIED = 0;
     FAILING_VERDICT = 1;
@@ -54,26 +31,6 @@ message ModelTestEffortConfig {
   }
 
   message TestPlan {
-    reserved 2;
-
-    // DEPRECATED: Will be removed soon
-    enum TestPlanType {
-      TEST_PLAN_TYPE_UNSPECIFIED = 0;
-      FIRMWARE_ENABLED = 1;
-      FIRMWARE_MEETS_KPI = 2;
-      FIRMWARE_STRESSED = 3;
-      FIRMWARE_QUAL = 4;
-      FIRMWARE_LABQUAL = 5;
-      FIRMWARE_ULDRENITE_CUSTOM = 6;
-      FIRMWARE_CTP_STAGING = 7;
-      AVS_RELEASE_INITIAL = 8;
-    }
-
-    // Name of the test plan. Maps to a local path within the auto qual
-    // repo containing the TestPlan text proto.
-    // e.g: avs/firmware which maps to test_plans/avs/firmware.txtpb
-    string test_plan_name = 7;
-
     // Grouping of pool name and pool category
     // e.g. (DEFAULT, "DUT_POOL_QUOTA")
     message PoolConfig {
@@ -81,54 +38,19 @@ message ModelTestEffortConfig {
       Test.PoolType pool_type = 2;
     }
 
+    // Name of the test plan. Maps to a local path within the auto qual
+    // repo containing the TestPlan text proto.
+    // e.g: avs/firmware which maps to test_plans/avs/firmware.txtpb
+    string test_plan_name = 1;
+
     // Which pools to use when scheduling tests.
     // In scenarios where two pool_configs share a
     // PoolType, pools containing devices that belong
     // to partners will be prioritized over internal pools.
-    repeated PoolConfig pool_configs = 6;
+    repeated PoolConfig pool_configs = 2;
 
     // Tests to be excluded from the test effort
-    repeated Test test_overrides = 5;
-  }
-
-  // DEPRECATED: Will be removed soon
-  enum TestEffortType {
-    TEST_EFFORT_TYPE_UNSPECIFIED = 0;
-    AP = 1;
-    EC = 2;
-    AP_EC = 3;
-  }
-
-  // DEPRECATED: Will be removed soon
-  message DeviceInfo {
-    string model_name = 1;
-    string sku = 2;
-  }
-
-  // DEPRECATED: Will be removed soon
-  message FirmwareTestEffortVersion {
-    uint32 major_version = 1;
-    uint32 minor_version = 2;
-    uint32 patch_number = 3;
-    string uri = 4;
-  }
-
-  // DEPRECATED: Will be removed soon
-  message GscTestEffortVersion {
-    uint32 minor_version = 1;
-    uint32 major_version = 2;
-    uint32 epoch = 3;
-  }
-
-  // DEPRECATED: Will be removed soon
-  message PreviousTestEffortVersion {
-    // DEPRECATED: Will be removed soon
-    FirmwareTestEffortVersion ap_version = 1;
-    // DEPRECATED: Will be removed soon
-    FirmwareTestEffortVersion ec_version = 2;
-    // DEPRECATED use os_build_target
-    repeated OsType os_test_effort_type = 3;
-    repeated OSBuildTarget os_build_target = 4;
+    repeated Test test_overrides = 3;
   }
 
   message AdditionalTesting {
@@ -151,95 +73,36 @@ message ModelTestEffortConfig {
   // Test Effort Name
   string name = 2;
 
-  // DEPRECATED: will be removed soon. Use `duts` instead.
-  // Board to be tested
-  string board_name = 3;
-
-  // DEPRECATED: will be removed soon. Use `duts` instead.
-  // Device to be tested
-  repeated DeviceInfo devices = 4;
-
-  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
-  // Branch to get firmware from
-  string branch_name = 5;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // Test Effort type from enumerated type AP, EC, AP_EC
-  TestEffortType test_effort_type = 6;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // RO or RW Test Effort
-  FirmwareType firmware_type = 7;
-
-  // DEPRECATED: will be removed soon. Use `duts` instead.
-  // HW phase in test
-  HardwareType testing_hardware = 8;
-
-  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
-  // Target milestone, to be used in test
-  uint32 target_milestone_number = 9;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // Primary AP RO FW Test Version
-  FirmwareTestEffortVersion ap_ro_firmware_build_cros_test_effort_version = 10;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // Primary AP RW FW Test Version
-  FirmwareTestEffortVersion ap_rw_firmware_build_cros_test_effort_version = 11;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // Primary EC RO FW Test Version
-  FirmwareTestEffortVersion ec_ro_firmware_build_cros_test_effort_version = 12;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // Primary EC RW FW Test Version
-  FirmwareTestEffortVersion ec_rw_firmware_build_cros_test_effort_version = 13;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // All Previous RO FW Versions to test for compatibility
-  repeated PreviousTestEffortVersion ro_firmware_build_cros_versions = 14;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // GSC Version to test with
-  GscTestEffortVersion gsc_version = 15;
-
-  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
-  repeated OsType os_test_effort_type = 16;
-
   // Test Plan
-  repeated TestPlan test_plan = 17;
+  repeated TestPlan test_plan = 3;
 
   // Max Test Retries
-  uint32 max_retries = 18;
-
-  // DEPRECATED: will be removed soon. Use `fw_targets` instead.
-  // Latest RW FW Versions to test for compatibility
-  PreviousTestEffortVersion latest_rw_firmware_versions = 19;
+  uint32 max_retries = 4;
 
   // The OS build to test against.
   // TODO: Should this be repeated?
-  repeated OSBuildTarget os_build_target = 20;
+  repeated OSBuildTarget os_build_target = 5;
 
   // Notification configurations
-  repeated Notification notifications = 21;
+  repeated Notification notifications = 6;
 
   // Additional testing to run on completion
-  repeated AdditionalTesting follow_on_testing = 22;
+  repeated AdditionalTesting follow_on_testing = 7;
 
   // Additional testing already scheduled or completed
-  repeated AdditionalTesting scheduled_testing = 23;
+  repeated AdditionalTesting scheduled_testing = 8;
 
-  FirmwareTargetDefinition fw_targets = 24;
+  FirmwareTargetDefinition fw_targets = 9;
 
-  repeated DeviceUnderTest duts = 25;
+  repeated DeviceUnderTest duts = 10;
 
   // How the test effort was created
-  EntryPointSource entry_point_source = 26;
+  EntryPointSource entry_point_source = 11;
 
-  string user_request_id = 27;
+  string user_request_id = 12;
 
   // generation_time
-  google.protobuf.Timestamp generation_time = 28;
+  google.protobuf.Timestamp generation_time = 13;
 }
 
 message ModelTestEffortConfigs {

@@ -45,10 +45,10 @@ message Test {
   repeated string include_tags = 2;
   repeated string exclude_tags = 3;
 
-  string suite = 5;
-  repeated string include_names = 6;
-  repeated string exclude_names = 7;
-  bool schedule_for_each_ro = 8;
+  string suite = 4;
+  repeated string include_names = 5;
+  repeated string exclude_names = 6;
+  bool schedule_for_each_ro = 7;
 
   enum RetryType {
     RETRY_TYPE_UNSPECIFIED = 0;
@@ -59,18 +59,18 @@ message Test {
     TEST_RUNNER_ENABLE_RETRY = 2;
   };
 
-  RetryType retry = 9;
+  RetryType retry = 8;
 
-  repeated TestArguments arguments = 10;
+  repeated TestArguments arguments = 9;
 
   // How long the test should run before it time outs in seconds.
   // This is only applicable when running in unmanaged pools
   // e.g. faft-test as opposed to DUT_POOL_QUOTA.
   // This will default to 16 hours if left unspecified.
   // https://chrome-internal.googlesource.com/chromeos/infra/config/+/main/testplatform/test_runner/main.star#157
-  uint32 timeout_seconds = 11;
+  uint32 timeout_seconds = 10;
 
-  string ctp_container_label = 12;
+  string ctp_container_label = 11;
 
   // The category of pool to schedule tests against.
   enum PoolType {
@@ -89,12 +89,12 @@ message Test {
 
   // Determines which pools within the test effort to use when
   // scheduling this test.
-  PoolType pool_type = 13;
+  PoolType pool_type = 12;
 
   // The harness_config determines which test system to use and provides
   // the specific configuration for it.
   oneof test_system {
-    CustomizableTestPlatformTest ctp_test = 14;
-    AndroidTestPlatformTest atp_test = 15;
+    CustomizableTestPlatformTest ctp_test = 13;
+    AndroidTestPlatformTest atp_test = 14;
   }
 }

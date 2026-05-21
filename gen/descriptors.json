@@ -11661,35 +11661,35 @@
               "jsonName": "suite",
               "label": "LABEL_OPTIONAL",
               "name": "suite",
-              "number": 5,
+              "number": 4,
               "type": "TYPE_STRING"
             },
             {
               "jsonName": "includeNames",
               "label": "LABEL_REPEATED",
               "name": "include_names",
-              "number": 6,
+              "number": 5,
               "type": "TYPE_STRING"
             },
             {
               "jsonName": "excludeNames",
               "label": "LABEL_REPEATED",
               "name": "exclude_names",
-              "number": 7,
+              "number": 6,
               "type": "TYPE_STRING"
             },
             {
               "jsonName": "scheduleForEachRo",
               "label": "LABEL_OPTIONAL",
               "name": "schedule_for_each_ro",
-              "number": 8,
+              "number": 7,
               "type": "TYPE_BOOL"
             },
             {
               "jsonName": "retry",
               "label": "LABEL_OPTIONAL",
               "name": "retry",
-              "number": 9,
+              "number": 8,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.Test.RetryType"
             },
@@ -11697,7 +11697,7 @@
               "jsonName": "arguments",
               "label": "LABEL_REPEATED",
               "name": "arguments",
-              "number": 10,
+              "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.TestArguments"
             },
@@ -11705,21 +11705,21 @@
               "jsonName": "timeoutSeconds",
               "label": "LABEL_OPTIONAL",
               "name": "timeout_seconds",
-              "number": 11,
+              "number": 10,
               "type": "TYPE_UINT32"
             },
             {
               "jsonName": "ctpContainerLabel",
               "label": "LABEL_OPTIONAL",
               "name": "ctp_container_label",
-              "number": 12,
+              "number": 11,
               "type": "TYPE_STRING"
             },
             {
               "jsonName": "poolType",
               "label": "LABEL_OPTIONAL",
               "name": "pool_type",
-              "number": 13,
+              "number": 12,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.Test.PoolType"
             },
@@ -11727,7 +11727,7 @@
               "jsonName": "ctpTest",
               "label": "LABEL_OPTIONAL",
               "name": "ctp_test",
-              "number": 14,
+              "number": 13,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.CustomizableTestPlatformTest"
@@ -11736,7 +11736,7 @@
               "jsonName": "atpTest",
               "label": "LABEL_OPTIONAL",
               "name": "atp_test",
-              "number": 15,
+              "number": 14,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.AndroidTestPlatformTest"
@@ -11773,13 +11773,6 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "productName",
-              "label": "LABEL_OPTIONAL",
-              "name": "product_name",
-              "number": 4,
-              "type": "TYPE_STRING"
-            },
-            {
               "jsonName": "releaseConfiguration",
               "label": "LABEL_OPTIONAL",
               "name": "release_configuration",
@@ -11791,6 +11784,13 @@
               "label": "LABEL_OPTIONAL",
               "name": "build_variant",
               "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "productName",
+              "label": "LABEL_OPTIONAL",
+              "name": "product_name",
+              "number": 4,
               "type": "TYPE_STRING"
             },
             {
@@ -11934,7 +11934,7 @@
               "jsonName": "baseVersion",
               "label": "LABEL_OPTIONAL",
               "name": "base_version",
-              "number": 3,
+              "number": 1,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.BaseFirmwareVersionStruct"
@@ -11943,7 +11943,7 @@
               "jsonName": "baseVersionString",
               "label": "LABEL_OPTIONAL",
               "name": "base_version_string",
-              "number": 4,
+              "number": 2,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.BaseFirmwareVersionString"
@@ -11952,7 +11952,7 @@
               "jsonName": "gscVersion",
               "label": "LABEL_OPTIONAL",
               "name": "gsc_version",
-              "number": 5,
+              "number": 3,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.GscFirmwareVersionStruct"
@@ -12117,65 +12117,6 @@
         {
           "enumType": [
             {
-              "name": "FirmwareType",
-              "value": [
-                {
-                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "RO_RW",
-                  "number": 1
-                },
-                {
-                  "name": "RW",
-                  "number": 2
-                }
-              ]
-            },
-            {
-              "name": "HardwareType",
-              "value": [
-                {
-                  "name": "HARDWARE_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "EVT",
-                  "number": 1
-                },
-                {
-                  "name": "DVT",
-                  "number": 2
-                },
-                {
-                  "name": "PVT",
-                  "number": 3
-                },
-                {
-                  "name": "MP",
-                  "number": 4
-                }
-              ]
-            },
-            {
-              "name": "OsType",
-              "value": [
-                {
-                  "name": "OS_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "CROS",
-                  "number": 1
-                },
-                {
-                  "name": "AL",
-                  "number": 2
-                }
-              ]
-            },
-            {
               "name": "NotificationType",
               "value": [
                 {
@@ -12192,27 +12133,6 @@
                 },
                 {
                   "name": "COMPLETE_EFFORT",
-                  "number": 3
-                }
-              ]
-            },
-            {
-              "name": "TestEffortType",
-              "value": [
-                {
-                  "name": "TEST_EFFORT_TYPE_UNSPECIFIED",
-                  "number": 0
-                },
-                {
-                  "name": "AP",
-                  "number": 1
-                },
-                {
-                  "name": "EC",
-                  "number": 2
-                },
-                {
-                  "name": "AP_EC",
                   "number": 3
                 }
               ]
@@ -12234,119 +12154,10 @@
               "type": "TYPE_STRING"
             },
             {
-              "jsonName": "boardName",
-              "label": "LABEL_OPTIONAL",
-              "name": "board_name",
-              "number": 3,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "devices",
-              "label": "LABEL_REPEATED",
-              "name": "devices",
-              "number": 4,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.DeviceInfo"
-            },
-            {
-              "jsonName": "branchName",
-              "label": "LABEL_OPTIONAL",
-              "name": "branch_name",
-              "number": 5,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "testEffortType",
-              "label": "LABEL_OPTIONAL",
-              "name": "test_effort_type",
-              "number": 6,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.TestEffortType"
-            },
-            {
-              "jsonName": "firmwareType",
-              "label": "LABEL_OPTIONAL",
-              "name": "firmware_type",
-              "number": 7,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareType"
-            },
-            {
-              "jsonName": "testingHardware",
-              "label": "LABEL_OPTIONAL",
-              "name": "testing_hardware",
-              "number": 8,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.HardwareType"
-            },
-            {
-              "jsonName": "targetMilestoneNumber",
-              "label": "LABEL_OPTIONAL",
-              "name": "target_milestone_number",
-              "number": 9,
-              "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "apRoFirmwareBuildCrosTestEffortVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ap_ro_firmware_build_cros_test_effort_version",
-              "number": 10,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
-            },
-            {
-              "jsonName": "apRwFirmwareBuildCrosTestEffortVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ap_rw_firmware_build_cros_test_effort_version",
-              "number": 11,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
-            },
-            {
-              "jsonName": "ecRoFirmwareBuildCrosTestEffortVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ec_ro_firmware_build_cros_test_effort_version",
-              "number": 12,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
-            },
-            {
-              "jsonName": "ecRwFirmwareBuildCrosTestEffortVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "ec_rw_firmware_build_cros_test_effort_version",
-              "number": 13,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
-            },
-            {
-              "jsonName": "roFirmwareBuildCrosVersions",
-              "label": "LABEL_REPEATED",
-              "name": "ro_firmware_build_cros_versions",
-              "number": 14,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.PreviousTestEffortVersion"
-            },
-            {
-              "jsonName": "gscVersion",
-              "label": "LABEL_OPTIONAL",
-              "name": "gsc_version",
-              "number": 15,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.GscTestEffortVersion"
-            },
-            {
-              "jsonName": "osTestEffortType",
-              "label": "LABEL_REPEATED",
-              "name": "os_test_effort_type",
-              "number": 16,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
-            },
-            {
               "jsonName": "testPlan",
               "label": "LABEL_REPEATED",
               "name": "test_plan",
-              "number": 17,
+              "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan"
             },
@@ -12354,22 +12165,14 @@
               "jsonName": "maxRetries",
               "label": "LABEL_OPTIONAL",
               "name": "max_retries",
-              "number": 18,
+              "number": 4,
               "type": "TYPE_UINT32"
-            },
-            {
-              "jsonName": "latestRwFirmwareVersions",
-              "label": "LABEL_OPTIONAL",
-              "name": "latest_rw_firmware_versions",
-              "number": 19,
-              "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.ModelTestEffortConfig.PreviousTestEffortVersion"
             },
             {
               "jsonName": "osBuildTarget",
               "label": "LABEL_REPEATED",
               "name": "os_build_target",
-              "number": 20,
+              "number": 5,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.OSBuildTarget"
             },
@@ -12377,7 +12180,7 @@
               "jsonName": "notifications",
               "label": "LABEL_REPEATED",
               "name": "notifications",
-              "number": 21,
+              "number": 6,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.Notification"
             },
@@ -12385,7 +12188,7 @@
               "jsonName": "followOnTesting",
               "label": "LABEL_REPEATED",
               "name": "follow_on_testing",
-              "number": 22,
+              "number": 7,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.AdditionalTesting"
             },
@@ -12393,7 +12196,7 @@
               "jsonName": "scheduledTesting",
               "label": "LABEL_REPEATED",
               "name": "scheduled_testing",
-              "number": 23,
+              "number": 8,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.AdditionalTesting"
             },
@@ -12401,7 +12204,7 @@
               "jsonName": "fwTargets",
               "label": "LABEL_OPTIONAL",
               "name": "fw_targets",
-              "number": 24,
+              "number": 9,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.FirmwareTargetDefinition"
             },
@@ -12409,7 +12212,7 @@
               "jsonName": "duts",
               "label": "LABEL_REPEATED",
               "name": "duts",
-              "number": 25,
+              "number": 10,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.DeviceUnderTest"
             },
@@ -12417,7 +12220,7 @@
               "jsonName": "entryPointSource",
               "label": "LABEL_OPTIONAL",
               "name": "entry_point_source",
-              "number": 26,
+              "number": 11,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig.EntryPointSource"
             },
@@ -12425,14 +12228,14 @@
               "jsonName": "userRequestId",
               "label": "LABEL_OPTIONAL",
               "name": "user_request_id",
-              "number": 27,
+              "number": 12,
               "type": "TYPE_STRING"
             },
             {
               "jsonName": "generationTime",
               "label": "LABEL_OPTIONAL",
               "name": "generation_time",
-              "number": 28,
+              "number": 13,
               "type": "TYPE_MESSAGE",
               "typeName": ".google.protobuf.Timestamp"
             }
@@ -12460,62 +12263,19 @@
               "name": "Notification"
             },
             {
-              "enumType": [
-                {
-                  "name": "TestPlanType",
-                  "value": [
-                    {
-                      "name": "TEST_PLAN_TYPE_UNSPECIFIED",
-                      "number": 0
-                    },
-                    {
-                      "name": "FIRMWARE_ENABLED",
-                      "number": 1
-                    },
-                    {
-                      "name": "FIRMWARE_MEETS_KPI",
-                      "number": 2
-                    },
-                    {
-                      "name": "FIRMWARE_STRESSED",
-                      "number": 3
-                    },
-                    {
-                      "name": "FIRMWARE_QUAL",
-                      "number": 4
-                    },
-                    {
-                      "name": "FIRMWARE_LABQUAL",
-                      "number": 5
-                    },
-                    {
-                      "name": "FIRMWARE_ULDRENITE_CUSTOM",
-                      "number": 6
-                    },
-                    {
-                      "name": "FIRMWARE_CTP_STAGING",
-                      "number": 7
-                    },
-                    {
-                      "name": "AVS_RELEASE_INITIAL",
-                      "number": 8
-                    }
-                  ]
-                }
-              ],
               "field": [
                 {
                   "jsonName": "testPlanName",
                   "label": "LABEL_OPTIONAL",
                   "name": "test_plan_name",
-                  "number": 7,
+                  "number": 1,
                   "type": "TYPE_STRING"
                 },
                 {
                   "jsonName": "poolConfigs",
                   "label": "LABEL_REPEATED",
                   "name": "pool_configs",
-                  "number": 6,
+                  "number": 2,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".auto_qual.ModelTestEffortConfig.TestPlan.PoolConfig"
                 },
@@ -12523,7 +12283,7 @@
                   "jsonName": "testOverrides",
                   "label": "LABEL_REPEATED",
                   "name": "test_overrides",
-                  "number": 5,
+                  "number": 3,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".auto_qual.Test"
                 }
@@ -12550,128 +12310,7 @@
                   ],
                   "name": "PoolConfig"
                 }
-              ],
-              "reservedRange": [
-                {
-                  "end": 3,
-                  "start": 2
-                }
               ]
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "modelName",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "model_name",
-                  "number": 1,
-                  "type": "TYPE_STRING"
-                },
-                {
-                  "jsonName": "sku",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "sku",
-                  "number": 2,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "DeviceInfo"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "majorVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "major_version",
-                  "number": 1,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "minorVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "minor_version",
-                  "number": 2,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "patchNumber",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "patch_number",
-                  "number": 3,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "uri",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "uri",
-                  "number": 4,
-                  "type": "TYPE_STRING"
-                }
-              ],
-              "name": "FirmwareTestEffortVersion"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "minorVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "minor_version",
-                  "number": 1,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "majorVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "major_version",
-                  "number": 2,
-                  "type": "TYPE_UINT32"
-                },
-                {
-                  "jsonName": "epoch",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "epoch",
-                  "number": 3,
-                  "type": "TYPE_UINT32"
-                }
-              ],
-              "name": "GscTestEffortVersion"
-            },
-            {
-              "field": [
-                {
-                  "jsonName": "apVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "ap_version",
-                  "number": 1,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
-                },
-                {
-                  "jsonName": "ecVersion",
-                  "label": "LABEL_OPTIONAL",
-                  "name": "ec_version",
-                  "number": 2,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".auto_qual.ModelTestEffortConfig.FirmwareTestEffortVersion"
-                },
-                {
-                  "jsonName": "osTestEffortType",
-                  "label": "LABEL_REPEATED",
-                  "name": "os_test_effort_type",
-                  "number": 3,
-                  "type": "TYPE_ENUM",
-                  "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
-                },
-                {
-                  "jsonName": "osBuildTarget",
-                  "label": "LABEL_REPEATED",
-                  "name": "os_build_target",
-                  "number": 4,
-                  "type": "TYPE_MESSAGE",
-                  "typeName": ".auto_qual.OSBuildTarget"
-                }
-              ],
-              "name": "PreviousTestEffortVersion"
             },
             {
               "field": [
@@ -12765,34 +12404,12 @@
               "jsonName": "testEffortTemplate",
               "label": "LABEL_OPTIONAL",
               "name": "test_effort_template",
-              "number": 9,
+              "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.ModelTestEffortConfig"
             }
           ],
-          "name": "BuilderQualConfig",
-          "reservedRange": [
-            {
-              "end": 3,
-              "start": 2
-            },
-            {
-              "end": 6,
-              "start": 5
-            },
-            {
-              "end": 7,
-              "start": 6
-            },
-            {
-              "end": 8,
-              "start": 7
-            },
-            {
-              "end": 9,
-              "start": 8
-            }
-          ]
+          "name": "BuilderQualConfig"
         },
         {
           "field": [
@@ -12821,39 +12438,23 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
-        "auto_qual/test_effort.proto",
         "auto_qual/os_build_target.proto"
       ],
       "messageType": [
         {
           "field": [
             {
-              "jsonName": "milestone",
-              "label": "LABEL_OPTIONAL",
-              "name": "milestone",
-              "number": 1,
-              "type": "TYPE_UINT32"
-            },
-            {
               "jsonName": "testPlanName",
               "label": "LABEL_OPTIONAL",
               "name": "test_plan_name",
-              "number": 5,
+              "number": 1,
               "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "os",
-              "label": "LABEL_REPEATED",
-              "name": "os",
-              "number": 3,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
             },
             {
               "jsonName": "osBuildTarget",
               "label": "LABEL_REPEATED",
               "name": "os_build_target",
-              "number": 6,
+              "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.OSBuildTarget"
             },
@@ -12861,7 +12462,7 @@
               "jsonName": "requiredTest",
               "label": "LABEL_REPEATED",
               "name": "required_test",
-              "number": 4,
+              "number": 3,
               "type": "TYPE_STRING"
             }
           ],
@@ -12895,25 +12496,16 @@
       },
       "dependency": [
         "auto_qual/os_build_target.proto",
-        "auto_qual/test_effort.proto",
         "auto_qual/test.proto"
       ],
       "messageType": [
         {
           "field": [
             {
-              "jsonName": "os",
-              "label": "LABEL_REPEATED",
-              "name": "os",
-              "number": 1,
-              "type": "TYPE_ENUM",
-              "typeName": ".auto_qual.ModelTestEffortConfig.OsType"
-            },
-            {
               "jsonName": "osBuildTarget",
               "label": "LABEL_REPEATED",
               "name": "os_build_target",
-              "number": 2,
+              "number": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.OSBuildTarget"
             },
@@ -12921,7 +12513,7 @@
               "jsonName": "test",
               "label": "LABEL_REPEATED",
               "name": "test",
-              "number": 3,
+              "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.Test"
             }

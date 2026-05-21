@@ -7,16 +7,12 @@ syntax = "proto3";
 package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
-import "auto_qual/test_effort.proto";
 import "auto_qual/os_build_target.proto";
 
 message RequiredTestList {
-  uint32 milestone = 1;
-  string test_plan_name = 5;
-  // DEPRECATED: will be removed soon. Use `os_build_target` instead.
-  repeated ModelTestEffortConfig.OsType os = 3;
-  repeated OSBuildTarget os_build_target = 6;
-  repeated string required_test = 4;
+  string test_plan_name = 1;
+  repeated OSBuildTarget os_build_target = 2;
+  repeated string required_test = 3;
 }
 
 message RequiredTests { repeated RequiredTestList test_requirements = 1; }

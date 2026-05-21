@@ -23,9 +23,9 @@ message GscFirmwareVersionStruct {
 }
 message FirmwareTargetVersion {
   oneof info {
-    BaseFirmwareVersionStruct base_version = 3;
-    BaseFirmwareVersionString base_version_string = 4;
-    GscFirmwareVersionStruct gsc_version = 5;
+    BaseFirmwareVersionStruct base_version = 1;
+    BaseFirmwareVersionString base_version_string = 2;
+    GscFirmwareVersionStruct gsc_version = 3;
   };
 }
 
