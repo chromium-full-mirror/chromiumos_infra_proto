@@ -12022,6 +12022,24 @@
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.BaseFirmwareTarget"
+            },
+            {
+              "jsonName": "ish",
+              "label": "LABEL_OPTIONAL",
+              "name": "ish",
+              "number": 5,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareTarget"
+            },
+            {
+              "jsonName": "pdc",
+              "label": "LABEL_OPTIONAL",
+              "name": "pdc",
+              "number": 6,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BaseFirmwareTarget"
             }
           ],
           "name": "FirmwareTargetInfo",

@@ -40,6 +40,8 @@ message FirmwareTargetInfo {
     BaseFirmwareTarget ap = 2;
     BaseFirmwareTarget gsc = 3;
     BaseFirmwareTarget fpmcu = 4;
+    BaseFirmwareTarget ish = 5;
+    BaseFirmwareTarget pdc = 6;
   };
 }
 
