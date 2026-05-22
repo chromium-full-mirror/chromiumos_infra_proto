@@ -5452,6 +5452,13 @@
               "name": "include_rev_deps",
               "number": 5,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "includeTestDeps",
+              "label": "LABEL_OPTIONAL",
+              "name": "include_test_deps",
+              "number": 6,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "ListRequest"

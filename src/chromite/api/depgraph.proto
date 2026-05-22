@@ -99,6 +99,9 @@ message ListRequest {
   // details.
   // Added in R92.
   bool include_rev_deps = 5;
+  // Whether to include dependencies that are only needed when USE=test is
+  // enabled.
+  bool include_test_deps = 6;
 }
 
 // Response for getting a list of package dependencies.
