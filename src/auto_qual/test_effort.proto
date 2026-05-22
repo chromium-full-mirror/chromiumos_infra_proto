@@ -103,6 +103,8 @@ message ModelTestEffortConfig {
 
   // generation_time
   google.protobuf.Timestamp generation_time = 13;
+
+  OSBuildTarget test_build_target = 14;
 }
 
 message ModelTestEffortConfigs {

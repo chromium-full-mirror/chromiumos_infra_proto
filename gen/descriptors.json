@@ -12256,6 +12256,14 @@
               "number": 13,
               "type": "TYPE_MESSAGE",
               "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "testBuildTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build_target",
+              "number": 14,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.OSBuildTarget"
             }
           ],
           "name": "ModelTestEffortConfig",
