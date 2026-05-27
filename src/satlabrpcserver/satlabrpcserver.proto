@@ -1274,7 +1274,7 @@ message CreateTestEffortResponse {
   string id = 1;
 }
 
-// NEXT_TAG = 11
+// NEXT_TAG = 12
 message TestEffort {
 
   // NEXT_TAG = 10
@@ -1385,5 +1385,11 @@ message TestEffort {
   oneof os {
     // Test against an Android build.
     AndroidBuildTarget android = 10;
+  }
+
+  // Specifies the test build targets to test with.
+  oneof test_source {
+    // Test with an Android build target.
+    AndroidBuildTarget android_test_target = 11;
   }
 }

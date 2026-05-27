@@ -33942,6 +33942,15 @@
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".satlabrpcserver.TestEffort.AndroidBuildTarget"
+            },
+            {
+              "jsonName": "androidTestTarget",
+              "label": "LABEL_OPTIONAL",
+              "name": "android_test_target",
+              "number": 11,
+              "oneofIndex": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TestEffort.AndroidBuildTarget"
             }
           ],
           "name": "TestEffort",
@@ -34026,6 +34035,9 @@
           "oneofDecl": [
             {
               "name": "os"
+            },
+            {
+              "name": "test_source"
             }
           ]
         }
