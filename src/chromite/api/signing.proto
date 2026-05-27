@@ -180,7 +180,7 @@ message CreateKeysHsmRequest {
   // Path to the local checkout of the chromiumos/platform/release-keys.
   string release_keys_checkout = 2;
 
-  bool dry_run = 3;
+  optional bool dry_run = 3;
 
   string keyset_name = 4;
 }

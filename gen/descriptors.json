@@ -18807,6 +18807,8 @@
               "label": "LABEL_OPTIONAL",
               "name": "dry_run",
               "number": 3,
+              "oneofIndex": 0,
+              "proto3Optional": true,
               "type": "TYPE_BOOL"
             },
             {
@@ -18817,7 +18819,12 @@
               "type": "TYPE_STRING"
             }
           ],
-          "name": "CreateKeysHsmRequest"
+          "name": "CreateKeysHsmRequest",
+          "oneofDecl": [
+            {
+              "name": "_dry_run"
+            }
+          ]
         },
         {
           "field": [
