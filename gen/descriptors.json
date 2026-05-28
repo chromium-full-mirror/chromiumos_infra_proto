@@ -12421,6 +12421,156 @@
         "isSyntaxUnspecified": false
       },
       "dependency": [
+        "auto_qual/test_effort.proto",
+        "auto_qual/firmware_target.proto"
+      ],
+      "enumType": [
+        {
+          "name": "TriggerType",
+          "value": [
+            {
+              "name": "TRIGGER_TYPE_UNSPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "TRIGGER_TYPE_ANY",
+              "number": 1
+            },
+            {
+              "name": "TRIGGER_TYPE_ALL",
+              "number": 2
+            },
+            {
+              "name": "TRIGGER_TYPE_ON_NEW_BUILDER",
+              "number": 3
+            }
+          ]
+        }
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "LuciBuilder"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "branch",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "target",
+              "label": "LABEL_OPTIONAL",
+              "name": "target",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "AndroidBuilder"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "luci",
+              "label": "LABEL_OPTIONAL",
+              "name": "luci",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.LuciBuilder"
+            },
+            {
+              "jsonName": "ab",
+              "label": "LABEL_OPTIONAL",
+              "name": "ab",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.AndroidBuilder"
+            },
+            {
+              "jsonName": "applicableTargets",
+              "label": "LABEL_REPEATED",
+              "name": "applicable_targets",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTarget"
+            }
+          ],
+          "name": "BuilderConfig",
+          "oneofDecl": [
+            {
+              "name": "builder"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "builders",
+              "label": "LABEL_REPEATED",
+              "name": "builders",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.BuilderConfig"
+            },
+            {
+              "jsonName": "testEffortTemplates",
+              "label": "LABEL_REPEATED",
+              "name": "test_effort_templates",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.ModelTestEffortConfig"
+            },
+            {
+              "jsonName": "triggerType",
+              "label": "LABEL_OPTIONAL",
+              "name": "trigger_type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.TriggerType"
+            }
+          ],
+          "name": "TestEffortBuilderConfig"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "configs",
+              "label": "LABEL_REPEATED",
+              "name": "configs",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TestEffortBuilderConfig"
+            }
+          ],
+          "name": "TestEffortBuilderConfigs"
+        }
+      ],
+      "name": "auto_qual/builder_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
         "auto_qual/test_effort.proto"
       ],
       "messageType": [
