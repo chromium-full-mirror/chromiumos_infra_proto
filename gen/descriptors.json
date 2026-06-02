@@ -12099,6 +12099,19 @@
         {
           "field": [
             {
+              "jsonName": "group",
+              "label": "LABEL_REPEATED",
+              "name": "group",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTarget"
+            }
+          ],
+          "name": "FirmwareTargetGroupDefinition"
+        },
+        {
+          "field": [
+            {
               "jsonName": "current",
               "label": "LABEL_REPEATED",
               "name": "current",
@@ -12112,7 +12125,7 @@
               "name": "previous",
               "number": 2,
               "type": "TYPE_MESSAGE",
-              "typeName": ".auto_qual.FirmwareTarget"
+              "typeName": ".auto_qual.FirmwareTargetGroupDefinition"
             }
           ],
           "name": "FirmwareTargetDefinition"

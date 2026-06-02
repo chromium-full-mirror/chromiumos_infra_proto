@@ -587,19 +587,66 @@ func (x *FirmwareTarget) GetFw() *FirmwareTargetInfo {
 	return nil
 }
 
+type FirmwareTargetGroupDefinition struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Group []*FirmwareTarget `protobuf:"bytes,1,rep,name=group,proto3" json:"group,omitempty"`
+}
+
+func (x *FirmwareTargetGroupDefinition) Reset() {
+	*x = FirmwareTargetGroupDefinition{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_auto_qual_firmware_target_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FirmwareTargetGroupDefinition) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FirmwareTargetGroupDefinition) ProtoMessage() {}
+
+func (x *FirmwareTargetGroupDefinition) ProtoReflect() protoreflect.Message {
+	mi := &file_auto_qual_firmware_target_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FirmwareTargetGroupDefinition.ProtoReflect.Descriptor instead.
+func (*FirmwareTargetGroupDefinition) Descriptor() ([]byte, []int) {
+	return file_auto_qual_firmware_target_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FirmwareTargetGroupDefinition) GetGroup() []*FirmwareTarget {
+	if x != nil {
+		return x.Group
+	}
+	return nil
+}
+
 type FirmwareTargetDefinition struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Current  []*FirmwareTarget `protobuf:"bytes,1,rep,name=current,proto3" json:"current,omitempty"`
-	Previous []*FirmwareTarget `protobuf:"bytes,2,rep,name=previous,proto3" json:"previous,omitempty"`
+	Current  []*FirmwareTarget                `protobuf:"bytes,1,rep,name=current,proto3" json:"current,omitempty"`
+	Previous []*FirmwareTargetGroupDefinition `protobuf:"bytes,2,rep,name=previous,proto3" json:"previous,omitempty"`
 }
 
 func (x *FirmwareTargetDefinition) Reset() {
 	*x = FirmwareTargetDefinition{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_auto_qual_firmware_target_proto_msgTypes[7]
+		mi := &file_auto_qual_firmware_target_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -612,7 +659,7 @@ func (x *FirmwareTargetDefinition) String() string {
 func (*FirmwareTargetDefinition) ProtoMessage() {}
 
 func (x *FirmwareTargetDefinition) ProtoReflect() protoreflect.Message {
-	mi := &file_auto_qual_firmware_target_proto_msgTypes[7]
+	mi := &file_auto_qual_firmware_target_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -625,7 +672,7 @@ func (x *FirmwareTargetDefinition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FirmwareTargetDefinition.ProtoReflect.Descriptor instead.
 func (*FirmwareTargetDefinition) Descriptor() ([]byte, []int) {
-	return file_auto_qual_firmware_target_proto_rawDescGZIP(), []int{7}
+	return file_auto_qual_firmware_target_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *FirmwareTargetDefinition) GetCurrent() []*FirmwareTarget {
@@ -635,7 +682,7 @@ func (x *FirmwareTargetDefinition) GetCurrent() []*FirmwareTarget {
 	return nil
 }
 
-func (x *FirmwareTargetDefinition) GetPrevious() []*FirmwareTarget {
+func (x *FirmwareTargetDefinition) GetPrevious() []*FirmwareTargetGroupDefinition {
 	if x != nil {
 		return x.Previous
 	}
@@ -725,19 +772,25 @@ var file_auto_qual_firmware_target_proto_rawDesc = []byte{
 	0x0a, 0x1c, 0x52, 0x45, 0x41, 0x44, 0x41, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x54, 0x59,
 	0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00,
 	0x12, 0x06, 0x0a, 0x02, 0x52, 0x4f, 0x10, 0x01, 0x12, 0x06, 0x0a, 0x02, 0x52, 0x57, 0x10, 0x02,
-	0x22, 0x86, 0x01, 0x0a, 0x18, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x54, 0x61, 0x72,
-	0x67, 0x65, 0x74, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x33, 0x0a,
-	0x07, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19,
-	0x2e, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75, 0x61, 0x6c, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77,
-	0x61, 0x72, 0x65, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x52, 0x07, 0x63, 0x75, 0x72, 0x72, 0x65,
-	0x6e, 0x74, 0x12, 0x35, 0x0a, 0x08, 0x70, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x18, 0x02,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75, 0x61, 0x6c,
-	0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x52,
-	0x08, 0x70, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x6f, 0x2e,
-	0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68, 0x72,
-	0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75, 0x61, 0x6c,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x50, 0x0a, 0x1d, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x54, 0x61, 0x72, 0x67,
+	0x65, 0x74, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x12, 0x2f, 0x0a, 0x05, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x19, 0x2e, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75, 0x61, 0x6c, 0x2e, 0x46, 0x69, 0x72,
+	0x6d, 0x77, 0x61, 0x72, 0x65, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x52, 0x05, 0x67, 0x72, 0x6f,
+	0x75, 0x70, 0x22, 0x95, 0x01, 0x0a, 0x18, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x54,
+	0x61, 0x72, 0x67, 0x65, 0x74, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x33, 0x0a, 0x07, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x19, 0x2e, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75, 0x61, 0x6c, 0x2e, 0x46, 0x69, 0x72,
+	0x6d, 0x77, 0x61, 0x72, 0x65, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x52, 0x07, 0x63, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x74, 0x12, 0x44, 0x0a, 0x08, 0x70, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73,
+	0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75,
+	0x61, 0x6c, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x54, 0x61, 0x72, 0x67, 0x65,
+	0x74, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x08, 0x70, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x6f,
+	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x2e, 0x6f, 0x72, 0x67, 0x2f, 0x63, 0x68,
+	0x72, 0x6f, 0x6d, 0x69, 0x75, 0x6d, 0x6f, 0x73, 0x2f, 0x69, 0x6e, 0x66, 0x72, 0x61, 0x2f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x75, 0x74, 0x6f, 0x5f, 0x71, 0x75, 0x61,
+	0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -753,17 +806,18 @@ func file_auto_qual_firmware_target_proto_rawDescGZIP() []byte {
 }
 
 var file_auto_qual_firmware_target_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_auto_qual_firmware_target_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_auto_qual_firmware_target_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_auto_qual_firmware_target_proto_goTypes = []interface{}{
-	(FirmwareTarget_ReadabilityType)(0), // 0: auto_qual.FirmwareTarget.ReadabilityType
-	(*BaseFirmwareVersionString)(nil),   // 1: auto_qual.BaseFirmwareVersionString
-	(*BaseFirmwareVersionStruct)(nil),   // 2: auto_qual.BaseFirmwareVersionStruct
-	(*GscFirmwareVersionStruct)(nil),    // 3: auto_qual.GscFirmwareVersionStruct
-	(*FirmwareTargetVersion)(nil),       // 4: auto_qual.FirmwareTargetVersion
-	(*BaseFirmwareTarget)(nil),          // 5: auto_qual.BaseFirmwareTarget
-	(*FirmwareTargetInfo)(nil),          // 6: auto_qual.FirmwareTargetInfo
-	(*FirmwareTarget)(nil),              // 7: auto_qual.FirmwareTarget
-	(*FirmwareTargetDefinition)(nil),    // 8: auto_qual.FirmwareTargetDefinition
+	(FirmwareTarget_ReadabilityType)(0),   // 0: auto_qual.FirmwareTarget.ReadabilityType
+	(*BaseFirmwareVersionString)(nil),     // 1: auto_qual.BaseFirmwareVersionString
+	(*BaseFirmwareVersionStruct)(nil),     // 2: auto_qual.BaseFirmwareVersionStruct
+	(*GscFirmwareVersionStruct)(nil),      // 3: auto_qual.GscFirmwareVersionStruct
+	(*FirmwareTargetVersion)(nil),         // 4: auto_qual.FirmwareTargetVersion
+	(*BaseFirmwareTarget)(nil),            // 5: auto_qual.BaseFirmwareTarget
+	(*FirmwareTargetInfo)(nil),            // 6: auto_qual.FirmwareTargetInfo
+	(*FirmwareTarget)(nil),                // 7: auto_qual.FirmwareTarget
+	(*FirmwareTargetGroupDefinition)(nil), // 8: auto_qual.FirmwareTargetGroupDefinition
+	(*FirmwareTargetDefinition)(nil),      // 9: auto_qual.FirmwareTargetDefinition
 }
 var file_auto_qual_firmware_target_proto_depIdxs = []int32{
 	2,  // 0: auto_qual.FirmwareTargetVersion.base_version:type_name -> auto_qual.BaseFirmwareVersionStruct
@@ -778,13 +832,14 @@ var file_auto_qual_firmware_target_proto_depIdxs = []int32{
 	5,  // 9: auto_qual.FirmwareTargetInfo.pdc:type_name -> auto_qual.BaseFirmwareTarget
 	0,  // 10: auto_qual.FirmwareTarget.readability:type_name -> auto_qual.FirmwareTarget.ReadabilityType
 	6,  // 11: auto_qual.FirmwareTarget.fw:type_name -> auto_qual.FirmwareTargetInfo
-	7,  // 12: auto_qual.FirmwareTargetDefinition.current:type_name -> auto_qual.FirmwareTarget
-	7,  // 13: auto_qual.FirmwareTargetDefinition.previous:type_name -> auto_qual.FirmwareTarget
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	7,  // 12: auto_qual.FirmwareTargetGroupDefinition.group:type_name -> auto_qual.FirmwareTarget
+	7,  // 13: auto_qual.FirmwareTargetDefinition.current:type_name -> auto_qual.FirmwareTarget
+	8,  // 14: auto_qual.FirmwareTargetDefinition.previous:type_name -> auto_qual.FirmwareTargetGroupDefinition
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_auto_qual_firmware_target_proto_init() }
@@ -878,6 +933,18 @@ func file_auto_qual_firmware_target_proto_init() {
 			}
 		}
 		file_auto_qual_firmware_target_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FirmwareTargetGroupDefinition); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_auto_qual_firmware_target_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FirmwareTargetDefinition); i {
 			case 0:
 				return &v.state
@@ -909,7 +976,7 @@ func file_auto_qual_firmware_target_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_auto_qual_firmware_target_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
