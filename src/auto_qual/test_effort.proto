@@ -105,6 +105,9 @@ message ModelTestEffortConfig {
   google.protobuf.Timestamp generation_time = 13;
 
   OSBuildTarget test_build_target = 14;
+
+  // If true, skip scheduling al/boot or cros/boot as a hard prerequisite.
+  bool skip_boot_prerequisite = 15;
 }
 
 message ModelTestEffortConfigs {

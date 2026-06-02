@@ -12271,6 +12271,13 @@
               "number": 14,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.OSBuildTarget"
+            },
+            {
+              "jsonName": "skipBootPrerequisite",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_boot_prerequisite",
+              "number": 15,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "ModelTestEffortConfig",
