@@ -183,6 +183,8 @@ message CreateKeysHsmRequest {
   optional bool dry_run = 3;
 
   string keyset_name = 4;
+
+  optional bool exporter_dry_run = 5;
 }
 
 message CreateKeysHsmResponse { RequestStatus request_status = 1; }

@@ -18967,12 +18967,24 @@
               "name": "keyset_name",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "exporterDryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "exporter_dry_run",
+              "number": 5,
+              "oneofIndex": 1,
+              "proto3Optional": true,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "CreateKeysHsmRequest",
           "oneofDecl": [
             {
               "name": "_dry_run"
+            },
+            {
+              "name": "_exporter_dry_run"
             }
           ]
         },
