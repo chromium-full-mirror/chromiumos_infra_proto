@@ -17802,6 +17802,59 @@
         {
           "enumType": [
             {
+              "name": "Location",
+              "value": [
+                {
+                  "name": "LOCATION_UNKNOWN",
+                  "number": 0
+                },
+                {
+                  "name": "LOCATION_INTERNAL",
+                  "number": 1
+                },
+                {
+                  "name": "LOCATION_EXTERNAL",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "location",
+              "label": "LABEL_OPTIONAL",
+              "name": "location",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.LaunchedTest.Location"
+            },
+            {
+              "jsonName": "testEffortId",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_effort_id",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testEffortName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_effort_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_url",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "LaunchedTest"
+        },
+        {
+          "enumType": [
+            {
               "name": "FailureReason",
               "value": [
                 {
@@ -17827,6 +17880,14 @@
               "number": 1,
               "type": "TYPE_ENUM",
               "typeName": ".chromite.api.RunQualbotResponse.FailureReason"
+            },
+            {
+              "jsonName": "launchedTests",
+              "label": "LABEL_REPEATED",
+              "name": "launched_tests",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.LaunchedTest"
             }
           ],
           "name": "RunQualbotResponse"

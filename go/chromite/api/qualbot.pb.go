@@ -24,6 +24,57 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type LaunchedTest_Location int32
+
+const (
+	LaunchedTest_LOCATION_UNKNOWN LaunchedTest_Location = 0
+	// Launched in the skylab
+	LaunchedTest_LOCATION_INTERNAL LaunchedTest_Location = 1
+	// Launched in satlab for partners
+	LaunchedTest_LOCATION_EXTERNAL LaunchedTest_Location = 2
+)
+
+// Enum value maps for LaunchedTest_Location.
+var (
+	LaunchedTest_Location_name = map[int32]string{
+		0: "LOCATION_UNKNOWN",
+		1: "LOCATION_INTERNAL",
+		2: "LOCATION_EXTERNAL",
+	}
+	LaunchedTest_Location_value = map[string]int32{
+		"LOCATION_UNKNOWN":  0,
+		"LOCATION_INTERNAL": 1,
+		"LOCATION_EXTERNAL": 2,
+	}
+)
+
+func (x LaunchedTest_Location) Enum() *LaunchedTest_Location {
+	p := new(LaunchedTest_Location)
+	*p = x
+	return p
+}
+
+func (x LaunchedTest_Location) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LaunchedTest_Location) Descriptor() protoreflect.EnumDescriptor {
+	return file_chromite_api_qualbot_proto_enumTypes[0].Descriptor()
+}
+
+func (LaunchedTest_Location) Type() protoreflect.EnumType {
+	return &file_chromite_api_qualbot_proto_enumTypes[0]
+}
+
+func (x LaunchedTest_Location) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use LaunchedTest_Location.Descriptor instead.
+func (LaunchedTest_Location) EnumDescriptor() ([]byte, []int) {
+	return file_chromite_api_qualbot_proto_rawDescGZIP(), []int{1, 0}
+}
+
 // If QualBot failed, why did it?  Note: you should first check the
 // exit status of the Build API endpoint.  If the exit status is
 // zero, QualBot ran successfully and this reason should not be
@@ -65,11 +116,11 @@ func (x RunQualbotResponse_FailureReason) String() string {
 }
 
 func (RunQualbotResponse_FailureReason) Descriptor() protoreflect.EnumDescriptor {
-	return file_chromite_api_qualbot_proto_enumTypes[0].Descriptor()
+	return file_chromite_api_qualbot_proto_enumTypes[1].Descriptor()
 }
 
 func (RunQualbotResponse_FailureReason) Type() protoreflect.EnumType {
-	return &file_chromite_api_qualbot_proto_enumTypes[0]
+	return &file_chromite_api_qualbot_proto_enumTypes[1]
 }
 
 func (x RunQualbotResponse_FailureReason) Number() protoreflect.EnumNumber {
@@ -78,7 +129,7 @@ func (x RunQualbotResponse_FailureReason) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RunQualbotResponse_FailureReason.Descriptor instead.
 func (RunQualbotResponse_FailureReason) EnumDescriptor() ([]byte, []int) {
-	return file_chromite_api_qualbot_proto_rawDescGZIP(), []int{1, 0}
+	return file_chromite_api_qualbot_proto_rawDescGZIP(), []int{2, 0}
 }
 
 // The request to run QualBot.
@@ -150,6 +201,83 @@ func (x *RunQualbotRequest) GetIsStaging() bool {
 	return false
 }
 
+// A test effort launched by QualBot
+type LaunchedTest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The location of the launched test effort.
+	Location LaunchedTest_Location `protobuf:"varint,1,opt,name=location,proto3,enum=chromite.api.LaunchedTest_Location" json:"location,omitempty"`
+	// The test effort id (qual id)
+	TestEffortId string `protobuf:"bytes,2,opt,name=test_effort_id,json=testEffortId,proto3" json:"test_effort_id,omitempty"`
+	// The test effort name (i.e.
+	// fatcat-moonstone-16702.0.0-119223-AP-RO_RW-16702.0.0-119223-EC-RO_RW-16702.0.0-119223-8680138474243569761-android-manual/firmware)
+	TestEffortName string `protobuf:"bytes,3,opt,name=test_effort_name,json=testEffortName,proto3" json:"test_effort_name,omitempty"`
+	// The url to luci or abtd where the test results can be viewed.
+	TestUrl string `protobuf:"bytes,4,opt,name=test_url,json=testUrl,proto3" json:"test_url,omitempty"`
+}
+
+func (x *LaunchedTest) Reset() {
+	*x = LaunchedTest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chromite_api_qualbot_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LaunchedTest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LaunchedTest) ProtoMessage() {}
+
+func (x *LaunchedTest) ProtoReflect() protoreflect.Message {
+	mi := &file_chromite_api_qualbot_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LaunchedTest.ProtoReflect.Descriptor instead.
+func (*LaunchedTest) Descriptor() ([]byte, []int) {
+	return file_chromite_api_qualbot_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *LaunchedTest) GetLocation() LaunchedTest_Location {
+	if x != nil {
+		return x.Location
+	}
+	return LaunchedTest_LOCATION_UNKNOWN
+}
+
+func (x *LaunchedTest) GetTestEffortId() string {
+	if x != nil {
+		return x.TestEffortId
+	}
+	return ""
+}
+
+func (x *LaunchedTest) GetTestEffortName() string {
+	if x != nil {
+		return x.TestEffortName
+	}
+	return ""
+}
+
+func (x *LaunchedTest) GetTestUrl() string {
+	if x != nil {
+		return x.TestUrl
+	}
+	return ""
+}
+
 // The result of QualBot being run.
 type RunQualbotResponse struct {
 	state         protoimpl.MessageState
@@ -157,12 +285,14 @@ type RunQualbotResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	FailureReason RunQualbotResponse_FailureReason `protobuf:"varint,1,opt,name=failure_reason,json=failureReason,proto3,enum=chromite.api.RunQualbotResponse_FailureReason" json:"failure_reason,omitempty"`
+	// List of launched tests
+	LaunchedTests []*LaunchedTest `protobuf:"bytes,2,rep,name=launched_tests,json=launchedTests,proto3" json:"launched_tests,omitempty"`
 }
 
 func (x *RunQualbotResponse) Reset() {
 	*x = RunQualbotResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_chromite_api_qualbot_proto_msgTypes[1]
+		mi := &file_chromite_api_qualbot_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -175,7 +305,7 @@ func (x *RunQualbotResponse) String() string {
 func (*RunQualbotResponse) ProtoMessage() {}
 
 func (x *RunQualbotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_chromite_api_qualbot_proto_msgTypes[1]
+	mi := &file_chromite_api_qualbot_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -188,7 +318,7 @@ func (x *RunQualbotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RunQualbotResponse.ProtoReflect.Descriptor instead.
 func (*RunQualbotResponse) Descriptor() ([]byte, []int) {
-	return file_chromite_api_qualbot_proto_rawDescGZIP(), []int{1}
+	return file_chromite_api_qualbot_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *RunQualbotResponse) GetFailureReason() RunQualbotResponse_FailureReason {
@@ -196,6 +326,13 @@ func (x *RunQualbotResponse) GetFailureReason() RunQualbotResponse_FailureReason
 		return x.FailureReason
 	}
 	return RunQualbotResponse_FAILURE_UNKNOWN
+}
+
+func (x *RunQualbotResponse) GetLaunchedTests() []*LaunchedTest {
+	if x != nil {
+		return x.LaunchedTests
+	}
+	return nil
 }
 
 var File_chromite_api_qualbot_proto protoreflect.FileDescriptor
@@ -211,14 +348,35 @@ var file_chromite_api_qualbot_proto_rawDesc = []byte{
 	0x6b, 0x12, 0x19, 0x0a, 0x08, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x07, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x64, 0x12, 0x1d, 0x0a, 0x0a,
 	0x69, 0x73, 0x5f, 0x73, 0x74, 0x61, 0x67, 0x69, 0x6e, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08,
-	0x52, 0x09, 0x69, 0x73, 0x53, 0x74, 0x61, 0x67, 0x69, 0x6e, 0x67, 0x22, 0xcf, 0x01, 0x0a, 0x12,
-	0x52, 0x75, 0x6e, 0x51, 0x75, 0x61, 0x6c, 0x62, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x55, 0x0a, 0x0e, 0x66, 0x61, 0x69, 0x6c, 0x75, 0x72, 0x65, 0x5f, 0x72, 0x65,
-	0x61, 0x73, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x63, 0x68, 0x72,
-	0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x52, 0x75, 0x6e, 0x51, 0x75, 0x61,
-	0x6c, 0x62, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x46, 0x61, 0x69,
-	0x6c, 0x75, 0x72, 0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x52, 0x0d, 0x66, 0x61, 0x69, 0x6c,
-	0x75, 0x72, 0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x22, 0x62, 0x0a, 0x0d, 0x46, 0x61, 0x69,
+	0x52, 0x09, 0x69, 0x73, 0x53, 0x74, 0x61, 0x67, 0x69, 0x6e, 0x67, 0x22, 0x8a, 0x02, 0x0a, 0x0c,
+	0x4c, 0x61, 0x75, 0x6e, 0x63, 0x68, 0x65, 0x64, 0x54, 0x65, 0x73, 0x74, 0x12, 0x3f, 0x0a, 0x08,
+	0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x23,
+	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x4c, 0x61,
+	0x75, 0x6e, 0x63, 0x68, 0x65, 0x64, 0x54, 0x65, 0x73, 0x74, 0x2e, 0x4c, 0x6f, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x24, 0x0a,
+	0x0e, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x65, 0x66, 0x66, 0x6f, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x74, 0x65, 0x73, 0x74, 0x45, 0x66, 0x66, 0x6f, 0x72,
+	0x74, 0x49, 0x64, 0x12, 0x28, 0x0a, 0x10, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x65, 0x66, 0x66, 0x6f,
+	0x72, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x74,
+	0x65, 0x73, 0x74, 0x45, 0x66, 0x66, 0x6f, 0x72, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x19, 0x0a,
+	0x08, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x75, 0x72, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x74, 0x65, 0x73, 0x74, 0x55, 0x72, 0x6c, 0x22, 0x4e, 0x0a, 0x08, 0x4c, 0x6f, 0x63, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x10, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e,
+	0x5f, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x15, 0x0a, 0x11, 0x4c, 0x4f,
+	0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10,
+	0x01, 0x12, 0x15, 0x0a, 0x11, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x45, 0x58,
+	0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10, 0x02, 0x22, 0x92, 0x02, 0x0a, 0x12, 0x52, 0x75, 0x6e,
+	0x51, 0x75, 0x61, 0x6c, 0x62, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x55, 0x0a, 0x0e, 0x66, 0x61, 0x69, 0x6c, 0x75, 0x72, 0x65, 0x5f, 0x72, 0x65, 0x61, 0x73, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69,
+	0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x52, 0x75, 0x6e, 0x51, 0x75, 0x61, 0x6c, 0x62, 0x6f,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x46, 0x61, 0x69, 0x6c, 0x75, 0x72,
+	0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x52, 0x0d, 0x66, 0x61, 0x69, 0x6c, 0x75, 0x72, 0x65,
+	0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x12, 0x41, 0x0a, 0x0e, 0x6c, 0x61, 0x75, 0x6e, 0x63, 0x68,
+	0x65, 0x64, 0x5f, 0x74, 0x65, 0x73, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a,
+	0x2e, 0x63, 0x68, 0x72, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x4c, 0x61,
+	0x75, 0x6e, 0x63, 0x68, 0x65, 0x64, 0x54, 0x65, 0x73, 0x74, 0x52, 0x0d, 0x6c, 0x61, 0x75, 0x6e,
+	0x63, 0x68, 0x65, 0x64, 0x54, 0x65, 0x73, 0x74, 0x73, 0x22, 0x62, 0x0a, 0x0d, 0x46, 0x61, 0x69,
 	0x6c, 0x75, 0x72, 0x65, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x12, 0x13, 0x0a, 0x0f, 0x46, 0x41,
 	0x49, 0x4c, 0x55, 0x52, 0x45, 0x5f, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12,
 	0x1f, 0x0a, 0x1b, 0x46, 0x41, 0x49, 0x4c, 0x55, 0x52, 0x45, 0x5f, 0x53, 0x43, 0x48, 0x45, 0x44,
@@ -251,22 +409,26 @@ func file_chromite_api_qualbot_proto_rawDescGZIP() []byte {
 	return file_chromite_api_qualbot_proto_rawDescData
 }
 
-var file_chromite_api_qualbot_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_chromite_api_qualbot_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_chromite_api_qualbot_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_chromite_api_qualbot_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_chromite_api_qualbot_proto_goTypes = []interface{}{
-	(RunQualbotResponse_FailureReason)(0), // 0: chromite.api.RunQualbotResponse.FailureReason
-	(*RunQualbotRequest)(nil),             // 1: chromite.api.RunQualbotRequest
-	(*RunQualbotResponse)(nil),            // 2: chromite.api.RunQualbotResponse
+	(LaunchedTest_Location)(0),            // 0: chromite.api.LaunchedTest.Location
+	(RunQualbotResponse_FailureReason)(0), // 1: chromite.api.RunQualbotResponse.FailureReason
+	(*RunQualbotRequest)(nil),             // 2: chromite.api.RunQualbotRequest
+	(*LaunchedTest)(nil),                  // 3: chromite.api.LaunchedTest
+	(*RunQualbotResponse)(nil),            // 4: chromite.api.RunQualbotResponse
 }
 var file_chromite_api_qualbot_proto_depIdxs = []int32{
-	0, // 0: chromite.api.RunQualbotResponse.failure_reason:type_name -> chromite.api.RunQualbotResponse.FailureReason
-	1, // 1: chromite.api.QualbotService.RunQualbot:input_type -> chromite.api.RunQualbotRequest
-	2, // 2: chromite.api.QualbotService.RunQualbot:output_type -> chromite.api.RunQualbotResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // 0: chromite.api.LaunchedTest.location:type_name -> chromite.api.LaunchedTest.Location
+	1, // 1: chromite.api.RunQualbotResponse.failure_reason:type_name -> chromite.api.RunQualbotResponse.FailureReason
+	3, // 2: chromite.api.RunQualbotResponse.launched_tests:type_name -> chromite.api.LaunchedTest
+	2, // 3: chromite.api.QualbotService.RunQualbot:input_type -> chromite.api.RunQualbotRequest
+	4, // 4: chromite.api.QualbotService.RunQualbot:output_type -> chromite.api.RunQualbotResponse
+	4, // [4:5] is the sub-list for method output_type
+	3, // [3:4] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_chromite_api_qualbot_proto_init() }
@@ -289,6 +451,18 @@ func file_chromite_api_qualbot_proto_init() {
 			}
 		}
 		file_chromite_api_qualbot_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LaunchedTest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chromite_api_qualbot_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RunQualbotResponse); i {
 			case 0:
 				return &v.state
@@ -306,8 +480,8 @@ func file_chromite_api_qualbot_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chromite_api_qualbot_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   2,
+			NumEnums:      2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
