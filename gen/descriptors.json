@@ -34269,6 +34269,13 @@
               "oneofIndex": 1,
               "type": "TYPE_MESSAGE",
               "typeName": ".satlabrpcserver.TestEffort.AndroidBuildTarget"
+            },
+            {
+              "jsonName": "skipBootPrerequisite",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_boot_prerequisite",
+              "number": 12,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "TestEffort",
