@@ -14193,6 +14193,13 @@
               "number": 27,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.RunCopybotRequest.ConfigFiles"
+            },
+            {
+              "jsonName": "gitDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "git_dir",
+              "number": 28,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "RunCopybotRequest",

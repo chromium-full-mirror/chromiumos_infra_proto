@@ -144,6 +144,9 @@ message RunCopybotRequest {
   message ConfigFiles { string file = 1; }
   // Config file to configure the job.
   repeated ConfigFiles config_files = 27;
+
+  // Persistent directory storing cloned repos.
+  string git_dir = 28;
 }
 
 // The result of CopyBot being run.
