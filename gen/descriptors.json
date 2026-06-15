@@ -30770,6 +30770,13 @@
               "name": "filter_type",
               "number": 4,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "artifact",
+              "label": "LABEL_OPTIONAL",
+              "name": "artifact",
+              "number": 5,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "StageBuildRequest"

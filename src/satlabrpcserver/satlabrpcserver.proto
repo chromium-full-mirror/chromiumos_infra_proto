@@ -201,7 +201,7 @@ message ListBuildVersionsRequest {
 // NEXT_TAG = 2
 message ListBuildVersionsResponse { repeated BuildItem build_versions = 1; }
 
-// NEXT_TAG = 5
+// NEXT_TAG = 6
 message StageBuildRequest {
   string board = 1;
   string model = 2;
@@ -209,6 +209,8 @@ message StageBuildRequest {
   // The type that we want to stage to our bucket
   // e.g. firmware, release
   string filter_type = 4;
+  // Optional. If an artifact is provided, we still stage the entire folder. We only use this file as a marker to find the correct path (we find the directory where this file exists).
+  string artifact = 5;
 }
 
 // NEXT_TAG = 3
