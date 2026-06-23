@@ -128,6 +128,9 @@ message HwTestCfg {
     // requirement. See message definition in test_platform/request.proto for
     // complete documentation.
     test_platform.Request.Params.FreeformAttributes freeform_attributes = 26;
+
+    // Custom arguments to pass to the test suite.
+    string test_args = 27;
   }
 
   repeated HwTest hw_test = 1;

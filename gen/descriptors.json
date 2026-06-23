@@ -45956,6 +45956,13 @@
                   "number": 26,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".test_platform.Request.Params.FreeformAttributes"
+                },
+                {
+                  "jsonName": "testArgs",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "test_args",
+                  "number": 27,
+                  "type": "TYPE_STRING"
                 }
               ],
               "name": "HwTest",
