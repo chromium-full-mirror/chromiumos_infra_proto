@@ -344,6 +344,9 @@ message UprevFileResponse {
 
   // The new version that was uprevved to when an uprev was completed.
   string version = 2;
+
+  // Additional info to be appended to uprev cl's commit msg.
+  string additional_commit_info = 3;
 }
 
 message UprevVersionedPackageResponse {
