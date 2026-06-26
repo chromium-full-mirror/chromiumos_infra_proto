@@ -11,7 +11,10 @@ import "auto_qual/firmware_target.proto";
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
-message LuciBuilder { string name = 1; }
+message LuciBuilder {
+  string name = 1;
+  repeated string buckets = 2;
+}
 
 message AndroidBuilder {
   string branch = 1;

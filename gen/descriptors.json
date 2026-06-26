@@ -12483,6 +12483,13 @@
               "name": "name",
               "number": 1,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "buckets",
+              "label": "LABEL_REPEATED",
+              "name": "buckets",
+              "number": 2,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "LuciBuilder"
