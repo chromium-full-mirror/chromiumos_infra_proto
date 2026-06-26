@@ -37,6 +37,7 @@ message TestEffortBuilderConfig {
   repeated BuilderConfig builders = 1;
   repeated ModelTestEffortConfig test_effort_templates = 2;
   TriggerType trigger_type = 3;
+  int32 min_interval_hours = 4;
 }
 
 message TestEffortBuilderConfigs {

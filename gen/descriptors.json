@@ -12567,6 +12567,13 @@
               "number": 3,
               "type": "TYPE_ENUM",
               "typeName": ".auto_qual.TriggerType"
+            },
+            {
+              "jsonName": "minIntervalHours",
+              "label": "LABEL_OPTIONAL",
+              "name": "min_interval_hours",
+              "number": 4,
+              "type": "TYPE_INT32"
             }
           ],
           "name": "TestEffortBuilderConfig"
