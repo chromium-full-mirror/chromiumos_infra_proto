@@ -43161,6 +43161,10 @@
             {
               "name": "LTS",
               "number": 5
+            },
+            {
+              "name": "NEXT_STABLE",
+              "number": 6
             }
           ]
         },

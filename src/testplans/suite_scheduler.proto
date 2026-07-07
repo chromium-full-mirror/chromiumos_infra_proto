@@ -55,6 +55,8 @@ enum Branch {
   // Long term support tracking branch. This channel does not follow a ToT-N
   // schema.
   LTS = 5;
+  // Next Stable branch.
+  NEXT_STABLE = 6;
 }
 
 // RunFlags represent different CTP run attributes that will be applied to the
