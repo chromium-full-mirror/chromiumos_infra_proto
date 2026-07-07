@@ -14479,7 +14479,8 @@
           "name": "CopybotService",
           "options": {
             "[chromite.api.service_options]": {
-              "module": "copybot"
+              "module": "copybot",
+              "serviceBranchedExecution": "EXECUTE_TOT"
             }
           }
         }

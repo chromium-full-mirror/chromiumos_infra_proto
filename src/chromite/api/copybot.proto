@@ -183,6 +183,7 @@ message RunCopybotResponse {
 service CopybotService {
   option (service_options) = {
     module : "copybot",
+    service_branched_execution : EXECUTE_TOT,
   };
 
   // Run CopyBot.
