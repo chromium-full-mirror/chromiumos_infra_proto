@@ -39,6 +39,8 @@ type SigningServiceClient interface {
 	SignViaOnlineHsm(ctx context.Context, in *SignViaOnlineHsmRequest, opts ...grpc.CallOption) (*SignViaOnlineHsmResponse, error)
 	// Request key creation from the online HSM.
 	CreateKeysHsm(ctx context.Context, in *CreateKeysHsmRequest, opts ...grpc.CallOption) (*CreateKeysHsmResponse, error)
+	// Execute keyset management operations.
+	KeysetManager(ctx context.Context, in *KeysetManagerRequest, opts ...grpc.CallOption) (*KeysetManagerResponse, error)
 }
 
 type signingServiceClient struct {
@@ -103,6 +105,15 @@ func (c *signingServiceClient) CreateKeysHsm(ctx context.Context, in *CreateKeys
 	return out, nil
 }
 
+func (c *signingServiceClient) KeysetManager(ctx context.Context, in *KeysetManagerRequest, opts ...grpc.CallOption) (*KeysetManagerResponse, error) {
+	out := new(KeysetManagerResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/KeysetManager", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SigningServiceServer is the server API for SigningService service.
 // All implementations must embed UnimplementedSigningServiceServer
 // for forward compatibility
@@ -124,6 +135,8 @@ type SigningServiceServer interface {
 	SignViaOnlineHsm(context.Context, *SignViaOnlineHsmRequest) (*SignViaOnlineHsmResponse, error)
 	// Request key creation from the online HSM.
 	CreateKeysHsm(context.Context, *CreateKeysHsmRequest) (*CreateKeysHsmResponse, error)
+	// Execute keyset management operations.
+	KeysetManager(context.Context, *KeysetManagerRequest) (*KeysetManagerResponse, error)
 	mustEmbedUnimplementedSigningServiceServer()
 }
 
@@ -148,6 +161,9 @@ func (UnimplementedSigningServiceServer) SignViaOnlineHsm(context.Context, *Sign
 }
 func (UnimplementedSigningServiceServer) CreateKeysHsm(context.Context, *CreateKeysHsmRequest) (*CreateKeysHsmResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKeysHsm not implemented")
+}
+func (UnimplementedSigningServiceServer) KeysetManager(context.Context, *KeysetManagerRequest) (*KeysetManagerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KeysetManager not implemented")
 }
 func (UnimplementedSigningServiceServer) mustEmbedUnimplementedSigningServiceServer() {}
 
@@ -270,6 +286,24 @@ func _SigningService_CreateKeysHsm_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SigningService_KeysetManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KeysetManagerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SigningServiceServer).KeysetManager(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SigningService/KeysetManager",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SigningServiceServer).KeysetManager(ctx, req.(*KeysetManagerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SigningService_ServiceDesc is the grpc.ServiceDesc for SigningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -300,6 +334,10 @@ var SigningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateKeysHsm",
 			Handler:    _SigningService_CreateKeysHsm_Handler,
+		},
+		{
+			MethodName: "KeysetManager",
+			Handler:    _SigningService_KeysetManager_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

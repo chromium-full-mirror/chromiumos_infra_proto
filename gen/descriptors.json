@@ -19110,6 +19110,217 @@
             }
           ],
           "name": "CreateKeysHsmResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "releaseKeysCheckout",
+              "label": "LABEL_OPTIONAL",
+              "name": "release_keys_checkout",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "operations",
+              "label": "LABEL_REPEATED",
+              "name": "operations",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.KeysetOp"
+            },
+            {
+              "jsonName": "bug",
+              "label": "LABEL_OPTIONAL",
+              "name": "bug",
+              "number": 5,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "KeysetManagerRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "kernelBump",
+              "label": "LABEL_OPTIONAL",
+              "name": "kernel_bump",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.KernelBumpOp"
+            },
+            {
+              "jsonName": "miniosRollbackBump",
+              "label": "LABEL_OPTIONAL",
+              "name": "minios_rollback_bump",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.MiniOsRollbackBumpOp"
+            }
+          ],
+          "name": "KeysetOp",
+          "oneofDecl": [
+            {
+              "name": "op"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "updateAll",
+              "label": "LABEL_OPTIONAL",
+              "name": "update_all",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "KernelBumpOp"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "version",
+              "label": "LABEL_OPTIONAL",
+              "name": "version",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "MiniOsRollbackBumpOp"
+        },
+        {
+          "enumType": [
+            {
+              "name": "Status",
+              "value": [
+                {
+                  "name": "STATUS_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "STATUS_SUCCESS",
+                  "number": 1
+                },
+                {
+                  "name": "STATUS_FAILED",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.KeysetManagerResponse.Status"
+            },
+            {
+              "jsonName": "results",
+              "label": "LABEL_REPEATED",
+              "name": "results",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.KeysetOpResult"
+            },
+            {
+              "jsonName": "errorMessage",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_message",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "KeysetManagerResponse"
+        },
+        {
+          "enumType": [
+            {
+              "name": "OpStatus",
+              "value": [
+                {
+                  "name": "OP_STATUS_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "OP_STATUS_SUCCESS",
+                  "number": 1
+                },
+                {
+                  "name": "OP_STATUS_FAILED",
+                  "number": 2
+                },
+                {
+                  "name": "OP_STATUS_SKIPPED",
+                  "number": 3
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "opName",
+              "label": "LABEL_OPTIONAL",
+              "name": "op_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.KeysetOpResult.OpStatus"
+            },
+            {
+              "jsonName": "modifiedFiles",
+              "label": "LABEL_REPEATED",
+              "name": "modified_files",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "errorMessage",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_message",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "KeysetOpResult"
         }
       ],
       "name": "chromite/api/signing.proto",
@@ -19155,6 +19366,12 @@
               "name": "CreateKeysHsm",
               "options": {},
               "outputType": ".chromite.api.CreateKeysHsmResponse"
+            },
+            {
+              "inputType": ".chromite.api.KeysetManagerRequest",
+              "name": "KeysetManager",
+              "options": {},
+              "outputType": ".chromite.api.KeysetManagerResponse"
             }
           ],
           "name": "SigningService",

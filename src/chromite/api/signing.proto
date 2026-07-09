@@ -6,10 +6,10 @@ syntax = "proto3";
 
 package chromite.api;
 
-option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
-
 import "chromite/api/build_api.proto";
 import "chromiumos/common.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/chromite/api";
 
 // RequestStatus defines the result.
 enum RequestStatus {
@@ -189,6 +189,85 @@ message CreateKeysHsmRequest {
 
 message CreateKeysHsmResponse { RequestStatus request_status = 1; }
 
+// Request to execute keyset management operations.
+message KeysetManagerRequest {
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 1;
+
+  // If set, will not make any mutations in Cloud KMS
+  bool dry_run = 2;
+
+  // Path to the local checkout of the chromiumos/platform/release-keys.
+  string release_keys_checkout = 3;
+
+  // The list of operations to perform *in order*.
+  repeated KeysetOp operations = 4;
+
+  // Buganizer ID to be associated with the request (for logging/future use).
+  int64 bug = 5;
+}
+
+// A wrapper message for individual keyset operations.
+message KeysetOp {
+  oneof op {
+    KernelBumpOp kernel_bump = 1;
+    MiniOsRollbackBumpOp minios_rollback_bump = 2;
+  }
+}
+
+// Operation to bump the kernel version of selected keys.
+message KernelBumpOp {
+  // The keyset to bump. Required if update_all is false.
+  string keyset = 1;
+
+  // If true, update all targets. Must be set if keyset is empty.
+  bool update_all = 2;
+}
+
+// Operation to bump the MiniOS rollback version.
+message MiniOsRollbackBumpOp {
+  // Target keyset
+  string keyset = 1;
+
+  // The new version/rollback index to set in kernel_subkey.vbpubk.
+  uint32 version = 2;
+}
+
+// Response containing the results of the keyset management run.
+message KeysetManagerResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_SUCCESS = 1;
+    STATUS_FAILED = 2;
+  }
+  Status status = 1;
+  // Detailed results for each executed operation.
+  repeated KeysetOpResult results = 2;
+  // Overall error message if the execution failed before processing operations.
+  string error_message = 3;
+}
+// Detailed result of a single keyset operation.
+message KeysetOpResult {
+  // Name of the operation (e.g., "KernelBump", "MiniOsRollbackBump").
+  string op_name = 1;
+  enum OpStatus {
+    OP_STATUS_UNSPECIFIED = 0;
+    OP_STATUS_SUCCESS = 1;
+    OP_STATUS_FAILED = 2;
+    OP_STATUS_SKIPPED = 3;
+  }
+  OpStatus status = 2;
+  // List of files modified or created by this operation
+  // relative to the release-keys repository root
+  repeated string modified_files = 3;
+  // Operation-specific error message if it failed.
+  string error_message = 4;
+}
+
 // The signing service.
 service SigningService {
   option (service_options) = {
@@ -222,4 +301,7 @@ service SigningService {
 
   // Request key creation from the online HSM.
   rpc CreateKeysHsm(CreateKeysHsmRequest) returns (CreateKeysHsmResponse) {};
+
+  // Execute keyset management operations.
+  rpc KeysetManager(KeysetManagerRequest) returns (KeysetManagerResponse) {};
 }
