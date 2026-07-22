@@ -422,6 +422,9 @@ message BuilderConfig {
 
       // FirmwareService: Token Database.
       FIRMWARE_TOKEN_DATABASE = 55;
+
+      // FirmwareService: PDC FW binaries
+      FIRMWARE_PDC = 57;
     }
     repeated ArtifactTypes artifact_types = 2;
 

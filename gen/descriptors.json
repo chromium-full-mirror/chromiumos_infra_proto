@@ -1354,7 +1354,7 @@
                       "start": 29
                     },
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 33
                     }
                   ],
@@ -1498,7 +1498,7 @@
                       "start": 30
                     },
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 53
                     }
                   ],
@@ -1647,7 +1647,7 @@
                       "start": 46
                     },
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 50
                     }
                   ],
@@ -1740,7 +1740,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 1
                     }
                   ],
@@ -1839,6 +1839,10 @@
                     {
                       "end": 55,
                       "start": 54
+                    },
+                    {
+                      "end": 57,
+                      "start": 57
                     }
                   ],
                   "value": [
@@ -2006,7 +2010,7 @@
                       "start": 49
                     },
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 55
                     }
                   ],
@@ -2155,6 +2159,10 @@
                     {
                       "name": "FIRMWARE_TOKEN_DATABASE",
                       "number": 55
+                    },
+                    {
+                      "name": "FIRMWARE_PDC",
+                      "number": 57
                     }
                   ]
                 }
@@ -2240,7 +2248,7 @@
                       "start": 1
                     },
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 37
                     }
                   ],
@@ -2321,7 +2329,7 @@
                       "start": 1
                     },
                     {
-                      "end": 56,
+                      "end": 57,
                       "start": 52
                     }
                   ],
@@ -5578,6 +5586,15 @@
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".chromite.api.FwBuildMetric.ZephyrTarget"
+            },
+            {
+              "jsonName": "pdc",
+              "label": "LABEL_OPTIONAL",
+              "name": "pdc",
+              "number": 5,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FwBuildMetric.PdcTarget"
             }
           ],
           "name": "FwBuildMetric",
@@ -5653,6 +5670,142 @@
                 }
               ],
               "name": "ZephyrTarget"
+            },
+            {
+              "enumType": [
+                {
+                  "name": "PdcChipType",
+                  "value": [
+                    {
+                      "name": "RTK_RTS5453P_GR",
+                      "number": 0
+                    },
+                    {
+                      "name": "RTK_RTS5452P_GR",
+                      "number": 1
+                    },
+                    {
+                      "name": "RTK_RTS5453P_VB",
+                      "number": 2
+                    },
+                    {
+                      "name": "RTK_RTS5452P_VB",
+                      "number": 3
+                    },
+                    {
+                      "name": "RTK_RTS5453P_20E",
+                      "number": 4
+                    },
+                    {
+                      "name": "RTK_RTS5452P_20E",
+                      "number": 5
+                    },
+                    {
+                      "name": "RTK_RTS5453P_28E",
+                      "number": 6
+                    },
+                    {
+                      "name": "RTK_RTS5452P_28E",
+                      "number": 7
+                    },
+                    {
+                      "name": "RTK_RTS5453P_VC",
+                      "number": 8
+                    },
+                    {
+                      "name": "RTK_RTS5452P_VC",
+                      "number": 9
+                    },
+                    {
+                      "name": "TI_TPS66994_A",
+                      "number": 101
+                    },
+                    {
+                      "name": "TI_TPS66993_A",
+                      "number": 102
+                    },
+                    {
+                      "name": "TI_TPS66993_TPS66990G1_A",
+                      "number": 103
+                    },
+                    {
+                      "name": "TI_TPS669982_A",
+                      "number": 104
+                    },
+                    {
+                      "name": "TI_TPS669971_A",
+                      "number": 105
+                    },
+                    {
+                      "name": "TI_TPS66994_B",
+                      "number": 110
+                    },
+                    {
+                      "name": "TI_TPS66993_B",
+                      "number": 111
+                    },
+                    {
+                      "name": "TI_TPS66993_TPS66990G1_B",
+                      "number": 112
+                    },
+                    {
+                      "name": "TI_TPS669982_B",
+                      "number": 113
+                    },
+                    {
+                      "name": "TI_TPS669971_B",
+                      "number": 114
+                    }
+                  ]
+                }
+              ],
+              "field": [
+                {
+                  "jsonName": "baseFwVer",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "base_fw_ver",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FwBuildMetric.Version"
+                },
+                {
+                  "jsonName": "baseFwName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "base_fw_name",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "basheFwSha256",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "bashe_fw_sha256",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "configName",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "config_name",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "configHash",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "config_hash",
+                  "number": 5,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "pdcChipType",
+                  "label": "LABEL_REPEATED",
+                  "name": "pdc_chip_type",
+                  "number": 6,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".chromite.api.FwBuildMetric.PdcTarget.PdcChipType"
+                }
+              ],
+              "name": "PdcTarget"
             }
           ],
           "oneofDecl": [
@@ -15608,6 +15761,10 @@
                     {
                       "name": "FIRMWARE_TOKEN_DATABASE",
                       "number": 55
+                    },
+                    {
+                      "name": "FIRMWARE_PDC",
+                      "number": 57
                     }
                   ]
                 }

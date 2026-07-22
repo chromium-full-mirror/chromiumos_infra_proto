@@ -63,12 +63,89 @@ message FwBuildMetric {
   }
 
   // Optional information related to a specific target type.
-  oneof image_type { ZephyrTarget zephyr = 4; }
+  oneof image_type {
+    ZephyrTarget zephyr = 4;
+    PdcTarget pdc = 5;
+  }
 
   // Zephyr-base firmware target related build metrics.
   message ZephyrTarget {
     // The version of the Zephyr kernel used during build.
     Version kernel_version = 1;
+  }
+
+  message PdcTarget {
+    // Version of base firmware used
+    Version base_fw_ver = 1;
+    // File name of the base firmware
+    string base_fw_name = 2;
+    // SHA256 hash of the raw base firmware (before merging)
+    string bashe_fw_sha256 = 3;
+    // Config identifier that is merged into this firmware image
+    string config_name = 4;
+    // SHA256 hash of the config fragment (before merging)
+    string config_hash = 5;
+    // PDC chip type this firmware image is intended for. This is a
+    // repeated field because TI allows creating firmware binaries
+    // with multiple config sections that can be shared across chips.
+    repeated PdcChipType pdc_chip_type = 6;
+
+    enum PdcChipType {
+      //
+      // Realtek
+      //
+
+      // Realtek "non-VB" dual-port PDC
+      RTK_RTS5453P_GR = 0;
+      // Realtek "non-VB" single-port PDC
+      RTK_RTS5452P_GR = 1;
+      // Realtek -VB dual-port PDC
+      RTK_RTS5453P_VB = 2;
+      // Realtek -VB single-port PDC
+      RTK_RTS5452P_VB = 3;
+      // Realtek SPR dual-port PDC CFP2.0 (eUSB2)
+      RTK_RTS5453P_20E = 4;
+      // Realtek SPR single-port PDC CFP2.0 (eUSB2)
+      RTK_RTS5452P_20E = 5;
+      // Realtek EPR dual-port PDC CFP2.0 (eUSB2)
+      RTK_RTS5453P_28E = 6;
+      // Realtek EPR single-port PDC CFP2.0 (eUSB2)
+      RTK_RTS5452P_28E = 7;
+      // Realtek -VC dual-port PDC
+      RTK_RTS5453P_VC = 8;
+      // Realtek -VC single-port PDC
+      RTK_RTS5452P_VC = 9;
+
+      //
+      // TI
+      //
+
+      // TI TPS66994 dual-port PDC, original (-*A) FW partitioning
+      TI_TPS66994_A = 101;
+      // TI TPS66993 single-port PDC, original (-*A) FW partitioning
+      TI_TPS66993_A = 102;
+      // TI TPS66993 single-port PDC plus TPS66990G1 satellite chip,
+      // original (-*A) FW partitioning. This behaves the same as a dual-port
+      // PDC.
+      TI_TPS66993_TPS66990G1_A = 103;
+      // TI TPS669982 dual-port PDC CFP2.0, original (-*A) FW partitioning
+      TI_TPS669982_A = 104;
+      // TI TPS669971 single-port PDC CFP2.0, original (-*A) FW partitioning
+      TI_TPS669971_A = 105;
+
+      // TI TPS66994 dual-port PDC, new vROM (-*B) FW partitioning
+      TI_TPS66994_B = 110;
+      // TI TPS66993 single-port PDC, new vROM (-*B) FW partitioning
+      TI_TPS66993_B = 111;
+      // TI TPS66993 single-port PDC plus TPS66990G1 satellite chip,
+      // new vROM (-*B) FW partitioning. This behaves the same as a dual-port
+      // PDC.
+      TI_TPS66993_TPS66990G1_B = 112;
+      // TI TPS669982 dual-port PDC CFP2.0, new vROM (-*B) FW partitioning
+      TI_TPS669982_B = 113;
+      // TI TPS669971 single-port PDC CFP2.0, new vROM (-*B) FW partitioning
+      TI_TPS669971_B = 114;
+    }
   }
 }
 
