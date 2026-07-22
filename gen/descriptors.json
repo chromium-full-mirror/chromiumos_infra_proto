@@ -22448,6 +22448,188 @@
         {
           "field": [
             {
+              "jsonName": "uri",
+              "label": "LABEL_OPTIONAL",
+              "name": "uri",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "sha256",
+              "label": "LABEL_OPTIONAL",
+              "name": "sha256",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FirmwareArchive"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "archive",
+              "label": "LABEL_OPTIONAL",
+              "name": "archive",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareArchive"
+            },
+            {
+              "jsonName": "targetName",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "extractFromCbfs",
+              "label": "LABEL_OPTIONAL",
+              "name": "extract_from_cbfs",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "CbfsTargetFirmwareArchive"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "fwArchive",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw_archive",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareArchive"
+            },
+            {
+              "jsonName": "cbfsArchive",
+              "label": "LABEL_OPTIONAL",
+              "name": "cbfs_archive",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.CbfsTargetFirmwareArchive"
+            }
+          ],
+          "name": "FirmwareTargetArchive",
+          "oneofDecl": [
+            {
+              "name": "archive"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "ec",
+              "label": "LABEL_OPTIONAL",
+              "name": "ec",
+              "number": 1,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareTargetArchive"
+            },
+            {
+              "jsonName": "ap",
+              "label": "LABEL_OPTIONAL",
+              "name": "ap",
+              "number": 2,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareTargetArchive"
+            },
+            {
+              "jsonName": "fpmcu",
+              "label": "LABEL_OPTIONAL",
+              "name": "fpmcu",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareTargetArchive"
+            },
+            {
+              "jsonName": "ish",
+              "label": "LABEL_OPTIONAL",
+              "name": "ish",
+              "number": 4,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareTargetArchive"
+            },
+            {
+              "jsonName": "pdc",
+              "label": "LABEL_OPTIONAL",
+              "name": "pdc",
+              "number": 5,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareTargetArchive"
+            }
+          ],
+          "name": "FirmwareVersionInfo",
+          "oneofDecl": [
+            {
+              "name": "info"
+            }
+          ]
+        },
+        {
+          "enumType": [
+            {
+              "name": "ReadabilityType",
+              "value": [
+                {
+                  "name": "READABILITY_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "RO",
+                  "number": 1
+                },
+                {
+                  "name": "RW",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "readability",
+              "label": "LABEL_REPEATED",
+              "name": "readability",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.FirmwareDescriptor.ReadabilityType"
+            },
+            {
+              "jsonName": "fw",
+              "label": "LABEL_OPTIONAL",
+              "name": "fw",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareVersionInfo"
+            }
+          ],
+          "name": "FirmwareDescriptor"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "fwConfig",
+              "label": "LABEL_REPEATED",
+              "name": "fw_config",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareDescriptor"
+            }
+          ],
+          "name": "FirmwareConfiguration"
+        },
+        {
+          "field": [
+            {
               "jsonName": "roFirmware",
               "label": "LABEL_OPTIONAL",
               "name": "ro_firmware",
@@ -22467,6 +22649,25 @@
           "name": "FirmwareConfig"
         },
         {
+          "enumType": [
+            {
+              "name": "OsType",
+              "value": [
+                {
+                  "name": "OS_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "CROS",
+                  "number": 1
+                },
+                {
+                  "name": "ANDROID",
+                  "number": 2
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "model",
@@ -22508,12 +22709,20 @@
               "typeName": ".chromiumos.FirmwareVersion"
             },
             {
-              "jsonName": "fingerprintFirmware",
+              "jsonName": "fwConfig",
               "label": "LABEL_OPTIONAL",
-              "name": "fingerprint_firmware",
+              "name": "fw_config",
               "number": 6,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromiumos.FirmwareVersion"
+              "typeName": ".chromiumos.FirmwareConfiguration"
+            },
+            {
+              "jsonName": "os",
+              "label": "LABEL_REPEATED",
+              "name": "os",
+              "number": 7,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromiumos.FirmwareConfigForModel.OsType"
             }
           ],
           "name": "FirmwareConfigForModel"

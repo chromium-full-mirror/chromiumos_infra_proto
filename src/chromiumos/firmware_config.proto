@@ -20,7 +20,8 @@ message ModelSigningConfig {
   string brand_code = 2; // e.g. "ZZCR"
 }
 
-// A sinfgle firmware version
+// A single firmware version
+// DEPRECATED, replaced by FirmwareArchive
 message FirmwareVersion {
   // The URI at which the firmware binary can be found.
   string uri = 1;
@@ -29,7 +30,57 @@ message FirmwareVersion {
   string sha256 = 2;
 }
 
+// A single firmware archive
+message FirmwareArchive {
+  // The URI at which the firmware archive can be found.
+  string uri = 1;
+
+  // SHA256 hash of the firmware archive.
+  string sha256 = 2;
+}
+
+message CbfsTargetFirmwareArchive {
+  // The archive containing the target firmware.
+  FirmwareArchive archive = 1;
+
+  // The filename of the target in CBFS
+  string target_name = 2;
+
+  // Archive is an AP FW image and the target should be extracted from its CBFS
+  bool extract_from_cbfs = 3;
+}
+
+message FirmwareTargetArchive {
+  oneof archive {
+    FirmwareArchive fw_archive = 1;
+    CbfsTargetFirmwareArchive cbfs_archive = 2;
+  }
+}
+
+message FirmwareVersionInfo {
+  oneof info {
+    FirmwareTargetArchive ec = 1;
+    FirmwareTargetArchive ap = 2;
+    FirmwareTargetArchive fpmcu = 3;
+    FirmwareTargetArchive ish = 4;
+    FirmwareTargetArchive pdc = 5;
+  }
+}
+
+message FirmwareDescriptor {
+  enum ReadabilityType {
+    READABILITY_TYPE_UNSPECIFIED = 0;
+    RO = 1;
+    RW = 2;
+  }
+  repeated ReadabilityType readability = 1;
+  FirmwareVersionInfo fw = 2;
+}
+
+message FirmwareConfiguration { repeated FirmwareDescriptor fw_config = 1; }
+
 // Config for a specific firmware type.
+// DEPRECATED, replaced by FirmwareDescriptor
 message FirmwareConfig {
   // Read-only firmware version.
   FirmwareVersion ro_firmware = 1;
@@ -47,16 +98,28 @@ message FirmwareConfigForModel {
   ModelSigningConfig signing = 2;
 
   // AP Firmware config.
+  // DEPRECATED, replaced by FirmwareConfiguration
   FirmwareConfig ap_firmware = 3;
 
   // EC firmware config.
+  // DEPRECATED, replaced by FirmwareConfiguration
   FirmwareConfig ec_firmware = 4;
 
   // AP firmware containing the EC firmware for read-write EC.
   // This is multually exclusive with ec_firmware.rw_firmware. At most one can
   // have non-empty uri.
+  // DEPRECATED, replaced by FirmwareConfiguration
   FirmwareVersion ap_firmware_for_ec_rw = 5;
 
-  // Fingerprint firmware.
-  FirmwareVersion fingerprint_firmware = 6;
+  // fw_config message used to contain repeated fields with information
+  // representative of the device as a whole.
+  FirmwareConfiguration fw_config = 6;
+
+  // OS to pin the targets in
+  enum OsType {
+    OS_TYPE_UNSPECIFIED = 0;
+    CROS = 1;
+    ANDROID = 2;
+  }
+  repeated OsType os = 7;
 }
