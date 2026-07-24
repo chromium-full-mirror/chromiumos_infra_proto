@@ -12298,6 +12298,13 @@
               "name": "skip_boot_prerequisite",
               "number": 15,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "staticShardCount",
+              "label": "LABEL_OPTIONAL",
+              "name": "static_shard_count",
+              "number": 16,
+              "type": "TYPE_UINT32"
             }
           ],
           "name": "ModelTestEffortConfig",
@@ -12346,6 +12353,13 @@
                   "number": 3,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".auto_qual.Test"
+                },
+                {
+                  "jsonName": "staticShardCount",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "static_shard_count",
+                  "number": 4,
+                  "type": "TYPE_UINT32"
                 }
               ],
               "name": "TestPlan",
