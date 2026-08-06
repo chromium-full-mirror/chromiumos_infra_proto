@@ -142,6 +142,9 @@ message BundleRequest {
 
   // Result path for artifacts. If present this overrides output_dir.
   chromiumos.ResultPath result_path = 5;
+
+  // Compression level for zstd stateful payload (default 19).
+  int32 zstd_compression_level = 6;
 }
 
 // Response describing which bundles were dumped to the given output directory.
