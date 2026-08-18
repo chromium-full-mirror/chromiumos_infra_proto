@@ -26,6 +26,7 @@ message Waiver {
     EC_REBOOT = 3;
     RESUME_TIME = 4;
     NON_REQUIRED_TEST = 5;
+    EC_CRASH = 6;
   }
 
   repeated string board = 1;

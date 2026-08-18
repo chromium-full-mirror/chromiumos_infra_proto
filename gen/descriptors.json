@@ -12999,6 +12999,10 @@
                 {
                   "name": "NON_REQUIRED_TEST",
                   "number": 5
+                },
+                {
+                  "name": "EC_CRASH",
+                  "number": 6
                 }
               ]
             }
