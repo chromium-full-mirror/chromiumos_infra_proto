@@ -226,6 +226,8 @@ message InstallPackagesRequest {
   // Timestamp at which the install packages action will be timed out.
   // Can be used to exit cleanly shortly before termination.
   google.protobuf.Timestamp timeout_timestamp = 12;
+  // Siso Config to hold info.
+  chromiumos.SisoConfig siso_config = 13;
 }
 
 message InstallPackagesResponse {

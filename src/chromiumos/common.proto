@@ -70,6 +70,11 @@ message RemoteexecConfig {
   SyncedDir log_dir = 3;
 }
 
+message SisoConfig {
+  // If true, build is donw with siso.
+  bool use_siso = 1;
+}
+
 message RemoteexecArtifacts {
   // List of log files.
   repeated string log_files = 1;

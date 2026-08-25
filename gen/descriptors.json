@@ -575,6 +575,18 @@
         {
           "field": [
             {
+              "jsonName": "useSiso",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_siso",
+              "number": 1,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "SisoConfig"
+        },
+        {
+          "field": [
+            {
               "jsonName": "logFiles",
               "label": "LABEL_REPEATED",
               "name": "log_files",
@@ -3700,6 +3712,14 @@
               "number": 12,
               "type": "TYPE_MESSAGE",
               "typeName": ".google.protobuf.Timestamp"
+            },
+            {
+              "jsonName": "sisoConfig",
+              "label": "LABEL_OPTIONAL",
+              "name": "siso_config",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.SisoConfig"
             }
           ],
           "name": "InstallPackagesRequest",
