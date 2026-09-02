@@ -29,6 +29,11 @@ message AndroidTestPlatformTest {
   // e.g.,
   // //google3/configs/wireless/android/testing/atp/prod/al-eng/android-desktop-firmware/config.gcl
   string atp_gcl_file = 2;
+
+  // Whether to compile test inclusions and exclusions into an ephemeral
+  // SubPlan 2.0 XML file stored on Google Cloud Storage instead of passing
+  // them inline via cts-params (b/543144300).
+  bool use_subplan = 3;
 }
 
 message Test {

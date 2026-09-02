@@ -11766,6 +11766,13 @@
               "name": "atp_gcl_file",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "useSubplan",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_subplan",
+              "number": 3,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "AndroidTestPlatformTest"
@@ -12555,6 +12562,13 @@
                   "name": "static_shard_count",
                   "number": 4,
                   "type": "TYPE_UINT32"
+                },
+                {
+                  "jsonName": "useSubplan",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "use_subplan",
+                  "number": 5,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "TestPlan",

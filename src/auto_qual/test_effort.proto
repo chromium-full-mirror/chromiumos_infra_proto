@@ -54,6 +54,11 @@ message ModelTestEffortConfig {
 
     // Static shard count override for this test plan
     uint32 static_shard_count = 4;
+
+    // Whether to compile test inclusions and exclusions into an ephemeral
+    // SubPlan 2.0 XML file stored on Google Cloud Storage instead of passing
+    // them inline via cts-params (b/543144300).
+    bool use_subplan = 5;
   }
 
   message AdditionalTesting {
