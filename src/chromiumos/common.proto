@@ -380,6 +380,9 @@ enum FwLocation {
   PLATFORM_EC_LEGACY_RENODE =
       11;            // platform/ec-legacy/util/renode/firmware_builder.py
   PLATFORM_PDC = 12; // platform/pdc/firmware_builder.py
+  PLATFORM_CR50_PRIVATE = 13; // platform/cr50-private/firmware_builder.py
+  PLATFORM_GSC_UTILS_PRIVATE =
+      14; // platform/gsc-utils-private/firmware_builder.py
 }
 
 // Additional information about artifacts used by PrepareForBuild endpoints.

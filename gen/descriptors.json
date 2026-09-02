@@ -405,6 +405,14 @@
             {
               "name": "PLATFORM_PDC",
               "number": 12
+            },
+            {
+              "name": "PLATFORM_CR50_PRIVATE",
+              "number": 13
+            },
+            {
+              "name": "PLATFORM_GSC_UTILS_PRIVATE",
+              "number": 14
             }
           ]
         }
