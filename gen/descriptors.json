@@ -12949,6 +12949,32 @@
         {
           "field": [
             {
+              "jsonName": "maxWallClockHours",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_wall_clock_hours",
+              "number": 1,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "maxInactivityHours",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_inactivity_hours",
+              "number": 2,
+              "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "maxRequests",
+              "label": "LABEL_OPTIONAL",
+              "name": "max_requests",
+              "number": 3,
+              "type": "TYPE_UINT32"
+            }
+          ],
+          "name": "TimeToLivePolicy"
+        },
+        {
+          "field": [
+            {
               "jsonName": "osBuildTarget",
               "label": "LABEL_REPEATED",
               "name": "os_build_target",
@@ -12963,6 +12989,14 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.Test"
+            },
+            {
+              "jsonName": "ttlPolicy",
+              "label": "LABEL_OPTIONAL",
+              "name": "ttl_policy",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TimeToLivePolicy"
             }
           ],
           "name": "TestPlan"

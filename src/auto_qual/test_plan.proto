@@ -10,9 +10,24 @@ option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 import "auto_qual/os_build_target.proto";
 import "auto_qual/test.proto";
 
+message TimeToLivePolicy {
+  // Maximum overall lifespan of the test effort in hours from generation_time.
+  // 0 uses system default.
+  uint32 max_wall_clock_hours = 1;
+
+  // Maximum allowed inactivity duration in hours (time since last test result).
+  // 0 uses system default.
+  uint32 max_inactivity_hours = 2;
+
+  // Maximum number of CTP/ATP requests that may be scheduled for this plan.
+  // 0 uses system default.
+  uint32 max_requests = 3;
+}
+
 message TestPlan {
   repeated OSBuildTarget os_build_target = 1;
   repeated Test test = 2;
+  TimeToLivePolicy ttl_policy = 3;
 }
 
 message TestPlans { repeated TestPlan test_plan = 1; }
