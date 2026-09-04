@@ -123,3 +123,7 @@ message FirmwareConfigForModel {
   }
   repeated OsType os = 7;
 }
+
+message FirmwareConfigList {
+  repeated FirmwareConfigForModel firmware_config = 1;
+}

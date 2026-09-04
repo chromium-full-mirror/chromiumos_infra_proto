@@ -22786,6 +22786,19 @@
             }
           ],
           "name": "FirmwareConfigForModel"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "firmwareConfig",
+              "label": "LABEL_REPEATED",
+              "name": "firmware_config",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromiumos.FirmwareConfigForModel"
+            }
+          ],
+          "name": "FirmwareConfigList"
         }
       ],
       "name": "chromiumos/firmware_config.proto",
