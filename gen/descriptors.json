@@ -19379,6 +19379,13 @@
               "name": "bug",
               "number": 5,
               "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "keyset",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "KeysetManagerRequest"
@@ -19386,22 +19393,67 @@
         {
           "field": [
             {
-              "jsonName": "kernelBump",
+              "jsonName": "kernelVersionBump",
               "label": "LABEL_OPTIONAL",
-              "name": "kernel_bump",
+              "name": "kernel_version_bump",
               "number": 1,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.KernelBumpOp"
+              "typeName": ".chromite.api.KernelVersionBumpOp"
             },
             {
-              "jsonName": "miniosRollbackBump",
+              "jsonName": "miniosVersionBump",
               "label": "LABEL_OPTIONAL",
-              "name": "minios_rollback_bump",
+              "name": "minios_version_bump",
               "number": 2,
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
-              "typeName": ".chromite.api.MiniOsRollbackBumpOp"
+              "typeName": ".chromite.api.MiniOsVersionBumpOp"
+            },
+            {
+              "jsonName": "kernelSubkeyRotation",
+              "label": "LABEL_OPTIONAL",
+              "name": "kernel_subkey_rotation",
+              "number": 3,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.KernelSubkeyRotationOp"
+            },
+            {
+              "jsonName": "kernelDatakeyRotation",
+              "label": "LABEL_OPTIONAL",
+              "name": "kernel_datakey_rotation",
+              "number": 4,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.KernelDatakeyRotationOp"
+            },
+            {
+              "jsonName": "firmwareVersionBump",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_version_bump",
+              "number": 5,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FirmwareVersionBumpOp"
+            },
+            {
+              "jsonName": "usbRecoveryVersionBump",
+              "label": "LABEL_OPTIONAL",
+              "name": "usb_recovery_version_bump",
+              "number": 6,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.UsbRecoveryVersionBumpOp"
+            },
+            {
+              "jsonName": "firmwareKeyRotation",
+              "label": "LABEL_OPTIONAL",
+              "name": "firmware_key_rotation",
+              "number": 7,
+              "oneofIndex": 0,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".chromite.api.FirmwareKeyRotationOp"
             }
           ],
           "name": "KeysetOp",
@@ -19412,42 +19464,25 @@
           ]
         },
         {
-          "field": [
-            {
-              "jsonName": "keyset",
-              "label": "LABEL_OPTIONAL",
-              "name": "keyset",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "updateAll",
-              "label": "LABEL_OPTIONAL",
-              "name": "update_all",
-              "number": 2,
-              "type": "TYPE_BOOL"
-            }
-          ],
-          "name": "KernelBumpOp"
+          "name": "KernelVersionBumpOp"
         },
         {
-          "field": [
-            {
-              "jsonName": "keyset",
-              "label": "LABEL_OPTIONAL",
-              "name": "keyset",
-              "number": 1,
-              "type": "TYPE_STRING"
-            },
-            {
-              "jsonName": "version",
-              "label": "LABEL_OPTIONAL",
-              "name": "version",
-              "number": 2,
-              "type": "TYPE_UINT32"
-            }
-          ],
-          "name": "MiniOsRollbackBumpOp"
+          "name": "MiniOsVersionBumpOp"
+        },
+        {
+          "name": "KernelSubkeyRotationOp"
+        },
+        {
+          "name": "KernelDatakeyRotationOp"
+        },
+        {
+          "name": "FirmwareVersionBumpOp"
+        },
+        {
+          "name": "UsbRecoveryVersionBumpOp"
+        },
+        {
+          "name": "FirmwareKeyRotationOp"
         },
         {
           "enumType": [
@@ -19514,7 +19549,7 @@
                   "number": 2
                 },
                 {
-                  "name": "OP_STATUS_SKIPPED",
+                  "name": "OP_STATUS_PARTIAL",
                   "number": 3
                 }
               ]

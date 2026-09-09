@@ -209,33 +209,37 @@ message KeysetManagerRequest {
 
   // Buganizer ID to be associated with the request (for logging/future use).
   int64 bug = 5;
+
+  // Target keyset. Can be empty if operation is targeting all keysets.
+  string keyset = 6;
 }
 
 // A wrapper message for individual keyset operations.
 message KeysetOp {
   oneof op {
-    KernelBumpOp kernel_bump = 1;
-    MiniOsRollbackBumpOp minios_rollback_bump = 2;
+    KernelVersionBumpOp kernel_version_bump = 1;
+    MiniOsVersionBumpOp minios_version_bump = 2;
+    KernelSubkeyRotationOp kernel_subkey_rotation = 3;
+    KernelDatakeyRotationOp kernel_datakey_rotation = 4;
+    FirmwareVersionBumpOp firmware_version_bump = 5;
+    // The below operations will be implemented after Online HSM
+    UsbRecoveryVersionBumpOp usb_recovery_version_bump = 6;
+    FirmwareKeyRotationOp firmware_key_rotation = 7;
   }
 }
 
 // Operation to bump the kernel version of selected keys.
-message KernelBumpOp {
-  // The keyset to bump. Required if update_all is false.
-  string keyset = 1;
-
-  // If true, update all targets. Must be set if keyset is empty.
-  bool update_all = 2;
-}
+message KernelVersionBumpOp {}
 
 // Operation to bump the MiniOS rollback version.
-message MiniOsRollbackBumpOp {
-  // Target keyset
-  string keyset = 1;
+message MiniOsVersionBumpOp {}
 
-  // The new version/rollback index to set in kernel_subkey.vbpubk.
-  uint32 version = 2;
-}
+// Placeholders for future operations:
+message KernelSubkeyRotationOp {}
+message KernelDatakeyRotationOp {}
+message FirmwareVersionBumpOp {}
+message UsbRecoveryVersionBumpOp {}
+message FirmwareKeyRotationOp {}
 
 // Response containing the results of the keyset management run.
 message KeysetManagerResponse {
@@ -252,17 +256,20 @@ message KeysetManagerResponse {
 }
 // Detailed result of a single keyset operation.
 message KeysetOpResult {
-  // Name of the operation (e.g., "KernelBump", "MiniOsRollbackBump").
+  // Name of the operation (e.g., "KernelVersionBump", "MiniOsVersionBump").
   string op_name = 1;
   enum OpStatus {
     OP_STATUS_UNSPECIFIED = 0;
     OP_STATUS_SUCCESS = 1;
     OP_STATUS_FAILED = 2;
-    OP_STATUS_SKIPPED = 3;
+    OP_STATUS_PARTIAL = 3;
   }
   OpStatus status = 2;
-  // List of files modified or created by this operation
-  // relative to the release-keys repository root
+  // List of relative files modified or created by the operations
+  // (relative to the keyset directory, e.g., "BryaMPKeys-v23/kernel.keyblock").
+  // Files that are copied but not modified into the new version directories are
+  // excluded. Essentially this is a diff between the old and new version
+  // directories
   repeated string modified_files = 3;
   // Operation-specific error message if it failed.
   string error_message = 4;
