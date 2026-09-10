@@ -32924,6 +32924,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "boto_key_id",
               "number": 1,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -32931,6 +32934,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "boto_key_secret",
               "number": 2,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -32956,6 +32962,9 @@
               "label": "LABEL_OPTIONAL",
               "name": "boto_key_id",
               "number": 1,
+              "options": {
+                "deprecated": true
+              },
               "type": "TYPE_STRING"
             },
             {
@@ -32964,6 +32973,20 @@
               "name": "gcs_bucket_url",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "userEmail",
+              "label": "LABEL_OPTIONAL",
+              "name": "user_email",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isUserAuthenticated",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_user_authenticated",
+              "number": 4,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "GetCloudConfigurationResponse"
@@ -33904,6 +33927,119 @@
             }
           ],
           "name": "IsAuthResponse"
+        },
+        {
+          "name": "StartDeviceAuthRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "deviceCode",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_code",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "userCode",
+              "label": "LABEL_OPTIONAL",
+              "name": "user_code",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "verificationUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "verification_url",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "expiresIn",
+              "label": "LABEL_OPTIONAL",
+              "name": "expires_in",
+              "number": 4,
+              "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "interval",
+              "label": "LABEL_OPTIONAL",
+              "name": "interval",
+              "number": 5,
+              "type": "TYPE_INT32"
+            }
+          ],
+          "name": "StartDeviceAuthResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "deviceCode",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_code",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PollDeviceAuthRequest"
+        },
+        {
+          "enumType": [
+            {
+              "name": "Status",
+              "value": [
+                {
+                  "name": "STATUS_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "PENDING",
+                  "number": 1
+                },
+                {
+                  "name": "SUCCESS",
+                  "number": 2
+                },
+                {
+                  "name": "EXPIRED",
+                  "number": 3
+                },
+                {
+                  "name": "DENIED",
+                  "number": 4
+                },
+                {
+                  "name": "ERROR",
+                  "number": 5
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "status",
+              "label": "LABEL_OPTIONAL",
+              "name": "status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".satlabrpcserver.PollDeviceAuthResponse.Status"
+            },
+            {
+              "jsonName": "errorMessage",
+              "label": "LABEL_OPTIONAL",
+              "name": "error_message",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "authenticatedEmail",
+              "label": "LABEL_OPTIONAL",
+              "name": "authenticated_email",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "PollDeviceAuthResponse"
         },
         {
           "field": [
@@ -35429,6 +35565,16 @@
               "inputType": ".satlabrpcserver.IsAuthRequest",
               "name": "IsAuth",
               "outputType": ".satlabrpcserver.IsAuthResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.StartDeviceAuthRequest",
+              "name": "StartDeviceAuth",
+              "outputType": ".satlabrpcserver.StartDeviceAuthResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.PollDeviceAuthRequest",
+              "name": "PollDeviceAuth",
+              "outputType": ".satlabrpcserver.PollDeviceAuthResponse"
             },
             {
               "inputType": ".satlabrpcserver.DutWifiInfoRequest",

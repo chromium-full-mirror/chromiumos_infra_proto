@@ -83,6 +83,8 @@ type SatlabRpcServiceClient interface {
 	SetCloudConfiguration(ctx context.Context, in *SetCloudConfigurationRequest, opts ...grpc.CallOption) (*SetCloudConfigurationResponse, error)
 	GetCloudConfiguration(ctx context.Context, in *GetCloudConfigurationRequest, opts ...grpc.CallOption) (*GetCloudConfigurationResponse, error)
 	IsAuth(ctx context.Context, in *IsAuthRequest, opts ...grpc.CallOption) (*IsAuthResponse, error)
+	StartDeviceAuth(ctx context.Context, in *StartDeviceAuthRequest, opts ...grpc.CallOption) (*StartDeviceAuthResponse, error)
+	PollDeviceAuth(ctx context.Context, in *PollDeviceAuthRequest, opts ...grpc.CallOption) (*PollDeviceAuthResponse, error)
 	DutWifiInfo(ctx context.Context, in *DutWifiInfoRequest, opts ...grpc.CallOption) (*DutWifiInfoResponse, error)
 	SetDutWifiInfo(ctx context.Context, in *SetDutWifiInfoRequest, opts ...grpc.CallOption) (*SetDutWifiInfoResponse, error)
 	// system
@@ -604,6 +606,24 @@ func (c *satlabRpcServiceClient) IsAuth(ctx context.Context, in *IsAuthRequest, 
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) StartDeviceAuth(ctx context.Context, in *StartDeviceAuthRequest, opts ...grpc.CallOption) (*StartDeviceAuthResponse, error) {
+	out := new(StartDeviceAuthResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/StartDeviceAuth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) PollDeviceAuth(ctx context.Context, in *PollDeviceAuthRequest, opts ...grpc.CallOption) (*PollDeviceAuthResponse, error) {
+	out := new(PollDeviceAuthResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/PollDeviceAuth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) DutWifiInfo(ctx context.Context, in *DutWifiInfoRequest, opts ...grpc.CallOption) (*DutWifiInfoResponse, error) {
 	out := new(DutWifiInfoResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/DutWifiInfo", in, out, opts...)
@@ -816,6 +836,8 @@ type SatlabRpcServiceServer interface {
 	SetCloudConfiguration(context.Context, *SetCloudConfigurationRequest) (*SetCloudConfigurationResponse, error)
 	GetCloudConfiguration(context.Context, *GetCloudConfigurationRequest) (*GetCloudConfigurationResponse, error)
 	IsAuth(context.Context, *IsAuthRequest) (*IsAuthResponse, error)
+	StartDeviceAuth(context.Context, *StartDeviceAuthRequest) (*StartDeviceAuthResponse, error)
+	PollDeviceAuth(context.Context, *PollDeviceAuthRequest) (*PollDeviceAuthResponse, error)
 	DutWifiInfo(context.Context, *DutWifiInfoRequest) (*DutWifiInfoResponse, error)
 	SetDutWifiInfo(context.Context, *SetDutWifiInfoRequest) (*SetDutWifiInfoResponse, error)
 	// system
@@ -998,6 +1020,12 @@ func (UnimplementedSatlabRpcServiceServer) GetCloudConfiguration(context.Context
 }
 func (UnimplementedSatlabRpcServiceServer) IsAuth(context.Context, *IsAuthRequest) (*IsAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsAuth not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) StartDeviceAuth(context.Context, *StartDeviceAuthRequest) (*StartDeviceAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartDeviceAuth not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) PollDeviceAuth(context.Context, *PollDeviceAuthRequest) (*PollDeviceAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PollDeviceAuth not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) DutWifiInfo(context.Context, *DutWifiInfoRequest) (*DutWifiInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DutWifiInfo not implemented")
@@ -1993,6 +2021,42 @@ func _SatlabRpcService_IsAuth_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_StartDeviceAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartDeviceAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).StartDeviceAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/StartDeviceAuth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).StartDeviceAuth(ctx, req.(*StartDeviceAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_PollDeviceAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PollDeviceAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).PollDeviceAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/PollDeviceAuth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).PollDeviceAuth(ctx, req.(*PollDeviceAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_DutWifiInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DutWifiInfoRequest)
 	if err := dec(in); err != nil {
@@ -2458,6 +2522,14 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsAuth",
 			Handler:    _SatlabRpcService_IsAuth_Handler,
+		},
+		{
+			MethodName: "StartDeviceAuth",
+			Handler:    _SatlabRpcService_StartDeviceAuth_Handler,
+		},
+		{
+			MethodName: "PollDeviceAuth",
+			Handler:    _SatlabRpcService_PollDeviceAuth_Handler,
 		},
 		{
 			MethodName: "DutWifiInfo",
