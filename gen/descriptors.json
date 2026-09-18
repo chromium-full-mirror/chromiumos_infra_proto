@@ -32701,6 +32701,13 @@
                   "name": "os",
                   "number": 7,
                   "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "skipEth",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "skip_eth",
+                  "number": 8,
+                  "type": "TYPE_BOOL"
                 }
               ],
               "name": "Param"
