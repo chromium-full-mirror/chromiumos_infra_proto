@@ -31841,9 +31841,44 @@
               "name": "max_shard",
               "number": 17,
               "type": "TYPE_INT64"
+            },
+            {
+              "jsonName": "useSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_signed_image",
+              "number": 18,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "useTestRamdisk",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_test_ramdisk",
+              "number": 19,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "useSatlabCache",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_satlab_cache",
+              "number": 20,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "primaryAbiOnly",
+              "label": "LABEL_OPTIONAL",
+              "name": "primary_abi_only",
+              "number": 21,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_BOOL"
             }
           ],
-          "name": "RunSuiteRequest"
+          "name": "RunSuiteRequest",
+          "oneofDecl": [
+            {
+              "name": "_primary_abi_only"
+            }
+          ]
         },
         {
           "field": [
@@ -33823,9 +33858,44 @@
               "name": "ctp_timeout",
               "number": 7,
               "type": "TYPE_INT32"
+            },
+            {
+              "jsonName": "useSignedImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_signed_image",
+              "number": 8,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "useTestRamdisk",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_test_ramdisk",
+              "number": 9,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "useSatlabCache",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_satlab_cache",
+              "number": 10,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "primaryAbiOnly",
+              "label": "LABEL_OPTIONAL",
+              "name": "primary_abi_only",
+              "number": 11,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_BOOL"
             }
           ],
-          "name": "AdvancedSettings"
+          "name": "AdvancedSettings",
+          "oneofDecl": [
+            {
+              "name": "_primary_abi_only"
+            }
+          ]
         },
         {
           "field": [
