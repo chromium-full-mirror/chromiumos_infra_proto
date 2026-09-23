@@ -50,6 +50,7 @@ type SatlabRpcServiceClient interface {
 	ValidateAndroidBuild(ctx context.Context, in *ValidateAndroidBuildRequest, opts ...grpc.CallOption) (*ValidateAndroidBuildResponse, error)
 	RunAndroidLabqual(ctx context.Context, in *RunAndroidLabqualRequest, opts ...grpc.CallOption) (*RunAndroidLabqualResponse, error)
 	ListDrive(ctx context.Context, in *ListDriveRequest, opts ...grpc.CallOption) (*ListDriveResponse, error)
+	GetXtsPins(ctx context.Context, in *GetXtsPinsRequest, opts ...grpc.CallOption) (*GetXtsPinsResponse, error)
 	// Autoqual
 	ListTestEfforts(ctx context.Context, in *ListTestEffortsRequest, opts ...grpc.CallOption) (*ListTestEffortsResponse, error)
 	CancelTestEffort(ctx context.Context, in *CancelTestEffortRequest, opts ...grpc.CallOption) (*CancelTestEffortResponse, error)
@@ -325,6 +326,15 @@ func (c *satlabRpcServiceClient) RunAndroidLabqual(ctx context.Context, in *RunA
 func (c *satlabRpcServiceClient) ListDrive(ctx context.Context, in *ListDriveRequest, opts ...grpc.CallOption) (*ListDriveResponse, error) {
 	out := new(ListDriveResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/ListDrive", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) GetXtsPins(ctx context.Context, in *GetXtsPinsRequest, opts ...grpc.CallOption) (*GetXtsPinsResponse, error) {
+	out := new(GetXtsPinsResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetXtsPins", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -803,6 +813,7 @@ type SatlabRpcServiceServer interface {
 	ValidateAndroidBuild(context.Context, *ValidateAndroidBuildRequest) (*ValidateAndroidBuildResponse, error)
 	RunAndroidLabqual(context.Context, *RunAndroidLabqualRequest) (*RunAndroidLabqualResponse, error)
 	ListDrive(context.Context, *ListDriveRequest) (*ListDriveResponse, error)
+	GetXtsPins(context.Context, *GetXtsPinsRequest) (*GetXtsPinsResponse, error)
 	// Autoqual
 	ListTestEfforts(context.Context, *ListTestEffortsRequest) (*ListTestEffortsResponse, error)
 	CancelTestEffort(context.Context, *CancelTestEffortRequest) (*CancelTestEffortResponse, error)
@@ -936,6 +947,9 @@ func (UnimplementedSatlabRpcServiceServer) RunAndroidLabqual(context.Context, *R
 }
 func (UnimplementedSatlabRpcServiceServer) ListDrive(context.Context, *ListDriveRequest) (*ListDriveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDrive not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) GetXtsPins(context.Context, *GetXtsPinsRequest) (*GetXtsPinsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetXtsPins not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) ListTestEfforts(context.Context, *ListTestEffortsRequest) (*ListTestEffortsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestEfforts not implemented")
@@ -1510,6 +1524,24 @@ func _SatlabRpcService_ListDrive_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SatlabRpcServiceServer).ListDrive(ctx, req.(*ListDriveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_GetXtsPins_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetXtsPinsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).GetXtsPins(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/GetXtsPins",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).GetXtsPins(ctx, req.(*GetXtsPinsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2414,6 +2446,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDrive",
 			Handler:    _SatlabRpcService_ListDrive_Handler,
+		},
+		{
+			MethodName: "GetXtsPins",
+			Handler:    _SatlabRpcService_GetXtsPins_Handler,
 		},
 		{
 			MethodName: "ListTestEfforts",

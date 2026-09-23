@@ -35406,6 +35406,173 @@
               "name": "File"
             }
           ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBranch",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_branch",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testTargets",
+              "label": "LABEL_REPEATED",
+              "name": "test_targets",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "XtsAndroidBuildPin"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBuildName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build_name",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "XtsZipPin"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testBuildName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build_name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "variants",
+              "label": "LABEL_REPEATED",
+              "name": "variants",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.XtsPinVariant"
+            }
+          ],
+          "name": "XtsMultiArchPin"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "arch",
+              "label": "LABEL_OPTIONAL",
+              "name": "arch",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBuild",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "testBuildName",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_build_name",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "XtsPinVariant"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "cts",
+              "label": "LABEL_OPTIONAL",
+              "name": "cts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.XtsAndroidBuildPin"
+            },
+            {
+              "jsonName": "gts",
+              "label": "LABEL_OPTIONAL",
+              "name": "gts",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.XtsZipPin"
+            },
+            {
+              "jsonName": "sts",
+              "label": "LABEL_OPTIONAL",
+              "name": "sts",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.XtsMultiArchPin"
+            },
+            {
+              "jsonName": "vts",
+              "label": "LABEL_OPTIONAL",
+              "name": "vts",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.XtsAndroidBuildPin"
+            }
+          ],
+          "name": "XtsPins"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "osBranch",
+              "label": "LABEL_OPTIONAL",
+              "name": "os_branch",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "target",
+              "label": "LABEL_OPTIONAL",
+              "name": "target",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetXtsPinsRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "pins",
+              "label": "LABEL_OPTIONAL",
+              "name": "pins",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.XtsPins"
+            },
+            {
+              "jsonName": "device",
+              "label": "LABEL_OPTIONAL",
+              "name": "device",
+              "number": 2,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "GetXtsPinsResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -35535,6 +35702,11 @@
               "inputType": ".satlabrpcserver.ListDriveRequest",
               "name": "ListDrive",
               "outputType": ".satlabrpcserver.ListDriveResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetXtsPinsRequest",
+              "name": "GetXtsPins",
+              "outputType": ".satlabrpcserver.GetXtsPinsResponse"
             },
             {
               "inputType": ".satlabrpcserver.ListTestEffortsRequest",
