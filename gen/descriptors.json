@@ -13015,6 +13015,220 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "messageType": [
+        {
+          "enumType": [
+            {
+              "name": "KpiType",
+              "value": [
+                {
+                  "name": "KPI_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "BOOT_TO_KERNEL",
+                  "number": 1
+                },
+                {
+                  "name": "BOOT_TO_LOGIN",
+                  "number": 2
+                },
+                {
+                  "name": "EC_REBOOT",
+                  "number": 3
+                },
+                {
+                  "name": "RESUME_TIME",
+                  "number": 4
+                },
+                {
+                  "name": "NON_REQUIRED_TEST",
+                  "number": 5
+                }
+              ]
+            },
+            {
+              "name": "AggregationType",
+              "value": [
+                {
+                  "name": "AGGREGATION_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "MIN",
+                  "number": 1
+                },
+                {
+                  "name": "MAX",
+                  "number": 2
+                },
+                {
+                  "name": "AVERAGE",
+                  "number": 3
+                },
+                {
+                  "name": "PASS_RATE",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "key",
+              "label": "LABEL_REPEATED",
+              "name": "key",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "kpiType",
+              "label": "LABEL_OPTIONAL",
+              "name": "kpi_type",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Kpi.KpiType"
+            },
+            {
+              "jsonName": "aggregationType",
+              "label": "LABEL_OPTIONAL",
+              "name": "aggregation_type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Kpi.AggregationType"
+            }
+          ],
+          "name": "Kpi"
+        },
+        {
+          "enumType": [
+            {
+              "name": "LogType",
+              "value": [
+                {
+                  "name": "LOG_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "XML",
+                  "number": 1
+                },
+                {
+                  "name": "JSON",
+                  "number": 2
+                },
+                {
+                  "name": "RESULTS_CHART_JSON",
+                  "number": 3
+                }
+              ]
+            },
+            {
+              "name": "LogSearchPattern",
+              "value": [
+                {
+                  "name": "LOG_PATTERN_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "MATCH",
+                  "number": 1
+                },
+                {
+                  "name": "WALK",
+                  "number": 2
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "pathGlobPattern",
+              "label": "LABEL_REPEATED",
+              "name": "path_glob_pattern",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "logGlobPattern",
+              "label": "LABEL_REPEATED",
+              "name": "log_glob_pattern",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "logType",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_type",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.LogInstance.LogType"
+            },
+            {
+              "jsonName": "logSearchPattern",
+              "label": "LABEL_OPTIONAL",
+              "name": "log_search_pattern",
+              "number": 4,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.LogInstance.LogSearchPattern"
+            }
+          ],
+          "name": "LogInstance"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "testPattern",
+              "label": "LABEL_OPTIONAL",
+              "name": "test_pattern",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "log",
+              "label": "LABEL_OPTIONAL",
+              "name": "log",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.LogInstance"
+            },
+            {
+              "jsonName": "kpi",
+              "label": "LABEL_REPEATED",
+              "name": "kpi",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.Kpi"
+            }
+          ],
+          "name": "KeyPerformanceIndicatorInstance"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "kpiInstance",
+              "label": "LABEL_REPEATED",
+              "name": "kpi_instance",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.KeyPerformanceIndicatorInstance"
+            }
+          ],
+          "name": "KeyPerformanceIndicators"
+        }
+      ],
+      "name": "auto_qual/kpi.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
       "dependency": [
         "auto_qual/os_build_target.proto"
       ],

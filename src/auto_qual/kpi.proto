@@ -1,0 +1,62 @@
+// Copyright 2025 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package auto_qual;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
+
+message Kpi {
+  enum KpiType {
+    KPI_TYPE_UNSPECIFIED = 0;
+    BOOT_TO_KERNEL = 1;
+    BOOT_TO_LOGIN = 2;
+    EC_REBOOT = 3;
+    RESUME_TIME = 4;
+    NON_REQUIRED_TEST = 5;
+  }
+
+  enum AggregationType {
+    AGGREGATION_TYPE_UNSPECIFIED = 0;
+    MIN = 1;
+    MAX = 2;
+    AVERAGE = 3;
+    PASS_RATE = 4;
+  }
+
+  repeated string key = 1;
+  KpiType kpi_type = 2;
+  AggregationType aggregation_type = 3;
+}
+
+message LogInstance {
+  enum LogType {
+    LOG_TYPE_UNSPECIFIED = 0;
+    XML = 1;
+    JSON = 2;
+    RESULTS_CHART_JSON = 3;
+  }
+  enum LogSearchPattern {
+    LOG_PATTERN_UNSPECIFIED = 0;
+    MATCH = 1;
+    WALK = 2;
+  }
+  // Relative to the test log dir
+  repeated string path_glob_pattern = 1;
+  repeated string log_glob_pattern = 2;
+  LogType log_type = 3;
+  LogSearchPattern log_search_pattern = 4;
+}
+
+message KeyPerformanceIndicatorInstance {
+  string test_pattern = 1;
+  LogInstance log = 2;
+  // if no kpi specified, take all from file
+  repeated Kpi kpi = 3;
+}
+
+message KeyPerformanceIndicators {
+  repeated KeyPerformanceIndicatorInstance kpi_instance = 1;
+}
