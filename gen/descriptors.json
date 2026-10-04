@@ -11728,7 +11728,69 @@
         "isImport": false,
         "isSyntaxUnspecified": false
       },
+      "enumType": [
+        {
+          "name": "Operator",
+          "value": [
+            {
+              "name": "OPERATOR_UNSPECIFIED",
+              "number": 0
+            },
+            {
+              "name": "EQUAL",
+              "number": 1
+            },
+            {
+              "name": "NOT_EQUAL",
+              "number": 2
+            },
+            {
+              "name": "LESS_THAN",
+              "number": 3
+            },
+            {
+              "name": "LESS_THAN_OR_EQUAL",
+              "number": 4
+            },
+            {
+              "name": "GREATER_THAN",
+              "number": 5
+            },
+            {
+              "name": "GREATER_THAN_OR_EQUAL",
+              "number": 6
+            }
+          ]
+        }
+      ],
       "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "key",
+              "label": "LABEL_OPTIONAL",
+              "name": "key",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "value",
+              "label": "LABEL_OPTIONAL",
+              "name": "value",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "operator",
+              "label": "LABEL_OPTIONAL",
+              "name": "operator",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Operator"
+            }
+          ],
+          "name": "Dimension"
+        },
         {
           "field": [
             {
@@ -11744,6 +11806,14 @@
               "name": "value",
               "number": 2,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "operator",
+              "label": "LABEL_OPTIONAL",
+              "name": "operator",
+              "number": 3,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.Operator"
             }
           ],
           "name": "TestArguments"
@@ -11949,9 +12019,70 @@
               "oneofIndex": 0,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.AndroidTestPlatformTest"
+            },
+            {
+              "jsonName": "exclusions",
+              "label": "LABEL_REPEATED",
+              "name": "exclusions",
+              "number": 15,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.Test.Exclusion"
+            },
+            {
+              "jsonName": "dimensions",
+              "label": "LABEL_REPEATED",
+              "name": "dimensions",
+              "number": 16,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.TestArguments"
             }
           ],
           "name": "Test",
+          "nestedType": [
+            {
+              "field": [
+                {
+                  "jsonName": "excludeNames",
+                  "label": "LABEL_REPEATED",
+                  "name": "exclude_names",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "arguments",
+                  "label": "LABEL_REPEATED",
+                  "name": "arguments",
+                  "number": 2,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.TestArguments"
+                },
+                {
+                  "jsonName": "dimensions",
+                  "label": "LABEL_REPEATED",
+                  "name": "dimensions",
+                  "number": 3,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.TestArguments"
+                },
+                {
+                  "jsonName": "brokenBefore",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "broken_before",
+                  "number": 4,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "dimensionFilters",
+                  "label": "LABEL_REPEATED",
+                  "name": "dimension_filters",
+                  "number": 5,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".auto_qual.Dimension"
+                }
+              ],
+              "name": "Exclusion"
+            }
+          ],
           "oneofDecl": [
             {
               "name": "test_system"
@@ -13086,6 +13217,10 @@
                 {
                   "name": "EC_CRASH",
                   "number": 6
+                },
+                {
+                  "name": "AP_CRASH",
+                  "number": 7
                 }
               ]
             }
@@ -13145,7 +13280,7 @@
               "label": "LABEL_REPEATED",
               "name": "test_effort_id",
               "number": 1,
-              "type": "TYPE_UINT32"
+              "type": "TYPE_STRING"
             },
             {
               "jsonName": "waiver",

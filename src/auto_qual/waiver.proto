@@ -27,6 +27,7 @@ message Waiver {
     RESUME_TIME = 4;
     NON_REQUIRED_TEST = 5;
     EC_CRASH = 6;
+    AP_CRASH = 7;
   }
 
   repeated string board = 1;
@@ -41,7 +42,7 @@ message Waiver {
 
 message WaiverInstance {
   // Optional, if unspecified applies to all test efforts
-  repeated uint32 test_effort_id = 1;
+  repeated string test_effort_id = 1;
   Waiver waiver = 2;
 }
 

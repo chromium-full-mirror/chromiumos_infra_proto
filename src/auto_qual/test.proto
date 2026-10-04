@@ -8,11 +8,29 @@ package auto_qual;
 
 option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
 
+enum Operator {
+  OPERATOR_UNSPECIFIED = 0;
+  EQUAL = 1;
+  NOT_EQUAL = 2;
+  LESS_THAN = 3;
+  LESS_THAN_OR_EQUAL = 4;
+  GREATER_THAN = 5;
+  GREATER_THAN_OR_EQUAL = 6;
+}
+
+message Dimension {
+  string key = 1;
+  string value = 2;
+  Operator operator = 3;
+}
+
 message TestArguments {
   // The name of the argument
   string flag = 1;
   // The value of the argument
   string value = 2;
+  // Optional comparison operator (defaults to EQUAL when unspecified)
+  Operator operator = 3;
 }
 
 // Contains all parameters specific to a CTP request.
@@ -102,4 +120,14 @@ message Test {
     CustomizableTestPlatformTest ctp_test = 13;
     AndroidTestPlatformTest atp_test = 14;
   }
+
+  message Exclusion {
+    repeated string exclude_names = 1;
+    repeated TestArguments arguments = 2;
+    repeated TestArguments dimensions = 3;
+    string broken_before = 4;
+    repeated Dimension dimension_filters = 5;
+  }
+  repeated Exclusion exclusions = 15;
+  repeated TestArguments dimensions = 16;
 }
