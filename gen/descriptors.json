@@ -6015,6 +6015,13 @@
               "name": "avb_enabled",
               "number": 5,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "toolchain",
+              "label": "LABEL_OPTIONAL",
+              "name": "toolchain",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "TestAllFirmwareRequest"

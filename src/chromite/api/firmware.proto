@@ -217,6 +217,10 @@ message TestAllFirmwareRequest {
 
   // Whether to pass --avb-enabled to firmware_builder.py.
   bool avb_enabled = 5;
+
+  // Toolchain to pass as --toolchain to firmware_builder.py (e.g. "host/gnu"
+  // or "host/llvm").
+  string toolchain = 6;
 }
 
 message TestAllFirmwareResponse {
