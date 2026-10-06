@@ -12335,6 +12335,13 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.FirmwareTargetVersion"
+            },
+            {
+              "jsonName": "branch",
+              "label": "LABEL_OPTIONAL",
+              "name": "branch",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "BaseFirmwareTarget"
@@ -13011,6 +13018,58 @@
         }
       ],
       "name": "auto_qual/builder_qual_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "dependency": [
+        "auto_qual/build_info.proto",
+        "auto_qual/firmware_target.proto"
+      ],
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "duts",
+              "label": "LABEL_REPEATED",
+              "name": "duts",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.DeviceUnderTest"
+            },
+            {
+              "jsonName": "fwTargets",
+              "label": "LABEL_REPEATED",
+              "name": "fw_targets",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareTarget"
+            }
+          ],
+          "name": "FirmwareBranchMapping"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "mappings",
+              "label": "LABEL_REPEATED",
+              "name": "mappings",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.FirmwareBranchMapping"
+            }
+          ],
+          "name": "FirmwareBranchConfig"
+        }
+      ],
+      "name": "auto_qual/firmware_branch.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
       },

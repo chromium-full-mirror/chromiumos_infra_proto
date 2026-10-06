@@ -32,6 +32,7 @@ message FirmwareTargetVersion {
 message BaseFirmwareTarget {
   string uri = 1;
   FirmwareTargetVersion version = 2;
+  string branch = 3;
 }
 
 message FirmwareTargetInfo {

@@ -1,0 +1,19 @@
+// Copyright 2026 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package auto_qual;
+
+import "auto_qual/build_info.proto";
+import "auto_qual/firmware_target.proto";
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
+
+message FirmwareBranchMapping {
+  repeated DeviceUnderTest duts = 1;
+  repeated FirmwareTarget fw_targets = 2;
+}
+
+message FirmwareBranchConfig { repeated FirmwareBranchMapping mappings = 1; }
