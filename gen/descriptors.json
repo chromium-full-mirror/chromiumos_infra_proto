@@ -13440,6 +13440,25 @@
       },
       "messageType": [
         {
+          "enumType": [
+            {
+              "name": "Comparison",
+              "value": [
+                {
+                  "name": "COMPARISON_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "MAX",
+                  "number": 1
+                },
+                {
+                  "name": "MIN",
+                  "number": 2
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "name",
@@ -13460,6 +13479,28 @@
               "label": "LABEL_OPTIONAL",
               "name": "tag",
               "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "resultMetric",
+              "label": "LABEL_OPTIONAL",
+              "name": "result_metric",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "comparison",
+              "label": "LABEL_OPTIONAL",
+              "name": "comparison",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.ApplicableTest.Comparison"
+            },
+            {
+              "jsonName": "failurePattern",
+              "label": "LABEL_OPTIONAL",
+              "name": "failure_pattern",
+              "number": 6,
               "type": "TYPE_STRING"
             }
           ],

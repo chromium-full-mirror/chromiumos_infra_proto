@@ -14,6 +14,17 @@ message ApplicableTest {
   string argument = 2;
   // A regex that will be matched against Test.include_tags.
   string tag = 3;
+  // Metric name in Tast results-chart.json (e.g. "seconds_power_on_to_kernel").
+  string result_metric = 4;
+  enum Comparison {
+    COMPARISON_UNSPECIFIED = 0;
+    MAX = 1; // measured <= float(value) passes
+    MIN = 2; // measured >= float(value) passes
+  }
+  Comparison comparison = 5;
+  // Regex (re.search) matched against failure_reason; optional
+  // (?P<measured>...) group.
+  string failure_pattern = 6;
 }
 
 // Waiver specific information to link
