@@ -119,6 +119,12 @@ message ModelTestEffortConfig {
 
   // Static shard count default for all test plans in this test effort
   uint32 static_shard_count = 16;
+
+  // Parent effort ID when this effort is an isolated diagnostic probe
+  string parent_effort_id = 17;
+
+  // Diagnostic probe identifier from defs/diagnostic_probes.txtpb
+  string diagnostic_probe_id = 18;
 }
 
 message ModelTestEffortConfigs {

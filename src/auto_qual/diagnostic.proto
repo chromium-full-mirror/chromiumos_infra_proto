@@ -1,0 +1,41 @@
+// Copyright 2026 The ChromiumOS Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package auto_qual;
+
+option go_package = "go.chromium.org/chromiumos/infra/proto/go/auto_qual";
+
+// Classification metadata for an isolated regression source.
+message RegressionSourceSpec {
+  string source_id = 1;
+  string display_label = 2;
+  int64 bug_component_id = 3;
+}
+
+// Declarative specification for an automated diagnostic follow-on probe.
+message DiagnosticProbeSpec {
+  enum AxisMutation {
+    AXIS_MUTATION_UNSPECIFIED = 0;
+    TEST_BUILD_TOT = 1;
+    OS_BUILD_TOT = 2;
+    FW_PREVIOUS_RELEASED = 3;
+    FW_BISECT_SINGLE_TARGET = 4;
+  }
+
+  string probe_id = 1;
+  AxisMutation axis_mutation = 2;
+  repeated string prerequisite_passing_probes = 3;
+  repeated string prerequisite_failing_probes = 4;
+  string pass_regression_source_id = 5;
+  string fail_regression_source_id = 6;
+  string description = 7;
+}
+
+// Top-level configuration for defs/diagnostic_probes.txtpb.
+message DiagnosticProbesConfig {
+  repeated RegressionSourceSpec regression_sources = 1;
+  repeated DiagnosticProbeSpec probes = 2;
+}

@@ -12652,6 +12652,20 @@
               "name": "static_shard_count",
               "number": 16,
               "type": "TYPE_UINT32"
+            },
+            {
+              "jsonName": "parentEffortId",
+              "label": "LABEL_OPTIONAL",
+              "name": "parent_effort_id",
+              "number": 17,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "diagnosticProbeId",
+              "label": "LABEL_OPTIONAL",
+              "name": "diagnostic_probe_id",
+              "number": 18,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "ModelTestEffortConfig",
@@ -13018,6 +13032,149 @@
         }
       ],
       "name": "auto_qual/builder_qual_config.proto",
+      "options": {
+        "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
+      },
+      "package": "auto_qual",
+      "syntax": "proto3"
+    },
+    {
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
+      },
+      "messageType": [
+        {
+          "field": [
+            {
+              "jsonName": "sourceId",
+              "label": "LABEL_OPTIONAL",
+              "name": "source_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "displayLabel",
+              "label": "LABEL_OPTIONAL",
+              "name": "display_label",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "bugComponentId",
+              "label": "LABEL_OPTIONAL",
+              "name": "bug_component_id",
+              "number": 3,
+              "type": "TYPE_INT64"
+            }
+          ],
+          "name": "RegressionSourceSpec"
+        },
+        {
+          "enumType": [
+            {
+              "name": "AxisMutation",
+              "value": [
+                {
+                  "name": "AXIS_MUTATION_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "TEST_BUILD_TOT",
+                  "number": 1
+                },
+                {
+                  "name": "OS_BUILD_TOT",
+                  "number": 2
+                },
+                {
+                  "name": "FW_PREVIOUS_RELEASED",
+                  "number": 3
+                },
+                {
+                  "name": "FW_BISECT_SINGLE_TARGET",
+                  "number": 4
+                }
+              ]
+            }
+          ],
+          "field": [
+            {
+              "jsonName": "probeId",
+              "label": "LABEL_OPTIONAL",
+              "name": "probe_id",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "axisMutation",
+              "label": "LABEL_OPTIONAL",
+              "name": "axis_mutation",
+              "number": 2,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.DiagnosticProbeSpec.AxisMutation"
+            },
+            {
+              "jsonName": "prerequisitePassingProbes",
+              "label": "LABEL_REPEATED",
+              "name": "prerequisite_passing_probes",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "prerequisiteFailingProbes",
+              "label": "LABEL_REPEATED",
+              "name": "prerequisite_failing_probes",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "passRegressionSourceId",
+              "label": "LABEL_OPTIONAL",
+              "name": "pass_regression_source_id",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "failRegressionSourceId",
+              "label": "LABEL_OPTIONAL",
+              "name": "fail_regression_source_id",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "description",
+              "label": "LABEL_OPTIONAL",
+              "name": "description",
+              "number": 7,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "DiagnosticProbeSpec"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "regressionSources",
+              "label": "LABEL_REPEATED",
+              "name": "regression_sources",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.RegressionSourceSpec"
+            },
+            {
+              "jsonName": "probes",
+              "label": "LABEL_REPEATED",
+              "name": "probes",
+              "number": 2,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.DiagnosticProbeSpec"
+            }
+          ],
+          "name": "DiagnosticProbesConfig"
+        }
+      ],
+      "name": "auto_qual/diagnostic.proto",
       "options": {
         "goPackage": "go.chromium.org/chromiumos/infra/proto/go/auto_qual"
       },
