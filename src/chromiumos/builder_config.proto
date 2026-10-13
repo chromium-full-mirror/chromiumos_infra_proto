@@ -425,6 +425,10 @@ message BuilderConfig {
 
       // FirmwareService: PDC FW binaries
       FIRMWARE_PDC = 57;
+
+      // FirmwareService: Build configuration files, such as Kconfig, of the
+      // firmware targets.
+      FIRMWARE_CONFIG = 58;
     }
     repeated ArtifactTypes artifact_types = 2;
 

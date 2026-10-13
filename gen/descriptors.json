@@ -1374,7 +1374,7 @@
                       "start": 29
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 33
                     }
                   ],
@@ -1518,7 +1518,7 @@
                       "start": 30
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 53
                     }
                   ],
@@ -1667,7 +1667,7 @@
                       "start": 46
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 50
                     }
                   ],
@@ -1760,7 +1760,7 @@
                   "name": "ArtifactType",
                   "reservedRange": [
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 1
                     }
                   ],
@@ -1861,7 +1861,7 @@
                       "start": 54
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 57
                     }
                   ],
@@ -2030,7 +2030,7 @@
                       "start": 49
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 55
                     }
                   ],
@@ -2183,6 +2183,10 @@
                     {
                       "name": "FIRMWARE_PDC",
                       "number": 57
+                    },
+                    {
+                      "name": "FIRMWARE_CONFIG",
+                      "number": 58
                     }
                   ]
                 }
@@ -2268,7 +2272,7 @@
                       "start": 1
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 37
                     }
                   ],
@@ -2349,7 +2353,7 @@
                       "start": 1
                     },
                     {
-                      "end": 57,
+                      "end": 58,
                       "start": 52
                     }
                   ],
@@ -6329,6 +6333,32 @@
             {
               "field": [
                 {
+                  "jsonName": "board",
+                  "label": "LABEL_REPEATED",
+                  "name": "board",
+                  "number": 1,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "target",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "target",
+                  "number": 2,
+                  "type": "TYPE_STRING"
+                },
+                {
+                  "jsonName": "kind",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "kind",
+                  "number": 3,
+                  "type": "TYPE_STRING"
+                }
+              ],
+              "name": "ConfigInfo"
+            },
+            {
+              "field": [
+                {
                   "jsonName": "fileName",
                   "label": "LABEL_OPTIONAL",
                   "name": "file_name",
@@ -6370,6 +6400,15 @@
                   "oneofIndex": 0,
                   "type": "TYPE_MESSAGE",
                   "typeName": ".chromite.api.FirmwareArtifactInfo.TokenDatabaseInfo"
+                },
+                {
+                  "jsonName": "configInfo",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "config_info",
+                  "number": 6,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".chromite.api.FirmwareArtifactInfo.ConfigInfo"
                 }
               ],
               "name": "ObjectInfo",
@@ -16480,6 +16519,10 @@
                     {
                       "name": "FIRMWARE_PDC",
                       "number": 57
+                    },
+                    {
+                      "name": "FIRMWARE_CONFIG",
+                      "number": 58
                     }
                   ]
                 }
