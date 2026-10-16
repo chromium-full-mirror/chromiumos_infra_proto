@@ -11642,6 +11642,14 @@
               "number": 2,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.IndividualTarget"
+            },
+            {
+              "jsonName": "excludeModels",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_models",
+              "number": 3,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".auto_qual.IndividualTarget"
             }
           ],
           "name": "UnibuildTarget"

@@ -16,6 +16,7 @@ message IndividualTarget {
 message UnibuildTarget {
   string board = 1;
   repeated IndividualTarget models = 2;
+  repeated IndividualTarget exclude_models = 3;
 }
 
 message BuildTargetType {
