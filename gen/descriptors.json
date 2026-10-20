@@ -35856,6 +35856,23 @@
                   "number": 9
                 }
               ]
+            },
+            {
+              "name": "FirmwareType",
+              "value": [
+                {
+                  "name": "FIRMWARE_TYPE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "FIRMWARE_TYPE_READ_ONLY",
+                  "number": 1
+                },
+                {
+                  "name": "FIRMWARE_TYPE_READ_WRITE",
+                  "number": 2
+                }
+              ]
             }
           ],
           "field": [
@@ -35949,6 +35966,14 @@
               "name": "skip_boot_prerequisite",
               "number": 12,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "firmwareConfigs",
+              "label": "LABEL_REPEATED",
+              "name": "firmware_configs",
+              "number": 13,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.TestEffort.FirmwareConfig"
             }
           ],
           "name": "TestEffort",
@@ -36028,6 +36053,125 @@
                 }
               ],
               "name": "Pool"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "majorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "major_version",
+                  "number": 1,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "minorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "minor_version",
+                  "number": 2,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "patchNumber",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "patch_number",
+                  "number": 3,
+                  "type": "TYPE_INT32"
+                }
+              ],
+              "name": "FirmwareTestEffortVersion"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "majorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "major_version",
+                  "number": 1,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "minorVersion",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "minor_version",
+                  "number": 2,
+                  "type": "TYPE_INT32"
+                },
+                {
+                  "jsonName": "generation",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "generation",
+                  "number": 3,
+                  "type": "TYPE_INT32"
+                }
+              ],
+              "name": "GscTestEffortVersion"
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "ec",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ec",
+                  "number": 1,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".satlabrpcserver.TestEffort.FirmwareTestEffortVersion"
+                },
+                {
+                  "jsonName": "ap",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "ap",
+                  "number": 2,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".satlabrpcserver.TestEffort.FirmwareTestEffortVersion"
+                },
+                {
+                  "jsonName": "gsc",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "gsc",
+                  "number": 3,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".satlabrpcserver.TestEffort.GscTestEffortVersion"
+                },
+                {
+                  "jsonName": "fpmcu",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "fpmcu",
+                  "number": 4,
+                  "oneofIndex": 0,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".satlabrpcserver.TestEffort.FirmwareTestEffortVersion"
+                }
+              ],
+              "name": "FirmwareTarget",
+              "oneofDecl": [
+                {
+                  "name": "fw"
+                }
+              ]
+            },
+            {
+              "field": [
+                {
+                  "jsonName": "firmwareTarget",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "firmware_target",
+                  "number": 1,
+                  "type": "TYPE_MESSAGE",
+                  "typeName": ".satlabrpcserver.TestEffort.FirmwareTarget"
+                },
+                {
+                  "jsonName": "firmwareTypes",
+                  "label": "LABEL_REPEATED",
+                  "name": "firmware_types",
+                  "number": 2,
+                  "type": "TYPE_ENUM",
+                  "typeName": ".satlabrpcserver.TestEffort.FirmwareType"
+                }
+              ],
+              "name": "FirmwareConfig"
             }
           ],
           "oneofDecl": [
