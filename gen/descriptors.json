@@ -11897,6 +11897,13 @@
               "name": "use_subplan",
               "number": 3,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipTestEnumeration",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_test_enumeration",
+              "number": 4,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "AndroidTestPlatformTest"
@@ -12713,6 +12720,13 @@
               "name": "diagnostic_probe_id",
               "number": 18,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "skipTestEnumeration",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_test_enumeration",
+              "number": 19,
+              "type": "TYPE_BOOL"
             }
           ],
           "name": "ModelTestEffortConfig",
@@ -12774,6 +12788,13 @@
                   "label": "LABEL_OPTIONAL",
                   "name": "use_subplan",
                   "number": 5,
+                  "type": "TYPE_BOOL"
+                },
+                {
+                  "jsonName": "skipTestEnumeration",
+                  "label": "LABEL_OPTIONAL",
+                  "name": "skip_test_enumeration",
+                  "number": 6,
                   "type": "TYPE_BOOL"
                 }
               ],
