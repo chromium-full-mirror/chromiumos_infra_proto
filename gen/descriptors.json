@@ -20036,6 +20036,13 @@
               "oneofIndex": 1,
               "proto3Optional": true,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "workDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "work_dir",
+              "number": 6,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "CreateKeysHsmRequest",

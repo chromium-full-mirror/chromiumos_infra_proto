@@ -185,6 +185,10 @@ message CreateKeysHsmRequest {
   string keyset_name = 4;
 
   optional bool exporter_dry_run = 5;
+
+  // Path to a working directory for intermediate key generation artifacts and
+  // Cloud KMS export.
+  string work_dir = 6;
 }
 
 message CreateKeysHsmResponse { RequestStatus request_status = 1; }
