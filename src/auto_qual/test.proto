@@ -65,6 +65,7 @@ message Test {
     TAST = 2;
     MANUAL = 3;
     TRADEFED = 4;
+    MOBLY = 5;
   }
 
   HarnessType harness = 1;
