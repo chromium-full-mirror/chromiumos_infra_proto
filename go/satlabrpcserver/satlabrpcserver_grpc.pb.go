@@ -74,6 +74,9 @@ type SatlabRpcServiceClient interface {
 	StableVersion(ctx context.Context, in *StableVersionRequest, opts ...grpc.CallOption) (*StableVersionResponse, error)
 	UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*UpdateDeviceResponse, error)
 	Testlab(ctx context.Context, in *TestlabRequest, opts ...grpc.CallOption) (*TestlabResponse, error)
+	GetUnassignedServos(ctx context.Context, in *GetUnassignedServosRequest, opts ...grpc.CallOption) (*GetUnassignedServosResponse, error)
+	CheckDutReadiness(ctx context.Context, in *CheckDutReadinessRequest, opts ...grpc.CallOption) (*CheckDutReadinessResponse, error)
+	EnrollDutFromWizard(ctx context.Context, in *EnrollDutFromWizardRequest, opts ...grpc.CallOption) (*EnrollDutFromWizardResponse, error)
 	// get DUTs information
 	GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error)
 	ListDutTasks(ctx context.Context, in *ListDutTasksRequest, opts ...grpc.CallOption) (*ListDutTasksResponse, error)
@@ -544,6 +547,33 @@ func (c *satlabRpcServiceClient) Testlab(ctx context.Context, in *TestlabRequest
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) GetUnassignedServos(ctx context.Context, in *GetUnassignedServosRequest, opts ...grpc.CallOption) (*GetUnassignedServosResponse, error) {
+	out := new(GetUnassignedServosResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetUnassignedServos", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) CheckDutReadiness(ctx context.Context, in *CheckDutReadinessRequest, opts ...grpc.CallOption) (*CheckDutReadinessResponse, error) {
+	out := new(CheckDutReadinessResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/CheckDutReadiness", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *satlabRpcServiceClient) EnrollDutFromWizard(ctx context.Context, in *EnrollDutFromWizardRequest, opts ...grpc.CallOption) (*EnrollDutFromWizardResponse, error) {
+	out := new(EnrollDutFromWizardResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/EnrollDutFromWizard", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) GetDutDetail(ctx context.Context, in *GetDutDetailRequest, opts ...grpc.CallOption) (*GetDutDetailResponse, error) {
 	out := new(GetDutDetailResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/GetDutDetail", in, out, opts...)
@@ -837,6 +867,9 @@ type SatlabRpcServiceServer interface {
 	StableVersion(context.Context, *StableVersionRequest) (*StableVersionResponse, error)
 	UpdateDevice(context.Context, *UpdateDeviceRequest) (*UpdateDeviceResponse, error)
 	Testlab(context.Context, *TestlabRequest) (*TestlabResponse, error)
+	GetUnassignedServos(context.Context, *GetUnassignedServosRequest) (*GetUnassignedServosResponse, error)
+	CheckDutReadiness(context.Context, *CheckDutReadinessRequest) (*CheckDutReadinessResponse, error)
+	EnrollDutFromWizard(context.Context, *EnrollDutFromWizardRequest) (*EnrollDutFromWizardResponse, error)
 	// get DUTs information
 	GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error)
 	ListDutTasks(context.Context, *ListDutTasksRequest) (*ListDutTasksResponse, error)
@@ -1010,6 +1043,15 @@ func (UnimplementedSatlabRpcServiceServer) UpdateDevice(context.Context, *Update
 }
 func (UnimplementedSatlabRpcServiceServer) Testlab(context.Context, *TestlabRequest) (*TestlabResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Testlab not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) GetUnassignedServos(context.Context, *GetUnassignedServosRequest) (*GetUnassignedServosResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnassignedServos not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) CheckDutReadiness(context.Context, *CheckDutReadinessRequest) (*CheckDutReadinessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckDutReadiness not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) EnrollDutFromWizard(context.Context, *EnrollDutFromWizardRequest) (*EnrollDutFromWizardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnrollDutFromWizard not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) GetDutDetail(context.Context, *GetDutDetailRequest) (*GetDutDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDutDetail not implemented")
@@ -1909,6 +1951,60 @@ func _SatlabRpcService_Testlab_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_GetUnassignedServos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnassignedServosRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).GetUnassignedServos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/GetUnassignedServos",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).GetUnassignedServos(ctx, req.(*GetUnassignedServosRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_CheckDutReadiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckDutReadinessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).CheckDutReadiness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/CheckDutReadiness",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).CheckDutReadiness(ctx, req.(*CheckDutReadinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SatlabRpcService_EnrollDutFromWizard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnrollDutFromWizardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).EnrollDutFromWizard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/EnrollDutFromWizard",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).EnrollDutFromWizard(ctx, req.(*EnrollDutFromWizardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_GetDutDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDutDetailRequest)
 	if err := dec(in); err != nil {
@@ -2526,6 +2622,18 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Testlab",
 			Handler:    _SatlabRpcService_Testlab_Handler,
+		},
+		{
+			MethodName: "GetUnassignedServos",
+			Handler:    _SatlabRpcService_GetUnassignedServos_Handler,
+		},
+		{
+			MethodName: "CheckDutReadiness",
+			Handler:    _SatlabRpcService_CheckDutReadiness_Handler,
+		},
+		{
+			MethodName: "EnrollDutFromWizard",
+			Handler:    _SatlabRpcService_EnrollDutFromWizard_Handler,
 		},
 		{
 			MethodName: "GetDutDetail",

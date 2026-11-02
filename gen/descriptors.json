@@ -36409,6 +36409,277 @@
             }
           ],
           "name": "GetXtsPinsResponse"
+        },
+        {
+          "name": "GetUnassignedServosRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "serial",
+              "label": "LABEL_OPTIONAL",
+              "name": "serial",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deviceType",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_type",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hasGscSibling",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_gsc_sibling",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "UnassignedServo"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "servos",
+              "label": "LABEL_REPEATED",
+              "name": "servos",
+              "number": 1,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.UnassignedServo"
+            }
+          ],
+          "name": "GetUnassignedServosResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "servoSerial",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_serial",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deviceType",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_type",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "targetOs",
+              "label": "LABEL_OPTIONAL",
+              "name": "target_os",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "useRmaAuth",
+              "label": "LABEL_OPTIONAL",
+              "name": "use_rma_auth",
+              "number": 6,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "skipCcdOpen",
+              "label": "LABEL_OPTIONAL",
+              "name": "skip_ccd_open",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "CheckDutReadinessRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "name",
+              "label": "LABEL_OPTIONAL",
+              "name": "name",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "passed",
+              "label": "LABEL_OPTIONAL",
+              "name": "passed",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "details",
+              "label": "LABEL_OPTIONAL",
+              "name": "details",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "hint",
+              "label": "LABEL_OPTIONAL",
+              "name": "hint",
+              "number": 4,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "ReadinessCheck"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "servoSerial",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_serial",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deviceType",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_type",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isReady",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_ready",
+              "number": 3,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "checks",
+              "label": "LABEL_REPEATED",
+              "name": "checks",
+              "number": 4,
+              "type": "TYPE_MESSAGE",
+              "typeName": ".satlabrpcserver.ReadinessCheck"
+            },
+            {
+              "jsonName": "hasGscSibling",
+              "label": "LABEL_OPTIONAL",
+              "name": "has_gsc_sibling",
+              "number": 5,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "usbDevice",
+              "label": "LABEL_OPTIONAL",
+              "name": "usb_device",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "wpDisabled",
+              "label": "LABEL_OPTIONAL",
+              "name": "wp_disabled",
+              "number": 7,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "CheckDutReadinessResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "board",
+              "label": "LABEL_OPTIONAL",
+              "name": "board",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "model",
+              "label": "LABEL_OPTIONAL",
+              "name": "model",
+              "number": 3,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "servoSerial",
+              "label": "LABEL_OPTIONAL",
+              "name": "servo_serial",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deviceType",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_type",
+              "number": 5,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "os",
+              "label": "LABEL_OPTIONAL",
+              "name": "os",
+              "number": 6,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "asset",
+              "label": "LABEL_OPTIONAL",
+              "name": "asset",
+              "number": 7,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "pools",
+              "label": "LABEL_REPEATED",
+              "name": "pools",
+              "number": 8,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "EnrollDutFromWizardRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "hostname",
+              "label": "LABEL_OPTIONAL",
+              "name": "hostname",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "ipAddress",
+              "label": "LABEL_OPTIONAL",
+              "name": "ip_address",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deployTaskUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "deploy_task_url",
+              "number": 3,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "EnrollDutFromWizardResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -36644,6 +36915,21 @@
               "inputType": ".satlabrpcserver.TestlabRequest",
               "name": "Testlab",
               "outputType": ".satlabrpcserver.TestlabResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.GetUnassignedServosRequest",
+              "name": "GetUnassignedServos",
+              "outputType": ".satlabrpcserver.GetUnassignedServosResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.CheckDutReadinessRequest",
+              "name": "CheckDutReadiness",
+              "outputType": ".satlabrpcserver.CheckDutReadinessResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.EnrollDutFromWizardRequest",
+              "name": "EnrollDutFromWizard",
+              "outputType": ".satlabrpcserver.EnrollDutFromWizardResponse"
             },
             {
               "inputType": ".satlabrpcserver.GetDutDetailRequest",
