@@ -588,6 +588,20 @@
               "name": "use_siso",
               "number": 1,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "rbeInstance",
+              "label": "LABEL_OPTIONAL",
+              "name": "rbe_instance",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "actionSalt",
+              "label": "LABEL_OPTIONAL",
+              "name": "action_salt",
+              "number": 3,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "SisoConfig"
