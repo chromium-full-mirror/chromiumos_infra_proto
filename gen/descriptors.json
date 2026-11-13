@@ -20096,6 +20096,66 @@
               "type": "TYPE_STRING"
             },
             {
+              "jsonName": "releaseKeysCheckout",
+              "label": "LABEL_OPTIONAL",
+              "name": "release_keys_checkout",
+              "number": 2,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "dryRun",
+              "label": "LABEL_OPTIONAL",
+              "name": "dry_run",
+              "number": 3,
+              "oneofIndex": 0,
+              "proto3Optional": true,
+              "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "keysetName",
+              "label": "LABEL_OPTIONAL",
+              "name": "keyset_name",
+              "number": 4,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "workDir",
+              "label": "LABEL_OPTIONAL",
+              "name": "work_dir",
+              "number": 5,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "FinalizeKeysHsmRequest",
+          "oneofDecl": [
+            {
+              "name": "_dry_run"
+            }
+          ]
+        },
+        {
+          "field": [
+            {
+              "jsonName": "requestStatus",
+              "label": "LABEL_OPTIONAL",
+              "name": "request_status",
+              "number": 1,
+              "type": "TYPE_ENUM",
+              "typeName": ".chromite.api.RequestStatus"
+            }
+          ],
+          "name": "FinalizeKeysHsmResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "dockerImage",
+              "label": "LABEL_OPTIONAL",
+              "name": "docker_image",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
               "jsonName": "dryRun",
               "label": "LABEL_OPTIONAL",
               "name": "dry_run",
@@ -20376,6 +20436,12 @@
               "name": "CreateKeysHsm",
               "options": {},
               "outputType": ".chromite.api.CreateKeysHsmResponse"
+            },
+            {
+              "inputType": ".chromite.api.FinalizeKeysHsmRequest",
+              "name": "FinalizeKeysHsm",
+              "options": {},
+              "outputType": ".chromite.api.FinalizeKeysHsmResponse"
             },
             {
               "inputType": ".chromite.api.KeysetManagerRequest",

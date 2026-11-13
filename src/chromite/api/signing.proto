@@ -193,6 +193,27 @@ message CreateKeysHsmRequest {
 
 message CreateKeysHsmResponse { RequestStatus request_status = 1; }
 
+message FinalizeKeysHsmRequest {
+  // Docker image to use for signing operations.
+  // Should already be pulled down on the host.
+  // This consists of the name of the docker image, followed by the tag, i.e.
+  // "signing:1234".
+  // This should be set programmatically at run time, not manually.
+  string docker_image = 1;
+
+  // Path to the local checkout of the chromiumos/platform/release-keys.
+  string release_keys_checkout = 2;
+
+  optional bool dry_run = 3;
+
+  string keyset_name = 4;
+
+  // Path to a working directory holding inbox/ and outbox/ quorum artifacts.
+  string work_dir = 5;
+}
+
+message FinalizeKeysHsmResponse { RequestStatus request_status = 1; }
+
 // Request to execute keyset management operations.
 message KeysetManagerRequest {
   // Docker image to use for signing operations.
@@ -312,6 +333,10 @@ service SigningService {
 
   // Request key creation from the online HSM.
   rpc CreateKeysHsm(CreateKeysHsmRequest) returns (CreateKeysHsmResponse) {};
+
+  // Finalize key creation after online HSM quorum approval.
+  rpc FinalizeKeysHsm(FinalizeKeysHsmRequest)
+      returns (FinalizeKeysHsmResponse) {};
 
   // Execute keyset management operations.
   rpc KeysetManager(KeysetManagerRequest) returns (KeysetManagerResponse) {};

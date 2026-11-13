@@ -39,6 +39,8 @@ type SigningServiceClient interface {
 	SignViaOnlineHsm(ctx context.Context, in *SignViaOnlineHsmRequest, opts ...grpc.CallOption) (*SignViaOnlineHsmResponse, error)
 	// Request key creation from the online HSM.
 	CreateKeysHsm(ctx context.Context, in *CreateKeysHsmRequest, opts ...grpc.CallOption) (*CreateKeysHsmResponse, error)
+	// Finalize key creation after online HSM quorum approval.
+	FinalizeKeysHsm(ctx context.Context, in *FinalizeKeysHsmRequest, opts ...grpc.CallOption) (*FinalizeKeysHsmResponse, error)
 	// Execute keyset management operations.
 	KeysetManager(ctx context.Context, in *KeysetManagerRequest, opts ...grpc.CallOption) (*KeysetManagerResponse, error)
 }
@@ -105,6 +107,15 @@ func (c *signingServiceClient) CreateKeysHsm(ctx context.Context, in *CreateKeys
 	return out, nil
 }
 
+func (c *signingServiceClient) FinalizeKeysHsm(ctx context.Context, in *FinalizeKeysHsmRequest, opts ...grpc.CallOption) (*FinalizeKeysHsmResponse, error) {
+	out := new(FinalizeKeysHsmResponse)
+	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/FinalizeKeysHsm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *signingServiceClient) KeysetManager(ctx context.Context, in *KeysetManagerRequest, opts ...grpc.CallOption) (*KeysetManagerResponse, error) {
 	out := new(KeysetManagerResponse)
 	err := c.cc.Invoke(ctx, "/chromite.api.SigningService/KeysetManager", in, out, opts...)
@@ -135,6 +146,8 @@ type SigningServiceServer interface {
 	SignViaOnlineHsm(context.Context, *SignViaOnlineHsmRequest) (*SignViaOnlineHsmResponse, error)
 	// Request key creation from the online HSM.
 	CreateKeysHsm(context.Context, *CreateKeysHsmRequest) (*CreateKeysHsmResponse, error)
+	// Finalize key creation after online HSM quorum approval.
+	FinalizeKeysHsm(context.Context, *FinalizeKeysHsmRequest) (*FinalizeKeysHsmResponse, error)
 	// Execute keyset management operations.
 	KeysetManager(context.Context, *KeysetManagerRequest) (*KeysetManagerResponse, error)
 	mustEmbedUnimplementedSigningServiceServer()
@@ -161,6 +174,9 @@ func (UnimplementedSigningServiceServer) SignViaOnlineHsm(context.Context, *Sign
 }
 func (UnimplementedSigningServiceServer) CreateKeysHsm(context.Context, *CreateKeysHsmRequest) (*CreateKeysHsmResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKeysHsm not implemented")
+}
+func (UnimplementedSigningServiceServer) FinalizeKeysHsm(context.Context, *FinalizeKeysHsmRequest) (*FinalizeKeysHsmResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinalizeKeysHsm not implemented")
 }
 func (UnimplementedSigningServiceServer) KeysetManager(context.Context, *KeysetManagerRequest) (*KeysetManagerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method KeysetManager not implemented")
@@ -286,6 +302,24 @@ func _SigningService_CreateKeysHsm_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SigningService_FinalizeKeysHsm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinalizeKeysHsmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SigningServiceServer).FinalizeKeysHsm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chromite.api.SigningService/FinalizeKeysHsm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SigningServiceServer).FinalizeKeysHsm(ctx, req.(*FinalizeKeysHsmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SigningService_KeysetManager_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KeysetManagerRequest)
 	if err := dec(in); err != nil {
@@ -334,6 +368,10 @@ var SigningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateKeysHsm",
 			Handler:    _SigningService_CreateKeysHsm_Handler,
+		},
+		{
+			MethodName: "FinalizeKeysHsm",
+			Handler:    _SigningService_FinalizeKeysHsm_Handler,
 		},
 		{
 			MethodName: "KeysetManager",
