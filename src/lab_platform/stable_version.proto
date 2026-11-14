@@ -36,6 +36,57 @@ message StableVersion {
   // 1) "board-firmware/R80-14444.333.0"
   // 2) "gs://bucket/board-firmware/R80-14444.333.0/file_name.tar.xz"
   string firmware_ro_image_path = 5;
+
+  // Optional features modifying validation or policy rules for this entry.
+  enum Feature {
+    // Unspecified feature value (unused sentinel).
+    FEATURE_UNSPECIFIED = 0;
+
+    // Impact: Relaxes validation so `firmware_ro_version` and
+    // `firmware_ro_image_path` may be omitted (or partial when no archive
+    // exists); any populated firmware fields are still validated. Downstream
+    // recovery treats missing firmware as intentional rather than an error.
+    // Use cases: Labstations, peripherals, or early bring-up/VM targets that
+    // ship OS-only images (`no_fw = True`) or track a version without an
+    // archive (e.g. `fizz-labstation`).
+    FEATURE_FIRMWARE_OPTIONAL = 1;
+
+    // Impact: Permits signed `-user` AndroidOS build targets in place of the
+    // default `-userdebug` requirement while preserving all other OS, firmware,
+    // GCS, and Android Build checks.
+    // Use cases: Designated test pools (e.g. CTS/VTS or release-qualification
+    // pools) that intentionally qualify production-signed `-user` builds.
+    FEATURE_ALLOW_ANDROIDOS_USER_TARGET = 2;
+
+    // Impact: Allows `firmware_ro_version` to differ from the OS or branch
+    // sub-version encoded in `firmware_ro_image_path`, replacing implicit
+    // `/pinned_firmware.tar.bz2` filename bypasses while keeping path format
+    // and GCS existence checks enforced.
+    // Use cases: Boards using pinned older/newer firmware inside either
+    // `pinned_firmware.tar.bz2` or `firmware_from_source.tar.bz2` archives
+    // whose OS path sub-version does not match the embedded RO version
+    // (e.g. `brox`, `nissa`, `rauru`, `rex`, `fatcat`).
+    FEATURE_ALLOW_FIRMWARE_VERSION_MISMATCH = 3;
+
+    // Impact: Allows AP-only firmware archives (e.g. `<model>.<ver>.tar.bz2`
+    // containing `image-<model>.bin`) instead of requiring paired AP + EC
+    // archives (`firmware_from_source.tar.bz2` with `<model>/ec.bin`), while
+    // keeping version consistency and GCS existence checks enforced.
+    // Use cases: EC-less models or AP-only firmware bundles where hardware
+    // has no EC or flashes AP firmware separately (e.g. `bluey/mica`,
+    // `bluey/quartz`, `tanjiro/sapphire`).
+    FEATURE_AP_ONLY_FIRMWARE = 4;
+  }
+
+  // Optional features enabled for this stable version entry. Defaults to an
+  // empty list, enforcing standard rules: firmware required, matching FW
+  // sub-version, paired AP+EC archives, and `-userdebug` targets on AndroidOS.
+  // When populated, listed values relax only those specific rules for config
+  // generation (`recovery_versions_main.star`), `stable_version2` validation,
+  // and downstream recovery/review checks.
+  // Examples: [FEATURE_FIRMWARE_OPTIONAL], [FEATURE_ALLOW_ANDROIDOS_USER_TARGET],
+  // [FEATURE_ALLOW_FIRMWARE_VERSION_MISMATCH], [FEATURE_AP_ONLY_FIRMWARE].
+  repeated Feature features = 6;
 }
 
 // StableVersionTarget describes details of target devices.

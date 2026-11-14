@@ -29510,6 +29510,33 @@
           "name": "StableVersions"
         },
         {
+          "enumType": [
+            {
+              "name": "Feature",
+              "value": [
+                {
+                  "name": "FEATURE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "FEATURE_FIRMWARE_OPTIONAL",
+                  "number": 1
+                },
+                {
+                  "name": "FEATURE_ALLOW_ANDROIDOS_USER_TARGET",
+                  "number": 2
+                },
+                {
+                  "name": "FEATURE_ALLOW_FIRMWARE_VERSION_MISMATCH",
+                  "number": 3
+                },
+                {
+                  "name": "FEATURE_AP_ONLY_FIRMWARE",
+                  "number": 4
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "target",
@@ -29546,6 +29573,14 @@
               "name": "firmware_ro_image_path",
               "number": 5,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "features",
+              "label": "LABEL_REPEATED",
+              "name": "features",
+              "number": 6,
+              "type": "TYPE_ENUM",
+              "typeName": ".lab_platform.StableVersion.Feature"
             }
           ],
           "name": "StableVersion"
