@@ -105,6 +105,7 @@ type SatlabRpcServiceClient interface {
 	CheckDownloadJobLogStatus(ctx context.Context, in *CheckDownloadJobLogStatusRequest, opts ...grpc.CallOption) (*CheckDownloadJobLogStatusResponse, error)
 	JobLogLink(ctx context.Context, in *JobLogLinkRequest, opts ...grpc.CallOption) (*JobLogLinkResponse, error)
 	ListJobLogTasks(ctx context.Context, in *ListJobLogTasksRequest, opts ...grpc.CallOption) (*ListJobLogTasksResponse, error)
+	TaskBuildLink(ctx context.Context, in *TaskBuildLinkRequest, opts ...grpc.CallOption) (*TaskBuildLinkResponse, error)
 	// Jobs operation
 	AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error)
 	// Satlab update
@@ -795,6 +796,15 @@ func (c *satlabRpcServiceClient) ListJobLogTasks(ctx context.Context, in *ListJo
 	return out, nil
 }
 
+func (c *satlabRpcServiceClient) TaskBuildLink(ctx context.Context, in *TaskBuildLinkRequest, opts ...grpc.CallOption) (*TaskBuildLinkResponse, error) {
+	out := new(TaskBuildLinkResponse)
+	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/TaskBuildLink", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *satlabRpcServiceClient) AbortJobs(ctx context.Context, in *AbortJobsRequest, opts ...grpc.CallOption) (*AbortJobsResponse, error) {
 	out := new(AbortJobsResponse)
 	err := c.cc.Invoke(ctx, "/satlabrpcserver.SatlabRpcService/AbortJobs", in, out, opts...)
@@ -898,6 +908,7 @@ type SatlabRpcServiceServer interface {
 	CheckDownloadJobLogStatus(context.Context, *CheckDownloadJobLogStatusRequest) (*CheckDownloadJobLogStatusResponse, error)
 	JobLogLink(context.Context, *JobLogLinkRequest) (*JobLogLinkResponse, error)
 	ListJobLogTasks(context.Context, *ListJobLogTasksRequest) (*ListJobLogTasksResponse, error)
+	TaskBuildLink(context.Context, *TaskBuildLinkRequest) (*TaskBuildLinkResponse, error)
 	// Jobs operation
 	AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error)
 	// Satlab update
@@ -1118,6 +1129,9 @@ func (UnimplementedSatlabRpcServiceServer) JobLogLink(context.Context, *JobLogLi
 }
 func (UnimplementedSatlabRpcServiceServer) ListJobLogTasks(context.Context, *ListJobLogTasksRequest) (*ListJobLogTasksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobLogTasks not implemented")
+}
+func (UnimplementedSatlabRpcServiceServer) TaskBuildLink(context.Context, *TaskBuildLinkRequest) (*TaskBuildLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TaskBuildLink not implemented")
 }
 func (UnimplementedSatlabRpcServiceServer) AbortJobs(context.Context, *AbortJobsRequest) (*AbortJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AbortJobs not implemented")
@@ -2404,6 +2418,24 @@ func _SatlabRpcService_ListJobLogTasks_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SatlabRpcService_TaskBuildLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskBuildLinkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SatlabRpcServiceServer).TaskBuildLink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/satlabrpcserver.SatlabRpcService/TaskBuildLink",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SatlabRpcServiceServer).TaskBuildLink(ctx, req.(*TaskBuildLinkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SatlabRpcService_AbortJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AbortJobsRequest)
 	if err := dec(in); err != nil {
@@ -2718,6 +2750,10 @@ var SatlabRpcService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobLogTasks",
 			Handler:    _SatlabRpcService_ListJobLogTasks_Handler,
+		},
+		{
+			MethodName: "TaskBuildLink",
+			Handler:    _SatlabRpcService_TaskBuildLink_Handler,
 		},
 		{
 			MethodName: "AbortJobs",

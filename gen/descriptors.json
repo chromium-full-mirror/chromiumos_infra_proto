@@ -36799,6 +36799,37 @@
             }
           ],
           "name": "EnrollDutFromWizardResponse"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "taskUrl",
+              "label": "LABEL_OPTIONAL",
+              "name": "task_url",
+              "number": 1,
+              "type": "TYPE_STRING"
+            }
+          ],
+          "name": "TaskBuildLinkRequest"
+        },
+        {
+          "field": [
+            {
+              "jsonName": "buildLink",
+              "label": "LABEL_OPTIONAL",
+              "name": "build_link",
+              "number": 1,
+              "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "isReady",
+              "label": "LABEL_OPTIONAL",
+              "name": "is_ready",
+              "number": 2,
+              "type": "TYPE_BOOL"
+            }
+          ],
+          "name": "TaskBuildLinkResponse"
         }
       ],
       "name": "satlabrpcserver/satlabrpcserver.proto",
@@ -37172,6 +37203,11 @@
               "inputType": ".satlabrpcserver.ListJobLogTasksRequest",
               "name": "ListJobLogTasks",
               "outputType": ".satlabrpcserver.ListJobLogTasksResponse"
+            },
+            {
+              "inputType": ".satlabrpcserver.TaskBuildLinkRequest",
+              "name": "TaskBuildLink",
+              "outputType": ".satlabrpcserver.TaskBuildLinkResponse"
             },
             {
               "inputType": ".satlabrpcserver.AbortJobsRequest",
