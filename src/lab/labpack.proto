@@ -44,6 +44,11 @@ message LabpackInput {
   // Specify CIPD tag for CTR.
   // Default will be used as `prod`.
   string ctr_tag = 15;
+  // Device Manager service host used by labpack for lease operations.
+  // When unset, labpack falls back to the production Device Manager host.
+  // Examples: "device-lease-service-prod-bbx5lsj5jq-uc.a.run.app",
+  // "device-lease-service-dev-thnumbwdvq-uc.a.run.app".
+  string device_manager_service = 16;
 };
 
 // LabpackResponse represents result of execution the task on unit.

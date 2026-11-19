@@ -29178,6 +29178,13 @@
               "name": "ctr_tag",
               "number": 15,
               "type": "TYPE_STRING"
+            },
+            {
+              "jsonName": "deviceManagerService",
+              "label": "LABEL_OPTIONAL",
+              "name": "device_manager_service",
+              "number": 16,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "LabpackInput"
