@@ -11890,6 +11890,21 @@
           "name": "CustomizableTestPlatformTest"
         },
         {
+          "enumType": [
+            {
+              "name": "RetryMode",
+              "value": [
+                {
+                  "name": "RETRY_MODE_UNSPECIFIED",
+                  "number": 0
+                },
+                {
+                  "name": "RETRY_MODE_SHARD",
+                  "number": 1
+                }
+              ]
+            }
+          ],
           "field": [
             {
               "jsonName": "atpConfigName",
@@ -11918,6 +11933,14 @@
               "name": "skip_test_enumeration",
               "number": 4,
               "type": "TYPE_BOOL"
+            },
+            {
+              "jsonName": "retryMode",
+              "label": "LABEL_OPTIONAL",
+              "name": "retry_mode",
+              "number": 5,
+              "type": "TYPE_ENUM",
+              "typeName": ".auto_qual.AndroidTestPlatformTest.RetryMode"
             }
           ],
           "name": "AndroidTestPlatformTest"

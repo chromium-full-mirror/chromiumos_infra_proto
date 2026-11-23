@@ -39,6 +39,20 @@ message CustomizableTestPlatformTest {}
 
 // Contains all parameters specific to an Android Test Platform (ATP) run.
 message AndroidTestPlatformTest {
+  // How Auto-Qual re-runs a suite after a run (b/589374829).
+  enum RetryMode {
+    // Today's behavior: Auto-Qual records passed tests in the effort's
+    // exclude_names and re-runs the suite with them excluded, inline or
+    // through a SubPlan (see use_subplan).
+    RETRY_MODE_UNSPECIFIED = 0;
+    // For suites too large to track per test, such as CTS dEQP (about 2.9M
+    // test cases). Auto-Qual counts passed tests instead of storing them,
+    // and re-runs each shard that is incomplete or has unwaived failures as
+    // a whole shard: same build, config and shard count, selected with
+    // static_shard_list, and no filters.
+    RETRY_MODE_SHARD = 1;
+  }
+
   // The name of the ATP config file, e.g., "dts_firmware_ap_stable".
   // The full path will be constructed from this name.
   string atp_config_name = 1;
@@ -56,6 +70,11 @@ message AndroidTestPlatformTest {
   // If true, skip scheduling the pre-execution test enumeration
   // (--collect-tests-only) run for this ATP test suite (b/567677738).
   bool skip_test_enumeration = 4;
+
+  // How Auto-Qual re-runs this suite. Unset keeps today's behavior. When
+  // set, it takes precedence over an effort-level use_subplan override
+  // (ModelTestEffortConfig.TestPlan.use_subplan).
+  RetryMode retry_mode = 5;
 }
 
 message Test {
