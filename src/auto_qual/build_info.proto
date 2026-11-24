@@ -17,6 +17,8 @@ message UnibuildTarget {
   string board = 1;
   repeated IndividualTarget models = 2;
   repeated IndividualTarget exclude_models = 3;
+  // Boards to skip when board is "*" (e.g. boards nearing AUE).
+  repeated string exclude_boards = 4;
 }
 
 message BuildTargetType {

@@ -11703,6 +11703,13 @@
               "number": 3,
               "type": "TYPE_MESSAGE",
               "typeName": ".auto_qual.IndividualTarget"
+            },
+            {
+              "jsonName": "excludeBoards",
+              "label": "LABEL_REPEATED",
+              "name": "exclude_boards",
+              "number": 4,
+              "type": "TYPE_STRING"
             }
           ],
           "name": "UnibuildTarget"
